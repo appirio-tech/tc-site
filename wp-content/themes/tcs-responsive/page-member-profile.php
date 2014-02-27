@@ -65,13 +65,15 @@ $quote = ($coder->quote == '' ) ? "Member of the world's largest global competit
 									$memSince = $coder->memberSince; 
 									#$memSince = str_replace(".","/",$memSince);
 									echo date("M d, Y", strtotime($memSince)) ;
-									?></div>
+									?>
+								  </div>
 								</div>
-								<div class="memberSince">
-									<label>Total Earnings :</label>
-									<div class="val"><?php echo $coder->overallEarning ? '$'.$coder->overallEarning : "n/a";?></div>
-								</div>
-							</div>
+								<?php if (isset($coder->overallEarning)) { ?>
+									<div class="memberSince">
+										<label>Total Earnings :</label>
+										<div class="val"><?php echo '$'.$coder->overallEarning;?></div>
+									</div>
+								<?php } ?>								
 						</div>
 						<blockquote class="coderQuote">“<?php echo $quote;?>”</blockquote>
 						<ul class="social">
