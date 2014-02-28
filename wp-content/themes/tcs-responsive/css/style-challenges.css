@@ -1055,6 +1055,7 @@ select:disabled{
 
 span.subscribeTopWrapper {
     margin-bottom: 0;
+    border-bottom: none;
 }
 
 span.subscribeTopWrapper .feedBtn {
