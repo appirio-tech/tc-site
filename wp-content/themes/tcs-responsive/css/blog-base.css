@@ -172,7 +172,7 @@ img {
 	}
 	
 	.pageContent em{
-		font-weight: auto;
+		font-style: italic !important;
 	}
 	
 	.pageContent ul{
