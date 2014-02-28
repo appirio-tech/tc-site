@@ -56,6 +56,39 @@ $contestID = get_query_var('contestID');
 $contestType = $_GET['type'];
 $contest = get_contest_detail('',$contestID, $contestType);
 $registrants = $contest->registrants;
+// Ad submission dates to registrants
+// @TODO move this to a class
+if (!empty($contest->submissions)) {
+  $contest->submission = array_filter($contest->submissions, function($submission) {
+      if ($submission->submissionStatus === "Active") {
+        return true;
+      } else {
+        return false;
+      }
+    });
+
+  // 'user' => latest submissions
+  $submission_map = array();
+  foreach ($contest->submissions as $submission) {
+    if ($submission_map[$submission->handle]) {
+      $sub_date = new DateTime($submission->submissionDate);
+      if ($cur_date->diff($sub_date) > 0) {
+        $submission_map[$submission->handle] = $submission;
+        $cur_date = new DateTime($submission->submissionDate);
+      }
+    } else {
+      $submission_map[$submission->handle] = $submission;
+      $cur_date = new DateTime($submission->submissionDate);
+    }
+  }
+
+  foreach ($registrants as $registrant) {
+    if ($submission_map[$registrant->handle]) {
+      $registrant->submission = $submission_map[$registrant->handle];
+    }
+  }
+}
+
 $documents = $contest->Documents;
 #print_r($contest);
 ?>
@@ -946,17 +979,23 @@ $documents = $contest->Documents;
 				</td>
 -->				
 				<td class="reliabilityColumn">
-					<?php echo $registrant->reliability; ?>			
+					<?php echo $registrant->reliability; ?>
 				</td>
 				<?php
 				endif;
 				?>
 				<td class="regDateColumn">
-					<?php echo date("M d, Y H:i", strtotime("$registrant->registrationDate")) . " EST" ?>	
+					<?php echo date("M d, Y H:i", strtotime("$registrant->registrationDate")) . " EST" ?>
 				</td>
 				<td class="subDateColumn">
-					--		
-				</td>
+                  <?php
+                    if ($registrant->submission) {
+                      echo date("M d, Y H:i", strtotime("{$registrant->submission->submissionDate}")) . " EST";
+                    } else {
+                      echo "--";
+                    }
+                  ?>
+                </td>
 			</tr>
 			<?php endfor; ?> 
 		</tbody>
