@@ -150,14 +150,14 @@ var app = {
         app.getPartialContestTable($('.challenges'), data, 6);
       });
 
-      $('.dataChanges .viewAll').on(ev, function () {
+      /*$('.dataChanges .viewAll').on(ev, function () {
         app.setLoading();
         $.getJSON(url, function (data) {
           app.getPartialContestTable($('.challenges'), data, 1000);
         });
         $('.rt', $(this).closest('.dataChanges')).hide();
         $(this).parent().hide();
-      });
+      });*/
     }
 
   },
