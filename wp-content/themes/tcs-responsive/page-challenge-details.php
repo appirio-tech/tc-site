@@ -59,7 +59,7 @@ $registrants = $contest->registrants;
 // Ad submission dates to registrants
 // @TODO move this to a class
 if (!empty($contest->submissions)) {
-  $contest->submission = array_filter($contest->submission, function($submission) {
+  $contest->submission = array_filter($contest->submissions, function($submission) {
       if ($submission->submissionStatus === "Active") {
         return true;
       } else {
