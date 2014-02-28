@@ -470,25 +470,6 @@ if( !is_page_template('page-challenges.php') &&
 					<span class="err2">You must agree to the terms</span>
 				</p>
 
-				<p class="row planToCompete">
-					<label>Planning to compete?</label>
-						<span class="options">
-							<span class="animeMan manBlue"></span>
-							<span class="checkBox"><input type="checkbox" />In Design</span>
-							
-							<span class="animeMan manGreen"></span>					
-							<span class="checkBox"><input type="checkbox" />In Development</span>
-							
-							<span class="animeMan manYellow"></span>
-							<span class="checkBox"><input type="checkbox" />In Data(Algorithm)</span>
-							
-							<span class="animeMan manGrey"></span>
-							<span class="checkBox"><input type="checkbox" />Not sure yet</span>
-							<span class="clear"></span>
-						</span>
-						<div class="clear"></div>
-			 </p>
-				
 			</form><!-- END .form register -->
 			<div class="clear"></div>
 			<p class="submitBtn">

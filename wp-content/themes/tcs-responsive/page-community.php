@@ -68,7 +68,7 @@ $postPerPage = get_option ( "contest_per_page" ) == "" ? 30 : get_option ( "cont
 						<!-- /#tableView -->
 						<div class="dataChanges">
 							<div class="rt">
-								<a href="javascript:;" class="viewAll">View All</a>
+								<a href="/challenges" class="viewAll">View All</a>
 							</div>
 						</div>
 						<!-- /.dataChanges -->
@@ -97,7 +97,7 @@ $postPerPage = get_option ( "contest_per_page" ) == "" ? 30 : get_option ( "cont
 							<div class="shadow"></div>
 						</div>
 						<!-- /.diagnostics -->
-								<?php dynamic_sidebar('Sidebar Community');?>								
+								<?php dynamic_sidebar('Sidebar Community');?>
 							</aside>
 					<!-- /.sideStream -->
 					<div class="clear"></div>
