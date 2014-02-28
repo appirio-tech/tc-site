@@ -220,14 +220,14 @@ var app = {
       // list partial challenges table data
       app.community.getAllPartialContests(ajax.postPerPage);
 
-      $('.dataChanges .viewAll').on(ev, function () {
+      /*$('.dataChanges .viewAll').on(ev, function () {
         ajax.data["pageIndex"] = 1;
         app.community.getAllPartialContests(1000);
 
         $('.rt', $(this).closest('.dataChanges')).hide();
         $(this).parent().hide();
         app.ie7Fix2();
-      });
+      });*/
 
       /* table short */
       $('.dataTable.challenges thead th').click(function () {
