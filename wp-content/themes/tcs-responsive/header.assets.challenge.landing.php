@@ -75,7 +75,6 @@
 <script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/init-header.js<?php if ($ver) { echo "?v=$v"; } ?>" type="text/javascript"></script>
 
 <script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/jquery.jscrollpane.min.js<?php if ($ver) { echo "?v=$v"; } ?>" type="text/javascript"></script>
-<script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/jquery.mousewheel.js<?php if ($ver) { echo "?v=$v"; } ?>" type="text/javascript"></script><script src="<
 <script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/jquery.qtip.min.js" type="text/javascript"></script>
 
 
