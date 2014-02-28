@@ -46,7 +46,7 @@ else
 }
 
 global $coder;
-$coder = get_raw_coder($handle);
+$coder = get_member_profile($handle);
 $memberSince = explode(" ",$coder->memberSince);
 $memberSince = explode(".",$memberSince[0]);
 $memberEarning = '$'.$coder->overallEarning;
@@ -113,10 +113,14 @@ $photoLink = 'http://community.topcoder.com'.$coder->photoLink;
 						<div class="userDetails">
 							<?php echo get_handle($coder->handle); ?>
 							<p class="country"><?php echo $coder->country; ?></p>
-							<p class="lbl">Member Since:</p>
-							<p class="val"><?php echo $memberSince[2] ?></p>
-							<p class="lbl">Total Earnings :</p>
-							<p class="val"><?php echo $memberEarning?></p>
+							<p class="val memberSince"><?php 
+									$memSince = $coder->memberSince; 
+									echo date("M d, Y", strtotime($memSince)) ;
+									?></p>
+							<?php if (isset($coder->overallEarning)) { ?>
+								<p class="lbl">Total Earnings :</p>
+								<p class="val memberEarning"><?php echo '$'.$coder->overallEarning;?></p>
+							<?php } ?>								
 						</div>
 					</div>
 					<div class="action">
