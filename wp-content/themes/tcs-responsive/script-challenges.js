@@ -1168,12 +1168,7 @@ appChallenges = {
 	
     //format currency
     formatCur: function(cu) {
-        var str = "" + cu;
-        var len = str.length - 3;
-        for (var i = len; i > 0; i = i - 3) {
-            str = str.splice(i, 0, ',');
-        }
-        return str;
+      return cu.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
 
     //format date
