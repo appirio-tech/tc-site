@@ -988,7 +988,13 @@ $documents = $contest->Documents;
 					<?php echo date("M d, Y H:i", strtotime("$registrant->registrationDate")) . " EST" ?>
 				</td>
 				<td class="subDateColumn">
-                  <?php echo date("M d, Y H:i", strtotime("{$registrant->submission->submissionDate}")) . " EST" ?>
+                  <?php
+                    if ($registrant->submission) {
+                      echo date("M d, Y H:i", strtotime("{$registrant->submission->submissionDate}")) . " EST";
+                    } else {
+                      echo "--";
+                    }
+                  ?>
                 </td>
 			</tr>
 			<?php endfor; ?> 
