@@ -1051,4 +1051,9 @@ select:disabled{
 		border: 1px solid #c9e6b3;
 		background: #e5f6d8 url(../i/ico-info.png) 19px 9px no-repeat;
 		padding: 7px 10px 7px 82px;
-	}	
+	}
+
+span.subscribeTopWrapper {
+    float: left;
+    margin-top: 0;
+}
