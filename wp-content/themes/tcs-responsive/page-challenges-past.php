@@ -93,13 +93,13 @@ $postId = $post->ID;
 						</ul>
 					</div>
 					<div class="rt">
-                      <div class="subscribeTopWrapper" style="border-bottom:0px;height:30px;margin-bottom:0px">
+                      <span class="subscribeTopWrapper" style="border-bottom:0px;height:30px;margin-bottom:0px">
                         <?php
                         //$contest_type="";
                         $FeedURL = get_bloginfo('wpurl')."/challenges/feed?list=active&contestType=".$contest_type;
                         ?>
                         <a class="feedBtn" href="<?php echo $FeedURL;?>">Subscribe to <?php echo $contest_type; ?> challenges </a>
-                      </div>
+                      </span>
 						<a href="javascript:;" class="searchLink advSearch">
 							<i></i>Advanced Search
 						</a>
