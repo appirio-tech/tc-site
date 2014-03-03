@@ -139,7 +139,7 @@ if( !is_page_template('page-challenges.php') &&
 			<h2>Thanks for joining!</h2>
 			<p>We have sent you an email with activation instructions.<br />If you do not receive that email within 1 hour, please email <a href="mailto:support@topcoder.com">support@topcoder.com</a></p>
 			<div>
-				<a href="javascript:;" class="btn closeModal">Close</a>
+				<a href="/" class="btn closeModal">Close</a>
 			</div>
 		</div>
 	</div><!-- END #thanks -->
