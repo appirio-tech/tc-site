@@ -56,37 +56,76 @@ $contestID = get_query_var('contestID');
 $contestType = $_GET['type'];
 $contest = get_contest_detail('',$contestID, $contestType);
 $registrants = $contest->registrants;
+
+
 // Ad submission dates to registrants
 // @TODO move this to a class
 if (!empty($contest->submissions)) {
-  $contest->submission = array_filter($contest->submissions, function($submission) {
-      if (empty($submission->submissionStatus) || $submission->submissionStatus === "Active") {
-        return true;
-      } else {
-        return false;
-      }
-    });
-
-  // 'user' => latest submissions
-  $submission_map = array();
-  foreach ($contest->submissions as $submission) {
-    if ($submission_map[$submission->handle]) {
-      $sub_date = new DateTime($submission->submissionDate);
-      if ($cur_date->diff($sub_date) > 0) {
-        $submission_map[$submission->handle] = $submission;
-        $cur_date = new DateTime($submission->submissionDate);
-      }
-    } else {
-      $submission_map[$submission->handle] = $submission;
-      $cur_date = new DateTime($submission->submissionDate);
+    $submission_map = array();
+    switch ($contestType) {
+        case "develop":
+            $submission_map = createDevelopSubmissionMap($contest);
+            foreach ($registrants as &$registrant) {
+                if ($submission_map[$registrant->handle]) {
+                    $registrant->lastSubmissionDate = $submission_map[$registrant->handle]->submissionDate;
+                }
+            }
+            break;
+        case "design":
+            $submission_map = createDesignSubmissionMap($contest);
+            foreach ($registrants as &$registrant) {
+                if ($submission_map[$registrant->handle]) {
+                    $registrant->lastSubmissionDate = $submission_map[$registrant->handle]->submissionTime;
+                }
+            }
+            break;
     }
-  }
+}
 
-  foreach ($registrants as $registrant) {
-    if ($submission_map[$registrant->handle]) {
-      $registrant->submission = $submission_map[$registrant->handle];
+
+function createDesignSubmissionMap($contest) {
+    $submission_map = array();
+    foreach ($contest->submissions as $submission) {
+        if ($submission_map[$submission->submitter]) {
+            $sub_date = new DateTime($submission->submissionDate);
+            if ($cur_date->diff($sub_date) > 0) {
+                $submission_map[$submission->submitter] = $submission;
+                $cur_date = new DateTime($submission->submissionDate);
+            }
+        } else {
+            $submission_map[$submission->submitter] = $submission;
+            $cur_date = new DateTime($submission->submissionDate);
+        }
     }
-  }
+
+    return $submission_map;
+}
+
+function createDevelopSubmissionMap($contest) {
+    $submissions = array_filter($contest->submissions, function($submission) {
+            if ($submission->submissionStatus === "Active") {
+                return true;
+            } else {
+                return false;
+            }
+        });
+
+    // 'user' => latest submissions
+    $submission_map = array();
+    foreach ($submissions as $submission) {
+        if ($submission_map[$submission->handle]) {
+            $sub_date = new DateTime($submission->submissionDate);
+            if ($cur_date->diff($sub_date) > 0) {
+                $submission_map[$submission->handle] = $submission;
+                $cur_date = new DateTime($submission->submissionDate);
+            }
+        } else {
+            $submission_map[$submission->handle] = $submission;
+            $cur_date = new DateTime($submission->submissionDate);
+        }
+    }
+
+    return $submission_map;
 }
 
 $documents = $contest->Documents;
@@ -989,11 +1028,11 @@ $documents = $contest->Documents;
 				</td>
 				<td class="subDateColumn">
                   <?php
-                    if ($registrant->submission) {
-                      echo date("M d, Y H:i", strtotime("{$registrant->submission->submissionDate}")) . " EST";
-                    } else {
+                  if ($registrant->lastSubmissionDate) {
+                      echo date("M d, Y H:i", strtotime("{$registrant->lastSubmissionDate}")) . " EST";
+                  } else {
                       echo "--";
-                    }
+                  }
                   ?>
                 </td>
 			</tr>
@@ -1031,8 +1070,8 @@ $documents = $contest->Documents;
 			<div class="registrantSectionRow">
 				<div class="registrantLabel">Submission Date:</div>
 				<div class="registrantField">                  <?php
-                    if ($registrant->submission) {
-                        echo date("M d, Y H:i", strtotime("{$registrant->submission->submissionDate}")) . " EST";
+                    if ($registrant->lastSubmissionDate) {
+                        echo date("M d, Y H:i", strtotime("{$registrant->lastSubmissionDate}")) . " EST";
                     } else {
                         echo "--";
                     }
