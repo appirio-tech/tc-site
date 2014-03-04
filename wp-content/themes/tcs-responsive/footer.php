@@ -148,10 +148,10 @@ if( !is_page_template('page-challenges.php') &&
 		<div class="content">
 			<h2>Register Using An Existing Account</h2>
 			<div id="socials">
-				<a class="register-facebook" href="#"><span class="animeButton shareFacebook"><span class="shareFacebookHover animeButtonHover"></span></span></a>
-				<a class="register-google" href="#"><span class="animeButton shareGoogle"><span class="shareGoogleHover animeButtonHover"></span></span></a>
-				<a class="register-twitter" href="#"><span class="animeButton shareTwitter"><span class="shareTwitterHover animeButtonHover"></span></span></a>
-				<a class="register-github" href="#"><span class="animeButton shareGithub"><span class="shareGithubHover animeButtonHover"></span></span></a>
+				<a class="register-facebook" href="javascript:;"><span class="animeButton shareFacebook"><span class="shareFacebookHover animeButtonHover"></span></span></a>
+				<a class="register-google" href="javascript:;"><span class="animeButton shareGoogle"><span class="shareGoogleHover animeButtonHover"></span></span></a>
+				<a class="register-twitter" href="javascript:;"><span class="animeButton shareTwitter"><span class="shareTwitterHover animeButtonHover"></span></span></a>
+				<a class="register-github" href="javascript:;"><span class="animeButton shareGithub"><span class="shareGithubHover animeButtonHover"></span></span></a>
 				<p>Using an existing account is quick and easy.<br />Select the account you would like to use and we'll do the rest for you</p>
 				<div class="clear"></div>
 			</div><!-- END .socials -->
@@ -482,10 +482,10 @@ if( !is_page_template('page-challenges.php') &&
 		<div class="content">
 			<h2>Login Using An Existing Account</h2>
 			<div id="socials">
-				<a class="signin-facebook" href="#"><span class="animeButton shareFacebook"><span class="shareFacebookHover animeButtonHover"></span></span></a>
-				<a class="signin-google" href="#"><span class="animeButton shareGoogle"><span class="shareGoogleHover animeButtonHover"></span></span></a>
-				<a class="signin-twitter" href="#"><span class="animeButton shareTwitter"><span class="shareTwitterHover animeButtonHover"></span></span></a>
-				<a class="signin-github" href="#"><span class="animeButton shareGithub"><span class="shareGithubHover animeButtonHover"></span></span></a>
+				<a class="signin-facebook" href="javascript:;"><span class="animeButton shareFacebook"><span class="shareFacebookHover animeButtonHover"></span></span></a>
+				<a class="signin-google" href="javascript:;"><span class="animeButton shareGoogle"><span class="shareGoogleHover animeButtonHover"></span></span></a>
+				<a class="signin-twitter" href="javascript:;"><span class="animeButton shareTwitter"><span class="shareTwitterHover animeButtonHover"></span></span></a>
+				<a class="signin-github" href="javascript:;"><span class="animeButton shareGithub"><span class="shareGithubHover animeButtonHover"></span></span></a>
 				<p>Using an existing account is quick and easy.<br />Select the account you would like to use and we'll do the rest for you</p>
 				<div class="clear"></div>
 			</div><!-- END .socials -->
