@@ -60,7 +60,7 @@ $registrants = $contest->registrants;
 // @TODO move this to a class
 if (!empty($contest->submissions)) {
   $contest->submission = array_filter($contest->submissions, function($submission) {
-      if ($submission->submissionStatus === "Active") {
+      if (empty($submission->submissionStatus) || $submission->submissionStatus === "Active") {
         return true;
       } else {
         return false;
@@ -1030,7 +1030,13 @@ $documents = $contest->Documents;
 			</div>
 			<div class="registrantSectionRow">
 				<div class="registrantLabel">Submission Date:</div>
-				<div class="registrantField">--</div>
+				<div class="registrantField">                  <?php
+                    if ($registrant->submission) {
+                        echo date("M d, Y H:i", strtotime("{$registrant->submission->submissionDate}")) . " EST";
+                    } else {
+                        echo "--";
+                    }
+                    ?></div>
 				<div class="clear"></div>
 			</div>
   	</div>
