@@ -573,11 +573,7 @@ if( !is_page_template('page-challenges.php') &&
 				handle = profile.screen_name;
 				socialProviderId = 3;
 			} else if(socialProvider === githubProvider){
-				var splitName = profile.name.split(" ");
-				firstName = splitName[0];
-				if(splitName.length > 1){
-					lastName = splitName[1];
-				}
+        firstName = lastName = '';
 				handle = profile.nickname;
 				email = profile.email;
 				socialProviderId = 4;
