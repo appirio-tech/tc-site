@@ -94,38 +94,34 @@ $postId = $post->ID;
 					</div>
 					<div class="rt">
                       <span class="subscribeTopWrapper">
-                        <?php
-                        //$contest_type="";
-                        $FeedURL = get_bloginfo('wpurl')."/challenges/feed?list=active&contestType=" . $contest_type;
-                        ?>
-                        <a class="feedBtn" href="<?php echo $FeedURL;?>">Subscribe to <?php echo $contest_type; ?> challenges </a>
+
                       </span>
                       <span>
                         <a href="javascript:;" class="searchLink advSearch">
                             <i></i>Advanced Search
                         </a>
                       </span>
-					</div>
-				</div>
-				<!-- /.actions -->
-				<div class="searchFilter hide">
-					<div class="filterOpts">
-						<section class="types">
-							<h5>Contest types:</h5>
-							<div class="data">
-								<?php if($contest_type=="design") : ?>
-								<ul class="list">
-									<li><input type="radio" id="fAll" name="radioFilterChallenge" value="all"> <label for="fAll"><strong>All</strong></label></li>
-									<li><input type="radio" id="fP" name="radioFilterChallenge" value="Print/Presentation"> <label for="fAll">Print/Presentation</label></li>
-									<li><input type="radio" id="fW" name="radioFilterChallenge" value="Web Design"> <label for="fAll">Web Design</label></li>
-									<li><input type="radio" id="fIco" name="radioFilterChallenge" value="Banners/Icons"> <label for="fAll">Banner/Icon</label></li>
-									<li><input type="radio" id="fWF" name="radioFilterChallenge" value="Wireframes"> <label for="fAll">Wireframe</label></li>
-									<li><input type="radio" id="fLogo" name="radioFilterChallenge" value="Logo Design"> <label for="fAll">Logo Design</label></li>
-									<li><input type="radio" id="fAFE" name="radioFilterChallenge" value="Application Front-End Design"> <label for="fAll">Application Front End</label></li>
-									<li><input type="radio" id="fIG" name="radioFilterChallenge" value="Idea Generation"> <label for="fAll">Idea Generation</label></li>
-									<li><input type="radio" id="fWI" name="radioFilterChallenge" value="Widget or Mobile Screen Design"> <label for="fAll">Widget/Mobile Screen</label></li>
-								</ul>
-								<?php else : ?>
+                    </div>
+                </div>
+                <!-- /.actions -->
+                <div class="searchFilter hide">
+                    <div class="filterOpts">
+                        <section class="types">
+                            <h5>Contest types:</h5>
+                            <div class="data">
+                                <?php if($contest_type=="design") : ?>
+                                <ul class="list">
+                                    <li><input type="radio" id="fAll" name="radioFilterChallenge" value="all"> <label for="fAll"><strong>All</strong></label></li>
+                                    <li><input type="radio" id="fAFE" name="radioFilterChallenge" value="Application Front-End Design"> <label for="fAll">Application Front End</label></li>
+                                    <li><input type="radio" id="fIco" name="radioFilterChallenge" value="Banners/Icons"> <label for="fAll">Banner/Icon</label></li>
+                                    <li><input type="radio" id="fIG" name="radioFilterChallenge" value="Idea Generation"> <label for="fAll">Idea Generation</label></li>
+                                    <li><input type="radio" id="fLogo" name="radioFilterChallenge" value="Logo Design"> <label for="fAll">Logo Design</label></li>
+                                    <li><input type="radio" id="fP" name="radioFilterChallenge" value="Print/Presentation"> <label for="fAll">Print/Presentation</label></li>
+                                    <li><input type="radio" id="fW" name="radioFilterChallenge" value="Web Design"> <label for="fAll">Web Design</label></li>
+                                    <li><input type="radio" id="fWI" name="radioFilterChallenge" value="Widget or Mobile Screen Design"> <label for="fAll">Widget/Mobile Screen</label></li>
+                                    <li><input type="radio" id="fWF" name="radioFilterChallenge" value="Wireframes"> <label for="fAll">Wireframe</label></li>
+                                </ul>
+                                <?php else : ?>
                                 <ul class="list">
                                   <li><input type="radio" id="fAll" name="radioFilterChallenge" class="all" value="all" /> <label for="fAll"><strong>All</strong></label></li>
                                   <li><input type="radio" id="fArc" name="radioFilterChallenge" value="Architecture" /> <label for="fArc">Architecture</label></li>
