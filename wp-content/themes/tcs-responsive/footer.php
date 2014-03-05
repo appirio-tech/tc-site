@@ -585,7 +585,16 @@ if( !is_page_template('page-challenges.php') &&
      $("#registerForm .lastName").val(lastName);
      $("#registerForm .handle").val(handle);
      $("#registerForm .email").val(email);
-	
+
+     // trigger validation
+     window.setTimeout(function() {
+       $('input.pwd:password').trigger('keyup');
+       $('#register form.register input.email:text').trigger('keyup');
+       $('#register form.register input.name:text').trigger('keyup');
+       $('#register form.register input:checkbox').trigger('change');
+       $('#register input:password').on('keyup');
+       $('select').on('change');
+     }, 100);
 	 
   });
   
