@@ -44,7 +44,8 @@ $(function () {
   });
 
   $('.closeModal,#bgModal').on('click', function () {
-    closeModal();
+    window.location.replace('/');
+    // closeModal();
   });
 
 
