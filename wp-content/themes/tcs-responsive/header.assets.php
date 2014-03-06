@@ -32,12 +32,8 @@
   <link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/ie.css<?php if ($ver) { echo "?v=$v"; } ?>" />
 <![endif]-->
 
-<!--[if IE 7]>
-  <link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/ie7.css<?php if ($ver) { echo "?v=$v"; } ?>" />
-<![endif]-->
-
-<!--[if IE]>
-  <link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/ie_all.css<?php if ($ver) { echo "?v=$v"; } ?>" />
+<!--[if le IE 8]>
+<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/ie.css<?php if ($ver) { echo "?v=$v"; } ?>" />
 <![endif]-->
 
 <!--
