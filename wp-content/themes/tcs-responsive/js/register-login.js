@@ -216,6 +216,16 @@ $(function () {
           $(this).closest('.row').find('.err2').show();
           $(this).closest('.row').find('input:password').addClass('invalid');
           isValid = false;
+        } else if (pwdStrength($('input.pwd:password').val()) == -1) {
+          frm.find(".err3.red").show();
+          $(this).closest('.row').find('.err3').show();
+          $(this).closest('.row').find('input:password').addClass('invalid');
+          isValid = false;
+        } else if (pwdStrength($('input.pwd:password').val()) < -1) {
+          frm.find(".err4.red").show();
+          $(this).closest('.row').find('.err4').show();
+          $(this).closest('.row').find('input:password').addClass('invalid');
+          isValid = false;
         }
         if ($('input.pwd:password', frm).val() != $('input.confirm:password', frm).val()) {
           $('input.confirm:password').closest('.row').find('.err2').show();
