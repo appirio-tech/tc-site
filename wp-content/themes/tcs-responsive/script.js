@@ -363,7 +363,7 @@ var app = {
 var blueprints = {
     challengeRow: '<tr> \
 						<td class="colCh"><div>\
-								<a href="#" class="contestName"></a>\
+								<a href="javascript:;" class="contestName"></a>\
 							</div></td>\
 						<td class="colTime"><div>\
 								<div class="row">\
@@ -387,7 +387,7 @@ var blueprints = {
 					</tr>',
 	partialChallengeRow: '<tr> \
 						<td class="colCh"><div>\
-								<a href="#" class="contestName"></a>\
+								<a href="javascript:;" class="contestName"></a>\
 							</div></td>\
 						<td class="colTime"><div>\
 								<div class="row">\
@@ -406,7 +406,7 @@ var blueprints = {
 						<td class="colPur"></td>\
 					</tr>',
 	challengeGridBlock: '<div class="contest">\
-									<div class="cgCh"><a href="#" class="contestName"></a></div>\
+									<div class="cgCh"><a href="javascript:;" class="contestName"></a></div>\
 									<div class="cgTime">\
 										<div>\
 											<div class="row">\

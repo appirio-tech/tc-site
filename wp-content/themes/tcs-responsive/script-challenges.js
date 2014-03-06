@@ -1234,7 +1234,7 @@ appChallenges = {
 var challengesBP = {
 	tabAll: '<tr class="inTCO">\
 				<td class="colCh"><div>\
-						<a href="#" class="contestName"></a>\
+						<a href="javascript:;" class="contestName"></a>\
 					</div></td>\
 				<td class="colType"><i class="ico"> <span class="tooltipData"> \
 				<span class="tipT">Contest Type</span> \
@@ -1262,7 +1262,7 @@ var challengesBP = {
 			</tr>',
 	tabAllDev: '<tr class="inTCO">\
 				<td class="colCh"><div>\
-						<a href="#" class="contestName"></a>\
+						<a href="javascript:;" class="contestName"></a>\
 					</div></td>\
 				<td class="colType"><i class="ico"> <span class="tooltipData"> \
 				<span class="tipT">Contest Type</span> \
@@ -1314,7 +1314,7 @@ var challengesBP = {
 			</tr>',			
     gdOpen: '<tr class="inTCO">\
 				<td class="colCh"><div>\
-						<a href="#" class="contestName"></a>\
+						<a href="javascript:;" class="contestName"></a>\
 					</div></td>\
 				<td class="colType"><i class="ico"> <span class="tooltipData"> \
 				<span class="tipT">Contest Type</span> \
@@ -1343,7 +1343,7 @@ var challengesBP = {
 			</tr>',
 	gdDevOpen: '<tr class="inTCO">\
 				<td class="colCh"><div>\
-						<a href="#" class="contestName"></a>\
+						<a href="javascript:;" class="contestName"></a>\
 					</div></td>\
 				<td class="colType"><i class="ico"> <span class="tooltipData"> \
 				<span class="tipT">Contest Type</span> \
@@ -1371,7 +1371,7 @@ var challengesBP = {
 				<td class="colSub"></td>\
 			</tr>',
     grDOpen: '<div class="contest">\
-				<div class="cgCh"><a href="#" class="contestName"></a></div>\
+				<div class="cgCh"><a href="javascript:;" class="contestName"></a></div>\
 				<div class="cgTime">\
 					<div>\
 						<div class="row">\
@@ -1442,7 +1442,7 @@ var challengesBP = {
 				</div>',
 	 // grid develop open			
     grDevOpen: '<div class="contest">\
-				<div class="cgCh"><a href="#" class="contestName"></a></div>\
+				<div class="cgCh"><a href="javascript:;" class="contestName"></a></div>\
 				<div class="cgTime">\
 					<div>\
 						<div class="row">\
@@ -1481,7 +1481,7 @@ var challengesBP = {
     /* table past challenges */
     tabPC: '<tr class="inTCO">\
 				<td class="colCh"><div>\
-						<a href="#" class="contestName"></a>\
+						<a href="javascript:;" class="contestName"></a>\
 					</div></td>\
 				<td class="colType w"><i class="ico"> <span class="tooltipData"> <span class="tipT">Contest Type</span> <span class="tipC">Web Design</span>\
 					</span></i></td>\
