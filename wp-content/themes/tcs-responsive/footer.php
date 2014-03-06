@@ -534,6 +534,7 @@ if( !is_page_template('page-challenges.php') &&
 
 
 <script>
+$(function() {
   var googleProvider = "google-oauth2";
   var facebookProvider = "facebook";
   var twitterProvider = "twitter";
@@ -587,14 +588,12 @@ if( !is_page_template('page-challenges.php') &&
      $("#registerForm .email").val(email);
 
      // trigger validation
-     window.setTimeout(function() {
-       $('input.pwd:password').trigger('keyup');
-       $('#register form.register input.email:text').trigger('keyup');
-       $('#register form.register input.name:text').trigger('keyup');
-       $('#register form.register input:checkbox').trigger('change');
-       $('#register input:password').on('keyup');
-       $('select').on('change');
-     }, 100);
+     $('input.pwd:password').trigger('keyup');
+     $('#register form.register input.email:text').trigger('keyup');
+     $('#register form.register input.name:text').trigger('keyup');
+     $('#register form.register input:checkbox').trigger('change');
+     $('#register input:password').on('keyup');
+     $('select').on('change');
 	 
   });
   
@@ -663,6 +662,7 @@ if( !is_page_template('page-challenges.php') &&
 	 $('#loginForm .err1').show().html('Incorrect Username or Password');
     });
   });
+});
 </script>
 
 
