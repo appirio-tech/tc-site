@@ -451,10 +451,8 @@ if( !is_page_template('page-challenges.php') &&
 						<span class="field"></span>
 						<span class="field"></span>
 						<span class="field"></span>
-						<span class="field"></span>
-						<span class="field"></span>
 					</span>
-					8 characters with letters &amp; numbers
+					7 characters with letters, numbers, &amp; symbols
 				</p>
 				<p class="row">
 					<label>Password Confirmation</label>
