@@ -81,6 +81,8 @@ $(function () {
 
     $(".strength .field").removeClass("red").removeClass("green");
     var classname = "red";
+    $(this).closest('.row').find('span.err3').hide();
+    $(this).closest('.row').find('span.err4').hide();
     if (strength >= 3) {
       classname = "green";
       $(this).parents(".row").find("span.valid").css("display", "inline-block");
