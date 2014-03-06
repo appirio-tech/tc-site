@@ -76,14 +76,10 @@ $postId = $post->ID;
 					<div class="mid challengeType">
 						<?php 
 							$activeDesignChallengesLink = get_bloginfo('siteurl')."/active-challenges/design/";
-							$activeDevlopChallengesLink = get_bloginfo('siteurl')."/active-challenges/develop/";
-							$activeDataChallengesLink = get_bloginfo('siteurl')."/active-challenges/data/";
 						?>
 						<ul>
 							<li><a href="<?php echo get_bloginfo('siteurl')."/challenges"; ?>" class="active link">All</a></li>
 							<li><a href="<?php echo $activeDesignChallengesLink;?>" class="link design">Design</a></li>
-							<li><a href="<?php echo $activeDevlopChallengesLink;?>" class="link develop">Develop </a></li>
-							<li><a href="<?php echo $activeDataChallengesLink;?>" class="link data">Data Science</a></li>
 						</ul>
 					</div>
 					<div class="rt">
