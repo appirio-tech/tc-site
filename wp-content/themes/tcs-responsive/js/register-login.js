@@ -61,38 +61,30 @@ $(function () {
 
 
   function pwdStrength(pwd) {
-    var n = 0;
-    var c = 0;
-    for (i = 0; i < pwd.length; i++) {
-      if (pwd[i] >= '0' && pwd[i] <= '9') {
-        n++;
-      } else {
-        c++;
-      }
-    }
 
-    if (n > 0 && c > 0 && pwd.length >= 8)
-      return 100.0;
+    var result = 0;
+    if (pwd.trim()=='') return 0;
+    if (pwd[pwd.length-1].match(/\d/)) return -1;
+    if (pwd.length < 7) return -2;
+    if (pwd.length > 30) return -3;
 
-    if (n > 8 || c > 8) return 80.0;
-    if (n > 7 || c > 7) return 80.0;
-    if (n > 6 || c > 6) return 70.0;
-    if (n > 5 || c > 5) return 60.0;
-    if (n > 4 || c > 4) return 50.0;
-    if (n > 3 || c > 3) return 40.0;
-    if (n > 2 || c > 2) return 30.0;
-    if (n > 1 || c > 1) return 20.0;
-    if (n > 0 || c > 0) return 10.0;
-    if (n == 0 && c == 0) return 0;
+    if (pwd.match(/[a-z]/)) result++;
+    if (pwd.match(/[A-Z]/)) result++;
+    if (pwd.match(/\d/)) result++;
+    if (pwd.match(/[\]\[\!\"\#\$\%\&\'\(\)\*\+\,\.\/\:\;\<\=\>\?\@\\\^\_\`\{\|\}\~\-]/)) result++;
+
+    return result;
+
   }
 
   $('input.pwd:password').on('keyup', function () {
     var strength = pwdStrength($(this).val());
-    var strengthId = strength * 6 / 100;
 
     $(".strength .field").removeClass("red").removeClass("green");
     var classname = "red";
-    if (strengthId > 3) {
+    $(this).closest('.row').find('span.err3').hide();
+    $(this).closest('.row').find('span.err4').hide();
+    if (strength >= 3) {
       classname = "green";
       $(this).parents(".row").find("span.valid").css("display", "inline-block");
       $(this).closest('.row').find('input:text').removeClass('invalid');
@@ -103,7 +95,7 @@ $(function () {
     }
 
     $(".strength .field").each(function (i, e) {
-      if (i < strengthId) {
+      if (i < strength) {
         $(e).addClass(classname);
       }
     });
@@ -225,6 +217,16 @@ $(function () {
         } else if ($(".strength .field.red", frm).length > 0) {
           frm.find(".err2.red").show();
           $(this).closest('.row').find('.err2').show();
+          $(this).closest('.row').find('input:password').addClass('invalid');
+          isValid = false;
+        } else if (pwdStrength($('input.pwd:password').val()) == -1) {
+          frm.find(".err3.red").show();
+          $(this).closest('.row').find('.err3').show();
+          $(this).closest('.row').find('input:password').addClass('invalid');
+          isValid = false;
+        } else if (pwdStrength($('input.pwd:password').val()) < -1) {
+          frm.find(".err4.red").show();
+          $(this).closest('.row').find('.err4').show();
           $(this).closest('.row').find('input:password').addClass('invalid');
           isValid = false;
         }

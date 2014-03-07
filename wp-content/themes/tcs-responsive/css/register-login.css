@@ -287,6 +287,8 @@ Register modal
 			
 			#register form p.row span.err1,
 			#register form p.row span.err2,
+			#register form p.row span.err3,
+			#register form p.row span.err4,
 			#login form p.row span.err1,
 			#login form p.row span.err2 {
 				margin-left: 14px;
