@@ -169,7 +169,7 @@ $(function () {
     }
   });
 
-  handleIsFree = true;
+  var handleIsFree = true;
   $('#register form.register input.name.handle:text').blur(function() {
     var handle = $('#register form.register input.name.handle:text').val();
     $.ajax({
