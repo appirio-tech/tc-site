@@ -1,9 +1,9 @@
 <?php
 /**
  * Template Name: Challenges Active Contest List Page
- * Author : evilkyro1965 
+ * Author : evilkyro1965
  */
-get_header('challenge-landing'); 
+get_header('challenge-landing');
 
 
 $values = get_post_custom ( $post->ID );
@@ -15,7 +15,7 @@ $postId = $post->ID;
 <?php
 	$tcoTooltipTitle = get_option("tcoTooltipTitle");
 	$tcoTooltipMessage = get_option("tcoTooltipMessage");
-	
+
 	// get contest details
 	$contest_type = get_query_var("contest_type") == "" ? "design" : get_query_var("contest_type");
 	$listType = get_post_meta($postId,"List Type",true) =="" ? "Active" : get_post_meta($postId,"List Type",true);
@@ -24,7 +24,7 @@ $postId = $post->ID;
 
 <script type="text/javascript" >
 	var siteurl = "<?php bloginfo('siteurl');?>";
-	
+
 	var reviewType = "contest";
 	var isBugRace = false;
 	var ajaxAction = "get_challenges";
@@ -33,20 +33,20 @@ $postId = $post->ID;
 	var postPerPage = <?php echo $postPerPage;?>;
 	var contest_type = "<?php echo $contest_type;?>";
 	var listType = "<?php echo $listType;?>";
-	<?php 
-		if($tcoTooltipTitle) echo "var tcoTooltipTitle= '$tcoTooltipTitle';"; 
-		if($tcoTooltipMessage) echo "var tcoTooltipMessage= '$tcoTooltipMessage';"; 
+	<?php
+		if($tcoTooltipTitle) echo "var tcoTooltipTitle= '$tcoTooltipTitle';";
+		if($tcoTooltipMessage) echo "var tcoTooltipMessage= '$tcoTooltipMessage';";
 	?>
 </script>
 <div class="content">
 	<div id="main">
-	
+
 	<?php if(have_posts()) : the_post();?>
 		<?php the_content();?>
 	<?php endif; wp_reset_query();?>
 
 		<div id="hero">
-			<?php 
+			<?php
 				$activeDesignChallengesLink = get_bloginfo('siteurl')."/active-challenges/design/";
 				$activeDevlopChallengesLink = get_bloginfo('siteurl')."/active-challenges/develop/";
 				$activeDataChallengesLink = get_bloginfo('siteurl')."/active-challenges/data/";
@@ -68,7 +68,7 @@ $postId = $post->ID;
 			</div>
 		</div>
 		<!-- /#hero -->
-				
+
 		<article id="mainContent" class="layChallenges">
 			<div class="container">
 				<header>
@@ -78,6 +78,12 @@ $postId = $post->ID;
 						</span>
 					</aside>
 				</header>
+				<div class="subscribeTopWrapper" style="border-bottom:0px;height:30px;margin-bottom:0px">
+					<?php
+					$FeedURL = get_bloginfo('wpurl')."/challenges/feed?list=active&contestType=".$contest_type;
+					?>
+					<a class="feedBtn" href="<?php echo $FeedURL;?>">Subscribe to <?php echo $contest_type; ?> challenges </a>
+				</div>
 				<div class="actions">
 					<div class="lt challengeType">
 						<?php
@@ -93,14 +99,9 @@ $postId = $post->ID;
 						</ul>
 					</div>
 					<div class="rt">
-                      <span class="subscribeTopWrapper">
-
-                      </span>
-                      <span>
                         <a href="javascript:;" class="searchLink advSearch">
                             <i></i>Advanced Search
                         </a>
-                      </span>
                     </div>
                 </div>
                 <!-- /.actions -->
@@ -284,7 +285,7 @@ $postId = $post->ID;
 								</tr>
 							</thead>
 							<tbody>
-										
+
 							</tbody>
 						</table>
 					</div>

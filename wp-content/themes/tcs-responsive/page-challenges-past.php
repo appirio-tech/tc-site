@@ -78,6 +78,12 @@ $postId = $post->ID;
 					<h1><?php echo ($contest_type=="design" ? "Graphic Design Challenges" : "Software Development Challenges" ); ?></h1>
 
 				</header>
+				<div class="subscribeTopWrapper" style="border-bottom:0px;height:30px;margin-bottom:0px">
+					<?php
+					$FeedURL = get_bloginfo('wpurl')."/challenges/feed?list=past&contestType=".$contest_type;
+					?>
+					<a class="feedBtn" href="<?php echo $FeedURL;?>">Subscribe to <?php echo $contest_type; ?> challenges </a>
+				</div>
 				<div class="actions alt">
 					<div class="lt challengeType">
 						<?php

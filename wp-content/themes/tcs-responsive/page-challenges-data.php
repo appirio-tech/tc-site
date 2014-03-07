@@ -66,7 +66,12 @@ $postId = $post->ID;
 				<header>
 					<h1>Data Challenges</h1>
 				</header>
-				
+				<div class="subscribeTopWrapper" style="border-bottom:0px;height:30px;margin-bottom:0px">
+					<?php
+					$FeedURL = get_bloginfo('wpurl')."/challenges/feed?list=active&contestType=data";
+					?>
+					<a class="feedBtn" href="<?php echo $FeedURL;?>">Subscribe to data challenges </a>
+				</div>
 				<div id="tableView" class=" viewTab">
 					<div class="tableWrap tcoTableWrap">						
 						<table class="dataTable tcoTable centeredTable reviewTable">
