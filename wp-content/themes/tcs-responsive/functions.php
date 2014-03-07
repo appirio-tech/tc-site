@@ -566,10 +566,11 @@ function get_popular_ajax() {
 			$postId = $post->ID;
 			?>
 			<li>
-				<a class="contentLink" href="<?php the_permalink() ?>">
+				<!-- Bug# I-104876 href comes as empty on "show more" -->
+				<a class="contentLink" href="<?php echo $post->guid ?>">
 				<img class="contentThumb" src="<?php bloginfo( 'stylesheet_directory' ); ?>/i/content-thumb.png" alt="<?php echo $post->post_title; ?>">
 				<?php echo $post->post_title; ?>
-				</a> <span class="contentBrief"><?php echo wrap_content_strip_html(wpautop($post->post_content), 70, true,'\n\r','...') ?></span>
+				</a> <span class="contentBrief"><?php echo wrap_content_strip_html(wpautop($post->post_content), 70, true,'\n\r','...'); ?></span>
 			</li>
 			<?php
 		endforeach;
