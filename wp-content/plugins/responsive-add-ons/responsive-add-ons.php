@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: Responsive Add Ons
-Plugin URI: http://cyberchimps.com
+Plugin URI: http://wordpress.org/plugins/responsive-add-ons/
 Description: Added functionality for the responsive theme
-Version: 1.0.4
+Version: 1.0.5
 Author: CyberChimps
 Author URI: http://www.cyberchimps.com
 License: GPL2
@@ -12,7 +12,7 @@ License: GPL2
 Copyright 2013  CyberChimps  (email : support@cyberchimps.com)
 
 This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License, version 2, as 
+it under the terms of the GNU General Public License, version 2, as
 published by the Free Software Foundation.
 
 This program is distributed in the hope that it will be useful,
@@ -38,6 +38,8 @@ if( !class_exists( 'Responsive_Addons' ) ) {
 			add_action( 'admin_menu', array( &$this, 'add_menu' ) );
 			add_action( 'wp_head', array( &$this, 'responsive_head' ) );
 			add_action( 'plugins_loaded', array( &$this, 'responsive_addons_translations' ) );
+			$plugin = plugin_basename( __FILE__ );
+			add_filter( "plugin_action_links_$plugin", array( &$this, 'plugin_settings_link' ) );
 
 			$this->options        = get_option( 'responsive_theme_options' );
 			$this->plugin_options = get_option( 'responsive_addons_options' );
@@ -120,8 +122,7 @@ if( !class_exists( 'Responsive_Addons' ) ) {
 
 			if( $theme->Name == 'Responsive' || $theme->Template == 'responsive' || $theme->Name == 'Responsive Pro' || $theme->Template == 'responsivepro' ) {
 				return true;
-			}
-			else {
+			} else {
 				return false;
 			}
 		}
@@ -173,9 +174,7 @@ if( !class_exists( 'Responsive_Addons' ) ) {
 					),
 					array(
 						'title'       => __( 'Site Statistics Tracker', 'responsive-addons' ),
-						'subtitle'    => '<span class="info-box information help-links">' . __( 'Leave blank if plugin handles your webmaster tools', 'responsive-addons' ) . '</span>' .
-										 '<a style="margin:5px;" class="resp-addon-forum button" href="http://cyberchimps.com/forum/free/responsive/">Forum</a>' .
-										 '<a style="margin:5px;" class="resp-addon-guide button" href="http://cyberchimps.com/guide/responsive-add-ons/">Guide</a>',
+						'subtitle'    => '<span class="info-box information help-links">' . __( 'Leave blank if plugin handles your webmaster tools', 'responsive-addons' ) . '</span>' . '<a style="margin:5px;" class="resp-addon-forum button" href="http://cyberchimps.com/forum/free/responsive/">Forum</a>' . '<a style="margin:5px;" class="resp-addon-guide button" href="http://cyberchimps.com/guide/responsive-add-ons/">Guide</a>',
                         'heading'     => '',
 						'type'        => 'textarea',
 						'id'          => 'site_statistics_tracker',
@@ -242,13 +241,31 @@ if( !class_exists( 'Responsive_Addons' ) ) {
 
 			return $output;
 		}
+
+		/**
+		 * Add settings link to plugin activate page
+		 *
+		 * @param $links
+		 *
+		 * @return mixed
+		 */
+		public function plugin_settings_link( $links ) {
+			if ( $this->is_responsive() ) {
+				$settings_link = '<a href="themes.php?page=theme_options">' . __( 'Settings', 'responsive-addons' ) . '</a>';
+			} else {
+				$settings_link = '<a href="options-general.php?page=responsive_addons">' . __( 'Settings', 'responsive-addons' ) . '</a>';
+			}
+			array_unshift( $links, $settings_link );
+
+			return $links;
+		}
+
 	}
 }
 
 /**
  * Initialize Plugin
  */
-
 if( class_exists( 'Responsive_Addons' ) ) {
 
 	// Installation and uninstallation hooks
@@ -257,25 +274,4 @@ if( class_exists( 'Responsive_Addons' ) ) {
 
 	// Initialise Class
 	$responsive = new Responsive_Addons();
-}
-
-if( isset( $responsive ) ) {
-	/**
-	 * Add settings link to plugin activate page
-	 *
-	 * @param $links
-	 *
-	 * @return mixed
-	 */
-	function plugin_settings_link( $links ) {
-		$settings_link = ( Responsive_Addons::is_responsive() ) ? '<a href="themes.php?page=theme_options">' . __( 'Settings',
-		                                                                                                           'responsive-addons' ) . '</a>' : '<a href="options-general.php?page=responsive_addons">' . __( 'Settings',
-		                                                                                                                                                                                                          'responsive-addons' ) . '</a>';
-		array_unshift( $links, $settings_link );
-
-		return $links;
-	}
-
-	$plugin = plugin_basename( __FILE__ );
-	add_filter( "plugin_action_links_$plugin", 'plugin_settings_link' );
 }

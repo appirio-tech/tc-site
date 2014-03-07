@@ -1,10 +1,10 @@
 === Plugin Name ===
-Contributors: CyberChimps
+Contributors: cyberchimps
 Donate Link: http://cyberchimps.com
 Tags: google, yahoo, bing, analytics, verification
-Requires at least: 3.0.1
-Tested up to: 3.6
-Stable tag: 1.0.4
+Requires at least: 3.4
+Tested up to: 3.8
+Stable tag: 1.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,43 +35,52 @@ that it was important to make it inclusive rather than exclusive.
 
 == Screenshots ==
 
-1. The <a href="http://wordpress.org/themes/responsive" title="Responsive">Responsive Theme</a> options layout
-2. Other theme's options layout
+1. Responsive Add Ons plugin is recommended when you have the <a href="http://wordpress.org/themes/responsive" title="Responsive">Responsive Theme</a> installed and active
+2. After clicking on the install plugin you are taken to the suggested plugin installer, just click on "Install" below the plugin name
+3. The plugin gets downloaded and installed automatically
+4. Responsive Add Ons places it's options inside <a href="http://wordpress.org/themes/responsive" title="Responsive">Responsive's</a> theme options
+5. Even if you don't have the Responsive theme it will still add it's functionality to any other theme. You will be able to find the options in the settings tab
 
 == Changelog ==
 
-= 1.0.0 =
-* Initial set up and release
+= 1.0.5 =
+* Bug fixes
 
-= 1.0.1 =
-* Bug Fixes
-
-= 1.0.2 =
-* Bug Fixes
+= 1.0.4 =
+* Language Updates
+* Links to forum and guides
 
 = 1.0.3 =
 * Bug Fixes
 * Added styling to textarea
 
-= 1.0.4 =
-* Language Updates
-* Links to forum and guides
+= 1.0.2 =
+* Bug Fixes
+
+= 1.0.1 =
+* Bug Fixes
+
+= 1.0.0 =
+* Initial set up and release
 
 == Upgrade Notice ==
 
-= 1.0.0 =
-* Initial set up and release
-
-= 1.0.1 =
+= 1.0.5 =
 * Bug fixes
 
-= 1.0.2 =
-* Bug fixes
+= 1.0.4 =
+* Language Updates
+* Links to forum and guides
 
 = 1.0.3 =
 * Bug Fixes
 * Added styling to textarea
 
-= 1.0.4 =
-* Language Updates
-* Links to forum and guides
+= 1.0.2 =
+* Bug fixes
+
+= 1.0.1 =
+* Bug fixes
+
+= 1.0.0 =
+* Initial set up and release
