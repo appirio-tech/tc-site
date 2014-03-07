@@ -123,6 +123,7 @@ $(function () {
     }
   });
 
+
   $('#register form.register input:checkbox').on('change', function () {
     if ($(this).prop('checked')) {
       $(this).parents(".row").find("span.valid").css("display", "inline-block");
@@ -168,10 +169,36 @@ $(function () {
     }
   });
 
+  var handleIsFree = true;
+  $('#register form.register input.name.handle:text').blur(function() {
+    var handle = $('#register form.register input.name.handle:text').val();
+    $.ajax({
+      type: 'GET',
+      data: {
+        handle: handle,
+        action: 'get_handle_validity'
+      },
+      dataType: 'json',
+      url: ajaxUrl,
+      success: function(data) {
+        if (data.error) {
+          handleIsFree = false;
+        } else {
+          handleIsFree = true;
+        }
+      }
+    }).fail(function() {
+      console.log('fail with '+handleState.handle);
+    });
+
+
+  });
+
   $('select').customSelect();
 
   $('#register a.btnSubmit').on('click', function () {
     var isValid = true;
+
     var frm = $('#register form.register');
     $('.invalid', frm).removeClass('invalid');
     $('.err1,.err2', frm).hide();
@@ -180,13 +207,16 @@ $(function () {
         $(this).closest('.row').find('.err1').show();
         $(this).closest('.row').find('input:text').addClass('invalid');
         isValid = false;
-      } else if ($(this).hasClass("handle") && $.trim($(this).val()) == "user01") {
-        $(this).closest('.row').find('.err2').show();
-        $(this).closest('.row').find('input:text').addClass('invalid');
-        $(this).closest('.row').find('span.valid').hide();
-        isValid = false;
       }
     });
+
+    if (!handleIsFree) {
+      $('input.handle').closest('.row').find('.err2').show();
+      $('input.handle').closest('.row').find('input:text').addClass('invalid');
+      $('input.handle').closest('.row').find('span.valid').hide();
+      isValid = false;
+    }
+
     $('select', frm).each(function () {
       if ($.trim($(this).val()) == "") {
         $(this).closest('.row').find('.err1').show();
@@ -257,7 +287,7 @@ $(function () {
         country: $('#registerForm select#selCountry').val(),
         email: $('#registerForm input.email').val()
       }
-      if (socialProviderId !== "") {
+      if ((typeof socialProviderId != 'undefined') && socialProviderId !== "") {
         fields.socialProviderId = socialProviderId;
         fields.socialUserId = socialUserId;
         fields.socialProvider = socialProvider,

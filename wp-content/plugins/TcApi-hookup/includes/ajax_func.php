@@ -620,3 +620,55 @@ function get_data_challenges_ajax($page = 1, $post_per_page = 1, $sortColumn = '
 
     return "Error in processing request";
 }
+
+/*
+ * Check handle availability and validity
+ */
+add_action('wp_ajax_get_handle_validity', 'get_handle_validity_controller');
+add_action('wp_ajax_nopriv_get_handle_validity', 'get_handle_validity_controller');
+
+function get_handle_validity_controller()
+{
+    $userkey = get_option('api_user_key');
+    $handle = $_GET ['handle'];
+
+    $handle_validity = get_handle_validity_ajax($handle);
+
+    if (isset($handle_validity->valid) || isset($handle_validity->error)) {
+        wp_send_json( $handle_validity );
+    } else {
+        wp_send_json_error();
+    }
+}
+
+function get_handle_validity_ajax(
+    $handle = ''
+) {
+
+    $url = "http://api.topcoder.com/v2/users/validate/" . $handle;
+
+    error_log($handle);
+
+    $args = array(
+        'httpversion' => get_option('httpversion'),
+        'timeout' => get_option('request_timeout')
+    );
+    $response = wp_remote_get($url, $args);
+    error_log(implode("", $response));
+
+    if (is_wp_error($response) || !isset ($response ['body'])) {
+        $handle_validity = json_decode($response['body']);
+        return $handle_validity;
+    }
+    if ($response ['response'] ['code'] == 200) {
+
+//print $response ['body'];
+        $handle_validity = json_decode($response['body']);
+        return $handle_validity;
+    }
+
+    $handle_validity = json_decode($response['body']);
+    return $handle_validity;
+}
+
+
