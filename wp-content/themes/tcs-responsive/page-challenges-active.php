@@ -88,14 +88,10 @@ $postId = $post->ID;
 					<div class="lt challengeType">
 						<?php
 							$pastChallenges = get_bloginfo('siteurl')."/past-challenges/".$contest_type."/";
-							$reviewChallenges = get_bloginfo('siteurl')."/review-opportunities/".$contest_type."/";
-							$bugraceChallenges = get_bloginfo('siteurl')."/bug-races/".$contest_type."/";
 						?>
 						<ul>
 							<li><a href="javascript:;" class="active link">Open Challenges</a></li>
 							<li><a href="<?php echo $pastChallenges;?>" class="link">Past Challenges</a></li>
-							<li><a href="<?php echo $reviewChallenges;?>" class="link">Review Opportunities </a></li>
-							<!-- <li><a href="<?php echo $bugraceChallenges;?>" class="link">Races</a></li> -->
 						</ul>
 					</div>
 					<div class="rt">
