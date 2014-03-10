@@ -559,13 +559,19 @@ $(function() {
 	auth0Register.parseHash(window.location.hash, function (profile, id_token, access_token, state) {
 			socialProvider = profile.identities[0].connection;
 			var firstName = "" , lastName = "", handle = "", email = "";
-			if(socialProvider === googleProvider || socialProvider === facebookProvider){
+			if(socialProvider === googleProvider) { 
 				firstName = profile.given_name;
 				lastName = profile.family_name;
 				handle = profile.nickname;
 				email = profile.email;
-				socialProviderId = socialProvider === googleProvider ? 2 : 1;
-			} else if(socialProvider === twitterProvider){
+				socialProviderId = 2;
+      } else if (socialProvider === facebookProvider) {
+				firstName = profile.given_name;
+				lastName = profile.family_name;
+				handle = firstName + '.' + lastName;
+				email = profile.email;
+        socialProviderId = 1;
+      } else if (socialProvider === twitterProvider){
 				var splitName = profile.name.split(" ");
 				firstName = splitName[0];
 				if(splitName.length > 1){
