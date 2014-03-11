@@ -17,9 +17,6 @@ include("functions-widget.php");
 
 define("BLOG","blog");
 
-define("WP_SITEURL", "http://local.topcoder.com");
-define("WP_CONTENT_URL", "http://local.topcoder.com");
-
 // add featured image
 add_theme_support ( 'post-thumbnails' );
 if ( function_exists( 'add_theme_support' ) ) {
