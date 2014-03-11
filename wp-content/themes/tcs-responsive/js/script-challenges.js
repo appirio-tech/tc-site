@@ -503,6 +503,8 @@ appChallenges = {
             $('tbody', table).append(row);
           });
           app.initZebra(table);
+        } else {
+          app.addEmptyResult(table);
         }
 
         $('.loading').hide();
@@ -852,7 +854,13 @@ appChallenges = {
             }
           });
           app.initZebra(table);
+        } else {
+          app.addEmptyResult(table);
         }
+    },
+
+    addEmptyResult: function(table) {
+      $(table).html("<div><h3>There are no active challenges under this category. Please check back later</h3></div>");
     },
 
     // getGridview Blocks
@@ -966,6 +974,8 @@ appChallenges = {
               }, 2000);
             }, 5);
           });
+        }  else {
+          app.addEmptyResult(gridEl);
         }
     },
 
@@ -1035,6 +1045,8 @@ appChallenges = {
             $('tbody', table).append(row);
           });
           app.initZebra(table);
+        }  else {
+          app.addEmptyResult(table);
         }
     },
 
@@ -1124,6 +1136,8 @@ appChallenges = {
               }, 2000);
             }, 5);
           });
+        }   else {
+          app.addEmptyResult(gridEl);
         }
     },
 
@@ -1199,6 +1213,8 @@ appChallenges = {
             $('tbody', table).append(row);
           });
           app.initZebra(table);
+        } else {
+          app.addEmptyResult(table);
         }
 
         $('.loading').hide();
@@ -1235,6 +1251,8 @@ appChallenges = {
             $('tbody', table).append(row);
           });
           app.initZebra(table);
+        } else {
+          app.addEmptyResult(table);
         }
 
         $('.loading').hide();
