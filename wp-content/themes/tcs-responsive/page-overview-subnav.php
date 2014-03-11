@@ -36,22 +36,22 @@ $siteURL = site_url ();
 					<div class="innerWrapper">
 						<div class="blogCategoryMenu">
 						<?php
-							$items = wp_get_nav_menu_items( "Overview Subnav" );
-							if($items!=null)
-							foreach($items as $menu) :
-								$active = $catId == $menu->object_id ? "active" : "";
+							$childPages = get_pages( array( 'child_of' => $post->ID, 'sort_column' => 'post_date', 'sort_order' => 'desc' ) );
+
+							if($childPages!=null)
+							foreach( $childPages as $page ):	
 						?>
-							<a href="<?php echo $menu->url;?>" class="<?php echo $active;?>"><?php echo $menu->title;?></a>
+							<a href="<?php echo get_page_link( $page->ID );?>" class=""><?php echo $page->post_title;?></a>
 						<?php endforeach; ?>
 						</div>
 						<ul class="blogMenuMobile">
-							<div class="default">Categories<span class="arrow"></span></div>
-							<div class="current">Categories<span class="arrow"></span></div>
+							<div class="default">-- navigate to --<span class="arrow"></span></div>
+							<div class="current">-- navigate to --<span class="arrow"></span></div>
 							<?php
-								if($items!=null)
-								foreach($items as $menu) :
+								if($childPages!=null)
+								foreach($childPages as $menu) :
 							?>
-								<li><a href="<?php echo $menu->url;?>"><?php echo $menu->title;?></a></li>
+								<li><a href="<?php echo get_page_link( $page->ID );?>"><?php echo $page->post_title;?></a></li>
 							<?php endforeach; ?>
 						</ul>
 					</div>
