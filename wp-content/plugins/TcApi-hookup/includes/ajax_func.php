@@ -647,14 +647,11 @@ function get_handle_validity_ajax(
 
     $url = "http://api.topcoder.com/v2/users/validate/" . $handle;
 
-    error_log($handle);
-
     $args = array(
         'httpversion' => get_option('httpversion'),
         'timeout' => get_option('request_timeout')
     );
     $response = wp_remote_get($url, $args);
-    error_log(implode("", $response));
 
     if (is_wp_error($response) || !isset ($response ['body'])) {
         $handle_validity = json_decode($response['body']);
