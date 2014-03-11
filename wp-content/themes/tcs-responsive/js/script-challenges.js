@@ -854,8 +854,6 @@ appChallenges = {
             }
           });
           app.initZebra(table);
-        } else {
-          app.addEmptyResult(table);
         }
     },
 
@@ -974,8 +972,6 @@ appChallenges = {
               }, 2000);
             }, 5);
           });
-        }  else {
-          app.addEmptyResult(gridEl);
         }
     },
 

@@ -80,6 +80,8 @@ $postId = $post->ID;
 						<ul>
 							<li><a href="<?php echo get_bloginfo('siteurl')."/challenges"; ?>" class="active link">All</a></li>
 							<li><a href="<?php echo $activeDesignChallengesLink;?>" class="link design">Design</a></li>
+                            <li><a href="<?php echo $activeDevlopChallengesLink;?>" class="link design">Develop</a></li>
+                            <li><a href="<?php echo $activeDesignChallengesLink;?>" class="link design">Data Science</a></li>
 						</ul>
 					</div>
 					<div class="rt">
