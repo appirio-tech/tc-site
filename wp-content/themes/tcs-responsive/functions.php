@@ -1,4 +1,8 @@
 <?php
+
+// Define once because it's faster
+define('THEME_URL', get_template_directory_uri());
+
 define('WP_DEBUG_DISPLAY', TRUE);
 @ini_set('display_errors', 1);
 #include 'auth0/vendor/autoload.php';
@@ -13,7 +17,11 @@ define("auth0_domain", $auth0_cfg['domain']);
 define("auth0_client_id", $auth0_cfg['client_id']);
 define("auth0_redirect_uri", $auth0_cfg['redirect_uri']);
 define("auth0_state", $auth0_cfg['state']);
-include("functions-widget.php");
+
+locate_template('lib/scripts.php', true);
+
+locate_template('lib/widget.php', true);
+
 
 define("BLOG", "blog");
 

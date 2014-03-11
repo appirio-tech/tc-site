@@ -137,6 +137,14 @@ function themeoptions_page() {
           <td><label for="<?php echo $field; ?>">CDN Base URL:</label></td>
           <td><input type="text" id="<?php echo $field; ?>" name="<?php echo $field; ?>" size="100" value="<?php echo get_option($field); ?>" /></td>
         </tr>
+        <tr>
+          <?php $field = 'jsCssUseMin'; ?>
+          <td width="150"><label for="<?php echo $field; ?>">Use Minifed JS/CSS:</label></td>
+          <td>
+            <input type="radio" name="<?php echo $field; ?>" value="1" <?php if (get_option($field) == 1): ?>checked="checked"<?php endif; ?> /> Yes
+            <input type="radio" name="<?php echo $field; ?>" value="0" <?php if (get_option($field) != 1): ?>checked="checked"<?php endif; ?> /> No
+          </td>
+        </tr>
       </table>
       <p>
         <input type="submit" name="submit" value="Update Options" class="button button-primary" />
