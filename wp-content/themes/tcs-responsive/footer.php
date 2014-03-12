@@ -443,7 +443,6 @@ if( !is_page_template('page-challenges.php') &&
 					<input type="password" class="pwd" placeholder="Password"/>
 					<span class="err1">Required field</span>
 					<span class="err2">Password strength is weak</span>
-					<span class="err3">Password cannot end in a number</span>
 					<span class="err4">Password must be between 7 and 30 characters</span>
 					<span class="valid">Strong</span>
 				</p>
@@ -534,6 +533,7 @@ if( !is_page_template('page-challenges.php') &&
 
 
 <script>
+var socialProviderId = "", socialUserName = "", socialEmail = "",socialProvider = "";
 $(function() {
   var googleProvider = "google-oauth2";
   var facebookProvider = "facebook";
@@ -555,7 +555,6 @@ $(function() {
     redirect_uri:   'http://www.topcoder.com/'
   });
   
-  var socialProviderId = "", socialUserName = "", socialEmail = "",socialProvider = "";
 	auth0Register.parseHash(window.location.hash, function (profile, id_token, access_token, state) {
 			socialProvider = profile.identities[0].connection;
 			var firstName = "" , lastName = "", handle = "", email = "";
