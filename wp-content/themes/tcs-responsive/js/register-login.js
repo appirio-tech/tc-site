@@ -64,7 +64,6 @@ $(function () {
 
     var result = 0;
     if (pwd.trim()=='') return 0;
-    if (pwd[pwd.length-1].match(/\d/)) return -1;
     if (pwd.length < 7) return -2;
     if (pwd.length > 30) return -3;
 
@@ -272,11 +271,6 @@ $(function () {
         } else if ($(".strength .field.red", frm).length > 0) {
           frm.find(".err2.red").show();
           $(this).closest('.row').find('.err2').show();
-          $(this).closest('.row').find('input:password').addClass('invalid');
-          isValid = false;
-        } else if (pwdStrength($('input.pwd:password').val()) == -1) {
-          frm.find(".err3.red").show();
-          $(this).closest('.row').find('.err3').show();
           $(this).closest('.row').find('input:password').addClass('invalid');
           isValid = false;
         } else if (pwdStrength($('input.pwd:password').val()) < -1) {
