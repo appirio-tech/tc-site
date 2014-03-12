@@ -1,9 +1,9 @@
 <?php
 /**
  * Template Name: Challenges Past Contest List Page
- * Author : evilkyro1965 
+ * Author : evilkyro1965
  */
-get_header('challenge-landing'); 
+get_header('challenge-landing');
 
 
 $values = get_post_custom ( $post->ID );
@@ -15,7 +15,7 @@ $postId = $post->ID;
 <?php
 	$tcoTooltipTitle = get_option("tcoTooltipTitle");
 	$tcoTooltipMessage = get_option("tcoTooltipMessage");
-	
+
 	// get contest details
 	$contest_type = get_query_var("contest_type") == "" ? "design" : get_query_var("contest_type");
 	$listType = "Past";
@@ -24,7 +24,7 @@ $postId = $post->ID;
 
 <script type="text/javascript" >
 	var siteurl = "<?php bloginfo('siteurl');?>";
-	
+
 	var reviewType = "contest";
 	var isBugRace = false;
 	var ajaxAction = "get_challenges";
@@ -33,9 +33,9 @@ $postId = $post->ID;
 	var postPerPage = <?php echo $postPerPage;?>;
 	var contest_type = "<?php echo $contest_type;?>";
 	var listType = "<?php echo $listType;?>";
-	<?php 
-		if($tcoTooltipTitle) echo "var tcoTooltipTitle= '$tcoTooltipTitle';"; 
-		if($tcoTooltipMessage) echo "var tcoTooltipMessage= '$tcoTooltipMessage';"; 
+	<?php
+		if($tcoTooltipTitle) echo "var tcoTooltipTitle= '$tcoTooltipTitle';";
+		if($tcoTooltipMessage) echo "var tcoTooltipMessage= '$tcoTooltipMessage';";
 	?>
 </script>
 <script type="text/javascript">
@@ -43,13 +43,13 @@ $postId = $post->ID;
 </script>
 <div class="content">
 	<div id="main">
-	
+
 	<?php if(have_posts()) : the_post();?>
 		<?php the_content();?>
 	<?php endif; wp_reset_query();?>
 
 		<div id="hero">
-			<?php 
+			<?php
 				$activeDesignChallengesLink = get_bloginfo('siteurl')."/active-challenges/design/";
 				$activeDevlopChallengesLink = get_bloginfo('siteurl')."/active-challenges/develop/";
 				$activeDataChallengesLink = get_bloginfo('siteurl')."/active-challenges/data/";
@@ -71,7 +71,7 @@ $postId = $post->ID;
 			</div>
 		</div>
 		<!-- /#hero -->
-				
+
 		<article id="mainContent" class="layChallenges">
 			<div class="container">
 				<header>
@@ -124,30 +124,24 @@ $postId = $post->ID;
                                 <?php else : ?>
                                   <ul class="list">
                                     <li><input type="radio" id="fAll" name="radioFilterChallenge" class="all" value="all" /> <label for="fAll"><strong>All</strong></label></li>
-                                    <li><input type="radio" id="fArc" name="radioFilterChallenge" value="Architecture" /> <label for="fArc">Architecture</label></li>
-                                    <li><input type="radio" id="fAC" name="radioFilterChallenge" value="Assembly Competition" /> <label for="fAC">Assembly Competition</label></li>
-                                    <li><input type="radio" id="fBH" name="radioFilterChallenge" value="Bug Hunt" /> <label for="fBH">Bug Hunt</label></li>
-                                    <li><input type="radio" id="fCoP" name="radioFilterChallenge" value="Copilot Posting" /> <label for="fCoP">Copilot Posting</label></li>
-                                    <li><input type="radio" id="fCode" name="radioFilterChallenge" value="Code" /> <label for="fCode">Code</label></li>
-                                    <li><input type="radio" id="fCP" name="radioFilterChallenge" value="Component Production" /> <label for="fCP">Component Production</label></li>
-                                    <li><input type="radio" id="fCon" name="radioFilterChallenge" value="Conceptualization" /> <label for="fCon">Conceptualization</label></li>
-                                    <li><input type="radio" id="fCC" name="radioFilterChallenge" value="Content Creation" /> <label for="fCC">Content Creation</label></li>
-                                    <li><input type="radio" id="fDep" name="radioFilterChallenge" value="Deployment" /> <label for="fDep">Deployment</label></li>
-                                    <li><input type="radio" id="fDe" name="radioFilterChallenge" value="Design" /> <label for="fDe">Design</label></li>
-                                    <li><input type="radio" id="fDev" name="radioFilterChallenge" value="Development" /> <label for="fDev">Development</label></li>
                                     <li><input type="radio" id="f2f" name="radioFilterChallenge" value="First2Finish" /> <label for="f2f">First2Finish</label></li>
-                                    <li><input type="radio" id="fLe" name="radioFilterChallenge" value="Legacy" /> <label for="fLe">Legacy</label></li>
+                                    <li><input type="radio" id="fArc" name="radioFilterChallenge" value="Architecture" /> <label for="fArc">Architecture</label></li>
                                     <li><input type="radio" id="fMM" name="radioFilterChallenge" value="Marathon Match" /> <label for="fMM">Marathon Match</label></li>
-                                    <li><input type="radio" id="fPr" name="radioFilterChallenge" value="Process" /> <label for="fPr">Process</label></li>
+                                    <li><input type="radio" id="fAC" name="radioFilterChallenge" value="Assembly Competition" /> <label for="fAC">Assembly Competition</label></li>
                                     <li><input type="radio" id="fRep" name="radioFilterChallenge" value="Reporting" /> <label for="fRep">Reporting</label></li>
-                                    <li><input type="radio" id="fRia" name="radioFilterChallenge" value="RIA Build Competition" /> <label for="fRia">RIA Build Competition</label></li><li><input type="radio" id="fRiaComp" /> <label for="fRiaComp">RIA Component Competition</label></li>
-                                    <li><input type="radio" id="fSec" name="radioFilterChallenge" value="Security" /> <label for="fSec">Security</label></li>
-                                    <li><input type="radio" id="fSR" name="radioFilterChallenge" value="Spec Review" /> <label for="fSR">Spec Review</label></li>
+                                    <li><input type="radio" id="fBH" name="radioFilterChallenge" value="Bug Hunt" /> <label for="fBH">Bug Hunt</label></li>
+                                    <li><input type="radio" id="fRia" name="radioFilterChallenge" value="RIA Build Competition" /> <label for="fRia">RIA Build Competition</label></li>
+                                    <li><input type="radio" id="fCode" name="radioFilterChallenge" value="Code" /> <label for="fCode">Code</label></li>
                                     <li><input type="radio" id="fSpec" name="radioFilterChallenge" value="Specification" /> <label for="fSpec">Specification</label></li>
+                                    <li><input type="radio" id="fCoP" name="radioFilterChallenge" value="Copilot Posting" /> <label for="fCoP">Copilot Posting</label></li>
                                     <li><input type="radio" id="fTS" name="radioFilterChallenge" value="Test Scenarios" /> <label for="fTS">Test Scenarios</label></li>
+                                    <li><input type="radio" id="fCon" name="radioFilterChallenge" value="Conceptualization" /> <label for="fCon">Conceptualization</label></li>
                                     <li><input type="radio" id="fTeS" name="radioFilterChallenge" value="Test Suites" /> <label for="fTeS">Test Suites</label></li>
+                                    <li><input type="radio" id="fCC" name="radioFilterChallenge" value="Content Creation" /> <label for="fCC">Content Creation</label></li>
                                     <li><input type="radio" id="fTC" name="radioFilterChallenge" value="Testing Competition" /> <label for="fTC">Testing Competition</label></li>
+                                    <li><input type="radio" id="fDe" name="radioFilterChallenge" value="Design" /> <label for="fDe">Component Design</label></li>
                                     <li><input type="radio" id="fUI" name="radioFilterChallenge" value="UI Prototype Competition" /> <label for="fUI">UI Prototype Competition</label></li>
+                                    <li><input type="radio" id="fDev" name="radioFilterChallenge" value="Development" /> <label for="fDev">Component Development</label></li>
                                   </ul>
 								<?php endif; ?>
 							</div>
@@ -285,7 +279,7 @@ $postId = $post->ID;
 								</tr>
 							</thead>
 							<tbody>
-								
+
 							</tbody>
 						</table>
 					</div>
