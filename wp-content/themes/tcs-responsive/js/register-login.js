@@ -180,8 +180,10 @@ $(function () {
   });
 
   var handleIsFree = true;
+  var handleValidationAttempted = false;
   var handleDeferred = $.Deferred();
   function validateHandle() {
+    handleValidationAttempted = true;
     var handle = $('#register form.register input.name.handle:text').val();
     $.ajax({
       type: 'GET',
@@ -229,10 +231,13 @@ $(function () {
 
   $('#register a.btnSubmit').on('click', function () {
     var isValid = true;
+    if (!handleValidationAttempted) validateHandle();
 
     var frm = $('#register form.register');
-    $('.invalid', frm).removeClass('invalid');
-    $('.err1,.err2', frm).hide();
+    var handleInvalid = $('input.handle').closest('.row').find('.invalid');
+    $('.invalid', frm).not(handleInvalid).removeClass('invalid');
+    var handleErr2 = $('input.handle').closest('.row').find('.err2');
+    $('.err1,.err2', frm).not(handleErr2).hide();
     $('input:text', frm).each(function () {
       if ($.trim($(this).val()) == "") {
         $(this).closest('.row').find('.err1').show();
