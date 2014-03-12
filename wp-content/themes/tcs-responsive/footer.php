@@ -665,6 +665,9 @@ $(function() {
   });
  
   $('.signin-db').on('click', function() {
+    if ($('#username').val().trim()==''||$('#password').val().trim()=='') {
+      return;
+    }
     auth0Login.login({
       connection: 'LDAP', 
       state:      'http://www.topcoder.com/', // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
