@@ -3,7 +3,7 @@
  * Template Name: Challenge Page
  * Author : evilkyro1965
  */
-get_header('challenge-landing'); 
+get_header('challenge-landing');
 
 
 $values = get_post_custom ( $post->ID );
@@ -21,7 +21,7 @@ $postId = $post->ID;
 
 <script type="text/javascript" >
 	var siteurl = "<?php bloginfo('siteurl');?>";
-	
+
 	var reviewType = "contest";
 	var isBugRace = false;
 	var ajaxAction = "get_challenges";
@@ -33,13 +33,13 @@ $postId = $post->ID;
 </script>
 <div class="content">
 	<div id="main">
-	
+
 	<?php if(have_posts()) : the_post();?>
 		<?php //the_content();?>
 	<?php endif; wp_reset_query();?>
 
 		<div id="hero">
-			<?php 
+			<?php
 				$activeDesignChallengesLink = get_bloginfo('siteurl')."/active-challenges/design/";
 				$activeDevlopChallengesLink = get_bloginfo('siteurl')."/active-challenges/develop/";
 				$activeDataChallengesLink = get_bloginfo('siteurl')."/active-challenges/data/";
@@ -61,7 +61,7 @@ $postId = $post->ID;
 			</div>
 		</div>
 		<!-- /#hero -->
-				
+
 		<article id="mainContent" class="layChallenges landingChallenges">
 			<div class="container">
 
@@ -74,26 +74,28 @@ $postId = $post->ID;
 				</header>
 				<div class="actions">
 					<div class="mid challengeType">
-						<?php 
+						<?php
 							$activeDesignChallengesLink = get_bloginfo('siteurl')."/active-challenges/design/";
 						?>
 						<ul>
 							<li><a href="<?php echo get_bloginfo('siteurl')."/challenges"; ?>" class="active link">All</a></li>
 							<li><a href="<?php echo $activeDesignChallengesLink;?>" class="link design">Design</a></li>
+                            <li><a href="<?php echo $activeDevlopChallengesLink;?>" class="link design">Develop</a></li>
+                            <li><a href="<?php echo $activeDesignChallengesLink;?>" class="link design">Data Science</a></li>
 						</ul>
 					</div>
 					<div class="rt">
 						<div class="subscribeTopWrapper" style="border-bottom:0px;height:30px;margin-bottom:0px">
 							<?php
 							//$contest_type="";
-							$FeedURL = get_bloginfo('wpurl')."/challenges/feed?list=active&contestType=".$contest_type;
+							$FeedURL = get_bloginfo('wpurl')."/challenges/feed?list=active&contestType=all";
 							?>
 							<a class="feedBtn" href="<?php echo $FeedURL;?>">Subscribe to <?php echo $contest_type; ?> challenges </a>
 						</div>
 					</div>
 				</div>
 				<!-- /.actions -->
-				
+
 				<div id="tableView" class="viewTab">
 					<div class="tableWrap tcoTableWrap">
 						<table id="tcoTableAllContest" class="dataTable tcoTable">
@@ -109,7 +111,7 @@ $postId = $post->ID;
 								</tr>
 							</thead>
 							<tbody>
-									
+
 							</tbody>
 						</table>
 					</div>
@@ -117,7 +119,7 @@ $postId = $post->ID;
 				<!-- /#tableView -->
 				<div id="gridView" class="contestAll viewTab hide">
 					<div id="gridAll" class="contestGrid alt">
-						
+
 					</div>
 					<!-- /.contestGrid -->
 				</div>
