@@ -495,11 +495,12 @@ if( !is_page_template('page-challenges.php') &&
 					<label>Username</label>
 					<input id="username" type="text" class="name" placeholder="Username" />
 					<span class="err1">Your username or password are incorrect</span>
-					<span class="err2">Please input your password</span>
+					<span class="err3">Please input your username</span>
 				</p>
 				<p class="row">
 					<label>Password</label>
 					<input id="password" type="password" class="pwd" placeholder="Password"/>
+					<span class="err4">Please input your password</span>
 				</p>
 				
 				<p class="row lSpace">
@@ -665,9 +666,18 @@ $(function() {
   });
  
   $('.signin-db').on('click', function() {
-    if ($('#username').val().trim()==''||$('#password').val().trim()=='') {
-      return;
+    var empty = false;
+    if ($('#username').val().trim()=='') {
+      empty = true;
+      $('#loginForm span.err3').show();
+      $('#username').addClass('invalid');
     }
+    if ($('#password').val().trim()=='') {
+      empty = true;
+      $('#loginForm span.err4').show();
+      $('#password').addClass('invalid');
+    }
+    if (empty) return;
     auth0Login.login({
       connection: 'LDAP', 
       state:      'http://www.topcoder.com/', // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
@@ -676,9 +686,10 @@ $(function() {
     },
     function (err) {
       // invalid user/password
-	 //alert(err);	 
-	 $('#loginForm .btnSubmit').html('Login'); 
-	 $('#loginForm .err1').show().html('Incorrect Username or Password');
+      //alert(err);	 
+      $('#loginForm .btnSubmit').html('Login'); 
+      $('#loginForm .err1').show().html('Incorrect Username or Password')
+        .addClass('invalid');
     });
   });
 });
