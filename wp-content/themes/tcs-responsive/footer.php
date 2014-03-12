@@ -539,11 +539,21 @@ $(function() {
   var facebookProvider = "facebook";
   var twitterProvider = "twitter";
   var githubProvider = "github";
+  <?php
+  $urlFromDiscourse = urldecode( $_GET["url"] );
+  $stateLogin = "http://www.topcoder.com/";
+  if ( preg_match('/sso=(.*)&sig=(.*)$/', $urlFromDiscourse, $matches) ){
+	$sso = $matches[1];
+	$sig = $matches[2];
+	$stateLogin = "http://talk.topcoder.com/session/sso_login?sso=$sso&sig=$sig";
+  }
+  
+  ?>
   var auth0Login = new Auth0({
     domain:         'topcoder.auth0.com',
     clientID:       '6ZwZEUo2ZK4c50aLPpgupeg5v2Ffxp9P',
     callbackURL:    'https://www.topcoder.com/reg2/callback.action',
-    state:			'http://www.topcoder.com/',
+    state:			'<?php echo $stateLogin;?>',
     redirect_uri:   'http://www.topcoder.com/'
   });
 
