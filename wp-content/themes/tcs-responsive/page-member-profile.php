@@ -22,6 +22,12 @@ if ($tab == "algo") {
 }
 
 $coder = get_member_profile ($handle);
+
+# if handle not found redirect to 404 - member not found (Dan.V - I-104783)
+if (!isset($coder->handle) ) {
+	wp_redirect(site_url('404.php'));
+	exit;
+}
 #print_r($coder);
 
 ?>
