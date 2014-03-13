@@ -124,7 +124,13 @@ $(function () {
   });
 
   $('#register form.register input.name.lastName:text').on('keyup', function () {
-    if ($(this).val() != "") {
+    var text = $(this).val();
+    if (text.length > 64) {
+      $(this).parents(".row").find("span.valid").hide();
+      $(this).addClass('invalid');
+      $(this).parents(".row").find("span.err2").show();
+
+    } else if (text != '') {
       $(this).parents(".row").find("span.valid").css("display", "inline-block");
       $(this).closest('.row').find('input:text').removeClass('invalid');
       $(this).closest('.row').find('span.err1').hide();
@@ -135,7 +141,13 @@ $(function () {
   });
 
   $('#register form.register input.name.firstName:text').on('keyup', function () {
-    if ($(this).val() != "") {
+    var text = $(this).val();
+    if (text.length > 64) {
+      $(this).parents(".row").find("span.valid").hide();
+      $(this).addClass('invalid');
+      $(this).parents(".row").find("span.err2").show();
+
+    } else if (text != '') {
       $(this).parents(".row").find("span.valid").css("display", "inline-block");
       $(this).closest('.row').find('input:text').removeClass('invalid');
       $(this).closest('.row').find('span.err1').hide();
@@ -284,6 +296,13 @@ $(function () {
         $(this).closest('.row').find('.err1').show();
         $(this).closest('.row').find('input:text').addClass('invalid');
         isValid = false;
+      }
+    });
+    $('input.firstName,input.lastName').each(function () {
+      if ($(this).val().length > 64) {
+        isValid = false;
+        $(this).addClass('invalid');
+        $(this).closest('.row').find('.err2').show();
       }
     });
 

@@ -161,12 +161,14 @@ if( !is_page_template('page-challenges.php') &&
 					<label>First Name</label>
 					<input type="text" class="name firstName" placeholder="First Name"/>
 					<span class="err1">Required field</span>
+					<span class="err2">Maximum length is 64 characters</span>
 					<span class="valid"></span>
 				</p>
 				<p class="row">
 					<label>Last Name</label>
 					<input type="text" class="name lastName" placeholder="Last Name"/>
 					<span class="err1">Required field</span>
+					<span class="err2">Maximum length is 64 characters</span>
 					<span class="valid"></span>
 				</p>
 				<p class="row">
@@ -611,6 +613,7 @@ $(function() {
      $('input.pwd:password').trigger('keyup');
      $('#register form.register input.email:text').trigger('keyup');
      $('#register form.register input.name:text').trigger('keyup');
+     $('#register form.register input.handle:text').trigger('keyup');
      $('#register form.register input.handle:text').trigger('blur');
      $('#register form.register input:checkbox').trigger('change');
      $('#register input:password').on('keyup');
