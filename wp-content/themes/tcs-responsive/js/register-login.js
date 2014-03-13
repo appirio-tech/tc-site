@@ -334,6 +334,7 @@ $(function () {
       }
       if (isValid && $('#register a.btnSubmit').html() == 'Sign Up') {
         $('#register a.btnSubmit').html('Please Wait');
+        $('#register .btnSubmit').addClass('pleaseWait');
         var fields = {
           firstName: $('#registerForm input.firstName').val(),
           lastName: $('#registerForm input.lastName').val(),
