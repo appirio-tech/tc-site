@@ -140,7 +140,7 @@ $postId = $post->ID;
 								<?php endif; ?>
 							</div>
 						</section>
-						<section class="otherOpts">
+						<section class="otherOpts hide">
 							<ul>
 								<li class="date row"><div class="lbl">
 										<input type="checkbox" id="fSDate" />
