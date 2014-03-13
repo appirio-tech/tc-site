@@ -29,6 +29,18 @@ $(function () {
     centerModal();
   });
 
+  $('#username').keyup(function() {
+    $('#loginForm span.err3').hide();
+    $('#loginForm span.err1').hide();
+    $(this).removeClass('invalid');
+  });
+
+  $('#password').keyup(function() {
+    $('#loginForm span.err1').hide();
+    $('#loginForm span.err4').hide();
+    $(this).removeClass('invalid');
+  });
+
   $('.btnRegister').on('click', function () {
     //document.getElementById("registerForm").reset();
     showModal('#register');
