@@ -1130,7 +1130,7 @@ endif;
 <div id="viewRegistrant" class="tableWrap hide tab">
 
 
-  <article>
+<article>
     <h1>REGISTRANTS</h1>
     <table class="registrantsTable">
       <thead>
@@ -1156,92 +1156,88 @@ endif;
       </tr>
       </thead>
       <tbody>
-      <?php for ($i = 0; $i < count($registrants); $i++) : $registrant = $registrants[$i]; ?>
-        <tr class="<?php if ($i % 2 == 1) { echo 'even'; } ?>">
-          <td class="handleColumn">
-            <span><?php echo $registrant->handle; ?></span>
-          </td>
-          <?php
-          if ($contestType != 'design'):
-            ?>
+        <?php foreach ($registrants as $key => $value) {
+        echo '<tr >';
+        echo '<td class="handleColumn">';
+        echo '<span>' .$value->handle .'</span>';
+        echo '</td>';
+          if ($contestType != 'design') {
+            echo '<td class="ratingColumn">';
+            echo '<span style="' . $value->ratings_color . '">';
+                echo $value->max_rating;
+            echo '</span>';
+            echo '</td>';
 
-            <td class="ratingColumn">
-              <span style="<?php echo $registrant->ratings_color; ?>">
-                <?php echo $registrant->max_rating; ?>
-              </span>
-            </td>
+            echo '<td class="reliabilityColumn">';
+              echo $value->reliability;
+            echo '</td>';
+          }
 
-            <td class="reliabilityColumn">
-              <?php echo $registrant->reliability; ?>
-            </td>
-          <?php
-          endif;
-          ?>
-          <td class="regDateColumn">
-            <?php echo date("M d, Y H:i", strtotime("$registrant->registrationDate")) . " EST"; ?>
-          </td>
-          <td class="subDateColumn">
-            <?php
-            if ($registrant->lastSubmissionDate) {
-              echo date("M d, Y H:i", strtotime("{$registrant->lastSubmissionDate}")) . " EST";
+        echo '<td class="regDateColumn">';
+            echo date("M d, Y H:i", strtotime($value->registrationDate)) . " EST";
+        echo '</td>';
+        echo '<td class="subDateColumn">';
+            if ($value->lastSubmissionDate) {
+              echo date("M d, Y H:i", strtotime($value->lastSubmissionDate)) . " EST";
             }
             else {
               echo "--";
             }
-            ?>
-          </td>
-        </tr>
-      <?php endfor; ?>
+        echo '</td>';
+        echo '</tr>';
+
+      }  ?>
       </tbody>
     </table>
+
     <div class="registrantsTable mobile hide">
-      <?php for ($i = 0; $i < count($registrants); $i++) : $registrant = $registrants[$i]; ?>
-        <div class="registrantSection">
-          <div class="registrantSectionRow registrantHandle"><?php echo $registrant->handle; ?></div>
-          <?php
-          if ($contestType != 'design'):
-            ?>
-            <div class="registrantSectionRow">
-              <div class="registrantLabel">Rating:</div>
-              <div class="registrantField">
-                <span style="<?php echo $registrant->ratings_color; ?>">
-                  <?php echo $registrant->max_rating; ?>
-                </span>
-              </div>
-              <div class="clear"></div>
-            </div>
-            <div class="registrantSectionRow">
-              <div class="registrantLabel">Reliability:</div>
-              <div class="registrantField"><?php echo $registrant->reliability; ?></div>
-              <div class="clear"></div>
-            </div>
-          <?php
-          endif;
-          ?>
-          <div class="registrantSectionRow">
-            <div class="registrantLabel">Registration Date:</div>
-            <div class="registrantField"><?php echo date(
+      <?php foreach ($registrants as $key => $value) {
+        echo '<div class="registrantSection">';
+          echo '<div class="registrantSectionRow registrantHandle">'. $value->handle . '</div>';
+          if ($contestType != 'design') {
+            echo '<div class="registrantSectionRow">';
+              echo '<div class="registrantLabel">Rating:</div>';
+              echo '<div class="registrantField">';
+                echo '<span style="'. $value->ratings_color .'">';
+                  echo $value->max_rating;
+                echo '</span>';
+              echo '</div>';
+              echo '<div class="clear"></div>';
+            echo '</div>';
+            echo '<div class="registrantSectionRow">';
+              echo '<div class="registrantLabel">Reliability:</div>';
+              echo '<div class="registrantField">'. $value->reliability .'</div>';
+              echo '<div class="clear"></div>';
+            echo '</div>';
+          }
+          echo '<div class="registrantSectionRow">';
+            echo '<div class="registrantLabel">Registration Date:</div>';
+            echo '<div class="registrantField">';
+            echo date(
                   "M d, Y H:i",
-                  strtotime("$registrant->registrationDate")
-                ) . " EST" ?></div>
-            <div class="clear"></div>
-          </div>
-          <div class="registrantSectionRow">
-            <div class="registrantLabel">Submission Date:</div>
-            <div class="registrantField">                  <?php
-              if ($registrant->lastSubmissionDate) {
-                echo date("M d, Y H:i", strtotime("{$registrant->lastSubmissionDate}")) . " EST";
+                  strtotime($value->registrationDate)
+                ) . '" EST" </div>';
+            echo '<div class="clear"></div>';
+          echo '</div>';
+          echo '<div class="registrantSectionRow">';
+            echo '<div class="registrantLabel">Submission Date:</div>';
+            echo '<div class="registrantField">';
+              if ($value->lastSubmissionDate) {
+                echo date("M d, Y H:i", strtotime($value->lastSubmissionDate)) . " EST";
               }
               else {
                 echo "--";
               }
-              ?></div>
-            <div class="clear"></div>
-          </div>
-        </div>
-      <?php endfor; ?>
+            echo '</div>';
+            echo '<div class="clear"></div>';
+          echo '</div>';
+        echo '</div>';
+      }  ?>
     </div>
+
   </article>
+
+
 
 </div>
 <div id="winner" class="tableWrap hide tab">
