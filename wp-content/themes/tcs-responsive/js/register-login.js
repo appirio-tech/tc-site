@@ -76,7 +76,6 @@ $(function () {
 
     var result = 0;
     if (pwd.trim()=='') return 0;
-    if (pwd[pwd.length-1].match(/\d/)) return -1;
     if (pwd.length < 7) return -2;
     if (pwd.length > 30) return -3;
 
@@ -193,8 +192,10 @@ $(function () {
   });
 
   var handleIsFree = true;
+  var handleValidationAttempted = false;
   var handleDeferred = $.Deferred();
   function validateHandle() {
+    handleValidationAttempted = true;
     var handle = $('#register form.register input.name.handle:text').val();
     $.ajax({
       type: 'GET',
@@ -242,10 +243,13 @@ $(function () {
 
   $('#register a.btnSubmit').on('click', function () {
     var isValid = true;
+    if (!handleValidationAttempted) validateHandle();
 
     var frm = $('#register form.register');
-    $('.invalid', frm).removeClass('invalid');
-    $('.err1,.err2', frm).hide();
+    var handleInvalid = $('input.handle').closest('.row').find('.invalid');
+    $('.invalid', frm).not(handleInvalid).removeClass('invalid');
+    var handleErr2 = $('input.handle').closest('.row').find('.err2');
+    $('.err1,.err2', frm).not(handleErr2).hide();
     $('input:text', frm).each(function () {
       if ($.trim($(this).val()) == "") {
         $(this).closest('.row').find('.err1').show();
@@ -284,11 +288,6 @@ $(function () {
         } else if ($(".strength .field.red", frm).length > 0) {
           frm.find(".err2.red").show();
           $(this).closest('.row').find('.err2').show();
-          $(this).closest('.row').find('input:password').addClass('invalid');
-          isValid = false;
-        } else if (pwdStrength($('input.pwd:password').val()) == -1) {
-          frm.find(".err3.red").show();
-          $(this).closest('.row').find('.err3').show();
           $(this).closest('.row').find('input:password').addClass('invalid');
           isValid = false;
         } else if (pwdStrength($('input.pwd:password').val()) < -1) {
