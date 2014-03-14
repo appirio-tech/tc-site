@@ -1157,9 +1157,10 @@ endif;
       </thead>
       <tbody>
         <?php foreach ($registrants as $key => $value) {
+        $handleLink = get_bloginfo ( "siteurl" ) . "/member-profile/" . $value->handle;
         echo '<tr >';
         echo '<td class="handleColumn">';
-        echo '<span>' .$value->handle .'</span>';
+        echo '<span>'. '<a href="'. $handleLink. '" style="' . $value->color .'">'. $value->handle . '</a></span>';
         echo '</td>';
           if ($contestType != 'design') {
             echo '<td class="ratingColumn">';
@@ -1192,8 +1193,9 @@ endif;
 
     <div class="registrantsTable mobile hide">
       <?php foreach ($registrants as $key => $value) {
+        $handleLink = get_bloginfo ( "siteurl" ) . "/member-profile/" . $value->handle;
         echo '<div class="registrantSection">';
-          echo '<div class="registrantSectionRow registrantHandle">'. $value->handle . '</div>';
+          echo '<div class="registrantSectionRow registrantHandle">'. '<a href="'. $handleLink. '" style="'. $value->color .'">'. $value->handle . '</a></div>';
           if ($contestType != 'design') {
             echo '<div class="registrantSectionRow">';
               echo '<div class="registrantLabel">Rating:</div>';
