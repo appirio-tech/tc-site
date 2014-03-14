@@ -337,6 +337,10 @@ Register modal
 		margin: 2px auto;
 		text-align: center;
 	}	
+
+  p.submitBtn .pleaseWait:hover {
+    cursor: default;
+  }
 	
 	#register .person {
 		text-align: center;
