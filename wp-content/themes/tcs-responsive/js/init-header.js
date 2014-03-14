@@ -54,7 +54,13 @@ $(document).ready(function() {
             // Clear local tcsso cookie on logout
             $('.logoutLink, .actionLogout').click(function() {
                 document.cookie = 'tcsso=; path=/; domain=.topcoder.com; expires=' + new Date(0).toUTCString();
-                location.href = location.href;
+                // check if we have the weird facebook hash
+                // if so, redirect to root
+                if (window.location.hash == '#_=_') {
+                  location.href = '';
+                } else {
+                  location.href = location.href;
+                }
             });
         }
     }
