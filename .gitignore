@@ -62,3 +62,6 @@ wp-content/mysql.sql
 *.asf
 *.wmv
 *.avi
+
+# ignore custom config files
+config/dev.php

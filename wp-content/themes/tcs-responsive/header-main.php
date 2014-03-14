@@ -30,18 +30,6 @@ if ($_GET['auth'] == 'logout') {
 
 }
 
-$urlLogout = add_query_arg('auth', 'logout', get_bloginfo('wpurl'));
-use Auth0SDK\Auth0;
-
-$auth0 = new Auth0(array(
-  'domain' => auth0_domain,
-  'client_id' => auth0_client_id,
-  'client_secret' => auth0_client_secret,
-  'redirect_uri' => auth0_redirect_uri
-));
-
-$ver = (get_option('jsCssVersioning') == 1); $v = get_option('jsCssCurrentVersion');
-
 ?>
 
 <!DOCTYPE html>
@@ -59,24 +47,35 @@ $ver = (get_option('jsCssVersioning') == 1); $v = get_option('jsCssCurrentVersio
   <!-- Favicons -->
   <link rel="shortcut icon" href="<?php bloginfo('template_url'); ?>/favicon.ico" />
 
+  <!-- External JS -->
+  <!--[if lt IE 9]>
+  <script src="<?php THEME_URL ?>/js/html5shiv.js<?php if ($ver) { echo "?v=$v"; } ?>" type="text/javascript"></script>
+  <script src="<?php THEME_URL ?>/js/respond.min.js<?php if ($ver) { echo "?v=$v"; } ?>" type="text/javascript"></script>
+  <script src="<?php THEME_URL ?>/js/modernizr.js<?php if ($ver) { echo "?v=$v"; } ?>" type="text/javascript"></script>
+  <link rel = "stylesheet" href = "<?php THEME_URL ?>/css/ie.css<?php if ($ver) { echo " ? v = $v"; } ?>" / >
+  <![endif]-->
   <script type="text/javascript">
     var wpUrl = "<?php bloginfo('wpurl')?>";
     var ajaxUrl = wpUrl + "/wp-admin/admin-ajax.php";
     var siteURL = '<?php echo get_bloginfo('siteurl');?>';
     var base_url = '<?php echo bloginfo( 'stylesheet_directory' ); ?>';
+    var stylesheet_dir = '<?php echo THEME_URL . '/css'; ?>';
   </script>
 
-  <script id="auth0" src="https://sdk.auth0.com/auth0.js#client=<?php echo auth0_client_id; ?>"></script>
+<?php
 
-  <!-- External JS -->
-  <!--[if lt IE 9]>
-  <script
-    src="<?php THEME_URL ?>/js/vendor/html5shiv.js<?php if ($ver) { echo "?v=$v"; } ?>" type="text/javascript"></script>
-  <
-  link
-  rel = "stylesheet"
-  href = "<?php THEME_URL ?>/css/ie.css<?php if ($ver) { echo " ? v = $v"; } ?>" / >
-  <![endif]-->
+  wp_head();
 
-  <?php wp_head(); ?>
-  <?php fixIERoundedCorder(); ?>
+
+  $urlLogout = add_query_arg('auth', 'logout', get_bloginfo('wpurl'));
+  use Auth0SDK\Auth0;
+
+  $auth0 = new Auth0(array(
+    'domain' => auth0_domain,
+    'client_id' => auth0_client_id,
+    'client_secret' => auth0_client_secret,
+    'redirect_uri' => auth0_redirect_uri
+  ));
+
+  $ver = (get_option('jsCssVersioning') == 1); $v = get_option('jsCssCurrentVersion');
+  fixIERoundedCorder();

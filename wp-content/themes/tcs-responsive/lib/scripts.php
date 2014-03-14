@@ -12,85 +12,143 @@
  */
 
 function tcs_responsive_scripts() {
-  // register all of the scripts
+  $auth0_client_id = auth0_client_id;
+
+  // register scripts that are used everywhere
   $assets = array(
-    'css' => '/css/style.min.css',
-    'js' => '/js/script.min.js',
     'jquery' => '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
+    'jquery_ui' => '//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js',
+    'fonts' => '//fonts.googleapis.com/css?family=Source+Sans+Pro:700,400',
     'respond'   =>  '/js/vendor/respond.min.js',
     'modernizr' => '/js/vendor/modernizr.js',
     'html5shiv' => '/js/vendor/html5shiv.js',
-    'auth0' => '//d19p4zemcycm7a.cloudfront.net/w2/auth0-1.2.2.min.js'
+    'auth0' => '//d19p4zemcycm7a.cloudfront.net/w2/auth0-1.2.2.min.js',
+    'auth0-sdk' => "//sdk.auth0.com/auth0.js#client={$auth0_client_id}"
   );
 
-  $assets_develop = array(
-    'css' => array(
-      '/css/blog.css',
-      '/css/blog-responsive.css',
-      '/css/base.css',
-      '/css/style.css',
-      '/css/style-profile.css',
-      '/css/base-responsive.css',
-      '/css/style-responsive.css',
-      '/css/coder.css',
-      '/css/contact-about.css',
-      '/css/profileBadges.css',
-      '/css/register-login.css',
-      '/css/blog-base.css',
-      '/css/community-landing.css',
-      '/css/challenge-detail-software.css',
-      '/css/ie.css'
-    ),
-    'js' => array(
-      '/js/vendor/jquery/jquery.bxslider.js',
-      '/js/vendor/jquery/jquery.easing.1.3.js',
-      '/js/vendor/jquery/jquery.mousewheel.js',
-      '/js/vendor/raphael-min.js',
-      '/js/vendor/jquery/jquery.carousel.js',
-      '/js/vendor/jquery/jquery.customSelect.min.js',
-      '/js/vendor/swipe.js',
-      '/js/vendor/jquery/jquery.inputhints.js',
-      '/js/scripts.js',
-      '/js/script-member.js',
-      '/js/register-login.js',
-      '/js/blog.js',
-      '/js/contact-about.js',
-      '/js/init-header.js',
-      '/js/challenge-detail-software.js',
-      '/js/vendor/jquery/jquery.jscrollpane.min.js',
-      '/js/vendor/jquery/jquery.mousewheel.js',
-      '/js/vendor/jquery/jquery.column-1.0.js'
-    )
-  );
+  tsc_register_master($assets);
+
+  $jsCssUseMin = get_option("jsCssUseMin", false);
+  $template_map = tsc_get_asset_map();
+  $page_template = $page_template = get_page_template_slug(get_queried_object_id());
+
+  if (isset($template_map[$page_template])) {
+    $asset_map = $template_map[$page_template];
+  } else {
+    $asset_map = $template_map['default'];
+  }
+
+  // If we are not using min/cat files then use all of the develop files
+  if ($jsCssUseMin) {
+    wp_register_script($asset_map['name'],
+      tsc_build_asset_path($asset_map['name'], 'js', true),
+      array('jquery, jquery_ui'), null, true);
+
+    wp_register_style($asset_map['name'], tsc_build_asset_path($asset_map['name'], 'css', true));
+
+    wp_enqueue_script($asset_map['name']);
+    wp_enqueue_style($asset_map['name']);
+  } else {
+    $i = 0;
+    foreach ($asset_map['js'] as $js_script) {
+      if ($i == 0) {
+        wp_register_script("custom-{$i}", tsc_build_asset_path($js_script, 'js'), array("jquery", "auth0"), null, true);
+      } else {
+        $j = $i -1;
+        wp_register_script("custom-{$i}", tsc_build_asset_path($js_script, 'js'), array("custom-{$j}"), null, true);
+      }
+      wp_enqueue_script("custom-{$i}");
+      $i++;
+    }
+
+    $i = 0;
+    foreach ($asset_map['css'] as $css_script) {
+      if ($i == 0) {
+        wp_enqueue_style("custom-{$i}", tsc_build_asset_path($css_script, 'css'));
+      } else {
+        $j = $i -1;
+        wp_enqueue_style("custom-{$i}", tsc_build_asset_path($css_script, 'css'), array("custom-{$j}"));
+      }
+      $i++;
+    }
+  }
+}
+
+/**
+ * Build the path to the assets
+ *
+ * @param $asset_name
+ * @param string $type
+ *  pass in "js" or "css" to help build the path if the file is concatinated
+ * @param boolean $concat
+ * @return string
+ */
+function tsc_build_asset_path($asset_name, $type, $concat = false) {
+  static $base_path, $ext;
+
+  if (!isset($base_path)) {
+    $base_path = tsc_get_script_base_url();
+  }
+
+  if (!isset($ext)) {
+    $ext = tsc_get_script_ext();
+  }
+
+  if ($concat) {
+    return "{$base_path}/{$asset_name}.concat.{$type}.{$ext}";
+  }
+
+  if ($ext) {
+    return "{$base_path}/{$type}/{$asset_name}.{$ext}";
+  }
+  return "{$base_path}/{$type}/{$asset_name}";
+}
+
+/**
+ * Get the assets from json file
+ *
+ * @return array
+ *  template => array('js' => array(), 'css' => array())
+ */
+function tsc_get_asset_map() {
+  $template_map = array(); //= get_transient(__FUNCTION__);
+
+  if (!$template_map) {
+    $json = file_get_contents(get_stylesheet_directory() .  '/config/script-register.json');
+    $json = json_decode($json, true);
+
+    // type should be either "packages" or "templates
+    $template_map = array();
+    $package_map = array();
+
+    foreach($json['packages'] as $package) {
+      $package_map[$package['name']] = $package;
+    }
+
+    foreach ($json['templates'] as $template => $package) {
+      $template_map[$template] = $package_map[$package];
+    }
+
+    //set_transient(__FUNCTION__, $template_map);
+  }
+
+  return $template_map;
+}
 
 
-
-  // Setup jquery cdn
-  wp_deregister_script('jquery');
-  wp_register_script('jquery', $assets['jquery'], array(), "1.10.2", false);
-  add_filter('script_loader_src', 'tsc_jquery_local_fallback', 10, 2);
-
-  // Always include auth0
-  wp_register_script("auth0", $assets['auth0'] . $ext, array(), "1.2.2", true);
-
-  // resgister stuff that is included at different times in the theme
-  wp_register_script('modernizr', THEME_URL . $assets['modernizr'], array(), null, false);
-  wp_register_script('respond', THEME_URL . $assets['respond'], array(), null, false);
-  wp_register_script('html5shiv', THEME_URL, $assets['html5shiv'], array(), null, false);
-  wp_register_style('ie', THEME_URL, $assets['ie']);
+/**
+ * Get the base url to use to include
+ *
+ * @return string
+ */
+function tsc_get_script_base_url() {
 
   $jsCssUseCDN = get_option("jsCssUseCDN", false);
   $jsCssCDNBase = get_option("jsCssCDNBase", THEME_URL);
   $jsCssVersioning = get_option("jsCssVersioning", false);
   $jsCssCurrentVersion = get_option("jsCssCurrentVersion", false);
-  $jsCssUseMin = get_option("jsCssUseMin", false);
 
 
-  // check if the browser supports gzip so we can specify the gzip version of resources
-  $ext = '';
-  if ($jsCssUseCDN && strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== false) {
-    $ext = '.gz';
-  }
 
   // Setup up base url if using cdn.  safe fallback to theme url
   $base_url = $jsCssUseCDN ? $jsCssCDNBase : THEME_URL;
@@ -100,25 +158,59 @@ function tcs_responsive_scripts() {
     $base_url .= '/' . $jsCssCurrentVersion;
   }
 
-  // If we are not using min/cat files then use all of the develop files
-  if ($jsCssUseMin) {
-    wp_register_script('custom', $base_url . $assets['js'] . $ext, array('jquery'), null, true);
-    wp_register_style('custom', $base_url . $assets['css'] . $ext);
-  } else {
-    $i = 0;
-    foreach ($assets_develop['js'] as $js_script) {
-      //wp_register_script("custom-{$i}", $base_url . $js_script . $ext);
-      wp_enqueue_script("custom-{$i}", $base_url . $js_script . $ext);
-      $i++;
-    }
-
-    $i = 0;
-    foreach ($assets_develop['css'] as $css_script) {
-      wp_enqueue_style("custom-{$i}", $base_url . $css_script . $ext);
-      $i++;
-    }
-  }
+  return $base_url;
 }
+
+/**
+ * Get the extension to use for the scripts
+ *
+ * @return string
+ */
+function tsc_get_script_ext() {
+  $jsCssUseCDN = get_option("jsCssUseCDN", false);
+
+  // check if the browser supports gzip so we can specify the gzip version of resources
+  $ext = '';
+  if ($jsCssUseCDN && strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== false) {
+    $ext = '.gz';
+  }
+
+  return $ext;
+}
+
+/**
+ * Register assets uses that are outside of local cat/min/cdn
+ *
+ * @param $assets array
+ */
+function tsc_register_master($assets) {
+  // Add fonts
+  wp_register_style('fonts', $assets['fonts']);
+  wp_enqueue_style('fonts');
+
+  // Setup jquery cdn and put in the header
+  wp_deregister_script('jquery');
+  wp_register_script('jquery', $assets['jquery'], array());
+  wp_enqueue_script('jquery');
+
+  wp_register_script('jquery_ui', $assets['jquery_ui'], array('jquery'), null, true);
+  wp_enqueue_script('jquery_ui');
+  add_filter('script_loader_src', 'tsc_jquery_local_fallback', 10, 2);
+
+  // Always include auth0
+  wp_register_script("auth0-sdk", $assets['auth0-sdk'], array(), null, true);
+  wp_register_script("auth0", $assets['auth0'], array("auth0-sdk"), null, true);
+  wp_enqueue_script("auth0-sdk");
+  wp_enqueue_script("auth0");
+
+  // resgister stuff that is included at different times in the theme
+  wp_register_script('modernizr', THEME_URL . $assets['modernizr'], array());
+  wp_register_script('respond', THEME_URL . $assets['respond']);
+  wp_register_script('html5shiv', THEME_URL, $assets['html5shiv']);
+  wp_register_style('ie', THEME_URL, $assets['ie']);
+}
+
+
 
 add_action('wp_enqueue_scripts', 'tcs_responsive_scripts', 100);
 
@@ -137,4 +229,5 @@ function tsc_jquery_local_fallback($src, $handle = null) {
 
   return $src;
 }
+
 add_action('wp_head', 'tsc_jquery_local_fallback');

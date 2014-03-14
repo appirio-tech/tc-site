@@ -1,4 +1,8 @@
-<?php get_template_part('header-main'); ?>
+<?php
+
+get_template_part('header-main');
+
+?>
   </head>
 
 <body>
@@ -7,7 +11,6 @@
 
 $nav = array (
 		'menu' => 'Main Navigation',
-		'menu_class' => '',
 		'container'       => '',
 		'menu_class'      => 'root',
 		'items_wrap'      => '%3$s',

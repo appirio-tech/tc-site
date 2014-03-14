@@ -162,7 +162,7 @@ if (is_admin () && isset ( $_GET ['activated'] ) && $pagenow == 'themes.php') {
   update_option ( 'forumPostPerPage', '3' );
 
   // Social Media
-  update_option ( 'facebookURL', 'http://www.facebook.com/topcoderinc' );
+  update_option ( 'facebookURL', 'http://www.facebook.com/topcoder' );
   update_option ( 'twitterURL', 'http://www.twitter.com/topcoder' );
   update_option ( 'linkedInURL', 'http://www.youtube.com/topcoderinc' );
   update_option ( 'gPlusURL', 'https://plus.google.com/u/0/b/104268008777050019973/104268008777050019973/posts' );

@@ -1,4 +1,9 @@
 <?php
+
+// Define once because it's faster
+define('THEME_URL', get_template_directory_uri());
+
+
 define('WP_DEBUG_DISPLAY', true);
 @ini_set('display_errors',1);
 #include 'auth0/vendor/autoload.php';
@@ -13,12 +18,13 @@ define("auth0_domain",$auth0_cfg['domain']);
 define("auth0_client_id",$auth0_cfg['client_id']);
 define("auth0_redirect_uri",$auth0_cfg['redirect_uri']);
 define("auth0_state",$auth0_cfg['state']);
-include("functions-widget.php");
 
 define("BLOG","blog");
 
-define("WP_SITEURL", "http://local.topcoder.com");
-define("WP_CONTENT_URL", "http://local.topcoder.com");
+locate_template("config/dev.php", true);
+locate_template('lib/scripts.php', true);
+locate_template('lib/widget.php', true);
+
 
 // add featured image
 add_theme_support ( 'post-thumbnails' );
@@ -38,25 +44,7 @@ function tags_support_all() {
 
 add_action('init', 'tags_support_all');
 
-/* RSS Feeds for challenge listings */
-add_action('init', 'challengesRSS');
-function challenges_rss_rewrite_rules($wp_rewrite) {
-  $new_rules = array(
-    'challenges/feed/?' => 'index.php?feed=challenges-feed'
-  );
-  $wp_rewrite->rules = $new_rules + $wp_rewrite->rules;
-}
-
-function challengesRSS() {
-  global $wp_rewrite;
-  add_feed('challenges-feed', 'challengesRSSFunc');
-  add_action('generate_rewrite_rules', 'challenges_rss_rewrite_rules');
-  $wp_rewrite->flush_rules();
-}
-
-function challengesRSSFunc() {
-  get_template_part('rss', 'challenges');
-}
+locate_template("lib/rss.php", true);
 
 function get_rel_url($url, $force = false) {
 		if (!strstr($url, $_SERVER['HTTP_HOST']) && !$force){
@@ -70,8 +58,7 @@ function get_rel_url($url, $force = false) {
 		return $link;
 }
 
-$includes_path = TEMPLATEPATH . '/lib';
-require_once(TEMPLATEPATH . '/rewrite-config.php');
+locate_template("config/rewrite-config.php");
 
 $currUrl = curPageURL();
 if (strpos($currUrl, ACTIVE_CONTESTS_PERMALINK) !== FALSE ||

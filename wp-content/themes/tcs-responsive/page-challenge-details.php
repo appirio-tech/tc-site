@@ -1,4 +1,7 @@
 <?php
+
+get_header('challenge-landing');
+
 /**
  * Template Name: Challenge details
  */
@@ -39,8 +42,6 @@ function secondsToTime($inputSeconds) {
 }
 
 $isChallengeDetails = TRUE;
-get_header();
-
 
 $values = get_post_custom($post->ID);
 
@@ -134,7 +135,7 @@ function createDevelopSubmissionMap($contest) {
 $documents = $contest->Documents;
 
 // get contest details
-$contest_type = get_query_var('contest_type');
+$contest_type = $contestType;
 $contest_type = str_replace("_", " ", $contest_type);
 $postPerPage = get_option("contest_per_page") == "" ? 30 : get_option("contest_per_page");
 
