@@ -32,6 +32,7 @@ function tcs_responsive_scripts() {
   $template_map = tsc_get_asset_map();
   $page_template = $page_template = get_page_template_slug(get_queried_object_id());
   $ver = get_option('jsCssVersioning') == 1 ? get_option('jsCssCurrentVersion') : '1';
+  $jsCssUseCDN = get_option("jsCssUseCDN", false);
 
   if (isset($template_map[$page_template])) {
     $asset_map = $template_map[$page_template];
@@ -39,12 +40,23 @@ function tcs_responsive_scripts() {
     $asset_map = $template_map['default'];
   }
 
-  if ($jsCssUseMin) {
+  if ($jsCssUseMin && $jsCssUseCDN) {
+    // version number is in url when using cdn
+    wp_register_script($asset_map['name'],
+      tsc_build_asset_path($asset_map['name'], 'js', true, true),
+      array('jquery', 'jquery_ui', 'auth0'), null, true);
+
+    wp_register_style($asset_map['name'], tsc_build_asset_path($asset_map['name'], 'css', true, true));
+
+    wp_enqueue_script($asset_map['name']);
+    wp_enqueue_style($asset_map['name']);
+  } elseif ($jsCssUseMin) {
+    // version number is in url when using cdn
     wp_register_script($asset_map['name'],
       tsc_build_asset_path($asset_map['name'], 'js', true),
-      array('jquery, jquery_ui'), null, true);
+      array('jquery', 'jquery_ui', 'auth0'), $ver, true);
 
-    wp_register_style($asset_map['name'], tsc_build_asset_path($asset_map['name'], 'css', true));
+    wp_register_style($asset_map['name'], tsc_build_asset_path($asset_map['name'], 'css', true), $ver);
 
     wp_enqueue_script($asset_map['name']);
     wp_enqueue_style($asset_map['name']);
@@ -83,8 +95,8 @@ function tcs_responsive_scripts() {
  * @param boolean $min
  * @return string
  */
-function tsc_build_asset_path($asset_name, $type, $min = false) {
-  static $base_path, $ext, $ver;
+function tsc_build_asset_path($asset_name, $type, $min = false, $useCDN = false) {
+  static $base_path, $ext;
 
   if (!isset($base_path)) {
     $base_path = tsc_get_script_base_url();
@@ -93,20 +105,21 @@ function tsc_build_asset_path($asset_name, $type, $min = false) {
   if (!isset($ext)) {
     $ext = tsc_get_script_ext();
   }
-
-  if (!isset($ver)) {
-    $ver = get_option('jsCssVersioning') == 1 ? get_option('jsCssCurrentVersion') : 'dev';
-  }
-
-  if ($min) {
-    return "{$base_path}/{$ver}/{$type}/{$asset_name}.min.{$type}.{$ext}";
+  // if min and cdn use /ver/type/file
+  if ($min && $useCDN) {
+    $path =  "{$base_path}/{$type}/{$asset_name}.min.{$type}";
+  } elseif ($min) {
+    // min and not cdn then use add do not sort by type
+    $path = "{$base_path}/{$asset_name}.min.{$type}";
+  } else {
+    $path = "{$base_path}/{$type}/{$asset_name}";
   }
 
   if ($ext) {
-    return "{$base_path}/{$type}/{$asset_name}.{$ext}";
+    $path .=  ".{$ext}";
   }
 
-  return "{$base_path}/{$type}/{$asset_name}";
+  return $path;
 }
 
 /**
@@ -147,6 +160,7 @@ function tsc_get_script_base_url() {
   $jsCssCDNBase = get_option("jsCssCDNBase", THEME_URL);
   $jsCssVersioning = get_option("jsCssVersioning", false);
   $jsCssCurrentVersion = get_option("jsCssCurrentVersion", false);
+  $jsCssUseMin = get_option("jsCssUseMin", false);
 
   // Setup up base url if using cdn.  safe fallback to theme url
   $base_url = $jsCssUseCDN ? $jsCssCDNBase : THEME_URL;
@@ -154,6 +168,8 @@ function tsc_get_script_base_url() {
   // if we are using cdn and version then add the version to the path
   if ($jsCssUseCDN && $jsCssVersioning) {
     $base_url .= '/' . $jsCssCurrentVersion;
+  } elseif ($jsCssUseMin) {
+    $base_url .= '/dist';
   }
 
   return $base_url;

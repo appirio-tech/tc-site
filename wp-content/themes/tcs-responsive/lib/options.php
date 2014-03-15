@@ -206,5 +206,7 @@ function themeoptions_update() {
   update_option ( 'jsCssUseCDN', $_POST['jsCssUseCDN'] );
   update_option ( 'jsCssCDNBase', $_POST['jsCssCDNBase'] );
 
+  update_option ( 'jsCssUseMin', $_POST['jsCssUseMin'] );
+
 }
 // END OF THEME OPTIONS SUPPORT
