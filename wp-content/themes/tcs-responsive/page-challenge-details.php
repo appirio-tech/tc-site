@@ -669,12 +669,12 @@ if (sizeof($contest->prize) > 5) {
         <span
           class="CEDate"><?php echo ($contest->currentStatus == 'Completed') ? "Completed" : $contest->currentPhaseName; ?></span>
       </div>
-                                    <span class="timeLeft">
-									<?php
-                                    $remaining = secondsToTime($contest->currentPhaseRemainingTime);
-                                    echo ($contest->currentStatus == 'Completed' || $contest->currentStatus == 'Deleted') ? "" : $remaining[d] . " <small>Days</small> " . $remaining[h] . " <small>Hours</small> " . $remaining[m] . " <small>Mins</small>";
-                                    ?>
-									</span>
+      <span class="timeLeft">
+      <?php
+        $remaining = secondsToTime($contest->currentPhaseRemainingTime);
+        echo ($contest->currentStatus == 'Completed' || $contest->currentStatus == 'Deleted') ? "" : $remaining['d'] . " <small>Days</small> " . $remaining['h'] . " <small>Hours</small> " . $remaining['m'] . " <small>Mins</small>";
+      ?>
+      </span>
     </div>
     <!--End nextBoxContent-->
     <?php
@@ -688,11 +688,11 @@ if (sizeof($contest->prize) > 5) {
 
 
         <p><label>Register By:</label>
-                                           <span><?php echo date(
-                                                 "M d, Y H:i",
-                                                 strtotime("$contest->registrationEndDate")
-                                               ) . " EST"; ?>
-                                           </span>
+         <span><?php echo date(
+               "M d, Y H:i",
+               strtotime("$contest->registrationEndDate")
+             ) . " EST"; ?>
+         </span>
         </p>
 
         <p class="last"><label>Submit By:</label><span><?php echo date(
@@ -1131,7 +1131,7 @@ endif;
 <div id="viewRegistrant" class="tableWrap hide tab">
 
 
-<article>
+  <article>
     <h1>REGISTRANTS</h1>
     <table class="registrantsTable">
       <thead>
@@ -1157,34 +1157,34 @@ endif;
       </tr>
       </thead>
       <tbody>
-        <?php foreach ($registrants as $key => $value) {
-        $handleLink = get_bloginfo ( "siteurl" ) . "/member-profile/" . $value->handle;
+      <?php foreach ($registrants as $key => $value) {
+        $handleLink = get_bloginfo("siteurl") . "/member-profile/" . $value->handle;
         echo '<tr >';
         echo '<td class="handleColumn">';
-        echo '<span>'. '<a href="'. $handleLink. '" style="' . $value->color .'">'. $value->handle . '</a></span>';
+        echo '<span>' . '<a href="' . $handleLink . '" style="' . $value->color . '">' . $value->handle . '</a></span>';
         echo '</td>';
-          if ($contestType != 'design') {
-            echo '<td class="ratingColumn">';
-            echo '<span style="' . $value->ratings_color . '">';
-                echo $value->max_rating;
-            echo '</span>';
-            echo '</td>';
+        if ($contestType != 'design') {
+          echo '<td class="ratingColumn">';
+          echo '<span style="' . $value->ratings_color . '">';
+          echo $value->max_rating;
+          echo '</span>';
+          echo '</td>';
 
-            echo '<td class="reliabilityColumn">';
-              echo $value->reliability;
-            echo '</td>';
-          }
+          echo '<td class="reliabilityColumn">';
+          echo $value->reliability;
+          echo '</td>';
+        }
 
         echo '<td class="regDateColumn">';
-            echo date("M d, Y H:i", strtotime($value->registrationDate)) . " EST";
+        echo date("M d, Y H:i", strtotime($value->registrationDate)) . " EST";
         echo '</td>';
         echo '<td class="subDateColumn">';
-            if ($value->lastSubmissionDate) {
-              echo date("M d, Y H:i", strtotime($value->lastSubmissionDate)) . " EST";
-            }
-            else {
-              echo "--";
-            }
+        if ($value->lastSubmissionDate) {
+          echo date("M d, Y H:i", strtotime($value->lastSubmissionDate)) . " EST";
+        }
+        else {
+          echo "--";
+        }
         echo '</td>';
         echo '</tr>';
 
@@ -1194,52 +1194,51 @@ endif;
 
     <div class="registrantsTable mobile hide">
       <?php foreach ($registrants as $key => $value) {
-        $handleLink = get_bloginfo ( "siteurl" ) . "/member-profile/" . $value->handle;
+        $handleLink = get_bloginfo("siteurl") . "/member-profile/" . $value->handle;
         echo '<div class="registrantSection">';
-          echo '<div class="registrantSectionRow registrantHandle">'. '<a href="'. $handleLink. '" style="'. $value->color .'">'. $value->handle . '</a></div>';
-          if ($contestType != 'design') {
-            echo '<div class="registrantSectionRow">';
-              echo '<div class="registrantLabel">Rating:</div>';
-              echo '<div class="registrantField">';
-                echo '<span style="'. $value->ratings_color .'">';
-                  echo $value->max_rating;
-                echo '</span>';
-              echo '</div>';
-              echo '<div class="clear"></div>';
-            echo '</div>';
-            echo '<div class="registrantSectionRow">';
-              echo '<div class="registrantLabel">Reliability:</div>';
-              echo '<div class="registrantField">'. $value->reliability .'</div>';
-              echo '<div class="clear"></div>';
-            echo '</div>';
-          }
+        echo '<div class="registrantSectionRow registrantHandle">' . '<a href="' . $handleLink . '" style="' . $value->color . '">' . $value->handle . '</a></div>';
+        if ($contestType != 'design') {
           echo '<div class="registrantSectionRow">';
-            echo '<div class="registrantLabel">Registration Date:</div>';
-            echo '<div class="registrantField">';
-            echo date(
-                  "M d, Y H:i",
-                  strtotime($value->registrationDate)
-                ) . '" EST" </div>';
-            echo '<div class="clear"></div>';
+          echo '<div class="registrantLabel">Rating:</div>';
+          echo '<div class="registrantField">';
+          echo '<span style="' . $value->ratings_color . '">';
+          echo $value->max_rating;
+          echo '</span>';
+          echo '</div>';
+          echo '<div class="clear"></div>';
           echo '</div>';
           echo '<div class="registrantSectionRow">';
-            echo '<div class="registrantLabel">Submission Date:</div>';
-            echo '<div class="registrantField">';
-              if ($value->lastSubmissionDate) {
-                echo date("M d, Y H:i", strtotime($value->lastSubmissionDate)) . " EST";
-              }
-              else {
-                echo "--";
-              }
-            echo '</div>';
-            echo '<div class="clear"></div>';
+          echo '<div class="registrantLabel">Reliability:</div>';
+          echo '<div class="registrantField">' . $value->reliability . '</div>';
+          echo '<div class="clear"></div>';
           echo '</div>';
+        }
+        echo '<div class="registrantSectionRow">';
+        echo '<div class="registrantLabel">Registration Date:</div>';
+        echo '<div class="registrantField">';
+        echo date(
+            "M d, Y H:i",
+            strtotime($value->registrationDate)
+          ) . '" EST" </div>';
+        echo '<div class="clear"></div>';
+        echo '</div>';
+        echo '<div class="registrantSectionRow">';
+        echo '<div class="registrantLabel">Submission Date:</div>';
+        echo '<div class="registrantField">';
+        if ($value->lastSubmissionDate) {
+          echo date("M d, Y H:i", strtotime($value->lastSubmissionDate)) . " EST";
+        }
+        else {
+          echo "--";
+        }
+        echo '</div>';
+        echo '<div class="clear"></div>';
+        echo '</div>';
         echo '</div>';
       }  ?>
     </div>
 
   </article>
-
 
 
 </div>

@@ -11,7 +11,7 @@ session_start();
 /***
  * if receive ?auth=logout, then kill cookie and any other sessions
  */
-if ($_GET['auth'] == 'logout') {
+if (isset($_GET['auth']) && $_GET['auth'] == 'logout') {
   unset($_COOKIE['tcsso']);
   setcookie('tcsso', '', time() - 3600, '/', '.topcoder.com');
 
@@ -47,11 +47,12 @@ if ($_GET['auth'] == 'logout') {
   <!-- Favicons -->
   <link rel="shortcut icon" href="<?php bloginfo('template_url'); ?>/favicon.ico" />
 
+  <?php $ver = (get_option('jsCssVersioning') == 1); $v = get_option('jsCssCurrentVersion'); ?>
   <!-- External JS -->
   <!--[if lt IE 9]>
-  <script src="<?php THEME_URL ?>/js/html5shiv.js<?php if ($ver) { echo "?v=$v"; } ?>" type="text/javascript"></script>
-  <script src="<?php THEME_URL ?>/js/respond.min.js<?php if ($ver) { echo "?v=$v"; } ?>" type="text/javascript"></script>
-  <script src="<?php THEME_URL ?>/js/modernizr.js<?php if ($ver) { echo "?v=$v"; } ?>" type="text/javascript"></script>
+  <script src="<?php THEME_URL ?>/js/html5shiv.js" type="text/javascript"></script>
+  <script src="<?php THEME_URL ?>/js/respond.min.js" type="text/javascript"></script>
+  <script src="<?php THEME_URL ?>/js/modernizr.js" type="text/javascript"></script>
   <link rel = "stylesheet" href = "<?php THEME_URL ?>/css/ie.css<?php if ($ver) { echo " ? v = $v"; } ?>" / >
   <![endif]-->
   <script type="text/javascript">
@@ -77,5 +78,4 @@ if ($_GET['auth'] == 'logout') {
     'redirect_uri' => auth0_redirect_uri
   ));
 
-  $ver = (get_option('jsCssVersioning') == 1); $v = get_option('jsCssCurrentVersion');
   fixIERoundedCorder();

@@ -3,13 +3,7 @@
 // Define once because it's faster
 define('THEME_URL', get_template_directory_uri());
 
-
-define('WP_DEBUG_DISPLAY', true);
-@ini_set('display_errors',1);
-#include 'auth0/vendor/autoload.php';
-#include 'auth0/src/Auth0.php';
-#include 'auth0/vendor/adoy/oauth2/vendor/autoload.php';
-#include 'auth0/client/config.php';
+@ini_set('display_errors', 1);
 require_once 'auth0/vendor/autoload.php';
 require_once 'auth0/src/Auth0.php';
 require_once 'auth0/vendor/adoy/oauth2/vendor/autoload.php';
@@ -17,20 +11,23 @@ require_once 'auth0/client/config.php';
 define("auth0_domain",$auth0_cfg['domain']);
 define("auth0_client_id",$auth0_cfg['client_id']);
 define("auth0_redirect_uri",$auth0_cfg['redirect_uri']);
-define("auth0_state",$auth0_cfg['state']);
 
-define("BLOG","blog");
+//define("auth0_state",$auth0_cfg['state']);
 
-locate_template("config/dev.php", true);
-locate_template('lib/scripts.php', true);
-locate_template('lib/widget.php', true);
+define("BLOG", "blog");
+
+locate_template("config/dev.php", TRUE);
+locate_template('lib/scripts.php', TRUE);
+locate_template('lib/widget.php', TRUE);
+locate_template("config/rewrite-config.php", TRUE);
+locate_template('lib/rewrite_rules.php', TRUE);
 
 
 // add featured image
-add_theme_support ( 'post-thumbnails' );
-if ( function_exists( 'add_theme_support' ) ) {
-	add_theme_support( 'post-thumbnails' );
-	set_post_thumbnail_size( 55, 55 ); // default Post Thumbnail dimensions
+add_theme_support('post-thumbnails');
+if (function_exists('add_theme_support')) {
+  add_theme_support('post-thumbnails');
+  set_post_thumbnail_size(55, 55); // default Post Thumbnail dimensions
 }
 if (function_exists('add_image_size')) {
   add_image_size('blog-thumb', 158, 154, TRUE);
@@ -44,21 +41,20 @@ function tags_support_all() {
 
 add_action('init', 'tags_support_all');
 
-locate_template("lib/rss.php", true);
+locate_template("lib/rss.php", TRUE);
 
-function get_rel_url($url, $force = false) {
-		if (!strstr($url, $_SERVER['HTTP_HOST']) && !$force){
-			return $url;
-		}
-		$url_info = parse_url($url);
-		$link = $url_info['path'];
-		if (isset($url_info['query']) && strlen($url_info['query'])){
-			$link .= '?'.$url_info['query'];
-		}
-		return $link;
+function get_rel_url($url, $force = FALSE) {
+  if (!strstr($url, $_SERVER['HTTP_HOST']) && !$force) {
+    return $url;
+  }
+  $url_info = parse_url($url);
+  $link = $url_info['path'];
+  if (isset($url_info['query']) && strlen($url_info['query'])) {
+    $link .= '?' . $url_info['query'];
+  }
+  return $link;
 }
 
-locate_template("config/rewrite-config.php");
 
 $currUrl = curPageURL();
 if (strpos($currUrl, ACTIVE_CONTESTS_PERMALINK) !== FALSE ||
@@ -112,7 +108,7 @@ $fixImageMargins = new fixImageMargins();
 
 function curPageURL() {
   $pageURL = 'http';
-  if ($_SERVER["HTTPS"] == "on") {
+  if (isset($_SERVER["HTTPS"]) &&  $_SERVER["HTTPS"] == "on") {
     $pageURL .= "s";
   }
   $pageURL .= "://";
@@ -181,8 +177,6 @@ function tcapi_query_vars($query_vars) {
 }
 
 add_filter('query_vars', 'tcapi_query_vars');
-
-locate_template('lib/rewrite_rules.php', true);
 
 
 /* commonly used functions
@@ -572,23 +566,30 @@ function get_popular_ajax() {
     endforeach;
   endif;
   die();
-	$arrPost = query_posts($args);
-	if ( $arrPost!= null ) :
-		foreach ( $arrPost as $post ) :
-			$postId = $post->ID;
-			?>
-			<li>
-				<!-- Bug# I-104876 href comes as empty on "show more" - -->
-				<!-- Bug# I-104876 fix href to use rel urls - -->
-				<a class="contentLink" href="<?php echo get_rel_url($post->guid, true); ?>">
-				<img class="contentThumb" src="<?php bloginfo( 'stylesheet_directory' ); ?>/i/content-thumb.png" alt="<?php echo $post->post_title; ?>">
-				<?php echo $post->post_title; ?>
-				</a> <span class="contentBrief"><?php echo wrap_content_strip_html(wpautop($post->post_content), 70, true,'\n\r','...'); ?></span>
-			</li>
-			<?php
-		endforeach;
-	endif;
-	die();
+  $arrPost = query_posts($args);
+  if ($arrPost != NULL) :
+    foreach ($arrPost as $post) :
+      $postId = $post->ID;
+      ?>
+      <li>
+        <!-- Bug# I-104876 href comes as empty on "show more" - -->
+        <!-- Bug# I-104876 fix href to use rel urls - -->
+        <a class="contentLink" href="<?php echo get_rel_url($post->guid, TRUE); ?>">
+          <img class="contentThumb" src="<?php bloginfo('stylesheet_directory'); ?>/i/content-thumb.png"
+               alt="<?php echo $post->post_title; ?>">
+          <?php echo $post->post_title; ?>
+        </a> <span class="contentBrief"><?php echo wrap_content_strip_html(
+            wpautop($post->post_content),
+            70,
+            TRUE,
+            '\n\r',
+            '...'
+          ); ?></span>
+      </li>
+    <?php
+    endforeach;
+  endif;
+  die();
 }
 
 add_action('wp_ajax_subscribe_ajax', 'subscribe_ajax');
@@ -673,6 +674,6 @@ locate_template('/lib/options.php', TRUE);
 // Sidebars
 locate_template('/lib/sidebars.php', TRUE);
 // menus
-locate_template('lib/menu.php', true);
+locate_template('lib/menu.php', TRUE);
 // comments
-locate_template('lib/comments.php', true);
+locate_template('lib/comments.php', TRUE);

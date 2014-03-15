@@ -72,7 +72,7 @@ add_rewrite_rule(
 //add_rewrite_rule ( '^'.BLOG_PERMALINK.'/([^/]*)/?$', 'index.php?pagename=blog-page&slug=$matches[1]', 'top' );
 //add_rewrite_rule ( '^'.BLOG_PERMALINK.'/([^/]*)/page/([0-9]*)/?$', 'index.php?pagename=blog-page&slug=$matches[1]&page=$matches[2]', 'top' );
 add_rewrite_rule(
-  '^' . ACTIVE_CHALLENGES_PERMALINK . '/([^/]*)/?$',
+  '^' . ACTIVE_CONTESTS_PERMALINK . '/([^/]*)/?$',
   'index.php?pagename=challenges&contest_type=$matches[1]',
   'top'
 );
