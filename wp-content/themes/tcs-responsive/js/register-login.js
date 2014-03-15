@@ -29,6 +29,18 @@ $(function () {
     centerModal();
   });
 
+  $('#username').keyup(function() {
+    $('#loginForm span.err3').hide();
+    $('#loginForm span.err1').hide();
+    $(this).removeClass('invalid');
+  });
+
+  $('#password').keyup(function() {
+    $('#loginForm span.err1').hide();
+    $('#loginForm span.err4').hide();
+    $(this).removeClass('invalid');
+  });
+
   $('.btnRegister').on('click', function () {
     //document.getElementById("registerForm").reset();
     showModal('#register');
@@ -64,7 +76,6 @@ $(function () {
 
     var result = 0;
     if (pwd.trim()=='') return 0;
-    if (pwd[pwd.length-1].match(/\d/)) return -1;
     if (pwd.length < 7) return -2;
     if (pwd.length > 30) return -3;
 
@@ -113,7 +124,13 @@ $(function () {
   });
 
   $('#register form.register input.name.lastName:text').on('keyup', function () {
-    if ($(this).val() != "") {
+    var text = $(this).val();
+    if (text.length > 64) {
+      $(this).parents(".row").find("span.valid").hide();
+      $(this).addClass('invalid');
+      $(this).parents(".row").find("span.err2").show();
+
+    } else if (text != '') {
       $(this).parents(".row").find("span.valid").css("display", "inline-block");
       $(this).closest('.row').find('input:text').removeClass('invalid');
       $(this).closest('.row').find('span.err1').hide();
@@ -124,7 +141,13 @@ $(function () {
   });
 
   $('#register form.register input.name.firstName:text').on('keyup', function () {
-    if ($(this).val() != "") {
+    var text = $(this).val();
+    if (text.length > 64) {
+      $(this).parents(".row").find("span.valid").hide();
+      $(this).addClass('invalid');
+      $(this).parents(".row").find("span.err2").show();
+
+    } else if (text != '') {
       $(this).parents(".row").find("span.valid").css("display", "inline-block");
       $(this).closest('.row').find('input:text').removeClass('invalid');
       $(this).closest('.row').find('span.err1').hide();
@@ -134,6 +157,41 @@ $(function () {
     }
   });
 
+  $('#register form.register input.handle:text').on('keyup', function () {
+    var invalid = false;
+    $(this).parents(".row").find("span.valid").hide();
+    $(this).closest('.row').find('span.err1').hide();
+    $(this).closest('.row').find('span.err2').hide();
+    $(this).closest('.row').find('span.err3').hide();
+    $(this).closest('.row').find('span.err4').hide();
+    $(this).closest('.row').find('span.err5').hide();
+    $(this).closest('.row').find('span.err6').hide();
+    var text = $(this).val();
+    if (text.indexOf(' ') != -1) {
+      // can't contain spaces
+      $(this).closest('.row').find('span.err3').show();
+      invalid = true;
+
+    } else if (text.match(/^[\-\_\.\{\}\[\]]+$/)) {
+      // can't consist solely of punctuation
+      $(this).closest('.row').find('span.err4').show();
+      invalid = true;
+
+    } else if (!text.match(/^[\w\d\-\_\.\{\}\[\]]*$/)) {
+      // must be all valid chars
+      $(this).closest('.row').find('span.err5').show();
+      invalid = true;
+    } else if (text.toLowerCase().match(/^admin/)) {
+      // can't start with 'admin'
+      $(this).closest('.row').find('span.err6').show();
+      invalid = true;
+    }
+    if (!invalid) {
+      $('#register form.register input.handle:text').removeClass('invalid');
+    } else {
+      $('#register form.register input.handle:text').addClass('invalid');
+    }
+  });
 
   $('#register form.register input:checkbox').on('change', function () {
     if ($(this).prop('checked')) {
@@ -181,8 +239,10 @@ $(function () {
   });
 
   var handleIsFree = true;
+  var handleValidationAttempted = false;
   var handleDeferred = $.Deferred();
   function validateHandle() {
+    handleValidationAttempted = true;
     var handle = $('#register form.register input.name.handle:text').val();
     $.ajax({
       type: 'GET',
@@ -214,14 +274,8 @@ $(function () {
       console.log('fail with '+handleState.handle);
     });
   }
-  $('#register form.register input.name.handle:text').keyup(function() {
-    $(this).closest('.row').find('input:text').removeClass('invalid');
-    $(this).closest('.row').find('span.err1').hide();
-    $(this).closest('.row').find('span.err2').hide();
-    $(this).parents(".row").find("span.valid").hide();
-  });
   $('#register form.register input.name.handle:text').blur(function() {
-    if ($(this).val()=='') return;
+    if ($(this).val()=='' || $('input.handle').closest('.row').find('.err3,.err4,.err5,.err6').is(':visible')) return;
     validateHandle();
     handleDeferred = $.Deferred();
   });
@@ -230,15 +284,25 @@ $(function () {
 
   $('#register a.btnSubmit').on('click', function () {
     var isValid = true;
+    if (!handleValidationAttempted && !$('input.handle').closest('.row').find('.err3,.err4,.err5,.err6').is(':visible')) validateHandle();
 
     var frm = $('#register form.register');
-    $('.invalid', frm).removeClass('invalid');
-    $('.err1,.err2', frm).hide();
+    var handleInvalid = $('input.handle').closest('.row').find('.invalid');
+    $('.invalid', frm).not(handleInvalid).removeClass('invalid');
+    var handleErr = $('input.handle').closest('.row').find('.err2,.err3,.err4,.err5,.err6');
+    $('.err1,.err2', frm).not(handleErr).hide();
     $('input:text', frm).each(function () {
       if ($.trim($(this).val()) == "") {
         $(this).closest('.row').find('.err1').show();
         $(this).closest('.row').find('input:text').addClass('invalid');
         isValid = false;
+      }
+    });
+    $('input.firstName,input.lastName').each(function () {
+      if ($(this).val().length > 64) {
+        isValid = false;
+        $(this).addClass('invalid');
+        $(this).closest('.row').find('.err2').show();
       }
     });
 
@@ -274,11 +338,6 @@ $(function () {
           $(this).closest('.row').find('.err2').show();
           $(this).closest('.row').find('input:password').addClass('invalid');
           isValid = false;
-        } else if (pwdStrength($('input.pwd:password').val()) == -1) {
-          frm.find(".err3.red").show();
-          $(this).closest('.row').find('.err3').show();
-          $(this).closest('.row').find('input:password').addClass('invalid');
-          isValid = false;
         } else if (pwdStrength($('input.pwd:password').val()) < -1) {
           frm.find(".err4.red").show();
           $(this).closest('.row').find('.err4').show();
@@ -311,6 +370,8 @@ $(function () {
       $('input.handle').closest('.row').find('span.valid').hide();
       isValid = false;
     }
+    if ($('input.handle').closest('.row').find('.err3,.err4,.err5,.err6').is(':visible'))
+      isValid = false;
     if (!isValid) return;
 
     handleDeferred.done(function() {
@@ -323,6 +384,7 @@ $(function () {
       }
       if (isValid && $('#register a.btnSubmit').html() == 'Sign Up') {
         $('#register a.btnSubmit').html('Please Wait');
+        $('#register .btnSubmit').addClass('pleaseWait');
         var fields = {
           firstName: $('#registerForm input.firstName').val(),
           lastName: $('#registerForm input.lastName').val(),

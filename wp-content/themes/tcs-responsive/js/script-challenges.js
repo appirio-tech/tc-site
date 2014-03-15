@@ -1043,6 +1043,7 @@ appChallenges = {
           app.initZebra(table);
         }  else {
           app.addEmptyResult(table);
+          $('.loading').hide();
         }
     },
 

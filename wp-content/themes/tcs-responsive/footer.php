@@ -149,12 +149,14 @@ $blog_posts = get_posts( $blog_posts_args );
 					<label>First Name</label>
 					<input type="text" class="name firstName" placeholder="First Name"/>
 					<span class="err1">Required field</span>
+					<span class="err2">Maximum length is 64 characters</span>
 					<span class="valid"></span>
 				</p>
 				<p class="row">
 					<label>Last Name</label>
 					<input type="text" class="name lastName" placeholder="Last Name"/>
 					<span class="err1">Required field</span>
+					<span class="err2">Maximum length is 64 characters</span>
 					<span class="valid"></span>
 				</p>
 				<p class="row">
@@ -162,6 +164,10 @@ $blog_posts = get_posts( $blog_posts_args );
 					<input type="text" class="handle name" placeholder="Handle"/>
 					<span class="err1">Required field</span>
 					<span class="err2">Handle already exists or is invalid</span>
+					<span class="err3">Handle cannot contain a space</span>
+					<span class="err4">Handle cannot consist solely of punctuation</span>
+					<span class="err5">Handle contains invalid characters</span>
+					<span class="err6">Handle cannot start with "admin"</span>
 					<span class="valid"></span>
 				</p>
 				<p class="row">
@@ -431,7 +437,6 @@ $blog_posts = get_posts( $blog_posts_args );
 					<input type="password" class="pwd" placeholder="Password"/>
 					<span class="err1">Required field</span>
 					<span class="err2">Password strength is weak</span>
-					<span class="err3">Password cannot end in a number</span>
 					<span class="err4">Password must be between 7 and 30 characters</span>
 					<span class="valid">Strong</span>
 				</p>
@@ -453,7 +458,7 @@ $blog_posts = get_posts( $blog_posts_args );
 				</p>
 
 				<p class="row lSpace">
-					<label><input type="checkbox">I agree to the <a target="_blank" href="/community/how-it-works/terms/">terms of service</a> and <a target="_blank" href="/community/how-it-works/privacy-policy/">privacy policy</a>*</label>
+					<label><input type="checkbox">I agree to the <a target="_blank" href="/community/how-it-works/terms/">terms of service</a> and <a target="_blank" href="/community/how-it-works/privacy-policy/">privacy policy</a></label>
 					<span class="err1">You must agree to the terms</span>
 					<span class="err2">You must agree to the terms</span>
 				</p>
@@ -483,11 +488,12 @@ $blog_posts = get_posts( $blog_posts_args );
 					<label>Username</label>
 					<input id="username" type="text" class="name" placeholder="Username" />
 					<span class="err1">Your username or password are incorrect</span>
-					<span class="err2">Please input your password</span>
+					<span class="err3">Please input your username</span>
 				</p>
 				<p class="row">
 					<label>Password</label>
 					<input id="password" type="password" class="pwd" placeholder="Password"/>
+					<span class="err4">Please input your password</span>
 				</p>
 
 				<p class="row lSpace">
@@ -525,16 +531,27 @@ $blog_posts = get_posts( $blog_posts_args );
 
 ?>
 <script>
+var socialProviderId = "", socialUserName = "", socialEmail = "",socialProvider = "";
 $(function() {
   var googleProvider = "google-oauth2";
   var facebookProvider = "facebook";
   var twitterProvider = "twitter";
   var githubProvider = "github";
+  <?php
+  $urlFromDiscourse = urldecode( $_GET["url"] );
+  $stateLogin = "http://www.topcoder.com/";
+  if ( preg_match('/sso=(.*)&sig=(.*)$/', $urlFromDiscourse, $matches) ){
+	$sso = $matches[1];
+	$sig = $matches[2];
+	$stateLogin = "http://talk.topcoder.com/session/sso_login?sso=$sso&sig=$sig";
+  }
+
+  ?>
   var auth0Login = new Auth0({
     domain:         'topcoder.auth0.com',
     clientID:       '6ZwZEUo2ZK4c50aLPpgupeg5v2Ffxp9P',
     callbackURL:    'https://www.topcoder.com/reg2/callback.action',
-    state:			'http://www.topcoder.com/',
+    state:			'<?php echo $stateLogin;?>',
     redirect_uri:   'http://www.topcoder.com/'
   });
 
@@ -546,7 +563,6 @@ $(function() {
     redirect_uri:   'http://www.topcoder.com/'
   });
 
-  var socialProviderId = "", socialUserName = "", socialEmail = "",socialProvider = "";
 	auth0Register.parseHash(window.location.hash, function (profile, id_token, access_token, state) {
 			socialProvider = profile.identities[0].connection;
 			var firstName = "" , lastName = "", handle = "", email = "";
@@ -588,6 +604,8 @@ $(function() {
      $('input.pwd:password').trigger('keyup');
      $('#register form.register input.email:text').trigger('keyup');
      $('#register form.register input.name:text').trigger('keyup');
+     $('#register form.register input.handle:text').trigger('keyup');
+     $('#register form.register input.handle:text').trigger('blur');
      $('#register form.register input:checkbox').trigger('change');
      $('#register input:password').on('keyup');
      $('select').on('change');
@@ -646,6 +664,18 @@ $(function() {
   });
 
   $('.signin-db').on('click', function() {
+    var empty = false;
+    if ($('#username').val().trim()=='') {
+      empty = true;
+      $('#loginForm span.err3').show();
+      $('#username').addClass('invalid');
+    }
+    if ($('#password').val().trim()=='') {
+      empty = true;
+      $('#loginForm span.err4').show();
+      $('#password').addClass('invalid');
+    }
+    if (empty) return;
     auth0Login.login({
       connection: 'LDAP',
       state:      'http://www.topcoder.com/', // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
@@ -654,9 +684,10 @@ $(function() {
     },
     function (err) {
       // invalid user/password
-	 //alert(err);
-	 $('#loginForm .btnSubmit').html('Login');
-	 $('#loginForm .err1').show().html('Incorrect Username or Password');
+      //alert(err);
+      $('#loginForm .btnSubmit').html('Login');
+      $('#loginForm .err1').show().html('Incorrect Username or Password')
+        .addClass('invalid');
     });
   });
 });
