@@ -31,6 +31,7 @@ function tcs_responsive_scripts() {
   $jsCssUseMin = get_option("jsCssUseMin", false);
   $template_map = tsc_get_asset_map();
   $page_template = $page_template = get_page_template_slug(get_queried_object_id());
+  $ver = get_option('jsCssVersioning') == 1 ? get_option('jsCssCurrentVersion') : '1';
 
   if (isset($template_map[$page_template])) {
     $asset_map = $template_map[$page_template];
@@ -51,10 +52,10 @@ function tcs_responsive_scripts() {
     $i = 0;
     foreach ($asset_map['js'] as $js_script) {
       if ($i == 0) {
-        wp_register_script("custom-{$i}", tsc_build_asset_path($js_script, 'js'), array("jquery", "auth0"), null, true);
+        wp_register_script("custom-{$i}", tsc_build_asset_path($js_script, 'js'), array("jquery", "auth0"), $ver, true);
       } else {
         $j = $i -1;
-        wp_register_script("custom-{$i}", tsc_build_asset_path($js_script, 'js'), array("custom-{$j}"), null, true);
+        wp_register_script("custom-{$i}", tsc_build_asset_path($js_script, 'js'), array("custom-{$j}"), $ver, true);
       }
       wp_enqueue_script("custom-{$i}");
       $i++;
@@ -63,10 +64,10 @@ function tcs_responsive_scripts() {
     $i = 0;
     foreach ($asset_map['css'] as $css_script) {
       if ($i == 0) {
-        wp_enqueue_style("custom-{$i}", tsc_build_asset_path($css_script, 'css'));
+        wp_enqueue_style("custom-{$i}", tsc_build_asset_path($css_script, 'css'), $ver);
       } else {
         $j = $i -1;
-        wp_enqueue_style("custom-{$i}", tsc_build_asset_path($css_script, 'css'), array("custom-{$j}"));
+        wp_enqueue_style("custom-{$i}", tsc_build_asset_path($css_script, 'css'), array("custom-{$j}"), $ver);
       }
       $i++;
     }
@@ -83,7 +84,7 @@ function tcs_responsive_scripts() {
  * @return string
  */
 function tsc_build_asset_path($asset_name, $type, $min = false) {
-  static $base_path, $ext;
+  static $base_path, $ext, $ver;
 
   if (!isset($base_path)) {
     $base_path = tsc_get_script_base_url();
@@ -93,8 +94,12 @@ function tsc_build_asset_path($asset_name, $type, $min = false) {
     $ext = tsc_get_script_ext();
   }
 
+  if (!isset($ver)) {
+    $ver = get_option('jsCssVersioning') == 1 ? get_option('jsCssCurrentVersion') : 'dev';
+  }
+
   if ($min) {
-    return "{$base_path}/{$asset_name}.min.{$type}.{$ext}";
+    return "{$base_path}/{$ver}/{$type}/{$asset_name}.min.{$type}.{$ext}";
   }
 
   if ($ext) {
