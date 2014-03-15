@@ -1,21 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title><?php bloginfo('name'); ?><?php wp_title(' - ', true, 'left'); ?></title>
-<meta name="description" content="">
-<meta name="author" content="">
 
-	<?php wp_head(); ?>	
-	<script type="text/javascript">
-		var ajaxUrl = "<?php  bloginfo('wpurl')?>/wp-admin/admin-ajax.php";		
-	</script>
-	
-	<?php get_template_part('header.assets'); ?>
-	<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/challenge-detail-software.css" />
-	<script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/challenge-detail-software.js" type="text/javascript"></script>
-	<script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/jquery.mousewheel.js" type="text/javascript"></script>
-	<script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/jquery.jscrollpane.min.js" type="text/javascript"></script>
+	<?php get_template_part('header-main'); ?>
   </head>
 
 <body>
@@ -23,10 +7,10 @@
 $nav = array (
 		'menu' => 'Main Navigation',
 		'menu_class' => '',
-		'container'       => '',		
+		'container'       => '',
 		'menu_class'      => 'root',
 		'items_wrap'      => '%3$s',
-		'walker' => new nav_menu_walker () 
+		'walker' => new nav_menu_walker ()
 );
 
 
@@ -69,7 +53,7 @@ $photoLink = 'http://community.topcoder.com'.$coder->photoLink;
 						<p class="country"><?php echo $coder->country; ?></p>
 						<a href="<?php bloginfo('wpurl');?>/member-profile/<?php echo $coder->handle;?>" class="link">My Profile</a>
 						<a href="http://community.topcoder.com/tc?module=MyHome" class="link">My Dashboard </a>
-						<a href="#" class="link actionLogout">Log Out </a>	
+						<a href="#" class="link actionLogout">Log Out </a>
 					</div>
 				</div>
 			</li>
@@ -82,11 +66,11 @@ $photoLink = 'http://community.topcoder.com'.$coder->photoLink;
 					<a href="<?php bloginfo('wpurl');?>" title="<?php bloginfo('name'); ?>"></a>
 				</h1>
 				<nav id="mainNav" class="mainNav">
-				
-				
+
+
 					<ul class="root">
 						<?php wp_nav_menu ( $nav );	?>
-						
+
 						<?php if ( $user_id != '' ) : ?>
 						<li class="onReg"><a href="#" class="actionLogout">Log Out</a></li>
 						<?php else: ?>
@@ -96,12 +80,12 @@ $photoLink = 'http://community.topcoder.com'.$coder->photoLink;
 				</nav>
 				<?php if ( $user_id != '' ) : ?>
 						<a href="javascript:;" class="onMobi onReg linkLogout actionLogout">Log Out</a>
-				<?php else: ?>		
+				<?php else: ?>
 				<a href="javascript:;" class="onMobi onReg linkLogin actionLogin">Log In</a>
 				<?php endif; ?>
 				<?php if ( $user_id == '' ) : ?>
-				<span class="btnRegWrap noReg"><a href="javascript:;" class="btn btnRegister">Register</a> </span> 
-				<?php else: ?>	
+				<span class="btnRegWrap noReg"><a href="javascript:;" class="btn btnRegister">Register</a> </span>
+				<?php else: ?>
 				<span class="btnAccWrap noReg"><a href="javascript:;" class="btn btnAlt btnMyAcc">
 						My Account<i></i>
 					</a></span>
@@ -113,14 +97,14 @@ $photoLink = 'http://community.topcoder.com'.$coder->photoLink;
 						<div class="userDetails">
 							<?php echo get_handle($coder->handle); ?>
 							<p class="country"><?php echo $coder->country; ?></p>
-							<p class="val memberSince"><?php 
-									$memSince = $coder->memberSince; 
+							<p class="val memberSince"><?php
+									$memSince = $coder->memberSince;
 									echo date("M d, Y", strtotime($memSince)) ;
 									?></p>
 							<?php if (isset($coder->overallEarning)) { ?>
 								<p class="lbl">Total Earnings :</p>
 								<p class="val memberEarning"><?php echo '$'.$coder->overallEarning;?></p>
-							<?php } ?>								
+							<?php } ?>
 						</div>
 					</div>
 					<div class="action">
@@ -130,6 +114,6 @@ $photoLink = 'http://community.topcoder.com'.$coder->photoLink;
 					</div>
 				</div>
 				<?php endif; ?>
-				<!-- /.userWidget -->	
+				<!-- /.userWidget -->
 			</div>
 		</header>

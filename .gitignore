@@ -62,3 +62,7 @@ wp-content/mysql.sql
 *.asf
 *.wmv
 *.avi
+
+# ignore custom config files
+wp-content/themes/tcs-responsive/config/dev.php
+node_modules/

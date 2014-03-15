@@ -1,5 +1,20 @@
 /*global module:false*/
 module.exports = function(grunt) {
+  var pkg_config = grunt.file.readJSON('wp-content/themes/tcs-responsive/config/script-register.json');
+
+  function addBaseFilePath(files, base) {
+    var new_names = [];
+    files.forEach(function(file) {
+      new_names.push(base + file);
+    });
+
+    console.log(new_names);
+
+    return new_names
+  }
+
+  var themeCSS = 'wp-content/themes/tcs-responsive/css/';
+  var themeJS = 'wp-content/themes/tcs-responsive/js/';
 
   // Project configuration.
   grunt.initConfig({
@@ -10,7 +25,7 @@ module.exports = function(grunt) {
       themeRoot: 'wp-content/themes/tcs-responsive',
       themeJs: '<%= build.themeRoot %>/js',
       themeDist: '<%= build.themeRoot %>/dist',
-      themeCss: '<%= build.themeRoot %>/css',
+      themeCss: '<%= build.themeRoot %>/css'
     },
     banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
       '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
@@ -24,13 +39,11 @@ module.exports = function(grunt) {
         stripBanners: true
       },
       css: {
-        src: [
-          '<%= build.themeCss %>/base.css',
-          '<%= build.themeCss %>/base-responsive.css',
-          '<%= build.themeCss %>/blog-base.css',
-          '<%= build.themeCss %>/blog.css'
-        ],
-        dest: '<%= build.themeDist %>/tc.concat.css'
+        files: {
+          '<%= build.themeDist %>/tc.default.concat.css': addBaseFilePath(pkg_config.packages.default.css, themeCSS),
+          '<%= build.themeDist %>/tc.challengelanding.concat.css': addBaseFilePath(pkg_config.packages.challengelanding.css, themeCSS),
+          '<%= build.themeDist %>/tc.challenges.concat.css': addBaseFilePath(pkg_config.packages.challenges.css, themeCSS)
+        }
       }
     },
     cssmin: {
@@ -38,8 +51,10 @@ module.exports = function(grunt) {
         cwd: '<%= build.themeCss %>',
         ext: '.min.css',
         files: {
-          '<%= build.themeDist %>/topcoder.min.css': ['<%= build.themeDist %>/tc.concat.css']
-        } 
+          '<%= build.themeDist %>/default.min.css': ['<%= build.themeDist %>/tc.default.concat.css'],
+          '<%= build.themeDist %>/challengelanding.min.css': ['<%= build.themeDist %>/tc.challengelanding.concat.css'],
+          '<%= build.themeDist %>/challenges.min.css': ['<%= build.themeDist %>/tc.challenges.concat.css']
+        }
       }
     },
     uglify: {
@@ -48,14 +63,13 @@ module.exports = function(grunt) {
       },
       js: {
         files: {
-          '<%= build.themeDist %>/topcoder.min.js': [
-	    '<%= build.themeJs %>/blog.js',
-	    '<%= build.themeJs %>/challenge-detail-software.js'
-          ]
+          '<%= build.themeDist %>/default.min.js': addBaseFilePath(pkg_config.packages.default.js, themeJS),
+          '<%= build.themeDist %>/challengelanding.min.js': addBaseFilePath(pkg_config.packages.challengelanding.js, themeJS),
+          '<%= build.themeDist %>/challenges.min.js': addBaseFilePath(pkg_config.packages.challenges.js, themeJS)
         }
       }
     },
-    clean: ['<%= build.themeDist %>/'], 
+    clean: ['<%= build.themeDist %>/'],
     compress: {
       main: {
         options: {
@@ -63,45 +77,7 @@ module.exports = function(grunt) {
         },
         files: [
           {expand:true, src: ['<%= build.themeDist %>/*.min.*', '!<%= build.themeDist %>/*.gz']}
-        ] 
-      } 
-    },
-    jshint: {
-      options: {
-        curly: true,
-        eqeqeq: true,
-        immed: true,
-        latedef: true,
-        newcap: true,
-        noarg: true,
-        sub: true,
-        undef: true,
-        unused: true,
-        boss: true,
-        eqnull: true,
-        browser: true,
-        globals: {
-          jQuery: true
-        }
-      },
-      gruntfile: {
-        src: 'Gruntfile.js'
-      },
-      lib_test: {
-        src: ['lib/**/*.js', 'test/**/*.js']
-      }
-    },
-    qunit: {
-      files: ['test/**/*.html']
-    },
-    watch: {
-      gruntfile: {
-        files: '<%= jshint.gruntfile.src %>',
-        tasks: ['jshint:gruntfile']
-      },
-      lib_test: {
-        files: '<%= jshint.lib_test.src %>',
-        tasks: ['jshint:lib_test', 'qunit']
+        ]
       }
     }
   });

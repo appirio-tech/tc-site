@@ -6,12 +6,12 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 	public function set_post_types($query) {
 		$query->set ( 'post_type', array (
 				'post',
-				'my_custom_post_type' 
+				'my_custom_post_type'
 		) );
-		
+
 		return $query;
 	}
-	
+
 	public function get_json_from_url( $url ) {
 		$response = wp_remote_get ( $url );
 		#echo $url;
@@ -23,12 +23,12 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 		}
 		return "Error in processing request";
 	}
-	
-	
+
+
 	// returns contest type
 	public function get_contest_type($userKey = '') {
 		$response = wp_remote_get ( 'https://api.topcoder.com/rest/contestTypes?user_key=' . $userKey );
-		
+
 		if (is_wp_error ( $response ) || ! isset ( $response ['body'] )) {
 			return "Error in processing request";
 		}
@@ -36,7 +36,7 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 			$contest_list = json_decode ( $response ['body'] );
 			$len = count ( $contest_list );
 			$cl = array (
-					$len 
+					$len
 			);
 			for($i = 0; $i < $len; $i ++) {
 				$cl [$i] = $contest_list [$i]->contestTypeName;
@@ -45,20 +45,20 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 		}
 		return "Error in processing request";
 	}
-	
+
 	// returns active contest list
 	public function get_active_contests($contestType = '', $contestID = '', $page = 1, $post_per_page = 30, $userKey = '') {
 		$contestType = str_replace ( "%20", "+", $contestType );
 		$url =  "https://api.topcoder.com/v2/$contestType/challenges/$contestID";
 		$args = array (
 				'httpversion' => get_option ( 'httpversion' ),
-				'timeout' => get_option ( 'request_timeout' ) 
+				'timeout' => get_option ( 'request_timeout' )
 		);
 		if ($contestType == "") {
 			$url = "https://api.topcoder.com/v2/develop/challenges/30036134";
 		}
 		$response = wp_remote_get ( $url, $args );
-		
+
 		if (is_wp_error ( $response ) || ! isset ( $response ['body'] )) {
 			return "Error in processing request";
 		}
@@ -68,17 +68,17 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 		}
 		return "Error in processing request";
 	}
-	
+
 	// returns past contest list
 	public function get_past_contests($userKey = '', $contestType = '', $page = 1, $post_per_page = 30) {
 		$contestType = str_replace ( "%20", "+", $contestType );
 		$url = "https://api.topcoder.com/rest/contests?user_key=" . $userKey . "&listType=PAST&type=" . $contestType . "&sortOrder=asc";
 		$args = array (
 				'httpversion' => get_option ( 'httpversion' ),
-				'timeout' => get_option ( 'request_timeout' ) 
+				'timeout' => get_option ( 'request_timeout' )
 		);
 		$response = wp_remote_get ( $url, $args );
-		
+
 		if (is_wp_error ( $response ) || ! isset ( $response ['body'] )) {
 			return "Error in processing request";
 		}
@@ -88,16 +88,16 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 		}
 		return "Error in processing request";
 	}
-	
+
 	// returns member profile details
 	public function get_member_profile($handle = '') {
 		$url = "http://api.topcoder.com/v2/users/" . $handle;
 		$args = array (
 				'httpversion' => get_option ( 'httpversion' ),
-				'timeout' => get_option ( 'request_timeout' ) 
+				'timeout' => get_option ( 'request_timeout' )
 		);
 		$response = wp_remote_get ( $url, $args );
-		
+
 		if (is_wp_error ( $response ) || ! isset ( $response ['body'] )) {
 			return "Error in processing request or Member dosen't exist";
 		}
@@ -107,41 +107,41 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 		}
 		return "Error in processing request";
 	}
-	
+
 	// search contest function
 	public function search_contest($userKey = '', $keyword = '') {
 		$url = "https://api.topcoder.com/rest/contests?user_key=$userKey&listType=ACTIVE&contestName=$keyword&sortOrder=asc";
-		
+
 		$args = array (
 				'httpversion' => get_option ( 'httpversion' ),
-				'timeout' => get_option ( 'request_timeout' ) 
+				'timeout' => get_option ( 'request_timeout' )
 		);
 		$response = wp_remote_get ( $url, $args );
-		
+
 		if (is_wp_error ( $response ) || ! isset ( $response ['body'] )) {
 			return "Error in processing request";
 		}
 		if ($response ['response'] ['code'] == 200) {
-			$search_result = json_decode ( str_replace($response ['body']) );			
+			$search_result = json_decode ( str_replace($response ['body']) );
 			return $search_result;
 		}
 		return "Error in processing request";
 	}
-	
+
 	// detail contest
 	public function get_contest_detail($userKey = '', $contestID = '', $contestType = '') {
 
 		// This IF isn't working. It's not getting the contestType var. We need to call the design vs. develop api based on the contest type.
-		#echo "	contest type ".$contestType;		
+		#echo "	contest type ".$contestType;
 		if ($contestType == "design") {
 			$url = "https://api.topcoder.com/v2/design/challenges/$contestID";
 		} else {
 			$url = "https://api.topcoder.com/v2/develop/challenges/$contestID";
-		}	
-	
+		}
+
 		$args = array (
 				'httpversion' => get_option ( 'httpversion' ),
-				'timeout' => get_option ( 'request_timeout' ) 
+				'timeout' => get_option ( 'request_timeout' )
 		);
 		$response = wp_remote_get ( $url, $args );
 		if (is_wp_error ( $response ) || ! isset ( $response ['body'] )) {
@@ -153,14 +153,14 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 		}
 		return "Error in processing request";
 	}
-	
+
 	// tcapi shortcodes active_contests
 	public function tcapi_active_contests($atts) {
 		$contest_type = $atts ['type'];
 		$userkey = get_option ( 'api_user_key' );
 		$post_per_page = get_option ( 'contest_per_page' );
 		$contest_list = get_active_contests ( $userkey, $contest_type, 1, $post_per_page );
-		
+
 		if ($contest_list->data == null) {
 			return "Error in processing request";
 		} else {
@@ -189,7 +189,7 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 					</thead>
 					<tbody>
 		';
-			
+
 			$count = 0;
 			foreach ( $contest_list->data as $contest ) {
 				$cls = '';
@@ -202,7 +202,7 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 						<td align="center">' . $contest->submissionEndDate . '</td></tr>';
 				$count += 1;
 			}
-			
+
 			$html .= '
 						</tbody>
 						</table>
@@ -212,14 +212,14 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 			return $html;
 		}
 	}
-	
+
 	// tcapi shortcodes past_contests
 	public function tcapi_past_contests($atts) {
 		$contest_type = $atts ['type'];
 		$userkey = get_option ( 'api_user_key' );
 		$post_per_page = get_option ( 'contest_per_page' );
 		$contest_list = get_past_contests ( $userkey, $contest_type, 1, $post_per_page );
-		
+
 		if ($contest_list->data == null) {
 			return "Error in processing request";
 		} else {
@@ -248,7 +248,7 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 					</thead>
 					<tbody>
 		';
-			
+
 			$count = 0;
 			foreach ( $contest_list->data as $contest ) {
 				$cls = '';
@@ -261,7 +261,7 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 						<td align="center">' . $contest->submissionEndDate . '</td></tr>';
 				$count += 1;
 			}
-			
+
 			$html .= '
 						</tbody>
 						</table>
@@ -271,24 +271,24 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 			return $html;
 		}
 	}
-	
+
 	// handle shortcode
 	function tcapi_get_raw_coder($handle = "") {
 		$handle = clean_pre ( $handle );
 		return get_member_profile ( $handle );
 	}
-		
+
 	function tcapi_get_coder($atts, $handle = "") {
 		$handle = clean_pre ( $handle );
 		$coder_profile = get_member_profile ( $handle );
 		$coder_ratings = $coder_profile->ratingsSummary;
 		$coder_handle = $coder_profile->handle;
-		
+
 		if ($coder_handle != "") {
 			$coder_color = $coder_ratings [0]->colorStyle;
 			$coder_max_rating = 'NA';
 			$siteURL = site_url ();
-			
+
 			if (count ( $coder_ratings ) > 0) {
 				foreach ( $coder_ratings as $coder_rating ) {
 					$cur_rating = $coder_rating->rating;
@@ -298,7 +298,7 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 					}
 				}
 			}
-			
+
 			if ($coder_profile->isPM) {
 				$coder_color = "color:#FF9900";
 			}
@@ -306,7 +306,7 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 		}
 		return $handle;
 	}
-	
+
 	// Activity Summary
 	function tcapi_get_activitySummary($atts, $key="") {
 		$url = "http://tcapi.apiary.io/v2/platform/activitySummary";
@@ -316,7 +316,7 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 				'timeout' => get_option ( 'request_timeout' )
 		);
 		$response = wp_remote_get ( $url, $args );
-	
+
 		if (is_wp_error ( $response ) || ! isset ( $response ['body'] )) {
 			return "Error in processing";
 		}
@@ -331,14 +331,14 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 		}
 		return "Error in processing request";
 	}
-	
-	
+
+
 	// Test Member Count
 	function tcapi_get_member_count ($atts, $key="") {
-		
+
 		return get_activity_summary("member_count");
 	}
-	
+
 	/* member stastics  */
 	function tcapi_get_member_stats($handle, $track){
 		$url = "https://api.topcoder.com/v2/users/$handle/statistics/$track";
@@ -348,7 +348,7 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 				'timeout' => 20
 		);
 		$response = wp_remote_get ( $url, $args );
-		
+
 		if (is_wp_error ( $response ) || ! isset ( $response ['body'] )) {
 			return "Error in processing request";
 		}
@@ -357,7 +357,7 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 		}
 		return "Error in processing request";
 	}
-	
+
 	/* member chart statistics  */
 	function tcapi_get_member_chart_stats($handle, $track, $contestType){
 		$url = "http://api.topcoder.com/v2/$track/statistics/$handle/$contestType";
@@ -366,7 +366,7 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 				'timeout' => 20
 		);
 		$response = wp_remote_get ( $url, $args );
-		
+
 		if (is_wp_error ( $response ) || ! isset ( $response ['body'] )) {
 			return "Error in processing request";
 		}
@@ -375,7 +375,7 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 		}
 		return "Error in processing request";
 	}
-	
+
 	/* member achievements  */
 	function tcapi_get_member_achievements($handle= ''){
 		$url = "http://api.topcoder.com/v2/users/" . $handle;
@@ -384,7 +384,7 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 				'timeout' => 30
 		);
 		$response = wp_remote_get ( $url, $args );
-		
+
 		if (is_wp_error ( $response ) || ! isset ( $response ['body'] )) {
 			return "Error in processing request or Member dosen't exist";
 		}
@@ -394,13 +394,13 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 		}
 		return "Error in processing request";
 	}
-	
+
 	/* forum posts  */
 	function tcapi_get_forum_posts(){
 		// Old Forum Posts API
 		$url = "https://apps.topcoder.com/forums/?module=RSS&categoryID=13";
 		$response = wp_remote_get ( $url, array() );
-		
+
 		if (is_wp_error ( $response ) || ! isset ( $response ['body'] )) {
 			return "Error in processing request";
 		}
@@ -413,12 +413,12 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 		}
 		return "Error in processing request";
 	}
-	
+
 }
 
 add_shortcode ( 'h', array (
 		'TCHOOK_Public',
-		'tcapi_get_coder' 
+		'tcapi_get_coder'
 ) );
 add_shortcode ( 'activitySummary', array (
 	'TCHOOK_Public',
@@ -440,10 +440,9 @@ function TCHOOK_inc_style() {
 	wp_register_style ( 'tchook-selectyze-style', plugins_url ( 'css/Selectyze.jquery.css', __FILE__ ) );
 	wp_enqueue_style ( 'tchook-style' );
 	wp_enqueue_style ( 'tchook-selectyze-style' );
-	wp_register_script ( 'tchook-jqeury', plugins_url ( 'js/jquery.js', __FILE__ ) );
-	wp_register_script ( 'tchook-script', plugins_url ( 'js/tcapi.js', __FILE__ ) );
-	wp_register_script ( 'tchook-selectyze', plugins_url ( 'js/Selectyze.jquery.js', __FILE__ ) );
-	wp_enqueue_script ( 'tchook-jqeury' );
+  wp_enqueue_script('jquery');
+	wp_register_script ( 'tchook-script', plugins_url ( 'js/tcapi.js', __FILE__ ) , array('jquery'), null, true);
+	wp_register_script ( 'tchook-selectyze', plugins_url ( 'js/Selectyze.jquery.js', __FILE__ ), array('jquery'), null, true );
 	wp_enqueue_script ( 'tchook-selectyze' );
 	wp_enqueue_script ( 'tchook-script' );
 }
