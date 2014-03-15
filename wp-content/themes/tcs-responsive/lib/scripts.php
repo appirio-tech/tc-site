@@ -38,7 +38,6 @@ function tcs_responsive_scripts() {
     $asset_map = $template_map['default'];
   }
 
-  // If we are not using min/cat files then use all of the develop files
   if ($jsCssUseMin) {
     wp_register_script($asset_map['name'],
       tsc_build_asset_path($asset_map['name'], 'js', true),
@@ -80,10 +79,10 @@ function tcs_responsive_scripts() {
  * @param $asset_name
  * @param string $type
  *  pass in "js" or "css" to help build the path if the file is concatinated
- * @param boolean $concat
+ * @param boolean $min
  * @return string
  */
-function tsc_build_asset_path($asset_name, $type, $concat = false) {
+function tsc_build_asset_path($asset_name, $type, $min = false) {
   static $base_path, $ext;
 
   if (!isset($base_path)) {
@@ -94,13 +93,14 @@ function tsc_build_asset_path($asset_name, $type, $concat = false) {
     $ext = tsc_get_script_ext();
   }
 
-  if ($concat) {
-    return "{$base_path}/{$asset_name}.concat.{$type}.{$ext}";
+  if ($min) {
+    return "{$base_path}/{$asset_name}.min.{$type}.{$ext}";
   }
 
   if ($ext) {
     return "{$base_path}/{$type}/{$asset_name}.{$ext}";
   }
+
   return "{$base_path}/{$type}/{$asset_name}";
 }
 
@@ -111,7 +111,7 @@ function tsc_build_asset_path($asset_name, $type, $concat = false) {
  *  template => array('js' => array(), 'css' => array())
  */
 function tsc_get_asset_map() {
-  $template_map = array(); //= get_transient(__FUNCTION__);
+  $template_map = get_transient(__FUNCTION__);
 
   if (!$template_map) {
     $json = file_get_contents(get_stylesheet_directory() .  '/config/script-register.json');
@@ -119,17 +119,12 @@ function tsc_get_asset_map() {
 
     // type should be either "packages" or "templates
     $template_map = array();
-    $package_map = array();
-
-    foreach($json['packages'] as $package) {
-      $package_map[$package['name']] = $package;
-    }
 
     foreach ($json['templates'] as $template => $package) {
-      $template_map[$template] = $package_map[$package];
+      $template_map[$template] = $json['packages'][$package];
     }
 
-    //set_transient(__FUNCTION__, $template_map);
+    set_transient(__FUNCTION__, $template_map);
   }
 
   return $template_map;
@@ -147,8 +142,6 @@ function tsc_get_script_base_url() {
   $jsCssCDNBase = get_option("jsCssCDNBase", THEME_URL);
   $jsCssVersioning = get_option("jsCssVersioning", false);
   $jsCssCurrentVersion = get_option("jsCssCurrentVersion", false);
-
-
 
   // Setup up base url if using cdn.  safe fallback to theme url
   $base_url = $jsCssUseCDN ? $jsCssCDNBase : THEME_URL;
@@ -202,12 +195,6 @@ function tsc_register_master($assets) {
   wp_register_script("auth0", $assets['auth0'], array("auth0-sdk"), null, true);
   wp_enqueue_script("auth0-sdk");
   wp_enqueue_script("auth0");
-
-  // resgister stuff that is included at different times in the theme
-  wp_register_script('modernizr', THEME_URL . $assets['modernizr'], array());
-  wp_register_script('respond', THEME_URL . $assets['respond']);
-  wp_register_script('html5shiv', THEME_URL, $assets['html5shiv']);
-  wp_register_style('ie', THEME_URL, $assets['ie']);
 }
 
 

@@ -1,6 +1,6 @@
 {
-  "packages": [
-    {
+  "packages": {
+    "default": {
       "name": "default",
       "js": [
         "jquery.bxslider.js",
@@ -38,8 +38,8 @@
         "challenge-detail-software.css"
       ]
     },
-    {
-      "name": "challenge-landing",
+    "challengelanding": {
+      "name": "challengelanding",
       "js": [
         "jquery.bxslider.js",
         "jquery.easing.1.3.js",
@@ -68,8 +68,9 @@
         "style-challenges.css",
         "jquery.qtip.min.css"
       ]
+
     },
-    {
+    "challenges": {
       "name": "challenges",
       "js": [
         "jquery.bxslider.js",
@@ -103,16 +104,15 @@
         "jquery.qtip.min.css"
       ]
     }
-  ],
-  "templates":
-  {
+  },
+  "templates": {
     "page-challenges.php": "challenges",
-    "page-challenges-active.php": "challenge-landing",
-    "page-challenges-bugrace.php": "challenge-landing",
-    "page-challenges-data.php": "challenge-landing",
-    "page-challenges-review-details.php": "challenge-landing",
-    "page-challenges-review.php": "challenge-landing",
-    "page-challenges-past.php": "challenge-landing",
+    "page-challenges-active.php": "challengelanding",
+    "page-challenges-bugrace.php": "challengelanding",
+    "page-challenges-data.php": "challengelanding",
+    "page-challenges-review-details.php": "challengelanding",
+    "page-challenges-review.php": "challengelanding",
+    "page-challenges-past.php": "challengelanding",
     "default": "default"
   }
 }
