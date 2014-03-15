@@ -8,8 +8,6 @@ module.exports = function(grunt) {
       new_names.push(base + file);
     });
 
-    console.log(new_names);
-
     return new_names
   }
 

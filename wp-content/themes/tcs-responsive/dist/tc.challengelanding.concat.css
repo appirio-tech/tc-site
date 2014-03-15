@@ -4046,6 +4046,10 @@ Register modal
 			#register form p.row span.err2,
 			#register form p.row span.err3,
 			#register form p.row span.err4,
+			#register form p.row span.err5,
+			#register form p.row span.err6,
+			#loginForm span.err4,
+			#loginForm span.err3,
 			#login form p.row span.err1,
 			#login form p.row span.err2 {
 				margin-left: 14px;
@@ -4090,6 +4094,10 @@ Register modal
 		margin: 2px auto;
 		text-align: center;
 	}	
+
+  p.submitBtn .pleaseWait:hover {
+    cursor: default;
+  }
 	
 	#register .person {
 		text-align: center;
