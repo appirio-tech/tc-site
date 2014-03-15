@@ -65,4 +65,4 @@ wp-content/mysql.sql
 
 # ignore custom config files
 wp-content/themes/tcs-responsive/config/dev.php
-node-modules/
+node_modules/
