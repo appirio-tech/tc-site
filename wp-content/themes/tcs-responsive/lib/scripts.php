@@ -56,7 +56,7 @@ function tcs_responsive_scripts() {
       tsc_build_asset_path($asset_map['name'], 'js', true),
       array('jquery', 'jquery_ui', 'auth0'), $ver, true);
 
-    wp_register_style($asset_map['name'], tsc_build_asset_path($asset_map['name'], 'css', true), $ver);
+    wp_register_style($asset_map['name'], tsc_build_asset_path($asset_map['name'], 'css', true), array(), $ver);
 
     wp_enqueue_script($asset_map['name']);
     wp_enqueue_style($asset_map['name']);
@@ -76,7 +76,7 @@ function tcs_responsive_scripts() {
     $i = 0;
     foreach ($asset_map['css'] as $css_script) {
       if ($i == 0) {
-        wp_enqueue_style("custom-{$i}", tsc_build_asset_path($css_script, 'css'), $ver);
+        wp_enqueue_style("custom-{$i}", tsc_build_asset_path($css_script, 'css'), array(), $ver);
       } else {
         $j = $i -1;
         wp_enqueue_style("custom-{$i}", tsc_build_asset_path($css_script, 'css'), array("custom-{$j}"), $ver);

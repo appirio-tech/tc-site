@@ -56,19 +56,7 @@ function get_rel_url($url, $force = FALSE) {
 }
 
 
-$currUrl = curPageURL();
-if (strpos($currUrl, ACTIVE_CONTESTS_PERMALINK) !== FALSE ||
-  strpos($currUrl, PAST_CONTESTS_PERMALINK) !== FALSE ||
-  strpos($currUrl, REVIEW_OPPORTUNITIES_PERMALINK) !== FALSE
-) {
-  if (strpos($currUrl, "%20") !== FALSE) {
-    $redirectUrl = str_replace("%20", "_", $currUrl);
-    $redirectString = "Location: $redirectUrl";
-    print_r($redirectString);
-    header($redirectString);
-    exit;
-  }
-}
+
 
 class fixImageMargins {
   public $xs = 0; //change this to change the amount of extra spacing
