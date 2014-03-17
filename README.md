@@ -57,9 +57,9 @@ __templates__:  An list of Wordpress templates that do now use the "default" pac
 
 __Loading home page__:
 
-# Template used: front.php
-# The script loader will look at the script register and see that front.php is not included the template object.
-# The script loader will use the default package to load the js and css.
-# If minifized, then load the file which corresponds to the package name, otherwise load all files in the array.
+1. Template used: front.php
+2. The script loader will look at the script register and see that front.php is not included the template object.
+3. The script loader will use the default package to load the js and css.
+4. If minifized, then load the file which corresponds to the package name, otherwise load all files in the array.
 
 For more information see lib/scripts.php
