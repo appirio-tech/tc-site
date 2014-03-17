@@ -24,7 +24,7 @@ locate_template('lib/rewrite_rules.php', TRUE);
 
 
 // add featured image
-add_theme_support('post-thumbnails');
+add_theme_support ( 'post-thumbnails' );
 if (function_exists('add_theme_support')) {
   add_theme_support('post-thumbnails');
   set_post_thumbnail_size(55, 55); // default Post Thumbnail dimensions
@@ -53,6 +53,19 @@ function get_rel_url($url, $force = FALSE) {
     $link .= '?' . $url_info['query'];
   }
   return $link;
+}
+$currUrl = curPageURL();
+if( strpos($currUrl,ACTIVE_CONTESTS_PERMALINK) !== false ||
+	strpos($currUrl,PAST_CONTESTS_PERMALINK) !== false ||
+	strpos($currUrl,REVIEW_OPPORTUNITIES_PERMALINK) !== false )
+{
+	if( strpos($currUrl,"%20") !== false ) {
+		$redirectUrl = str_replace("%20", "_", $currUrl);
+		$redirectString = "Location: $redirectUrl";
+		print_r($redirectString);
+		header($redirectString);
+		exit;
+	}
 }
 
 
@@ -665,3 +678,8 @@ locate_template('/lib/sidebars.php', TRUE);
 locate_template('lib/menu.php', TRUE);
 // comments
 locate_template('lib/comments.php', TRUE);
+
+include_once('functions-addmeta.php');
+include_once('functions-share.php');
+
+?>
