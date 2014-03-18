@@ -107,7 +107,7 @@ $blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the topcoder 
 									$subject = htmlspecialchars(get_bloginfo('name')).' : '.$title;
 									$body = htmlspecialchars($post->post_content);
 									$email_article = 'mailto:?subject='.rawurlencode($subject).'&body='.get_permalink();
-									$twitterText = urlencode(wrap_content_strip_html(wpautop($subject."\nUrl: ".$post->guid), 130, true,'\n\r',''));
+									$twitterText = urlencode(wrap_content_strip_html(wpautop($subject."\nUrl: ".get_permalink()), 130, true,'\n\r',''));
 									$twitterShare = "http://twitter.com/home?status=".$twitterText;
 									$fbShare = "http://www.facebook.com/sharer/sharer.php?s=100&p[url]=".get_permalink()."&p[images][0]=".$imageUrl."&p[title]=".get_the_title()."&p[summary]=".$twitterText;
 									$gplusShare = "https://plus.google.com/share?url=".get_permalink();
