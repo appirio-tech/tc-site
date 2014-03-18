@@ -257,19 +257,17 @@ $(function () {
     }
   });
   // S-194724 
-  setTimeout(function(){
-                var tcsso = getCookie('tcsso');
-                if(tcsso){
-			var tcssoValues = tcsso.split("|");
-			var now = new Date();
-		
-			if (now.getTime() < registrationUntil.getTime()) {
-				$('#registrationButton').removeClass('disabled');
-			}			
-			if (now.getTime() < submissionUntil.getTime() && registrants.indexOf(uid) > -1) {
-				$('#submissionButton').removeClass('disabled');
-			}			
-		}
-	}, 50);
+ var tcsso = getCookie('tcsso');
+               if(tcsso){
+		var tcssoValues = tcsso.split("|");
+		var now = new Date();
+	
+		if (now.getTime() < registrationUntil.getTime()) {
+			$('#registrationButton').removeClass('disabled');
+		}			
+		if (now.getTime() < submissionUntil.getTime() && registrants.indexOf(uid) > -1) {
+			$('#submissionButton').removeClass('disabled');
+		}			
+	}
 
 }); 
