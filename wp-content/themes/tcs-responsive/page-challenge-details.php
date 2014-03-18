@@ -2,6 +2,9 @@
 
 get_header('challenge-landing');
 
+
+date_default_timezone_set('America/New_York');
+
 /**
  * Template Name: Challenge details
  */
