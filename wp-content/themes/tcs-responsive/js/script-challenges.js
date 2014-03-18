@@ -324,7 +324,7 @@ appChallenges = {
             showOn: 'both',
             buttonImage: stylesheet_dir + '/i/ico-cal.png',
             buttonImageOnly: true,
-            dateFormat: 'mm.dd.yy',
+            dateFormat: 'yy-mm-dd',
             buttonText: "",
             onSelect: function(selectedDate) {
                 $(".datepicker.from").datepicker("option", "maxDate", selectedDate);
@@ -343,7 +343,7 @@ appChallenges = {
             showOn: 'both',
             buttonImage: stylesheet_dir + '/i/ico-cal.png',
             buttonImageOnly: true,
-            dateFormat: 'mm.dd.yy',
+            dateFormat: 'yy-mm-dd',
             onSelect: function(selectedDate) {
                 datePickerFrom.datepicker("option", "minDate", selectedDate);
             }
@@ -671,10 +671,10 @@ appChallenges = {
         var startDate = $("#startDate").val();
         var endDate = $("#endDate").val();
         if( $.trim(startDate)!="" && $('#fSDate').prop('checked') ) {
-            param.startDate = startDate;
+            param.submissionEndFrom = startDate;
         }
         if( $.trim(endDate)!="" && $('#fEDate').prop('checked') ) {
-            param.endDate = endDate;
+            param.submissionEndTo = endDate;
         }
 
         var challengesRadio = $("input:radio[name ='radioFilterChallenge']:checked").val();
