@@ -49,9 +49,9 @@ module.exports = function(grunt) {
         cwd: '<%= build.themeCss %>',
         ext: '.min.css',
         files: {
-          '<%= build.themeDist %>/default.min.css': ['<%= build.themeDist %>/tc.default.concat.css'],
-          '<%= build.themeDist %>/challengelanding.min.css': ['<%= build.themeDist %>/tc.challengelanding.concat.css'],
-          '<%= build.themeDist %>/challenges.min.css': ['<%= build.themeDist %>/tc.challenges.concat.css']
+          '<%= build.themeDist %>/css/default.min.css': ['<%= build.themeDist %>/tc.default.concat.css'],
+          '<%= build.themeDist %>/css/challengelanding.min.css': ['<%= build.themeDist %>/tc.challengelanding.concat.css'],
+          '<%= build.themeDist %>/css/challenges.min.css': ['<%= build.themeDist %>/tc.challenges.concat.css']
         }
       }
     },
@@ -61,9 +61,9 @@ module.exports = function(grunt) {
       },
       js: {
         files: {
-          '<%= build.themeDist %>/default.min.js': addBaseFilePath(pkg_config.packages.default.js, themeJS),
-          '<%= build.themeDist %>/challengelanding.min.js': addBaseFilePath(pkg_config.packages.challengelanding.js, themeJS),
-          '<%= build.themeDist %>/challenges.min.js': addBaseFilePath(pkg_config.packages.challenges.js, themeJS)
+          '<%= build.themeDist %>/js/default.min.js': addBaseFilePath(pkg_config.packages.default.js, themeJS),
+          '<%= build.themeDist %>/js/challengelanding.min.js': addBaseFilePath(pkg_config.packages.challengelanding.js, themeJS),
+          '<%= build.themeDist %>/js/challenges.min.js': addBaseFilePath(pkg_config.packages.challenges.js, themeJS)
         }
       }
     },
@@ -74,7 +74,20 @@ module.exports = function(grunt) {
           mode: 'gzip'
         },
         files: [
-          {expand:true, src: ['<%= build.themeDist %>/*.min.*', '!<%= build.themeDist %>/*.gz']}
+          {
+            expand: true,
+            src: [
+              '<%= build.themeDist %>/js/*.min.*',
+              '!<%= build.themeDist %>/js/  *.gz'
+            ]
+          },
+          {
+            expand: true,
+            src: [
+              '<%= build.themeDist %>/css/*.min.*',
+              '!<%= build.themeDist %>/css/*.gz'
+            ]
+          }
         ]
       }
     }
