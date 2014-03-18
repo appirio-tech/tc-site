@@ -213,8 +213,8 @@ $authorObj = get_user_by("id",$authorId);
 							if($postCount > $postPerPage) :
 						?>
 							<div class="pagingWrapper">
-								<?php if($currPage>1) :?><a class="prev" href="<?php echo $prevLink;?>">Older Post</a><?php endif; ?>
-								<?php if( $postCount > ($currPage * $postPerPage)) : ?><a class="next" href="<?php echo $nextLink;?>">Newer Post</a><?php endif;?>
+								<?php if($currPage>1) :?><a class="prev" href="<?php echo $prevLink;?>">Newer Post</a><?php endif; ?>
+								<?php if( $postCount > ($currPage * $postPerPage)) : ?><a class="next" href="<?php echo $nextLink;?>">Older Post</a><?php endif;?>
 							</div>
 						<?php endif; ?>	
 							
