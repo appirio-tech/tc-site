@@ -95,7 +95,3 @@ function tc_wp_title( $title, $sep ) {
   return $sep . $title;
 }
 add_filter( 'wp_title', 'tc_wp_title', 10, 2 );
-
-?>
-
-

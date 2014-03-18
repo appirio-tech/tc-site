@@ -21,6 +21,12 @@ locate_template('lib/scripts.php', TRUE);
 locate_template('lib/widget.php', TRUE);
 locate_template("config/rewrite-config.php", TRUE);
 locate_template('lib/rewrite_rules.php', TRUE);
+locate_template('/lib/options.php', TRUE);
+locate_template('/lib/sidebars.php', TRUE);
+locate_template('lib/menu.php', TRUE);
+locate_template('lib/comments.php', TRUE);
+locate_template('lib/meta.php', TRUE);
+include_once('functions-share.php');
 
 
 // add featured image
@@ -669,17 +675,3 @@ function getCategoryId($slug) {
   $id = $idObj->term_id;
   return $id;
 }
-
-// theme options
-locate_template('/lib/options.php', TRUE);
-// Sidebars
-locate_template('/lib/sidebars.php', TRUE);
-// menus
-locate_template('lib/menu.php', TRUE);
-// comments
-locate_template('lib/comments.php', TRUE);
-
-include_once('functions-addmeta.php');
-include_once('functions-share.php');
-
-?>
