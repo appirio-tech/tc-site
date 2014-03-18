@@ -74,7 +74,20 @@ module.exports = function(grunt) {
           mode: 'gzip'
         },
         files: [
-          {expand:true, src: ['<%= build.themeDist %>/*.min.*', '!<%= build.themeDist %>/*.gz']}
+          {
+            expand: true,
+            src: [
+              '<%= build.themeDist %>/js/*.min.*',
+              '!<%= build.themeDist %>/js/  *.gz'
+            ]
+          },
+          {
+            expand: true,
+            src: [
+              '<%= build.themeDist %>/css/*.min.*',
+              '!<%= build.themeDist %>/css/*.gz'
+            ]
+          }
         ]
       }
     }
