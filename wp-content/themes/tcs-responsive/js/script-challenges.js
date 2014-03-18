@@ -136,7 +136,7 @@ appChallenges = {
 
         /* view all records */
         $('.dataChanges .viewAll').off().on(ev, function() {
-            postPerPage = -1;
+            postPerPage = 1000;
 
             if( reviewType == "contest") {
                 if(contest_type=="design"||contest_type=="develop") {
