@@ -94,7 +94,6 @@ appChallenges = {
             $(this).replaceWith('<a href="javascript:;" class="btn">Submit</a>');
         });
 
-        // disable and enable elements
         $('.otherOpts input:checkbox').on('change', function() {
             var row = $(this).closest('.row');
             if (row.hasClass('subRow1')) {
@@ -319,34 +318,43 @@ appChallenges = {
 
     //Calander
     calendar: function() {
+        var datePickerTo = $(".datepicker.to");
 
-        $(".datepicker.to").datepicker({
+        datePickerTo.datepicker({
             showOn: 'both',
-            buttonImage: stylesheet_dir+'/i/ico-cal.png',
+            buttonImage: stylesheet_dir + '/i/ico-cal.png',
             buttonImageOnly: true,
-            positionAdjust: true,
             dateFormat: 'mm.dd.yy',
             buttonText: "",
-            disabled: 'disabled',
             onSelect: function(selectedDate) {
                 $(".datepicker.from").datepicker("option", "maxDate", selectedDate);
             }
-        })
-        $(".datepicker.to").closest('.row').addClass('isDisabled');
+        });
 
-        $(".datepicker.from").datepicker({
+        var row = datePickerTo.closest('.row');
+        $('.datepicker', row).datepicker("option", "disabled", true);
+        $('img', row).css('opacity',1).css('opacity',0.5).css('filter','alpha(opacity=50)');
+        $('img', row).closest('.row').addClass('isDisabled');
+        $('input:text, select', row).attr('disabled', 'disabled');
+
+        var datePickerFrom = $(".datepicker.from");
+
+        datePickerFrom.datepicker({
             showOn: 'both',
-            buttonImage: stylesheet_dir+'/i/ico-cal.png',
+            buttonImage: stylesheet_dir + '/i/ico-cal.png',
             buttonImageOnly: true,
-            positionAdjust: true,
             dateFormat: 'mm.dd.yy',
-            buttonText: "",
-            disabled: 'disabled',
             onSelect: function(selectedDate) {
-                $(".datepicker.to").datepicker("option", "minDate", selectedDate);
+                datePickerFrom.datepicker("option", "minDate", selectedDate);
             }
-        })
-        $(".datepicker.from").closest('.row').addClass('isDisabled');
+        });
+        datePickerFrom.closest('.row').addClass('isDisabled');
+
+        row = datePickerFrom.closest('.row');
+        $('.datepicker', row).datepicker("option", "disabled", true);
+        $('img', row).css('opacity',1).css('opacity',0.5).css('filter','alpha(opacity=50)');
+        $('img', row).closest('.row').addClass('isDisabled');
+        $('input:text, select', row).attr('disabled', 'disabled');
     },
 
     getTrackSymbol: function(type){
@@ -414,20 +422,17 @@ appChallenges = {
         return trackName;
     },
     isDesignContest: function(contestType){
-        if( contestType=="Web Design" ||
-            contestType=="Widget or Mobile Screen Design" ||
-            contestType=="Wireframes" ||
-            contestType=="Idea Generation" ||
-            contestType=="Print\/Presentation" ||
-            contestType=="Banners\/Icons" ||
-            contestType=="Logo Design" ||
-            contestType=="Studio Other" ||
-            contestType=="Front-End Flash" ||
-            contestType=="Application Front-End Design" )
-        {
-            return true;
-        }
-        return false;
+        return contestType == "Web Design" ||
+          contestType == "Widget or Mobile Screen Design" ||
+          contestType == "Wireframes" ||
+          contestType == "Idea Generation" ||
+          contestType == "Print\/Presentation" ||
+          contestType == "Banners\/Icons" ||
+          contestType == "Logo Design" ||
+          contestType == "Studio Other" ||
+          contestType == "Front-End Flash" ||
+          contestType == "Application Front-End Design";
+
     },
 
 
