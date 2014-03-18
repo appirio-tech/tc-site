@@ -256,5 +256,18 @@ $(function () {
       $(".additionalPrizes").addClass("hide");
     }
   });
+  // S-194724 
+ var tcsso = getCookie('tcsso');
+               if(tcsso){
+		var tcssoValues = tcsso.split("|");
+		var now = new Date();
+	
+		if (now.getTime() < registrationUntil.getTime()) {
+			$('#registrationButton').removeClass('disabled');
+		}			
+		if (now.getTime() < submissionUntil.getTime() && registrants.indexOf(uid) > -1) {
+			$('#submissionButton').removeClass('disabled');
+		}			
+	}
 
 }); 
