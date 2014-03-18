@@ -2,8 +2,9 @@
 
 get_header('challenge-landing');
 
+$tzstring = get_option('timezone_string');
 
-date_default_timezone_set('America/New_York');
+date_default_timezone_set($tzstring);
 
 /**
  * Template Name: Challenge details
