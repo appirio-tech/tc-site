@@ -241,3 +241,12 @@ $postPerPage = get_option ( "contest_per_page" ) == "" ? 30 : get_option ( "cont
 
 <?php get_footer(); ?>
 
+<script type="text/javascript">
+  var siteurl = "<?php bloginfo('siteurl');?>";
+  var activePastContest = "active";
+  $(document).ready(function() {
+    app.buildRequestData("activeContest","<?php echo $contest_type;?>","");
+    app.community.init();
+    //listActiveContest("activeContest","activeContest","<?php // echo $contest_type;?>");
+  });
+</script>
