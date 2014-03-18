@@ -428,11 +428,10 @@ function get_blog_ajax() {
       $dateObj = DateTime::createFromFormat('Y-m-d H:i:s', $post->post_date);
       $dateStr = $dateObj->format('M j, Y');
 
-      $twitterText = urlencode(wrap_content_strip_html(wpautop($post->post_content), 130, TRUE, '\n\r', ''));
-      $title = htmlspecialchars($post->post_title);
+      $twitterText = urlencode(wrap_content_strip_html(wpautop($subject."\nUrl: ".get_permalink()), 130, true,'\n\r',''));      $title = htmlspecialchars($post->post_title);
       $subject = htmlspecialchars(get_bloginfo('name')) . ' : ' . $title;
       $body = htmlspecialchars($post->post_content);
-      $email_article = 'mailto:?subject=' . rawurlencode($subject) . '&body=' . rawurlencode($body);
+      $email_article = 'mailto:?subject='.rawurlencode($subject).'&body='.get_permalink();
       $twitterShare = "http://twitter.com/home?status=" . $twitterText;
       $fbShare = "http://www.facebook.com/sharer/sharer.php?s=100&p[url]=" . get_permalink(
         ) . "&p[images][0]=" . $imageUrl . "&p[title]=" . get_the_title() . "&p[summary]=" . $twitterText;
@@ -557,7 +556,7 @@ function get_popular_ajax() {
       ?>
       <li>
         <!-- Bug# I-104876 href comes as empty on "show more" -->
-        <a class="contentLink" href="<?php echo $post->guid ?>">
+        <a class="contentLink" href="<?php echo get_permalink($postId); ?>">
           <img class="contentThumb" src="<?php bloginfo('stylesheet_directory'); ?>/i/content-thumb.png"
                alt="<?php echo $post->post_title; ?>">
           <?php echo $post->post_title; ?>
@@ -581,7 +580,7 @@ function get_popular_ajax() {
       <li>
         <!-- Bug# I-104876 href comes as empty on "show more" - -->
         <!-- Bug# I-104876 fix href to use rel urls - -->
-        <a class="contentLink" href="<?php echo get_rel_url($post->guid, TRUE); ?>">
+        <a class="contentLink" href="<?php echo get_rel_url(get_permalink($postId), TRUE); ?>">
           <img class="contentThumb" src="<?php bloginfo('stylesheet_directory'); ?>/i/content-thumb.png"
                alt="<?php echo $post->post_title; ?>">
           <?php echo $post->post_title; ?>
