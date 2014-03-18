@@ -26,7 +26,7 @@ locate_template('/lib/sidebars.php', TRUE);
 locate_template('lib/menu.php', TRUE);
 locate_template('lib/comments.php', TRUE);
 locate_template('lib/meta.php', TRUE);
-include_once('functions-share.php');
+locate_template('lib/share.php', TRUE);
 
 
 // add featured image
