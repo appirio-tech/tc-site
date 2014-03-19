@@ -677,6 +677,18 @@ appChallenges = {
             param.submissionEndTo = endDate;
         }
 
+        // if submission from date is blank form to date isn't
+        if (!param.submissionEndFrom && param.submissionEndTo) {
+            param.submissionEndFrom = app.formatDateApi(new Date(1));
+        }
+
+        if (!param.submissionEndTo && param.submissionEndFrom) {
+            // 60 days from today
+            var futureDate = 60 * 24 * 60 * 60 * 1000;
+            var curDate = Date.now();
+            param.submissionEndTo = app.formatDateApi(new Date(curDate + futureDate));
+        }
+
         var challengesRadio = $("input:radio[name ='radioFilterChallenge']:checked").val();
         if( challengesRadio!=null && challengesRadio!="all" ) {
             param.challengeType = challengesRadio
@@ -1300,6 +1312,18 @@ appChallenges = {
         return dateStr;
     },
 
+    /**
+     * Format a date for the API
+     *
+     * @param date Date
+     * @return string
+     */
+    formatDateApi: function(date) {
+      return date.getFullYear() + "-" +
+        date.getMonth() + "-" +
+        date.getDate();
+    },
+
     //format time left
     formatTimeLeft: function(seconds, grid) {
         var sep = (grid)?'':' ';
@@ -1321,7 +1345,7 @@ appChallenges = {
     //get contest link url
     getContestLinkUrl: function(projectId,contestType) {
         return siteurl+"/challenge-details/"+projectId+"/?type="+contestType;
-    },
+    }
 }
 
 /**

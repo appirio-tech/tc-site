@@ -43,7 +43,7 @@
       <ul>
         <li class="date row"><div class="lbl">
             <input type="checkbox" id="fSDate" />
-            <label for="fSDate"><strong>Start date:</strong></label>
+            <label for="fSDate"><strong>Submission End From:</strong></label>
           </div>
           <div class="val">
             <span class="datePickerWrap"><input id="startDate" type="text" class="datepicker from" /></span>
@@ -52,7 +52,7 @@
         <li class="date row">
           <div class="lbl">
             <input type="checkbox" id="fEDate" />
-            <label for="fEDate"><strong>End date:</strong></label>
+            <label for="fEDate"><strong>Submission End To:</strong></label>
           </div>
 
           <div class="val">
