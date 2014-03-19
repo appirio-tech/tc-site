@@ -25,6 +25,7 @@ $blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the topcoder 
 	
 	if (have_posts ()) :
 		the_post ();
+		$postId = $post->ID;
 		$quote = get_post_meta ( $post->ID, "Quote", true );
 		$qAuthor = get_post_meta ( $post->ID, "Quote author", true );
 		
@@ -38,11 +39,11 @@ $blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the topcoder 
 		$title = htmlspecialchars($post->post_title);
 		$subject = htmlspecialchars(get_bloginfo('name')).' : '.$title;
 		$body = htmlspecialchars($post->post_content);
-		$email_article = 'mailto:?subject='.rawurlencode($subject).'&body='.get_permalink();
-		$twitterText = urlencode(wrap_content_strip_html(wpautop($subject."\nUrl: ".get_permalink()), 130, true,'\n\r',''));
+		$email_article = 'mailto:?subject='.rawurlencode($subject).'&body='.get_permalink($postId);
+		$twitterText = urlencode(wrap_content_strip_html(wpautop($subject."\nUrl: ".get_permalink($postId)), 400, true,'\n\r',''));
 		$twitterShare = "http://twitter.com/home?status=".$twitterText;
-		$fbShare = "http://www.facebook.com/sharer/sharer.php?s=100&p[url]=".get_permalink()."&p[images][0]=".$imageUrl."&p[title]=".get_the_title()."&p[summary]=".$twitterText;
-		$gplusShare = "https://plus.google.com/share?url=".get_permalink();
+		$fbShare = "http://www.facebook.com/sharer/sharer.php?s=100&p[url]=".get_permalink($postId)."&p[images][0]=".$imageUrl."&p[title]=".get_the_title()."&p[summary]=".$twitterText;
+		$gplusShare = "https://plus.google.com/share?url=".get_permalink($postId);
 	
 		$categories = get_the_category();
 		$arrCategoriesId;
