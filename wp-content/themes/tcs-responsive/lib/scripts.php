@@ -22,8 +22,7 @@ function tcs_responsive_scripts() {
     'respond'   =>  '/js/vendor/respond.min.js',
     'modernizr' => '/js/vendor/modernizr.js',
     'html5shiv' => '/js/vendor/html5shiv.js',
-    'auth0' => '//d19p4zemcycm7a.cloudfront.net/w2/auth0-1.2.2.min.js',
-    'auth0-sdk' => "//sdk.auth0.com/auth0.js#client={$auth0_client_id}"
+    'auth0' => 'https://cdn.auth0.com/w2/auth0-1.6.4.js'
   );
 
   tsc_register_master($assets);
