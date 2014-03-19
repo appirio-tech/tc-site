@@ -14,12 +14,15 @@ session_start();
 if (isset($_GET['auth']) && $_GET['auth'] == 'logout') {
   unset($_COOKIE['tcsso']);
   setcookie('tcsso', '', time() - 3600, '/', '.topcoder.com');
+  unset($_COOKIE['tcjwt']);
+  setcookie('tcjwt', '', time() - 3600, '/', '.topcoder.com');
 
   /***
    * kill any other sessions or cookie here
    */
   unset($coder);
   session_destroy();
+
   /***
    * then send back user to where they came
    */
@@ -65,17 +68,17 @@ if (isset($_GET['auth']) && $_GET['auth'] == 'logout') {
 
 <?php
 
-  wp_head();
+wp_head();
 
 
-  $urlLogout = add_query_arg('auth', 'logout', get_bloginfo('wpurl'));
-  use Auth0SDK\Auth0;
+$urlLogout = add_query_arg('auth', 'logout', get_bloginfo('wpurl'));
+use Auth0SDK\Auth0;
 
-  $auth0 = new Auth0(array(
-    'domain' => auth0_domain,
-    'client_id' => auth0_client_id,
-    'client_secret' => auth0_client_secret,
-    'redirect_uri' => auth0_redirect_uri
-  ));
+$auth0 = new Auth0(array(
+  'domain' => auth0_domain,
+  'client_id' => auth0_client_id,
+  'client_secret' => auth0_client_secret,
+  'redirect_uri' => auth0_redirect_uri
+));
 
-  fixIERoundedCorder();
+fixIERoundedCorder();

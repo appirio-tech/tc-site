@@ -180,6 +180,7 @@ function tcapi_query_vars($query_vars) {
   $query_vars [] = 'list';
   $query_vars [] = 'contestType';
   $query_vars [] = 'pageNumber';
+  $query_vars [] = 'role';
   return $query_vars;
 }
 

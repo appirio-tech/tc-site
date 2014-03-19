@@ -162,6 +162,24 @@ function get_copilot_stats_controller()
 add_action('wp_ajax_get_copilot_stats', 'get_copilot_stats_controller');
 add_action('wp_ajax_nopriv_get_copilot_stats', 'get_copilot_stats_controller');
 
+/* challenge terms  */
+function get_challenge_terms_ajax_controller(){
+
+  $challengeId = $_GET ["challengeId"];
+  $role = $_GET ["role"];
+  $jwtToken = $_GET ["jwtToken"];
+
+  $challengeTerms = get_challenge_terms($challengeId, $role, $jwtToken);
+  if (isset($challengeTerms)) {
+    wp_send_json($challengeTerms);
+  } else {
+    wp_send_json_error();
+  }
+}
+
+add_action('wp_ajax_get_challenge_terms', 'get_challenge_terms_ajax_controller');
+add_action('wp_ajax_nopriv_get_challenge_terms', 'get_challenge_terms_ajax_controller');
+
 /**
  * End of ajax controller
  */
@@ -336,6 +354,28 @@ function get_top_rank($userKey = '', $contestType = 'Algorithm')
         return $arrTopRank;
     }
     return "Error in processing request";
+}
+
+/* challenge terms  */
+function get_challenge_terms($challengeId, $role, $jwtToken){
+  $url = "https://api.topcoder.com/v2/terms/$challengeId?role=" . $role;
+  $args = array (
+    'headers' => array(
+      'Authorization' => 'Bearer ' . $jwtToken
+    ),
+    'httpversion' => get_option ( 'httpversion' ),
+    'timeout' => 20
+  );
+  $response = wp_remote_get ( $url, $args );
+
+  if (is_wp_error ( $response ) || ! isset ( $response ['body'] )) {
+    return "Error in processing request";
+  }
+
+  if ($response ['response'] ['code'] == 200) {
+    return json_decode( $response ['body']);
+  }
+  return "Error in processing request";
 }
 
 /**
