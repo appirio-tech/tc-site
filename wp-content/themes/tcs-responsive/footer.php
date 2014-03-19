@@ -563,7 +563,7 @@ $(function() {
     redirect_uri:   'http://www.topcoder.com/'
   });
 
-	auth0Register.parseHash(window.location.hash, function (profile, id_token, access_token, state) {
+	auth0Register.getProfile(window.location.hash, function (err, profile, id_token, access_token, state) {
 			socialProvider = profile.identities[0].connection;
 			var firstName = "" , lastName = "", handle = "", email = "";
 			if(socialProvider === googleProvider) {
@@ -610,6 +610,9 @@ $(function() {
      $('#register input:password').on('keyup');
      $('select').on('change');
 
+  }, function(err) {
+    console.log('error');
+    console.log(err);
   });
 
   $('.register-google').on('click', function() {

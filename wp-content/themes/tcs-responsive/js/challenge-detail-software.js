@@ -262,10 +262,10 @@ $(function () {
 		var tcssoValues = tcsso.split("|");
 		var now = new Date();
 	
-		if (now.getTime() < registrationUntil.getTime()) {
+		if (!(typeof registrationUntil == 'undefined') && (now.getTime() < registrationUntil.getTime())) {
 			$('#registrationButton').removeClass('disabled');
 		}			
-		if (now.getTime() < submissionUntil.getTime() && registrants.indexOf(uid) > -1) {
+		if (!(typeof submissionUntil == 'undefined') && now.getTime() < submissionUntil.getTime() && registrants.indexOf(uid) > -1) {
 			$('#submissionButton').removeClass('disabled');
 		}			
 	}
