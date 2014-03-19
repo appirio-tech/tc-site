@@ -256,18 +256,46 @@ $(function () {
       $(".additionalPrizes").addClass("hide");
     }
   });
-  // S-194724 
- var tcsso = getCookie('tcsso');
-               if(tcsso){
-		var tcssoValues = tcsso.split("|");
-		var now = new Date();
-	
-		if (now.getTime() < registrationUntil.getTime()) {
-			$('#registrationButton').removeClass('disabled');
-		}			
-		if (now.getTime() < submissionUntil.getTime() && registrants.indexOf(uid) > -1) {
-			$('#submissionButton').removeClass('disabled');
-		}			
-	}
 
-}); 
+  $(".challengeRegisterBtn").click(function () {
+    var tcjwt = getCookie('tcjwt');
+    if(tcjwt){
+      if ($('.loading').length <= 0) {
+        $('body').append('<div class="loading">Loading...</div>');
+      } else {
+        $('.loading').show();
+      }
+      $.getJSON(ajaxUrl, {
+        "action": "register_to_challenge",
+        "challengeId": challengeId,
+        "jwtToken": tcjwt.replace(/["]/g, "")
+      }, function(data) {
+        console.log(data);
+        $('.loading').hide();
+        if(data["message"] === "ok"){
+          showModal("#registerSuccess");
+        } else if(data["error"]["details"] === "You should agree with all terms of use.") {
+          window.location = siteurl + "/terms/" + challengeId;
+        } else if(data["error"]["details"]){
+          $("#registerFailed .failedMessage").text(data["error"]["details"]);
+          showModal("#registerFailed");
+        }
+      });
+    }
+  });
+
+  // S-194724
+  var tcsso = getCookie('tcsso');
+  if(tcsso){
+    var tcssoValues = tcsso.split("|");
+    var now = new Date();
+
+    if (now.getTime() < registrationUntil.getTime()) {
+      $('#registrationButton').removeClass('disabled');
+    }
+    if (now.getTime() < submissionUntil.getTime() && registrants.indexOf(uid) > -1) {
+      $('#submissionButton').removeClass('disabled');
+    }
+  }
+
+});

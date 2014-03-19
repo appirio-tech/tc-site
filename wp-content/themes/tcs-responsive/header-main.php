@@ -22,7 +22,6 @@ if (isset($_GET['auth']) && $_GET['auth'] == 'logout') {
    */
   unset($coder);
   session_destroy();
-
   /***
    * then send back user to where they came
    */
@@ -41,7 +40,7 @@ if (isset($_GET['auth']) && $_GET['auth'] == 'logout') {
   <meta charset="utf-8">
   <title><?php bloginfo('name'); ?><?php wp_title(' - ', TRUE, 'left'); ?></title>
   <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="author" content="" >
 
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />

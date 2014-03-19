@@ -3,6 +3,7 @@
  * Template Name: Terms List Template
  */
 
+$termType = 'list';
 get_header('terms');
 
 ?>
