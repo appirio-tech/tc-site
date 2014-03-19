@@ -383,8 +383,8 @@ function get_challenges_ajax_controller()
     $sortColumn = ($_GET ['sortColumn']);
     $sortOrder = $_GET ['sortOrder'];
     $challengeType = urlencode($_GET ['challengeType']);
-    $startDate = $_GET ['startDate'];
-    $endDate = $_GET ['endDate'];
+    $startDate = $_GET ['submissionEndFrom'];
+    $endDate = $_GET ['submissionEndTo'];
 
     $contest_list = get_challenges_ajax(
         $listType,
@@ -438,10 +438,10 @@ function get_challenges_ajax(
         $url .= "&challengeType=$challengeType";
     }
     if ($startDate) {
-        $url .= "&submissionEndDate.startDate=$startDate";
+        $url .= "&submissionEndFrom=$startDate";
     }
     if ($endDate) {
-        $url .= "&submissionEndDate.endDate=$endDate";
+        $url .= "&submissionEndTo=$endDate";
     }
 
     $args = array(
@@ -455,7 +455,6 @@ function get_challenges_ajax(
     }
     if ($response ['response'] ['code'] == 200) {
 
-//print $response ['body'];
         $active_contest_list = json_decode($response['body']);
         return $active_contest_list;
     }
