@@ -31,8 +31,8 @@ $(function () {
   });
 
   $('.closeModal,#bgModal').on('click', function () {
-    window.location.replace('/');
-    // closeModal();
+    //window.location.replace('/');
+    closeModal();
   });
 
 

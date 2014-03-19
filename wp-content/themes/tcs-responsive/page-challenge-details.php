@@ -9,7 +9,6 @@ function tc_challenge_details_js(){
     var challengeId = "<?php echo $contestID;?>";
     var challengeType = "<?php echo $contestType;?>";
 
-    var uid = tcssoValues[0];
     var registrants = ["anonymous"
       <?php
         for ($i = 0; $i < count($registrants); $i++) :
@@ -77,7 +76,7 @@ $contestID = get_query_var('contestID');
 //$contestType = get_query_var ( 'type' );
 $contestType = $_GET['type'];
 $contest = get_contest_detail('', $contestID, $contestType);
-$registrants = $contest->registrants;
+$registrants = empty($contest->registrants) ? array() : $contest->registrants;
 
 
 // Ad submission dates to registrants
