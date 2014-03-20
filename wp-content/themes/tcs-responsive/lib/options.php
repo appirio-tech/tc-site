@@ -147,7 +147,7 @@ function themeoptions_page() {
         </tr>
         <tr>
           <?php $field="jssCssReset"; ?>
-          <td width="150"><label for="<?php $field; ?>">Reset JS/CSS Registry":</label></td>
+          <td width="150"><label for="<?php $field; ?>">Reset JS/CSS Registry:</label></td>
           <td>
             <input type="radio" name="<?php echo $field; ?>" value="1" <?php if (get_option($field) == 1): ?>checked="checked"<?php endif; ?> /> Yes
             <input type="radio" name="<?php echo $field; ?>" value="0" <?php if (get_option($field) != 1): ?>checked="checked"<?php endif; ?> /> No
@@ -216,7 +216,7 @@ function themeoptions_update() {
 
   update_option ( 'jsCssUseMin', $_POST['jsCssUseMin'] );
 
-  if ($_POST['jssCssReset'] === 1) {
+  if ($_POST['jssCssReset'] === "1") {
     delete_transient('tsc_get_asset_map');
   }
 

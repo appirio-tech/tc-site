@@ -284,7 +284,7 @@ $(function () {
   });
 
   if(autoRegister){
-  	$(".challengeRegisterBtn").click();
+    $(".challengeRegisterBtn").click();
   }
 
   $("#registerSuccess .closeModal").click(function() {
