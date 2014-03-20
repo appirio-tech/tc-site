@@ -680,7 +680,7 @@ function get_email_validity_controller()
 
     $email_validity = get_email_validity_ajax($email);
 
-    if (isset($email_validity->valid) || isset($email_validity->error)) {
+    if (isset($email_validity->available) || isset($email_validity->error)) {
         wp_send_json( $email_validity );
     } else {
         wp_send_json_error();
