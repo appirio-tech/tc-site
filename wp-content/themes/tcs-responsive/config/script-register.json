@@ -20,6 +20,7 @@
         "challenge-detail-software.js",
         "jquery.jscrollpane.min.js",
         "jquery.column-1.0.js",
+        "jquery.jqtransform.js",
         "terms.js"
       ],
       "css": [
@@ -37,6 +38,7 @@
         "blog-base.css",
         "community-landing.css",
         "challenge-detail-software.css",
+        "jqtransform.css",
         "terms.css"
       ]
     },

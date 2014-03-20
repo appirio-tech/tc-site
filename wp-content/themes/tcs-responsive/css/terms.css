@@ -125,7 +125,7 @@
     box-shadow: none;
     -webkit-appearance: none;
 }
-input, textarea{
+.registerForChallenge input, .registerForChallenge textarea{
     box-shadow: none !important;
     -webkit-appearance: none !important;
 }
@@ -145,3 +145,65 @@ input, textarea{
     border-top: 1px solid #e7e7e7;
     padding-top: 15px;
 }
+.termsBtnSubmit{
+	text-align: center;
+	margin-top: 60px;
+	margin-bottom: 15px;
+	border-top: 1px solid #e7e7e7;
+	padding-top: 15px;
+}
+
+/*agreement*/
+.agreement{
+    padding: 28px 0 0;
+    text-align: center;
+    border-top: 1px solid #e7e7e7;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+    .agreement label{
+        font-size: 16px;
+    }
+.uploading .agreement{
+    display: none;
+}
+    .agreement .jqTransformCheckboxWrapper{
+        float: left;
+        margin-right: 10px;
+    }
+        .agreement a.jqTransformCheckbox{
+            background: url("../i/check-box.png") no-repeat;
+            width: 19px;
+            height: 19px;
+        }
+        .agreement a.jqTransformChecked{
+            background-position: 0 -19px;
+        }
+    .jqtransformdone .agreement label{
+        float: none;
+        margin: 0;
+        overflow: hidden;
+        text-align: left;
+        color: #666666;
+    }
+    .jqtransformdone .agreement .btn{
+        font-size: 22px;
+        height: 42px;
+        line-height: 42px;
+        width: 255px;
+        margin-top: 25px;
+        background: #ff8a00;
+    }
+    .jqtransformdone .agreement .btn:hover{
+        font-size: 22px;
+        height: 42px;
+        line-height: 42px;
+        width: 255px;
+        margin-top: 25px;
+        background: #FF7A00;
+    }
+    .jqtransformdone .agreement.notAgreed .btn{
+        background: #cccccc;
+        border-bottom: 4px solid #bdbdbd;
+        cursor: default;
+    }

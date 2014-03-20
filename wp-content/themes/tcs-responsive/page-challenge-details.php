@@ -8,6 +8,7 @@ function tc_challenge_details_js(){
     var submissionUntil = new Date(<?php echo strtotime("$contest->submissionEndDate");?>*1000);
     var challengeId = "<?php echo $contestID;?>";
     var challengeType = "<?php echo $contestType;?>";
+    var autoRegister = "<?php echo get_query_var('autoRegister');?>";
 
     var registrants = ["anonymous"
       <?php

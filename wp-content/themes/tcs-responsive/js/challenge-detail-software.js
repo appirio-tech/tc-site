@@ -283,6 +283,10 @@ $(function () {
     }
   });
 
+  if(autoRegister){
+  	$(".challengeRegisterBtn").click();
+  }
+
   $("#registerSuccess .closeModal").click(function() {
     closeModal();
   });

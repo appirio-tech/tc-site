@@ -77,6 +77,10 @@ appChallengeTerms = {
           $(".formContent .warning").show();
         }
         $('.loading').hide();
+
+        $(".termsBtnRegister").click(function () {
+          window.location = siteurl + "/action/register/" + challengeId;
+        });
       });
     }
   }

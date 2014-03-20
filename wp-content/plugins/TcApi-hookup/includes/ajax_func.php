@@ -198,6 +198,24 @@ function get_challenge_term_details_ajax_controller() {
 add_action('wp_ajax_get_challenge_term_details', 'get_challenge_term_details_ajax_controller');
 add_action('wp_ajax_nopriv_get_challenge_term_details', 'get_challenge_term_details_ajax_controller');
 
+
+/* challenge term details  */
+function agree_challenge_terms_ajax_controller(){
+
+  $termId = $_GET ["termId"];
+  $jwtToken = $_GET ["jwtToken"];
+
+  $termDetails = agree_challenge_terms($termId, $jwtToken);
+  if (isset($termDetails)) {
+    wp_send_json($termDetails);
+  } else {
+    wp_send_json_error();
+  }
+}
+
+add_action('wp_ajax_agree_challenge_terms', 'agree_challenge_terms_ajax_controller');
+add_action('wp_ajax_nopriv_agree_challenge_terms', 'agree_challenge_terms_ajax_controller');
+
 /* register to challenge */
 function register_to_challenge_ajax_controller() {
 
@@ -440,6 +458,24 @@ function register_to_challenge($challengeId, $jwtToken) {
     return "Error in processing request";
   }
   return json_decode($response ['body']);
+}
+
+/* agree challenge terms  */
+function agree_challenge_terms($termId, $jwtToken){
+  $url = "https://api.topcoder.com/v2/terms/" . $termId . "/agree";
+  $args = array (
+    'headers' => array(
+      'Authorization' => 'Bearer ' . $jwtToken
+    ),
+    'httpversion' => get_option ( 'httpversion' ),
+    'timeout' => 20
+  );
+  $response = wp_remote_post ( $url, $args );
+
+  if (is_wp_error ( $response ) || ! isset ( $response ['body'] )) {
+    return "Error in processing request";
+  }
+  return json_decode( $response ['body']);
 }
 
 
