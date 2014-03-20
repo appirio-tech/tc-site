@@ -289,6 +289,7 @@ $(function () {
 
   $("#registerSuccess .closeModal").click(function() {
     closeModal();
+    window.location.reload(true);
   });
 
   // S-194724

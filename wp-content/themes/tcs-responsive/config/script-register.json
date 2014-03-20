@@ -119,7 +119,7 @@
         "init-header.js",
         "jquery.qtip.min.js",
         "jquery.jqtransform.js",
-        "term.js"
+        "terms.js"
       ],
       "css": [
         "base.css",
