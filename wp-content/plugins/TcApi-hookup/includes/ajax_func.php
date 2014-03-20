@@ -667,4 +667,51 @@ function get_handle_validity_ajax(
     return $handle_validity;
 }
 
+/*
+ * Check email availability and validity
+ */
+add_action('wp_ajax_get_email_validity', 'get_email_validity_controller');
+add_action('wp_ajax_nopriv_get_email_validity', 'get_email_validity_controller');
+
+function get_email_validity_controller()
+{
+    $userkey = get_option('api_user_key');
+    $email = $_GET ['email'];
+
+    $email_validity = get_email_validity_ajax($email);
+
+    if (isset($email_validity->available) || isset($email_validity->error)) {
+        wp_send_json( $email_validity );
+    } else {
+        wp_send_json_error();
+    }
+}
+
+function get_email_validity_ajax(
+    $email = ''
+) {
+
+    $url = "http://api.topcoder.com/v2/users/validateEmail?email=" . $email;
+
+    $args = array(
+        'httpversion' => get_option('httpversion'),
+        'timeout' => get_option('request_timeout')
+    );
+    $response = wp_remote_get($url, $args);
+
+    if (is_wp_error($response) || !isset ($response ['body'])) {
+        $email_validity = json_decode($response['body']);
+        return $email_validity;
+    }
+    if ($response ['response'] ['code'] == 200) {
+
+//print $response ['body'];
+        $email_validity = json_decode($response['body']);
+        return $email_validity;
+    }
+
+    $email_validity = json_decode($response['body']);
+    return $email_validity;
+}
+
 
