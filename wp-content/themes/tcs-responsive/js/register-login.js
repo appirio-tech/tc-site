@@ -123,7 +123,7 @@ $(function () {
       $(this).closest('.row').find('span.err1').hide();
       $(this).closest('.row').find('span.err2').hide();
       $(this).parents(".row").find("span.valid").hide();
-      if (email.length==0) 
+      if (email.length==0)
         $(this).closest('.row').find('span.err1').show();
       else
         $(this).closest('.row').find('span.err2').show();
@@ -166,6 +166,7 @@ $(function () {
 
   $('#register form.register input.handle:text').on('keyup', function () {
     var invalid = false;
+    handleChanged = true;
     $(this).parents(".row").find("span.valid").hide();
     $(this).closest('.row').find('span.err1').hide();
     $(this).closest('.row').find('span.err2').hide();
@@ -173,6 +174,7 @@ $(function () {
     $(this).closest('.row').find('span.err4').hide();
     $(this).closest('.row').find('span.err5').hide();
     $(this).closest('.row').find('span.err6').hide();
+    $(this).closest('.row').find('span.err7').hide();
     var text = $(this).val();
     if (text.indexOf(' ') != -1) {
       // can't contain spaces
@@ -191,6 +193,10 @@ $(function () {
     } else if (text.toLowerCase().match(/^admin/)) {
       // can't start with 'admin'
       $(this).closest('.row').find('span.err6').show();
+      invalid = true;
+    } else if (text.length == 1 || text.length > 15) {
+      // must be between 2 and 15 chars long
+      $(this).closest('.row').find('span.err7').show();
       invalid = true;
     }
     if (!invalid) {
@@ -291,7 +297,9 @@ $(function () {
   var handleIsFree = true;
   var handleValidationAttempted = false;
   var handleDeferred = $.Deferred();
+  var handleChanged = false;
   function validateHandle() {
+    handleChanged = false;
     handleValidationAttempted = true;
     var handle = $('#register form.register input.name.handle:text').val();
     $.ajax({
@@ -303,6 +311,7 @@ $(function () {
       dataType: 'json',
       url: ajaxUrl,
       success: function(data) {
+        if (handleChanged) return;
         if (data.error) {
           handleIsFree = false;
           var node = $('#register form.register input.name.handle:text');
@@ -325,7 +334,7 @@ $(function () {
     });
   }
   $('#register form.register input.name.handle:text').blur(function() {
-    if ($(this).val()=='' || $('input.handle').closest('.row').find('.err3,.err4,.err5,.err6').is(':visible')) return;
+    if ($(this).val()=='' || $('input.handle').closest('.row').find('.err3,.err4,.err5,.err6,.err7').is(':visible')) return;
     validateHandle();
     handleDeferred = $.Deferred();
   });
@@ -340,7 +349,7 @@ $(function () {
     var frm = $('#register form.register');
     var handleInvalid = $('input.handle').closest('.row').find('.invalid');
     $('.invalid', frm).not(handleInvalid).removeClass('invalid');
-    var handleErr = $('input.handle').closest('.row').find('.err2,.err3,.err4,.err5,.err6');
+    var handleErr = $('input.handle').closest('.row').find('.err2,.err3,.err4,.err5,.err6,.err7');
     $('.err1,.err2', frm).not(handleErr).hide();
     $('input:text', frm).each(function () {
       if ($.trim($(this).val()) == "") {
@@ -427,11 +436,13 @@ $(function () {
       $('input.handle').closest('.row').find('span.valid').hide();
       isValid = false;
     }
-    if ($('input.handle').closest('.row').find('.err3,.err4,.err5,.err6').is(':visible'))
+    if ($('input.handle').closest('.row').find('.err3,.err4,.err5,.err6,.err7').is(':visible'))
       isValid = false;
     if (!isValid) return;
 
     handleDeferred.done(function() {
+
+      if (handleChanged) return;
 
       if (!handleIsFree) {
         $('input.handle').closest('.row').find('.err2').show();
