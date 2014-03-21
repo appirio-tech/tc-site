@@ -704,19 +704,19 @@ $blog_posts = get_posts($blog_posts_args);
 
     $('.register-facebook').on('click', function () {
       auth0Register.login({connection: facebookProvider,
-        state: window.location.href
+        state: window.location.href,
         response_type: 'token'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
     });
 
     $('.register-twitter').on('click', function () {
       auth0Register.login({connection: twitterProvider,
-        state: window.location.href
+        state: window.location.href,
         response_type: 'token'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
     });
 
     $('.register-github').on('click', function () {
       auth0Register.login({connection: githubProvider,
-        state: window.location.href
+        state: window.location.href,
         response_type: 'token'});  // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
     });
 
