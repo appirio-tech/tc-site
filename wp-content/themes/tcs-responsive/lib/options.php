@@ -238,7 +238,7 @@ function themeoptions_update() {
     tc_clear_resgistry_cache();
   }
 
-  if ($_POST['postCopy']) {
+  if ($_POST['postCopy'] === "1") {
     locate_template("lib/post_copy.php", TRUE);
     tc_post_copy_steps(array('new_url' => $_POST['newURL']));
   }
