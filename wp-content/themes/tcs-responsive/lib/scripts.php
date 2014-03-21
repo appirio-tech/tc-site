@@ -22,7 +22,7 @@ function tcs_responsive_scripts() {
     'respond'   =>  '/js/vendor/respond.min.js',
     'modernizr' => '/js/vendor/modernizr.js',
     'html5shiv' => '/js/vendor/html5shiv.js',
-    'auth0' => 'https://cdn.auth0.com/w2/auth0-1.6.4.js'
+    'auth0' => '//cdn.auth0.com/w2/auth0-1.6.4.js'
   );
 
   tsc_register_master($assets);
@@ -211,9 +211,7 @@ function tsc_register_master($assets) {
   add_filter('script_loader_src', 'tsc_jquery_local_fallback', 10, 2);
 
   // Always include auth0
-  wp_register_script("auth0-sdk", $assets['auth0-sdk'], array(), null, true);
-  wp_register_script("auth0", $assets['auth0'], array("auth0-sdk"), null, true);
-  wp_enqueue_script("auth0-sdk");
+  wp_register_script("auth0", $assets['auth0'], array("auth0"), null, true);
   wp_enqueue_script("auth0");
 }
 
