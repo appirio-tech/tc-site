@@ -16,45 +16,45 @@ $blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the topcoder 
 ?>
 
 <script type="text/javascript">
-	var siteurl = "<?php bloginfo('siteurl');?>";	
+	var siteurl = "<?php bloginfo('siteurl');?>";
 </script>
 <div class="content">
 	<div id="main">
 
 	<?php
-	
+
 	if (have_posts ()) :
 		the_post ();
+		$postId = $post->ID;
 		$quote = get_post_meta ( $post->ID, "Quote", true );
 		$qAuthor = get_post_meta ( $post->ID, "Quote author", true );
-		
+
 		$image = wp_get_attachment_image_src( get_post_thumbnail_id( $postId ), 'single-post-thumbnail' );
 		if($image!=null) $imageUrl = $image[0];
 		else $imageUrl = get_bloginfo('stylesheet_directory')."/i/story-side-pic.png";
-		
+
 		$dateObj = DateTime::createFromFormat('Y-m-d H:i:s', $post->post_date);
 		$dateStr = $dateObj->format('M j, Y');
-		
-		$twitterText = urlencode(wrap_content_strip_html(wpautop($post->post_content), 130, true,'\n\r',''));
+
 		$title = htmlspecialchars($post->post_title);
 		$subject = htmlspecialchars(get_bloginfo('name')).' : '.$title;
 		$body = htmlspecialchars($post->post_content);
-		$email_article = 'mailto:?subject='.rawurlencode($subject).'&body='.rawurlencode($body);
-		$twitterText = urlencode(wrap_content_strip_html(wpautop($subject."\nUrl: ".$post->guid), 130, true,'\n\r',''));
+		$email_article = 'mailto:?subject='.rawurlencode($subject).'&body='.get_permalink($postId);
+		$twitterText = urlencode(wrap_content_strip_html(wpautop($subject."\nUrl: ".get_permalink($postId)), 400, true,'\n\r',''));
 		$twitterShare = "http://twitter.com/home?status=".$twitterText;
-		$fbShare = "http://www.facebook.com/sharer/sharer.php?s=100&p[url]=".get_permalink()."&p[images][0]=".$imageUrl."&p[title]=".get_the_title()."&p[summary]=".$twitterText;
-		$gplusShare = "https://plus.google.com/share?url=".get_permalink();
-	
+		$fbShare = "http://www.facebook.com/sharer/sharer.php?s=100&p[url]=".get_permalink($postId)."&p[images][0]=".$imageUrl."&p[title]=".get_the_title()."&p[summary]=".$twitterText;
+		$gplusShare = "https://plus.google.com/share?url=".get_permalink($postId);
+
 		$categories = get_the_category();
 		$arrCategoriesId;
 		if($categories!=null){
 			foreach($categories as $key=>$category) {
 				$arrCategoriesId[] = $category->term_id;
 			}
-		}	
+		}
 	?>
 	<!-- Start Overview Page-->
-		
+
 		<!-- page title -->
 		<div class="pageTitleWrapper">
 			<div class="pageTitle container">
@@ -110,14 +110,14 @@ $blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the topcoder 
 				<div class="rightSplit  grid-3-3">
 					<div class="mainStream grid-2-3">
 						<section class="pageContent singleContent">
-						
+
 							<h1 class="blogTitle"><?php the_title();?></h1>
-							
+
 							<!-- Blog Desc -->
 							<div class="blogDescBox">
 								<div class="postDate"><?php echo $dateStr;?> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; By:&nbsp;&nbsp;</div>
 								<div class="postAuthor"><a href="javascript:;" class="author blueLink"><?php the_author();?></a></div>
-								<div class="postCategory">In : 
+								<div class="postCategory">In :
 									<?php
 										$categories = get_the_category();
 										$separator = ', ';
@@ -129,17 +129,17 @@ $blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the topcoder 
 											}
 										}
 										echo trim($output, $separator);
-									?>									
+									?>
 								</div>
 							</div>
 							<!-- Blog Desc End -->
-							
+
 							<!-- content wrapper -->
 							<div class="contentWrapper">
 								<?php the_content();?>
 							</div>
 							<!-- content wrapper end -->
-							
+
 							<!-- share via -->
 							<div class="shareVia">
 								<span>Share via : </span>
@@ -150,7 +150,7 @@ $blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the topcoder 
 							</div>
 							<!-- share via End -->
 						</section>
-						
+
 						<?php
 							$tags = get_the_tags();
 							if($tags!=null):
@@ -167,11 +167,11 @@ $blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the topcoder 
 											}
 										}
 										echo trim($output, $separator);
-									?>	
+									?>
 						</div>
 						<!-- Post Tags End -->
 						<?php endif; ?>
-						
+
 						<?php
 							$prevPostObj = get_previous_post();
 							$nextPostObj = get_next_post();
@@ -185,7 +185,7 @@ $blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the topcoder 
 									<a class="navLink prev" href="<?php echo get_post_permalink($prevPostObj->ID);?>">Prev</a>
 								</div>
 							<?php endif; ?>
-							
+
 							<?php if($nextPostObj!=null) :?>
 								<div class="postNavBox rightNav">
 									<a href="<?php echo get_post_permalink($nextPostObj->ID);?>" class="blueLink"><?php echo $nextPostObj->post_title;?></a>
@@ -195,18 +195,18 @@ $blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the topcoder 
 							</div>
 							<!-- Post Nav -->
 						<?php endif; ?>
-						
+
 					<?php endif; wp_reset_query();?>
-						
-					
+
+
 						<!-- /.pageContent -->
 						<?php comments_template(); ?>
 					</div>
 					<!-- /.mainStream -->
 					<aside class="sideStream  grid-1-3">
-						
+
 						<?php get_sidebar("blog"); ?>
-						
+
 					</aside>
 					<!-- /.sideStream -->
 					<div class="clear"></div>

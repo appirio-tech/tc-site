@@ -186,6 +186,153 @@ Register modal
     color: #666;
 }
 
+	#register .content h3,
+	#login .content h3 {
+		padding: 0px 0 3px;
+		border-bottom: 1px solid #e7e7e7;
+		font-size: 18px;
+		color: #333;
+	}
+	#register #socials,
+	#login #socials {
+		padding: 4px 0 6px;
+	}
+
+		#register #socials a,
+		#register #socials p,
+		#login #socials a,
+		#login #socials p {
+			float: left;
+			margin-right: 15px;
+		}
+
+		#register #socials p,
+		#login #socials p {
+			padding: 5px 0 5px 30px;
+			line-height: 18px;
+		}
+
+	#register form,
+	#register form p.row,
+	#login form,
+	#login form p.row {
+		padding: 2px 0 0;
+		line-height: 26px;
+	}
+
+		#register form p.row.lSpace {
+			margin-left: 200px;
+		}
+		#login form p.row.lSpace {
+			margin-left: 100px;
+		}
+
+		#register form p.row.info,
+		#login form p.row.info {
+			width: 349px;
+			font-size: 12px;
+			padding: 0;
+			line-height: 17px;
+		}
+		#register form p.row.btns,
+		#login form p.row.btns {
+			padding: 4px 0;
+		}
+
+			#register form p.row label,
+			#login form p.row label {
+				display: inline-block;
+				width: 180px;
+				text-align: right;
+				padding-right: 15px;
+				color: #333;
+			}
+			#login form p.row label{
+				width: 80px;
+			}
+			#register form p.row.lSpace label,
+			#login form p.row.lSpace label {
+				width: 349px;
+				text-align: left;
+				padding: 0;
+			}
+				#register input[type="checkbox"],
+				#login input[type="checkbox"] {
+					margin: 0 4px 0 0;
+				}
+			#register form p.row input[type="text"],
+			#register form p.row input[type="password"],
+			#login form p.row input[type="text"],
+			#login form p.row input[type="password"],
+			#login form p.row .customSelect{
+				width: 336px;
+				background: #fafafa;
+				border: 1px solid #e1e1e1;
+				height: 22px;
+				line-height: 16px;
+			}
+			#register form p.row input[type="text"].invalid,
+			#register form p.row input[type="password"].invalid,
+			#login form p.row input[type="text"].invalid,
+			#login form p.row input[type="password"].invalid {
+				background: #ffedee;
+				border: 1px solid #c00;
+			}
+
+			#register form p.row span.err1,
+			#register form p.row span.err2,
+			#register form p.row span.err3,
+			#register form p.row span.err4,
+			#register form p.row span.err5,
+			#register form p.row span.err6,
+			#register form p.row span.err7,
+			#loginForm span.err4,
+			#loginForm span.err3,
+			#login form p.row span.err1,
+			#login form p.row span.err2 {
+				margin-left: 14px;
+				color: #c00;
+				display: none;
+			}
+
+			#login form p.row span.err1 {
+				position: relative;
+				top: 15px;
+			}
+
+			#register form p.row span.valid {
+				background: transparent url(../i/validation-tick.png) no-repeat left center;
+				display: none;
+				min-width: 18px;
+				height: 18px;
+				padding-left: 27px;
+				margin-left: 14px;
+				vertical-align: middle;
+				color: #7abd00;
+			}
+
+			/* strength password */
+			#register form p.row.info .strength{
+				color: #c00;
+				float: right;
+			}
+				#register form p.row.info .strength span.field {
+					display: inline-block;
+					background: #ddd;
+					width: 12px;
+					height: 7px;
+				}
+				#register form p.row.info .strength span.field.green {
+					background: #7abd00;
+				}
+				#register form p.row.info .strength span.field.red {
+					background: #f00;
+				}
+	#register  p.submitBtn {
+		margin: 2px auto;
+		text-align: center;
+	}
+
 #register .content h2,
 #login .content h2 {
     padding-bottom: 3px;

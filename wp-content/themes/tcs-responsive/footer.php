@@ -121,80 +121,61 @@ $blog_posts = get_posts( $blog_posts_args );
 
 
 <div id="bgModal"></div><!-- background modal -->
-<div id="thanks" class="modal">
-  <a href="javascript:;" class="closeBtn closeModal"></a>
-  <div class="content">
-    <h2>Thanks for joining!</h2>
-    <p>We have sent you an email with activation instructions.<br />If you do not receive that email within 1 hour, please email <a href="mailto:support@topcoder.com">support@topcoder.com</a></p>
-    <div>
-      <a href="/" class="btn closeModal">Close</a>
-    </div>
-  </div>
-</div><!-- END #thanks -->
-<div id="registerSuccess" class="modal">
-  <a href="javascript:;" class="btnClose closeModal"></a>
-  <div class="content">
-    <h2>Registered!</h2>
-    <p class="success">Thank you for registering. You may now download the challenge files and participate in the challenge forums.</p>
-    <p class="submitBtn">
-      <a class="btn closeModal" href="javascript:;">Ok</a>
-    </p>
-  </div>
-</div><!-- END #registerSuccess -->
-<div id="registerFailed" class="modal">
-  <a href="javascript:;" class="btnClose closeModal"></a>
-  <div class="content">
-    <h2>Info</h2>
-    <p class="failedMessage"></p>
-    <p class="submitBtn">
-      <a class="btn closeModal" href="javascript:;">Ok</a>
-    </p>
-  </div>
-</div><!-- END #registerFailed -->
-<div id="register" class="modal">
-<a href="javascript:;" class="btnClose closeModal"></a>
-<div class="content">
-<h2>Register Using An Existing Account</h2>
-<div id="socials">
-  <a class="register-facebook" href="javascript:;"><span class="animeButton shareFacebook"><span class="shareFacebookHover animeButtonHover"></span></span></a>
-  <a class="register-google" href="javascript:;"><span class="animeButton shareGoogle"><span class="shareGoogleHover animeButtonHover"></span></span></a>
-  <a class="register-twitter" href="javascript:;"><span class="animeButton shareTwitter"><span class="shareTwitterHover animeButtonHover"></span></span></a>
-  <a class="register-github" href="javascript:;"><span class="animeButton shareGithub"><span class="shareGithubHover animeButtonHover"></span></span></a>
-  <p>Using an existing account is quick and easy.<br />Select the account you would like to use and we'll do the rest for you</p>
-  <div class="clear"></div>
-</div><!-- END .socials -->
-<h2>Or Register Using Your Email</h2>
-<form class="register" id="registerForm">
-<p class="row">
-  <label>First Name</label>
-  <input type="text" class="name firstName" placeholder="First Name"/>
-  <span class="err1">Required field</span>
-  <span class="err2">Maximum length is 64 characters</span>
-  <span class="valid"></span>
-</p>
-<p class="row">
-  <label>Last Name</label>
-  <input type="text" class="name lastName" placeholder="Last Name"/>
-  <span class="err1">Required field</span>
-  <span class="err2">Maximum length is 64 characters</span>
-  <span class="valid"></span>
-</p>
-<p class="row">
-  <label>Handle</label>
-  <input type="text" class="handle name" placeholder="Handle"/>
-  <span class="err1">Required field</span>
-  <span class="err2">Handle already exists or is invalid</span>
-  <span class="err3">Handle cannot contain a space</span>
-  <span class="err4">Handle cannot consist solely of punctuation</span>
-  <span class="err5">Handle contains invalid characters</span>
-  <span class="err6">Handle cannot start with "admin"</span>
-  <span class="valid"></span>
-</p>
-<p class="row">
-<label>Country</label>
-<select name="user.country" id="selCountry">
-<option value="">Please Select</option>
-<option value="Afganistan">Afghanistan</option>
+	<div id="thanks" class="modal">
+		<a href="javascript:;" class="closeBtn closeModal"></a>
+		<div class="content">
+			<h2>Thanks for joining!</h2>
+			<p>We have sent you an email with activation instructions.<br />If you do not receive that email within 1 hour, please email <a href="mailto:support@topcoder.com">support@topcoder.com</a></p>
+			<div>
+				<a href="/" class="btn closeModal">Close</a>
+			</div>
+		</div>
+	</div><!-- END #thanks -->
+	<div id="register" class="modal">
+		<a href="javascript:;" class="btnClose closeModal"></a>
+		<div class="content">
+			<h2>Register Using An Existing Account</h2>
+			<div id="socials">
+				<a class="register-facebook" href="javascript:;"><span class="animeButton shareFacebook"><span class="shareFacebookHover animeButtonHover"></span></span></a>
+				<a class="register-google" href="javascript:;"><span class="animeButton shareGoogle"><span class="shareGoogleHover animeButtonHover"></span></span></a>
+				<a class="register-twitter" href="javascript:;"><span class="animeButton shareTwitter"><span class="shareTwitterHover animeButtonHover"></span></span></a>
+				<a class="register-github" href="javascript:;"><span class="animeButton shareGithub"><span class="shareGithubHover animeButtonHover"></span></span></a>
+				<p>Using an existing account is quick and easy.<br />Select the account you would like to use and we'll do the rest for you</p>
+				<div class="clear"></div>
+			</div><!-- END .socials -->
+			<h2>Or Register Using Your Email</h2>
+			<form class="register" id="registerForm">
+				<p class="row">
+					<label>First Name</label>
+					<input type="text" class="name firstName" placeholder="First Name"/>
+					<span class="err1">Required field</span>
+					<span class="err2">Maximum length is 64 characters</span>
+					<span class="valid"></span>
+				</p>
+				<p class="row">
+					<label>Last Name</label>
+					<input type="text" class="name lastName" placeholder="Last Name"/>
+					<span class="err1">Required field</span>
+					<span class="err2">Maximum length is 64 characters</span>
+					<span class="valid"></span>
+				</p>
+				<p class="row">
+					<label>Handle</label>
+					<input type="text" class="handle name" placeholder="Handle"/>
+					<span class="err1">Required field</span>
+					<span class="err2">Handle already exists or is invalid</span>
+					<span class="err3">Handle cannot contain a space</span>
+					<span class="err4">Handle cannot consist solely of punctuation</span>
+					<span class="err5">Handle contains invalid characters</span>
+					<span class="err6">Handle cannot start with "admin"</span>
+					<span class="err7">Handle must be between 2 and 15 characters long</span>
+					<span class="valid"></span>
+				</p>
+				<p class="row">
+					<label>Country</label>
+					<select name="user.country" id="selCountry">
+						<option value="">Please Select</option>
+					<option value="Afganistan">Afghanistan</option>
 <option value="Albania">Albania</option>
 <option value="Algeria">Algeria</option>
 <option value="American Samoa">American Samoa</option>
@@ -441,26 +422,26 @@ $blog_posts = get_posts( $blog_posts_args );
 <option value="Zaire">Zaire</option>
 <option value="Zambia">Zambia</option>
 <option value="Zimbabwe">Zimbabwe</option>
-</select>
-<span class="err1">Required field</span>
-<span class="valid"></span>
-</p>
-<p class="row">
-  <label>Email</label>
-  <input type="text" class="email" placeholder="Email"/>
-  <span class="err1">Required field</span>
-  <span class="err2">Invalid email address</span>
-  <span class="valid"></span>
-</p>
-<p class="row">
-  <label>Password</label>
-  <input type="password" class="pwd" placeholder="Password"/>
-  <span class="err1">Required field</span>
-  <span class="err2">Password strength is weak</span>
-  <span class="err4">Password must be between 7 and 30 characters</span>
-  <span class="valid">Strong</span>
-</p>
-<p class="row info lSpace">
+					</select>
+					<span class="err1">Required field</span>
+					<span class="valid"></span>
+				</p>
+				<p class="row">
+					<label>Email</label>
+					<input type="text" class="email" placeholder="Email"/>
+					<span class="err1">Required field</span>
+					<span class="err2">Invalid email address</span>
+					<span class="valid"></span>
+				</p>
+				<p class="row">
+					<label>Password</label>
+					<input type="password" class="pwd" placeholder="Password"/>
+					<span class="err1">Required field</span>
+					<span class="err2">Password strength is weak</span>
+					<span class="err4">Password must be between 7 and 30 characters</span>
+					<span class="valid">Strong</span>
+				</p>
+				<p class="row info lSpace">
 					<span class="strength">
 						<span class="field"></span>
 						<span class="field"></span>
