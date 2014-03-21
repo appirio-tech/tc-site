@@ -154,6 +154,23 @@ function themeoptions_page() {
           </td>
         </tr>
       </table>
+
+      <h3>Post Domain Copy</h3>
+      <table width="100%">
+        <tr>
+          <?php $field="postCopy"; ?>
+          <td width="150"><label for="<?php $field; ?>">Preform Post Domain Copy Steps:</label></td>
+          <td>
+            <input type="radio" name="<?php echo $field; ?>" value="1" <?php if (get_option($field) == 1): ?>checked="checked"<?php endif; ?> /> Yes
+            <input type="radio" name="<?php echo $field; ?>" value="0" <?php if (get_option($field) != 1): ?>checked="checked"<?php endif; ?> /> No
+          </td>
+        </tr>
+        <tr>
+          <?php $field = 'newURL'; ?>
+          <td><label for="<?php echo $field; ?>">New Site URL:</label></td>
+          <td><input type="text" id="<?php echo $field; ?>" name="<?php echo $field; ?>" size="100" /></td>
+        </tr>
+      </table>
       <p>
         <input type="submit" name="submit" value="Update Options" class="button button-primary" />
       </p>
@@ -217,7 +234,13 @@ function themeoptions_update() {
   update_option ( 'jsCssUseMin', $_POST['jsCssUseMin'] );
 
   if ($_POST['jssCssReset'] === "1") {
-    delete_transient('tsc_get_asset_map');
+    locate_template("lib/post_copy.php", TRUE);
+    tc_clear_resgistry_cache();
+  }
+
+  if ($_POST['postCopy']) {
+    locate_template("lib/post_copy.php", TRUE);
+    tc_post_copy_steps(array('new_url' => $_POST['newURL']));
   }
 
 }
