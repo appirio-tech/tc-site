@@ -211,7 +211,7 @@ function tsc_register_master($assets) {
   add_filter('script_loader_src', 'tsc_jquery_local_fallback', 10, 2);
 
   // Always include auth0
-  wp_register_script("auth0", $assets['auth0'], array("auth0"), null, true);
+  wp_register_script("auth0", $assets['auth0'], array(), null, true);
   wp_enqueue_script("auth0");
 }
 
