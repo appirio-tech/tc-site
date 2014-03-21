@@ -646,10 +646,10 @@ $blog_posts = get_posts($blog_posts_args);
       redirect_uri: 'http://www.topcoder.com/'
     });
 
-    auth0Register.parseHash(window.location.hash, function (profile, id_token, access_token, state) {
+    auth0Register.getProfile(window.location.hash, function (err, profile, id_token, access_token, state) {
       socialProvider = profile.identities[0].connection;
       var firstName = "" , lastName = "", handle = "", email = "";
-      if (socialProvider === googleProvider) {
+      if(socialProvider === googleProvider) {
         firstName = profile.given_name;
         lastName = profile.family_name;
         handle = profile.nickname;
@@ -693,7 +693,10 @@ $blog_posts = get_posts($blog_posts_args);
       $('#register input:password').on('keyup');
       $('select').on('change');
 
-    });
+  }, function(err) {
+    console.log('error');
+    console.log(err);
+  });
 
     $('.register-google').on('click', function () {
       auth0Register.login({
