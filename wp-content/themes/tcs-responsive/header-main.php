@@ -14,6 +14,8 @@ session_start();
 if (isset($_GET['auth']) && $_GET['auth'] == 'logout') {
   unset($_COOKIE['tcsso']);
   setcookie('tcsso', '', time() - 3600, '/', '.topcoder.com');
+  unset($_COOKIE['tcjwt']);
+  setcookie('tcjwt', '', time() - 3600, '/', '.topcoder.com');
 
   /***
    * kill any other sessions or cookie here
@@ -38,7 +40,7 @@ if (isset($_GET['auth']) && $_GET['auth'] == 'logout') {
   <meta charset="utf-8">
   <title><?php bloginfo('name'); ?><?php wp_title(' - ', TRUE, 'left'); ?></title>
   <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="author" content="" >
 
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
@@ -61,21 +63,22 @@ if (isset($_GET['auth']) && $_GET['auth'] == 'logout') {
     var siteURL = '<?php echo get_bloginfo('siteurl');?>';
     var base_url = '<?php echo bloginfo( 'stylesheet_directory' ); ?>';
     var stylesheet_dir = '<?php echo THEME_URL . '/css'; ?>';
+    var autoRegister = '<?php echo get_query_var('autoRegister'); ?>';
   </script>
 
 <?php
 
-  wp_head();
+wp_head();
 
 
-  $urlLogout = add_query_arg('auth', 'logout', get_bloginfo('wpurl'));
-  use Auth0SDK\Auth0;
+$urlLogout = add_query_arg('auth', 'logout', get_bloginfo('wpurl'));
+use Auth0SDK\Auth0;
 
-  $auth0 = new Auth0(array(
-    'domain' => auth0_domain,
-    'client_id' => auth0_client_id,
-    'client_secret' => auth0_client_secret,
-    'redirect_uri' => auth0_redirect_uri
-  ));
+$auth0 = new Auth0(array(
+  'domain' => auth0_domain,
+  'client_id' => auth0_client_id,
+  'client_secret' => auth0_client_secret,
+  'redirect_uri' => auth0_redirect_uri
+));
 
-  fixIERoundedCorder();
+fixIERoundedCorder();

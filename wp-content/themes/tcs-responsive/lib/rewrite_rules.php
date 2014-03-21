@@ -85,6 +85,15 @@ add_rewrite_rule(
 // challenges
 add_rewrite_rule('^challenges/([^/]*)/?$', 'index.php?pagename=challenge-details&contestID=$matches[1]', 'top');
 
+// challenge terms
+add_rewrite_rule( '^terms/([^/]*)/?$', 'index.php?pagename=terms-list&contestID=$matches[1]', 'top');
+
+// challenge term details
+add_rewrite_rule( '^terms/detail/([^/]*)/?$', 'index.php?pagename=term-details&termsOfUseID=$matches[1]', 'top');
+
+// register to challenge
+add_rewrite_rule( '^action/register/([^/]*)/?$', 'index.php?pagename=challenge-details&contestID=$matches[1]&autoRegister=true', 'top');
+
 // Blog search
 //add_rewrite_rule('^'.BLOG_PERMALINK.'/?$', 'index.php?', 'top');
 // Active Challenges

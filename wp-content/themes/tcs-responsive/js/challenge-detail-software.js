@@ -135,7 +135,7 @@ var getElementsByClassName = function (searchClass, node, tag) {
     }
     return returnElements;
   }
-}
+};
 
 function hasClass(obj, cls) {
   return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
@@ -176,8 +176,8 @@ function enterTooltip(num) {
 }
 
 function ieHack() {
-  var browser = navigator.appName
-  var b_version = navigator.appVersion
+  var browser = navigator.appName;
+  var b_version = navigator.appVersion;
   var version = b_version.split(";");
   if (version[1]) {
     var trim_Version = version[1].replace(/[ ]/g, "");
@@ -256,18 +256,58 @@ $(function () {
       $(".additionalPrizes").addClass("hide");
     }
   });
-  // S-194724 
- var tcsso = getCookie('tcsso');
-               if(tcsso){
-		var tcssoValues = tcsso.split("|");
-		var now = new Date();
-	
-		if (now.getTime() < registrationUntil.getTime()) {
-			$('#registrationButton').removeClass('disabled');
-		}			
-		if (now.getTime() < submissionUntil.getTime() && registrants.indexOf(uid) > -1) {
-			$('#submissionButton').removeClass('disabled');
-		}			
-	}
 
-}); 
+  $(".challengeRegisterBtn").click(function () {
+    var tcjwt = getCookie('tcjwt');
+    if(tcjwt){
+      if ($('.loading').length <= 0) {
+        $('body').append('<div class="loading">Loading...</div>');
+      } else {
+        $('.loading').show();
+      }
+      $.getJSON(ajaxUrl, {
+        "action": "register_to_challenge",
+        "challengeId": challengeId,
+        "jwtToken": tcjwt.replace(/["]/g, "")
+      }, function(data) {
+        $('.loading').hide();
+        if(data["message"] === "ok"){
+          showModal("#registerSuccess");
+        } else if(data["error"]["details"] === "You should agree with all terms of use.") {
+          window.location = siteURL + "/terms/" + challengeId;
+        } else if(data["error"]["details"]){
+          $("#registerFailed .failedMessage").text(data["error"]["details"]);
+          showModal("#registerFailed");
+        }
+      });
+    } else {
+      $('.actionLogin').click();
+    }
+  });
+
+  if(autoRegister){
+    $(".challengeRegisterBtn").click();
+  }
+
+  $("#registerSuccess .closeModal").click(function() {
+    closeModal();
+    window.location.reload(true);
+  });
+
+  // S-194724
+  var tcsso = getCookie('tcsso');
+  if(tcsso){
+    var tcssoValues = tcsso.split("|");
+    var now = new Date();
+
+    if (typeof registrationUntil !== "undefined") {
+      if (now.getTime() < registrationUntil.getTime()) {
+        $('#registrationButton').removeClass('disabled');
+      }
+      if (now.getTime() < submissionUntil.getTime() && registrants.indexOf(tcssoValues[0]) > -1) {
+        $('#submissionButton').removeClass('disabled');
+      }
+    }
+  }
+
+});

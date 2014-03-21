@@ -1,31 +1,5 @@
 $(function () {
 
-
-  // modal
-  /**
-   * show modal
-   * selector - the jQuery selector of the popup
-   */
-  function showModal(selector) {
-    var modal = $(selector);
-    $('#bgModal').show();
-    modal.show();
-    centerModal();
-  };
-
-  function centerModal(selector) {
-    var modal = $('.modal:visible');
-    if ($(window).width() >= 1003 || $('html').is('.ie6, .ie7, .ie8'))
-      modal.css('margin', -modal.height() / 2 + 'px 0 0 ' + (-modal.width() / 2) + 'px');
-    else {
-      modal.css('margin', '0');
-    }
-  }
-
-  function closeModal() {
-    $('.modal,#bgModal').hide();
-  };
-
   $(window).on('resize', function () {
     centerModal();
   });
@@ -57,8 +31,8 @@ $(function () {
   });
 
   $('.closeModal,#bgModal').on('click', function () {
-    window.location.replace('/');
-    // closeModal();
+    //window.location.replace('/');
+    closeModal();
   });
 
 
@@ -67,7 +41,7 @@ $(function () {
   function isValidEmailAddress(emailAddress) {
     var pattern = new RegExp("(^[\\+_A-Za-z0-9-]+(\\.[\\+_A-Za-z0-9-]+)*@.+(\\.[A-Za-z]{2,}$))");
     return pattern.test(emailAddress);
-  };
+  }
 
 
   function pwdStrength(pwd) {
@@ -581,6 +555,31 @@ $(function () {
     });
   });
 });
+
+// modal
+/**
+ * show modal
+ * selector - the jQuery selector of the popup
+ */
+function showModal(selector) {
+  var modal = $(selector);
+  $('#bgModal').show();
+  modal.show();
+  centerModal();
+}
+
+function centerModal(selector) {
+  var modal = $('.modal:visible');
+  if ($(window).width() >= 1003 || $('html').is('.ie6, .ie7, .ie8'))
+    modal.css('margin', -modal.height() / 2 + 'px 0 0 ' + (-modal.width() / 2) + 'px');
+  else {
+    modal.css('margin', '0');
+  }
+}
+
+function closeModal() {
+  $('.modal,#bgModal').hide();
+}
 
 // Resets the registration popup fields
 function resetRegisterFields() {

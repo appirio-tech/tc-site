@@ -151,13 +151,13 @@ var app = {
       });
 
       /*$('.dataChanges .viewAll').on(ev, function () {
-        app.setLoading();
-        $.getJSON(url, function (data) {
-          app.getPartialContestTable($('.challenges'), data, 1000);
-        });
-        $('.rt', $(this).closest('.dataChanges')).hide();
-        $(this).parent().hide();
-      });*/
+       app.setLoading();
+       $.getJSON(url, function (data) {
+       app.getPartialContestTable($('.challenges'), data, 1000);
+       });
+       $('.rt', $(this).closest('.dataChanges')).hide();
+       $(this).parent().hide();
+       });*/
     }
 
   },
@@ -359,7 +359,7 @@ var app = {
     });
   }
 
-}
+};
 var blueprints = {
   challengeRow: '<tr> \
 						<td class="colCh"><div>\
@@ -438,10 +438,10 @@ var blueprints = {
 										</p>\
 									</div>\
 								</div>'
-}
+};
 
 // everythings begins from here
 $(document).ready(function () {
   app.init();
   app.initEvents();
-})
+});
