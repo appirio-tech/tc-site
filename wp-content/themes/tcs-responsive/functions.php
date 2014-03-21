@@ -16,7 +16,7 @@ define("auth0_redirect_uri",$auth0_cfg['redirect_uri']);
 
 define("BLOG", "blog");
 
-locate_template("config/dev.php", TRUE);
+locate_template('config/env.php', TRUE);
 locate_template('lib/scripts.php', TRUE);
 locate_template('lib/widget.php', TRUE);
 locate_template("config/rewrite-config.php", TRUE);

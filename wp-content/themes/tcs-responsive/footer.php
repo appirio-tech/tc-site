@@ -621,29 +621,29 @@ $blog_posts = get_posts($blog_posts_args);
     var twitterProvider = "twitter";
     var githubProvider = "github";
     <?php
-    $urlFromDiscourse = urldecode( $_GET["url"] );
-    $stateLogin = "http://www.topcoder.com/";
-    if ( preg_match('/sso=(.*)&sig=(.*)$/', $urlFromDiscourse, $matches) ){
-      $sso = $matches[1];
-      $sig = $matches[2];
-      $stateLogin = "http://talk.topcoder.com/session/sso_login?sso=$sso&sig=$sig";
-    }
+      $urlFromDiscourse = urldecode( $_GET["url"] );
+
+      if ( preg_match('/sso=(.*)&sig=(.*)$/', $urlFromDiscourse, $matches) ){
+        $sso = $matches[1];
+        $sig = $matches[2];
+        $stateLogin = "http://talk.topcoder.com/session/sso_login?sso=$sso&sig=$sig";
+      }
 
     ?>
     var auth0Login = new Auth0({
       domain: 'topcoder.auth0.com',
       clientID: '6ZwZEUo2ZK4c50aLPpgupeg5v2Ffxp9P',
       callbackURL: 'https://www.topcoder.com/reg2/callback.action',
-      state: '<?php echo $stateLogin;?>',
-      redirect_uri: 'http://www.topcoder.com/'
+      state: window.location.href,
+      redirect_uri: window.location.href'
     });
 
     var auth0Register = new Auth0({
       domain: 'topcoder.auth0.com',
       clientID: '6ZwZEUo2ZK4c50aLPpgupeg5v2Ffxp9P',
       callbackURL: 'http://www.topcoder.com/?action=callback',
-      state: 'http://www.topcoder.com/',
-      redirect_uri: 'http://www.topcoder.com/'
+      state: window.location.href,
+      redirect_uri: window.location.href'
     });
 
     auth0Register.parseHash(window.location.hash, function (profile, id_token, access_token, state) {
