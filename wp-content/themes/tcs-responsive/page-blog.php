@@ -26,12 +26,12 @@ $blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the topcoder 
 	<div id="main">
 
 	<?php
-	
+
 	if (have_posts ()) :
 		the_post ();
 		?>
 	<!-- Start Overview Page-->
-		
+
 		<!-- page title -->
 		<div class="pageTitleWrapper">
 			<div class="pageTitle container">
@@ -78,7 +78,7 @@ $blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the topcoder 
 						<div class="blogsWrapper">
 							<input type="hidden" class="pageNo" value="<?php echo $currPage; ?>" />
 							<input type="hidden" class="catId" value="" />
-						<?php 
+						<?php
 							wp_reset_query();
 							$args = "post_type=".BLOG;
 							$args .= "&order=DESC";
@@ -86,35 +86,35 @@ $blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the topcoder 
 								$args .= "&posts_per_page=".$postPerPage;
 								$args .= "&paged=$currPage";
 							}
-							
+
 							query_posts($args);
 							if ( have_posts() ) :
-								while ( have_posts() ) : 
+								while ( have_posts() ) :
 									the_post();
 									$postId = $post->ID;
 									$image = wp_get_attachment_image_src( get_post_thumbnail_id( $postId ), 'blog-thumb' );
 									if($image!=null) $imageUrl = $image[0];
 									else $imageUrl = get_bloginfo('stylesheet_directory')."/i/blog-thumb-placeholder.png";
-									
+
 									$imageMobile = wp_get_attachment_image_src( get_post_thumbnail_id( $postId ), 'blog-thumb' );
 									if($imageMobile!=null) $imageUrlMobile = $imageMobile[0];
 									else $imageUrlMobile = get_bloginfo('stylesheet_directory')."/i/story-side-pic.png";
-									
+
 									$dateObj = DateTime::createFromFormat('Y-m-d H:i:s', $post->post_date);
 									$dateStr = $dateObj->format('M j, Y');
-									
-									$twitterText = urlencode(wrap_content_strip_html(wpautop($post->post_content), 130, true,'\n\r',''));
+
 									$title = htmlspecialchars($post->post_title);
 									$subject = htmlspecialchars(get_bloginfo('name')).' : '.$title;
 									$body = htmlspecialchars($post->post_content);
-									$email_article = 'mailto:?subject='.rawurlencode($subject).'&body='.get_permalink();
+									$email_article = 'mailto:?subject='.rawurlencode($subject).'&body='.get_permalink($postId);
+									$twitterText = urlencode(wrap_content_strip_html(wpautop($subject."\nUrl: ".get_permalink($postId)), 400, true,'\n\r',''));
 									$twitterShare = "http://twitter.com/home?status=".$twitterText;
-									$fbShare = "http://www.facebook.com/sharer/sharer.php?s=100&p[url]=".get_permalink()."&p[images][0]=".$imageUrl."&p[title]=".get_the_title()."&p[summary]=".$twitterText;
-									$gplusShare = "https://plus.google.com/share?url=".get_permalink();
-									
+									$fbShare = "http://www.facebook.com/sharer/sharer.php?s=100&p[url]=".get_permalink($postId)."&p[images][0]=".$imageUrl."&p[title]=".get_the_title()."&p[summary]=".$twitterText;
+									$gplusShare = "https://plus.google.com/share?url=".get_permalink($postId);
+
 									$authorObj = get_user_by("id",$post->post_author);
 									$authorLink = get_bloginfo("wpurl")."/author/".$authorObj->user_nicename;
-						?>		
+						?>
 							<!-- Blog Item -->
 							<div class="blogItem">
 								<!-- Thumb place holder -->
@@ -123,12 +123,12 @@ $blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the topcoder 
 								</div>
 								<!-- Thumb place holder end -->
 								<a href="<?php the_permalink();?>" class="blogTitle blueLink"><?php the_title();?></a>
-								
+
 								<!-- Blog Desc -->
 								<div class="blogDescBox">
 									<div class="postDate"><?php echo $dateStr;?> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; By:&nbsp;&nbsp;</div>
 									<div class="postAuthor"><a href="<?php echo $authorLink; ?>" class="author blueLink"><?php the_author();?></a></div>
-									<div class="postCategory">In : 
+									<div class="postCategory">In :
 									<?php
 										$categories = get_the_category();
 										$separator = ', ';
@@ -140,11 +140,11 @@ $blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the topcoder 
 											}
 										}
 										echo trim($output, $separator);
-									?>									
+									?>
 									</div>
 								</div>
 								<!-- Blog Desc End -->
-								
+
 								<!-- Blog Right Section -->
 								<div class="blogRightSection">
 									<!-- Imageplacehoder -->
@@ -152,11 +152,11 @@ $blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the topcoder 
 										<a href="<?php the_permalink();?>"><img src="<?php echo $imageUrl;?>" width="158" height="158" alt=""></img></a>
 									</div>
 									<!-- Imageplacehoder End -->
-									
+
 									<!-- Content Right -->
 									<div class="contentRight">
 										<div class="excerpt">
-											<?php 
+											<?php
 												$excerpt = wrap_content_strip_html(wpautop($post->post_content), 400, true,'\n\r','');
 												echo $excerpt;
 											?>
@@ -171,13 +171,13 @@ $blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the topcoder 
 										<a href="<?php the_permalink();?>" class="continueReading">Continue Reading</a>
 									</div>
 									<!-- Content Right End -->
-									
+
 								</div>
 								<!-- Blog Right Section End -->
-								
+
 							</div>
 							<!-- Blog Item End -->
-						<?php 
+						<?php
 								endwhile;
 							endif;
 						?>
@@ -188,39 +188,39 @@ $blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the topcoder 
 							$args .= "&posts_per_page=-1";
 							$wpQueryAll = query_posts($args);
 							$postCount = count($wpQueryAll);
-							
+
 							$prevLink = add_query_arg("pageNo",($currPage-1),$currentUrl);
 							$nextLink = add_query_arg("pageNo",($currPage+1),$currentUrl);
-							
+
 							if($postCount > $postPerPage) :
 						?>
 							<div class="pagingWrapper">
 								<?php if( $postCount > ($currPage * $postPerPage)) : ?><a class="next" href="<?php echo $nextLink;?>">Older Post</a><?php endif;?>
 								<?php if($currPage>1) :?><a class="prev" href="<?php echo $prevLink;?>">Newer Post</a><?php endif; ?>
 							</div>
-						<?php endif; ?>	
-						
+						<?php endif; ?>
+
 							<div class="showMoreWrapper showMoreWrapperMobile">
 								<a id="showMoreBlogPost" href="javascript:;" class="btn">Show More</a>
 								<span class="morePostLoading">&nbsp;</span>
 								<span class="noMorePostExist">No more post exist!</span>
 							</div>
-							
+
 						</section>
 					<?php endif; wp_reset_query();?>
 					<!-- /.pageContent -->
 					</div>
-					
+
 					<!-- /.mainStream -->
 					<aside class="sideStream  grid-1-3">
-						
+
 						<?php get_sidebar("blog"); ?>
-						
+
 					</aside>
 					<!-- /.sideStream -->
-					
+
 					<div class="clear"></div>
-					
+
 				</div>
 				<!-- /.rightSplit -->
 			</div>

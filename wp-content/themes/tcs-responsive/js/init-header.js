@@ -71,6 +71,7 @@ $(document).ready(function() {
               // Clear local tcsso cookie on logout
               $('.logoutLink, .actionLogout').click(function() {
                   document.cookie = 'tcsso=; path=/; domain=.topcoder.com; expires=' + new Date(0).toUTCString();
+                  document.cookie = 'tcjwt=; path=/; domain=.topcoder.com; expires=' + new Date(0).toUTCString();
                   // check if we have the weird facebook hash
                   // if so, redirect to root
                   if (window.location.hash == '#_=_') {

@@ -29,7 +29,7 @@ function tcs_responsive_scripts() {
 
   $jsCssUseMin = get_option("jsCssUseMin", false);
   $template_map = tsc_get_asset_map();
-  $page_template = $page_template = get_page_template_slug(get_queried_object_id());
+  $page_template = get_page_template_slug(get_queried_object_id());
   $ver = get_option('jsCssVersioning') == 1 ? get_option('jsCssCurrentVersion') : '1';
   $jsCssUseCDN = get_option("jsCssUseCDN", false);
 

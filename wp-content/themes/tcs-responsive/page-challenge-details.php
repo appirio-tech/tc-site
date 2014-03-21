@@ -1,30 +1,26 @@
-<?php 
-add_action ( 'wp_head', 'my_js_variables' );
-function my_js_variables(){ 
-	global $contest;
-	?>
-  <script type="text/javascript">
-   var registrationUntil = new Date(<?php echo strtotime("$contest->registrationEndDate");?>*1000);
-				var submissionUntil = new Date(<?php echo strtotime("$contest->submissionEndDate");?>*1000);
-							var uid = tcssoValues[0];
-				var registrants = ["anonymous"
-	<?php
-	  for ($i = 0; $i < count($registrants); $i++) :
-		$registrant = $registrants[$i];
-		echo ',"'.$registrant->handle.'"';
-	  endfor;
-	?>
-	];
-  </script>
-  <?php
-}
-?>
-
-
-
-
 <?php
-get_header('challenge-landing');
+add_action ( 'wp_head', 'tc_challenge_details_js' );
+function tc_challenge_details_js(){
+  global $contest, $contestType, $contestID, $registrants;
+  ?>
+  <script type="text/javascript">
+    var registrationUntil = new Date(<?php echo strtotime("$contest->registrationEndDate");?>*1000);
+    var submissionUntil = new Date(<?php echo strtotime("$contest->submissionEndDate");?>*1000);
+    var challengeId = "<?php echo $contestID;?>";
+    var challengeType = "<?php echo $contestType;?>";
+    var autoRegister = "<?php echo get_query_var('autoRegister');?>";
+
+    var registrants = ["anonymous"
+      <?php
+        for ($i = 0; $i < count($registrants); $i++) :
+          $registrant = $registrants[$i];
+          echo ',"'.$registrant->handle.'"';
+        endfor;
+      ?>
+    ];
+  </script>
+<?php
+}
 
 $tzstring = get_option('timezone_string');
 
@@ -81,7 +77,7 @@ $contestID = get_query_var('contestID');
 //$contestType = get_query_var ( 'type' );
 $contestType = $_GET['type'];
 $contest = get_contest_detail('', $contestID, $contestType);
-$registrants = $contest->registrants;
+$registrants = empty($contest->registrants) ? array() : $contest->registrants;
 
 
 // Ad submission dates to registrants
@@ -161,11 +157,9 @@ function createDevelopSubmissionMap($contest) {
 }
 
 $documents = $contest->Documents;
-
-// get contest details
-$contest_type = $contestType;
-$contest_type = str_replace("_", " ", $contest_type);
 $postPerPage = get_option("contest_per_page") == "" ? 30 : get_option("contest_per_page");
+
+get_header('challenge-landing');
 
 ?>
 
@@ -185,20 +179,28 @@ $postPerPage = get_option("contest_per_page") == "" ? 30 : get_option("contest_p
 <div class="container">
 
 <div class="leftColumn">
-  <?php 
-								if ( $contestType != 'design' ):
-								?>								
-									<a id="registrationButton" class="btn btnAction disabled" target="_blank" href="http://community.topcoder.com/tc?module=ViewRegistration&pj=<?php echo $contestID;?>"><span>1</span> <strong>Register For This Challenge</strong></a>
-									<a id="submissionButton" class="btn btnAction disabled" target="_blank" href="https://software.topcoder.com/review/actions/UploadContestSubmission.do?method=uploadContestSubmission&pid=<?php echo $contestID ;?>"><span>2</span> <strong>Submit Your Entries</strong></a> 
-								<?php
-								else:
-								?>
-									<a id="registrationButton" class="btn btnAction disabled" target="_blank" href="http://studio.topcoder.com/?module=ViewRegistration&ct=<?php echo $contestID  ;?>"><span>1</span> <strong>Register For This Challenge</strong></a>
-									<a id="submissionButton" class="btn btnAction disabled" target="_blank" href="http://studio.topcoder.com/?module=ViewRegistration&ct=<?php echo $contestID  ;?>"><span>2</span> <strong>Submit Your Entries</strong></a>
-									<a class="btn btnAction" target="_blank" href="http://studio.topcoder.com/?module=ViewSubmission&ct=<?php echo $contestID  ;?>"><span>3</span> <strong>View Your Submission</strong></a>
-								<?php
-								endif;
- ?>
+  <?php
+  if ($contestType != 'design'):
+    ?>
+    <a class="btn btnAction challengeRegisterBtn" target="_blank" href="javascript:;"><span>1</span>
+      <strong>Register For This Challenge</strong></a>
+    <a class="btn btnAction" target="_blank"
+       href="https://software.topcoder.com/review/actions/UploadContestSubmission.do?method=uploadContestSubmission&pid=<?php echo $contestID; ?>"><span>2</span>
+      <strong>Submit Your Entries</strong></a>
+  <?php
+  else:
+    ?>
+    <a class="btn btnAction challengeRegisterBtn" target="_blank" href="javascript:;"><span>1</span> <strong>Register
+        For This Challenge</strong></a>
+    <a class="btn btnAction" target="_blank"
+       href="http://studio.topcoder.com/?module=ViewRegistration&ct=<?php echo $contestID; ?>"><span>2</span> <strong>Submit
+        Your Entries</strong></a>
+    <a class="btn btnAction" target="_blank"
+       href="http://studio.topcoder.com/?module=ViewSubmission&ct=<?php echo $contestID; ?>"><span>3</span> <strong>View
+        Your Submission</strong></a>
+  <?php
+  endif;
+  ?>
 </div>
 <?php
 if ($contestType != 'design'):
@@ -661,8 +663,8 @@ if (sizeof($contest->prize) > 5) {
       </div>
       <span class="timeLeft">
       <?php
-        $remaining = secondsToTime($contest->currentPhaseRemainingTime);
-        echo ($contest->currentStatus == 'Completed' || $contest->currentStatus == 'Deleted') ? "" : $remaining['d'] . " <small>Days</small> " . $remaining['h'] . " <small>Hours</small> " . $remaining['m'] . " <small>Mins</small>";
+      $remaining = secondsToTime($contest->currentPhaseRemainingTime);
+      echo ($contest->currentStatus == 'Completed' || $contest->currentStatus == 'Deleted') ? "" : $remaining['d'] . " <small>Days</small> " . $remaining['h'] . " <small>Hours</small> " . $remaining['m'] . " <small>Mins</small>";
       ?>
       </span>
     </div>
