@@ -135,7 +135,7 @@ var getElementsByClassName = function (searchClass, node, tag) {
     }
     return returnElements;
   }
-}
+};
 
 function hasClass(obj, cls) {
   return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
@@ -176,8 +176,8 @@ function enterTooltip(num) {
 }
 
 function ieHack() {
-  var browser = navigator.appName
-  var b_version = navigator.appVersion
+  var browser = navigator.appName;
+  var b_version = navigator.appVersion;
   var version = b_version.split(";");
   if (version[1]) {
     var trim_Version = version[1].replace(/[ ]/g, "");
