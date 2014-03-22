@@ -15,24 +15,14 @@ if($rating>0){
 
 ?>
 
-
-
 <div id="marathon" class="tab algoLayout">
 	<div class="ratingInfo">
 		<div class="subTrackTabs">
 			<nav class="tabNav">
-				<table>
-					<colgroup>
-						<col width="50%" />
-						<col width="50%" />
-					</colgroup>
-					<thead class="tabNavHead">
-						<tr>
-							<th><a href="?tab=algo" class="link">Algorithm</a></th>
-							<th><a href="?tab=algo&ct=marathon" class="isActive link">Marathon</a></th>
-						</tr>
-					</thead>
-				</table>
+				<ul>
+					<li><a href="?tab=algo" class="isActive link">Algorithm</a></li>
+					<li><a href="?tab=algo&ct=marathon" class="link">Marathon</a></li>
+				</ul>
 			</nav>
 		</div>
 		<?php if($rating>0):?>

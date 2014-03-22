@@ -13,9 +13,10 @@ echo "<script>
 		</script>";
 
 $tracks = $coder->Tracks;
+
 if ($track == "develop") {
 	$activeTrack = 'Development';
-	$currentChallengetype = 'Development'; 
+	$currentChallengetype = 'Development';
 }
 if(!empty($ct)){
 	$currentChallengeId = $ct;
@@ -43,9 +44,7 @@ array_push ( $challengetypes, 'UI Prototype Competition' );
 
 		<div class="subTrackTabs">
 			<nav class="tabNav">
-				<table>
-					<thead class="tabNavHead">
-						<tr>
+				<ul>
 						<?php
 						foreach ( $challengetypes as &$challengetype ) {
 							if (! empty ( $tracks->{$challengetype} ) && ! empty ( $tracks->{$challengetype}->rating )) {
@@ -63,7 +62,7 @@ array_push ( $challengetypes, 'UI Prototype Competition' );
 								}
 								
 								$class = ($challengeID == $currentChallengeId) ? 'isActive' : '';
-								echo '<th><a class="' . $class . '" href="' . $challengeID . '">' . $challengetype . '</a></th>';
+								echo '<li><a class="' . $class . '" href="' . $challengeID . '">' . $challengetype . '</a></li>';
 							}
 						}
 						if (! empty ( $tracks->{$currentChallengetype} )) {
@@ -72,9 +71,7 @@ array_push ( $challengetypes, 'UI Prototype Competition' );
 							echo "<h3>Develop</h3>";
 						}
 						?>
-						</tr>
-					</thead>
-				</table>
+				</ul>
 			</nav>
 			<?php  if(empty($tracks->{$currentChallengetype})):?>
 			<header class="head">
@@ -279,7 +276,7 @@ array_push ( $challengetypes, 'UI Prototype Competition' );
 	<!-- /.ratingInfo -->
 	<aside class="badges">
 		<header class="head">
-			<h4>Badges Cabinet</h4>
+			<h4>Badges</h4>
 		</header>
 		<?php get_template_part('content', 'badges');?>		
 	</aside>
