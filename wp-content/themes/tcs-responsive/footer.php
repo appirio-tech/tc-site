@@ -621,35 +621,35 @@ $blog_posts = get_posts($blog_posts_args);
     var twitterProvider = "twitter";
     var githubProvider = "github";
     <?php
-    $urlFromDiscourse = urldecode( $_GET["url"] );
-    $stateLogin = "http://www.topcoder.com/";
-    if ( preg_match('/sso=(.*)&sig=(.*)$/', $urlFromDiscourse, $matches) ){
-      $sso = $matches[1];
-      $sig = $matches[2];
-      $stateLogin = "http://talk.topcoder.com/session/sso_login?sso=$sso&sig=$sig";
-    }
+      $urlFromDiscourse = urldecode( $_GET["url"] );
+
+      if ( preg_match('/sso=(.*)&sig=(.*)$/', $urlFromDiscourse, $matches) ){
+        $sso = $matches[1];
+        $sig = $matches[2];
+        $stateLogin = "http://talk.topcoder.com/session/sso_login?sso=$sso&sig=$sig";
+      }
 
     ?>
     var auth0Login = new Auth0({
       domain: 'topcoder.auth0.com',
       clientID: '6ZwZEUo2ZK4c50aLPpgupeg5v2Ffxp9P',
       callbackURL: 'https://www.topcoder.com/reg2/callback.action',
-      state: '<?php echo $stateLogin;?>',
-      redirect_uri: 'http://www.topcoder.com/'
+      state: window.location.href,
+      redirect_uri: window.location.href
     });
 
     var auth0Register = new Auth0({
       domain: 'topcoder.auth0.com',
       clientID: '6ZwZEUo2ZK4c50aLPpgupeg5v2Ffxp9P',
       callbackURL: 'http://www.topcoder.com/?action=callback',
-      state: 'http://www.topcoder.com/',
-      redirect_uri: 'http://www.topcoder.com/'
+      state: window.location.href,
+      redirect_uri: window.location.href
     });
 
-    auth0Register.parseHash(window.location.hash, function (profile, id_token, access_token, state) {
+    auth0Register.getProfile(window.location.hash, function (err, profile, id_token, access_token, state) {
       socialProvider = profile.identities[0].connection;
       var firstName = "" , lastName = "", handle = "", email = "";
-      if (socialProvider === googleProvider) {
+      if(socialProvider === googleProvider) {
         firstName = profile.given_name;
         lastName = profile.family_name;
         handle = profile.nickname;
@@ -693,57 +693,60 @@ $blog_posts = get_posts($blog_posts_args);
       $('#register input:password').on('keyup');
       $('select').on('change');
 
-    });
+  }, function(err) {
+    console.log('error');
+    console.log(err);
+  });
 
     $('.register-google').on('click', function () {
       auth0Register.login({
         connection: googleProvider,
-        state: 'http://www.topcoder.com/',
+        state: window.location.href,
         response_type: 'token'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
     });
 
     $('.register-facebook').on('click', function () {
       auth0Register.login({connection: facebookProvider,
-        state: 'http://www.topcoder.com/',
+        state: window.location.href,
         response_type: 'token'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
     });
 
     $('.register-twitter').on('click', function () {
       auth0Register.login({connection: twitterProvider,
-        state: 'http://www.topcoder.com/',
+        state: window.location.href,
         response_type: 'token'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
     });
 
     $('.register-github').on('click', function () {
       auth0Register.login({connection: githubProvider,
-        state: 'http://www.topcoder.com/',
+        state: window.location.href,
         response_type: 'token'});  // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
     });
 
     $('.signin-google').on('click', function () {
       auth0Login.login({
         connection: 'google-oauth2',
-        state: 'http://www.topcoder.com/'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+        state: window.location.href}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
     });
 
     $('.signin-facebook').on('click', function () {
       auth0Login.login({connection: 'facebook',
-        state: 'http://www.topcoder.com/'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+        state: window.location.href}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
     });
 
     $('.signin-twitter').on('click', function () {
       auth0Login.login({connection: 'twitter',
-        state: 'http://www.topcoder.com/'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+        state: window.location.href}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
     });
 
     $('.signin-github').on('click', function () {
       auth0Login.login({connection: 'github',
-        state: 'http://www.topcoder.com/'});  // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+        state: window.location.href});  // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
     });
 
     $('.signin-etc').on('click', function () {
       auth0Login.login({connection: 'connection-name',
-        state: 'http://www.topcoder.com/'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+        state: window.location.href}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
     });
 
     $('.signin-db').on('click', function () {
@@ -761,7 +764,7 @@ $blog_posts = get_posts($blog_posts_args);
       if (empty) return;
       auth0Login.login({
           connection: 'LDAP',
-          state: 'http://www.topcoder.com/', // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+          state: window.location.href, // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
           username: document.getElementById('username').value,
           password: document.getElementById('password').value
         },

@@ -16,13 +16,13 @@ define("auth0_redirect_uri",$auth0_cfg['redirect_uri']);
 
 define("BLOG", "blog");
 
-locate_template("config/dev.php", TRUE);
+locate_template('config/env.php', TRUE);
 locate_template('lib/scripts.php', TRUE);
 locate_template('lib/widget.php', TRUE);
 locate_template("config/rewrite-config.php", TRUE);
 locate_template('lib/rewrite_rules.php', TRUE);
-locate_template('/lib/options.php', TRUE);
-locate_template('/lib/sidebars.php', TRUE);
+locate_template('lib/options.php', TRUE);
+locate_template('lib/sidebars.php', TRUE);
 locate_template('lib/menu.php', TRUE);
 locate_template('lib/comments.php', TRUE);
 locate_template('lib/meta.php', TRUE);
