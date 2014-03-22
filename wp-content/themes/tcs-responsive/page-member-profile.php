@@ -30,8 +30,6 @@ if (!isset($coder->handle) ) {
 	wp_redirect(site_url('404.php'));
 	exit;
 }
-#print_r($coder);
-
 ?>
 <script type="text/javascript">
 <!--
@@ -110,7 +108,7 @@ $quote = ($coder->quote == '' ) ? "Member of the world's largest global competit
 		</br>
 	</div>
 </article>
-		</article>
+		
 
 
 		<article id="mainContent" class="noShadow">

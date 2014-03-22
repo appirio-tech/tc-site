@@ -15,7 +15,7 @@ echo "<script>
 $tracks = $coder->Tracks;
 if ($track == "develop") {
 	$activeTrack = 'Development';
-	$currentChallengetype = 'Development';
+	$currentChallengetype = 'Development'; 
 }
 if(!empty($ct)){
 	$currentChallengeId = $ct;

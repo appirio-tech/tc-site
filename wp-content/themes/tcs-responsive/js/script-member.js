@@ -105,7 +105,7 @@ var coder = {
 			$('.trackName',subtab).text(currentTrack);
 			
 			$('.rating',subtab).text(currentInfo.rating);
-			$('.rating',subtab).removeClass().addClass('rating').addClass(app.getColor(currentInfo.rating));
+			$('.rating',subtab).attr('class','').addClass('rating').addClass(app.getColor(currentInfo.rating));
 			
 			
 			if($('.ratingTable',subtab).length>0){
