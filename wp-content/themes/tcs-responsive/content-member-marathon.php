@@ -28,7 +28,7 @@ if($rating>0){
 					</colgroup>
 					<thead class="tabNavHead">
 						<tr>
-							<th><a href="?tab=algo" class="link">Algorithum</a></th>
+							<th><a href="?tab=algo" class="link">Algorithm</a></th>
 							<th><a href="?tab=algo&ct=marathon" class="isActive link">Marathon</a></th>
 						</tr>
 					</thead>
