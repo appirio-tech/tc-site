@@ -25,6 +25,7 @@ function tc_post_copy_steps($settings) {
  */
 function tc_update_base_url($settings) {
   update_option("siteurl", $settings['new_url']);
+  update_option("home", $settings['new_url']);
 }
 
 /**
