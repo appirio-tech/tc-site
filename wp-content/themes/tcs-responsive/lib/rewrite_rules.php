@@ -94,6 +94,9 @@ add_rewrite_rule( '^terms/detail/([^/]*)/?$', 'index.php?pagename=term-details&t
 // register to challenge
 add_rewrite_rule( '^action/register/([^/]*)/?$', 'index.php?pagename=challenge-details&contestID=$matches[1]&autoRegister=true', 'top');
 
+// submit to challenge
+add_rewrite_rule( '^challenge-details/([^/]*)/submit/?$', 'index.php?pagename=challenge-submit&contestID=$matches[1]', 'top');
+
 // Blog search
 //add_rewrite_rule('^'.BLOG_PERMALINK.'/?$', 'index.php?', 'top');
 // Active Challenges

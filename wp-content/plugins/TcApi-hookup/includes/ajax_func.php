@@ -234,6 +234,26 @@ function register_to_challenge_ajax_controller() {
 add_action('wp_ajax_register_to_challenge', 'register_to_challenge_ajax_controller');
 add_action('wp_ajax_nopriv_register_to_challenge', 'register_to_challenge_ajax_controller');
 
+/* submit to development challenge */
+function submit_to_dev_challenge_ajax_controller() {
+
+  $challengeId = $_GET ["challengeId"];
+  $fileName = $_GET ["fileName"];
+  $fileData = $_GET ["fileData"];
+  $jwtToken = $_GET ["jwtToken"];
+
+  $submitToDevChallengeResponse = submit_to_dev_challenge($challengeId, $fileName, $fileData, $jwtToken);
+  if (isset($submitToDevChallengeResponse)) {
+    wp_send_json($submitToDevChallengeResponse);
+  }
+  else {
+    wp_send_json_error();
+  }
+}
+
+add_action('wp_ajax_submit_to_dev_challenge', 'submit_to_dev_challenge_ajax_controller');
+add_action('wp_ajax_nopriv_submit_to_dev_challenge', 'submit_to_dev_challenge_ajax_controller');
+
 /**
  * End of ajax controller
  */
@@ -451,6 +471,29 @@ function register_to_challenge($challengeId, $jwtToken) {
     ),
     'httpversion' => get_option('httpversion'),
     'timeout' => 20
+  );
+  $response = wp_remote_post($url, $args);
+
+  if (is_wp_error($response) || !isset ($response ['body'])) {
+    return "Error in processing request";
+  }
+  return json_decode($response ['body']);
+}
+
+/* submit to development challenge */
+function submit_to_dev_challenge($challengeId, $fileName, $fileData, $jwtToken) {
+  $url = "https://api.topcoder.com/v2/develop/challenges/$challengeId/submit";
+  $body = array(
+    'fileName' => $fileName,
+    'fileData' => $fileData
+  );
+  $args = array(
+    'body' => $body,
+    'headers' => array(
+      'Authorization' => 'Bearer ' . $jwtToken
+    ),
+    'httpversion' => get_option('httpversion'),
+    'timeout' => 600
   );
   $response = wp_remote_post($url, $args);
 
