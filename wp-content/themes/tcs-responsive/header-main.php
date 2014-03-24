@@ -60,8 +60,8 @@ if (isset($_GET['auth']) && $_GET['auth'] == 'logout') {
   <script type="text/javascript">
     var wpUrl = "<?php bloginfo('wpurl')?>";
     var ajaxUrl = wpUrl + "/wp-admin/admin-ajax.php";
-    var siteURL = '<?php echo get_bloginfo('siteurl');?>';
-    var base_url = '<?php echo bloginfo( 'stylesheet_directory' ); ?>';
+    var siteURL = '<?php bloginfo('siteurl');?>';
+    var base_url = '<?php bloginfo( 'stylesheet_directory' ); ?>';
     var stylesheet_dir = '<?php echo THEME_URL . '/css'; ?>';
     var autoRegister = '<?php echo get_query_var('autoRegister'); ?>';
   </script>
