@@ -22,10 +22,6 @@ function tc_challenge_details_js(){
 <?php
 }
 
-$tzstring = get_option('timezone_string');
-
-date_default_timezone_set($tzstring);
-
 /**
  * Template Name: Challenge details
  */
