@@ -317,7 +317,7 @@ $(function () {
 
   $('#register a.btnSubmit').on('click', function () {
     var isValid = true;
-    if (!handleValidationAttempted && !$('input.handle').closest('.row').find('.err3,.err4,.err5,.err6').is(':visible')) validateHandle();
+    if ($('#register form.register input.name.handle:text').val() != '' && !handleValidationAttempted && !$('input.handle').closest('.row').find('.err3,.err4,.err5,.err6').is(':visible')) validateHandle();
     if (!emailValidationAttempted) validateEmail();
 
     var frm = $('#register form.register');
