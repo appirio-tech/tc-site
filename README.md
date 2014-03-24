@@ -63,3 +63,13 @@ __Loading home page__:
 4. If minifized, then load the file which corresponds to the package name, otherwise load all files in the array.
 
 For more information see lib/scripts.php
+
+## Environmental Variables ##
+
+There is the ability to set variables or settings per envirnoment.  Just add a file called "env.php" in the
+theme's config directory.  I recommend added the following two lines to local development.
+
+    <?php
+    define("WP_SITEURL", "http://tcqa1.topcoder.com");
+    define("WP_HOME", "http://tcqa1.topcoder.com");
+    ?>

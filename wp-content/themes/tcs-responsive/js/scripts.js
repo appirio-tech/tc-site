@@ -7,7 +7,7 @@ var ie7 = false;
 var ajax = {
   data: '',
   postPerPage: '100' // temp setting until we have paging on the challenges page.
-};
+}
 
 var xhr = "";
 
@@ -31,7 +31,7 @@ function createBannerSlider() {
 
 // application functions
 var app = {
-  init: function () {
+  init: function() {
     if (navigator.userAgent.indexOf('MSIE 7.0') >= 0) {
       $('body').addClass('ie7');
       ie7 = true;
@@ -39,7 +39,7 @@ var app = {
 
     createBannerSlider();
 
-    $(window).resize(function () {
+    $(window).resize(function() {
       if (bannerSlider.destroySlider) {
         bannerSlider.destroySlider();
       }
@@ -78,7 +78,7 @@ var app = {
 
     if ($('#whatsHappening .slider').length > 0) {
 
-      $('#whatsHappening .slider').each(function () {
+      $('#whatsHappening .slider').each(function() {
         $('ul', $(this)).bxSlider({
           minSlides: 1,
           maxSlides: 1,
@@ -91,21 +91,21 @@ var app = {
     app.setPlaceholder($('.connected .email'));
 
 
-    $('body').on(ev, function () {
+    $('body').on(ev, function() {
       $('.btnMyAcc').removeClass('isActive');
       $('.userWidget:visible').hide();
     });
 
-    $('.userWidget').on(ev, function (e) {
+    $('.userWidget').on(ev, function(e) {
       e.stopPropagation();
     })
 
   },
   // event bindings
-  initEvents: function () {
+  initEvents: function() {
 
     /* post email data */
-    $('#footer #emailForm .btn').on(ev, function () {
+    $('#footer #emailForm .btn').on(ev, function() {
       var emailAddress = $('#footer #emailForm input[name=EMAIL]').val();
       var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
       //alert(emailAddress);
@@ -115,7 +115,7 @@ var app = {
 
     });
 
-    $('.btnMyAcc').on(ev, function () {
+    $('.btnMyAcc').on(ev, function() {
       var widg = $('.userWidget', $(this).closest('.container'));
       if ($(this).hasClass('isActive')) {
         widg.stop().slideUp();
@@ -130,26 +130,26 @@ var app = {
     });
 
     // register demo
-    $('.dataTable').on(ev, '.btnAlt', function () {
+    $('.dataTable').on(ev, '.btnAlt', function() {
       $(this).replaceWith('<a href="javascript:;" class="btn">Submit</a>');
     });
 
     // login
-    $('.actionLogout').on(ev, function () {
+    $('.actionLogout').on(ev, function() {
       $('#navigation, .sidebarNav').addClass('newUser')
       $('#navigation .userWidget').hide();
       $('#navigation .isActive').removeClass('isActive');
       $('.btnRegWrap').show();
       $('.btnAccWrap').hide();
     });
-    $('.actionLogin_Del').on(ev, function () {
+    $('.actionLogin_Del').on(ev, function() {
       $('#navigation, .sidebarNav').removeClass('newUser');
       $('.btnRegWrap').hide();
       $('.btnAccWrap').show();
     });
 
 
-    $('.sidebarNav a i').on(ev, function () {
+    $('.sidebarNav a i').on(ev, function() {
       var root = $(this).closest('.root');
       if ($(this).closest('li').hasClass('isActive')) {
         $(this).closest('li').removeClass('isActive');
@@ -160,26 +160,26 @@ var app = {
     })
 
     // main Nav
-    $('#mainNav').on(ev, function () {
+    $('#mainNav').on(ev, function() {
       $('.sidebarNav').css('opacity', 1);
       $('.content, #navigation').toggleClass('moving');
-      window.setTimeout(function () {
+      window.setTimeout(function() {
         $('body').toggleClass('stop-scrolling');
       }, 1);
     });
-    $('#mainNav .root').on(ev, function (e) {
+    $('#mainNav .root').on(ev, function(e) {
       e.stopPropagation();
     });
 
-    $('#mainNav .root > li').mouseenter(function () {
+    $('#mainNav .root > li').mouseenter(function() {
       $('.child', $(this)).stop().slideDown('fast');
     });
-    $('#mainNav .root > li').mouseleave(function () {
+    $('#mainNav .root > li').mouseleave(function() {
       $('.child', $(this)).stop().slideUp('fast');
     });
 
     // footer navigation
-    $(' #footer .rootNode > a').on(ev, function () {
+    $(' #footer .rootNode > a').on(ev, function() {
       if (!($('.onMobi.linkLogout').is(':visible') || $('.onMobi.linkLogin').is(':visible'))) {
         return false;
       }
@@ -189,7 +189,7 @@ var app = {
     });
 
     // tab navs
-    $('.tabNav a').on(ev, function () {
+    $('.tabNav a').on(ev, function() {
       var id = $(this).attr('href');
       $('.tab', $(this).closest('.tabsWrap')).hide();
       $(id).fadeIn();
@@ -199,14 +199,14 @@ var app = {
     });
   },
 
-  setLoading: function () {
+  setLoading: function() {
     if ($('.loading').length <= 0) {
       $('body').append('<div class="loading">Loading...</div>');
     } else {
       $('.loading').show();
     }
   },
-  buildRequestData: function (actionType, contestType, contest_track, sortColumn, sortOrder, pageIndex, pageSize) {
+  buildRequestData: function(actionType, contestType, contest_track, sortColumn, sortOrder, pageIndex, pageSize) {
     var action = "";
     //	switch contest type
     switch (actionType) {
@@ -223,18 +223,26 @@ var app = {
     if (pageIndex == null || pageIndex == "") {
       pageIndex = 1;
     }
-    ajax.data = {"action": action, "contest_type": contestType, "contest_track": contest_track, "sortColumn": sortColumn, "sortOrder": sortOrder, "pageIndex": pageIndex, "pageSize": pageSize};
+    ajax.data = {
+      "action": action,
+      "contest_type": contestType,
+      "contest_track": contest_track,
+      "sortColumn": sortColumn,
+      "sortOrder": sortOrder,
+      "pageIndex": pageIndex,
+      "pageSize": pageSize
+    };
   },
   /*
    * community page functions
    * --------------------------------------------------------------
    */
   community: {
-    init: function () {
+    init: function() {
       // list partial challenges table data
       app.community.getAllPartialContests(ajax.postPerPage);
 
-      $('.dataChanges .viewAll').on(ev, function () {
+      $('.dataChanges .viewAll').on(ev, function() {
         ajax.data["pageIndex"] = 1;
         app.community.getAllPartialContests(1000);
 
@@ -244,17 +252,29 @@ var app = {
       });
 
       /* table short */
-      $('.dataTable.challenges thead th').click(function () {
+      $('.dataTable.challenges thead th').click(function() {
         if ($(this).hasClass('disabled')) {
           return false;
         }
         var shortCol = $(this).text().toLowerCase();
+        var sortColumn = "";
         shortCol = shortCol.replace(' ', '');
         if (shortCol == "") {
           return false;
         }
 
-        ajax.data["sortColumn"] = shortCol;
+        switch (shortCol) {
+          case "challenges":
+            sortColumn = "challengeName";
+            break;
+          case "timeline":
+            sortColumn = "submissionEndDate";
+            break;
+          default:
+            sortColumn = "challengeName";
+        }
+
+        ajax.data["sortColumn"] = sortColumn;
         if ($(this).hasClass('asc')) {
           ajax.data["sortOrder"] = 'desc';
           $(this).removeClass('asc');
@@ -264,18 +284,18 @@ var app = {
         }
         /* build url and requtest data using ajax */
         //if(conType==null || conType==""){
-        app.community.getAllPartialContests();
+        app.community.getAllPartialContests(ajax.postPerPage);
 
       });
     },
 
-    getAllPartialContests: function (nRecords) {
+    getAllPartialContests: function(nRecords) {
       /*
        * get all contests data
        */
-      app.getPartialContests(ajaxUrl, $('.challenges'), 2, 'design', false, function () {
-        app.getPartialContests(ajaxUrl, $('.challenges'), 2, 'develop', true, function () {
-          app.getPartialContests(ajaxUrl, $('.challenges'), 1, 'data-marathon', true, function () {
+      app.getPartialContests(ajaxUrl, $('.challenges'), 2, 'design', false, function() {
+        app.getPartialContests(ajaxUrl, $('.challenges'), 2, 'develop', true, function() {
+          app.getPartialContests(ajaxUrl, $('.challenges'), 1, 'data-marathon', true, function() {
             app.getPartialContests(ajaxUrl, $('.challenges'), 1, 'data-srm', true);
           });
         });
@@ -288,11 +308,11 @@ var app = {
    * --------------------------------------------------------------
    */
   communityLanding: {
-    init: function () {
+    init: function() {
       // list partial challenges table data
       app.communityLanding.getAllPartialContests(ajax.postPerPage);
 
-      $('.dataChanges .viewAll').on(ev, function () {
+      $('.dataChanges .viewAll').on(ev, function() {
         ajax.data["pageIndex"] = 1;
         app.communityLanding.getAllPartialContests(100);
 
@@ -302,17 +322,29 @@ var app = {
       });
 
       /* table short */
-      $('.dataTable.challenges thead th').click(function () {
+      $('.dataTable.challenges thead th').click(function() {
         if ($(this).hasClass('disabled')) {
           return false;
         }
         var shortCol = $(this).text().toLowerCase();
+        var sortColumn = "";
         shortCol = shortCol.replace(' ', '');
         if (shortCol == "") {
           return false;
         }
 
-        ajax.data["sortColumn"] = shortCol;
+        switch (shortCol) {
+          case "challenges":
+            sortColumn = "challengeName";
+            break;
+          case "timeline":
+            sortColumn = "submissionEndDate";
+            break;
+          default:
+            sortColumn = "challengeName";
+        }
+
+        ajax.data["sortColumn"] = sortColumn;
         if ($(this).hasClass('asc')) {
           ajax.data["sortOrder"] = 'desc';
           $(this).removeClass('asc');
@@ -322,29 +354,27 @@ var app = {
         }
         /* build url and requtest data using ajax */
         //if(conType==null || conType==""){
-        app.communityLanding.getAllPartialContests(5);
+        app.community.getAllPartialContests(ajax.postPerPage);
 
       });
     },
 
-    getAllPartialContests: function (nRecords) {
+    getAllPartialContests: function(nRecords) {
       /*
        * get all contests data
        */
       if (contest_track == "algorithm") {
-        app.getPartialContests(ajaxUrl, $('.challenges'), nRecords, 'data-marathon', false, function () {
+        app.getPartialContests(ajaxUrl, $('.challenges'), nRecords, 'data-marathon', false, function() {
           app.getPartialContests(ajaxUrl, $('.challenges'), nRecords, 'data-srm', false);
         });
-      }
-      else {
-        app.getPartialContests(ajaxUrl, $('.challenges'), nRecords, contest_track, false, function () {
-        });
+      } else {
+        app.getPartialContests(ajaxUrl, $('.challenges'), nRecords, contest_track, false, function() {});
       }
     }
 
   },
   // get contests tableView & gridView data
-  getPartialContests: function (url, table, pageSize, challenge_type, isAppend, callback) {
+  getPartialContests: function(url, table, pageSize, challenge_type, isAppend, callback) {
     if (url == null || url == "") {
       return false;
     }
@@ -356,17 +386,16 @@ var app = {
     }
 
 
-    xhr = $.getJSON(url, ajax.data, function (data) {
+    xhr = $.getJSON(url, ajax.data, function(data) {
       app.getPartialContestTable(table, data, pageSize, isAppend);
       if (callback != null && callback != "") {
         callback();
       }
-    }).fail(function () { /* add failure handler */
+    }).fail(function() { /* add failure handler */
       $('.loading').hide();
       //$('body').append('<div class="errorLoading">Oops... we had trouble loading ' +challenge_type+ ' Challenges.</div>');
       // setTimeout( "jQuery('.errorLoading').fadeOut();",5000 );
-    });
-    ;
+    });;
   },
 
   /*
@@ -374,7 +403,7 @@ var app = {
    * --------------------------------------------------------------
    */
   challenges: {
-    init: function () {
+    init: function() {
       // add table and gird data
       var conType = ajax.data["contest_type"];
       if (conType == null || conType == "") {
@@ -384,7 +413,7 @@ var app = {
         $('.challengeType .' + conType).addClass('active');
 
         if (conType == "data") {
-          app.getContests(ajaxUrl, $('.dataTable'), 100, 'data-marathon', false, function () {
+          app.getContests(ajaxUrl, $('.dataTable'), 100, 'data-marathon', false, function() {
             app.getContests(ajaxUrl, $('.dataTable'), 100, 'data-srm', true);
           });
         } else {
@@ -394,7 +423,7 @@ var app = {
       }
 
       /* view all records */
-      $('.dataChanges .viewAll').on(ev, function () {
+      $('.dataChanges .viewAll').on(ev, function() {
         ajax.data["pageIndex"] = 1;
         app.getContests(ajaxUrl, $('.dataTable'), 1000, ajax.data["contest_type"]);
         $('.rt', $(this).closest('.dataChanges')).hide();
@@ -402,7 +431,7 @@ var app = {
       });
 
       /* view next */
-      $('.dataChanges').on(ev, '.nextLink', function (e) {
+      $('.dataChanges').on(ev, '.nextLink', function(e) {
         $('.prevLink', $(this).parent()).show();
         var _this = $(e.currentTarget);
 
@@ -413,7 +442,7 @@ var app = {
         }
         var conType = ajax.data.contest_type;
         if (conType == "data" || conType == "data-srm" || conType == "data-marathon") {
-          app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-marathon', false, function () {
+          app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-marathon', false, function() {
             app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-srm', true);
           });
         } else {
@@ -422,7 +451,7 @@ var app = {
 
         return false;
       });
-      $('.dataChanges').on(ev, '.prevLink', function (e) {
+      $('.dataChanges').on(ev, '.prevLink', function(e) {
         $('.nextLink', $(this).parent()).show();
         var _this = $(e.currentTarget);
 
@@ -433,7 +462,7 @@ var app = {
         }
         var conType = ajax.data.contest_type;
         if (conType == "data" || conType == "data-srm" || conType == "data-marathon") {
-          app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-marathon', false, function () {
+          app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-marathon', false, function() {
             app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-srm', true);
           });
         } else {
@@ -443,7 +472,7 @@ var app = {
         return false;
       });
 
-      $('.views a').on(ev, function (e) {
+      $('.views a').on(ev, function(e) {
         if ($(this).hasClass('isActive')) {
           return false;
         }
@@ -456,13 +485,13 @@ var app = {
         return false;
       });
 
-      $('.ddWrap').on(ev, '.val', function () {
+      $('.ddWrap').on(ev, '.val', function() {
         $(this).closest('.ddWrap').toggleClass('on');
       });
-      $('.ddWrap').mouseleave(function () {
+      $('.ddWrap').mouseleave(function() {
         $(this).closest('.ddWrap').removeClass('on');
       });
-      $('.ddWrap .list li').on(ev, function () {
+      $('.ddWrap .list li').on(ev, function() {
         var dd = $(this).closest('.ddWrap');
         $('.active', dd).removeClass('active');
         $(this, dd).addClass('active');
@@ -472,7 +501,7 @@ var app = {
       });
 
       // challengeType
-      $('.challengeType a').on(ev, function () {
+      $('.challengeType a').on(ev, function() {
         if ($(this).hasClass('active'))
           return false;
 
@@ -486,7 +515,7 @@ var app = {
       });
 
       /* table short */
-      $('.layChallenges .dataTable thead th').click(function () {
+      $('.layChallenges .dataTable thead th').click(function() {
         if ($(this).hasClass('disabled')) {
           return false;
         }
@@ -520,7 +549,7 @@ var app = {
           $('.challengeType .' + conType).addClass('active');
 
           if (conType == "data" || conType == "data-srm" || conType == "data-marathon") {
-            app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-marathon', false, function () {
+            app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-marathon', false, function() {
               app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-srm', true);
             });
           } else {
@@ -530,7 +559,7 @@ var app = {
       });
     },
 
-    initTableNGrid: function (callback) {
+    initTableNGrid: function(callback) {
       var conType = ajax.data["contest_type"];
       if (conType == null || conType == "") {
         app.challenges.getAllContests(callback);
@@ -539,7 +568,7 @@ var app = {
         $('.challengeType .' + conType).addClass('active');
 
         if (conType == "data") {
-          app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-marathon', false, function () {
+          app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-marathon', false, function() {
             app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-srm', true, callback);
           });
         } else {
@@ -549,14 +578,14 @@ var app = {
       }
     },
 
-    getAllContests: function (callback) {
+    getAllContests: function(callback) {
       /*
        * get all contests data
        */
       app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'design', false,
-        function () {
-          app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'develop', true, function () {
-            app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-marathon', true, function () {
+        function() {
+          app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'develop', true, function() {
+            app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-marathon', true, function() {
               app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-srm', true);
             });
           });
@@ -564,14 +593,14 @@ var app = {
         });
     },
 
-    getActiveContestsList: function (callback) {
+    getActiveContestsList: function(callback) {
       /*
        * get all contests data
        */
       app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'design', false,
-        function () {
-          app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'develop', true, function () {
-            app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-marathon', true, function () {
+        function() {
+          app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'develop', true, function() {
+            app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-marathon', true, function() {
               app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-srm', true);
             });
           });
@@ -581,7 +610,7 @@ var app = {
 
 
   },
-  getTrackSymbol: function (type) {
+  getTrackSymbol: function(type) {
     var trackName = "o";
     switch (type) {
       case "Web Design":
@@ -630,15 +659,15 @@ var app = {
    * --------------------------------------------------------------
    */
   overview: {
-    init: function () {
+    init: function() {
 
       //Equalize height
       $(".csRealResults .realResult").height("");
       var fw = parseInt($(".csRealResults").width() / 2);
       var w = parseInt($(".realResult").eq(0).width());
-      if ((w < fw) && ( $(".realResult").length > 0 )) {
+      if ((w < fw) && ($(".realResult").length > 0)) {
         //desktop view, need equalize
-        $(".csRealResults .grid-3-1:nth-child(2n)").each(function () {
+        $(".csRealResults .grid-3-1:nth-child(2n)").each(function() {
           var prevObj = $(this).prev(".grid-3-1");
           var h1 = parseInt(prevObj.height()) - 42;
           var h2 = parseInt($(this).height()) - 42;
@@ -647,13 +676,13 @@ var app = {
           $(".realResult", prevObj).height(newH);
         });
       }
-      $(window).resize(function () {
+      $(window).resize(function() {
         $(".csRealResults .realResult").height("");
         var fw = parseInt($(".csRealResults").width() / 2);
         var w = parseInt($(".realResult").eq(0).width());
-        if ((w < fw) && ( $(".realResult").length > 0 )) {
+        if ((w < fw) && ($(".realResult").length > 0)) {
           //desktop view, need equalize
-          $(".csRealResults .grid-3-1:nth-child(2n)").each(function () {
+          $(".csRealResults .grid-3-1:nth-child(2n)").each(function() {
             var prevObj = $(this).prev(".grid-3-1");
             var h1 = parseInt(prevObj.height()) - 42;
             var h2 = parseInt($(this).height()) - 42;
@@ -671,10 +700,10 @@ var app = {
    * --------------------------------------------------------------
    */
   resource: {
-    init: function () {
-      $(".jsshowMoreResource").click(function () {
+    init: function() {
+      $(".jsshowMoreResource").click(function() {
         app.setLoading();
-        window.setTimeout(function () {
+        window.setTimeout(function() {
           $('.loading').hide();
         }, 1000);
         $(this).hide();
@@ -688,10 +717,10 @@ var app = {
    * --------------------------------------------------------------
    */
   story: {
-    init: function () {
-      $(".jsShowMoreArchiveStories").click(function () {
+    init: function() {
+      $(".jsShowMoreArchiveStories").click(function() {
         app.setLoading();
-        window.setTimeout(function () {
+        window.setTimeout(function() {
           $('.loading').hide();
         }, 1000);
         $(this).hide();
@@ -705,9 +734,9 @@ var app = {
    * --------------------------------------------------------------
    */
   casestudy: {
-    init: function () {
+    init: function() {
 
-      $(".jsCloseCaseDetails").click(function () {
+      $(".jsCloseCaseDetails").click(function() {
         var caseItem = $(this).parents(".caseDetailItem").eq(0);
         if (ie7) {
           $('.btn', caseItem).css({
@@ -717,7 +746,7 @@ var app = {
             "position": "static"
           });
         }
-        caseItem.hide(0, function () {
+        caseItem.hide(0, function() {
           caseItem.hide()
           $(".jsShowCaseDetails").removeClass("isShow");
           $(".caseDetailItem").hide();
@@ -730,17 +759,19 @@ var app = {
             });
           }
           var scrollTopValue = $("html").data("scrollTop");
-          $('html, body').animate({scrollTop: scrollTopValue + "px"});
+          $('html, body').animate({
+            scrollTop: scrollTopValue + "px"
+          });
         });
       });
 
-      $(".caseDetailItem").each(function (index) {
+      $(".caseDetailItem").each(function(index) {
         var newObj = $(this).clone("true");
         var caseGrids = $(".casesView .caseGrid");
         caseGrids.eq(index).append(newObj);
       });
 
-      $(".jsShowCaseDetails").click(function () {
+      $(".jsShowCaseDetails").click(function() {
         var linkCase = $(this);
         var sameParent = $(this).parents(".group").find(".isShow").length > 0;
         if ($(this).hasClass("isShow")) {
@@ -767,21 +798,21 @@ var app = {
           }
           if (detailsWrapper.is(":visible")) {
             if (sameParent) {
-              detailItem.stop().fadeIn(800, function () {
+              detailItem.stop().fadeIn(800, function() {
                 closeCaseItem(detailItem, linkCase);
               });
             } else {
-              detailItem.stop().slideDown(800, function () {
+              detailItem.stop().slideDown(800, function() {
                 closeCaseItem(detailItem, linkCase);
               });
             }
           } else {
             if (sameParent) {
-              $(".caseDetailItem", gridItem).eq(0).stop().fadeIn(800, function () {
+              $(".caseDetailItem", gridItem).eq(0).stop().fadeIn(800, function() {
                 scrollCaseItem(linkCase);
               });
             } else {
-              $(".caseDetailItem", gridItem).eq(0).stop().slideDown(800, function () {
+              $(".caseDetailItem", gridItem).eq(0).stop().slideDown(800, function() {
                 scrollCaseItem(linkCase);
               });
             }
@@ -800,7 +831,9 @@ var app = {
         $("html").data("scrollTop", scrollTopValue);
         var totalScrollTopValue = offset.top + linkCase.outerHeight() + 14;
         //alert(totalScrollTopValue)
-        $('html, body').animate({scrollTop: totalScrollTopValue + "px"}, 500);
+        $('html, body').animate({
+          scrollTop: totalScrollTopValue + "px"
+        }, 500);
       }
 
       function scrollCaseItem(linkCase) {
@@ -808,7 +841,9 @@ var app = {
         var scrollTopValue = $(document).scrollTop();
         $("html").data("scrollTop", scrollTopValue);
         var totalScrollTopValue = offset.top + linkCase.outerHeight();
-        $('html, body').animate({scrollTop: totalScrollTopValue + "px"}, 500);
+        $('html, body').animate({
+          scrollTop: totalScrollTopValue + "px"
+        }, 500);
       }
 
 
@@ -833,7 +868,7 @@ var app = {
        window.setTimeout(function(){$('.loading').hide();},1000);
        return false;
        });*/
-      $('.dataChanges').on(ev, '.prevLink', function (e) {
+      $('.dataChanges').on(ev, '.prevLink', function(e) {
         $('.nextLink', $(this).parent()).show();
         var _this = $(e.currentTarget);
         var pageNo = _this.attr('href').replace(/#/g, '');
@@ -844,7 +879,7 @@ var app = {
         _this.attr('href', '#' + (pageNo - 1));
         $('.nextLink', $(this).parent()).attr('href', '#' + (pageNo + 1));
         app.setLoading();
-        window.setTimeout(function () {
+        window.setTimeout(function() {
           $('.loading').hide();
         }, 1000);
         return false;
@@ -854,30 +889,30 @@ var app = {
   },
 
   // ie fix
-  ie7Fix: function () {
+  ie7Fix: function() {
     if (ie7) {
       $('#aboutContent, #footer').hide();
-      window.setTimeout(function () {
+      window.setTimeout(function() {
         $('#aboutContent, #footer').show()
       }, 10);
     }
   },
 
   // ie fix
-  ie7Fix2: function () {
+  ie7Fix2: function() {
     if (ie7) {
       $('body').hide();
-      window.setTimeout(function () {
+      window.setTimeout(function() {
         $('body').show();
       }, 100);
     }
   },
 
-  formatDate: function (date) {
+  formatDate: function(date) {
     return date.replace(/ /g, '&nbsp;').replace(/[.]/g, '/');
   },
 
-  formatDate2: function (date) {
+  formatDate2: function(date) {
 
     var d = new Date(date);
     var utcd = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds());
@@ -886,13 +921,13 @@ var app = {
     localOffset = d.getTimezoneOffset() * 60000;
     var newdate = new Date(utcd + localOffset);
 
-    return newdate.toDateString() + ' ' + ( (newdate.getUTCHours() < 10 ? '0' : '') + newdate.getUTCHours() ) + ':' + ( (newdate.getUTCMinutes() < 10 ? '0' : '') + newdate.getUTCMinutes() );
+    return newdate.toDateString() + ' ' + ((newdate.getUTCHours() < 10 ? '0' : '') + newdate.getUTCHours()) + ':' + ((newdate.getUTCMinutes() < 10 ? '0' : '') + newdate.getUTCMinutes());
 
   },
 
 
   // get contests tableView & gridView data
-  getContests: function (url, table, pageSize, challenge_type, isAppend, callback) {
+  getContests: function(url, table, pageSize, challenge_type, isAppend, callback) {
     $('.errorLoading').remove();
     if (url == null || url == "") {
       return false;
@@ -905,25 +940,25 @@ var app = {
       xhr.abort();
     }
 
-    xhr = $.getJSON(url, ajax.data, function (data) {
+    xhr = $.getJSON(url, ajax.data, function(data) {
       app.getContestTable(table, data, pageSize, isAppend);
       app.getContestGrid($('#gridView .contestGrid'), data, (pageSize), isAppend);
       if (callback != null && callback != "") {
         callback();
       }
-    }).fail(function () { /* add failure handler */
+    }).fail(function() { /* add failure handler */
       $('.loading').hide();
       //$('body').append('<div class="errorLoading">Oops... we had trouble loading ' +challenge_type+ ' Challenges.</div>');
       // setTimeout( "jQuery('.errorLoading').fadeOut();",5000 );
     });
   },
   // generate contest view table
-  getContestTable: function (table, data, records2Disp, isAppend) {
+  getContestTable: function(table, data, records2Disp, isAppend) {
     if (isAppend != true) {
       $('tbody', table).html(null);
     }
     var count = 0;
-    $.each(data, function (key, rec) {
+    $.each(data, function(key, rec) {
 
       if (count >= records2Disp) {
         count = 0;
@@ -936,7 +971,7 @@ var app = {
       var row = $(blueprints.challengeRow).clone();
       var trackName = ajax.data["contest_type"].split('-')[0];
       row.addClass('track-' + trackName);
-      if (ajax.data["contest_type"] == "data-srm") {
+      if (rec && ajax.data["contest_type"] == "data-srm") {
         /*
          * generate table row for contest type SRM
          */
@@ -981,11 +1016,11 @@ var app = {
         }
         $('.colSub', row).html(rec.submissions);
 
-      } else if (ajax.data["contest_type"] == "data-marathon") {
+      } else if (rec && ajax.data["contest_type"] == "data-marathon") {
         /*
          * generate table row for contest type Marathon
          */
-//            	$('.contestName', row).html('<i></i>' + rec.fullName);
+        //            	$('.contestName', row).html('<i></i>' + rec.fullName);
 
         $('.contestName', row).html('<i></i>' + '<a href="http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.fullName + '</a>');
 
@@ -1000,7 +1035,7 @@ var app = {
         if (rec.round1EndDate == null || rec.round1EndDate == "") {
           rec.round1EndDate = "10.31.2013 10:10 EDT"; //dummy data
         }
-//				$('.vEndRound', row).html(app.formatDate2(rec.round1EndDate));
+        //				$('.vEndRound', row).html(app.formatDate2(rec.round1EndDate));
         $('.lEndRound', row).html("");
         $('.vEndRound', row).html("");
 
@@ -1031,7 +1066,7 @@ var app = {
         }
         $('.colSub', row).html(rec.numberOfSubmissions);
 
-      } else if (ajax.data["contest_type"] == "design") {
+      } else if (rec && ajax.data["contest_type"] == "design") {
 
         /*
          * generate table row for design contest type
@@ -1085,7 +1120,7 @@ var app = {
         }
         $('.colSub', row).html(rec.numSubmissions);
 
-      } else if (ajax.data["contest_type"] == "develop") {
+      } else if (rec && ajax.data["contest_type"] == "develop") {
 
         /*
          * generate table row for other contest type
@@ -1139,68 +1174,70 @@ var app = {
 
       } else {
 
-        /*
-         * generate table row for other contest type
-         */
-        $('.contestName', row).html('<i></i>' + '<a href="/challenge-details/' + rec.challengeId + '">' + rec.challengeName + '</a>');
-        if (rec.startDate == null || rec.startDate == "") {
-          rec.startDate = "10.31.2013 10:10 EDT"; //dummy data
-        }
-        $('.vStartDate', row).html(app.formatDate2(new Date(rec.postingDate)));
+        if (rec) {
+          /*
+           * generate table row for other contest type
+           */
+          $('.contestName', row).html('<i></i>' + '<a href="/challenge-details/' + rec.challengeId + '">' + rec.challengeName + '</a>');
+          if (rec.startDate == null || rec.startDate == "") {
+            rec.startDate = "10.31.2013 10:10 EDT"; //dummy data
+          }
+          $('.vStartDate', row).html(app.formatDate2(new Date(rec.postingDate)));
 
-        if (rec.checkpointSubmissionEndDate == null || rec.checkpointSubmissionEndDate == "") {
-          rec.checkpointSubmissionEndDate = ""; // no checkpoint
-          $('.lEndRound', row).html("");
-          $('.vEndRound', row).html("");
-        } else {
-          $('.vEndRound', row).html(app.formatDate2(new Date(rec.checkpointSubmissionEndDate)));
-        }
+          if (rec.checkpointSubmissionEndDate == null || rec.checkpointSubmissionEndDate == "") {
+            rec.checkpointSubmissionEndDate = ""; // no checkpoint
+            $('.lEndRound', row).html("");
+            $('.vEndRound', row).html("");
+          } else {
+            $('.vEndRound', row).html(app.formatDate2(new Date(rec.checkpointSubmissionEndDate)));
+          }
 
-        if (rec.endDate == null || rec.endDate == "") {
-          rec.endDate = "10.31.2013 10:10 EDT"; //dummy data
-        }
-        $('.vEndDate', row).html(app.formatDate2(new Date(rec.submissionEndDate)));
+          if (rec.endDate == null || rec.endDate == "") {
+            rec.endDate = "10.31.2013 10:10 EDT"; //dummy data
+          }
+          $('.vEndDate', row).html(app.formatDate2(new Date(rec.submissionEndDate)));
 
-        if (rec.timeLeft == null || rec.timeLeft == "") {
-          rec.timeLeft = "3 days"; //dummy data
-        }
-        $('.colTLeft', row).html(secondsToString(rec.currentPhaseRemainingTime));
+          if (rec.timeLeft == null || rec.timeLeft == "") {
+            rec.timeLeft = "3 days"; //dummy data
+          }
+          $('.colTLeft', row).html(secondsToString(rec.currentPhaseRemainingTime));
 
-        if (rec.isEnding === "true") {
-          $('.colTLeft', row).addClass('imp');
-        }
+          if (rec.isEnding === "true") {
+            $('.colTLeft', row).addClass('imp');
+          }
 
-        if (rec.purse == null || rec.purse == "") {
-          rec.purse = "1500"; //dummy data
-        }
-        $('.colPur', row).html("$" + numberWithCommas(rec.prize.sum()));
+          if (rec.purse == null || rec.purse == "") {
+            rec.purse = "1500"; //dummy data
+          }
+          $('.colPur', row).html("$" + numberWithCommas(rec.prize.sum()));
 
-        if (rec.registrants == null || rec.registrants == "") {
-          rec.registrants = "10"; //dummy data
-        }
-        $('.colReg', row).html('<a href="/challenge-details/' + rec.challengeId + '/#viewRegistrant">' + rec.numRegistrants + '</a>');
+          if (rec.registrants == null || rec.registrants == "") {
+            rec.registrants = "10"; //dummy data
+          }
+          $('.colReg', row).html('<a href="/challenge-details/' + rec.challengeId + '/#viewRegistrant">' + rec.numRegistrants + '</a>');
 
-        if (rec.submissions == null || rec.submissions == "") {
-          rec.submissions = "10"; //dummy data
-        }
-        $('.colSub', row).html(rec.numSubmissions);
+          if (rec.submissions == null || rec.submissions == "") {
+            rec.submissions = "10"; //dummy data
+          }
+          $('.colSub', row).html(rec.numSubmissions);
 
+        }
       }
-
-
-      $('tbody', table).append(row);
+      if (rec) {
+        $('tbody', table).append(row);
+      }
     });
     app.initZebra(table);
     $('.loading').hide();
   },
 
   // getGridview Blocks
-  getContestGrid: function (gridEl, data, records2Disp, isAppend) {
+  getContestGrid: function(gridEl, data, records2Disp, isAppend) {
     if (isAppend != true) {
       gridEl.html(null);
     }
     var count = 0;
-    $.each(data, function (key, rec) {
+    $.each(data, function(key, rec) {
       if (count >= records2Disp) {
         count = 0;
         $('.dataChanges').show();
@@ -1275,7 +1312,7 @@ var app = {
           rec.round1EndDate = "10.31.2013 10:10 EDT"; //dummy data
         }
         $('.vEndRound', con).html(app.formatDate2(new Date(rec.endDate)));
-        $('.vEndRound', con).html("");  //Hide his for now
+        $('.vEndRound', con).html(""); //Hide his for now
 
         if (con.endDate == null || con.endDate == "") {
           con.endDate = "10.31.2013 10:10 EDT"; //dummy data
@@ -1351,8 +1388,7 @@ var app = {
           rec.submissions = "10"; //dummy data
         }
         $('.cgSub', con).html('<i></i>' + rec.numSubmissions);
-      }
-      else {
+      } else {
 
         $('.contestName', con).html('<i></i>' + '<a href="/challenge-details/' + rec.challengeId + '">' + rec.challengeName + '</a>');
 
@@ -1406,13 +1442,13 @@ var app = {
   },
 
   // generate contest view table
-  getPartialContestTable: function (table, data, records2Disp, isAppend) {
+  getPartialContestTable: function(table, data, records2Disp, isAppend) {
     if (isAppend != true) {
       $('tbody', table).html(null);
     }
     var count = 0;
 
-    $.each(data, function (key, rec) {
+    $.each(data, function(key, rec) {
       if (count >= records2Disp) {
         count = 0;
         return false;
@@ -1422,7 +1458,7 @@ var app = {
       var row = $(blueprints.partialChallengeRow).clone();
       var trackName = ajax.data["contest_type"].split('-')[0];
       row.addClass('track-' + trackName);
-      if (ajax.data["contest_type"] == "data-srm") {
+      if (rec && ajax.data["contest_type"] == "data-srm") {
         /*
          * generate table row for contest type SRM
          */
@@ -1454,7 +1490,7 @@ var app = {
         $('.colPur', row).html("$" + numberWithCommas(rec.purse));
 
 
-      } else if (ajax.data["contest_type"] == "data-marathon") {
+      } else if (rec && ajax.data["contest_type"] == "data-marathon") {
         /*
          * generate table row for contest type Marathon
          */
@@ -1485,7 +1521,7 @@ var app = {
         }
         $('.colPur', row).html("$" + numberWithCommas(rec.purse));
 
-      } else if (ajax.data["contest_type"] == "design") {
+      } else if (rec && ajax.data["contest_type"] == "design") {
         /*
          * generate table row for contest type
          */
@@ -1523,44 +1559,47 @@ var app = {
 
 
       } else {
-        /*
-         * generate table row for contest type
-         */
-        $('.contestName', row).html('<i></i>' + '<a href="/challenge-details/' + rec.challengeId + '">' + rec.challengeName + '</a>');
+        if (rec) {
+          /*
+           * generate table row for contest type
+           */
+          $('.contestName', row).html('<i></i>' + '<a href="/challenge-details/' + rec.challengeId + '">' + rec.challengeName + '</a>');
 
-        if (rec.startDate == null || rec.startDate == "") {
-          rec.startDate = "10.31.2013 10:10 EDT"; //dummy data
-        }
-        $('.vStartDate', row).html(app.formatDate2(new Date(rec.postingDate)));
+          if (rec.startDate == null || rec.startDate == "") {
+            rec.startDate = "10.31.2013 10:10 EDT"; //dummy data
+          }
+          $('.vStartDate', row).html(app.formatDate2(new Date(rec.postingDate)));
 
-        if (rec.checkpointSubmissionEndDate == null || rec.checkpointSubmissionEndDate == "") {
-          rec.checkpointSubmissionEndDate = ""; // no checkpoint
-          $('.lEndRound', row).html("");
-          $('.vEndRound', row).html("");
-        } else {
-          //$('.lEndRound').show();
-          $('.vEndRound', row).html(app.formatDate2(new Date(rec.checkpointSubmissionEndDate)));
-        }
+          if (rec.checkpointSubmissionEndDate == null || rec.checkpointSubmissionEndDate == "") {
+            rec.checkpointSubmissionEndDate = ""; // no checkpoint
+            $('.lEndRound', row).html("");
+            $('.vEndRound', row).html("");
+          } else {
+            //$('.lEndRound').show();
+            $('.vEndRound', row).html(app.formatDate2(new Date(rec.checkpointSubmissionEndDate)));
+          }
 
-        if (rec.endDate == null || rec.endDate == "") {
-          rec.endDate = "10.31.2013 10:10 EDT"; //dummy data
-        }
-        $('.vEndDate', row).html(app.formatDate2(new Date(rec.submissionEndDate)));
+          if (rec.endDate == null || rec.endDate == "") {
+            rec.endDate = "10.31.2013 10:10 EDT"; //dummy data
+          }
+          $('.vEndDate', row).html(app.formatDate2(new Date(rec.submissionEndDate)));
 
-        if (rec.timeLeft == null || rec.timeLeft == "") {
-          rec.timeLeft = "3 days"; //dummy data
-        }
-        $('.colTLeft', row).html(((new Number(rec.currentPhaseRemainingTime)) / 60 / 60 / 24).toPrecision(1).toString() + ' Days');
+          if (rec.timeLeft == null || rec.timeLeft == "") {
+            rec.timeLeft = "3 days"; //dummy data
+          }
+          $('.colTLeft', row).html(((new Number(rec.currentPhaseRemainingTime)) / 60 / 60 / 24).toPrecision(1).toString() + ' Days');
 
-        if (rec.purse == null || rec.purse == "") {
-          rec.purse = "1500"; //dummy data
+          if (rec.purse == null || rec.purse == "") {
+            rec.purse = "1500"; //dummy data
+          }
+          $('.colPur', row).html("$" + numberWithCommas(rec.prize.sum()));
+
         }
-        $('.colPur', row).html("$" + numberWithCommas(rec.prize.sum()));
 
       }
-
-
-      $('tbody', table).append(row);
+      if (rec) {
+        $('tbody', table).append(row);
+      }
     });
     app.initZebra(table);
     $('.loading').hide();
@@ -1568,19 +1607,19 @@ var app = {
   },
 
   // table zebra
-  initZebra: function (table) {
+  initZebra: function(table) {
     $('tbody tr.alt', table).removeClass('alt');
     $('tbody tr:odd', table).addClass('alt');
   },
 
   // palceholder
-  setPlaceholder: function (selector) {
-    $(selector).each(function () {
+  setPlaceholder: function(selector) {
+    $(selector).each(function() {
       _this = $(this);
       var text = _this.attr('placeholder');
       _this.val(text).addClass('isBlured');
-      _this.on('focus', function () {
-        $(this).on('blur', function () {
+      _this.on('focus', function() {
+        $(this).on('blur', function() {
           $(this).unbind('blur', arguments.callee);
           if ($.trim($(this).val()) === '') {
             $(this).val(text).addClass("isBlured");
@@ -1676,7 +1715,7 @@ var blueprints = {
 }
 
 // everythings begins from here
-$(document).ready(function () {
+$(document).ready(function() {
   app.init();
   app.initEvents();
 })
@@ -1693,7 +1732,7 @@ function secondsToString(seconds) {
   if (isNaN(numhours)) {
     return "<em style='font-size:14px;'>not available</em>";
   }
-  return "<span style='font-size:14px;" + style + "'>" + ( numdays > 0 ? numdays + " Day(s) " : "" ) + "" + numhours + " Hrs " + ( numdays == 0 ? numminutes + " Min " : "" ) + "</span>";
+  return "<span style='font-size:14px;" + style + "'>" + (numdays > 0 ? numdays + " Day(s) " : "") + "" + numhours + " Hrs " + (numdays == 0 ? numminutes + " Min " : "") + "</span>";
 }
 
 function numberWithCommas(x) {
@@ -1701,7 +1740,7 @@ function numberWithCommas(x) {
 }
 
 // Calculate the sum of the values of an array.
-Array.prototype.sum = function () {
+Array.prototype.sum = function() {
   for (var i = 0, sum = 0, max = this.length; i < max; sum += this[i++]);
   return sum;
 }
