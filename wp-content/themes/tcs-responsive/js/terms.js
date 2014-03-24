@@ -50,7 +50,7 @@ appChallengeTerms = {
               "termId": termsOfUseID,
               "jwtToken": tcjwt.replace(/["]/g, "")
             }, function(data) {
-              window.location = siteURL + "/terms/" + challengeId;
+              window.location = siteURL + "/challenge/" + challengeId + '/terms';
               $('.loading').hide();
             });
           }
@@ -82,7 +82,7 @@ appChallengeTerms = {
               allAgreed = false;
             }
             var $tr = $("<tr>", {class: i % 2 == 1 ? "alt" : ""});
-            var $td1 = $("<td>").text(terms[i]["title"]).append(" (").append($("<a>", {target: "_blank", href: siteURL + "/terms/detail/" + terms[i]["termsOfUseId"] + "?contestID=" + challengeId }).text(agreed ? "view" : "view and agree")).append(")");
+            var $td1 = $("<td>").text(terms[i]["title"]).append(" (").append($("<a>", {target: "_blank", href: siteURL + "challenge-details/terms/detail/" + terms[i]["termsOfUseId"] + "?contestID=" + challengeId }).text(agreed ? "view" : "view and agree")).append(")");
             var $td2 = $("<td>").append($("<span>", {class: "status "+(agreed === true? "complete" : "required")}).text(agreed === true? "Completed" : "Required"));
             $tr.append($td1).append($td2);
             $(".termTable tbody").append($tr);
@@ -100,7 +100,7 @@ appChallengeTerms = {
         $('.loading').hide();
 
         $(".termsBtnRegister").click(function () {
-          window.location = siteURL + "/action/register/" + challengeId;
+          window.location = siteURL + "/challenge-detail/register/" + challengeId;
         });
       });
     } else {
