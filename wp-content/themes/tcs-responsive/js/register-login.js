@@ -232,6 +232,7 @@ $(function () {
     if (!isValidEmailAddress($('#register form.register input.email:text').val())) return;
     emailValidationAttempted = true;
     var email = $('#register form.register input.email:text').val();
+    email = email.replace('+', '%2B');
     $.ajax({
       type: 'GET',
       data: {
