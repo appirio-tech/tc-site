@@ -394,6 +394,46 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 		}
 		return "Error in processing request";
 	}
+	
+	/* get member profile design recent Wins */
+	function tcapi_get_stat_design_recentwins($handle= ''){
+		$url = "http://tcapi.apiary-mock.com/v2/users/$handle/statistics/design/recentWins";
+		$args = array (
+				'httpversion' => get_option ( 'httpversion' ),
+				'timeout' => 30
+		);
+		$response = wp_remote_get ( $url, $args );
+
+		/* hardcoded API response */
+		$response['body'] = '{
+		   size:2,
+		   recentWinningSubmissions:[
+			  {
+				 contestName:"TC - CS Storyboard Redesign Lorem Ipsum Dolor sit Amet 2",
+				 rank:"1",
+				 prize:1300,
+				 submissionDate:"2014-02-03T09:30:00.000Z",
+				 viewable:true         preview:"https://studio.topcoder.com/?module=DownloadSubmission&sbmid=169728&sbt=small"
+			  },
+			  {
+				 contestName:"TC Redesign Lorem Ipsum Dolor sit Amet 2",
+				 rank:"M",
+				 prize:600,
+				 submissionDate:"2014-01-22T10:12:00.000Z",
+				 viewable:false
+			  }
+		   ]
+		}';
+		if (is_wp_error ( $response ) || ! isset ( $response ['body'] )) {
+			return "Error in processing request or Member dosen't exist";
+		}
+		if ($response ['response'] ['code'] == 200) {
+			$coder_achievements = json_decode ( $response ['body'] );
+			return $coder_achievements;
+		}
+		
+		return "Error in processing request";
+	}
 
 	/* forum posts  */
 	function tcapi_get_forum_posts(){

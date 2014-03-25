@@ -12,6 +12,9 @@ global $coder;
 $coder = get_member_statistics ( $handle, $track );
 $WebDesign = $coder->Tracks->WebDesign;
 
+$recentWins = get_stat_design_recentwins( $handle );
+echo "design ";
+print_r ($recentWins);
 ?>
 
 
@@ -45,6 +48,23 @@ $WebDesign = $coder->Tracks->WebDesign;
 			<div class="submissionCarousel">
 				<div class="carouselWrap">
 					<div class="slider">
+						<?php
+							foreach ( $recentWins as $r ):
+						?>
+						<div class="slide">
+							<figure>
+								<img alt="" src="http://studio.topcoder.com/?module=DownloadSubmission&sbmid=176147&sbt=small" />
+							</figure>
+							<div class="hide comptetionData">
+								<input class="name" type="hidden" value="XXX <?php echo ""; ;?>" />
+								<input class="prize" type="hidden" value="$1300.00" />
+								<input class="submiissionDate" type="hidden" value="10.31.2013 at 07:58 EST" />
+							</div>
+						</div>
+						<?php
+							endforeach; 
+						?>
+						
 						<div class="slide">
 							<figure>
 								<img alt="" src="<?php bloginfo( 'stylesheet_directory' ); ?>/i/desing-sub.png" />
