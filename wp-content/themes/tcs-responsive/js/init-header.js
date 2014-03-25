@@ -6,6 +6,7 @@ $(document).ready(function() {
     modal.show();
     centerModal();
   };
+
   function centerModal(selector) {
     var modal = $('.modal:visible');
     if ($(window).width() >= 1003 || $('html').is('.ie6, .ie7, .ie8'))
@@ -55,10 +56,10 @@ $(document).ready(function() {
             }
             $('.userDetails .coder').attr('style', 'color: ' + color);
             var userPofileUrl = wpUrl + '/member-profile/' + handle;
-            $('.userDetails').prepend('<a class="tc_coder coder" href="'+userPofileUrl+'" style="color:'+color+'">'+handle+'</a>');
+            $('.userDetails').prepend('<a class="tc_coder coder" href="' + userPofileUrl + '" style="color:' + color + '">' + handle + '</a>');
             $('.myProfileLink, .profileLink').attr('href', userPofileUrl);
             $('.userDetails .country').text(data['country']);
-            $('.userDetails .memberSince').text(data['memberSince'].split(" ")[0].split(".")[2]);
+            $('.userDetails .memberSince').text(dateformat(data['memberSince'].substring(0, 10)));
 
             if (data['overallEarning'])
               $('.userDetails .memberEarning').text("$" + data['overallEarning']);
@@ -83,7 +84,7 @@ $(document).ready(function() {
       } else if (!tcsso && $('.actionLogout').length > 1) {
         $('.headerTopRightMenuLink.logIn a').unbind('click');
         $('.headerTopRightMenuLink.logIn a').text("Log In").removeClass("actionLogout").addClass("actionLogin");
-        $('.actionLogin').on('click', function () {
+        $('.actionLogin').on('click', function() {
           document.getElementById("loginForm").reset();
           $('#loginForm .btnSubmit').html('Login');
           $(".pwd, .confirm, .strength").parents(".row").show();
