@@ -634,7 +634,7 @@ $blog_posts = get_posts($blog_posts_args);
 
     ?>
 
-    var loginState = <?php echo $stateLogin; ?>;
+    var loginState = "<?php echo $stateLogin; ?>";
 
     if (loginState == 'none') {
       loginState = window.location.href;
