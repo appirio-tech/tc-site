@@ -601,6 +601,13 @@ em{
 	font-size: 15px;
 }
 
+/* header / log-in area */
+
+.headerTopRightMenu .actionLogin,
+.headerTopRightMenu .actionLogin {
+  display: none
+}
+
 .headerTopRightMenu{
 	float: right;
 }

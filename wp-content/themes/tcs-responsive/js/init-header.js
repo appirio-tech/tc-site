@@ -94,8 +94,12 @@ $(document).ready(function() {
         $('.loginLink, .linkLogin, .btnRegister').addClass('show').show();
         $('.logoutLink, .linkLogout, .userDetailsWrapper').removeClass('show').hide();
 
+      } else {
+        $('.headerTopRightMenu .actionLogin').show();
       }
 
+    } else {
+      $('.headerTopRightMenu .actionLogin').show();
     }
   });
   $('#login input').keyup(function(e) {
