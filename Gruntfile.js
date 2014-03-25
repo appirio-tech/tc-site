@@ -53,7 +53,7 @@ module.exports = function(grunt) {
           '<%= build.themeDist %>/css/default.min.css': ['<%= build.themeDist %>/tc.default.concat.css'],
           '<%= build.themeDist %>/css/challengelanding.min.css': ['<%= build.themeDist %>/tc.challengelanding.concat.css'],
           '<%= build.themeDist %>/css/challenges.min.css': ['<%= build.themeDist %>/tc.challenges.concat.css'],
-          '<%= build.themeDist %>/tc.challengeterms.min.css': ['<%= build.themeDist %>/tc.challengeterms.min.css']
+          '<%= build.themeDist %>/tc.challengeterms.min.css': ['<%= build.themeDist %>/tc.challengeterms.concat.css']
         }
       }
     },
@@ -65,7 +65,7 @@ module.exports = function(grunt) {
         files: {
           '<%= build.themeDist %>/js/default.min.js': addBaseFilePath(pkg_config.packages.default.js, themeJS),
           '<%= build.themeDist %>/js/challengelanding.min.js': addBaseFilePath(pkg_config.packages.challengelanding.js, themeJS),
-          '<%= build.themeDist %>/js/challenges.min.js': addBaseFilePath(pkg_config.packages.challenges.js, themeJS)
+          '<%= build.themeDist %>/js/challenges.min.js': addBaseFilePath(pkg_config.packages.challenges.js, themeJS),
           '<%= build.themeDist %>/js/challengeterms.min.js': addBaseFilePath(pkg_config.packages.challengeterms.js, themeJS)
         }
       }
