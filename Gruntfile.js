@@ -53,7 +53,7 @@ module.exports = function(grunt) {
           '<%= build.themeDist %>/css/default.min.css': ['<%= build.themeDist %>/tc.default.concat.css'],
           '<%= build.themeDist %>/css/challengelanding.min.css': ['<%= build.themeDist %>/tc.challengelanding.concat.css'],
           '<%= build.themeDist %>/css/challenges.min.css': ['<%= build.themeDist %>/tc.challenges.concat.css'],
-          '<%= build.themeDist %>/tc.challengeterms.min.css': ['<%= build.themeDist %>/tc.challengeterms.concat.css']
+          '<%= build.themeDist %>/css/challengeterms.min.css': ['<%= build.themeDist %>/tc.challengeterms.concat.css']
         }
       }
     },
