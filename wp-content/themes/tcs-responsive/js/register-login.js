@@ -203,7 +203,7 @@ $(function () {
         $(this).parents(".row").find("span.valid").hide();
       }
     }
-    if (pwd.val() == confirm.val()) {
+    if (pwd.val() == confirm.val() && pwd.val() != '') {
       confirm.parents(".row").find("span.valid").css("display", "inline-block");
       confirm.parents(".row").find('input:text').removeClass('invalid');
       confirm.parents(".row").find('span.err1').hide();
@@ -317,7 +317,7 @@ $(function () {
 
   $('#register a.btnSubmit').on('click', function () {
     var isValid = true;
-    if (!handleValidationAttempted && !$('input.handle').closest('.row').find('.err3,.err4,.err5,.err6').is(':visible')) validateHandle();
+    if ($('#register form.register input.name.handle:text').val() != '' && !handleValidationAttempted && !$('input.handle').closest('.row').find('.err3,.err4,.err5,.err6').is(':visible')) validateHandle();
     if (!emailValidationAttempted) validateEmail();
 
     var frm = $('#register form.register');
