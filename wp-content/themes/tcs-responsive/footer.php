@@ -622,7 +622,7 @@ $blog_posts = get_posts($blog_posts_args);
     var githubProvider = "github";
     <?php
     $urlFromDiscourse = $_REQUEST["url"];
-	$stateLogin = "";
+	$stateLogin = "none";
 	if ($_REQUEST['sso'] != ''  and $_REQUEST['sig'] != '' ) {
 		// if ( preg_match('/sso=(.*)&sig=(.*)/', $urlFromDiscourse, $matches) ){
 		//$sso = str_replace("=","%3D%0A",$matches[1]);
@@ -636,8 +636,8 @@ $blog_posts = get_posts($blog_posts_args);
 
     var loginState = <?php echo $stateLogin; ?>;
 
-    if (loginState == '') {
-      loginState = window.location.href
+    if (loginState == 'none') {
+      loginState = window.location.href;
     }
     var auth0Login = new Auth0({
       domain: 'topcoder.auth0.com',
