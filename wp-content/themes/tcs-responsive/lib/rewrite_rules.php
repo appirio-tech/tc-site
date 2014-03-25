@@ -86,11 +86,10 @@ add_rewrite_rule(
 add_rewrite_rule('^challenges/([^/]*)/?$', 'index.php?pagename=challenge-details&contestID=$matches[1]', 'top');
 
 // challenge terms
-
-add_rewrite_rule( '^challenge-details/terms/([^/]*)/?$', 'index.php?pagename=terms-list&contestID=$matches[1]', 'top');
+add_rewrite_rule( '^challenge-details/terms/detail/([^/]*)/?$', 'index.php?pagename=term-details&termsOfUseID=$matches[1]', 'top');
 
 // challenge term details
-add_rewrite_rule( '^challenge-details/terms/detail/([^/]*)/?$', 'index.php?pagename=term-details&termsOfUseID=$matches[1]', 'top');
+add_rewrite_rule( '^challenge-details/terms/([^/]*)/?$', 'index.php?pagename=terms-list&contestID=$matches[1]', 'top');
 
 // register to challenge
 add_rewrite_rule( '^challenge-details/register/([^/]*)/?$', 'index.php?pagename=challenge-details&contestID=$matches[1]&autoRegister=true', 'top');
