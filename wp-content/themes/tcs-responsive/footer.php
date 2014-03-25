@@ -675,6 +675,23 @@ $blog_posts = get_posts($blog_posts_args);
         email = profile.email;
         socialProviderId = 4;
       }
+      var user = profile.user_id.substring(profile.user_id.indexOf('|')+1);
+      $.ajax({
+        type: 'GET',
+        data: {
+          provider: socialProviderId,
+          user: user,
+          action: 'get_social_validity'
+        },
+        dataType: 'json',
+        url: ajaxUrl,
+        success: function(data) {
+          console.log(data);
+        }
+      }).fail(function() {
+        console.log('fail');
+      });
+
       socialUserName = handle;
       socialUserId = profile.user_id.split('|')[1];
       socialEmail = profile.email;
