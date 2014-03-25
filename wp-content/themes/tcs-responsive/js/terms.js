@@ -50,7 +50,7 @@ appChallengeTerms = {
               "termId": termsOfUseID,
               "jwtToken": tcjwt.replace(/["]/g, "")
             }, function (data) {
-              window.location = siteURL + "/challenge/terms/" + challengeId;
+              window.location = siteURL + "/challenge-details/terms/" + challengeId;
               $('.loading').hide();
             });
           }
@@ -100,7 +100,7 @@ appChallengeTerms = {
         $('.loading').hide();
 
         $(".termsBtnRegister").click(function () {
-          window.location = siteURL + "/challenge-detail/register/" + challengeId;
+          window.location = siteURL + "/challenge-details/register/" + challengeId;
         });
       });
     } else {
