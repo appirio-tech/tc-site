@@ -622,22 +622,28 @@ $blog_posts = get_posts($blog_posts_args);
     var githubProvider = "github";
     <?php
     $urlFromDiscourse = $_REQUEST["url"];
-	$stateLogin = "http://www.topcoder.com/";
-	if ($_REQUEST['sso'] != ''  and $_REQUEST['sig'] != '' ) {
-		// if ( preg_match('/sso=(.*)&sig=(.*)/', $urlFromDiscourse, $matches) ){  
-		//$sso = str_replace("=","%3D%0A",$matches[1]);
-		//$sig = $matches[2];
-		$sso = urlencode($_REQUEST['sso']);
-		$sig = $_REQUEST['sig'];	
-		$stateLogin = "http://talk.topcoder.com/session/sso_login?sso=$sso&sig=$sig";
-	}
+    $stateLogin = "none";
+    if ($_REQUEST['sso'] != ''  and $_REQUEST['sig'] != '' ) {
+        // if ( preg_match('/sso=(.*)&sig=(.*)/', $urlFromDiscourse, $matches) ){
+        //$sso = str_replace("=","%3D%0A",$matches[1]);
+        //$sig = $matches[2];
+        $sso = urlencode($_REQUEST['sso']);
+        $sig = $_REQUEST['sig'];
+        $stateLogin = "http://talk.topcoder.com/session/sso_login?sso=$sso&sig=$sig";
+    }
 
     ?>
+
+    var stateLogin = "<?php echo $stateLogin; ?>";
+
+    if (stateLogin == "none") {
+      stateLogin = window.location.href;
+    }
     var auth0Login = new Auth0({
       domain: 'topcoder.auth0.com',
       clientID: '6ZwZEUo2ZK4c50aLPpgupeg5v2Ffxp9P',
       callbackURL: 'https://www.topcoder.com/reg2/callback.action',
-      state: window.location.href,
+      state: stateLogin,
       redirect_uri: window.location.href
     });
 
@@ -645,7 +651,7 @@ $blog_posts = get_posts($blog_posts_args);
       domain: 'topcoder.auth0.com',
       clientID: '6ZwZEUo2ZK4c50aLPpgupeg5v2Ffxp9P',
       callbackURL: 'http://www.topcoder.com/?action=callback',
-      state: window.location.href,
+      state: stateLogin,
       redirect_uri: window.location.href
     });
 
@@ -704,52 +710,52 @@ $blog_posts = get_posts($blog_posts_args);
     $('.register-google').on('click', function () {
       auth0Register.login({
         connection: googleProvider,
-        state: window.location.href,
+        state: stateLogin,
         response_type: 'token'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
     });
 
     $('.register-facebook').on('click', function () {
       auth0Register.login({connection: facebookProvider,
-        state: window.location.href,
+        state: stateLogin,
         response_type: 'token'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
     });
 
     $('.register-twitter').on('click', function () {
       auth0Register.login({connection: twitterProvider,
-        state: window.location.href,
+        state: stateLogin,
         response_type: 'token'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
     });
 
     $('.register-github').on('click', function () {
       auth0Register.login({connection: githubProvider,
-        state: window.location.href,
+        state: stateLogin,
         response_type: 'token'});  // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
     });
 
     $('.signin-google').on('click', function () {
       auth0Login.login({
         connection: 'google-oauth2',
-        state: window.location.href}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+        state: stateLogin}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
     });
 
     $('.signin-facebook').on('click', function () {
       auth0Login.login({connection: 'facebook',
-        state: window.location.href}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+        state: stateLogin}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
     });
 
     $('.signin-twitter').on('click', function () {
       auth0Login.login({connection: 'twitter',
-        state: window.location.href}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+        state: stateLogin}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
     });
 
     $('.signin-github').on('click', function () {
       auth0Login.login({connection: 'github',
-        state: window.location.href});  // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+        state: stateLogin});  // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
     });
 
     $('.signin-etc').on('click', function () {
       auth0Login.login({connection: 'connection-name',
-        state: window.location.href}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+        state: stateLogin}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
     });
 
     $('.signin-db').on('click', function () {
@@ -767,7 +773,7 @@ $blog_posts = get_posts($blog_posts_args);
       if (empty) return;
       auth0Login.login({
           connection: 'LDAP',
-          state: window.location.href, // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+          state: stateLogin, // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
           username: document.getElementById('username').value,
           password: document.getElementById('password').value
         },
