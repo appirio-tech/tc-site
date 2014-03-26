@@ -24,7 +24,7 @@ appChallengeTerms = {
         "termId": termsOfUseID,
         "jwtToken": tcjwt.replace(/["]/g, "")
       }, function (data) {
-        if (data["title"]) {
+        if (data.title) {
           $(".formContent .terms").show();
           $(".formContent .warning").hide();
           $(".overviewPageTitle").text(data["title"]);
@@ -54,6 +54,15 @@ appChallengeTerms = {
             });
           }
         });
+
+        // This is absolutly a terrible thing to do but the only way to achieve what tony wants
+        // When the term api is updated to tell if we are using docusign this will go away
+        // and die a very misserable life
+        if (data.title == "Appirio NDA v1") {
+          $('.agree-label').hide();
+          $('.agreement').removeClass('notAgreed');
+        }
+
         $('.loading').hide();
       });
     } else {
