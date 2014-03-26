@@ -2,7 +2,7 @@
 .submitForChallenge #mainContent .pageTitle {
     border-bottom: 1px solid #E7E7E7;
     font-size: 30px;
-    height: 40px;
+    height: auto;
     line-height: 40px;
     padding-bottom: 10px;
 }
