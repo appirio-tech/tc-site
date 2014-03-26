@@ -206,6 +206,9 @@ $blog_posts = get_posts($blog_posts_args);
 
 <form class="register" id="registerForm">
 <p class="row">
+  <span class="socialUnavailableErrorMessage">Social profile already in use. Please use another profile or register below</span>
+</p>
+<p class="row">
   <label>First Name</label>
   <input type="text" class="name firstName" placeholder="First Name"/>
   <span class="err1">Required field</span>
@@ -684,6 +687,31 @@ $blog_posts = get_posts($blog_posts_args);
         email = profile.email;
         socialProviderId = 4;
       }
+      var user = profile.user_id.substring(profile.user_id.indexOf('|')+1);
+      $.ajax({
+        type: 'GET',
+        data: {
+          provider: socialProviderId,
+          user: user,
+          action: 'get_social_validity'
+        },
+        dataType: 'json',
+        url: ajaxUrl,
+        success: function(data) {
+          console.log(data);
+          if (!data.error && !(typeof data.available == 'undefined') && !data.available) {
+            resetRegisterFields();
+            $('.row .socialUnavailableErrorMessage').show();
+            $('#register .err1,.err2,.err3,.err4,.err5,.err6,.err7,.err8,span.valid').hide();
+            $('#register input.invalid').removeClass('invalid');
+            $('#register a.btnSubmit').removeClass('socialRegister');
+            socialProviderId = undefined;
+          }
+        }
+      }).fail(function() {
+        console.log('fail');
+      });
+
       socialUserName = handle;
       socialUserId = profile.user_id.split('|')[1];
       socialEmail = profile.email;

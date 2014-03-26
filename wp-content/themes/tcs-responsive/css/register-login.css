@@ -176,6 +176,10 @@ common
 /*
 Register modal
 */
+.row .socialUnavailableErrorMessage {
+    color: #c00;
+    display: none;
+}
 #register .content,
 #login .content{
     padding: 10px 20px;
