@@ -915,13 +915,14 @@ var app = {
   formatDate2: function(date) {
 
     var d = new Date(date);
-    var utcd = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds());
+    //var utcd = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds());
+    var timezone = "EST";
 
     // obtain local UTC offset and convert to msec
     localOffset = d.getTimezoneOffset() * 60000;
-    var newdate = new Date(utcd + localOffset);
+    var newdate = new Date(d.getTime() + localOffset);
 
-    return newdate.toDateString() + ' ' + ((newdate.getUTCHours() < 10 ? '0' : '') + newdate.getUTCHours()) + ':' + ((newdate.getUTCMinutes() < 10 ? '0' : '') + newdate.getUTCMinutes());
+    return newdate.toDateString() + ' ' + ((newdate.getUTCHours() < 10 ? '0' : '') + newdate.getUTCHours()) + ':' + ((newdate.getUTCMinutes() < 10 ? '0' : '') + newdate.getUTCMinutes()) + " " + timezone;
 
   },
 
