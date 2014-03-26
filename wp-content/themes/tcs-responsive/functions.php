@@ -47,8 +47,6 @@ function tags_support_all() {
 
 add_action('init', 'tags_support_all');
 
-locate_template("lib/rss.php", TRUE);
-
 function get_rel_url($url, $force = FALSE) {
   if (!strstr($url, $_SERVER['HTTP_HOST']) && !$force) {
     return $url;
@@ -295,7 +293,7 @@ function promo_register() {
   );
 
   register_post_type('promo', $args);
-  flush_rewrite_rules(FALSE);
+
   $strPostName = 'Blog';
   $strPostName = 'Blog';
 
@@ -386,7 +384,7 @@ function case_studies_register() {
 
   register_post_type('case-studies', $args);
 
-  flush_rewrite_rules(FALSE);
+
 
 }
 
