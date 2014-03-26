@@ -34,7 +34,6 @@ appChallengeTerms = {
           $(".formContent .warning").text(data["error"]["details"]);
           $(".formContent .warning").show();
         }
-        $('#submitForm').jqTransform();
         $('#agree').change(function () {
           if ($(this).prop('checked')) {
             $(this).closest('section.agreement').removeClass('notAgreed');

@@ -118,7 +118,6 @@
         "register-login.js",
         "init-header.js",
         "jquery.qtip.min.js",
-        "jquery.jqtransform.js",
         "terms.js"
       ],
       "css": [
