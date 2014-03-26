@@ -54,7 +54,7 @@ appChallengeSubmit = {
               var submission = document.getElementById('submission').files[0];
               var fileReader= new FileReader();
               fileReader.onload = function(e) {
-                var xhr = $.getJSON(ajaxUrl, {
+                var xhr = $.post(ajaxUrl, {
                   "action": "submit_to_dev_challenge",
                   "challengeId": challengeId,
                   "fileName": submission.name,
@@ -69,7 +69,7 @@ appChallengeSubmit = {
                     if(data["error"]["details"]){
                       $("#registerFailed .failedMessage").text(data["error"]["details"]);
                     } else {
-                      $("#registerFailed .failedMessage").text("The submission could not be uploaded.");                  
+                      $("#registerFailed .failedMessage").text("The submission could not be uploaded.");               
                     }
                     showModal("#registerFailed");
                   }

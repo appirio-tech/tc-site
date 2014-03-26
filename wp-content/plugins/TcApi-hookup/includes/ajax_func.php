@@ -237,10 +237,10 @@ add_action('wp_ajax_nopriv_register_to_challenge', 'register_to_challenge_ajax_c
 /* submit to development challenge */
 function submit_to_dev_challenge_ajax_controller() {
 
-  $challengeId = $_GET ["challengeId"];
-  $fileName = $_GET ["fileName"];
-  $fileData = $_GET ["fileData"];
-  $jwtToken = $_GET ["jwtToken"];
+  $challengeId = $_POST ["challengeId"];
+  $fileName = $_POST ["fileName"];
+  $fileData = $_POST ["fileData"];
+  $jwtToken = $_POST ["jwtToken"];
 
   $submitToDevChallengeResponse = submit_to_dev_challenge($challengeId, $fileName, $fileData, $jwtToken);
   if (isset($submitToDevChallengeResponse)) {
@@ -896,5 +896,3 @@ function get_email_validity_ajax(
     $email_validity = json_decode($response['body']);
     return $email_validity;
 }
-
-
