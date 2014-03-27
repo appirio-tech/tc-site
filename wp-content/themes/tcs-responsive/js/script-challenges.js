@@ -1326,7 +1326,7 @@ appChallenges = {
     },
 
     formatDate2: function(date) {
-        var timezone = " EST"
+        var timezone = " EST";
         return moment.tz(date, timezone_string).format("D MMM YYYY HH:mm") + timezone;
         // var d = new Date(date);
         // var utcd = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds());

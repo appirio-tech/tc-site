@@ -3,9 +3,6 @@
  * Template Name: Challenges Bug Race List Page
  * Author : evilkyro1965
  */
-get_header('challenge-landing');
-
-$tzstring = get_option('timezone_string');
 
 date_default_timezone_set($tzstring);
 
@@ -26,7 +23,6 @@ $postId = $post->ID;
 ?>
 
 <script type="text/javascript" >
-	var timezone_string = "<?php echo $tzstring;?>"
 	var siteurl = "<?php bloginfo('siteurl');?>";
 
 	var reviewType = "contest";

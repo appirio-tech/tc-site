@@ -1,12 +1,8 @@
 <?php
 
-$tzstring = get_option('timezone_string');
-
-date_default_timezone_set($tzstring);
-
 add_action ( 'wp_head', 'tc_challenge_details_js' );
 function tc_challenge_details_js(){
-  global $contest, $contestType, $contestID, $registrants, $tzstring;
+  global $contest, $contestType, $contestID, $registrants;
   ?>
   <script type="text/javascript">
     var registrationUntil = new Date(<?php echo strtotime("$contest->registrationEndDate");?>*1000);
@@ -14,7 +10,6 @@ function tc_challenge_details_js(){
     var challengeId = "<?php echo $contestID;?>";
     var challengeType = "<?php echo $contestType;?>";
     var autoRegister = "<?php echo get_query_var('autoRegister');?>";
-    var timezone_string = "<?php echo $tzstring;?>";
 
     var registrants = ["anonymous"
       <?php

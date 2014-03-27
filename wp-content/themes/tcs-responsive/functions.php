@@ -47,6 +47,8 @@ function tags_support_all() {
 
 add_action('init', 'tags_support_all');
 
+date_default_timezone_set(get_option('timezone_string'));
+
 function get_rel_url($url, $force = FALSE) {
   if (!strstr($url, $_SERVER['HTTP_HOST']) && !$force) {
     return $url;
