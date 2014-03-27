@@ -19,7 +19,10 @@
         "init-header.js",
         "challenge-detail-software.js",
         "jquery.jscrollpane.min.js",
-        "jquery.column-1.0.js"
+        "jquery.column-1.0.js",
+        "moment.min.js",
+        "moment-timezone.min.js",
+        "moment-data.js"
       ],
       "css": [
         "blog.css",
