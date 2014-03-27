@@ -2,8 +2,6 @@
 /**
  * Template Name: Community Page
  */
-?>
-<?php
 
 get_header ();
 
@@ -11,13 +9,14 @@ $values = get_post_custom ( $post->ID );
 
 $userkey = get_option ( 'api_user_key' );
 $siteURL = site_url ();
-?>
 
-<?php
 // get contest details
 $contest_type = get_query_var ( 'contest_type' );
 $contest_type = str_replace ( "_", " ", $contest_type );
 $postPerPage = get_option ( "contest_per_page" ) == "" ? 30 : get_option ( "contest_per_page" );
+
+$tzstring = get_option('timezone_string');
+
 ?>
 
 <style>
