@@ -191,7 +191,7 @@ get_header('challenge-landing');
   <?php
   else:
     ?>
-    <a class="btn btnAction challengeRegisterBtn" target="_blank" href="javascript:;"><span>1</span> <strong>Register
+    <a class="btn btnAction challengeRegisterBtn" target="_blank" href="http://studio.topcoder.com/?module=ViewRegistration&ct=<?php echo $contestID ;?>"><span>1</span> <strong>Register
         For This Challenge</strong></a>
     <a class="btn btnAction" target="_blank"
        href="http://studio.topcoder.com/?module=ViewRegistration&ct=<?php echo $contestID; ?>"><span>2</span> <strong>Submit
