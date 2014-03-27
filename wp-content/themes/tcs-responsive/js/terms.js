@@ -108,7 +108,7 @@ appChallengeTerms = {
         $('.loading').hide();
 
         $(".termsBtnRegister").click(function () {
-          window.location = siteURL + "/challenge-details/register/" + challengeId;
+          window.location = siteURL + "/challenge-details/register/" + challengeId  + "?type=" + challengeType + "&nocache=true";
         });
       });
     } else {

@@ -181,6 +181,8 @@ function tcapi_query_vars($query_vars) {
   $query_vars [] = 'role';
   $query_vars [] = 'termsOfUseID';
   $query_vars [] = 'autoRegister';
+  $query_vars [] = 'type';
+  $query_vars [] = 'nocache';
   return $query_vars;
 }
 

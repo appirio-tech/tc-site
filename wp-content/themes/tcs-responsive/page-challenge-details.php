@@ -76,7 +76,8 @@ $siteURL = site_url();
 $contestID = get_query_var('contestID');
 //$contestType = get_query_var ( 'type' );
 $contestType = $_GET['type'];
-$contest = get_contest_detail('', $contestID, $contestType);
+$noCache = get_query_var('nocache');
+$contest = get_contest_detail('', $contestID, $contestType, $noCache);
 $registrants = empty($contest->registrants) ? array() : $contest->registrants;
 
 

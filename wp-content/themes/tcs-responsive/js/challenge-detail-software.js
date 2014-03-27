@@ -274,7 +274,7 @@ $(function () {
         if (data["message"] === "ok") {
           showModal("#registerSuccess");
         } else if (data["error"]["details"] === "You should agree with all terms of use.") {
-          window.location = siteURL + "/challenge-details/terms/" + challengeId;
+          window.location = siteURL + "/challenge-details/terms/" + challengeId + "?type=" + challengeType + "&nocache=true";
         } else if (data["error"]["details"]) {
           $("#registerFailed .failedMessage").text(data["error"]["details"]);
           showModal("#registerFailed");
