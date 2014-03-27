@@ -5,10 +5,6 @@
  */
 get_header('challenge-landing');
 
-$tzstring = get_option('timezone_string');
-
-date_default_timezone_set($tzstring);
-
 $values = get_post_custom ( $post->ID );
 
 $siteURL = site_url ();
@@ -26,7 +22,6 @@ $postId = $post->ID;
 ?>
 
 <script type="text/javascript" >
-	var timezone_string = "<?php echo $tzstring;?>"
 	var siteurl = "<?php bloginfo('siteurl');?>";
 
 	var reviewType = "contest";

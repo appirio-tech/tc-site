@@ -1,8 +1,8 @@
 <?php
 
-add_action('init', 'add_custom_rewrite_rules');
+add_action('init', 'tc_add_custom_rewrite_rules');
 
-function add_custom_rewrite_rules() {
+function tc_add_custom_rewrite_rules() {
   // Active Contest
   add_rewrite_rule(
     '^' . ACTIVE_CONTESTS_PERMALINK . '/([^/]*)/?$',
@@ -89,13 +89,21 @@ function add_custom_rewrite_rules() {
   add_rewrite_rule('^challenges/([^/]*)/?$', 'index.php?pagename=challenge-details&contestID=$matches[1]', 'top');
 
   // challenge terms
-  add_rewrite_rule( '^challenge-details/terms/detail/([^/]*)/?$', 'index.php?pagename=term-details&termsOfUseID=$matches[1]', 'top');
+  add_rewrite_rule(
+    '^challenge-details/terms/detail/([^/]*)/?$',
+    'index.php?pagename=term-details&termsOfUseID=$matches[1]',
+    'top'
+  );
 
   // challenge term details
-  add_rewrite_rule( '^challenge-details/terms/([^/]*)/?$', 'index.php?pagename=terms-list&contestID=$matches[1]', 'top');
+  add_rewrite_rule('^challenge-details/terms/([^/]*)/?$', 'index.php?pagename=terms-list&contestID=$matches[1]', 'top');
 
   // register to challenge
-  add_rewrite_rule( '^challenge-details/register/([^/]*)/?$', 'index.php?pagename=challenge-details&contestID=$matches[1]&autoRegister=true', 'top');
+  add_rewrite_rule(
+    '^challenge-details/register/([^/]*)/?$',
+    'index.php?pagename=challenge-details&contestID=$matches[1]&autoRegister=true',
+    'top'
+  );
 
   // Blog search
   //add_rewrite_rule('^'.BLOG_PERMALINK.'/?$', 'index.php?', 'top');
@@ -127,13 +135,4 @@ function add_custom_rewrite_rules() {
 
   // Search results
   add_rewrite_rule('^search/?$', 'index.php?', 'top');
-
-  /* flush */
-  // don't flush rewrite rules unless you know what you are doing!
-  //flush_rewrite_rules();
 }
-
-
-
-?>
-

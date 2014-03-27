@@ -24,7 +24,7 @@ appChallengeTerms = {
         "termId": termsOfUseID,
         "jwtToken": tcjwt.replace(/["]/g, "")
       }, function (data) {
-        if (data["title"]) {
+        if (data.title) {
           $(".formContent .terms").show();
           $(".formContent .warning").hide();
           $(".overviewPageTitle").text(data["title"]);
@@ -34,7 +34,6 @@ appChallengeTerms = {
           $(".formContent .warning").text(data["error"]["details"]);
           $(".formContent .warning").show();
         }
-        $('#submitForm').jqTransform();
         $('#agree').change(function () {
           if ($(this).prop('checked')) {
             $(this).closest('section.agreement').removeClass('notAgreed');
@@ -50,11 +49,20 @@ appChallengeTerms = {
               "termId": termsOfUseID,
               "jwtToken": tcjwt.replace(/["]/g, "")
             }, function (data) {
-              window.location = siteURL + "/challenge/terms/" + challengeId;
+              window.location = siteURL + "/challenge-details/terms/" + challengeId;
               $('.loading').hide();
             });
           }
         });
+
+        // This is absolutly a terrible thing to do but the only way to achieve what tony wants
+        // When the term api is updated to tell if we are using docusign this will go away
+        // and die a very misserable life
+        if (data.title == "Appirio NDA v1") {
+          $('.agree-label').hide();
+          $('.agreement').removeClass('notAgreed');
+        }
+
         $('.loading').hide();
       });
     } else {
@@ -100,7 +108,7 @@ appChallengeTerms = {
         $('.loading').hide();
 
         $(".termsBtnRegister").click(function () {
-          window.location = siteURL + "/challenge-detail/register/" + challengeId;
+          window.location = siteURL + "/challenge-details/register/" + challengeId  + "?type=" + challengeType + "&nocache=true";
         });
       });
     } else {

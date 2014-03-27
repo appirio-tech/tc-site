@@ -48,6 +48,7 @@ function tags_support_all() {
 add_action('init', 'tags_support_all');
 
 //locate_template("lib/rss.php", TRUE);
+date_default_timezone_set(get_option('timezone_string'));
 
 function get_rel_url($url, $force = FALSE) {
   if (!strstr($url, $_SERVER['HTTP_HOST']) && !$force) {
@@ -183,6 +184,8 @@ function tcapi_query_vars($query_vars) {
   $query_vars [] = 'role';
   $query_vars [] = 'termsOfUseID';
   $query_vars [] = 'autoRegister';
+  $query_vars [] = 'type';
+  $query_vars [] = 'nocache';
   return $query_vars;
 }
 
@@ -295,7 +298,7 @@ function promo_register() {
   );
 
   register_post_type('promo', $args);
-  //flush_rewrite_rules(FALSE);
+
   $strPostName = 'Blog';
   $strPostName = 'Blog';
 
@@ -386,7 +389,7 @@ function case_studies_register() {
 
   register_post_type('case-studies', $args);
 
-  //flush_rewrite_rules(FALSE);
+
 
 }
 

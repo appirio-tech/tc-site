@@ -78,7 +78,7 @@ $(document).ready(function() {
           if (window.location.hash == '#_=_') {
             location.href = '';
           } else {
-            location.href = location.href;
+            location.reload();
           }
         });
       } else if (!tcsso && $('.actionLogout').length > 1) {

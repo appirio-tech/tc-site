@@ -1,4 +1,5 @@
 <?php
+
 add_action ( 'wp_head', 'tc_challenge_details_js' );
 function tc_challenge_details_js(){
   global $contest, $contestType, $contestID, $registrants;
@@ -21,10 +22,6 @@ function tc_challenge_details_js(){
   </script>
 <?php
 }
-
-$tzstring = get_option('timezone_string');
-
-date_default_timezone_set($tzstring);
 
 /**
  * Template Name: Challenge details
@@ -76,7 +73,8 @@ $siteURL = site_url();
 $contestID = get_query_var('contestID');
 //$contestType = get_query_var ( 'type' );
 $contestType = $_GET['type'];
-$contest = get_contest_detail('', $contestID, $contestType);
+$noCache = get_query_var('nocache');
+$contest = get_contest_detail('', $contestID, $contestType, $noCache);
 $registrants = empty($contest->registrants) ? array() : $contest->registrants;
 
 
@@ -190,7 +188,7 @@ get_header('challenge-landing');
   <?php
   else:
     ?>
-    <a class="btn btnAction challengeRegisterBtn" target="_blank" href="javascript:;"><span>1</span> <strong>Register
+    <a class="btn btnAction challengeRegisterBtn" target="_blank" href="http://studio.topcoder.com/?module=ViewRegistration&ct=<?php echo $contestID ;?>"><span>1</span> <strong>Register
         For This Challenge</strong></a>
     <a class="btn btnAction" target="_blank"
        href="http://studio.topcoder.com/?module=ViewRegistration&ct=<?php echo $contestID; ?>"><span>2</span> <strong>Submit
