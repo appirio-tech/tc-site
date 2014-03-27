@@ -140,7 +140,7 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 		}
 
         if ($resetCache) {
-          $url .= "?resetcache=true";
+          $url .= "?refresh=t";
         }
 
 		$args = array (
