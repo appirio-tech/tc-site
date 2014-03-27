@@ -39,7 +39,7 @@ $img_locked = get_bloginfo( 'stylesheet_directory' )."/i/img-locked.png";
 						<span class="val"><i></i>$<?php echo $recentWins[0]->prize;?></span>
 					</div>
 					<div class="submittedOn">
-						Submitted on: <span class="time"><?php echo date("M d, Y H:i",strtotime($contest->submissionDate)) . " EST";?></span>
+						Submitted on: <span class="time"><?php echo date("M d, Y H:i",strtotime($r->submissionDate)) . " EST";?></span>
 					</div>
 				</div>
 			</div>
@@ -59,7 +59,7 @@ $img_locked = get_bloginfo( 'stylesheet_directory' )."/i/img-locked.png";
 							<div class="hide comptetionData">
 								<input class="name" type="hidden" value="<?php echo $r->contestName;?>" />
 								<input class="prize" type="hidden" value="$<?php echo $r->prize;?>" />
-								<input class="submiissionDate" type="hidden" value="<?php echo date("M d, Y H:i",strtotime($contest->submissionDate)) . " EST";?>" />
+								<input class="submiissionDate" type="hidden" value="<?php echo date("M d, Y H:i",strtotime($r->submissionDate)) . " EST";?>" />
 							</div>
 						</div>
 						<?php
