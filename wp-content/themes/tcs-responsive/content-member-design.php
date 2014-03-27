@@ -34,7 +34,7 @@ $img_locked = get_bloginfo( 'stylesheet_directory' )."/i/img-locked.png";
 					<a href="#" class="contestTitle">
 						<i></i><?php echo $recentWins[0]->contestName;?>
 					</a>
-					<div class="badgeImg"></div>
+					<div id="badgeImg" class="badgeImg rank<?php echo $recentWins[0]->rank;?>"></div>
 					<div class="prizeAmount">
 						<span class="val"><i></i>$<?php echo $recentWins[0]->prize;?></span>
 					</div>
@@ -59,6 +59,7 @@ $img_locked = get_bloginfo( 'stylesheet_directory' )."/i/img-locked.png";
 							<div class="hide comptetionData">
 								<input class="name" type="hidden" value="<?php echo $r->contestName;?>" />
 								<input class="prize" type="hidden" value="$<?php echo $r->prize;?>" />
+								<input class="rank" type="hidden" value="<?php echo $r->rank;?>" />
 								<input class="submiissionDate" type="hidden" value="<?php echo date("M d, Y H:i",strtotime($r->submissionDate)) . " EST";?>" />
 							</div>
 						</div>

@@ -237,6 +237,7 @@ var coder = {
 									
 									var desc = $('.comptetionData',this.defs.currentSlide);
 									$('.winInfo .contestTitle').html('<i></i>'+$('.name',desc).val());
+									$('.winInfo #badgeImg').attr('class','').addClass('badgeImg rank'+$('.rank',desc).val());
 									$('.winInfo .prizeAmount .val').html('<i></i>'+$('.prize',desc).val());
 									$('.winInfo .submittedOn .time').html($('.submiissionDate',desc).val());
 								}
