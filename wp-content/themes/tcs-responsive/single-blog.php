@@ -200,7 +200,6 @@ $blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the topcoder 
 
 
 						<!-- /.pageContent -->
-						<?php comments_template(); ?>
 					</div>
 					<!-- /.mainStream -->
 					<aside class="sideStream  grid-1-3">
