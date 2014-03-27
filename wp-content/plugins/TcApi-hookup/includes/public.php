@@ -397,33 +397,43 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 	
 	/* get member profile design recent Wins */
 	function tcapi_get_stat_design_recentwins($handle= ''){
-		$url = "http://tcapi.apiary-mock.com/v2/users/$handle/statistics/design/recentWins";
+		$url = "http://api.topcoder.com/v2/users/$handle/statistics/design/recentWins";
 		$args = array (
 				'httpversion' => get_option ( 'httpversion' ),
 				'timeout' => 30
 		);
 		$response = wp_remote_get ( $url, $args );
 
-		/* hardcoded API response */
+		/* hardcoded API response since API is being develop 
 		$response['body'] = '{
-		   size:2,
-		   recentWinningSubmissions:[
+		   "size":2,
+		   "recentWinningSubmissions":[
 			  {
-				 contestName:"TC - CS Storyboard Redesign Lorem Ipsum Dolor sit Amet 2",
-				 rank:"1",
-				 prize:1300,
-				 submissionDate:"2014-02-03T09:30:00.000Z",
-				 viewable:true         preview:"https://studio.topcoder.com/?module=DownloadSubmission&sbmid=169728&sbt=small"
+				 "contestName":"TC - CS Storyboard Redesign Lorem Ipsum Dolor sit Amet 1",
+				 "rank":"1",
+				 "prize":1100,
+				 "submissionDate":"2014-02-03T09:30:00.000Z",
+				 "viewable":true  ,       
+				 "preview":"http://studio.topcoder.com/?module=DownloadSubmission&sbmid=176147&sbt=small"
 			  },
 			  {
-				 contestName:"TC Redesign Lorem Ipsum Dolor sit Amet 2",
-				 rank:"M",
-				 prize:600,
-				 submissionDate:"2014-01-22T10:12:00.000Z",
-				 viewable:false
+				 "contestName":"TC - CS Storyboard Redesign Lorem Ipsum Dolor sit Amet 2",
+				 "rank":"1",
+				 "prize":1200,
+				 "submissionDate":"2014-02-03T09:30:00.000Z",
+				 "viewable":true  ,       
+				 "preview":"http://studio.topcoder.com/?module=DownloadSubmission&sbmid=176055&sbt=small"
+			  },
+			  {
+				 "contestName":"TC - CS Storyboard Redesign Lorem Ipsum Dolor sit Amet 2",
+				 "rank":"M",
+				 "prize":130,
+				 "submissionDate":"2014-01-22T10:12:00.000Z",
+				 "viewable":false
 			  }
 		   ]
 		}';
+		*/
 		if (is_wp_error ( $response ) || ! isset ( $response ['body'] )) {
 			return "Error in processing request or Member dosen't exist";
 		}

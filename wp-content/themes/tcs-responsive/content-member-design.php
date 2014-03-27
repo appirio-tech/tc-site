@@ -11,10 +11,9 @@ if ($tab == "algo") {
 global $coder;
 $coder = get_member_statistics ( $handle, $track );
 $WebDesign = $coder->Tracks->WebDesign;
-
-$recentWins = get_stat_design_recentwins( $handle );
-echo "design ";
-print_r ($recentWins);
+$recentWins = get_stat_design_recentwins($handle)->recentWinningSubmissions;
+#print_r($recentWins);
+$img_locked = get_bloginfo( 'stylesheet_directory' )."/i/img-locked.png";
 ?>
 
 
@@ -24,7 +23,7 @@ print_r ($recentWins);
 		<div class="submissonInfo">
 			<figure class="submissionThumb">
 				<!-- <img alt="" src="<?php // echo $WebDesign->recentWinningSubmission; ?>">  -->
-				<img alt="" src="<?php bloginfo( 'stylesheet_directory' ); ?>/i/desing-sub.png" />
+				<img alt="" src="<?php echo ( $recentWins[0]->viewable == false ? $img_locked: $recentWins[0]->preview);?>" />
 				
 			</figure>
 			<div class="rwsDetails">
@@ -33,14 +32,14 @@ print_r ($recentWins);
 				</header>
 				<div class="winInfo">
 					<a href="#" class="contestTitle">
-						<i></i>TC - CS Storyboard Redesign Lorem Ipsum Dolor sit Amet 2
+						<i></i><?php echo $recentWins[0]->contestName;?>
 					</a>
 					<div class="badgeImg"></div>
 					<div class="prizeAmount">
-						<span class="val"><i></i>$1200.00</span>
+						<span class="val"><i></i>$<?php echo $recentWins[0]->prize;?></span>
 					</div>
 					<div class="submittedOn">
-						Submitted on: <span class="time">10.31.2013 at 07:58 EST</span>
+						Submitted on: <span class="time"><?php echo date("M d, Y H:i",strtotime($contest->submissionDate)) . " EST";?></span>
 					</div>
 				</div>
 			</div>
@@ -49,92 +48,23 @@ print_r ($recentWins);
 				<div class="carouselWrap">
 					<div class="slider">
 						<?php
-							foreach ( $recentWins as $r ):
+						foreach ( $recentWins as $r ):
 						?>
-						<div class="slide">
-							<figure>
-								<img alt="" src="http://studio.topcoder.com/?module=DownloadSubmission&sbmid=176147&sbt=small" />
-							</figure>
-							<div class="hide comptetionData">
-								<input class="name" type="hidden" value="XXX <?php echo ""; ;?>" />
-								<input class="prize" type="hidden" value="$1300.00" />
-								<input class="submiissionDate" type="hidden" value="10.31.2013 at 07:58 EST" />
-							</div>
-						</div>
-						<?php
-							endforeach; 
-						?>
+						
 						
 						<div class="slide">
 							<figure>
-								<img alt="" src="<?php bloginfo( 'stylesheet_directory' ); ?>/i/desing-sub.png" />
+								<img alt="" src="<?php echo ( $r->viewable == false ? $img_locked: $r->preview);?>" />
 							</figure>
 							<div class="hide comptetionData">
-								<input class="name" type="hidden" value="TC - CS Storyboard Redesign Lorem Ipsum Dolor sit Amet 2" />
-								<input class="prize" type="hidden" value="$1300.00" />
-								<input class="submiissionDate" type="hidden" value="10.31.2013 at 07:58 EST" />
+								<input class="name" type="hidden" value="<?php echo $r->contestName;?>" />
+								<input class="prize" type="hidden" value="$<?php echo $r->prize;?>" />
+								<input class="submiissionDate" type="hidden" value="<?php echo date("M d, Y H:i",strtotime($contest->submissionDate)) . " EST";?>" />
 							</div>
 						</div>
-						<div class="slide">
-							<figure>
-								<img alt="" src="<?php bloginfo( 'stylesheet_directory' ); ?>/i/img-locked.png" />
-							</figure>
-							<div class="hide comptetionData">
-								<input class="name" type="hidden" value="TC - CS Storyboard Redesign Lorem Ipsum Dolor sit Amet 2" />
-								<input class="prize" type="hidden" value="$1300.00" />
-								<input class="submiissionDate" type="hidden" value="10.31.2013 at 07:58 EST" />
-							</div>
-						</div>
-						<div class="slide">
-							<figure>
-								<img alt="" src="<?php bloginfo( 'stylesheet_directory' ); ?>/i/car-img.png" />
-							</figure>
-							<div class="hide comptetionData">
-								<input class="name" type="hidden" value="TC - CS Storyboard Redesign Lorem Ipsum " />
-								<input class="prize" type="hidden" value="$1200.00" />
-								<input class="submiissionDate" type="hidden" value="10.30.2013 at 07:58 EST" />
-							</div>
-						</div>
-						<div class="slide">
-							<figure>
-								<img alt="" src="<?php bloginfo( 'stylesheet_directory' ); ?>/i/car-img.png" />
-							</figure>
-							<div class="hide comptetionData">
-								<input class="name" type="hidden" value="TC - CS Lorem Ipsum Dolor sit Amet 2" />
-								<input class="prize" type="hidden" value="$1300.00" />
-								<input class="submiissionDate" type="hidden" value="10.22.2013 at 07:58 EST" />
-							</div>
-						</div>
-						<div class="slide">
-							<figure>
-								<img alt="" src="<?php bloginfo( 'stylesheet_directory' ); ?>/i/img-locked.png" />
-							</figure>
-							<div class="hide comptetionData">
-								<input class="name" type="hidden" value="TC - CS Storyboard Redesign Lorem Ipsum Dolor sit Amet 2" />
-								<input class="prize" type="hidden" value="$1300.00" />
-								<input class="submiissionDate" type="hidden" value="10.31.2013 at 07:58 EST" />
-							</div>
-						</div>
-						<div class="slide">
-							<figure>
-								<img alt="" src="<?php bloginfo( 'stylesheet_directory' ); ?>/i/img-locked.png" />
-							</figure>
-							<div class="hide comptetionData">
-								<input class="name" type="hidden" value="TC - CS Storyboard Redesign Lorem Ipsum Dolor sit Amet 2" />
-								<input class="prize" type="hidden" value="$1300.00" />
-								<input class="submiissionDate" type="hidden" value="10.31.2013 at 07:58 EST" />
-							</div>
-						</div>
-						<div class="slide">
-							<figure>
-								<img alt="" src="<?php bloginfo( 'stylesheet_directory' ); ?>/i/car-img.png" />
-							</figure>
-							<div class="hide comptetionData">
-								<input class="name" type="hidden" value="TC  Redesign Lorem Ipsum Dolor sit Amet 2" />
-								<input class="prize" type="hidden" value="$2000.00" />
-								<input class="submiissionDate" type="hidden" value="09.31.2013 at 07:58 EST" />
-							</div>
-						</div>
+						<?php
+						endforeach;
+						?>						
 					</div>
 				</div>
 			</div>
