@@ -46,7 +46,8 @@ $blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the topcoder 
 							$items = wp_get_nav_menu_items( BLOG );
 							if($items!=null)
 							foreach($items as $menu) :
-								$active = $catId == $menu->object_id ? "active" : $catId . "|" . $menu->object_id;
+								$active = $catId == $menu->object_id ? "active" : "";
+                if ($catId=="" && $menu->object_id=="13554") $active = "active";
 						?>
 							<a href="<?php echo $menu->url;?>" class="<?php echo $active;?>"><?php echo $menu->title;?></a>
 						<?php endforeach; ?>
