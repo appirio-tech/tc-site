@@ -32,6 +32,10 @@ a.blueLink:hover {
     z-index: 0;
 }
 
+.blogCategoryMenu a:visited {
+  color: #666666;
+}
+
 .blogCategoryMenu a:hover, .blogCategoryMenu a.active {
     background-color: #ffae00;
     color: #fff;
