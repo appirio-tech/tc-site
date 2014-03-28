@@ -23,8 +23,7 @@ $contest = get_contest_detail('', get_query_var('contestID'), $challengeType);
                         <dl class="group fileField linkRow jqtransformdone" style="z-index: 985;">
                             <dt>Submission File (*.zip)</dt>
                             <dd>
-                                <p class="fileNameDisplay fileNameDisplayNoFile">All Visible Files (visible to challenge
-                                    holder</p>
+                                <p class="fileNameDisplay fileNameDisplayNoFile">Select file to upload...</p>
                                 <a class="btn fileBrowser btnGreen" href="javascript:;">Browse</a>
                                 <span class="error">Please upload a submission first</span>
                                 <input id="submission" data-type="zip" type="file" onchange="browseFileTrigger(this)" name="submission"
@@ -33,19 +32,13 @@ $contest = get_contest_detail('', get_query_var('contestID'), $challengeType);
                         </dl>
                     </div>
                     <div class="rightCol col">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
+                        <p>Please organize and upload files as per the submission requirements for the challenge</p>
                     </div>
                     <div class="clear"></div>
                 </section>
                 <section class="agreement notAgreed">
                     <input id="agree" type="checkbox"/>
-                    <label>by clicking this box lorem ipsum dolor sit amet consecteter adispicing elit Lorem ipsum dolor
-                        sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                        qui officia deserunt mollit anim id est laborum</label>
+                    <label>by clicking this box you agree to our <a href="http://www.topcoder.com/community/terms-and-conditions/" target="_blank">terms and conditions.</a></label>
                     <a href="javascript:" id="submit" class="btn">Submit</a>
                 </section>
                 <!-- #/end agreement section-->
@@ -78,7 +71,6 @@ $contest = get_contest_detail('', get_query_var('contestID'), $challengeType);
             <!-- /#end success content-->
             <section class="viewSubmission">
                 <h2>Submission successfully uploaded</h2>
-                <p>Lorem ipsum dolor sit amet consecteter adispicing elit Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
             </section>
             <!-- /#end view submission-->
             <section class="submissionTable">
