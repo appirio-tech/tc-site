@@ -1,4 +1,5 @@
 <?php
+
 add_action ( 'wp_head', 'tc_challenge_details_js' );
 function tc_challenge_details_js(){
   global $contest, $contestType, $contestID, $registrants;
@@ -21,10 +22,6 @@ function tc_challenge_details_js(){
   </script>
 <?php
 }
-
-$tzstring = get_option('timezone_string');
-
-date_default_timezone_set($tzstring);
 
 /**
  * Template Name: Challenge details
@@ -76,7 +73,8 @@ $siteURL = site_url();
 $contestID = get_query_var('contestID');
 //$contestType = get_query_var ( 'type' );
 $contestType = $_GET['type'];
-$contest = get_contest_detail('', $contestID, $contestType);
+$noCache = get_query_var('nocache');
+$contest = get_contest_detail('', $contestID, $contestType, $noCache);
 $registrants = empty($contest->registrants) ? array() : $contest->registrants;
 
 
@@ -189,7 +187,7 @@ get_header('challenge-landing');
   <?php
   else:
     ?>
-    <a class="btn btnAction challengeRegisterBtn" target="_blank" href="javascript:;"><span>1</span> <strong>Register
+    <a class="btn btnAction challengeRegisterBtn" target="_blank" href="http://studio.topcoder.com/?module=ViewRegistration&ct=<?php echo $contestID ;?>"><span>1</span> <strong>Register
         For This Challenge</strong></a>
     <a class="btn btnAction" target="_blank"
        href="http://studio.topcoder.com/?module=ViewRegistration&ct=<?php echo $contestID; ?>"><span>2</span> <strong>Submit
@@ -214,6 +212,7 @@ endif;
 ?>
 <table class="prizeTable">
 <tbody>
+
 <tr>
   <?php
   if ($contestType != 'design' && $contest->challengeType != "Code"):
@@ -222,23 +221,22 @@ endif;
       <h2>1st PLACE</h2>
 
       <h3>
-        <small>$</small><?php if ($contest->prize[0] !== NULL) {
+        <small>$</small><?php if (isset($contest->prize[0])) {
           echo number_format($contest->prize[0]);
         } ?></h3>
     </td>
     <td class="fifty">
       <h2>2nd PLACE</h2>
-
       <h3>
-        <small>$</small><?php if ($contest->prize[1] !== NULL) {
-          echo number_format($contest->prize[1]);
-        } ?></h3>
+        <small>$</small><?php 
+          echo number_format(isset($contest->prize[1])? $contest->prize[1] : "0"); ?>
+      </h3>
     </td>
   <?php
   else:
     ?>
     <?php
-    if ($contest->prize[0] !== NULL && $contest->prize[0] !== 0):
+    if (isset($contest->prize[0])):
       ?>
       <td class="twenty">
         <h2>1st PLACE</h2>
@@ -259,7 +257,7 @@ endif;
     endif;
     ?>
     <?php
-    if ($contest->prize[1] !== NULL && $contest->prize[1] !== 0):
+    if (isset($contest->prize[1])):
       ?>
       <td class="twenty">
         <h2>2nd PLACE</h2>
@@ -280,7 +278,7 @@ endif;
     endif;
     ?>
     <?php
-    if ($contest->prize[2] !== NULL && $contest->prize[2] !== 0):
+    if (isset($contest->prize[2])):
       ?>
       <td class="twenty">
         <h2>3rd PLACE</h2>
@@ -301,7 +299,7 @@ endif;
     endif;
     ?>
     <?php
-    if ($contest->prize[3] !== NULL && $contest->prize[3] !== 0):
+    if (isset($contest->prize[3])):
       ?>
       <td class="twenty">
         <h2>4th PLACE</h2>
@@ -322,10 +320,10 @@ endif;
     endif;
     ?>
     <?php
-    if ($contest->prize[4] !== NULL && $contest->prize[4] !== 0):
+    if (isset($contest->prize[4])):
       ?>
       <td class="twenty">
-        <h2>4th PLACE</h2>
+        <h2>5th PLACE</h2>
 
         <h3>
           <small>$</small><?php echo number_format($contest->prize[4]); ?></h3>
@@ -446,11 +444,11 @@ if (sizeof($contest->prize) > 5) {
         <?php
         if (empty($contest->reliabilityBonus)):
           ?>
-          <span>$<?php echo "0" ?></span>
+          <span><?php echo "N/A" ?></span>
         <?php
         else:
           ?>
-          <span>$<?php echo $contest->reliabilityBonus; ?></span>
+          <span>$<?php echo number_format($contest->reliabilityBonus); ?></span>
         <?php
         endif;
         ?>
@@ -465,14 +463,14 @@ if (sizeof($contest->prize) > 5) {
       ?>
       >
 
-      <p class="drPointsPara">DR Points <span><?php echo $contest->digitalRunPoints; ?></span></p>
+      <p class="drPointsPara">DR Points <span><?php echo isset($contest->digitalRunPoints) ? $contest->digitalRunPoints : "N/A" ; ?></span></p>
     </td>
   <?php
   else:
     ?>
     <td colspan="2">
       <?php
-      if ($contest->digitalRunPoints != NULL && $contest->digitalRunPoints != 0):
+      if (isset($contest->digitalRunPoints)):
         ?>
         <p class="scPoints"><span><?php echo $contest->digitalRunPoints; ?></span> STUDIO CUP POINTS</p>
       <?php
@@ -501,7 +499,7 @@ if (sizeof($contest->prize) > 5) {
         <tbody>
         <tr>
           <?php
-          if ($contest->prize[0] !== NULL && $contest->prize[0] !== 0):
+          if (isset($contest->prize[0])):
             ?>
             <td class="twenty">
               <h2>1st PLACE</h2>
@@ -522,7 +520,7 @@ if (sizeof($contest->prize) > 5) {
           endif;
           ?>
           <?php
-          if ($contest->prize[1] !== NULL && $contest->prize[1] !== 0):
+          if (isset($contest->prize[1])):
             ?>
             <td class="twenty">
               <h2>2nd PLACE</h2>
@@ -543,7 +541,7 @@ if (sizeof($contest->prize) > 5) {
           endif;
           ?>
           <?php
-          if ($contest->prize[2] !== NULL && $contest->prize[2] !== 0):
+          if (isset($contest->prize[2])):
             ?>
             <td class="twenty">
               <h2>3rd PLACE</h2>
@@ -626,7 +624,7 @@ if (sizeof($contest->prize) > 5) {
       <tr>
         <td>
           <?php
-          if ($contest->digitalRunPoints != NULL && $contest->digitalRunPoints != 0):
+          if (isset($contest->digitalRunPoints)):
             ?>
             <p class="scPoints"><span><?php echo $contest->digitalRunPoints; ?></span> STUDIO CUP POINTS</p>
           <?php

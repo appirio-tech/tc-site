@@ -19,7 +19,10 @@
         "init-header.js",
         "challenge-detail-software.js",
         "jquery.jscrollpane.min.js",
-        "jquery.column-1.0.js"
+        "jquery.column-1.0.js",
+        "moment.min.js",
+        "moment-timezone.min.js",
+        "moment-data.js"
       ],
       "css": [
         "blog.css",
@@ -56,7 +59,10 @@
         "register-login.js",
         "init-header.js",
         "jquery.jscrollpane.min.js",
-        "jquery.qtip.min.js"
+        "jquery.qtip.min.js",
+        "moment.min.js",
+        "moment-timezone.min.js",
+        "moment-data.js"
       ],
       "css": [
         "base.css",
@@ -88,7 +94,10 @@
         "register-login.js",
         "init-header.js",
         "jquery.jscrollpane.min.js",
-        "jquery.qtip.min.js"
+        "jquery.qtip.min.js",
+        "moment.min.js",
+        "moment-timezone.min.js",
+        "moment-data.js"
       ],
       "css": [
         "base.css",
@@ -118,7 +127,6 @@
         "register-login.js",
         "init-header.js",
         "jquery.qtip.min.js",
-        "jquery.jqtransform.js",
         "terms.js"
       ],
       "css": [

@@ -129,7 +129,7 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 	}
 
 	// detail contest
-	public function get_contest_detail($userKey = '', $contestID = '', $contestType = '') {
+	public function get_contest_detail($userKey = '', $contestID = '', $contestType = '', $resetCache = false) {
 
 		// This IF isn't working. It's not getting the contestType var. We need to call the design vs. develop api based on the contest type.
 		#echo "	contest type ".$contestType;
@@ -138,6 +138,10 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 		} else {
 			$url = "https://api.topcoder.com/v2/develop/challenges/$contestID";
 		}
+
+        if ($resetCache) {
+          $url .= "?refresh=t";
+        }
 
 		$args = array (
 				'httpversion' => get_option ( 'httpversion' ),

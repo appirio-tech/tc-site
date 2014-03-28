@@ -896,3 +896,53 @@ function get_email_validity_ajax(
     $email_validity = json_decode($response['body']);
     return $email_validity;
 }
+
+/*
+ * Check social availability and validity
+ */
+add_action('wp_ajax_get_social_validity', 'get_social_validity_controller');
+add_action('wp_ajax_nopriv_get_social_validity', 'get_social_validity_controller');
+
+function get_social_validity_controller()
+{
+    $userkey = get_option('api_user_key');
+    $provider = $_GET ['provider'];
+    $user = $_GET ['user'];
+
+    $social_validity = get_social_validity_ajax($provider, $user);
+
+    if (isset($social_validity->available) || isset($social_validity->error)) {
+        wp_send_json( $social_validity );
+    } else {
+        wp_send_json_error();
+    }
+}
+
+function get_social_validity_ajax(
+  $provider = '',
+  $user = ''
+) {
+
+    $url = "http://api.topcoder.com/v2/users/validateSocial?socialProviderId=" . $provider . "&socialUserId=" . $user;
+
+    $args = array(
+        'httpversion' => get_option('httpversion'),
+        'timeout' => get_option('request_timeout')
+    );
+    $response = wp_remote_get($url, $args);
+
+    if (is_wp_error($response) || !isset ($response ['body'])) {
+        $social_validity = json_decode($response['body']);
+        return $social_validity;
+    }
+    if ($response ['response'] ['code'] == 200) {
+
+//print $response ['body'];
+        $social_validity = json_decode($response['body']);
+        return $social_validity;
+    }
+
+    $social_validity = json_decode($response['body']);
+    return $social_validity;
+}
+
