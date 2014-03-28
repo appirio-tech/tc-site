@@ -188,7 +188,7 @@ get_header('challenge-landing');
   <?php
   else:
     ?>
-    <a class="btn btnAction challengeRegisterBtn" target="_blank" href="http://studio.topcoder.com/?module=ViewRegistration&ct=<?php echo $contestID ;?>"><span>1</span> <strong>Register
+    <a class="btn btnAction challengeRegisterBtn" target="_blank" href="javascript:;"><span>1</span> <strong>Register
         For This Challenge</strong></a>
     <a class="btn btnAction" target="_blank"
        href="http://studio.topcoder.com/?module=ViewRegistration&ct=<?php echo $contestID; ?>"><span>2</span> <strong>Submit
@@ -229,7 +229,7 @@ endif;
     <td class="fifty">
       <h2>2nd PLACE</h2>
       <h3>
-        <small>$</small><?php 
+        <small>$</small><?php
           echo number_format(isset($contest->prize[1])? $contest->prize[1] : "0"); ?>
       </h3>
     </td>
