@@ -37,6 +37,7 @@ array_push ( $challengetypes, 'Development' );
 array_push ( $challengetypes, 'Specification' );
 array_push ( $challengetypes, 'Bug Hunt' );
 array_push ( $challengetypes, 'UI Prototype Competition' );
+array_push ( $challengetypes, 'UI Prototypes' );
 ?>
 
 <div id="develop" class="tab algoLayout">
@@ -47,20 +48,23 @@ array_push ( $challengetypes, 'UI Prototype Competition' );
 				<ul>
 						<?php
 						foreach ( $challengetypes as &$challengetype ) {
-							if (! empty ( $tracks->{$challengetype} ) && ! empty ( $tracks->{$challengetype}->rating )) {
+
 								$challengeName = $challengetype;
 								$challengeID = str_replace ( ' ', '_', $challengetype );
 								$challengeID = strtolower ( $challengeID );
-								
+
+							if (! empty ( $tracks->{$challengetype} ) && ! empty ( $tracks->{$challengetype}->rating )) {
+								$currentChallengetype = $challengetype;
+
 								if ($challengeID == 'ui_prototype_competition') {
 									$challengeID = 'ui_prototypes';
 									$currentChallengetype = $challengeID;
 								}
-								
-								if($currentChallengeId == $challengeID){
-									$currentChallengetype = $challengetype;
+								if ($challengeID == 'ria_build_competition') {
+									$challengeID = 'ria_build';
+									$currentChallengetype = $challengeID;
 								}
-								
+
 								$class = ($challengeID == $currentChallengeId) ? 'isActive' : '';
 								echo '<li><a class="' . $class . '" href="' . $challengeID . '">' . $challengetype . '</a></li>';
 							}
