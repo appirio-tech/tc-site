@@ -826,7 +826,7 @@ appChallenges = {
                      */
                     $('.contestName', row).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/' + icoTrack + '" />' + rec.challengeName + '<img alt="" class="allContestTCOIco" src="' + stylesheet_dir + '/i/' + tcoFlag + '" />');
                     $('.contestName', row).parents(".inTCO").addClass("hasTCOIco");
-                    $('.colCh a', row).attr("href", contestLinkUrl);
+                    $('.colCh a, .cgCh a', row).attr("href", contestLinkUrl);
 
                     $('.tipC', row).html(rec.challengeType);
 
@@ -1043,7 +1043,7 @@ appChallenges = {
                 }
                 $('.contestName', row).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/' + icoTrack + '" />' + rec.challengeName + '<img alt="" class="allContestTCOIco" src="' + stylesheet_dir + '/i/' + tcoFlag + '" />');
                 $('.contestName', row).parents(".inTCO").addClass("hasTCOIco");
-                $('.colCh a', row).attr("href", contestLinkUrl);
+                $('.colCh a, .cgCh a', row).attr("href", contestLinkUrl);
 
                 $('.tipC', row).html(rec.challengeType);
 
@@ -1117,7 +1117,7 @@ appChallenges = {
 
                 $('.contestName', con).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/' + icoTrack + '" />' + rec.challengeName.substr(0, 61) + '...' + '<img alt="" class="allContestTCOIco" src="' + stylesheet_dir + '/i/' + tcoFlag + '" />');
                 $('.contestName', con).parents(".inTCO").addClass("hasTCOIco");
-                $('.colCh a', con).attr("href", contestLinkUrl);
+                $('.colCh a, .cgCh a', con).attr("href", contestLinkUrl);
 
                 $('.tipC', con).html(rec.challengeType);
                 $('.vStartDate', con).html(startDate);
@@ -1234,7 +1234,7 @@ appChallenges = {
                 }
                 $('.contestName', row).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/' + icoTrack + '" />' + rec.challengeName + '<img alt="" class="allContestTCOIco" src="' + stylesheet_dir + '/i/' + tcoFlag + '" />');
                 $('.contestName', row).parents(".inTCO").addClass("hasTCOIco");
-                $('.colCh a', row).attr("href", contestLinkUrl);
+                $('.colCh a, .cgCh a', row).attr("href", contestLinkUrl);
                 $('.colType .tipC', row).html(rec.challengeType);
 
                 $('.vStartDate', row).html(startDate);
