@@ -68,7 +68,7 @@ $postPerPage = get_option ( "contest_per_page" ) == "" ? 30 : get_option ( "cont
 							<div class="activeMembers">
 								<p class="val"><?php
 								$summary = get_activity_summary();
-								echo number_format($summary->member_count); ?></p>
+								echo number_format($summary->memberCount); ?></p>
 								<label class="lbl">ACTIVE MEMBERS</label>
 							</div>
 							<div class="competingToday">

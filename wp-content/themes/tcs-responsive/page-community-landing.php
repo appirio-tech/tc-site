@@ -83,7 +83,7 @@ $postPerPage = get_option ( "contest_per_page" ) == "" ? 30 : get_option ( "cont
 		<div id="stats">
 			<div id="communityLandingStats" class="container">
 				<p>
-					<em class="members"><?php echo get_activity_summary("member_count"); ?></em> of the world's best minds competing
+					<em class="members"><?php echo get_activity_summary("memberCount"); ?></em> of the world's best minds competing
 
 				</p>
 				<a class="btn btnAlt" href="<?php echo $topcoderLink;?>">Join topcoder</a>
@@ -135,7 +135,7 @@ $postPerPage = get_option ( "contest_per_page" ) == "" ? 30 : get_option ( "cont
 							<div class="activeMembers">
 								<p class="val"><?php 
 								$summary = get_activity_summary();
-								echo number_format($summary->member_count); ?></p>
+								echo number_format($summary->memberCount); ?></p>
 								<label class="lbl">ACTIVE MEMBERS</label>
 							</div>
 							<div class="competingToday">
