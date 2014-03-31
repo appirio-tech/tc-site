@@ -4,6 +4,31 @@ $(function () {
     centerModal();
   });
 
+  $.ajax({
+    type: 'GET',
+    data: {
+      action: 'get_countries'
+    },
+    dataType: 'json',
+    url: ajaxUrl,
+    success: function(data) {
+      if (data.error) {
+        console.log('could not load countries:');
+        console.log(data.error);
+      } else {
+        data = data.map(function(x) {return x.countryName});
+        data.sort();
+        for (var i = 0; i < data.length; i++) {
+          var name = data[i];
+          var node = $('<option value="'+name+'">'+name+'</option>')
+          $('#selCountry').append(node);
+        }
+      }
+    }
+  }).fail(function() {
+    console.log('could not load countries');
+  })
+
   $('#username').keyup(function() {
     $('#loginForm span.err3').hide();
     $('#loginForm span.err1').hide();
