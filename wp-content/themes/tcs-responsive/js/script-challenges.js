@@ -868,7 +868,7 @@ appChallenges = {
     },
 
     addEmptyResult: function(table) {
-        $(table).html("<div><h3>There are no active challenges under this category. Please check back later</h3></div>");
+        $(table).html('<table><tr><td style="font-size:20px;">There are no active challenges under this category. Please check back later</td></tr></table>');
     },
 
     // getGridview Blocks
