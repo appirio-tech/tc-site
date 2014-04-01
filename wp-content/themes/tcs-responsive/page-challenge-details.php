@@ -185,14 +185,14 @@ get_header('challenge-landing');
   <?php
   if ($contestType != 'design'):
     ?>
-    <a class="btn btnAction challengeRegisterBtn" target="_blank" href="javascript:;"><span>1</span>
+    <a class="btn btnAction challengeRegisterBtn" href="javascript:;"><span>1</span>
       <strong>Register For This Challenge</strong></a>
     <a class="btn btnAction" target="_blank"
        href="<?php bloginfo("siteurl"); ?>/challenge-details/<?php echo $contestID; ?>/submit"><span>2</span>      <strong>Submit Your Entries</strong></a>
   <?php
   else:
     ?>
-    <a class="btn btnAction challengeRegisterBtn" target="_blank" href="javascript:;"><span>1</span> <strong>Register
+    <a class="btn btnAction challengeRegisterBtn" href="javascript:;"><span>1</span> <strong>Register
         For This Challenge</strong></a>
     <a class="btn btnAction" target="_blank"
        href="http://studio.topcoder.com/?module=ViewRegistration&ct=<?php echo $contestID; ?>"><span>2</span> <strong>Submit
