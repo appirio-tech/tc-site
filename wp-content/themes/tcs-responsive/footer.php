@@ -240,6 +240,7 @@ $blog_posts = get_posts($blog_posts_args);
 <p class="row">
 <label>Country</label>
 <select name="user.country" id="selCountry">
+  <option value="">Please Select</option>
 </select>
 <span class="err1">Required field</span>
 <span class="valid"></span>
