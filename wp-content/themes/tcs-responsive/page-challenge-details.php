@@ -1316,6 +1316,7 @@ if ($contestType != 'design'):
     <!-- End review style section -->
 
   </li>
+  <?php  if (isset($contest->screeningScorecardId) && isset($contest->reviewScorecardId)) : ?>
   <li class="slide">
 
     <div class="contestLinks slideBox">
@@ -1334,6 +1335,7 @@ if ($contestType != 'design'):
     </div>
 
   </li>
+  <?php endif; ?>
 
   <li class="slide">
     <div class="forumFeed slideBox">&nbsp;<br/>
