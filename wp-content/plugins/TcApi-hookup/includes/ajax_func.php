@@ -955,7 +955,6 @@ add_action('wp_ajax_nopriv_get_countries', 'get_countries_controller');
 function get_countries_controller()
 {
     $userkey = get_option('api_user_key');
-    $provider = $_GET ['provider'];
 
     $countries = get_countries_ajax();
 
