@@ -77,6 +77,22 @@ $noCache = get_query_var('nocache');
 $contest = get_contest_detail('', $contestID, $contestType, $noCache);
 $registrants = empty($contest->registrants) ? array() : $contest->registrants;
 
+$curDate = new DateTime();
+$registerDisable = true;
+if ($contest->registrationEndDate) {
+  $regDate = new DateTime($contest->registrationEndDate);
+  if ($regDate > $curDate) {
+    $registerDisable = false;
+  }
+}
+
+$submitDisabled = true;
+if ($contest->submissionEndDate) {
+  $submitDate = new DateTime($contest->submissionEndDate);
+  if ($submitDate > $curDate) {
+    $submitDisabled = false;
+  }
+}
 
 // Ad submission dates to registrants
 // @TODO move this to a class
@@ -185,16 +201,16 @@ get_header('challenge-landing');
   <?php
   if ($contestType != 'design'):
     ?>
-    <a class="btn btnAction challengeRegisterBtn" href="javascript:;"><span>1</span>
+    <a class="btn btnAction challengeRegisterBtn <?php if ($registerDisable) echo 'disabled'; ?>" href="javascript:;"><span>1</span>
       <strong>Register For This Challenge</strong></a>
-    <a class="btn btnAction" target="_blank"
+    <a class="btn btnAction <?php if ($submitDisabled) echo 'disabled'; ?>" target="_blank"
        href="<?php bloginfo("siteurl"); ?>/challenge-details/<?php echo $contestID; ?>/submit"><span>2</span>      <strong>Submit Your Entries</strong></a>
   <?php
   else:
     ?>
-    <a class="btn btnAction challengeRegisterBtn" href="javascript:;"><span>1</span> <strong>Register
+    <a class="btn btnAction challengeRegisterBtn <?php if ($registerDisable) echo 'disabled'; ?>" href="javascript:;"><span>1</span> <strong>Register
         For This Challenge</strong></a>
-    <a class="btn btnAction" target="_blank"
+    <a class="btn btnAction <?php if ($submitDisabled) echo 'disabled'; ?>" target="_blank"
        href="http://studio.topcoder.com/?module=ViewRegistration&ct=<?php echo $contestID; ?>"><span>2</span> <strong>Submit
         Your Entries</strong></a>
     <a class="btn btnAction" target="_blank"
