@@ -72,3 +72,16 @@ theme's config directory.  I recommend added the following two lines to local de
     define("WP_SITEURL", "http://tcqa1.topcoder.com");
     define("WP_HOME", "http://tcqa1.topcoder.com");
     ?>
+    
+## IMPORTANT! – Branch Model ##
+
+To contribute to this repository, you must follow our branch model – *even if* you're contributing from a fork
+of the repo. A branch for a given feature takes the name format `<developer name>-<issue or feature ID>-<description>`.
+This branch should be off of the tc-site `dev` branch. When you are done committing your changes to this branch,
+submit a pull request against our dev branch.
+
+Every Friday (sometimes postponed until Sunday), the `dev` branch gets pushed to our QA server at
+[http://tcqa1.topcoder.com](http://tcqa1.topcoder.com). If you need to make changes to your code that is
+already in QA, you will need to do a pull against the most recent release branch, which will look like
+`TC-<date>`. The branch you use for these changes should have the same format as usual, but something like
+`-fix` should be appended to the end.
