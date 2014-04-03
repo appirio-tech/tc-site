@@ -418,7 +418,44 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 		}
 		return "Error in processing request";
 	}
+	
+	/* member achievements current  */
+	function tcapi_get_member_achievements_current($userId= '', $badgeId= ''){
+		$url = "http://community.topcoder.com/tc?module=MemberAchievementCurrent&cr=" . $userId . "&ruleId=" . $badgeId;
+		$args = array (
+				'httpversion' => get_option ( 'httpversion' ),
+				'timeout' => 30
+		);
+		$response = wp_remote_get ( $url, $args );
 
+		if (is_wp_error ( $response ) || ! isset ( $response ['body'] )) {
+			return "Error in processing request";
+		}
+		if ($response ['response'] ['code'] == 200) {
+			$coder_achievements_current = json_decode ( $response ['body'] );
+			return $coder_achievements_current;
+		}
+		return "Error in processing request";
+	}
+	
+        /* search users  */
+	function tcapi_search_users($handle= ''){
+		$url = "http://api.topcoder.com/v2/users/search/?handle=" . $handle;
+		$args = array (
+				'httpversion' => get_option ( 'httpversion' ),
+				'timeout' => 30
+		);
+		$response = wp_remote_get ( $url, $args );
+
+		if (is_wp_error ( $response ) || ! isset ( $response ['body'] )) {
+			return "Error in processing request";
+		}
+		if ($response ['response'] ['code'] == 200) {
+			$users = json_decode ( $response ['body'] );
+			return $users;
+		}
+		return "Error in processing request";
+	}
 }
 
 add_shortcode ( 'h', array (
