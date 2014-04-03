@@ -1,5 +1,4 @@
 <?php
-
 add_action ( 'wp_head', 'tc_challenge_details_js' );
 function tc_challenge_details_js(){
   global $contest, $contestType, $contestID, $registrants;
@@ -704,13 +703,14 @@ if (sizeof($contest->prize) > 5) {
                 strtotime("$contest->postingDate"));?>
           </span>
         </p>
-
+        <?php if ($contest->checkpointSubmissionEndDate != "") : ?>
         <p><label>Checkpoint:</label>
           <span><?php echo date(
                 "M d, Y H:i T",
                 strtotime("$contest->checkpointSubmissionEndDate"));?>
           </span>
         </p>
+        <?php endif; ?>
 
         <p><label>End Date:</label>
           <span><?php echo date(
