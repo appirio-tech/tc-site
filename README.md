@@ -65,12 +65,14 @@ For more information see lib/scripts.php
 
 ## Environmental Variables ##
 
-There is the ability to set variables or settings per envirnoment.  Just add a file called "env.php" in the
-theme's config directory.  I recommend added the following two lines to local development.
+There is the ability to set variables or settings per environment.  Just add a file called "env.php" in the
+theme's config directory.  I recommend added the following lines for local development.
 
     <?php
     define("WP_SITEURL", "http://tcqa1.topcoder.com");
     define("WP_HOME", "http://tcqa1.topcoder.com");
+
+    $skipAdminSSL = true;
     ?>
 
 ## GIT Information ##

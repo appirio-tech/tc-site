@@ -28,6 +28,10 @@ locate_template('lib/comments.php', TRUE);
 locate_template('lib/meta.php', TRUE);
 locate_template('lib/share.php', TRUE);
 
+if (!isset($skipAdminSSL)) {
+    define('FORCE_SSL_ADMIN', true);
+}
+
 
 // add featured image
 add_theme_support ( 'post-thumbnails' );
