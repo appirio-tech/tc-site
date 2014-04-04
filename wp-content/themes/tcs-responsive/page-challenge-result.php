@@ -465,5 +465,5 @@ if ($contestType == 'design'):
 
 <?php endif; ?>
 <?php else: ?>
-The are no submissions for this contest.
+There are no submissions for this contest.
 <?php endif; ?>
