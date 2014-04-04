@@ -21,7 +21,7 @@ appChallenges = {
         });
         $('.userWidget').on(ev, function(e) {
             e.stopPropagation();
-        })
+        });
 
         if ($('.tooltip').length > 0) {
             app.tooltip();
@@ -1410,6 +1410,10 @@ appChallenges = {
     //format time left
     formatTimeLeft: function(seconds, grid) {
         var sep = (grid) ? '' : ' ';
+        if (seconds < 0) {
+          return '<span style="font-size:14px;">0' + sep + '<span style="font-size:10px;">Days</span> 0' + sep + '<span style="font-size:10px;">Hrs</span>';
+        }
+
         var numdays = Math.floor(seconds / 86400);
         var numhours = Math.floor((seconds % 86400) / 3600);
         var numminutes = Math.floor(((seconds % 86400) % 3600) / 60);
@@ -1429,7 +1433,7 @@ appChallenges = {
     getContestLinkUrl: function(projectId, contestType) {
         return siteurl + "/challenge-details/" + projectId + "/?type=" + contestType;
     }
-}
+};
 
 /**
  */

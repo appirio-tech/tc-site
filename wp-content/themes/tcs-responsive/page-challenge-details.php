@@ -26,41 +26,6 @@ function tc_challenge_details_js(){
  * Template Name: Challenge details
  */
 
-/*
-added by @pemula 2014-01-17
-source : http://stackoverflow.com/questions/8273804/convert-seconds-into-days-hours-minutes-and-seconds
-*/
-function secondsToTime($inputSeconds) {
-
-  $secondsInAMinute = 60;
-  $secondsInAnHour = 60 * $secondsInAMinute;
-  $secondsInADay = 24 * $secondsInAnHour;
-
-  // extract days
-  $days = floor($inputSeconds / $secondsInADay);
-
-  // extract hours
-  $hourSeconds = $inputSeconds % $secondsInADay;
-  $hours = floor($hourSeconds / $secondsInAnHour);
-
-  // extract minutes
-  $minuteSeconds = $hourSeconds % $secondsInAnHour;
-  $minutes = floor($minuteSeconds / $secondsInAMinute);
-
-  // extract the remaining seconds
-  $remainingSeconds = $minuteSeconds % $secondsInAMinute;
-  $seconds = ceil($remainingSeconds);
-
-  // return the final array
-  $obj = array(
-    'd' => (int) $days,
-    'h' => (int) $hours,
-    'm' => (int) $minutes,
-    's' => (int) $seconds,
-  );
-  return $obj;
-}
-
 $isChallengeDetails = TRUE;
 
 $values = get_post_custom($post->ID);
@@ -680,8 +645,9 @@ if (sizeof($contest->prize) > 5) {
       </div>
       <span class="timeLeft">
       <?php
-      $remaining = secondsToTime($contest->currentPhaseRemainingTime);
-      echo ($contest->currentStatus == 'Completed' || $contest->currentStatus == 'Deleted') ? "" : $remaining['d'] . " <small>Days</small> " . $remaining['h'] . " <small>Hours</small> " . $remaining['m'] . " <small>Mins</small>";
+      if ($contest->currentStatus !== 'Completed' && $contest->currentStatus !== 'Deleted' && $contest->currentPhaseRemainingTime > 0) {
+          echo (new DateTime($contest->currentPhaseRemainingTime))->format('%a <small>Days</small>, %h <small>Hours</small>, %i <small>Minutes</small>');
+      }
       ?>
       </span>
     </div>
