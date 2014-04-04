@@ -1000,6 +1000,14 @@ function get_countries_ajax()
     return $countries;
 }
 
+/**
+ * Get challenges to be used in rss
+ *
+ * @param $listType
+ * @param $challengeType
+ *
+ * @return array|mixed|string
+ */
 function get_contests_rss($listType, $challengeType)
 {
     $url = "http://api.topcoder.com/v2/challenges/rss?listType={$listType}&challengeType={$challengeType}";
