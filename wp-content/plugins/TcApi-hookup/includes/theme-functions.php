@@ -66,4 +66,14 @@ function get_json_from_url( $url ){
 	return $TCHOOK_plugin->get_json_from_url( $url );
 }
 
+function get_member_achievements_current($userId, $badgeId){
+	global $TCHOOK_plugin;
+	return $TCHOOK_plugin->tcapi_get_member_achievements_current($userId, $badgeId);
+}
+
+function search_users($handle){
+	global $TCHOOK_plugin;
+	return $TCHOOK_plugin->tcapi_search_users($handle);
+}
+
 ?>
