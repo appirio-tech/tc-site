@@ -646,7 +646,9 @@ if (sizeof($contest->prize) > 5) {
       <span class="timeLeft">
       <?php
       if ($contest->currentStatus !== 'Completed' && $contest->currentStatus !== 'Deleted' && $contest->currentPhaseRemainingTime > 0) {
-          echo (new DateTime($contest->currentPhaseRemainingTime))->format('%a <small>Days</small>, %h <small>Hours</small>, %i <small>Minutes</small>');
+          $dtF = new DateTime("@0");
+          $dtT = new DateTime("@{$contest->currentPhaseRemainingTime}");
+          echo $dtF->diff($dtT)->format('%a <small>Days</small> %h <small>Hours</small> %i <small>Mins</small>');
       }
       ?>
       </span>
