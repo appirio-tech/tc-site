@@ -51,7 +51,7 @@ if ($contest->registrationEndDate) {
 }
 
 $submitDisabled = true;
-if ($contest->submissionEndDate) {
+if ($contest->submissionEndDate && $contest->currentStatus !== "Completed") {
   $submitDate = new DateTime($contest->submissionEndDate);
   if ($submitDate > $curDate) {
     $submitDisabled = false;
