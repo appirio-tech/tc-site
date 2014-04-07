@@ -3,6 +3,10 @@
 add_action('init', 'tc_add_custom_rewrite_rules');
 
 function tc_add_custom_rewrite_rules() {
+
+  // rss for challenges
+  add_rewrite_rule('^challenges/feed/?$','index.php?feed=challenges-feed', 'top');
+
   // Contest Details
   add_rewrite_rule(
     '^' . CONTEST_DETAILS_PERMALINK . '/([^/]*)/?$',
@@ -74,4 +78,5 @@ function tc_add_custom_rewrite_rules() {
 
   // Search results
   add_rewrite_rule('^search/?$', 'index.php?', 'top');
+
 }

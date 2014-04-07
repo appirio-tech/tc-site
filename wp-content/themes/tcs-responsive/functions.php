@@ -27,6 +27,7 @@ locate_template('lib/menu.php', TRUE);
 locate_template('lib/comments.php', TRUE);
 locate_template('lib/meta.php', TRUE);
 locate_template('lib/share.php', TRUE);
+locate_template("lib/rss.php", TRUE);
 
 if (!isset($skipAdminSSL)) {
     define('FORCE_SSL_ADMIN', true);
@@ -51,7 +52,6 @@ function tags_support_all() {
 
 add_action('init', 'tags_support_all');
 
-//locate_template("lib/rss.php", TRUE);
 date_default_timezone_set(get_option('timezone_string'));
 
 function get_rel_url($url, $force = FALSE) {
