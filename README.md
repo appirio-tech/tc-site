@@ -71,8 +71,6 @@ theme's config directory.  I recommend added the following lines for local devel
     <?php
     define("WP_SITEURL", "http://tcqa1.topcoder.com");
     define("WP_HOME", "http://tcqa1.topcoder.com");
-
-    $skipAdminSSL = true;
     ?>
 
 ## GIT Information ##
