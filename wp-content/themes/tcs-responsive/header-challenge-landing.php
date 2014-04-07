@@ -44,7 +44,7 @@ else
 }
 
 global $coder;
-$coder = get_member_profile($handle);
+$coder = get_member_profile($handle, '');
 $memberSince = explode(" ",$coder->memberSince);
 $memberSince = explode(".",$memberSince[0]);
 $memberEarning = '$'.$coder->overallEarning;

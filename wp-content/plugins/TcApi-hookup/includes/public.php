@@ -90,8 +90,11 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 	}
 
 	// returns member profile details
-	public function get_member_profile($handle = '') {
+	public function get_member_profile($handle = '', $data) {
 		$url = "http://api.topcoder.com/v2/users/" . $handle;
+		if (isset($data)) {
+			$url = $url . "?data=" . $data;
+		}
 		$args = array (
 				'httpversion' => get_option ( 'httpversion' ),
 				'timeout' => get_option ( 'request_timeout' )
@@ -319,9 +322,9 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 	}
 
 	// handle shortcode
-	function tcapi_get_raw_coder($handle = "") {
+	function tcapi_get_raw_coder($handle = "", $data) {
 		$handle = clean_pre ( $handle );
-		return get_member_profile ( $handle );
+		return get_member_profile ( $handle, $data );
 	}
 
 	function tcapi_get_coder($atts, $handle = "") {
@@ -425,7 +428,7 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 
 	/* member achievements  */
 	function tcapi_get_member_achievements($handle= ''){
-		$url = "http://api.topcoder.com/v2/users/" . $handle;
+		$url = "http://api.topcoder.com/v2/users/" . $handle . "?data=achievements";
 		$args = array (
 				'httpversion' => get_option ( 'httpversion' ),
 				'timeout' => 30
