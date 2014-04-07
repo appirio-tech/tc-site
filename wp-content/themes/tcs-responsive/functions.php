@@ -30,7 +30,7 @@ locate_template('lib/share.php', TRUE);
 locate_template("lib/rss.php", TRUE);
 
 if (!isset($skipAdminSSL)) {
-    define('FORCE_SSL_ADMIN', true);
+  force_ssl_admin(true);
 }
 
 
