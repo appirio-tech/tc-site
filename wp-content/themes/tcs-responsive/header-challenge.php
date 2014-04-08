@@ -32,7 +32,7 @@ else
 global $coder;
 if (isset($handle)) {
     // only get profile if we have a valid handle
-    $coder = get_member_profile($handle);
+    $coder = get_member_profile($handle, '');
 } else {
     // no user - just create an empty object
     $coder = new stdClass();

@@ -36,9 +36,9 @@ function get_contest_checkpoint_detail($contestID = '', $contestType=''){
 	return $TCHOOK_plugin-> get_contest_checkpoint_detail($contestID, $contestType);
 }
 
-function get_raw_coder($handle){
+function get_raw_coder($handle, $data){
 	global $TCHOOK_plugin;
-	return $TCHOOK_plugin->tcapi_get_raw_coder($handle);
+	return $TCHOOK_plugin->tcapi_get_raw_coder($handle, $data);
 }
 
 function get_handle($handle = ''){
