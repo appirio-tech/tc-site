@@ -1,36 +1,20 @@
 <?php
 /**
  * Template Name: Challenge Page
- * Author : evilkyro1965
  */
-get_header('challenge-landing');
-
-
 $values = get_post_custom ( $post->ID );
 
 $siteURL = site_url ();
 $postId = $post->ID;
+
+// get contest details
+$contest_type = "";
+$listType = "AllActive";
+$postPerPage = get_option("challenges_per_page") == "" ? 10 : get_option("challenges_per_page");
+
+get_header('challenge-landing');
 ?>
 
-<?php
-	// get contest details
-	$contest_type = "";
-	$listType = "AllActive";
-	$postPerPage = get_option("challenges_per_page") == "" ? 10 : get_option("challenges_per_page");
-?>
-
-<script type="text/javascript" >
-	var siteurl = "<?php bloginfo('siteurl');?>";
-
-	var reviewType = "contest";
-	var isBugRace = false;
-	var ajaxAction = "get_challenges";
-	var stylesheet_dir = "<?php bloginfo('stylesheet_directory');?>";
-	var currentPage = 1;
-	var postPerPage = <?php echo $postPerPage;?>;
-	var contest_type = "<?php echo $contest_type;?>";
-	var listType = "<?php echo $listType;?>";
-</script>
 <div class="content">
 	<div id="main">
 
