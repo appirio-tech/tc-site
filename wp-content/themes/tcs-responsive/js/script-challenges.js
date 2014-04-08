@@ -430,6 +430,10 @@ appChallenges = {
         param.action = ajaxAction;
         param.pageIndex = pageIndex;
         param.pageSize = postPerPage;
+        if (sortColumn == '') {
+          param.sortColumn = 'registrationOpen';
+          param.sortOrder = 'desc';
+        }
         $.ajax({
             url: ajaxUrl,
             data: param,
@@ -516,6 +520,9 @@ appChallenges = {
         if (sortColumn != "") {
             param.sortColumn = sortColumn;
             param.sortOrder = sortOrder;
+        } else {
+            param.sortColumn = 'registrationOpen';
+            param.sortOrder = 'desc';
         }
 
         $.ajax({
@@ -652,6 +659,9 @@ appChallenges = {
         if (sortColumn != "") {
             param.sortColumn = sortColumn;
             param.sortOrder = sortOrder;
+        } else {
+            param.sortColumn = 'registrationOpen';
+            param.sortOrder = 'desc';
         }
         var startDate = $("#startDate").val();
         var endDate = $("#endDate").val();
