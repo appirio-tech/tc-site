@@ -1032,7 +1032,7 @@ appChallenges = {
             $('tbody', table).html(null);
         }
         var count = 0;
-        if (data.data.length > 0) {
+        if (data.data && data.data.length > 0) {
             $.each(data.data, function(key, rec) {
 
                 var row = $(challengesBP.gdOpen).clone();
@@ -1113,7 +1113,7 @@ appChallenges = {
         gridEl.html(null);
 
         var count = 0;
-        if (data.data.length > 0) {
+        if (data.data && data.data.length > 0) {
             $.each(data.data, function(key, rec) {
 
                 var con = $(challengesBP.grDOpen).clone();

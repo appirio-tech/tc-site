@@ -41,8 +41,26 @@ $noCache = get_query_var('nocache');
 $contest = get_contest_detail('', $contestID, $contestType, $noCache);
 $registrants = empty($contest->registrants) ? array() : $contest->registrants;
 
-$registerDisable = challenge_register_disabled($contest);
-$submitDisabled = challenge_submit_disabled($contest);
+$curDate = new DateTime();
+$registerDisable = true;
+if ($contest->registrationEndDate) {
+  $regDate = new DateTime($contest->registrationEndDate);
+  if ($regDate > $curDate) {
+    $registerDisable = false;
+  }
+}
+
+$submitDisabled = true;
+if ($contest->submissionEndDate && $contest->currentStatus !== "Completed") {
+  $submitDate = new DateTime($contest->submissionEndDate);
+  if ($submitDate > $curDate) {
+    $submitDisabled = false;
+  }
+}
+
+// @TODO need to fix loading of hanlde before these will work
+//$registerDisable = challenge_register_disabled($contest);
+//$submitDisabled = challenge_submit_disabled($contest);
 
 /**
  * Should the registration button active

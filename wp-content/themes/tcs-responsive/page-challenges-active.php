@@ -9,16 +9,28 @@ $values = get_post_custom ( $post->ID );
 
 $siteURL = site_url ();
 $postId = $post->ID;
-?>
 
-<?php
-	$tcoTooltipTitle = get_option("tcoTooltipTitle");
-	$tcoTooltipMessage = get_option("tcoTooltipMessage");
+$tcoTooltipTitle = get_option("tcoTooltipTitle");
+$tcoTooltipMessage = get_option("tcoTooltipMessage");
 
-	// get contest details
-	$contest_type = get_query_var("contest_type") == "" ? "design" : get_query_var("contest_type");
-	$listType = get_post_meta($postId,"List Type",true) =="" ? "Active" : get_post_meta($postId,"List Type",true);
-	$postPerPage = get_post_meta($postId,"Contest Per Page",true) == "" ? 10 : get_post_meta($postId,"Contest Per Page",true);
+// get contest details
+$contest_type = get_query_var("contest_type") == "" ? "design" : get_query_var("contest_type");
+$listType = get_post_meta($postId,"List Type",true) =="" ? "Active" : get_post_meta($postId,"List Type",true);
+$postPerPage = get_post_meta($postId,"Contest Per Page",true) == "" ? 10 : get_post_meta($postId,"Contest Per Page",true);
+
+$page_title = '';
+
+switch ($contest_type) {
+  case "design":
+    $page_title = "Graphic Design Challenges";
+    break;
+  case "data":
+    $page_title = "Data Science Challenges";
+    break;
+  case "develop":
+  default:
+    $page_title = "Software Development Challenges";
+}
 ?>
 
 <script type="text/javascript" >
@@ -71,7 +83,8 @@ $postId = $post->ID;
 		<article id="mainContent" class="layChallenges">
 			<div class="container">
 				<header>
-					<h1><?php echo ($contest_type=="design" ? "Graphic Design Challenges" : "Software Development Challenges" ); ?>
+					<h1>
+                      <?php echo $page_title; ?>
                       <?php get_template_part("content", "rss-icon"); ?>
                     </h1>
 					<aside class="rt">
