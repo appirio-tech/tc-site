@@ -29,8 +29,8 @@ locate_template('lib/meta.php', TRUE);
 locate_template('lib/share.php', TRUE);
 locate_template("lib/rss.php", TRUE);
 
-if (!isset($skipAdminSSL)) {
-  force_ssl_admin(true);
+if (!empty($skipAdminSSL)) {
+  force_ssl_admin(false);
 }
 
 

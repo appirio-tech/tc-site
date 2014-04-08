@@ -51,7 +51,6 @@ function tc_add_custom_rewrite_rules() {
   // Blog search
   //add_rewrite_rule('^'.BLOG_PERMALINK.'/?$', 'index.php?', 'top');
   // Active Challenges
-  add_rewrite_rule('^active-challenges/data/?$', 'index.php?pagename=data&contest_type=$matches[1]', 'top');
   add_rewrite_rule(
     '^active-challenges/([^/]*)/?$',
     'index.php?pagename=active-challenges&contest_type=$matches[1]',
