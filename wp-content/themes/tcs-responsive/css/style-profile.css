@@ -673,10 +673,10 @@ a{
     }
     .designLayout .submissionThumb{
         width: 412px;
-        float: left;
-    
-        height: 412px;
+        float: left;    
+        height: 402px;
         overflow: hidden;
+		background:#000;
 }
     .designLayout .submissionThumb img{
         width: 412px;
@@ -727,21 +727,21 @@ a{
     }
     .designLayout .winInfo .badgeImg{
         margin-top: 22px;
-        height: 156px;
+        height: 146px;
         background: url(../i/win-badge-big.png) no-repeat;
         background-position: 50% 0;
     }
 	
 	.designLayout .winInfo .badgeImg.rank2{
-		background-position:130px -155px;
+		background-position:110px -150px;
 	}
 	
 	.designLayout .winInfo .badgeImg.rank3{
-		background-position:130px -310px;
+		background-position:110px -300px;
 	}
 	
 	.designLayout .winInfo .badgeImg.rankM{
-		background-position:130px -465px;
+		background-position:110px -450px;
 	}
 	
     .designLayout .winInfo .prizeAmount{
