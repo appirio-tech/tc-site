@@ -58,7 +58,7 @@ $img_locked = get_bloginfo( 'stylesheet_directory' )."/i/img-locked.png";
 							</figure>
 							<div class="hide comptetionData">
 								<input class="name" type="hidden" value="<?php echo $r->contestName;?>" />
-								<input class="prize" type="hidden" value="$<?php echo $r->prize;?>" />
+								<input class="prize" type="hidden" value="$<?php echo number_format($r->prize);?>" />
 								<input class="rank" type="hidden" value="<?php echo $r->rank;?>" />
 								<input class="submissionDate" type="hidden" value="<?php echo date("M d, Y H:i",strtotime($r->submissionDate)) . " EST";?>" />
 							</div>
