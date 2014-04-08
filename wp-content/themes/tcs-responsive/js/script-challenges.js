@@ -1103,7 +1103,7 @@ appChallenges = {
 
                 $('.colPur', row).html("$" + app.formatCur(purse));
 
-                $('.colPhase', row).html(rec.currentPhaseName);
+                $('.colPhase', row).html(rec.registrationOpen == 'Yes' ? 'Open to All' : 'Open to Challenge Registrants');
 
                 $('.colReg', row).html('<a href="' + contestLinkUrl + '#viewRegistrant">' + rec.numRegistrants + '</a>');
 
@@ -1298,7 +1298,7 @@ appChallenges = {
 
                 $('.colPur', row).html("$" + purse);
 
-                $('.colPhase', row).html(rec.currentStatus);
+                $('.colPhase', row).html(rec.registrationOpen == 'Yes' ? 'Open to All' : 'Open to Challenge Registrants');
 
                 $('.winBages', row).html('<a href="' + siteurl+ '/challenge-details/' +rec.challengeId+'?type='+ rec.challengeCommunity +'#winner">View Winners</a>');
                 
