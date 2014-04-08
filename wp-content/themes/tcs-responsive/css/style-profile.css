@@ -835,7 +835,7 @@ a{
         border: 1px solid #e8e8e8;        
          width: 205px;
         height: 205px;
-     
+		background:#000;
         cursor: pointer;
 } 
     .submissionCarousel .slider .slide figure{
