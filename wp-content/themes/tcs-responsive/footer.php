@@ -383,7 +383,20 @@ $blog_posts = get_posts($blog_posts_args);
 <?php wp_footer(); ?>
 <script>
   var socialProviderId = "", socialUserName = "", socialEmail = "", socialProvider = "";
+  var utmSource = '', utmMedium = '', utmCampaign = '';
   $(function () {
+    function getParameterByName(name) {
+      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+      results = regex.exec(location.search);
+      return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+    utmSource = getParameterByName('utmSource');
+    utmMedium = getParameterByName('utmMedium');
+    utmCampaign = getParameterByName('utmCampaign');
+    if (utmSource != '' || utmMedium != '' || utmCampaign != '') {
+      showModal('#register');
+    }
     var googleProvider = "google-oauth2";
     var facebookProvider = "facebook";
     var twitterProvider = "twitter";
