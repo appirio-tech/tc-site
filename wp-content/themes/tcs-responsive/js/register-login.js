@@ -51,6 +51,7 @@ $(function () {
     if (pwd.trim()=='') return 0;
     if (pwd.length < 7) return -2;
     if (pwd.length > 30) return -3;
+    if (pwd.match("'")) return -4;
 
     if (pwd.match(/[a-z]/)) result++;
     if (pwd.match(/[A-Z]/)) result++;
@@ -61,7 +62,7 @@ $(function () {
 
   }
 
-  $('input.pwd:password').on('keyup', function () {
+  $('#registerForm input.pwd:password').on('keyup', function () {
     var strength = pwdStrength($(this).val());
 
     $(".strength .field").removeClass("red").removeClass("green");
@@ -385,6 +386,11 @@ $(function () {
           $(this).closest('.row').find('.err2').show();
           $(this).closest('.row').find('input:password').addClass('invalid');
           isValid = false;
+        } else if (pwdStrength($('input.pwd:password').val()) == -4) {
+          frm.find(".err4.red").show();
+          $(this).closest('.row').find('.err3').show();
+          $(this).closest('.row').find('input:password').addClass('invalid');
+          isValid = false;
         } else if (pwdStrength($('input.pwd:password').val()) < -1) {
           frm.find(".err4.red").show();
           $(this).closest('.row').find('.err4').show();
@@ -586,14 +592,24 @@ function centerModal(selector) {
 
 function closeModal() {
   $('.modal,#bgModal').hide();
+  resetRegisterFields();
+  if (window.location.hash != '') {
+    window.history.pushState({}, 'Home', '/');
+  }
+  $('#registerForm span.socialUnavailableErrorMessage').hide();
 }
 
 // Resets the registration popup fields
 function resetRegisterFields() {
   $("#registerForm input[type='text'], #registerForm input[type='password']").val("");
   $("#registerForm select").val($("#registerForm select option:first").val());
+  $('#registerForm input.handle').trigger('keyup');
   $("#registerForm .customSelectInner").text($("#registerForm select option:first").text());
   $("#registerForm input[type='checkbox']").attr('checked', false);
   $(".pwd, .confirm, .strength").parents(".row").show();
-  $("#register a.btnSubmit").removeClass("socialRegister");
+  $("#registerForm a.btnSubmit").removeClass("socialRegister");
+  $('#registerForm .invalid').removeClass('invalid');
+  $('#registerForm .err1,.err2,.err3,.err4,.err4,.err6,.err7,.err8').hide();
+  $('#registerForm span.strength span.field').removeClass('red').removeClass('green');
+  $('#registerForm span.valid').hide();
 }

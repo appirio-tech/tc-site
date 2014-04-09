@@ -26,41 +26,6 @@ function tc_challenge_details_js(){
  * Template Name: Challenge details
  */
 
-/*
-added by @pemula 2014-01-17
-source : http://stackoverflow.com/questions/8273804/convert-seconds-into-days-hours-minutes-and-seconds
-*/
-function secondsToTime($inputSeconds) {
-
-  $secondsInAMinute = 60;
-  $secondsInAnHour = 60 * $secondsInAMinute;
-  $secondsInADay = 24 * $secondsInAnHour;
-
-  // extract days
-  $days = floor($inputSeconds / $secondsInADay);
-
-  // extract hours
-  $hourSeconds = $inputSeconds % $secondsInADay;
-  $hours = floor($hourSeconds / $secondsInAnHour);
-
-  // extract minutes
-  $minuteSeconds = $hourSeconds % $secondsInAnHour;
-  $minutes = floor($minuteSeconds / $secondsInAMinute);
-
-  // extract the remaining seconds
-  $remainingSeconds = $minuteSeconds % $secondsInAMinute;
-  $seconds = ceil($remainingSeconds);
-
-  // return the final array
-  $obj = array(
-    'd' => (int) $days,
-    'h' => (int) $hours,
-    'm' => (int) $minutes,
-    's' => (int) $seconds,
-  );
-  return $obj;
-}
-
 $isChallengeDetails = TRUE;
 
 $values = get_post_custom($post->ID);
@@ -86,11 +51,78 @@ if ($contest->registrationEndDate) {
 }
 
 $submitDisabled = true;
-if ($contest->submissionEndDate) {
+if ($contest->submissionEndDate && $contest->currentStatus !== "Completed") {
   $submitDate = new DateTime($contest->submissionEndDate);
   if ($submitDate > $curDate) {
     $submitDisabled = false;
   }
+}
+
+// @TODO need to fix loading of hanlde before these will work
+//$registerDisable = challenge_register_disabled($contest);
+//$submitDisabled = challenge_submit_disabled($contest);
+
+/**
+ * Should the registration button active
+ *
+ * Registration button should be disabled:
+ *  - When the date is after the registration end date
+ *  - If the user is already registered
+ *
+ * @param $contest
+ *
+ * @return bool
+ */
+function challenge_register_disabled($contest) {
+  global $handle;
+
+  $registerDisable = true;
+
+  if ($contest->registrationEndDate) {
+    $curDate = new DateTime();
+    $regDate = new DateTime($contest->registrationEndDate);
+    if ($regDate > $curDate) {
+      $registerDisable = false;
+    }
+  }
+
+   if (is_user_register_for_challenge($handle, $contest)) {
+      $registerDisable = true;
+   }
+
+  return $registerDisable;
+}
+
+
+
+/**
+ * Should the submit button be active
+ *
+ * Submit button should be disabled:
+ *  - If submission date is not passed and challenge is not complete
+ *  - If there is a user and the user is registered
+ *
+ * @param $contest
+ *
+ * @return bool
+ */
+function challenge_submit_disabled($contest) {
+  global $handle;
+  $submitDisabled = true;
+
+  if ($contest->submissionEndDate && $contest->currentStatus !== "Completed") {
+    $curDate = new DateTime();
+    $submitDate = new DateTime($contest->submissionEndDate);
+    if ($submitDate > $curDate) {
+      $submitDisabled = false;
+    }
+  }
+
+  if (!is_user_register_for_challenge($handle, $contest)) {
+    $submitDisabled = true;
+  }
+
+  return $submitDisabled;
 }
 
 // Ad submission dates to registrants
@@ -680,8 +712,11 @@ if (sizeof($contest->prize) > 5) {
       </div>
       <span class="timeLeft">
       <?php
-      $remaining = secondsToTime($contest->currentPhaseRemainingTime);
-      echo ($contest->currentStatus == 'Completed' || $contest->currentStatus == 'Deleted') ? "" : $remaining['d'] . " <small>Days</small> " . $remaining['h'] . " <small>Hours</small> " . $remaining['m'] . " <small>Mins</small>";
+      if ($contest->currentStatus !== 'Completed' && $contest->currentStatus !== 'Deleted' && $contest->currentPhaseRemainingTime > 0) {
+          $dtF = new DateTime("@0");
+          $dtT = new DateTime("@{$contest->currentPhaseRemainingTime}");
+          echo $dtF->diff($dtT)->format('%a <small>Days</small> %h <small>Hours</small> %i <small>Mins</small>');
+      }
       ?>
       </span>
     </div>
@@ -1263,12 +1298,9 @@ endif;
 
 
 </div>
-<div id="winner" class="tableWrap hide tab">
+<div id="winner" class="hide tab">
 
-
-  <article>
-    Coming Soon...
-  </article>
+<?php include(locate_template('page-challenge-result.php'));?>	
 
 </div>
 <div id="checkpoints" class="tableWrap hide tab">

@@ -258,6 +258,7 @@ $blog_posts = get_posts($blog_posts_args);
   <input type="password" class="pwd" placeholder="Password"/>
   <span class="err1">Required field</span>
   <span class="err2">Password strength is weak</span>
+  <span class="err3">Password cannot contain an apostrophe</span>
   <span class="err4">Password must be between 7 and 30 characters</span>
   <span class="valid">Strong</span>
 </p>
@@ -367,7 +368,18 @@ $blog_posts = get_posts($blog_posts_args);
     <div class="arrow alt"></div>
   </div>
 </div><!-- /.tooltip -->
-
+<div id="badgeTooltip" class="tooltip hide">
+  <div class="inner">
+    <header></header>
+    <div class="data">
+      <p class="eranedOn"></p>
+    </div>
+    <div class="data">
+      <p class="currentlyEearned">Currently @ <span></span></p>
+    </div>
+    <div class="arrow"></div>
+  </div>
+</div><!-- /.tooltip -->
 <?php wp_footer(); ?>
 <script>
   var socialProviderId = "", socialUserName = "", socialEmail = "", socialProvider = "";

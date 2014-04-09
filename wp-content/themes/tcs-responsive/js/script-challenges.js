@@ -21,7 +21,7 @@ appChallenges = {
         });
         $('.userWidget').on(ev, function(e) {
             e.stopPropagation();
-        })
+        });
 
         if ($('.tooltip').length > 0) {
             app.tooltip();
@@ -1032,7 +1032,7 @@ appChallenges = {
             $('tbody', table).html(null);
         }
         var count = 0;
-        if (data.data.length > 0) {
+        if (data.data && data.data.length > 0) {
             $.each(data.data, function(key, rec) {
 
                 var row = $(challengesBP.gdOpen).clone();
@@ -1113,7 +1113,7 @@ appChallenges = {
         gridEl.html(null);
 
         var count = 0;
-        if (data.data.length > 0) {
+        if (data.data && data.data.length > 0) {
             $.each(data.data, function(key, rec) {
 
                 var con = $(challengesBP.grDOpen).clone();
@@ -1290,12 +1290,8 @@ appChallenges = {
 
                 $('.colPhase', row).html(rec.currentStatus);
 
-                /* tmp solution */
-                if (app.isDesignContest(rec.challengeType)) {
-                    $('.winBages', row).html('<a href="http://studio.topcoder.com/?module=ViewContestResults&ct=' + rec.challengeId + '">View Winners</a>');
-                } else {
-                    $('.winBages', row).html('<a href="http://community.topcoder.com/tc?module=ProjectDetail&pj=' + rec.challengeId + '">View Winners</a>');
-                }
+                $('.winBages', row).html('<a href="' + siteurl+ '/challenge-details/' +rec.challengeId+'?type='+ rec.challengeCommunity +'#winner">View Winners</a>');
+                
                 $('.moreWin', row).hide();
 
                 $('.colReg', row).html('<a href="' + contestLinkUrl + '#viewRegistrant">' + rec.numRegistrants + '</a>');
@@ -1410,6 +1406,10 @@ appChallenges = {
     //format time left
     formatTimeLeft: function(seconds, grid) {
         var sep = (grid) ? '' : ' ';
+        if (seconds < 0) {
+          return '<span style="font-size:14px;">0' + sep + '<span style="font-size:10px;">Days</span> 0' + sep + '<span style="font-size:10px;">Hrs</span>';
+        }
+
         var numdays = Math.floor(seconds / 86400);
         var numhours = Math.floor((seconds % 86400) / 3600);
         var numminutes = Math.floor(((seconds % 86400) % 3600) / 60);
@@ -1429,7 +1429,7 @@ appChallenges = {
     getContestLinkUrl: function(projectId, contestType) {
         return siteurl + "/challenge-details/" + projectId + "/?type=" + contestType;
     }
-}
+};
 
 /**
  */

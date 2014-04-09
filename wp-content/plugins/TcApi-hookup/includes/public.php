@@ -90,8 +90,11 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 	}
 
 	// returns member profile details
-	public function get_member_profile($handle = '') {
+	public function get_member_profile($handle = '', $data) {
 		$url = "http://api.topcoder.com/v2/users/" . $handle;
+		if (isset($data)) {
+			$url = $url . "?data=" . $data;
+		}
 		$args = array (
 				'httpversion' => get_option ( 'httpversion' ),
 				'timeout' => get_option ( 'request_timeout' )
@@ -156,6 +159,48 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 			return $search_result;
 		}
 		return "Error in processing request";
+	}
+	
+	 // contest results
+ public function get_contest_results($contestID = '', $contestType = '') {
+
+		if ($contestType == "design") {
+			$url = "https://api.topcoder.com/v2/design/challenges/result/$contestID";
+		} else {
+			$url = "https://api.topcoder.com/v2/develop/challenges/result/$contestID";
+		}
+
+		$args = array (
+				'httpversion' => get_option ( 'httpversion' ),
+				'timeout' => get_option ( 'request_timeout' )
+		);
+		$response = wp_remote_get ( $url, $args );
+		if (is_wp_error ( $response ) || ! isset ( $response ['body'] )) {
+			return "Error in processing request";
+		}
+		$search_result = json_decode ( $response ['body'] );
+		return $search_result;
+	}
+	
+ // contest checkpoint detail
+ public function get_contest_checkpoint_detail($contestID = '', $contestType = '') {
+
+		if ($contestType == "design") {
+			$url = "https://api.topcoder.com/v2/design/challenges/checkpoint/$contestID";
+		} else {
+			$url = "https://api.topcoder.com/v2/develop/challenges/checkpoint/$contestID";
+		}
+
+		$args = array (
+				'httpversion' => get_option ( 'httpversion' ),
+				'timeout' => get_option ( 'request_timeout' )
+		);
+		$response = wp_remote_get ( $url, $args );
+		if (is_wp_error ( $response ) || ! isset ( $response ['body'] )) {
+			return "Error in processing request";
+		}
+		$search_result = json_decode ( $response ['body'] );
+		return $search_result;
 	}
 
 	// tcapi shortcodes active_contests
@@ -277,9 +322,9 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 	}
 
 	// handle shortcode
-	function tcapi_get_raw_coder($handle = "") {
+	function tcapi_get_raw_coder($handle = "", $data) {
 		$handle = clean_pre ( $handle );
-		return get_member_profile ( $handle );
+		return get_member_profile ( $handle, $data );
 	}
 
 	function tcapi_get_coder($atts, $handle = "") {
@@ -383,7 +428,7 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 
 	/* member achievements  */
 	function tcapi_get_member_achievements($handle= ''){
-		$url = "http://api.topcoder.com/v2/users/" . $handle;
+		$url = "http://api.topcoder.com/v2/users/" . $handle . "?data=achievements";
 		$args = array (
 				'httpversion' => get_option ( 'httpversion' ),
 				'timeout' => 30
@@ -418,7 +463,44 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 		}
 		return "Error in processing request";
 	}
+	
+	/* member achievements current  */
+	function tcapi_get_member_achievements_current($userId= '', $badgeId= ''){
+		$url = "http://community.topcoder.com/tc?module=MemberAchievementCurrent&cr=" . $userId . "&ruleId=" . $badgeId;
+		$args = array (
+				'httpversion' => get_option ( 'httpversion' ),
+				'timeout' => 30
+		);
+		$response = wp_remote_get ( $url, $args );
 
+		if (is_wp_error ( $response ) || ! isset ( $response ['body'] )) {
+			return "Error in processing request";
+		}
+		if ($response ['response'] ['code'] == 200) {
+			$coder_achievements_current = json_decode ( $response ['body'] );
+			return $coder_achievements_current;
+		}
+		return "Error in processing request";
+	}
+	
+        /* search users  */
+	function tcapi_search_users($handle= ''){
+		$url = "http://api.topcoder.com/v2/users/search/?handle=" . $handle;
+		$args = array (
+				'httpversion' => get_option ( 'httpversion' ),
+				'timeout' => 30
+		);
+		$response = wp_remote_get ( $url, $args );
+
+		if (is_wp_error ( $response ) || ! isset ( $response ['body'] )) {
+			return "Error in processing request";
+		}
+		if ($response ['response'] ['code'] == 200) {
+			$users = json_decode ( $response ['body'] );
+			return $users;
+		}
+		return "Error in processing request";
+	}
 }
 
 add_shortcode ( 'h', array (

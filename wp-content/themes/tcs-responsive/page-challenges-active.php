@@ -1,42 +1,39 @@
 <?php
 /**
  * Template Name: Challenges Active Contest List Page
- * Author : evilkyro1965
  */
-get_header('challenge-landing');
 
 $values = get_post_custom ( $post->ID );
 
 $siteURL = site_url ();
 $postId = $post->ID;
+
+$tcoTooltipTitle = get_option("tcoTooltipTitle");
+$tcoTooltipMessage = get_option("tcoTooltipMessage");
+
+// get contest details
+$contest_type = get_query_var("contest_type") == "" ? "design" : get_query_var("contest_type");
+$listType = get_post_meta($postId,"List Type",true) =="" ? "Active" : get_post_meta($postId,"List Type",true);
+$postPerPage = get_post_meta($postId,"Contest Per Page",true) == "" ? 10 : get_post_meta($postId,"Contest Per Page",true);
+
+$page_title = '';
+
+switch ($contest_type) {
+  case "design":
+    $page_title = "Graphic Design Challenges";
+    break;
+  case "data":
+    $page_title = "Data Science Challenges";
+    break;
+  case "develop":
+  default:
+    $page_title = "Software Development Challenges";
+}
+
+get_header('challenge-landing');
 ?>
 
-<?php
-	$tcoTooltipTitle = get_option("tcoTooltipTitle");
-	$tcoTooltipMessage = get_option("tcoTooltipMessage");
 
-	// get contest details
-	$contest_type = get_query_var("contest_type") == "" ? "design" : get_query_var("contest_type");
-	$listType = get_post_meta($postId,"List Type",true) =="" ? "Active" : get_post_meta($postId,"List Type",true);
-	$postPerPage = get_post_meta($postId,"Contest Per Page",true) == "" ? 10 : get_post_meta($postId,"Contest Per Page",true);
-?>
-
-<script type="text/javascript" >
-	var siteurl = "<?php bloginfo('siteurl');?>";
-
-	var reviewType = "contest";
-	var isBugRace = false;
-	var ajaxAction = "get_challenges";
-	var stylesheet_dir = "<?php bloginfo('stylesheet_directory');?>";
-	var currentPage = 1;
-	var postPerPage = <?php echo $postPerPage;?>;
-	var contest_type = "<?php echo $contest_type;?>";
-	var listType = "<?php echo $listType;?>";
-	<?php
-		if($tcoTooltipTitle) echo "var tcoTooltipTitle= '$tcoTooltipTitle';";
-		if($tcoTooltipMessage) echo "var tcoTooltipMessage= '$tcoTooltipMessage';";
-	?>
-</script>
 <div class="content">
 	<div id="main">
 
@@ -71,7 +68,8 @@ $postId = $post->ID;
 		<article id="mainContent" class="layChallenges">
 			<div class="container">
 				<header>
-					<h1><?php echo ($contest_type=="design" ? "Graphic Design Challenges" : "Software Development Challenges" ); ?>
+					<h1>
+                      <?php echo $page_title; ?>
                       <?php get_template_part("content", "rss-icon"); ?>
                     </h1>
 					<aside class="rt">
