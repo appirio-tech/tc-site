@@ -4,9 +4,9 @@
 add_action('init', 'challengesRSS');
 
 function challengesRSS() {
-  add_feed('challenges-feed', 'challengesRSSFunc', 10, 1);
+  add_feed('challenges-feed', 'feed_challenges', 10, 1);
 }
 
-function challengesRSSFunc() {
+function feed_challenges() {
   get_template_part('rss', 'challenges');
 }
