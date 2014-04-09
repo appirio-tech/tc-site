@@ -66,12 +66,12 @@ $postId = $post->ID;
 			<div class="container">
 
 				<header>
-					<h1><?php the_title(); ?>
-                      <?php $FeedURL = get_bloginfo('wpurl') . "/challenges/feed?list=active&contestType=all"; ?>
-
-                      <span class="subscribeTopWrapper">
-                        <a class="feedBtn" href="<?php echo $FeedURL;?>"></a>
-                      </span>
+					<h1>
+                      <?php
+                        the_title();
+                        $contest_type = 'all';
+                        get_template_part("content", "rss-icon");
+                      ?>
                     </h1>
 					<aside class="rt">
 						<span class="views"> <a href="#gridView" class="gridView"></a> <a href="#tableView" class="listView isActive"></a>
