@@ -430,6 +430,10 @@ appChallenges = {
         param.action = ajaxAction;
         param.pageIndex = pageIndex;
         param.pageSize = postPerPage;
+        if (sortColumn == '') {
+          param.sortColumn = 'registrationOpen';
+          param.sortOrder = 'desc';
+        }
         $.ajax({
             url: ajaxUrl,
             data: param,
@@ -516,6 +520,9 @@ appChallenges = {
         if (sortColumn != "") {
             param.sortColumn = sortColumn;
             param.sortOrder = sortOrder;
+        } else {
+            param.sortColumn = 'registrationOpen';
+            param.sortOrder = 'desc';
         }
 
         $.ajax({
@@ -652,6 +659,9 @@ appChallenges = {
         if (sortColumn != "") {
             param.sortColumn = sortColumn;
             param.sortOrder = sortOrder;
+        } else {
+            param.sortColumn = 'registrationOpen';
+            param.sortOrder = 'desc';
         }
         var startDate = $("#startDate").val();
         var endDate = $("#endDate").val();
@@ -1093,7 +1103,7 @@ appChallenges = {
 
                 $('.colPur', row).html("$" + app.formatCur(purse));
 
-                $('.colPhase', row).html(rec.currentPhaseName);
+                $('.colPhase', row).html(rec.registrationOpen == 'Yes' ? 'Open to All' : 'Open to Challenge Registrants');
 
                 $('.colReg', row).html('<a href="' + contestLinkUrl + '#viewRegistrant">' + rec.numRegistrants + '</a>');
 
@@ -1288,7 +1298,7 @@ appChallenges = {
 
                 $('.colPur', row).html("$" + purse);
 
-                $('.colPhase', row).html(rec.currentStatus);
+                $('.colPhase', row).html(rec.registrationOpen == 'Yes' ? 'Open to All' : 'Open to Challenge Registrants');
 
                 $('.winBages', row).html('<a href="' + siteurl+ '/challenge-details/' +rec.challengeId+'?type='+ rec.challengeCommunity +'#winner">View Winners</a>');
                 
