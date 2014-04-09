@@ -4,7 +4,7 @@
  */
 header('Content-Type: ' . feed_content_type('rss-http') . '; charset=' . get_option('blog_charset'), true);
 echo '<?xml version="1.0" encoding="' . get_option('blog_charset') . '"?' . '>';
-echo '<?xml-stylesheet type="text/xsl" media="screen" href="' . get_stylesheet_directory_uri() . '/css/rss2full.xsl"?>'
+echo '<?xml-stylesheet type="text/xsl" media="screen" href="' . get_stylesheet_directory_uri() . '/css/rss2full.xsl"?>';
 
 $listType = get_query_var('list');
 $contestType = get_query_var('contestType');
@@ -13,17 +13,23 @@ $contests = array();
 if ($contestType == 'all') {
     $contestDesign = get_contests_rss($listType, 'design');
     $contestDevelop = get_contests_rss($listType, 'develop');
+    $contestData = get_contests_rss($listType, 'data');
 
-    if (is_array($contestDesign)) {
-        $contests = $contestDesign;
+    if (isset($contestDesign->data) && is_array($contestDesign->data) && !empty($contestDesign->data)) {
+        $contests += $contestDesign->data;
     }
 
-    if (is_array($contestDevelop)) {
-        $contests += $contestDevelop;
+    if (isset($contestDevelop->data) && is_array($contestDevelop->data) && !empty($contestDevelop->data)) {
+        $contests += $contestDevelop->data;
     }
+
+    if (isset($contestData->data) && is_array($contestData->data) && !empty($contestData->data)) {
+      $contests += $contestData->data;
+    }
+
 } else {
     $contests = get_contests_rss($listType, $contestType);
-    $contests = is_array($contests) ? $contests : array();
+    $contests = isset($contests->data) && is_array($contests->data) ? $contests->data : array();
 }
 
 ?>
