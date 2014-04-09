@@ -4,7 +4,6 @@
  */
 header('Content-Type: ' . feed_content_type('rss-http') . '; charset=' . get_option('blog_charset'), true);
 echo '<?xml version="1.0" encoding="' . get_option('blog_charset') . '"?' . '>';
-echo '<?xml-stylesheet type="text/xsl" media="screen" href="' . get_stylesheet_directory_uri() . '/css/rss2full.xsl"?>';
 
 $listType = get_query_var('list');
 $contestType = get_query_var('contestType');
@@ -53,15 +52,19 @@ if ($contestType == 'all') {
 
             $base_url = get_bloginfo('siteurl') . '/challenge-details';
             foreach ($contests as $contest) {
-                echo '<item>';
-                echo "<title>{$contest->challengeName}</title>";
-                echo "<link>{$base_url}/{$contest->challengeId}?type={$contest->challengeType}";
-                echo "<description><![CDATA[{$contest->detailedRequirements}]]</description>";
-                echo "<content:encoded><![CDATA[{$contest->detailedRequirements}]]</content:encoded>";
-                rss_enclosure();
-                do_action('rss_item');
-                echo '</item>';
-            }
-        ?>
+                $content = force_balance_tags($contest->detailedRequirements);
+                //$content = apply_filters('the_content', $content);
+                $content = str_replace(']]>', ']]&gt;', $content);
+                //$content = apply_filters('the_content_feed', $content, 'rss2');
+                ?>
+                <item>
+                <title><?php echo $contest->challengeName ?></title>
+                <link><?php echo "{$base_url}/{$contest->challengeId}?type={$contest->challengeType}" ?></link>;
+                <description><![CDATA[<?php echo $content ?>]]></description>
+                <content:encoded><![CDATA[<?php echo $content ?>]]></content:encoded>
+                <?php rss_enclosure(); ?>
+                <?php do_action('rss2_item'); ?>
+                </item>
+            <?php } ?>
     </channel>
 </rss>
