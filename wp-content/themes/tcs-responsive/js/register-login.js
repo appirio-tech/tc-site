@@ -454,7 +454,10 @@ $(function () {
             lastName: $('#registerForm input.lastName').val(),
             handle: $('#registerForm input.handle').val(),
             country: $('#registerForm select#selCountry').val(),
-            email: $('#registerForm input.email').val()
+            email: $('#registerForm input.email').val(),
+            utmSource: utmSource,
+            utmMedium: utmMedium,
+            utmCampaign: utmCampaign
           }
           if ((typeof socialProviderId != 'undefined') && socialProviderId !== "") {
             fields.socialProviderId = socialProviderId;
