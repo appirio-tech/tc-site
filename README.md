@@ -63,14 +63,26 @@ __Loading home page__:
 
 For more information see lib/scripts.php
 
+## Local Env Setup ##
+
+When working on the site locally there are a few setup steps.
+
+* The domain must be *.topcoder.com.
+* Your local webserver must be using port 80.
+* Add a env.php file to the wpcontent/themes/tc-responsive/config directory.  See below for what to put in this file.
+* The data export is kept at https://github.com/topcoderinc/tc-site-data.  These are updated weekly upon releases to production.
+
 ## Environmental Variables ##
 
 There is the ability to set variables or settings per environment.  Just add a file called "env.php" in the
 theme's config directory.  I recommend added the following lines for local development.
 
     <?php
-    define("WP_SITEURL", "http://tcqa1.topcoder.com");
-    define("WP_HOME", "http://tcqa1.topcoder.com");
+    define("WP_SITEURL", "http://local.topcoder.com");
+    define("WP_HOME", "http://local.topcoder.com");
+    
+    force_ssl_admin(false);
+    force_ssl_login(false);
     ?>
 
 ## GIT Information ##
