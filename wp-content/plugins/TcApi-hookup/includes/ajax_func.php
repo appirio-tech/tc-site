@@ -11,26 +11,30 @@ function post_register_controller() {
     'blocking' => true,
     'headers' => array(),
     'body' => array(
-      'firstName' => $_POST['firstName'],
-      'lastName' => $_POST['lastName'],
-      'handle' => $_POST['handle'],
-      'country' => $_POST['country'],
+      'firstName' => filter_input(INPUT_POST, 'firstName'),
+      'lastName' => filter_input(INPUT_POST, 'lastName'),
+      'handle' => filter_input(INPUT_POST, 'handle'),
+      'country' => filter_input(INPUT_POST, 'country'),
       'regSource' => 'http://www.topcoder.com/',
-      'email' => $_POST['email']
+      'email' => filter_input(INPUT_POST, 'email'),
+      'utm_source' => filter_input(INPUT_POST, 'utmSource'),
+      'utm_medium' => filter_input(INPUT_POST, 'utmMedium'),
+      'utm_campaign' => filter_input(INPUT_POST, 'utmCampaign')
     ),
     'cookies' => array()
   );
-  #print_r($_POST);
-  if (isset($_POST['socialProviderId'])) {
-    $params["body"]["socialProviderId"] = $_POST['socialProviderId'];
-    $params["body"]["socialProvider"] = $_POST['socialProvider'];
-    $params["body"]["socialUserName"] = $_POST['socialUserName'];
-    $params["body"]["socialUserId"] = $_POST['socialUserId'];
-    $params["body"]["socialEmail"] = $_POST['socialEmail'];
-    $params["body"]["socialEmailVerified"] = $_POST['socialEmailVerified'];
+  #print_r(filter_input();
+  $socialProviderId = filter_input(INPUT_POST, 'socialProviderId');
+  if (isset($socialProviderId)) {
+    $params["body"]["socialProviderId"] = $socialProviderId;
+    $params["body"]["socialProvider"] = filter_input(INPUT_POST, 'socialProvider');
+    $params["body"]["socialUserName"] = filter_input(INPUT_POST, 'socialUserName');
+    $params["body"]["socialUserId"] = filter_input(INPUT_POST, 'socialUserId');
+    $params["body"]["socialEmail"] = filter_input(INPUT_POST, 'socialEmail');
+    $params["body"]["socialEmailVerified"] = filter_input(INPUT_POST, 'socialEmailVerified');
   }
   else {
-    $params["body"]["password"] = $_POST['password'];
+    $params["body"]["password"] = filter_input(INPUT_POST, 'password');
   }
   $response = wp_remote_post($url, $params);
 
