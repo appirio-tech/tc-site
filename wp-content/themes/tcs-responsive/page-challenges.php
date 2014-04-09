@@ -53,7 +53,6 @@ get_header('challenge-landing');
 					<h1>
                       <?php
                         the_title();
-                        $contest_type = 'all';
                         get_template_part("content", "rss-icon");
                       ?>
                     </h1>
