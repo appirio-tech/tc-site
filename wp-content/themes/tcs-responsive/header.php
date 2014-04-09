@@ -42,7 +42,7 @@ $nav = array(
     <div class="container">
       <div class="headerTopRightMenu">
         <div class="headerTopRightMenuLink logIn">
-          <div class="text"><a href="javascript:;" class=""></a></div>
+          <div class="text"><a href="javascript:;" class="actionLogin" style="display: inline;">Log In</a></div>
           <div class="icon"></div>
           <div class="clear"></div>
         </div>
