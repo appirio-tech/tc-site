@@ -11,27 +11,26 @@ function post_register_controller() {
     'blocking' => true,
     'headers' => array(),
     'body' => array(
-      'firstName' => filter_input(INPUT_POST, 'firstName'),
-      'lastName' => filter_input(INPUT_POST, 'lastName'),
-      'handle' => filter_input(INPUT_POST, 'handle'),
-      'country' => filter_input(INPUT_POST, 'country'),
+      'firstName' => filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_STRING),
+      'lastName' => filter_input(INPUT_POST, 'lastName', FILTER_SANITIZE_STRING),
+      'handle' => filter_input(INPUT_POST, 'handle', FILTER_SANITIZE_STRING),
+      'country' => filter_input(INPUT_POST, 'country', FILTER_SANITIZE_STRING),
       'regSource' => 'http://www.topcoder.com/',
-      'email' => filter_input(INPUT_POST, 'email'),
-      'utm_source' => filter_input(INPUT_POST, 'utmSource'),
-      'utm_medium' => filter_input(INPUT_POST, 'utmMedium'),
-      'utm_campaign' => filter_input(INPUT_POST, 'utmCampaign')
+      'email' => filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL),
+      'utm_source' => filter_input(INPUT_POST, 'utmSource', FILTER_SANITIZE_STRING),
+      'utm_medium' => filter_input(INPUT_POST, 'utmMedium', FILTER_SANITIZE_STRING),
+      'utm_campaign' => filter_input(INPUT_POST, 'utmCampaign', FILTER_SANITIZE_STRING)
     ),
     'cookies' => array()
   );
-  #print_r(filter_input();
   $socialProviderId = filter_input(INPUT_POST, 'socialProviderId');
   if (isset($socialProviderId)) {
     $params["body"]["socialProviderId"] = $socialProviderId;
-    $params["body"]["socialProvider"] = filter_input(INPUT_POST, 'socialProvider');
-    $params["body"]["socialUserName"] = filter_input(INPUT_POST, 'socialUserName');
-    $params["body"]["socialUserId"] = filter_input(INPUT_POST, 'socialUserId');
-    $params["body"]["socialEmail"] = filter_input(INPUT_POST, 'socialEmail');
-    $params["body"]["socialEmailVerified"] = filter_input(INPUT_POST, 'socialEmailVerified');
+    $params["body"]["socialProvider"] = filter_input(INPUT_POST, 'socialProvider', FILTER_SANITIZE_STRING);
+    $params["body"]["socialUserName"] = filter_input(INPUT_POST, 'socialUserName', FILTER_SANITIZE_STRING);
+    $params["body"]["socialUserId"] = filter_input(INPUT_POST, 'socialUserId', FILTER_SANITIZE_STRING);
+    $params["body"]["socialEmail"] = filter_input(INPUT_POST, 'socialEmail', FILTER_SANITIZE_EMAIL);
+    $params["body"]["socialEmailVerified"] = filter_input(INPUT_POST, 'socialEmailVerified', FILTER_SANITIZE_STRING);
   }
   else {
     $params["body"]["password"] = filter_input(INPUT_POST, 'password');
