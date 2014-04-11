@@ -48,13 +48,16 @@ $img_locked = get_bloginfo( 'stylesheet_directory' )."/i/img-locked.png";
 				<div class="carouselWrap">
 					<div class="slider">
 						<?php
+						$fullImages = "";
 						foreach ( $recentWins as $r ):
-						?>
-						
+						// define full image source by replacing small to full
+						$fullImages .= '<img alt="" src="'.str_replace("small","full",( $r->viewable == false ? $img_locked: $r->preview)).'" />';
+								
+						?>						
 						
 						<div class="slide">
 							<figure>
-								<img alt="" src="<?php echo ( $r->viewable == false ? $img_locked: $r->preview);?>" />
+								<img alt="" src="<?php echo ( $r->viewable == false ? $img_locked: $r->preview);?>" /> 
 							</figure>
 							<div class="hide comptetionData">
 								<input class="name" type="hidden" value="<?php echo $r->contestName;?>" />
@@ -63,10 +66,15 @@ $img_locked = get_bloginfo( 'stylesheet_directory' )."/i/img-locked.png";
 								<input class="submissionDate" type="hidden" value="<?php echo date("M d, Y H:i",strtotime($r->submissionDate)) . " EST";?>" />
 							</div>
 						</div>
+						
 						<?php
 						endforeach;
 						?>						
 					</div>
+				</div>
+				<!--- preloaded images -->
+				<div class="hide">
+				<?php echo $fullImages; ?>				
 				</div>
 			</div>
 			<!-- /.submissionCarousel -->
