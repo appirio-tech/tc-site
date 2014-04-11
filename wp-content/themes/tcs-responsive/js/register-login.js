@@ -63,6 +63,11 @@ $(function () {
   }
 
   $('#registerForm input.pwd:password').on('keyup', function () {
+    var input = $(this);
+
+    $(this).closest('.row').find('.err1,.err2,.err3,.err4').hide();
+    $(this).removeClass('invalid');
+
     var strength = pwdStrength($(this).val());
 
     $(".strength .field").removeClass("red").removeClass("green");
@@ -72,9 +77,6 @@ $(function () {
     if (strength >= 3) {
       classname = "green";
       $(this).parents(".row").find("span.valid").css("display", "inline-block");
-      $(this).closest('.row').find('input:text').removeClass('invalid');
-      $(this).closest('.row').find('span.err1').hide();
-      $(this).closest('.row').find('span.err2').hide();
     } else {
       $(this).parents(".row").find("span.valid").hide();
     }
@@ -84,6 +86,19 @@ $(function () {
         $(e).addClass(classname);
       }
     });
+    if (input.val() == "") {
+      input.closest('.row').find('.err1').show();
+      input.closest('.row').find('input:password').addClass('invalid');
+    } else if (strength >= 0 && strength < 3) {
+      input.closest('.row').find('.err2').show();
+      input.addClass('invalid');
+    } else if (strength == -4) {
+      input.closest('.row').find('.err3').show();
+      input.addClass('invalid');
+    } else if (strength < -1) {
+      input.closest('.row').find('.err4').show();
+      input.addClass('invalid');
+    }
   });
 
   $('#register form.register input.email:text').on('keyup', function () {
@@ -201,15 +216,6 @@ $(function () {
   $('#register input:password').on('keyup', function () {
     var pwd = $('#register form.register input.pwd:password');
     var confirm = $('#register form.register input.confirm:password');
-    if ($(this).hasClass('pwd')) {
-      if ($(this).val() != "") {
-        $(this).closest('.row').find('span.err1').hide();
-        $(this).closest('.row').find('span.err2').hide();
-        $(this).closest('.row').find('input:password').removeClass('invalid');
-      } else {
-        $(this).parents(".row").find("span.valid").hide();
-      }
-    }
     if (pwd.val() == confirm.val() && pwd.val() != '') {
       confirm.parents(".row").find("span.valid").css("display", "inline-block");
       confirm.parents(".row").find('input:text').removeClass('invalid');
@@ -376,6 +382,7 @@ $(function () {
 
     });
     if (!$(this).hasClass("socialRegister")) {
+      $(this).closest('.row').find('.err1,.err2,.err3,.err4').hide();
       $('input.pwd:password', frm).each(function () {
         if ($(this).val() == "") {
           $(this).closest('.row').find('.err1').show();
