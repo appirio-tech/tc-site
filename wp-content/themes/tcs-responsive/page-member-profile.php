@@ -39,7 +39,7 @@ $userkey = get_option ( 'api_user_key' );
 if ($coder->photoLink != '')
 	$photoLink = 'http://community.topcoder.com' . $coder->photoLink;
 else
-	$photoLink = 'http://local.topcoder.com/reviewer/tc-cs/wp-content/themes/tcs-responsive/i/no-photo.png'; //@TODO This is terrible and needs to be changed
+	$photoLink = THEME_URL . '/i/default-photo.png';
 
 $quote = ($coder->quote == '') ? "Member of the world's largest global competitive community. " : $coder->quote;
 
