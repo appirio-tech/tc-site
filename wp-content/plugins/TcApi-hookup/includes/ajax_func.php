@@ -557,12 +557,11 @@ function get_contest_info($contestID = '') {
 add_action('wp_ajax_get_challenges', 'get_challenges_ajax_controller');
 add_action('wp_ajax_nopriv_get_challenges', 'get_challenges_ajax_controller');
 function get_challenges_ajax_controller() {
-  $userkey = get_option('api_user_key');
   $contest_type = $_GET ['contest_type'];
   $page = $_GET['pageIndex'];
   $listType = $_GET['listType'];
   $post_per_page = $_GET ['pageSize'];
-  $sortColumn = ($_GET ['sortColumn']);
+  $sortColumn = $_GET ['sortColumn'];
   $sortOrder = $_GET ['sortOrder'];
   $challengeType = urlencode($_GET ['challengeType']);
   $startDate = $_GET ['submissionEndFrom'];
@@ -593,8 +592,8 @@ function get_challenges_ajax(
   $contestType = 'design',
   $page = 1,
   $post_per_page = 30,
-  $sortColumn = "submissionEndDate",
-  $sortOrder = 'desc',
+  $sortColumn = "",
+  $sortOrder = '',
   $challengeType = '',
   $startDate = '',
   $endDate = ''
@@ -607,9 +606,11 @@ function get_challenges_ajax(
   }
 
 // set default value since failed using params;
-  $sortColumn = ($sortColumn == '') ? "submissionEndDate" : $sortColumn;
-  $sortOrder = ($sortOrder == '') ? "desc" : $sortOrder;
-
+  // @TODO update to be a little better
+  if ($contestType !== 'data/marathon') {
+    $sortColumn = ($sortColumn == '') ? "submissionEndDate" : $sortColumn;
+    $sortOrder = ($sortOrder == '') ? "desc" : $sortOrder;
+  }
 
   if ($sortOrder) {
     $url .= "&sortOrder=$sortOrder";
@@ -718,86 +719,6 @@ function get_review_opportunities_ajax(
 //print $response ['body'];
     $active_contest_list = json_decode($response['body']);
     return $active_contest_list;
-  }
-
-  return "Error in processing request";
-}
-
-/**
- * Get Active Challenges Data List
- */
-
-add_action('wp_ajax_get_active_data_challenges', 'get_active_data_ajax_controller');
-add_action('wp_ajax_nopriv_get_active_data_challenges', 'get_active_data_ajax_controller');
-function get_active_data_ajax_controller() {
-  $userkey = get_option('api_user_key');
-  $page = $_GET['pageIndex'];
-  $post_per_page = $_GET ['pageSize'];
-  $sortColumn = $_GET ['sortColumn'];
-  $sortOrder = $_GET ['sortOrder'];
-
-  $contest_list = get_data_challenges_ajax($page, $post_per_page, $sortColumn, $sortOrder);
-  if (isset($contest_list->data)) {
-    wp_send_json_success($contest_list);
-  }
-  else {
-    wp_send_json_error();
-  }
-}
-
-function get_data_challenges_ajax($page = 1, $post_per_page = 1, $sortColumn = '', $sortOrder = '') {
-
-  $url = "http://api.topcoder.com/v2/data/marathon/challenges?pageIndex=" . $page . "&pageSize=" . $post_per_page;
-
-  $args = array(
-    'httpversion' => get_option('httpversion'),
-    'timeout' => get_option('request_timeout')
-  );
-  $responseSrm = wp_remote_get($url, $args);
-
-  if (is_wp_error($responseSrm) || !isset ($responseSrm ['body'])) {
-    return "Error in processing request";
-  }
-
-  $urlMarathon = "http://api.topcoder.com/v2/data/marathon/?pageIndex=" . $page . "&pageSize=" . $post_per_page;
-
-  $args = array(
-    'httpversion' => get_option('httpversion'),
-    'timeout' => get_option('request_timeout')
-  );
-  $responseMarathon = wp_remote_get($urlMarathon, $args);
-
-  /* merge the srm and marathon */
-  if ($responseMarathon ['response'] ['code'] == 200) {
-
-    $srmData = json_decode($responseSrm['body']);
-    if ($srmData->data != null) {
-      $marathonData = json_decode($responseMarathon['body']);
-
-      if ($marathonData->data != null) {
-        foreach ($marathonData->data as $row) {
-          $srmData->data[count($srmData) + 1] = array(
-            "name" => $row->fullName,
-            "startDate" => $row->startDate
-          );
-        }
-      }
-    }
-
-    $urlMarathon = "http://api.topcoder.com/v2/data/marathon/?pageIndex=" . $page . "&pageSize=" . $post_per_page;
-
-    $args = array(
-      'httpversion' => get_option('httpversion'),
-      'timeout' => get_option('request_timeout')
-    );
-    $responseMarathon = wp_remote_get($urlMarathon, $args);
-
-
-  }
-
-  if ($responseSrm ['response'] ['code'] == 200) {
-
-    return $srmData;
   }
 
   return "Error in processing request";
