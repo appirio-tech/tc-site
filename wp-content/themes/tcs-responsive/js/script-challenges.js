@@ -38,17 +38,16 @@ appChallenges = {
         }
 
         if (typeof(reviewType) != "undefined") {
-            switch (reviewType) {
-                case "contest":
-                    if (contest_type == "design" || contest_type == "develop") {
-                        app.getDesignContests($('.tcoTable'), currentPage);
-                    } else {
-                        app.getDataChallenges($('.tcoTable'), 1);
-                    }
-                    break;
-                case "review":
+            if (reviewType == "contest") {
+                if (contest_type == 'data') {
+                    app.getDataChallenges($('.tcoTable'), currentPage);
+                } else {
+                    app.getDesignContests($('.tcoTable'), currentPage);
+                }
+            } else if (reviewType == "review") {
+                if (contest_type == "design" || contest_type == "develop") {
                     app.getReview($('.tcoTable'), currentPage);
-                    break;
+                }
             }
         }
     },

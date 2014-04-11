@@ -10,13 +10,10 @@ $values = get_post_custom ( $post->ID );
 
 $siteURL = site_url ();
 $postId = $post->ID;
-?>
-
-<?php
-	// get contest details
-	$contest_type = "";
-	$listType = "AllActive";
-	$postPerPage = get_option("challenges_per_page") == "" ? 10 : get_option("challenges_per_page");
+  // get contest details
+  $contest_type = "";
+  $listType = "AllActive";
+  $postPerPage = get_option("challenges_per_page") == "" ? 10 : get_option("challenges_per_page");
 ?>
 
 <script type="text/javascript" >
