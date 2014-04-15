@@ -272,6 +272,16 @@ function getCategoryId($slug) {
   return $id;
 }
 
+/* function to stop WordPress from hitting home page when search keyword is empty */
+function empty_search_filter($query) {
+    // If 's' request variable is set but empty
+    if (isset($_GET['s']) && empty($_GET['s']) && $query->is_main_query()){
+        $query->is_search = true;
+        $query->is_home = false;
+    }
+    return $query;
+}
+add_filter('pre_get_posts','empty_search_filter');
 
 /**
  * Metabox for Promo Module 
@@ -279,7 +289,7 @@ function getCategoryId($slug) {
 function promo_module_metaboxes($meta_boxes) {
   $prefix = '_pm_'; // Prefix for all fields
 
-	/* additional_attr metabox */
+		/* additional_attr metabox */
   $meta_boxes ['promo_module_metabox'] = array (
     'id' => 'promo_module_metaboxes',
     'title' => 'Image Banners',
@@ -290,16 +300,16 @@ function promo_module_metaboxes($meta_boxes) {
     'fields' => array (
       array (
         'name' => 'Super Leaderboard Banner',
-				'id' => $prefix . 'leaderboard',
-				'type' => 'file'
-			),
-			array (
-				'name' => 'Medium Rectangle Banner',
-				'id' => $prefix . 'rectangle',
-				'type' => 'file'
-			)
-		) 
-	);
+        'id' => $prefix . 'leaderboard',
+        'type' => 'file'
+      ),
+      array (
+								'name' => 'Medium Rectangle Banner',
+								'id' => $prefix . 'rectangle',
+								'type' => 'file'
+						)
+				) 
+		);
 	
 	return $meta_boxes;
 }
@@ -309,7 +319,7 @@ add_filter ( 'cmb_meta_boxes', 'promo_module_metaboxes' );
 // Initialize the metabox class
 add_action ( 'init', 'be_initialize_cmb_meta_boxes', 9999 );
 function be_initialize_cmb_meta_boxes() {
-	if (! class_exists ( 'cmb_Meta_Box' )) {
-		require_once ('metabox/init.php');
-	}
+		if (! class_exists ( 'cmb_Meta_Box' )) {
+				require_once ('metabox/init.php');
+		}
 }

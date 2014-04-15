@@ -39,13 +39,15 @@ appChallenges = {
 
         if (typeof(reviewType) != "undefined") {
             if (reviewType == "contest") {
-                app.getDesignContests($('.tcoTable'), currentPage);
+                if (contest_type == 'data') {
+                    app.getDataChallenges($('.tcoTable'), currentPage);
+                } else {
+                    app.getDesignContests($('.tcoTable'), currentPage);
+                }
             } else if (reviewType == "review") {
                 if (contest_type == "design" || contest_type == "develop") {
                     app.getReview($('.tcoTable'), currentPage);
                 }
-            } else if (reviewType == "data") {
-                app.getDataChallenges($('.tcoTable'), 1);
             }
         }
     },
@@ -332,7 +334,7 @@ appChallenges = {
             buttonImageOnly: true,
             dateFormat: 'yy-mm-dd',
             onSelect: function(selectedDate) {
-                datePickerFrom.datepicker("option", "minDate", selectedDate);
+                $('.datepicker.to').datepicker("option", "minDate", selectedDate);
             }
         });
         datePickerFrom.closest('.row').addClass('isDisabled');
@@ -430,10 +432,8 @@ appChallenges = {
         param.action = ajaxAction;
         param.pageIndex = pageIndex;
         param.pageSize = postPerPage;
-        if (sortColumn == '') {
-          param.sortColumn = 'registrationOpen';
-          param.sortOrder = 'desc';
-        }
+        param.contest_type = "data/marathon";
+        param.listType = listType;
         $.ajax({
             url: ajaxUrl,
             data: param,
@@ -475,26 +475,27 @@ appChallenges = {
         }
         var count = 0;
 
-        if (data.data.length > 0) {
+        if (data.data && data.data.length > 0) {
             $.each(data.data, function(key, rec) {
 
                 var row = $(challengesBP.tabData).clone();
 
-                /*
-                 * generate table row for design past contest type
-                 */
-                if (typeof(rec.totalCompetitors) != "undefined") {
-                    $('.contestName', row).html(rec.name);
-                    $('.colType', row).html("SRM");
-                    $('.colR1start', row).html(app.formatDate2(rec.startDate));
-                    $('.colReg', row).html('<a href="javascript:;">' + rec.totalCompetitors + '</a>');
-                } else {
-                    //$('.contestName', row).html(rec.fullName);
-                    $('.contestName', row).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/ico-track-data.png" />' + '<a href="http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.fullName + '</a>');
-                    $('.colType', row).html("Marathon");
-                    $('.colR1start', row).html(app.formatDate2(rec.startDate));
-                    $('.colReg', row).html(rec.numberOfRegistrants);
-                }
+                var startDate = app.formatDate2(rec.startDate);
+                var remainingTime = app.formatTimeLeft(rec.timeRemaining);
+                var endDate = app.formatDate2(rec.endDate);
+                var contestLinkUrl = 'http://community.topcoder.com/longcontest/?module=ViewStandings&rd=' + rec.roundId;
+
+                row.addClass('track-data');
+                $('.contestName', row).html(rec.fullName);
+                $('.colCh a, .cgCh a', row).attr("href", contestLinkUrl);
+                $('.vStartDate', row).html(startDate);
+                $('.vEndDate', row).html(endDate);
+
+                $('.colTLeft', row).html(remainingTime);
+
+                $('.colReg', row).html('<a href="http://community.topcoder.com/longcontest/?module=ViewRegistrants&rd=' + rec.roundId + '">' + rec.numberOfRegistrants + '</a>');
+
+                $('.colSub', row).html(rec.numberOfSubmissions);
 
                 $('tbody', table).append(row);
             });
@@ -1505,22 +1506,9 @@ var challengesBP = {
                         <a href="javascript:;" class="contestName"></a>\
                     </div></td>\
                 <td class="colType">&nbsp;</td>\
-                <td class="colTime"><div>\
-                        <div class="row">\
-                            <label class="lbl"></label>\
-                            <div class="val vStartDate"></div>\
-                        </div>\
-                        <div class="row">\
-                            <label class="lbl vEndRoundLabel">Start Date</label>\
-                            <div class="val vEndRound"></div>\
-                        </div>\
-                        <div class="row">\
-                            <label class="lbl"></label>\
-                            <div class="val vEndDate"></div>\
-                        </div>\
-                    </div></td>\
+                <td class="colTime">N/A</td>\
                 <td class="colTLeft"></td>\
-                <td class="colPur"></td>\
+                <td class="colPur">N/A</td>\
                 <td class="colReg"></td>\
                 <td class="colSub"></td>\
             </tr>',
@@ -1803,14 +1791,27 @@ var challengesBP = {
         </tr>',
     /* data table */
     tabData: '<tr class="inTCO">\
-            <td class="colCh srm"><div>\
-                    <a href="javascript:;" class="contestName"></a>\
-                </div></td>\
-            <td class="colType"></td>\
-            <td class="colR1start"></td>\
-            <td class="colReg"></td>\
-        </tr>'
-}
+                <td class="colCh"><div>\
+                        <a href="javascript:;" class="contestName"></a>\
+                    </div></td>\
+                <td class="colType"></td>\
+                <td class="colTime"><div>\
+                        <div class="row">\
+                            <label class="lbl">Start Date</label>\
+                            <div class="val vStartDate"></div>\
+                        </div>\
+                        <div class="row">\
+                            <label class="lbl">End Date</label>\
+                            <div class="val vEndDate"></div>\
+                        </div>\
+                    </div></td>\
+                <td class="colTLeft"></td>\
+                <td class="colPur">N/A</td>\
+                <td class="colPhase">N/A</td>\
+                <td class="colReg"></td>\
+                <td class="colSub"></td>\
+            </tr>'
+};
 
 
 //string insertion at idx index

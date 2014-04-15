@@ -1,18 +1,22 @@
 <?php
 /**
  * Template Name: Challenge Page
+ * Author : evilkyro1965
  */
+get_header('challenge-landing');
+
+
 $values = get_post_custom ( $post->ID );
 
 $siteURL = site_url ();
 $postId = $post->ID;
+?>
 
-// get contest details
-$contest_type = "";
-$listType = "AllActive";
-$postPerPage = get_option("challenges_per_page") == "" ? 10 : get_option("challenges_per_page");
-
-get_header('challenge-landing');
+<?php
+	// get contest details
+	$contest_type = "";
+	$listType = "AllActive";
+	$postPerPage = get_option("challenges_per_page") == "" ? 10 : get_option("challenges_per_page");
 ?>
 
 <div class="content">

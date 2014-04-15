@@ -41,6 +41,9 @@ $noCache = get_query_var('nocache');
 $contest = get_contest_detail('', $contestID, $contestType, $noCache);
 $registrants = empty($contest->registrants) ? array() : $contest->registrants;
 
+$registerDisable = false;
+$submitDisabled = false;
+/*
 $curDate = new DateTime();
 $registerDisable = true;
 if ($contest->registrationEndDate) {
@@ -56,7 +59,7 @@ if ($contest->submissionEndDate && $contest->currentStatus !== "Completed") {
   if ($submitDate > $curDate) {
     $submitDisabled = false;
   }
-}
+}*/
 
 // @TODO need to fix loading of hanlde before these will work
 //$registerDisable = challenge_register_disabled($contest);
