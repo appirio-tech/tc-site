@@ -35,7 +35,7 @@ global $activity;
 //$activity = get_activity_summary();
 ?>
 <div class="content">
-	<div id="banner">
+	<div id="promo-banner">
 		<div class="container">
 			<ul class="slider">
 				<?php 
