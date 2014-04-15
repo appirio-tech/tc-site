@@ -334,7 +334,7 @@ appChallenges = {
             buttonImageOnly: true,
             dateFormat: 'yy-mm-dd',
             onSelect: function(selectedDate) {
-                datePickerFrom.datepicker("option", "minDate", selectedDate);
+                $('.datepicker.to').datepicker("option", "minDate", selectedDate);
             }
         });
         datePickerFrom.closest('.row').addClass('isDisabled');
