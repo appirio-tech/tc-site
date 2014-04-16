@@ -661,7 +661,7 @@ appChallenges = {
             param.sortColumn = sortColumn;
             param.sortOrder = sortOrder;
         } else {
-            param.sortColumn = 'registrationOpen';
+            param.sortColumn = 'submissionEndDate';
             param.sortOrder = 'desc';
         }
         var startDate = $("#startDate").val();
@@ -1055,7 +1055,11 @@ appChallenges = {
                     checkPointDate = app.formatDate2(rec.checkpointSubmissionEndDate);
                 }
 
-                var endDate = app.formatDate2(rec.submissionEndDate);
+                var endDate;
+                if (rec.submissionEndDate) {
+                  endDate = app.formatDate2(rec.submissionEndDate);
+                }
+
                 var remainingTime = app.formatTimeLeft(rec.currentPhaseRemainingTime);
                 var contestLinkUrl = app.getContestLinkUrl(rec.challengeId, contest_type);
 
@@ -1094,7 +1098,11 @@ appChallenges = {
                     $('.vEndRound', row).parent().empty();
                 }
 
-                $('.vEndDate', row).html(endDate);
+                if (endDate) {
+                    $('.vEndDate', row).html(endDate);
+                } else {
+                    $('.vEndDate', row).parent().empty();
+                }
 
                 $('.colTLeft', row).html(remainingTime);
 
@@ -1266,9 +1274,15 @@ appChallenges = {
 
                 var trackName = app.getTrackSymbol(rec.challengeType);
                 var startDate = app.formatDate2(rec.postingDate);
-                var checkPointDate = app.formatDate2(rec.checkpointSubmissionEndDate);
-                var endDate = app.formatDate2(rec.submissionEndDate);
-                var remainingTime = app.formatTimeLeft(rec.currentPhaseRemainingTime);
+                var checkPointDate;
+                if (rec.checkpointSubmissionEndDate) {
+                  checkPointDate = app.formatDate2(rec.checkpointSubmissionEndDate);
+                }
+                var endDate;
+                if (rec.submissionEndDate) {
+                   endDate = app.formatDate2(rec.submissionEndDate);
+                }
+
                 var contestLinkUrl = app.getContestLinkUrl(rec.challengeId, contest_type);
                 var purse = 0;
                 for (var i = 0; i < rec.prize.length; i++)
@@ -1293,13 +1307,21 @@ appChallenges = {
 
                 $('.vStartDate', row).html(startDate);
 
-                $('.vEndRound', row).html(checkPointDate);
+                if (checkPointDate) {
+                  $('.vEndRound', row).html(checkPointDate);
+                } else {
+                  $('.vEndRound', row).parent().empty();
+                }
 
-                $('.vEndDate', row).html(endDate);
+                if (endDate) {
+                  $('.vEndDate', row).html(endDate);
+                } else {
+                  $('.vEndDate', row).parent().empty();
+                }
 
                 $('.colPur', row).html("$" + purse);
 
-                $('.colPhase', row).html(rec.registrationOpen == 'Yes' ? 'Open to All' : 'Open to Challenge Registrants');
+                $('.colPhase', row).html('Completed');
 
                 $('.winBages', row).html('<a href="' + siteurl+ '/challenge-details/' +rec.challengeId+'?type='+ rec.challengeCommunity +'#winner">View Winners</a>');
                 

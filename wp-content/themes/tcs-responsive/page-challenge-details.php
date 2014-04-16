@@ -219,9 +219,10 @@ else {
   $documents = array();
 }
 
-$postPerPage = get_option("contest_per_page") == "" ? 30 : get_option("contest_per_page");
+// need for header file
+$contest_type = $contestType;
 
-get_header('challenge-landing');
+include locate_template('header-challenge-landing.php');
 
 ?>
 

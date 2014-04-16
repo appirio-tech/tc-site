@@ -3,34 +3,9 @@
  * Template Name: Challenges Active Contest List Page
  */
 
-$values = get_post_custom ( $post->ID );
-
-$siteURL = site_url ();
-$postId = $post->ID;
-
-$tcoTooltipTitle = get_option("tcoTooltipTitle");
-$tcoTooltipMessage = get_option("tcoTooltipMessage");
-
-// get contest details
-$contest_type = get_query_var("contest_type") == "" ? "design" : get_query_var("contest_type");
 $listType = get_post_meta($postId,"List Type",true) =="" ? "Active" : get_post_meta($postId,"List Type",true);
-$postPerPage = get_post_meta($postId,"Contest Per Page",true) == "" ? 10 : get_post_meta($postId,"Contest Per Page",true);
 
-$page_title = '';
-
-switch ($contest_type) {
-  case "design":
-    $page_title = "Graphic Design Challenges";
-    break;
-  case "data":
-    $page_title = "Data Science Challenges";
-    break;
-  case "develop":
-  default:
-    $page_title = "Software Development Challenges";
-}
-
-get_header('challenge-landing');
+include locate_template('header-challenge-landing.php');
 ?>
 
 
