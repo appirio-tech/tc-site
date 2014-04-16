@@ -11,12 +11,8 @@ function tc_challenge_details_js() {
   ?>
   <script type="text/javascript">
     var activeTab = "<?php echo $activeTab;?>";
-    var registrationUntil = new Date(<?php echo $regEnd ?> * 1000
-    )
-    ;
-    var submissionUntil = new Date(<?php echo $submissionEnd ?> * 1000
-    )
-    ;
+    var registrationUntil = new Date(<?php echo $regEnd ?> * 1000);
+    var submissionUntil = new Date(<?php echo $submissionEnd ?> * 1000);
     var challengeId = "<?php echo $contestID;?>";
     var challengeType = "<?php echo $contestType;?>";
     var autoRegister = "<?php echo get_query_var('autoRegister');?>";
@@ -270,7 +266,7 @@ get_header('challenge-landing');
         } ?> link">Details</a></li>
       <li><a href="#viewRegistrant" class="link">Registrants</a></li>
       <?php if (( !empty( $checkpointData ) && $checkpointData != "Error in processing request" ) || ( $tab === "checkpoints" )): ?>
-      <li><a href="<?php echo CURRENT_FULL_URL; ?>&tab=checkpoints" class="link <?php if ($tab === "checkpoints") {
+      <li><a href="#checkpoints" class="link <?php if ($tab === "checkpoints") {
           echo "active";
         } ?>">Checkpoints</a></li>
     <?php endif; ?>
@@ -291,7 +287,7 @@ get_header('challenge-landing');
       else:
         ?>
         <?php if (!empty( $checkpointData ) && $checkpointData != "Error in processing request"): ?>
-        <li><a href="<?php echo CURRENT_FULL_URL; ?>&tab=checkpoints" class="link <?php if ($tab === "checkpoints") {
+        <li><a href="#checkpoints" class="link <?php if ($tab === "checkpoints") {
             echo "active";
           } ?>">Checkpoints</a></li>
       <?php endif; ?>
