@@ -2,6 +2,7 @@
 
 // Define once because it's faster
 define('THEME_URL', get_template_directory_uri());
+define('CURRENT_FULL_URL', add_query_arg($wp->query_string, '', home_url($wp->request)));
 
 @ini_set('display_errors', 1);
 
@@ -48,13 +49,13 @@ function get_rel_url($url, $force = FALSE) {
   }
   return $link;
 }
-$currUrl = curPageURL();
-if( strpos($currUrl,ACTIVE_CONTESTS_PERMALINK) !== false ||
-	strpos($currUrl,PAST_CONTESTS_PERMALINK) !== false ||
-	strpos($currUrl,REVIEW_OPPORTUNITIES_PERMALINK) !== false )
+
+if( strpos(CURRENT_FULL_URL,ACTIVE_CONTESTS_PERMALINK) !== false ||
+	strpos(CURRENT_FULL_URL,PAST_CONTESTS_PERMALINK) !== false ||
+	strpos(CURRENT_FULL_URL,REVIEW_OPPORTUNITIES_PERMALINK) !== false )
 {
-	if( strpos($currUrl,"%20") !== false ) {
-		$redirectUrl = str_replace("%20", "_", $currUrl);
+	if( strpos(CURRENT_FULL_URL,"%20") !== false ) {
+		$redirectUrl = str_replace("%20", "_", CURRENT_FULL_URL);
 		$redirectString = "Location: $redirectUrl";
 		print_r($redirectString);
 		header($redirectString);
@@ -62,19 +63,15 @@ if( strpos($currUrl,ACTIVE_CONTESTS_PERMALINK) !== false ||
 	}
 }
 
+/**
+ * Get the current full url
+ *
+ * @deprecated use CURRENT_FULL_URL
+ *
+ * @return string
+ */
 function curPageURL() {
-  $pageURL = 'http';
-  if (isset($_SERVER["HTTPS"]) &&  $_SERVER["HTTPS"] == "on") {
-    $pageURL .= "s";
-  }
-  $pageURL .= "://";
-  if ($_SERVER["SERVER_PORT"] != "80") {
-    $pageURL .= $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . $_SERVER["REQUEST_URI"];
-  }
-  else {
-    $pageURL .= $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
-  }
-  return $pageURL;
+  return CURRENT_FULL_URL;
 }
 
 function get_page_link_by_slug($page_slug) {
