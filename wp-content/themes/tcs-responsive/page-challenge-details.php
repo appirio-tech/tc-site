@@ -1,18 +1,22 @@
 <?php
 
 $activeTab = $tab;
-add_action ( 'wp_head', 'tc_challenge_details_js' );
-function tc_challenge_details_js(){
+add_action('wp_head', 'tc_challenge_details_js');
+function tc_challenge_details_js() {
   global $contest, $contestType, $contestID, $registrants, $activeTab;
 
-  $regEnd =  strtotime("$contest->registrationEndDate") || 1;
+  $regEnd = strtotime("$contest->registrationEndDate") || 1;
   $submissionEnd = strtotime("$contest->submissionEndDate") || 1
 
   ?>
   <script type="text/javascript">
-    var activeTab = "<?php echo $activeTab;?>" ;
-    var registrationUntil = new Date(<?php echo $regEnd ?> * 1000);
-    var submissionUntil = new Date(<?php echo $submissionEnd ?> * 1000);
+    var activeTab = "<?php echo $activeTab;?>";
+    var registrationUntil = new Date(<?php echo $regEnd ?> * 1000
+    )
+    ;
+    var submissionUntil = new Date(<?php echo $submissionEnd ?> * 1000
+    )
+    ;
     var challengeId = "<?php echo $contestID;?>";
     var challengeType = "<?php echo $contestType;?>";
     var autoRegister = "<?php echo get_query_var('autoRegister');?>";
@@ -43,15 +47,15 @@ $siteURL = site_url();
 
 $contestID = get_query_var('contestID');
 
-$contestType = filter_input(INPUT_GET, $_GET['type'], FILTER_SANITIZE_STRING);
-$contestType = empty($contestType) ? "develop" : $contestType;
-$noCache = get_query_var('nocache');
-$contest = get_contest_detail('', $contestID, $contestType, $noCache);
-$registrants = empty($contest->registrants) ? array() : $contest->registrants;
+$contestType    = filter_input(INPUT_GET, $_GET['type'], FILTER_SANITIZE_STRING);
+$contestType    = empty( $contestType ) ? "develop" : $contestType;
+$noCache        = get_query_var('nocache');
+$contest        = get_contest_detail('', $contestID, $contestType, $noCache);
+$registrants    = empty( $contest->registrants ) ? array() : $contest->registrants;
 $checkpointData = get_checkpoint_details($contestID, $contestType);
 
-$registerDisable = false;
-$submitDisabled = false;
+$registerDisable = FALSE;
+$submitDisabled  = FALSE;
 /*
 $curDate = new DateTime();
 $registerDisable = true;
@@ -88,23 +92,22 @@ if ($contest->submissionEndDate && $contest->currentStatus !== "Completed") {
 function challenge_register_disabled($contest) {
   global $handle;
 
-  $registerDisable = true;
+  $registerDisable = TRUE;
 
   if ($contest->registrationEndDate) {
     $curDate = new DateTime();
     $regDate = new DateTime($contest->registrationEndDate);
     if ($regDate > $curDate) {
-      $registerDisable = false;
+      $registerDisable = FALSE;
     }
   }
 
-   if (is_user_register_for_challenge($handle, $contest)) {
-      $registerDisable = true;
-   }
+  if (is_user_register_for_challenge($handle, $contest)) {
+    $registerDisable = TRUE;
+  }
 
   return $registerDisable;
 }
-
 
 
 /**
@@ -120,18 +123,18 @@ function challenge_register_disabled($contest) {
  */
 function challenge_submit_disabled($contest) {
   global $handle;
-  $submitDisabled = true;
+  $submitDisabled = TRUE;
 
   if ($contest->submissionEndDate && $contest->currentStatus !== "Completed") {
-    $curDate = new DateTime();
+    $curDate    = new DateTime();
     $submitDate = new DateTime($contest->submissionEndDate);
     if ($submitDate > $curDate) {
-      $submitDisabled = false;
+      $submitDisabled = FALSE;
     }
   }
 
   if (!is_user_register_for_challenge($handle, $contest)) {
-    $submitDisabled = true;
+    $submitDisabled = TRUE;
   }
 
   return $submitDisabled;
@@ -139,22 +142,22 @@ function challenge_submit_disabled($contest) {
 
 // Ad submission dates to registrants
 // @TODO move this to a class
-if (!empty($contest->submissions)) {
+if (!empty( $contest->submissions )) {
   $submission_map = array();
   switch ($contestType) {
     case "develop":
       $submission_map = createDevelopSubmissionMap($contest);
       foreach ($registrants as &$registrant) {
-        if ($submission_map[$registrant->handle]) {
-          $registrant->lastSubmissionDate = $submission_map[$registrant->handle]->submissionDate;
+        if ($submission_map[ $registrant->handle ]) {
+          $registrant->lastSubmissionDate = $submission_map[ $registrant->handle ]->submissionDate;
         }
       }
       break;
     case "design":
       $submission_map = createDesignSubmissionMap($contest);
       foreach ($registrants as &$registrant) {
-        if ($submission_map[$registrant->handle]) {
-          $registrant->lastSubmissionDate = $submission_map[$registrant->handle]->submissionTime;
+        if ($submission_map[ $registrant->handle ]) {
+          $registrant->lastSubmissionDate = $submission_map[ $registrant->handle ]->submissionTime;
         }
       }
       break;
@@ -165,16 +168,16 @@ if (!empty($contest->submissions)) {
 function createDesignSubmissionMap($contest) {
   $submission_map = array();
   foreach ($contest->submissions as $submission) {
-    if ($submission_map[$submission->submitter]) {
+    if ($submission_map[ $submission->submitter ]) {
       $sub_date = new DateTime($submission->submissionDate);
       if ($cur_date->diff($sub_date) > 0) {
-        $submission_map[$submission->submitter] = $submission;
-        $cur_date = new DateTime($submission->submissionDate);
+        $submission_map[ $submission->submitter ] = $submission;
+        $cur_date                                 = new DateTime($submission->submissionDate);
       }
     }
     else {
-      $submission_map[$submission->submitter] = $submission;
-      $cur_date = new DateTime($submission->submissionDate);
+      $submission_map[ $submission->submitter ] = $submission;
+      $cur_date                                 = new DateTime($submission->submissionDate);
     }
   }
 
@@ -197,25 +200,26 @@ function createDevelopSubmissionMap($contest) {
   // 'user' => latest submissions
   $submission_map = array();
   foreach ($submissions as $submission) {
-    if ($submission_map[$submission->handle]) {
+    if ($submission_map[ $submission->handle ]) {
       $sub_date = new DateTime($submission->submissionDate);
       if ($cur_date->diff($sub_date) > 0) {
-        $submission_map[$submission->handle] = $submission;
-        $cur_date = new DateTime($submission->submissionDate);
+        $submission_map[ $submission->handle ] = $submission;
+        $cur_date                              = new DateTime($submission->submissionDate);
       }
     }
     else {
-      $submission_map[$submission->handle] = $submission;
-      $cur_date = new DateTime($submission->submissionDate);
+      $submission_map[ $submission->handle ] = $submission;
+      $cur_date                              = new DateTime($submission->submissionDate);
     }
   }
 
   return $submission_map;
 }
 
-if (!empty($_COOKIE["tcsso"])) {
+if (!empty( $_COOKIE["tcsso"] )) {
   $documents = $contest->Documents;
-} else {
+}
+else {
   $documents = array();
 }
 
@@ -230,26 +234,54 @@ get_header('challenge-landing');
 } ?>">
 <div id="main">
 
-<?php include(locate_template('content-basic-challenge-details.php')); ?>
+<?php include( locate_template('content-basic-challenge-details.php') ); ?>
 
-<article id="mainContent" class="splitLayout ">
+
+<article id="mainContent" class="splitLayout <?php if (!empty( $activeTab )) {
+  echo 'currentTab-' . $activeTab;
+} ?>">
 <div class="container">
 <div class="rightSplit  grid-3-3">
 <div class="mainStream partialList">
 
 <section class="tabsWrap">
 <nav class="tabNav">
+  <div class="topRightTitle topRightTitleAlt">
+    <?php
+    if ($contestType != 'design'):
+      ?>
+      <a href="http://apps.topcoder.com/forums/?module=Category&categoryID=<?php echo $contest->forumId; ?>"
+         class="contestForumIcon" target="_blank">Challenge Discussion</a>
+    <?php
+    else:
+      ?>
+      <a href="http://studio.topcoder.com/forums?module=ThreadList&forumID=<?php echo $contest->forumId; ?>"
+         class="contestForumIcon" target="_blank">Challenge Discussion</a>
+    <?php
+    endif;
+    ?>
+  </div>
   <ul>
     <?php
     if ($contestType != 'design'):
       ?>
-      <li><a href="#contest-overview" class="active link">Details</a></li>
+      <li><a href="#contest-overview" class="<?php if ($tab !== "checkpoints") {
+          echo "active";
+        } ?> link">Details</a></li>
       <li><a href="#viewRegistrant" class="link">Registrants</a></li>
+      <?php if (( !empty( $checkpointData ) && $checkpointData != "Error in processing request" ) || ( $tab === "checkpoints" )): ?>
+      <li><a href="<?php echo CURRENT_FULL_URL; ?>&tab=checkpoints" class="link <?php if ($tab === "checkpoints") {
+          echo "active";
+        } ?>">Checkpoints</a></li>
+    <?php endif; ?>
       <li><a href="#winner" class="link">Results</a></li>
+
     <?php
     else:
       ?>
-      <li><a href="#contest-overview" class="active link">Details</a></li>
+      <li><a href="#contest-overview" class="<?php if ($tab !== "checkpoints") {
+          echo "active";
+        } ?> link">Details</a></li>
       <li><a href="#viewRegistrant" class="link">Registrants</a></li>
       <?php
       if (strpos($contest->currentPhaseName, 'Submission') !== FALSE):
@@ -258,7 +290,12 @@ get_header('challenge-landing');
       <?php
       else:
         ?>
-        <li><a href="#checkpoints" class="link">Checkpoints</a></li>
+        <?php if (!empty( $checkpointData ) && $checkpointData != "Error in processing request"): ?>
+        <li><a href="<?php echo CURRENT_FULL_URL; ?>&tab=checkpoints" class="link <?php if ($tab === "checkpoints") {
+            echo "active";
+          } ?>">Checkpoints</a></li>
+      <?php endif; ?>
+
       <?php
       endif;
       ?>
@@ -275,9 +312,12 @@ get_header('challenge-landing');
       ?>
       <?php
       if (strpos($contest->currentPhaseName, 'Submission') !== FALSE || strpos(
-          $contest->currentPhaseName,
-          'Screening'
-        ) !== FALSE || strpos($contest->currentPhaseName, 'Review') !== FALSE
+                                                                          $contest->currentPhaseName,
+                                                                          'Screening'
+                                                                        ) !== FALSE || strpos(
+                                                                                         $contest->currentPhaseName,
+                                                                                         'Review'
+                                                                                       ) !== FALSE
       ):
         ?>
         <li><span class="inactive">Results</span></li>
@@ -307,30 +347,34 @@ get_header('challenge-landing');
       <li><span class="inactive">Checkpoints</span></li>
     <?php
     else:
-    ?>
-    <li><a href="#checkpoints" class="link">Checkpoints</a></li>
-    <li>
-      <?php
-      endif;
       ?>
-      <?php
-      if (strpos($contest->currentPhaseName, 'Submission') !== FALSE):
-      ?>
-    <li><span class="inactive">Submissions</span></li>
-  <?php
-  else:
+      <?php if (!empty( $checkpointData ) && empty( $checkpointData->error )): ?>
+      <li><a href="<?php echo CURRENT_FULL_URL; ?>&tab=checkpoints" class="link">Checkpoints</a></li>
+    <?php endif; ?>
+    <?php
+    endif;
     ?>
-    <li><a href="#submissions" class="link">Submissions</a></li>
-  <?php
-  endif;
-  ?>
+    <?php
+    if (strpos($contest->currentPhaseName, 'Submission') !== FALSE):
+      ?>
+      <li><span class="inactive">Submissions</span></li>
+    <?php
+    else:
+      ?>
+      <li><a href="#submissions" class="link">Submissions</a></li>
+    <?php
+    endif;
+    ?>
     </li>
     <li>
       <?php
       if (strpos($contest->currentPhaseName, 'Submission') !== FALSE || strpos(
-        $contest->currentPhaseName,
-        'Screening'
-      ) !== FALSE || strpos($contest->currentPhaseName, 'Review') !== FALSE):
+                                                                          $contest->currentPhaseName,
+                                                                          'Screening'
+                                                                        ) !== FALSE || strpos(
+                                                                                         $contest->currentPhaseName,
+                                                                                         'Review'
+                                                                                       ) !== FALSE):
       ?>
     <li><span class="inactive">Results</span></li>
   <?php
@@ -343,7 +387,8 @@ get_header('challenge-landing');
     </li>
   </ul>
 </nav>
-<div id="contest-overview" class="tableWrap tab">
+
+<div id="contest-overview" class="tableWrap <?php echo ( $activeTab == 'checkpoints' ) ? 'hide' : ''; ?> tab">
   <?php
   if ($contestType != 'design'):
   ?>
@@ -357,7 +402,7 @@ get_header('challenge-landing');
       <?php
 
       echo '<ul>';
-      if (!empty($contest->platforms)) {
+      if (!empty( $contest->platforms )) {
         foreach ($contest->platforms as $value) {
           echo '<li><strong>' . $value . '</li></strong>';
         }
@@ -374,7 +419,7 @@ get_header('challenge-landing');
       <?php
 
       echo '<ul>';
-      if (!empty($contest->technology)) {
+      if (!empty( $contest->technology )) {
         foreach ($contest->technology as $value) {
           echo '<li><strong>' . $value . '</li></strong>';
         }
@@ -643,7 +688,7 @@ endif;
         if ($contestType != 'design') {
           echo '<td class="ratingColumn">';
           echo '<span style="' . $value->colorStyle . '">';
-          echo isset($value->rating) ? $value->rating : 0;
+          echo isset( $value->rating ) ? $value->rating : 0;
           echo '</span>';
           echo '</td>';
 
@@ -694,9 +739,9 @@ endif;
         echo '<div class="registrantLabel">Registration Date:</div>';
         echo '<div class="registrantField">';
         echo date(
-            "M d, Y H:i T",
-            strtotime($value->registrationDate)
-          ) . '</div>';
+               "M d, Y H:i T",
+               strtotime($value->registrationDate)
+             ) . '</div>';
         echo '<div class="clear"></div>';
         echo '</div>';
         echo '<div class="registrantSectionRow">';
@@ -719,16 +764,16 @@ endif;
 
 
 </div>
-<div id="winner" class="hide tab">
+<div id="winner" class="tableWrap hide tab">
 
-<?php include(locate_template('page-challenge-result.php'));?>	
+  <?php include( locate_template('page-challenge-result.php') ); ?>
 
 </div>
-<div id="checkpoints" class="tableWrap hide tab">
+<div id="checkpoints" class="tableWrap <?php echo ( $activeTab == 'checkpoints' ) ? '' : 'hide'; ?> tab">
 
 
   <article>
-    Coming Soon...
+    <?php include( locate_template('content-checkpoint.php') ); ?>
   </article>
 
 </div>
@@ -796,7 +841,7 @@ if ($contestType != 'design'):
     <!-- End review style section -->
 
   </li>
-  <?php  if (isset($contest->screeningScorecardId) && isset($contest->reviewScorecardId)) : ?>
+  <?php if (isset( $contest->screeningScorecardId ) && isset( $contest->reviewScorecardId )) : ?>
   <li class="slide">
 
     <div class="contestLinks slideBox">
@@ -815,79 +860,10 @@ if ($contestType != 'design'):
     </div>
 
   </li>
-  <?php endif; ?>
+<?php endif; ?>
 
   <li class="slide">
     <div class="forumFeed slideBox">&nbsp;<br/>
-      <!--
-
-<h3>Forums Feed:</h3>
-<div class="inner">
- <div class="scroll-pane jspScrollable" style="overflow: hidden; padding: 0px; width: 263px;" tabindex="0">
-
-
-
- <div class="jspContainer" style="width: 263px; height: 400px;"><div class="jspPane" style="padding: 0px; width: 256px; top: 0px;"><div class="forumItemWrapper">
- <div class="forumItem">
-         <p class="forumTitle"><a href="#">Forum title lorem ipsum</a></p>
-         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu eros id nunc</p>
-         <p class="forumInfo">
-         Post by <a href="#">Someone</a> |  12/13/13  07:00 ET
-         </p>
-    </div>
-    <div class="forumItem">
-         <p class="forumTitle"><a href="#">Forum title lorem ipsum</a></p>
-         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu eros id nunc</p>
-         <p class="forumInfo">
-         Post by <a href="#">Someone</a> |  12/13/13  07:00 ET
-         </p>
-    </div>
-    <div class="forumItem">
-         <p class="forumTitle"><a href="#">Forum title lorem ipsum</a></p>
-         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu eros id nunc</p>
-         <p class="forumInfo">
-         Post by <a href="#">Someone</a> |  12/13/13  07:00 ET
-         </p>
-     </div>
-     <div class="forumItem">
-         <p class="forumTitle"><a href="#">Forum title lorem ipsum</a></p>
-         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu eros id nunc</p>
-         <p class="forumInfo">
-         Post by <a href="#">Someone</a> |  12/13/13  07:00 ET
-         </p>
-     <div class="forumItem">
-     </div>
-         <p class="forumTitle"><a href="#">Forum title lorem ipsum</a></p>
-         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu eros id nunc</p>
-         <p class="forumInfo">
-         Post by <a href="#">Someone</a> |  12/13/13  07:00 ET
-         </p>
-     </div>
-     <div class="forumItem">
-         <p class="forumTitle"><a href="#">Forum title lorem ipsum</a></p>
-         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu eros id nunc</p>
-         <p class="forumInfo">
-         Post by <a href="#">Someone</a> |  12/13/13  07:00 ET
-         </p>
-     </div>
-     <div class="forumItem">
-         <p class="forumTitle"><a href="#">Forum title lorem ipsum</a></p>
-         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu eros id nunc</p>
-         <p class="forumInfo">
-         Post by <a href="#">Someone</a> |  12/13/13  07:00 ET
-         </p>
-     </div>
-     <div class="forumItem">
-         <p class="forumTitle"><a href="#">Forum title lorem ipsum</a></p>
-         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eu eros id nunc</p>
-         <p class="forumInfo">
-         Post by <a href="#">Someone</a> |  12/13/13  07:00 ET
-         </p>
-     </div>
-     </div></div><div class="jspVerticalBar"><div class="jspCap jspCapTop"></div><div class="jspTrack" style="height: 400px;"><div class="jspDrag" style="height: 214px;"><div class="jspDragTop"></div><div class="jspDragBottom"></div></div></div><div class="jspCap jspCapBottom"></div></div></div></div>
-</div>
--->
-
     </div>
   </li>
 <?php
