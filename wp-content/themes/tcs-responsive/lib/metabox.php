@@ -3,7 +3,7 @@
 /**
  * Metabox for Promo Module
  */
-function promo_module_metaboxes($meta_boxes) {
+function tc_promo_module_metaboxes($meta_boxes) {
   $prefix = '_pm_'; // Prefix for all fields
 
   /* additional_attr metabox */
@@ -30,12 +30,12 @@ function promo_module_metaboxes($meta_boxes) {
 
   return $meta_boxes;
 }
-add_filter ( 'cmb_meta_boxes', 'promo_module_metaboxes' );
+add_filter ( 'cmb_meta_boxes', 'tc_promo_module_metaboxes' );
 
 
 // Initialize the metabox class
-add_action ( 'init', 'be_initialize_cmb_meta_boxes', 9999 );
-function be_initialize_cmb_meta_boxes() {
+add_action ( 'init', 'tc_initialize_cmb_meta_boxes', 9999 );
+function tc_initialize_cmb_meta_boxes() {
   if (! class_exists ( 'cmb_Meta_Box' )) {
     require_once ('metabox/init.php');
   }
