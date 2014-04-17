@@ -212,12 +212,7 @@ function createDevelopSubmissionMap($contest) {
   return $submission_map;
 }
 
-if (!empty( $_COOKIE["tcsso"] )) {
-  $documents = $contest->Documents;
-}
-else {
-  $documents = array();
-}
+$documents = isset($contest->Documents) ? $contest->Documents : array();
 
 // need for header file
 $contest_type = $contestType;
