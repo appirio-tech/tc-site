@@ -3,7 +3,6 @@
  * Template Name: Challenges Past Contest List Page
  * Author : evilkyro1965
  */
-get_header('challenge-landing');
 
 $values = get_post_custom ( $post->ID );
 
@@ -19,6 +18,7 @@ $postId = $post->ID;
 	$contest_type = get_query_var("contest_type") == "" ? "design" : get_query_var("contest_type");
 	$listType = "Past";
 	$postPerPage = get_post_meta($postId,"Contest Per Page",true) == "" ? 10 : get_post_meta($postId,"Contest Per Page",true);
+get_header('challenge-landing');
 ?>
 
 <script type="text/javascript" >

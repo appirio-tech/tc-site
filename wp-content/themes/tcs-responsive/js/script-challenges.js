@@ -661,7 +661,7 @@ appChallenges = {
             param.sortColumn = sortColumn;
             param.sortOrder = sortOrder;
         } else {
-            param.sortColumn = 'registrationOpen';
+            param.sortColumn = 'submissionEndDate';
             param.sortOrder = 'desc';
         }
         var startDate = $("#startDate").val();
