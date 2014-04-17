@@ -204,7 +204,7 @@ function createDevelopSubmissionMap($contest) {
   return $submission_map;
 }
 
-$documents = $contest->Documents;
+$documents = isset($contest->Documents) ? $contest->Documents : array();
 
 $postPerPage = get_option("contest_per_page") == "" ? 30 : get_option("contest_per_page");
 
