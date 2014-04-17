@@ -204,11 +204,7 @@ function createDevelopSubmissionMap($contest) {
   return $submission_map;
 }
 
-if (!empty($_COOKIE["tcsso"])) {
-  $documents = $contest->Documents;
-} else {
-  $documents = array();
-}
+$documents = isset($contest->Documents) ? $contest->Documents : array();
 
 $postPerPage = get_option("contest_per_page") == "" ? 30 : get_option("contest_per_page");
 
