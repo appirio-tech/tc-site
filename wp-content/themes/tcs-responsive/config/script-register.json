@@ -26,6 +26,7 @@
         "moment-data.js",
         "jquery.qtip.min.js",
         "jquery.jqtransform.js"
+        "reset-password.js"
       ],
       "css": [
         "blog.css",
@@ -45,6 +46,7 @@
         "challenge-results.css", 
         "jqtransform.css",
         "challenge-submit.css"
+        "password-recovery.css"
       ]
     },
     "challengelanding": {
