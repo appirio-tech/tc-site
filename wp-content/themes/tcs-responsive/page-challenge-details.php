@@ -43,7 +43,7 @@ $siteURL = site_url();
 
 $contestID = get_query_var('contestID');
 
-$contestType    = filter_input(INPUT_GET, $_GET['type'], FILTER_SANITIZE_STRING);
+$contestType    = filter_input(INPUT_GET, 'type', FILTER_SANITIZE_STRING);
 $contestType    = empty( $contestType ) ? "develop" : $contestType;
 $noCache        = get_query_var('nocache');
 $contest        = get_contest_detail('', $contestID, $contestType, $noCache);
