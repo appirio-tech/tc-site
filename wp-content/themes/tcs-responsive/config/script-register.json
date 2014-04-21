@@ -25,7 +25,7 @@
         "moment-timezone.min.js",
         "moment-data.js",
         "jquery.qtip.min.js",
-        "jquery.jqtransform.js"
+        "jquery.jqtransform.js",
         "reset-password.js"
       ],
       "css": [
@@ -45,7 +45,7 @@
         "challenge-detail-software.css",
         "challenge-results.css", 
         "jqtransform.css",
-        "challenge-submit.css"
+        "challenge-submit.css",
         "password-recovery.css"
       ]
     },
