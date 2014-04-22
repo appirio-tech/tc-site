@@ -400,7 +400,7 @@ appChallenges = {
             case "Conceptualization":
                 trackName = "c";
                 break;
-            case "First2Finish":
+            case ("First2Finish" || "Design First2Finish"):
                 trackName = "ff";
                 break;
             default:
@@ -410,21 +410,6 @@ appChallenges = {
         }
         return trackName;
     },
-    isDesignContest: function(contestType) {
-        return contestType == "Web Design" ||
-            contestType == "Widget or Mobile Screen Design" ||
-            contestType == "Wireframes" ||
-            contestType == "Idea Generation" ||
-            contestType == "Print\/Presentation" ||
-            contestType == "Banners\/Icons" ||
-            contestType == "Logo Design" ||
-            contestType == "Studio Other" ||
-            contestType == "Front-End Flash" ||
-            contestType == "Application Front-End Design";
-
-    },
-
-
     getDataChallenges: function(table, pageIndex, callback) {
 
         app.setLoading();
@@ -822,21 +807,20 @@ appChallenges = {
                     var purse = 0;
                     for (var i = 0; i < rec.prize.length; i++)
                         purse += rec.prize[i];
-                    var icoTrack = "ico-track-design.png";
-                    var tcoFlag = "tco-flag-design.png";
-                    var contestType = "design";
 
-                    if (!app.isDesignContest(rec.challengeType)) {
-                        icoTrack = "ico-track-develop.png";
-                        tcoFlag = "tco-flag-develop.png";
+                    if (rec.challengeCommunity == "design") {
+                      var icoTrack = "ico-track-design.png";
+                      var tcoFlag = "tco-flag-design.png";
+                    } else {
+                        var icoTrack = "ico-track-develop.png";
+                        var tcoFlag = "tco-flag-develop.png";
                         row = $(challengesBP.tabAllDev).clone();
                         if (rec.registrationEndDate) {
                             checkPointDate = app.formatDate2(rec.registrationEndDate);
                         }
-
-                        contestType = "develop";
                     }
-                    var contestLinkUrl = app.getContestLinkUrl(rec.challengeId, contestType);
+
+                    var contestLinkUrl = app.getContestLinkUrl(rec.challengeId, rec.challengeCommunity);
 
                     row.addClass('track-' + trackName);
                     /*
@@ -916,7 +900,7 @@ appChallenges = {
                     trackName += " trackSD";
 
                     var startDate = app.formatDate2(rec.postingDate);
-                    var checkPointDate
+                    var checkPointDate;
                     if (rec.checkpointSubmissionEndDate) {
                         checkPointDate = app.formatDate2(rec.checkpointSubmissionEndDate);
                     }
@@ -926,27 +910,28 @@ appChallenges = {
                     var purse = 0;
                     for (var i = 0; i < rec.prize.length; i++)
                         purse += rec.prize[i];
-                    var icoTrack = "ico-track-design.png";
-                    var tcoFlag = "tco-flag-design.png";
-                    var contestType = "design";
+                    var icoTrack;
+                    var tcoFlag;
 
-                    /* for develop type contest */
-                    if (!app.isDesignContest(rec.challengeType)) {
-                        icoTrack = "ico-track-develop.png";
-                        tcoFlag = "tco-flag-develop.png";
-                        con = $(challengesBP.grDevOpen).clone();
-
-                        if (rec.submissionEndDate) {
-                            checkPointDate = app.formatDate2(rec.submissionEndDate);
-                        }
-                        contestType = "develop";
+                    if (rec.challengeCommunity == "design") {
+                      icoTrack = "ico-track-design.png";
+                      tcoFlag = "tco-flag-design.png";
+                    } else {
+                      icoTrack = "ico-track-develop.png";
+                      tcoFlag = "tco-flag-develop.png";
+                      row = $(challengesBP.tabAllDev).clone();
+                      if (rec.registrationEndDate) {
+                        checkPointDate = app.formatDate2(rec.registrationEndDate);
+                      }
                     }
-                    var contestLinkUrl = app.getContestLinkUrl(rec.challengeId, contestType);
+
+                    var contestLinkUrl = app.getContestLinkUrl(rec.challengeId, rec.challengeCommunity);
+
                     var contestName = rec.challengeName.length > 60 ? rec.challengeName.substr(0, 61) + '...' : rec.challengeName;
 
 
                     con.addClass('track-' + trackName);
-                    con.addClass('type-' + contestType);
+                    con.addClass('type-' + rec.challengeCommunity);
 
                     $('.contestName', con).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/' + icoTrack + '" />' + contestName + '<img alt="" class="allContestTCOIco" src="' + stylesheet_dir + '/i/' + tcoFlag + '" />');
                     $('.contestName', con).parents(".inTCO").addClass("hasTCOIco");
@@ -979,7 +964,7 @@ appChallenges = {
                             title: 'Time Left'
                         },
                         style: {
-                            classes: 'qtip-' + contestType + ' qtip-rounded qtip-shadow'
+                            classes: 'qtip-' + rec.challengeCommunity + ' qtip-rounded qtip-shadow'
                         },
                         position: {
                             my: 'bottom center',
@@ -992,7 +977,7 @@ appChallenges = {
                             title: 'Prize Purse'
                         },
                         style: {
-                            classes: 'qtip-' + contestType + ' qtip-rounded qtip-shadow'
+                            classes: 'qtip-' + rec.challengeCommunity + ' qtip-rounded qtip-shadow'
                         },
                         position: {
                             my: 'bottom center',
@@ -1005,7 +990,7 @@ appChallenges = {
                             title: 'Registrants'
                         },
                         style: {
-                            classes: 'qtip-' + contestType + ' qtip-rounded qtip-shadow'
+                            classes: 'qtip-' + rec.challengeCommunity + ' qtip-rounded qtip-shadow'
                         },
                         position: {
                             my: 'bottom center',
@@ -1018,7 +1003,7 @@ appChallenges = {
                             title: 'Submissions'
                         },
                         style: {
-                            classes: 'qtip-' + contestType + ' qtip-rounded qtip-shadow'
+                            classes: 'qtip-' + rec.challengeCommunity + ' qtip-rounded qtip-shadow'
                         },
                         position: {
                             my: 'bottom center',
@@ -1061,16 +1046,22 @@ appChallenges = {
                 }
 
                 var remainingTime = app.formatTimeLeft(rec.currentPhaseRemainingTime);
-                var contestLinkUrl = app.getContestLinkUrl(rec.challengeId, contest_type);
+                var contestLinkUrl = app.getContestLinkUrl(rec.challengeId, rec.challengeCommunity);
 
                 var purse = 0;
                 for (var i = 0; i < rec.prize.length; i++)
                     purse += rec.prize[i];
 
-                if (contest_type == "develop") {
+
+                var icoTrack = "ico-track-design.png";
+                var tcoFlag = "tco-flag-design.png";
+
+                if (rec.challengeCommunity == "develop") {
                     row = $(challengesBP.gdDevOpen).clone();
                     if (rec.registrationEndDate) {
                         checkPointDate = app.formatDate2(rec.registrationEndDate);
+                        icoTrack = "ico-track-develop.png";
+                        tcoFlag = "tco-flag-develop.png";
                     }
                 }
 
@@ -1078,12 +1069,7 @@ appChallenges = {
                 /*
                  * generate table row for design contest type
                  */
-                var icoTrack = "ico-track-design.png";
-                var tcoFlag = "tco-flag-design.png";
-                if (!app.isDesignContest(rec.challengeType)) {
-                    icoTrack = "ico-track-develop.png";
-                    tcoFlag = "tco-flag-develop.png";
-                }
+
                 $('.contestName', row).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/' + icoTrack + '" />' + rec.challengeName + '<img alt="" class="allContestTCOIco" src="' + stylesheet_dir + '/i/' + tcoFlag + '" />');
                 $('.contestName', row).parents(".inTCO").addClass("hasTCOIco");
                 $('.colCh a, .cgCh a', row).attr("href", contestLinkUrl);
@@ -1147,29 +1133,27 @@ appChallenges = {
                 }
                 var endDate = app.formatDate2(rec.submissionEndDate);
                 var remainingTime = app.formatTimeLeft(rec.currentPhaseRemainingTime, true);
-                var contestLinkUrl = app.getContestLinkUrl(rec.challengeId, contest_type);
+                var contestLinkUrl = app.getContestLinkUrl(rec.challengeId, rec.challengeCommunity);
                 var purse = 0;
                 for (var i = 0; i < rec.prize.length; i++)
                     purse += rec.prize[i];
 
                 /* for develop type contest */
-                if (contest_type == "develop") {
+                var icoTrack = "ico-track-design.png";
+                var tcoFlag = "tco-flag-design.png";
+                if (rec.challengeCommunity == "develop") {
                     con = $(challengesBP.grDevOpen).clone();
                     if (rec.registrationEndDate) {
                         checkPointDate = app.formatDate2(rec.registrationEndDate);
                     }
-                }
 
-
-
-                con.addClass('track-' + trackName);
-                con.addClass('type-' + contest_type);
-                var icoTrack = "ico-track-design.png";
-                var tcoFlag = "tco-flag-design.png";
-                if (!app.isDesignContest(rec.challengeType)) {
                     icoTrack = "ico-track-develop.png";
                     tcoFlag = "tco-flag-develop.png";
                 }
+
+
+                con.addClass('track-' + trackName);
+                con.addClass('type-' + rec.challengeCommunity);
 
                 $('.contestName', con).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/' + icoTrack + '" />' + rec.challengeName.substr(0, 61) + '...' + '<img alt="" class="allContestTCOIco" src="' + stylesheet_dir + '/i/' + tcoFlag + '" />');
                 $('.contestName', con).parents(".inTCO").addClass("hasTCOIco");
@@ -1201,7 +1185,7 @@ appChallenges = {
                         title: 'Time Left'
                     },
                     style: {
-                        classes: 'qtip-' + contest_type + ' qtip-rounded qtip-shadow'
+                        classes: 'qtip-' + rec.challengeCommunity + ' qtip-rounded qtip-shadow'
                     },
                     position: {
                         my: 'bottom center',
@@ -1214,7 +1198,7 @@ appChallenges = {
                         title: 'Prize Purse'
                     },
                     style: {
-                        classes: 'qtip-' + contest_type + ' qtip-rounded qtip-shadow'
+                        classes: 'qtip-' + rec.challengeCommunity + ' qtip-rounded qtip-shadow'
                     },
                     position: {
                         my: 'bottom center',
@@ -1227,7 +1211,7 @@ appChallenges = {
                         title: 'Registrants'
                     },
                     style: {
-                        classes: 'qtip-' + contest_type + ' qtip-rounded qtip-shadow'
+                        classes: 'qtip-' + rec.challengeCommunity + ' qtip-rounded qtip-shadow'
                     },
                     position: {
                         my: 'bottom center',
@@ -1240,7 +1224,7 @@ appChallenges = {
                         title: 'Submissions'
                     },
                     style: {
-                        classes: 'qtip-' + contest_type + ' qtip-rounded qtip-shadow'
+                        classes: 'qtip-' + rec.challengeCommunity + ' qtip-rounded qtip-shadow'
                     },
                     position: {
                         my: 'bottom center',
@@ -1283,7 +1267,7 @@ appChallenges = {
                    endDate = app.formatDate2(rec.submissionEndDate);
                 }
 
-                var contestLinkUrl = app.getContestLinkUrl(rec.challengeId, contest_type);
+                var contestLinkUrl = app.getContestLinkUrl(rec.challengeId, rec.challengeCommunity);
                 var purse = 0;
                 for (var i = 0; i < rec.prize.length; i++)
                     purse += rec.prize[i];
@@ -1296,7 +1280,7 @@ appChallenges = {
 
                 var icoTrack = "ico-track-design.png";
                 var tcoFlag = "tco-flag-design.png";
-                if (!app.isDesignContest(rec.challengeType)) {
+                if (rec.challengeCommunity == "develop") {
                     icoTrack = "ico-track-develop.png";
                     tcoFlag = "tco-flag-develop.png";
                 }
