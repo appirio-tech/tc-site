@@ -2,6 +2,7 @@ var pageSize = 8;
 var sortColumn = "";
 var sortOrder = "";
 var ApiData = {};
+
 /**
  * Challenges function
 challenge
@@ -37,9 +38,13 @@ appChallenges = {
             pageSize = 10000;
         }
 
-        if (typeof reviewType !== "undefined") {
+        if (typeof(reviewType) != "undefined") {
             if (reviewType == "contest") {
-                app.getDesignContests($('.tcoTable'), currentPage);
+                if (contest_type == 'data') {
+                    app.getDataChallenges($('.tcoTable'), currentPage);
+                } else {
+                    app.getDesignContests($('.tcoTable'), currentPage);
+                }
             } else if (reviewType == "review") {
                 if (contest_type == "design" || contest_type == "develop") {
                     app.getReview($('.tcoTable'), currentPage);
@@ -485,7 +490,7 @@ appChallenges = {
             case "Conceptualization":
                 trackName = "c";
                 break;
-            case "First2Finish":
+            case ("First2Finish" || "Design First2Finish"):
                 trackName = "ff";
                 break;
             default:
@@ -517,6 +522,8 @@ appChallenges = {
         param.action = ajaxAction;
         param.pageIndex = pageIndex;
         param.pageSize = postPerPage;
+        param.contest_type = "data/marathon";
+        param.listType = listType;
         $.ajax({
             url: ajaxUrl,
             data: param,
@@ -524,6 +531,7 @@ appChallenges = {
             dataType: "json",
             success: function(data) {
                 currentPage = pageIndex;
+
                 var latestRecords = currentPage * postPerPage; // Latest record read by user
 
                 $("#challengeNav a").hide();
@@ -601,6 +609,9 @@ appChallenges = {
         if (sortColumn != "") {
             param.sortColumn = sortColumn;
             param.sortOrder = sortOrder;
+        } else {
+            param.sortColumn = 'registrationOpen';
+            param.sortOrder = 'desc';
         }
 
         $.ajax({
@@ -788,7 +799,7 @@ appChallenges = {
                     if (currentPage > 1) {
                         $("#challengeNav .prevLink").show();
                     }
-        
+
                     if (typeof data.total === 'undefined' || data.total <= postPerPage) {
                         $(".viewAll").hide();
                     } else {
@@ -800,9 +811,9 @@ appChallenges = {
 
                 // If contest type
                 if (!isBugRace) {
-                    if (typeof listType !== "undefined" && listType == "Past") {
+                    if (typeof(listType) != "undefined" && listType == "Past") {
                         app.getDesignPastContestTable(table, data, null);
-                    } else if (typeof listType !== "undefined" && listType == "AllActive") {
+                    } else if (typeof(listType) != "undefined" && listType == "AllActive") {
                         app.getAllContestTable(table, data, null);
                         app.getAllContestGrid($('#gridView .contestGrid'), data, (null + 1));
                         app.getDataLandingContests($('.tcoTable'), 1);
@@ -821,15 +832,17 @@ appChallenges = {
                 if (callback != null && callback != "") {
                     callback();
                 }
-            }
-        }).fail(function() {
+            },
+            fail: function(data) {
                 $('.loading').hide();
                 //    $('tbody', table).html(null);
                 $(".viewAll").hide();
                 alert("Data not found!");
+            }
         });
     
     },
+
     getDataLandingContests: function(table, pageIndex, callback) {
         app.setLoading();
         var param = {};
@@ -906,13 +919,13 @@ appChallenges = {
                     var purse = 0;
                     for (var i = 0; i < rec.prize.length; i++)
                         purse += rec.prize[i];
-                    var icoTrack = "ico-track-design.png";
-                    var tcoFlag = "tco-flag-design.png";
-                    var contestType = "design";
 
-                    if (!app.isDesignContest(rec.challengeType)) {
-                        icoTrack = "ico-track-develop.png";
-                        tcoFlag = "tco-flag-develop.png";
+                    if (rec.challengeCommunity == "design") {
+                      var icoTrack = "ico-track-design.png";
+                      var tcoFlag = "tco-flag-design.png";
+                    } else {
+                        var icoTrack = "ico-track-develop.png";
+                        var tcoFlag = "tco-flag-develop.png";
                         row = $(challengesBP.tabAllDev).clone();
                         if (rec.registrationEndDate) {
                             checkPointDate = app.formatDate2(rec.registrationEndDate);
@@ -2237,14 +2250,27 @@ var challengesBP = {
         </tr>',
     /* data table */
     tabData: '<tr class="inTCO">\
-            <td class="colCh srm"><div>\
-                    <a href="javascript:;" class="contestName"></a>\
-                </div></td>\
-            <td class="colType"></td>\
-            <td class="colR1start"></td>\
-            <td class="colReg"></td>\
-        </tr>'
-}
+                <td class="colCh"><div>\
+                        <a href="javascript:;" class="contestName"></a>\
+                    </div></td>\
+                <td class="colType"></td>\
+                <td class="colTime"><div>\
+                        <div class="row">\
+                            <label class="lbl">Start Date</label>\
+                            <div class="val vStartDate"></div>\
+                        </div>\
+                        <div class="row">\
+                            <label class="lbl">End Date</label>\
+                            <div class="val vEndDate"></div>\
+                        </div>\
+                    </div></td>\
+                <td class="colTLeft"></td>\
+                <td class="colPur">N/A</td>\
+                <td class="colPhase">N/A</td>\
+                <td class="colReg"></td>\
+                <td class="colSub"></td>\
+            </tr>'
+};
 
 
 //string insertion at idx index

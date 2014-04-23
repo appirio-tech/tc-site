@@ -682,9 +682,11 @@ function get_challenges_ajax(
   }
 
 // set default value since failed using params;
-  $sortColumn = ($sortColumn == '') ? "submissionEndDate" : $sortColumn;
-  $sortOrder = ($sortOrder == '') ? "desc" : $sortOrder;
-
+  // @TODO update to be a little better
+  if ($contestType !== 'data/marathon') {
+    $sortColumn = ($sortColumn == '') ? "submissionEndDate" : $sortColumn;
+    $sortOrder = ($sortOrder == '') ? "desc" : $sortOrder;
+  }
 
   if ($sortOrder) {
     $url .= "&sortOrder=$sortOrder";
