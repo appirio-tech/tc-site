@@ -8,6 +8,7 @@ $listType = get_post_meta($postId,"List Type",true) =="" ? "Upcoming" : get_post
 include locate_template('header-challenge-landing.php');
 ?>
 
+
 <div class="content">
 	<div id="main">
 

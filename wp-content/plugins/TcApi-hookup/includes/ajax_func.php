@@ -341,9 +341,9 @@ function get_upcoming_contests_ajax(
   if ($contestType == 'data') {
 	$url = "https://tcapi.apiary-mock.com/v2/data/srm/challenges?listType=" . $listType . "&pageIndex=" . $page . "&pageSize=" . $post_per_page;
 } elseif ($contestType == '') {
-  $url = "http://api.topcoder.com/v2/design/challenges?listType=" . $listType . "&pageIndex=" . $page . "&pageSize=" . $post_per_page;
+  $url = "https://api.topcoder.com/v2/design/challenges?listType=" . $listType . "&pageIndex=" . $page . "&pageSize=" . $post_per_page;
 } else {
-    $url = "http://api.topcoder.com/v2/" . $contestType . "/challenges?listType=" . $listType . "&pageIndex=" . $page . "&pageSize=" . $post_per_page;
+    $url = "https://api.topcoder.com/v2/" . $contestType . "/challenges?listType=" . $listType . "&pageIndex=" . $page . "&pageSize=" . $post_per_page;
 }
 
   if ($sortOrder) {
@@ -676,16 +676,15 @@ function get_challenges_ajax(
 
     $url = "http://api.topcoder.com/v2/" . $contestType . "/challenges?listType=" . $listType . "&pageIndex=" . $page . "&pageSize=" . $post_per_page;
 
-    if ($contestType == "") {
-        $url = "http://api.topcoder.com/v2/" . $contestType . "/challenges?listType=" . $listType . "&pageIndex=" . $page . "&pageSize=" . $post_per_page;
-    }
+  if ($contestType == "") {
+	$contestType = 'design';
+    $url = "https://api.topcoder.com/v2/" . $contestType . "/challenges?listType=" . $listType . "&pageIndex=" . $page . "&pageSize=" . $post_per_page;
+  }
 
 // set default value since failed using params;
-  // @TODO update to be a little better
-  if ($contestType !== 'data/marathon') {
-    $sortColumn = ($sortColumn == '') ? "submissionEndDate" : $sortColumn;
-    $sortOrder = ($sortOrder == '') ? "desc" : $sortOrder;
-  }
+  $sortColumn = ($sortColumn == '') ? "submissionEndDate" : $sortColumn;
+  $sortOrder = ($sortOrder == '') ? "desc" : $sortOrder;
+
 
   if ($sortOrder) {
     $url .= "&sortOrder=$sortOrder";
@@ -831,7 +830,7 @@ function get_data_challenges_ajax($listType = 'Active',
   $startDate = '',
   $endDate = '') {
 //no data in API, so we use mock for now
-//  $urlSrm = "http://api.topcoder.com/v2/data/srm/challenges?listType=" . $listType . "&pageIndex=" . $page . "&pageSize=" . $post_per_page;
+//  $urlSrm = "https://api.topcoder.com/v2/data/srm/challenges?listType=" . $listType . "&pageIndex=" . $page . "&pageSize=" . $post_per_page;
 $urlSrm = "https://tcapi.apiary-mock.com/v2/data/srm/challenges?listType=" . $listType . "&pageIndex=" . $page . "&pageSize=" . $post_per_page;
   // set default value since failed using params;
   $sortColumn = ($sortColumn == '') ? "submissionEndDate" : $sortColumn;
@@ -865,7 +864,7 @@ $urlSrm = "https://tcapi.apiary-mock.com/v2/data/srm/challenges?listType=" . $li
   }
   
 //No data in API, using Mock for now
-  //$urlMarathon = "http://api.topcoder.com/v2/data/marathon/challenges?listType=" . $listType . "&pageIndex=" . $page . "&pageSize=" . $post_per_page;
+  //$urlMarathon = "https://api.topcoder.com/v2/data/marathon/challenges?listType=" . $listType . "&pageIndex=" . $page . "&pageSize=" . $post_per_page;
   $urlMarathon = "https://tcapi.apiary-mock.com/v2/data/marathon/challenges?listType=" . $listType . "&pageIndex=" . $page . "&pageSize=" . $post_per_page;
 
   if ($sortOrder) {
