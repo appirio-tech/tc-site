@@ -4,6 +4,20 @@ var slider;
 var prizeSlider;
 var sliderClone;
 
+var tcjwt = getCookie('tcjwt');
+if (tcjwt) {
+  $.getJSON(ajaxUrl, {
+    "action": "get_challenge_documents",
+    "challengeId": challengeId,
+    "challengeType": challengeType,
+    "jwtToken": tcjwt.replace(/["]/g, "")
+  }, function (data) {
+    console.log("HEY!"); console.log(data);
+  });
+}
+
+
+
 function createSlider() {
   sliderClone = $('.columnSideBar .slider > ul:first-child').clone();
   slider = jQuery('.columnSideBar .slider > ul:first-child').bxSlider({
