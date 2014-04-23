@@ -21,23 +21,15 @@ include locate_template('header-challenge-landing.php');
 		<article id="mainContent" class="layChallenges">
 			<div class="container">
 				<header>
-					<h1><?php echo ($contest_type=="design" ? "Graphic Design Challenges" : "Software Development Challenges" ); ?></h1>
+                  <h1>
+                    <?php echo $page_title; ?>
+                    <?php get_template_part("content", "rss-icon"); ?>
+                  </h1>
 					<aside class="rt">
 						<span class="views"> <a href="#gridView" class="gridView"></a> <a href="#tableView" class="listView isActive"></a>
 						</span>
 					</aside>
 				</header>
-				<div class="subscribeTopWrapper" style="border-bottom:0px;height:30px;margin-bottom:0px">
-					<?php
-					//mock rss feel url as active for non-working upcoming APIs
-						$list = "active";
-					
-					$FeedURL = get_bloginfo('wpurl')."/challenges/feed?list=" . $list . "&contestType=".$contest_type;
-					?>
-					<a class="feedBtn" href="<?php echo $FeedURL;?>">Subscribe to <?php
-						echo $contest_type; 
-					?> challenges </a>
-				</div>
 				<div class="actions">
 					<?php include(locate_template('nav-challenges-list-type.php'));?>
 					<div class="rt">

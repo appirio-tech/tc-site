@@ -185,8 +185,6 @@
   "templates": {
     "page-challenges.php": "challenges",
     "page-challenges-active.php": "challengelanding",
-    "page-challenges-bugrace.php": "challengelanding",
-    "page-challenges-data.php": "challengelanding",
     "page-challenges-review-details.php": "challengelanding",
     "page-challenges-review.php": "challengelanding",
     "page-challenges-past.php": "challengelanding",
