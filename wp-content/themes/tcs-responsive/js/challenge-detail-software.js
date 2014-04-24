@@ -5,14 +5,21 @@ var prizeSlider;
 var sliderClone;
 
 var tcjwt = getCookie('tcjwt');
-if (tcjwt) {
+if (tcjwt && (typeof challengeId != 'undefined')) {
   $.getJSON(ajaxUrl, {
     "action": "get_challenge_documents",
     "challengeId": challengeId,
     "challengeType": challengeType,
     "jwtToken": tcjwt.replace(/["]/g, "")
   }, function (data) {
-    console.log("HEY!"); console.log(data);
+    if (data.Documents && $('.challenge-detail #contest-overview #contestOverview')) {
+      $('.slideBox .inner ul').children().remove();
+      data.Documents.map(function(x) {
+        $('.slideBox .inner ul').append($(
+          '<li><a href="'+x.url+'">'+x.documentName+'</a></li>'
+        ));
+      });
+    }
   });
 }
 
