@@ -1015,12 +1015,7 @@ function get_challenge_documents_ajax($userKey = '', $contestID = '', $contestTy
 
   // This IF isn't working. It's not getting the contestType var. We need to call the design vs. develop api based on the contest type.
   #echo "	contest type ".$contestType;
-  if ($contestType == "design") {
-    $url = "https://api.topcoder.com/v2/design/challenges/$contestID";
-  }
-  else {
-    $url = "https://api.topcoder.com/v2/develop/challenges/$contestID";
-  }
+  $url = "https://api.topcoder.com/v2/$contestType/challenges/$contestID";
 
   if ($resetCache) {
     $url .= "?refresh=t";
