@@ -822,11 +822,14 @@ include locate_template('header-challenge-landing.php');
       <h3>Source Files:</h3>
 
       <div class="inner">
-
         <ul>
-
-          <li><strong>Text or Word Document containing all of your ideas and supporting information.</strong></li>
-
+          <?php if (empty($contest->filetypes)) : ?>
+            <li><strong>Text or Word Document containing all of your ideas and supporting information.</strong></li>
+          <?php else:
+            foreach ($contest->filetypes as $filetype) {
+              echo '<li><strong>' . $filetype .'</strong></li>';
+            }
+          endif; ?>
         </ul>
 
         <p>You must include all source files with your submission. </p>
