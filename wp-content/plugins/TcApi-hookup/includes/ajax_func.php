@@ -995,3 +995,49 @@ function changePassword($handle = '', $password = '' , $unlockCode = '') {
     }
     return $response;
 }
+
+add_action( 'wp_ajax_get_challenge_documents', 'get_challenge_documents_controller' );
+add_action( 'wp_ajax_nopriv_get_challenge_documents', 'get_challenge_documents_controller' );
+
+function get_challenge_documents_controller()
+{
+    $jwtToken    = filter_input( INPUT_GET, "jwtToken", FILTER_SANITIZE_STRING );
+    $challengeId = filter_input( INPUT_GET, "challengeId", FILTER_SANITIZE_STRING );
+    $challengeType = filter_input( INPUT_GET, "challengeType", FILTER_SANITIZE_STRING );
+    $userkey = get_option( 'api_user_key' );
+
+    $docs = get_challenge_documents_ajax($userKey, $challengeId, $challengeType, FALSE, $jwtToken);
+
+    wp_send_json( $docs );
+}
+
+function get_challenge_documents_ajax($userKey = '', $contestID = '', $contestType = '', $resetCache = FALSE, $jwtToken = '') {
+
+  // This IF isn't working. It's not getting the contestType var. We need to call the design vs. develop api based on the contest type.
+  #echo "	contest type ".$contestType;
+  $url = "https://api.topcoder.com/v2/$contestType/challenges/$contestID";
+
+  if ($resetCache) {
+    $url .= "?refresh=t";
+  }
+
+  $args     = array(
+    'body'        => $body,
+    'headers'     => array(
+      'Authorization' => 'Bearer ' . $jwtToken
+    ),
+    'httpversion' => get_option( 'httpversion'  ),
+    'timeout'     => get_option('request_timeout')
+  );
+  $response = wp_remote_get($url, $args);
+  if (is_wp_error($response) || !isset ( $response ['body'] )) {
+    return "Error in processing request";
+  }
+  if ($response ['response'] ['code'] == 200) {
+    $search_result = json_decode($response ['body']);
+    return $search_result;
+  }
+  return "Error in processing request";
+}
+
+
