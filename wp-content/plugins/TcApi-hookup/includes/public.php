@@ -557,8 +557,8 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 
   // track statistics
   function tcapi_get_track_statistics($atts, $key = "") {
-      //$url = "http://api.topcoder.com/v2/platform/statistics/";
-	  $url = "http://tcapi.apiary-mock.com/v2/reports/";
+      $url = "http://api.topcoder.com/v2/platform/statistics/";
+	  //$url = "http://tcapi.apiary-mock.com/v2/reports/";
       $args = array(
           'httpversion' => get_option('httpversion'),
           'timeout'=> get_option('request_timeout')
