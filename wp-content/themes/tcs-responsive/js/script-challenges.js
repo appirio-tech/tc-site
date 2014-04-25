@@ -1687,7 +1687,11 @@ appChallenges = {
     },
 
     formatDate2: function(date) {
-        return moment(date).tz(timezone_string).format("D MMM YYYY HH:mm z");
+        //some function is passing in undefined timezone_string variable causing js errors, so check if undefined and set default:
+		if (typeof timezone_string === 'undefined') {
+		var timezone_string = "America/Toronto"; // lets set to TC timezone 
+		}
+	return moment(date).tz(timezone_string).format("D MMM YYYY HH:mm z");
         // var d = new Date(date);
         // var utcd = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds());
 
