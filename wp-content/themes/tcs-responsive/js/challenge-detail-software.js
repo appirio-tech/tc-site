@@ -12,10 +12,10 @@ if (tcjwt && (typeof challengeId != 'undefined')) {
     "challengeType": challengeType,
     "jwtToken": tcjwt.replace(/["]/g, "")
   }, function (data) {
-    if (data.Documents && $('.challenge-detail #contest-overview #contestOverview')) {
-      $('.slideBox .inner ul').children().remove();
+    if (data.Documents && $('.downloadDocumentList')) {
+      $('.downloadDocumentList').children().remove();
       data.Documents.map(function(x) {
-        $('.slideBox .inner ul').append($(
+        $('.downloadDocumentList').append($(
           '<li><a href="'+x.url+'">'+x.documentName+'</a></li>'
         ));
       });
