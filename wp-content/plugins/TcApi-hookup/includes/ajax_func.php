@@ -920,3 +920,41 @@ function get_challenge_documents_ajax($userKey = '', $contestID = '', $contestTy
 }
 
 
+// get all supported platforms and technologies
+function get_all_platforms_and_technologies_ajax_controller()
+{
+    $list = get_all_platforms_and_technologies_ajax();
+    if ($list !== "Error in processing request") {
+        wp_send_json( $list );
+    } else {
+        wp_send_json_error();
+    }
+}
+
+add_action( 'wp_ajax_get_all_platforms_and_technologies', 'get_all_platforms_and_technologies_ajax_controller' );
+add_action( 'wp_ajax_nopriv_get_all_platforms_and_technologies', 'get_all_platforms_and_technologies_ajax_controller' );
+
+function get_all_platforms_and_technologies_ajax() {
+    $pUrl = "http://api.topcoder.com/v2/data/platforms";
+    $tUrl = "http://api.topcoder.com/v2/data/technologies";
+    $args = array (
+        'httpversion' => get_option ( 'httpversion' ),
+        'timeout' => get_option ( 'request_timeout' )
+    );
+
+    // get all platforms and technologies
+    $pResponse = wp_remote_get($pUrl, $args);
+    $tResponse = wp_remote_get($tUrl, $args);
+
+    if (is_wp_error ($pResponse ) || ! isset ($pResponse ['body'] ) || is_wp_error ($tResponse) || ! isset ($tResponse ['body'] )) {
+        return "Error in processing request";
+    }
+
+    if ($pResponse ['response'] ['code'] == 200 && $tResponse ['response'] ['code'] == 200) {
+        $pList = json_decode ( $pResponse ['body'], true);
+        $tList = json_decode ( $tResponse ['body'], true);
+        $all_list = array_merge_recursive($pList, $tList);
+        return $all_list;
+    }
+    return "Error in processing request";
+}
