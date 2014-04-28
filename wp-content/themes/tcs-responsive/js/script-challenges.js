@@ -558,17 +558,23 @@ appChallenges = {
                 /*
                  * generate table row for design past contest type
                  */
-                if (typeof rec.totalCompetitors !== "undefined") {
-                    $('.contestName', row).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/ico-track-data.png" />' + '<a href="http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.name + '</a>');
+                if (typeof rec.numberOfRegistrants !== "undefined") {
+                    $('.contestName', row).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/ico-track-data.png" />' + '<a href="http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.fullName + '</a>');
                     $('.colType', row).html("SRM");
-                    $('.colR1start', row).html(app.formatDate2(rec.startDate));
-                    $('.colReg', row).html('<a href="javascript:;">' + rec.totalCompetitors + '</a>');
+                    $('.vStartDate', row).html(app.formatDate2(rec.startDate));
+                    $('.vEndDate', row).html(app.formatDate2(rec.endDate));
+                    $('.colTLeft', row).html(app.formatTimeLeft(rec.timeRemaining));
+                    $('.colReg', row).html('<a href="javascript:;">' + rec.numberOfRegistrants + '</a>');
+                    $('.colSub', row).html(rec.numberOfSubmissions);
                 } else {
                     //$('.contestName', row).html(rec.fullName);
-                    $('.contestName', row).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/ico-track-data.png" />' + '<a href="http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.name + '</a>');
+                    $('.contestName', row).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/ico-track-data.png" />' + '<a href="http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.fullName + '</a>');
                     $('.colType', row).html("Marathon");
-                    $('.colR1start', row).html(app.formatDate2(rec.startDate));
+                    $('.vStartDate', row).html(app.formatDate2(rec.startDate));
+                    $('.vEndDate', row).html(app.formatDate2(rec.endDate));
+                    $('.colTLeft', row).html(app.formatTimeLeft(rec.timeRemaining));
                     $('.colReg', row).html(rec.numberOfRegistrants);
+                    $('.colSub', row).html(rec.numberOfSubmissions);
                 }
 
                 $('tbody', table).append(row);
