@@ -334,12 +334,13 @@ include locate_template('header-challenge-landing.php');
 
     <article id="technologies">
       <h1>Technologies</h1>
+      <div class="technologyTags">
       <?php
 
       echo '<ul>';
       if (!empty( $contest->technology )) {
         foreach ($contest->technology as $value) {
-          echo '<li><strong>' . $value . '</li></strong>';
+          echo '<li><span>' . $value . '</span></li>';
         }
       }
       else {
@@ -347,6 +348,8 @@ include locate_template('header-challenge-landing.php');
       }
       echo '</ul>';
       ?>
+      <div class="clear"></div>
+      </div>
     </article>
 
     <h3>Final Submission Guidelines</h3>
