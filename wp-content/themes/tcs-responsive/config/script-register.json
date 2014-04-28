@@ -63,8 +63,7 @@
         "jquery.inputhints.js",
         "jquery.easing.1.3.js",
         "jquery.mousewheel.js",
-        "scripts.js",
-        "script-challenges.js",
+        "scripts.js",        
         "register-login.js",
         "init-header.js",
         "jquery.jscrollpane.min.js",
@@ -72,7 +71,8 @@
         "moment.min.js",
         "moment-timezone.min.js",
         "moment-data.js",
-        "chosen.jquery.min.js"
+        "chosen.jquery.min.js",
+        "script-challenges.js"
       ],
       "css": [
         "base.css",
