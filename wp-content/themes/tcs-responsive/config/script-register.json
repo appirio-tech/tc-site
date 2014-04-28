@@ -72,8 +72,7 @@
         "moment.min.js",
         "moment-timezone.min.js",
         "moment-data.js",
-		"chosen.jquery.min.js",
-		"challenge-tags.js"		
+		"chosen.jquery.min.js"
       ],
       "css": [
         "base.css",
