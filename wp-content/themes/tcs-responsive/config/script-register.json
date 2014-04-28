@@ -47,7 +47,7 @@
         "jqtransform.css",
         "challenge-submit.css",
         "password-recovery.css",
-		"challenge-tags.css"
+        "challenge-tags.css"
       ]
     },
     "challengelanding": {
@@ -72,7 +72,7 @@
         "moment.min.js",
         "moment-timezone.min.js",
         "moment-data.js",
-		"chosen.jquery.min.js"
+        "chosen.jquery.min.js"
       ],
       "css": [
         "base.css",
@@ -83,8 +83,8 @@
         "blog.css",
         "style-challenges.css",
         "jquery.qtip.min.css",
-		"chosen.min.css",
-		"challenge-tags.css"
+        "chosen.min.css",
+        "challenge-tags.css"
       ]
 
     },

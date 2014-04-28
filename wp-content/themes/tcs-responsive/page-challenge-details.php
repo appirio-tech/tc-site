@@ -334,7 +334,7 @@ include locate_template('header-challenge-landing.php');
 
     <article id="technologies">
       <h1>Technologies</h1>
-	  <div class="technologyTags">
+      <div class="technologyTags">
       <?php
 
       echo '<ul>';
@@ -348,8 +348,8 @@ include locate_template('header-challenge-landing.php');
       }
       echo '</ul>';
       ?>
-	  <div class="clear"></div>
-	  </div>
+      <div class="clear"></div>
+      </div>
     </article>
 
     <h3>Final Submission Guidelines</h3>
