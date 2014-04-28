@@ -343,9 +343,12 @@ appChallenges = {
 
             window.setTimeout(function() {
                 var ttNew = $('.tooltip.isShowing');
-                
-                var top = activeLinkOffset.top - ht - addedHeight;
-                var lt = activeLinkOffset.left - wt / 2;
+                var ht = tt.height();
+                var wt = tt.width() - $('.activeLink').width();
+
+                var activeLinkTop = $('.activeLink').offset().top;
+                var top = $('.activeLink').offset().top - ht - 10;
+                var lt = $('.activeLink').offset().left - wt / 2;
                 ttNew.css('left', lt).css('top', top);
                 ttNew.css('z-index', '2000').css('opacity', '1');
                 $('.isShowing').removeClass('isShowing');
@@ -370,7 +373,8 @@ appChallenges = {
 
             window.setTimeout(function() {
                 var ttNew = $('.tooltip.isShowing');
-                
+                var ht = tt.height();
+                var wt = tt.width();
                 var top = $('.activeLink').offset().top - ht - 10;
                 var lt = $('.activeLink').offset().left - wt / 2 + 10;
                 ttNew.css('left', lt).css('top', top);
@@ -1243,7 +1247,7 @@ appChallenges = {
 
                 $('.contestName', row).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/' + icoTrack + '" />' + rec.challengeName + '<img alt="" class="allContestTCOIco" src="' + stylesheet_dir + '/i/' + tcoFlag + '" />');
                 $('.contestName', row).parents(".inTCO").addClass("hasTCOIco");
-                $('.colCh a, .cgCh a', row).attr("href", contestLinkUrl);				
+                $('.colCh a, .cgCh a', row).attr("href", contestLinkUrl);
 
 				if (contest_type == "develop" && !app.isEmptyArray(rec.technologies)) {
 				    var $div = $('<div>');
