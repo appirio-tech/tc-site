@@ -90,6 +90,9 @@ appChallenges = {
             } else {
                 $(this).addClass('isActive');
                 $('.searchFilter').fadeIn();
+
+				// populate technology tags
+				app.getTechnologyTags($('.chosen-select'));
             }
         });
 
@@ -328,17 +331,21 @@ appChallenges = {
                 $('header', tt).html(tempTcoTooltipTitle);
                 $('.contestTy', tt).html(tempTcoTooltipMessage);
             }
+			
+			var ht = tt.height();
+            var wt = tt.width() - $('.activeLink').width();
+			var activeLinkOffset = $('.activeLink').offset();
+			
+			var isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+			var addedHeight = (isFirefox) ? 40 : 10;
 
             tt.css('z-index', '-1').stop().fadeIn();
 
             window.setTimeout(function() {
                 var ttNew = $('.tooltip.isShowing');
-                var ht = tt.height();
-                var wt = tt.width() - $('.activeLink').width();
-
-                var activeLinkTop = $('.activeLink').offset().top;
-                var top = $('.activeLink').offset().top - ht - 10;
-                var lt = $('.activeLink').offset().left - wt / 2;
+                
+                var top = activeLinkOffset.top - ht - addedHeight;
+                var lt = activeLinkOffset.left - wt / 2;
                 ttNew.css('left', lt).css('top', top);
                 ttNew.css('z-index', '2000').css('opacity', '1');
                 $('.isShowing').removeClass('isShowing');
@@ -363,8 +370,7 @@ appChallenges = {
 
             window.setTimeout(function() {
                 var ttNew = $('.tooltip.isShowing');
-                var ht = tt.height();
-                var wt = tt.width();
+                
                 var top = $('.activeLink').offset().top - ht - 10;
                 var lt = $('.activeLink').offset().left - wt / 2 + 10;
                 ttNew.css('left', lt).css('top', top);
@@ -499,6 +505,47 @@ appChallenges = {
 
         }
         return trackName;
+    },
+	
+	/* populates technology tags drop down */
+	getTechnologyTags: function(list, callback) {
+    	var param = {};
+        param.action = 'get_all_platforms_and_technologies';
+
+        $.ajax({
+            url: ajaxUrl,
+            data: param,
+            type: "GET",
+            dataType: "json",
+            success: function(data) {
+				if (typeof data['platforms'] !== 'undefined' && data['platforms'].length > 0) {
+                    var $pOptGroup = $('<optgroup label="Platforms">');
+			        $.each(data['platforms'], function(key, val) {
+					    $pOptGroup.append('<option value="' + val + '">' + val + '</option>');
+                    });
+					$(list).append($pOptGroup);
+				}
+
+				if (typeof data['technologies'] !== 'undefined' && data['technologies'].length > 0) {
+                    var $tOptGroup = $('<optgroup label="Technologies">');
+			        $.each(data['technologies'], function(key, val) {
+					    $tOptGroup.append('<option value="' + val + '">' + val + '</option>');
+                    });
+					$(list).append($tOptGroup);
+				}
+
+				$(list).trigger("chosen:updated");
+
+                /* call back */
+                if (callback != null && callback != "") {
+                    callback();
+                }
+            },
+
+            fail: function(data) {
+			    $('.tags').hide();
+            }
+        });
     },
 
     getDataChallenges: function(table, pageIndex, callback) {
@@ -765,6 +812,31 @@ appChallenges = {
         if (challengesRadio != null && challengesRadio != "all") {
             param.challengeType = challengesRadio
         }
+
+		// get all chosen technology tags if any
+		if (contest_type == 'develop') {
+		    var platforms = [];
+			var technologies = [];
+		    
+			$('.chosen-select :selected').each(function (i, selected) {
+			    // categorize each selected value into platforms or technologies
+				var categoryLabel = $(selected).closest('optgroup').prop('label').toLowerCase();
+				var selectedVal = $(selected).val();
+				if (categoryLabel === 'platforms') {
+				    platforms.push(selectedVal);
+				} else if (categoryLabel === 'technologies') {
+				    technologies.push(selectedVal);
+				}
+			});			
+			
+			if (platforms.length > 0) {
+			    param.platforms = platforms.join();
+			}
+			
+			if (technologies.length > 0) {
+			    param.technologies = technologies.join();
+			}
+		}
 
         $.ajax({
             url: ajaxUrl,
@@ -1171,7 +1243,19 @@ appChallenges = {
 
                 $('.contestName', row).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/' + icoTrack + '" />' + rec.challengeName + '<img alt="" class="allContestTCOIco" src="' + stylesheet_dir + '/i/' + tcoFlag + '" />');
                 $('.contestName', row).parents(".inTCO").addClass("hasTCOIco");
-                $('.colCh a, .cgCh a', row).attr("href", contestLinkUrl);
+                $('.colCh a, .cgCh a', row).attr("href", contestLinkUrl);				
+
+				if (contest_type == "develop" && !app.isEmptyArray(rec.technologies)) {
+				    var $div = $('<div>');
+					$div.prop("id", rec.challengeId).addClass("technologyTags");
+                    var $ul =$('<ul>')
+                    $.each(rec.technologies, function(_, sp){
+                        $ul.append('<li><span>' + sp + '</span></li>');
+                    });
+
+					$div.append($ul);
+					$('.colCh', row).append($div);
+                }
 
                 $('.tipC', row).html(rec.challengeType);
 
@@ -1274,6 +1358,19 @@ appChallenges = {
                 }
 
                 $('.vPhase', con).html(rec.currentPhaseName);
+				
+				if (contest_type == "develop" && !app.isEmptyArray(rec.technologies)) {
+				    var $div = $('<div>');
+					$div.prop("id", rec.challengeId).addClass("technologyTags");
+                    var $ul =$('<ul>')
+                    $.each(rec.technologies, function(_, sp){
+                        $ul.append('<li><span>' + sp + '</span></li>');
+                    });
+
+					$div.append($ul);
+					$div.append('<div class="clear"></div>');
+					$('.cgTime', con).after($div);
+                }
 
                 $('.cgTLeft', con).html('<i></i>' + remainingTime);
                 if (rec.isEnding === "true") {
@@ -1392,6 +1489,19 @@ appChallenges = {
                 $('.contestName', row).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/' + icoTrack + '" />' + rec.challengeName + '<img alt="" class="allContestTCOIco" src="' + stylesheet_dir + '/i/' + tcoFlag + '" />');
                 $('.contestName', row).parents(".inTCO").addClass("hasTCOIco");
                 $('.colCh a, .cgCh a', row).attr("href", contestLinkUrl);
+
+				if (contest_type == "develop" && !app.isEmptyArray(rec.technologies)) {
+				    var $div = $('<div>');
+					$div.prop("id", rec.challengeId).addClass("technologyTags");
+                    var $ul =$('<ul>')
+                    $.each(rec.technologies, function(_, sp){
+                        $ul.append('<li><span>' + sp + '</span></li>');
+                    });
+
+					$div.append($ul);
+					$('.colCh', row).append($div);
+                }
+				
                 $('.colType .tipC', row).html(rec.challengeType);
 
                 $('.vStartDate', row).html(startDate);
@@ -1400,6 +1510,7 @@ appChallenges = {
                   $('.vEndRound', row).html(checkPointDate);
                 } else {
                   $('.vEndRound', row).parent().empty();
+				  $('.colTime', row).append('<div class="row">&nbsp;</div>');				  
                 }
 
                 if (endDate) {
@@ -1675,6 +1786,17 @@ appChallenges = {
 
         $('.loading').hide();
     },
+	
+	// check if array is empty
+	isEmptyArray: function(arr) {
+	    if (typeof arr !== 'undefined' && arr != null && arr.length > 0) {
+		    if (arr.length == 1 && $.trim(arr[0]).length == 0) {
+			    return true;
+			}
+            return false;
+		}
+        return true;
+	},
 
     //format currency
     formatCur: function(cu) {

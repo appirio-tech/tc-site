@@ -229,7 +229,9 @@ include locate_template('header-challenge-landing.php');
 <?php include( locate_template('content-basic-challenge-details.php') ); ?>
 
 
-<article id="mainContent" class="splitLayout <?php if (!empty( $activeTab )) {echo 'currentTab-' . $activeTab;} ?>">
+<article id="mainContent" class="splitLayout <?php if (!empty( $activeTab )) {
+  echo 'currentTab-' . $activeTab;
+} ?>">
 <div class="container">
 <div class="rightSplit  grid-3-3">
 <div class="mainStream partialList">
@@ -237,42 +239,90 @@ include locate_template('header-challenge-landing.php');
 <section class="tabsWrap">
 <nav class="tabNav">
   <div class="topRightTitle topRightTitleAlt">
-    <?php if ($contestType != 'design'): ?>
+    <?php
+    if ($contestType != 'design'):
+      ?>
       <a href="http://apps.topcoder.com/forums/?module=Category&categoryID=<?php echo $contest->forumId; ?>"
          class="contestForumIcon" target="_blank">Challenge Discussion</a>
-    <?php else: ?>
+    <?php
+    else:
+      ?>
       <a href="http://studio.topcoder.com/forums?module=ThreadList&forumID=<?php echo $contest->forumId; ?>"
          class="contestForumIcon" target="_blank">Challenge Discussion</a>
-    <?php endif; ?>
+    <?php
+    endif;
+    ?>
   </div>
   <ul>
-    <?php if ($contestType != 'design'): ?>
-      <li><a href="#contest-overview" class="<?php if ($tab !== "checkpoints") { echo "active"; } ?> link">Details</a></li>
+    <?php
+    if ($contestType != 'design'):
+      ?>
+      <li><a href="#contest-overview" class="<?php if ($tab !== "checkpoints") {
+          echo "active";
+        } ?> link">Details</a></li>
       <li><a href="#viewRegistrant" class="link">Registrants</a></li>
       <?php if (( !empty( $checkpointData ) && $checkpointData != "Error in processing request" ) || ( $tab === "checkpoints" )): ?>
-        <li><a href="#checkpoints" class="link <?php if ($tab === "checkpoints") { echo "active"; } ?>">Checkpoints</a></li>
-      <?php endif; ?>
+      <li><a href="#checkpoints" class="link <?php if ($tab === "checkpoints") {
+          echo "active";
+        } ?>">Checkpoints</a></li>
+    <?php endif; ?>
       <li><a href="#winner" class="link">Results</a></li>
 
-    <?php else: ?>
-      <li><a href="#contest-overview" class="<?php if ($tab !== "checkpoints") { echo "active"; } ?> link">Details</a></li>
+    <?php
+    else:
+      ?>
+      <li><a href="#contest-overview" class="<?php if ($tab !== "checkpoints") {
+          echo "active";
+        } ?> link">Details</a></li>
       <li><a href="#viewRegistrant" class="link">Registrants</a></li>
-      <?php if (( !empty( $checkpointData ) && $checkpointData != "Error in processing request" ) || ( $tab === "checkpoints" )): ?>
-        <li><a href="#checkpoints" class="link <?php if ($tab === "checkpoints") { echo "active"; } ?>">Checkpoints</a></li>
+      <?php
+      if (strpos($contest->currentPhaseName, 'Submission') !== FALSE):
+        ?>
+        <li><span class="inactive">Checkpoints</span></li>
+      <?php
+      else:
+        ?>
+        <?php if (!empty( $checkpointData ) && $checkpointData != "Error in processing request"): ?>
+        <li><a href="#checkpoints" class="link <?php if ($tab === "checkpoints") {
+            echo "active";
+          } ?>">Checkpoints</a></li>
       <?php endif; ?>
-      <?php if (strpos($contest->currentPhaseName, 'Submission') !== FALSE): ?>
+
+      <?php
+      endif;
+      ?>
+      <?php
+      if (strpos($contest->currentPhaseName, 'Submission') !== FALSE):
+        ?>
         <li><span class="inactive">Submissions</span></li>
-      <?php else: ?>
+      <?php
+      else:
+        ?>
         <li><a href="#submissions" class="link">Submissions</a></li>
-      <?php endif; ?>
-      <?php if (strpos($contest->currentPhaseName, 'Submission') !== FALSE ||
-          strpos($contest->currentPhaseName, 'Screening') !== FALSE ||
-          strpos($contest->currentPhaseName, 'Review') !== FALSE): ?>
+      <?php
+      endif;
+      ?>
+      <?php
+      if (strpos($contest->currentPhaseName, 'Submission') !== FALSE || strpos(
+                                                                          $contest->currentPhaseName,
+                                                                          'Screening'
+                                                                        ) !== FALSE || strpos(
+                                                                                         $contest->currentPhaseName,
+                                                                                         'Review'
+                                                                                       ) !== FALSE
+      ):
+        ?>
         <li><span class="inactive">Results</span></li>
-      <?php else: ?>
+      <?php
+      else:
+        ?>
         <li><a href="#winner" class="link">Results</a></li>
-      <?php endif; ?>
-    <?php endif; ?>
+      <?php
+      endif;
+      ?>
+    <?php
+    endif;
+    ?>
   </ul>
 </nav>
 <nav class="tabNav firstTabNav designFirstTabNav mobile hide">
@@ -283,33 +333,57 @@ include locate_template('header-challenge-landing.php');
 </nav>
 <nav class="tabNav firstTabNav designSecondTabNav mobile hide">
   <ul>
-    <?php if (strpos($contest->currentPhaseName, 'Submission') !== FALSE): ?>
+    <?php
+    if (strpos($contest->currentPhaseName, 'Submission') !== FALSE):
+      ?>
       <li><span class="inactive">Checkpoints</span></li>
-    <?php else: ?>
+    <?php
+    else:
+      ?>
       <?php if (!empty( $checkpointData ) && empty( $checkpointData->error )): ?>
       <li><a href="<?php echo CURRENT_FULL_URL; ?>&tab=checkpoints" class="link">Checkpoints</a></li>
     <?php endif; ?>
-    <?php endif; ?>
-    <?php if (strpos($contest->currentPhaseName, 'Submission') !== FALSE): ?>
+    <?php
+    endif;
+    ?>
+    <?php
+    if (strpos($contest->currentPhaseName, 'Submission') !== FALSE):
+      ?>
       <li><span class="inactive">Submissions</span></li>
-    <?php else: ?>
+    <?php
+    else:
+      ?>
       <li><a href="#submissions" class="link">Submissions</a></li>
-    <?php endif; ?>
+    <?php
+    endif;
+    ?>
     </li>
     <li>
-      <?php if (strpos($contest->currentPhaseName, 'Submission') !== FALSE ||
-                strpos($contest->currentPhaseName, 'Screening') !== FALSE ||
-                strpos($contest->currentPhaseName, 'Review') !== FALSE): ?>
+      <?php
+      if (strpos($contest->currentPhaseName, 'Submission') !== FALSE || strpos(
+                                                                          $contest->currentPhaseName,
+                                                                          'Screening'
+                                                                        ) !== FALSE || strpos(
+                                                                                         $contest->currentPhaseName,
+                                                                                         'Review'
+                                                                                       ) !== FALSE):
+      ?>
     <li><span class="inactive">Results</span></li>
-  <?php else: ?>
+  <?php
+  else:
+    ?>
     <li><a href="#winner" class="link">Results</a></li>
-  <?php endif; ?>
+  <?php
+  endif;
+  ?>
     </li>
   </ul>
 </nav>
 
 <div id="contest-overview" class="tableWrap <?php echo ( $activeTab == 'checkpoints' ) ? 'hide' : ''; ?> tab">
-  <?php if ($contestType != 'design'): ?>
+  <?php
+  if ($contestType != 'design'):
+  ?>
   <article id="contestOverview">
     <h1>Challenge Overview</h1>
 
@@ -334,12 +408,13 @@ include locate_template('header-challenge-landing.php');
 
     <article id="technologies">
       <h1>Technologies</h1>
+	  <div class="technologyTags">
       <?php
 
       echo '<ul>';
-      if (!empty( $contest->technology )) {
+      if (!empty($contest->technology)) {
         foreach ($contest->technology as $value) {
-          echo '<li><strong>' . $value . '</li></strong>';
+          echo '<li><span>' . $value . '</span></li>';
         }
       }
       else {
@@ -347,6 +422,8 @@ include locate_template('header-challenge-landing.php');
       }
       echo '</ul>';
       ?>
+	  <div class="clear"></div>
+	  </div>
     </article>
 
     <h3>Final Submission Guidelines</h3>
@@ -402,7 +479,9 @@ include locate_template('header-challenge-landing.php');
   </article>
 
 </div>
-<?php else: ?>
+<?php
+else:
+?>
 <article id="contestOverview">
 
   <article id="contestSummary">
@@ -472,17 +551,10 @@ include locate_template('header-challenge-landing.php');
   <article id="stockPhotography">
     <h1>STOCK PHOTOGRAPHY</h1>
 
-      <?php
-      if ($contest->allowStockArt != "false") {
-          echo '<p> Stock photography is allowed in this challenge.<br>
-                      <a href="http://help.topcoder.com/design/design-copyright-and-font-policies/policy-for-stock-photos-in-design-submissions/">See this page for more details.</a></p>';
-      } else {
-          echo '<p>Stock photography is not allowed in this challenge. All submitted elements must be designed solely by you.<br>
-                      <a href="http://help.topcoder.com/design/design-copyright-and-font-policies/policy-for-stock-photos-in-design-submissions/">See
-                        this page for more details.</a></p>';
-      }
-      ?>
-
+    <p>Stock photography is not allowed in this challenge. All submitted elements must be designed solely by you.<br>
+      <a
+        href="http://help.topcoder.com/design/design-copyright-and-font-policies/policy-for-stock-photos-in-design-submissions/">See
+        this page for more details.</a></p>
   </article>
 
   <article id="howtosubmit">
@@ -570,7 +642,9 @@ include locate_template('header-challenge-landing.php');
 </article>
 
 </div>
-<?php endif; ?>
+<?php
+endif;
+?>
 <div id="viewRegistrant" class="tableWrap hide tab">
 
 
@@ -716,13 +790,19 @@ include locate_template('header-challenge-landing.php');
 
 <div class="topRightTitle">
 
-  <?php if ($contestType != 'design'): ?>
+  <?php
+  if ($contestType != 'design'):
+    ?>
     <a href="http://apps.topcoder.com/forums/?module=Category&categoryID=<?php echo $contest->forumId; ?>"
        class="contestForumIcon" target="_blank">Challenge Discussion</a>
-  <?php else: ?>
+  <?php
+  else:
+    ?>
     <a href="http://studio.topcoder.com/forums?module=ThreadList&forumID=<?php echo $contest->forumId; ?>"
        class="contestForumIcon" target="_blank">Challenge Discussion</a>
-  <?php endif; ?>
+  <?php
+  endif;
+  ?>
 
 </div>
 
@@ -730,7 +810,9 @@ include locate_template('header-challenge-landing.php');
 
 <div class="slider">
 <ul>
-<?php if ($contestType != 'design'): ?>
+<?php
+if ($contestType != 'design'):
+  ?>
   <div class="slideBox">
     <?php include locate_template('content-challenge-downloads.php'); ?>
   </div>
@@ -779,7 +861,9 @@ include locate_template('header-challenge-landing.php');
     <div class="forumFeed slideBox">&nbsp;<br/>
     </div>
   </li>
-<?php else: ?>
+<?php
+else:
+  ?>
   <li class="slide">
     <?php include locate_template('content-challenge-downloads.php'); ?>
   </li>
@@ -829,14 +913,11 @@ include locate_template('header-challenge-landing.php');
       <h3>Source Files:</h3>
 
       <div class="inner">
+
         <ul>
-          <?php if (empty($contest->filetypes)) : ?>
-            <li><strong>Text or Word Document containing all of your ideas and supporting information.</strong></li>
-          <?php else:
-            foreach ($contest->filetypes as $filetype) {
-              echo '<li><strong>' . $filetype .'</strong></li>';
-            }
-          endif; ?>
+
+          <li><strong>Text or Word Document containing all of your ideas and supporting information.</strong></li>
+
         </ul>
 
         <p>You must include all source files with your submission. </p>
@@ -852,7 +933,9 @@ include locate_template('header-challenge-landing.php');
       </div>
     </div>
   </li>
-<?php endif; ?>
+<?php
+endif;
+?>
 <li class="slide">
   <div class="slideBox">
     <h3>Share:</h3>
