@@ -2405,7 +2405,7 @@ $.getJSON = function(url, success) {
         success: success,
         cache: false
     });
-}
+};
 
 // everythings begins from here
 $(document).ready(function() {
@@ -2424,7 +2424,7 @@ $(document).ready(function() {
         '.chosen-select-no-single': { disable_search_threshold: 10 },
         '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
         '.chosen-select-width': { width: "95%" }
-    }
+    };
     for (var selector in config) {
         $(selector).chosen(config[selector]);
     }

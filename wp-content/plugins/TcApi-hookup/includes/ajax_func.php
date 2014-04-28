@@ -924,7 +924,7 @@ function get_challenge_documents_ajax($userKey = '', $contestID = '', $contestTy
 function get_all_platforms_and_technologies_ajax_controller()
 {
     $list = get_all_platforms_and_technologies_ajax();
-    if (isset( $list )) {
+    if ($list !== "Error in processing request") {
         wp_send_json( $list );
     } else {
         wp_send_json_error();
