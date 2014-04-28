@@ -5,8 +5,12 @@ add_action('wp_head', 'tc_challenge_details_js');
 function tc_challenge_details_js() {
   global $contest, $contestType, $contestID, $registrants, $activeTab;
 
-  $regEnd = strtotime("$contest->registrationEndDate") || 1;
-  $submissionEnd = strtotime("$contest->submissionEndDate") || 1
+  if (!isset($contest->registrationEndDate)) {
+    $contest = get_contest_detail('', $contestID, $contestType);
+  }
+
+  $regEnd = strtotime($contest->registrationEndDate) | 1;
+  $submissionEnd = strtotime($contest->submissionEndDate) | 1;
 
   ?>
   <script type="text/javascript">

@@ -90,6 +90,25 @@ $(document).ready(function () {
 
   // init tab nav
   app.tabNavinit();
+
+  var tcsso = getCookie('tcsso');
+  if(tcsso){
+    var tcssoValues = tcsso.split("|");
+    var now = new Date();
+    var uid = tcssoValues[0];
+    $.getJSON("http://community.topcoder.com/tc?module=BasicData&c=get_handle_by_id&dsid=30&uid=" + uid + "&json=true", function(data) {
+      var handle = data['data'][0]['handle'];
+
+      if (registrationUntil && now.getTime() < registrationUntil.getTime() && registrants && registrants.indexOf(handle) == -1) {
+        $('.challengeRegisterBtn').removeClass('disabled');
+      }
+      if (submissionUntil && now.getTime() < submissionUntil.getTime() && registrants && registrants.indexOf(handle) > -1) {
+        $('.challengeSubmissionBtn').removeClass('disabled');
+        $('.challengeSubmissionsBtn').removeClass('disabled');
+      }
+    });
+  }
+
 });
 
 //create/destroy slider based on width
@@ -282,6 +301,7 @@ $(function () {
   });
 
   $(".challengeRegisterBtn").click(function () {
+    if ($(this).hasClass("disabled")) { return false; }
     var tcjwt = getCookie('tcjwt');
     if (tcjwt) {
       if ($('.loading').length <= 0) {
