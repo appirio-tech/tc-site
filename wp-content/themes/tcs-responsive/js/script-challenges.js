@@ -615,7 +615,7 @@ appChallenges = {
                     $('.vStartDate', row).html(app.formatDate2(rec.startDate));
                     $('.vEndDate', row).html(app.formatDate2(rec.endDate));
                     $('.colTLeft', row).html(app.formatTimeLeft(rec.timeRemaining));
-                    $('.colReg', row).html('<a href="javascript:;">' + rec.numberOfRegistrants + '</a>');
+                    $('.colReg', row).html('<a href=" http://community.topcoder.com/longcontest/?module=ViewStandings&rd=' + rec.roundId + '">' + rec.numberOfRegistrants + '</a>');
                     $('.colSub', row).html(rec.numberOfSubmissions);
                 } else {
                     //$('.contestName', row).html(rec.fullName);
@@ -968,7 +968,7 @@ appChallenges = {
 
 
                     $('.vEndRound', row).html(startDate);
-                    $('.colReg', row).html('<a href="javascript:;">' + rec.numberOfRegistrants + '</a>');
+                    $('.colReg', row).html('<a href=" http://community.topcoder.com/longcontest/?module=ViewStandings&rd=' + rec.roundId + '">' + rec.numberOfRegistrants + '</a>');
                     $('.colSub', row).html(numSubmissions);
 
                     $('tbody', table).append(row);
