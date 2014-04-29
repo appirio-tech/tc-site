@@ -62,6 +62,16 @@
         </li>
       </ul>
     </section>
+    <?php if ($contest_type == "develop") : ?>
+    <section class="tags">
+      <h5>Technology Tags:</h5>
+      <div class="data">
+        <select data-placeholder=" " class="chosen-select" multiple tabindex="4">
+          <option value=" "> </option>
+        </select>
+      </div>
+    </section>
+    <?php endif; ?>
     <div class="clear"></div>
   </div>
   <!-- /.filterOpts -->

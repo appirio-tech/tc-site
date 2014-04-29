@@ -90,6 +90,9 @@ appChallenges = {
             } else {
                 $(this).addClass('isActive');
                 $('.searchFilter').fadeIn();
+
+        // populate technology tags
+        app.getTechnologyTags($('.chosen-select'));
             }
         });
 
@@ -329,6 +332,13 @@ appChallenges = {
                 $('.contestTy', tt).html(tempTcoTooltipMessage);
             }
 
+            var ht = tt.height();
+            var wt = tt.width() - $('.activeLink').width();
+            var activeLinkOffset = $('.activeLink').offset();
+
+            var isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+            var addedHeight = (isFirefox) ? 40 : 10;
+
             tt.css('z-index', '-1').stop().fadeIn();
 
             window.setTimeout(function() {
@@ -501,6 +511,47 @@ appChallenges = {
         return trackName;
     },
 
+  /* populates technology tags drop down */
+  getTechnologyTags: function(list, callback) {
+      var param = {};
+        param.action = 'get_all_platforms_and_technologies';
+
+        $.ajax({
+            url: ajaxUrl,
+            data: param,
+            type: "GET",
+            dataType: "json",
+            success: function(data) {
+              if (typeof data['platforms'] !== 'undefined' && data['platforms'].length > 0) {
+                var $pOptGroup = $('<optgroup label="Platforms">');
+                $.each(data['platforms'], function(key, val) {
+                  $pOptGroup.append('<option value="' + val + '">' + val + '</option>');
+                });
+                $(list).append($pOptGroup);
+              }
+
+              if (typeof data['technologies'] !== 'undefined' && data['technologies'].length > 0) {
+                var $tOptGroup = $('<optgroup label="Technologies">');
+                $.each(data['technologies'], function(key, val) {
+                  $tOptGroup.append('<option value="' + val + '">' + val + '</option>');
+                });
+                $(list).append($tOptGroup);
+              }
+
+              $(list).trigger("chosen:updated");
+
+                /* call back */
+              if (callback != null && callback != "") {
+                callback();
+              }
+            },
+
+            fail: function(data) {
+              $('.tags').hide();
+            }
+        });
+    },
+
     getDataChallenges: function(table, pageIndex, callback) {
 
         app.setLoading();
@@ -558,17 +609,23 @@ appChallenges = {
                 /*
                  * generate table row for design past contest type
                  */
-                if (typeof rec.totalCompetitors !== "undefined") {
-                    $('.contestName', row).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/ico-track-data.png" />' + '<a href="http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.name + '</a>');
+                if (typeof rec.numberOfRegistrants !== "undefined") {
+                    $('.contestName', row).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/ico-track-data.png" />' + '<a href="http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.fullName + '</a>');
                     $('.colType', row).html("SRM");
-                    $('.colR1start', row).html(app.formatDate2(rec.startDate));
-                    $('.colReg', row).html('<a href="javascript:;">' + rec.totalCompetitors + '</a>');
+                    $('.vStartDate', row).html(app.formatDate2(rec.startDate));
+                    $('.vEndDate', row).html(app.formatDate2(rec.endDate));
+                    $('.colTLeft', row).html(app.formatTimeLeft(rec.timeRemaining));
+                    $('.colReg', row).html('<a href="javascript:;">' + rec.numberOfRegistrants + '</a>');
+                    $('.colSub', row).html(rec.numberOfSubmissions);
                 } else {
                     //$('.contestName', row).html(rec.fullName);
-                    $('.contestName', row).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/ico-track-data.png" />' + '<a href="http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.name + '</a>');
+                    $('.contestName', row).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/ico-track-data.png" />' + '<a href="http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.fullName + '</a>');
                     $('.colType', row).html("Marathon");
-                    $('.colR1start', row).html(app.formatDate2(rec.startDate));
+                    $('.vStartDate', row).html(app.formatDate2(rec.startDate));
+                    $('.vEndDate', row).html(app.formatDate2(rec.endDate));
+                    $('.colTLeft', row).html(app.formatTimeLeft(rec.timeRemaining));
                     $('.colReg', row).html(rec.numberOfRegistrants);
+                    $('.colSub', row).html(rec.numberOfSubmissions);
                 }
 
                 $('tbody', table).append(row);
@@ -766,6 +823,31 @@ appChallenges = {
             param.challengeType = challengesRadio
         }
 
+        // get all chosen technology tags if any
+        if (contest_type == 'develop') {
+          var platforms = [];
+          var technologies = [];
+
+          $('.chosen-select :selected').each(function (i, selected) {
+              // categorize each selected value into platforms or technologies
+            var categoryLabel = $(selected).closest('optgroup').prop('label').toLowerCase();
+            var selectedVal = $(selected).val();
+            if (categoryLabel === 'platforms') {
+                platforms.push(selectedVal);
+            } else if (categoryLabel === 'technologies') {
+                technologies.push(selectedVal);
+            }
+          });
+
+          if (platforms.length > 0) {
+              param.platforms = platforms.join();
+          }
+
+          if (technologies.length > 0) {
+              param.technologies = technologies.join();
+          }
+        }
+
         $.ajax({
             url: ajaxUrl,
             data: param,
@@ -826,7 +908,7 @@ appChallenges = {
                 alert("Data not found!");
             }
         });
-    
+
     },
 
     getDataLandingContests: function(table, pageIndex, callback) {
@@ -1173,6 +1255,18 @@ appChallenges = {
                 $('.contestName', row).parents(".inTCO").addClass("hasTCOIco");
                 $('.colCh a, .cgCh a', row).attr("href", contestLinkUrl);
 
+                if (contest_type == "develop" && !app.isEmptyArray(rec.technologies)) {
+                  var $div = $('<div>');
+                  $div.prop("id", rec.challengeId).addClass("technologyTags");
+                  var $ul =$('<ul>')
+                  $.each(rec.technologies, function(_, sp){
+                    $ul.append('<li><span>' + sp + '</span></li>');
+                  });
+
+                  $div.append($ul);
+                  $('.colCh', row).append($div);
+                }
+
                 $('.tipC', row).html(rec.challengeType);
 
                 $('.vStartDate', row).html(startDate);
@@ -1274,6 +1368,19 @@ appChallenges = {
                 }
 
                 $('.vPhase', con).html(rec.currentPhaseName);
+
+                if (contest_type == "develop" && !app.isEmptyArray(rec.technologies)) {
+                  var $div = $('<div>');
+                  $div.prop("id", rec.challengeId).addClass("technologyTags");
+                  var $ul =$('<ul>');
+                  $.each(rec.technologies, function(_, sp){
+                    $ul.append('<li><span>' + sp + '</span></li>');
+                  });
+
+                  $div.append($ul);
+                  $div.append('<div class="clear"></div>');
+                  $('.cgTime', con).after($div);
+                }
 
                 $('.cgTLeft', con).html('<i></i>' + remainingTime);
                 if (rec.isEnding === "true") {
@@ -1392,6 +1499,19 @@ appChallenges = {
                 $('.contestName', row).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/' + icoTrack + '" />' + rec.challengeName + '<img alt="" class="allContestTCOIco" src="' + stylesheet_dir + '/i/' + tcoFlag + '" />');
                 $('.contestName', row).parents(".inTCO").addClass("hasTCOIco");
                 $('.colCh a, .cgCh a', row).attr("href", contestLinkUrl);
+
+                if (contest_type == "develop" && !app.isEmptyArray(rec.technologies)) {
+                  var $div = $('<div>');
+                  $div.prop("id", rec.challengeId).addClass("technologyTags");
+                  var $ul =$('<ul>')
+                  $.each(rec.technologies, function(_, sp){
+                    $ul.append('<li><span>' + sp + '</span></li>');
+                  });
+
+                  $div.append($ul);
+                  $('.colCh', row).append($div);
+                }
+
                 $('.colType .tipC', row).html(rec.challengeType);
 
                 $('.vStartDate', row).html(startDate);
@@ -1400,6 +1520,7 @@ appChallenges = {
                   $('.vEndRound', row).html(checkPointDate);
                 } else {
                   $('.vEndRound', row).parent().empty();
+                  $('.colTime', row).append('<div class="row">&nbsp;</div>');
                 }
 
                 if (endDate) {
@@ -1413,7 +1534,7 @@ appChallenges = {
                 $('.colPhase', row).html('Completed');
 
                 $('.winBages', row).html('<a href="' + siteurl+ '/challenge-details/' +rec.challengeId+'?type='+ rec.challengeCommunity +'#winner">View Winners</a>');
-                
+
                 $('.moreWin', row).hide();
 
                 $('.colReg', row).html('<a href="' + contestLinkUrl + '#viewRegistrant">' + rec.numRegistrants + '</a>');
@@ -1502,7 +1623,7 @@ appChallenges = {
                 }
 
                 $('.colDur', row).html(contestDuration);
-                
+
                 $('.colTech', row).html(contestTechnologies);
 
                 if (rec.isEnding === "true") {
@@ -1676,6 +1797,17 @@ appChallenges = {
         $('.loading').hide();
     },
 
+    // check if array is empty
+    isEmptyArray: function(arr) {
+      if (typeof arr !== 'undefined' && arr != null && arr.length > 0) {
+        if (arr.length == 1 && $.trim(arr[0]).length == 0) {
+            return true;
+        }
+        return false;
+      }
+      return true;
+    },
+
     //format currency
     formatCur: function(cu) {
         return cu.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -1688,10 +1820,10 @@ appChallenges = {
 
     formatDate2: function(date) {
         //some function is passing in undefined timezone_string variable causing js errors, so check if undefined and set default:
-		if (typeof timezone_string === 'undefined') {
-		var timezone_string = "America/Toronto"; // lets set to TC timezone 
-		}
-	return moment(date).tz(timezone_string).format("D MMM YYYY HH:mm z");
+        if (typeof timezone_string === 'undefined') {
+        var timezone_string = "America/Toronto"; // lets set to TC timezone
+        }
+        return moment(date).tz(timezone_string).format("D MMM YYYY HH:mm z");
         // var d = new Date(date);
         // var utcd = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds());
 
@@ -1707,8 +1839,8 @@ appChallenges = {
       var end = moment(dateEnd.slice(0, -5));
       var days = end.diff(start, 'days');
       return days;
-    }, 
-    
+    },
+
     //format date review
     formatDateReview: function(date) {
         if (date == "") return "";
@@ -1720,8 +1852,7 @@ appChallenges = {
         var year = temp.getFullYear();
         var hour = temp.getHours() < 10 ? "0" + temp.getHours() : temp.getHours();
         var minutes = temp.getMinutes() < 10 ? "0" + temp.getMinutes() : temp.getMinutes();
-        var dateStr = month + "." + day + "." + year + " " + hour + ":" + minutes + " " + timezone;
-        return dateStr;
+        return month + "." + day + "." + year + " " + hour + ":" + minutes + " " + timezone;
     },
 
     /**
@@ -2280,10 +2411,56 @@ $.getJSON = function(url, success) {
         success: success,
         cache: false
     });
-}
+};
 
 // everythings begins from here
 $(document).ready(function() {
     $("#challengeNav a").hide();
 
 });
+
+
+/* fancy drop down platform on advanced search form */
+$(document).ready(function() {
+
+    //multiple select configurations
+    var config = {
+        '.chosen-select': {},
+        '.chosen-select-deselect': { allow_single_deselect: true },
+        '.chosen-select-no-single': { disable_search_threshold: 10 },
+        '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+        '.chosen-select-width': { width: "95%" }
+    };
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+
+    //set equal height to row contestGrid boxes
+    var index = 0, minWidth = 1019, cols = $(window).width() > minWidth ? 3 : 1, rows = 0;
+    $(".contestGrid .contest").each(function() {
+        rows = Math.floor(index / cols) + 1;
+        $(this).addClass("row" + Math.floor(index / cols));
+        index++;
+    });
+    $('.tabviews a').off().on(ev, function(e) {
+        if ($(this).hasClass('isActive')) {
+            return false;
+        }
+        $('.viewTab').hide();
+        id = $(this).attr('href');
+        $(id).fadeIn('fast');
+        $('.isActive', $(this).parent()).removeClass('isActive');
+        $(this).addClass('isActive');
+
+        if ($(this).hasClass('gridView') && $(window).width() > minWidth) {
+            for (var i = 0; i < rows; i++) {
+                var maxHeight = Math.max.apply(null, $(".contestGrid .contest.row" + i).map(function() {
+                    return $(this).height();
+                }).get());
+                $(".contestGrid .contest.row" + i).height(maxHeight);
+            }
+        }
+    });
+});
+
+
