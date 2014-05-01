@@ -12,23 +12,24 @@ tcapp.config(['$httpProvider', 'RestangularProvider', function($httpProvider, Re
 
   // Base API url
   RestangularProvider.setBaseUrl('https://api.topcoder.com/v2');
-}]);
 
+  // Format restangular response
 
-tcapp.factory('Challenges', function(Restangular) {
-  return Restangular.service('challenges');
-});
-
-tcapp.factory('Members', function(Restangular) {
-  return Restangular.service('users');
-});
-
-function ChallengesCtrl($scope, challenges) {
-
-}
-tcapp.controller('ChallengesCtrl', ['$scope', 'Challenges', function($scope, challenges) {
-  $scope.challenges = [];
-  challenges.getList().then(function(challenges) {
-    $scope.challenges = challenges;
+  // add a response intereceptor
+  RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
+    var extractedData;
+    // .. to look for getList operations
+    if (operation === "getList") {
+      // .. and handle the data and meta data
+      extractedData = data.data;
+      extractedData.pagination = {
+        total: data.total,
+        pageIndex: data.pageIndex,
+        pageSize: data.pageSize
+      };
+    } else {
+      extractedData = data.data;
+    }
+    return extractedData;
   });
 }]);

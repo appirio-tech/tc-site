@@ -21,13 +21,15 @@ get_header();
       <div class="container">
         <header>
           <h1>
-            <?php echo $page_title; ?>
+            Example Angular Listing Page
             <?php get_template_part("content", "rss-icon"); ?>
           </h1>
         </header>
         <div id="tableView" class="viewTab">
-          <div class="tableWrap tcoTableWRap" ng-grid="challenges"></div>
+          <div class="tableWrap tcoTableWRap" ng-grid="gridOptions"></div>
+        </div>
       </div>
+    </article>
   </div>
 </div>
 

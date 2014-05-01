@@ -259,9 +259,5 @@ function tc_setup_angular() {
   wp_enqueue_script('ng-grid');
 
   wp_register_style('ng-grid', '//cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.10/ng-grid.min.css');
-  wp_enqueue_script('ng-grid');
-
-  // Add our app
-  wp_register_script('tc-app', tsc_build_asset_path('app/app.js', 'js'), array('angularjs', 'angularjs-restangular', 'ng-grid'), null, true);
-  wp_enqueue_script('tc-app');
+  wp_enqueue_style('ng-grid');
 }

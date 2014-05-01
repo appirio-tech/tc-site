@@ -208,7 +208,31 @@
         "moment-data.js",
         "jquery.qtip.min.js",
         "jquery.jqtransform.js",
-        "reset-password.js"
+        "reset-password.js",
+        "app/app.js",
+        "app/challenges.js",
+        "app/members.js"
+      ],
+      "css": [
+        "blog.css",
+        "blog-responsive.css",
+        "base.css",
+        "style.css",
+        "style-profile.css",
+        "base-responsive.css",
+        "style-responsive.css",
+        "coder.css",
+        "contact-about.css",
+        "profileBadges.css",
+        "register-login.css",
+        "blog-base.css",
+        "community-landing.css",
+        "challenge-detail-software.css",
+        "challenge-results.css",
+        "jqtransform.css",
+        "challenge-submit.css",
+        "password-recovery.css",
+        "challenge-tags.css",
       ]
     }
   },
@@ -222,6 +246,7 @@
     "page-terms-list.php": "challengeterms",
     "page-terms-details.php": "challengeterms",
     "page-challenge-submit.php": "challengesubmit",
+    "page-angular-example.php": "angular",
     "default": "default"
   }
 }
