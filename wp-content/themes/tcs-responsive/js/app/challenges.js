@@ -40,9 +40,8 @@ tcapp.controller('ChallengesCtrl', ['$scope', 'Challenges', function($scope, cha
       }
     ]
   };
+
   challenges.getList().then(function(challenges) {
-    console.log('hi');
-    console.log(challenges);
     $scope.challenges = challenges;
   });
 }]);
