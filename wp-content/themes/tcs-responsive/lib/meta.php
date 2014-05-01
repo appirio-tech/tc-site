@@ -92,6 +92,6 @@ function tc_wp_title( $title ) {
     }
   }
 
-  return get_bloginfo('name') . $title;
+  return $title . get_bloginfo('name');
 }
 add_filter( 'wp_title', 'tc_wp_title', 10, 2 );
