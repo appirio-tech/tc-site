@@ -500,8 +500,14 @@ appChallenges = {
             case "Conceptualization":
                 trackName = "c";
                 break;
-            case ("First2Finish" || "Design First2Finish"):
+            case "First2Finish":
                 trackName = "ff";
+                break;
+            case "Design First2Finish":
+                trackName = "df2f";
+                break;
+            case "Application Front-End Design":
+                trackName = "af";
                 break;
             default:
                 trackName = "o";
