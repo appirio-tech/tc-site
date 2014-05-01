@@ -1106,7 +1106,7 @@ appChallenges = {
                       }
                     }
 
-                    var contestLinkUrl = app.getContestLinkUrl(rec.challengeId, contestType);
+                    var contestLinkUrl = app.getContestLinkUrl(rec.challengeId, rec.challengeCommunity);
                     var contestName = rec.challengeName.length > 60 ? rec.challengeName.substr(0, 61) + '...' : rec.challengeName;
 
 
@@ -2423,7 +2423,7 @@ $(document).ready(function() {
 /* fancy drop down platform on advanced search form */
 $(document).ready(function() {
 
-    //multiple select configurations
+    /*multiple select configurations
     var config = {
         '.chosen-select': {},
         '.chosen-select-deselect': { allow_single_deselect: true },
@@ -2433,7 +2433,7 @@ $(document).ready(function() {
     };
     for (var selector in config) {
         $(selector).chosen(config[selector]);
-    }
+    }*/
 
     //set equal height to row contestGrid boxes
     var index = 0, minWidth = 1019, cols = $(window).width() > minWidth ? 3 : 1, rows = 0;
