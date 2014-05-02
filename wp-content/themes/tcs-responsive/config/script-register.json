@@ -46,7 +46,8 @@
         "challenge-results.css", 
         "jqtransform.css",
         "challenge-submit.css",
-        "password-recovery.css"
+        "password-recovery.css",
+        "challenge-tags.css"
       ]
     },
     "challengelanding": {
@@ -62,15 +63,16 @@
         "jquery.inputhints.js",
         "jquery.easing.1.3.js",
         "jquery.mousewheel.js",
-        "scripts.js",
-        "script-challenges.js",
+        "scripts.js",        
         "register-login.js",
         "init-header.js",
         "jquery.jscrollpane.min.js",
         "jquery.qtip.min.js",
         "moment.min.js",
         "moment-timezone.min.js",
-        "moment-data.js"
+        "moment-data.js",
+        "chosen.jquery.min.js",
+        "script-challenges.js"
       ],
       "css": [
         "base.css",
@@ -80,7 +82,9 @@
         "register-login.css",
         "blog.css",
         "style-challenges.css",
-        "jquery.qtip.min.css"
+        "jquery.qtip.min.css",
+        "chosen.min.css",
+        "challenge-tags.css"
       ]
 
     },
