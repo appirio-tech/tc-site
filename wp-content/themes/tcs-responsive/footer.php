@@ -410,6 +410,10 @@ $blog_posts = get_posts($blog_posts_args);
     <?php
     $urlFromDiscourse = $_REQUEST["url"];
 	$stateLogin = "none";
+	// if has referer and contain topcoder.com
+	if (   preg_match ('/topcoder.com/',wp_get_referer(), $matches) ){
+		$stateLogin = wp_get_referer();	
+	}
 	if ($_REQUEST['sso'] != ''  and $_REQUEST['sig'] != '' ) {
 		// if ( preg_match('/sso=(.*)&sig=(.*)/', $urlFromDiscourse, $matches) ){
 		//$sso = str_replace("=","%3D%0A",$matches[1]);
@@ -429,7 +433,7 @@ $blog_posts = get_posts($blog_posts_args);
     var auth0Login = new Auth0({
       domain: 'topcoder.auth0.com',
       clientID: '6ZwZEUo2ZK4c50aLPpgupeg5v2Ffxp9P',
-      callbackURL: '<?php echo wp_get_referer(); ?>',
+      callbackURL: 'https://www.topcoder.com/reg2/callback.action',
       state: loginState,
       redirect_uri: window.location.href
     });
