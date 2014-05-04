@@ -210,8 +210,8 @@
         "jquery.jqtransform.js",
         "reset-password.js",
         "src/app/app.js",
-        "src/app/challenges/services/challengeService.js",
-        "src/app/challenges/controllers/ChallengeListingCtrl.js"
+        "app/challenges/services/challengeService.js",
+        "app/challenges/controllers/ChallengeListingCtrl.js"
       ],
       "css": [
         "blog.css",
