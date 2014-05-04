@@ -209,9 +209,9 @@
         "jquery.qtip.min.js",
         "jquery.jqtransform.js",
         "reset-password.js",
-        "app/app.js",
-        "app/challenges.js",
-        "app/members.js"
+        "src/app/app.js",
+        "src/app/challenges/services/challengeService.js",
+        "src/app/challenges/controllers/ChallengeListingCtrl.js"
       ],
       "css": [
         "blog.css",

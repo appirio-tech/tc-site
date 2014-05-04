@@ -16,7 +16,7 @@ get_header();
 ?>
 
 <div ng-app="tc" class="content">
-  <div id="main" ng-controller="ChallengesCtrl">
+  <div id="main" ng-controller="ChallengeListingCtrl">
     <article id="mainContent" class="layChallenges">
       <div class="container">
         <header>

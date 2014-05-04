@@ -1,11 +1,11 @@
 'use strict';
 
-tcapp.factory('Challenges', function(Restangular) {
-  return Restangular.service('challenges');
-});
+tc.controller('ChallengeListingCtrl', ['$scope', 'Challenge',
+  function($scope, Challenge) {
 
-tcapp.controller('ChallengesCtrl', ['$scope', 'Challenges', function($scope, challenges) {
   $scope.challenges = [];
+
+  // @TODO this should be dynamic per type
   $scope.gridOptions = {
     data: 'challenges',
     columnDefs: [ //@TODO replace with row template
@@ -41,7 +41,8 @@ tcapp.controller('ChallengesCtrl', ['$scope', 'Challenges', function($scope, cha
     ]
   };
 
-  challenges.getList().then(function(challenges) {
+  // @TODO make type dynamic by using $routeparams
+  Challenge.all('active').getList({type: 'design'}).then(function(challenges) {
     $scope.challenges = challenges;
   });
 }]);

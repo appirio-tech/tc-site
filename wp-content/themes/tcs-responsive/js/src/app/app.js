@@ -1,8 +1,14 @@
 'use strict';
 
-var tcapp = angular.module('tc', ['restangular', 'ngGrid']);
+window.tc = angular.module('tc', [
+  'restangular',
+  'tc.challengeService',
+  'ngGrid'
+])
 
-tcapp.config(['$httpProvider', 'RestangularProvider', function($httpProvider, RestangularProvider) {
+.constant("API_URL", "https://api.topcoder.com/v2")
+
+.config(['$httpProvider', 'RestangularProvider', 'API_URL', function($httpProvider, RestangularProvider, API_URL) {
   /*
    * Enable CORS
    * http://stackoverflow.com/questions/17289195/angularjs-post-data-to-external-rest-api
@@ -11,7 +17,7 @@ tcapp.config(['$httpProvider', 'RestangularProvider', function($httpProvider, Re
   delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
   // Base API url
-  RestangularProvider.setBaseUrl('https://api.topcoder.com/v2');
+  RestangularProvider.setBaseUrl(API_URL);
 
   // Format restangular response
 
