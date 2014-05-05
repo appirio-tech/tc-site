@@ -120,7 +120,7 @@ __Final Submissions should be in the form of a pull request.  See the section on
 These are some workflows to help you get starting with Git.  Once you become more familiar, you can modify the workflow
 to fit your style.
 
-**Working on a challenget**
+**Working on a challenge**
 
 1. Clone the repository. `git clone https://github.com/topcoderinc/tc-site.git dev`
     * If you already have a repository setup, be sure to pull down the latest changes: `git pull origin dev`
