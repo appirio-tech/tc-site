@@ -211,7 +211,7 @@
         "reset-password.js",
         "app/app.js",
         "app/challenges/services/challengeService.js",
-        "app/challenges/controllers/ChallengeListingCtrl.js"
+        "app/challenges/controllers/challengeListingCtrl.js"
       ],
       "css": [
         "blog.css",
