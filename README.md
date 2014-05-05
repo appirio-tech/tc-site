@@ -97,11 +97,11 @@ These are the formating rules our code should follow.
 
 ### AngularJS ###
 
-* There is a sample AngularJS integration with Wordpress on the [https://github.com/topcoderinc/tc-site/tree/angular_service](angular_service branch).
+* There is a sample AngularJS integration with Wordpress on the [angular_service branch](https://github.com/topcoderinc/tc-site/tree/angular_service).
     * Look at the page template page_angular_example (https://github.com/topcoderinc/tc-site/blob/angular_service/wp-content/themes/tcs-responsive/page-angular-example.php) for integration into Wordpress page template.
 
 Here are some general rules to follow
-* General AngularJS development guidelines can be found on the [https://docs.angularjs.org/guide](AngularJS website)
+* General AngularJS development guidelines can be found on the [AngularJS website](https://docs.angularjs.org/guide)
 * root angular directory at tcs-responsive/js/app (https://github.com/topcoderinc/tc-site/tree/angular_service/wp-content/themes/tcs-responsive/js/app)
 Main application file: app.js (https://github.com/topcoderinc/tc-site/blob/angular_service/wp-content/themes/tcs-responsive/js/app/app.js)
     * Global level configuration
@@ -115,7 +115,7 @@ Main application file: app.js (https://github.com/topcoderinc/tc-site/blob/angul
 * Services, filters and directives should all be their own modules (https://github.com/topcoderinc/tc-site/blob/angular_service/wp-content/themes/tcs-responsive/js/app/challenges/services/challengeService.js#L3)
 * Services should use Restangular (https://github.com/mgonto/restangular)
 * Tables should use ngGrid: http://angular-ui.github.io/ng-grid/
-* DO NOT MANIPULATE THE DOM WITH JQUERY.  See the [https://docs.angularjs.org/guide/directive](Development Guide) for an example directive which manipulates the DOM.
+* DO NOT MANIPULATE THE DOM WITH JQUERY.  See the [Development Guide](https://docs.angularjs.org/guide/directive) for an example directive which manipulates the DOM.
 
 ## GIT Information ##
 
