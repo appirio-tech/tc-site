@@ -344,6 +344,7 @@ $blog_posts = get_posts($blog_posts_args);
 		<?php
 			$fp_page = get_page_by_path( 'password-recovery' );
 			$fp_link = get_permalink($fp_page->ID);
+      $fp_link = str_replace('http:', 'https:', $fp_link);
 		?>
         <a href="<?php echo $fp_link; //http://community.topcoder.com/tc?module=FindUser ?>" target="_blank" class="forgotPwd">Forgot
           password?</a>
