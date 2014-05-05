@@ -121,7 +121,7 @@ Main application file: app.js (https://github.com/topcoderinc/tc-site/blob/angul
 
 ## Approved AngularJS libraries
 
-* AngularUI http://angular-ui.github.io/
+* ui-router for Routing: https://github.com/angular-ui/ui-router
 * ng-grid for talbes: http://angular-ui.github.io/ng-grid/
 * Restangular: https://github.com/mgonto/restangular
 * Angular Loading Bar: http://chieffancypants.github.io/angular-loading-bar/
