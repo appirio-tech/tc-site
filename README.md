@@ -116,6 +116,15 @@ Main application file: app.js (https://github.com/topcoderinc/tc-site/blob/angul
 * Services should use Restangular (https://github.com/mgonto/restangular)
 * Tables should use ngGrid: http://angular-ui.github.io/ng-grid/
 * DO NOT MANIPULATE THE DOM WITH JQUERY.  See the [Development Guide](https://docs.angularjs.org/guide/directive) for an example directive which manipulates the DOM.
+* The use of external libraries is encourged but they must be approved before use.
+* Use the Angular Loading Bar while the page is being loaded (http://chieffancypants.github.io/angular-loading-bar/)
+
+## Approved AngularJS libraries
+
+* AngularUI http://angular-ui.github.io/
+* ng-grid for talbes: http://angular-ui.github.io/ng-grid/
+* Restangular: https://github.com/mgonto/restangular
+* Angular Loading Bar: http://chieffancypants.github.io/angular-loading-bar/
 
 ## GIT Information ##
 
