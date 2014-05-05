@@ -65,6 +65,12 @@ $(document).ready(function () {
     $('.registrantsTable').not('.mobile').removeClass('hide');
     $('.registrantsTable.mobile').addClass('hide');
   }
+
+  if ($('.loading').length <= 0) {
+    $('body').append('<div class="loading">Loading...</div>');
+  } else {
+    $('.loading').show();
+  }
   $('a[href="' + getAnchor(location.href) + '"]').click();
 
   // init tab nav
@@ -77,6 +83,7 @@ $(document).ready(function () {
   getChallenge(tcjwt, function(challenge) {
     updateRegSubButtons(challenge);
     addDocuments(challenge);
+    $('.loading').hide();
   });
 
   function updateRegSubButtons(challenge) {
