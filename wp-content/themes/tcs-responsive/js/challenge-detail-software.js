@@ -79,12 +79,20 @@ $(document).ready(function () {
   var tcsso = getCookie('tcsso');
   var tcjwt = getCookie('tcjwt');
 
+  if (tcjwt) {
+    getChallenge(tcjwt, function(challenge) {
+      updateRegSubButtons(challenge);
+      addDocuments(challenge);
+      $('.loading').hide();
+    });
+  } else {
+    var now = new Date();
+    if (registrationUntil && now.getTime() < registrationUntil.getTime()) {
+      $('.challengeRegisterBtn').removeClass('disabled');
+      $('.loading').hide();
+    }
+  }
 
-  getChallenge(tcjwt, function(challenge) {
-    updateRegSubButtons(challenge);
-    addDocuments(challenge);
-    $('.loading').hide();
-  });
 
   function updateRegSubButtons(challenge) {
     // if there was an error getting the challenge then enable the buttons
