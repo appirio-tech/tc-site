@@ -1,5 +1,7 @@
 <?php
 require_once 'TwitterAPIExchange.php';
+echo "referer using wp_get_referer(): ".wp_get_referer();
+echo "<br /> using \$_SERVER['HTTP_REFERER']".$_SERVER['HTTP_REFERER'];
 
 $settings = array(
   'oauth_access_token' => get_option('twAccessToken'),
@@ -411,8 +413,8 @@ $blog_posts = get_posts($blog_posts_args);
     $urlFromDiscourse = $_REQUEST["url"];
 	$stateLogin = "none";
 	// if has referer and contain topcoder.com
-	if (   preg_match ('/topcoder.com/',wp_get_referer(), $matches) ){
-		$stateLogin = wp_get_referer();	
+	if (   preg_match ('/topcoder.com/',$_SERVER['HTTP_REFERER'], $matches) ){
+		$stateLogin = $_SERVER['HTTP_REFERER'];	
 	}
 	if ($_REQUEST['sso'] != ''  and $_REQUEST['sig'] != '' ) {
 		// if ( preg_match('/sso=(.*)&sig=(.*)/', $urlFromDiscourse, $matches) ){
