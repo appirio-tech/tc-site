@@ -146,6 +146,8 @@ $(document).ready(function () {
       }, function (data) {
         callback(data);
       });
+    } else {
+      $('.loading').hide();
     }
   }
 });
