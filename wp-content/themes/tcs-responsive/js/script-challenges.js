@@ -901,7 +901,7 @@ appChallenges = {
         param.action = ajaxAction;
         param.challengeType = contest_type;
         param.challengeId = challenge_id;
-        param.jwtToken = readCookie('tcjwt');
+        param.jwtToken = $.cookie('tcjwt');
         if (param.jwtToken !== null && param.jwtToken.length > 0) {
 
             $.ajax({
@@ -2939,15 +2939,3 @@ $(document).ready(function() {
         }
     });
 });
-//read cookie function
-//http://www.quirksmode.org/js/cookies.html
-function readCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-    }
-    return null;
-}
