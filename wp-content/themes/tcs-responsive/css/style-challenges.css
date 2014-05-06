@@ -514,6 +514,7 @@ select {
 .tcoTable tbody .colTime .row .val {
     margin-left: 80px;
 }
+
 .layChallenges .tcoTable td.colCh.reviewOpp {
     vertical-align: middle;
 }
@@ -618,6 +619,7 @@ select {
 .tcoTable .colCh div {
     margin-right: 4px;
 }
+
 .reviewTimelineTable {
    margin-bottom: 100px;
 }
@@ -1283,6 +1285,7 @@ select:disabled {
     border-bottom: 1px solid #e7e7e7;
     padding-bottom: 12px;
 }
+
 #mainContent .note {
     line-height: 44px;
 }
