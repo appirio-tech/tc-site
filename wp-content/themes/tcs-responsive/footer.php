@@ -1,7 +1,5 @@
 <?php
 require_once 'TwitterAPIExchange.php';
-echo "referer using wp_get_referer(): ".wp_get_referer();
-echo "<br /> using \$_SERVER['HTTP_REFERER']".$_SERVER['HTTP_REFERER'];
 
 $settings = array(
   'oauth_access_token' => get_option('twAccessToken'),
