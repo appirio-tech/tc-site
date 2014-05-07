@@ -35,14 +35,14 @@ appChallenges = {
         app.initAjaxData();
         app.calendar();
         app.bindEvents();
-								
-								// I-104467 I-107029: check if there is already stored view
+
+        // I-104467 I-107029: check if there is already stored view
         if ($.cookie('viewMode') == null) {
             // I-104467 I-107029: if not, save the the default view to the cookie
             $.cookie('viewMode', default_view, { expires: 7, path: '/' });
         }
-								
-								// I-104467 I-107029: update the view mode (grid or table) according to the cookie value
+
+        // I-104467 I-107029: update the view mode (grid or table) according to the cookie value
         var viewHref = $.cookie('viewMode');
         var switchViewLink = $('.views a[href="' + viewHref + '"]');
 
@@ -95,10 +95,10 @@ appChallenges = {
 
             $('.viewTab').hide();
             id = $(this).attr('href');
-												
-												// I-104467 I-107029: store the view to the cookie
-												$.cookie('viewMode', id, { expires: 7, path: '/' });
-			
+
+            // I-104467 I-107029: store the view to the cookie
+            $.cookie('viewMode', id, { expires: 7, path: '/' });
+
             $(id).fadeIn('fast');
             $('.isActive', $(this).parent()).removeClass('isActive');
             $(this).addClass('isActive');
@@ -346,9 +346,24 @@ appChallenges = {
         $('.dataTable, .contestGrid').on('mouseenter', '.colType .ico, .coleSub .subs, .ico.trackType, a .itco', function() {
             var tt = $('#typeTooltip');
             tt.addClass('isShowing');
+
+            // I-107026: Add class devTooltip if the contest is not design contest.
+            var contestType = $('.tipC', $(this)).html();
+            if (!app.isDesignContest(contestType)) {
+                tt.addClass('devTooltip');
+            } else if (tt.hasClass('devTooltip')) {
+                tt.removeClass('devTooltip');
+            }
+
             $(this).addClass('activeLink');
             $('header', tt).html($('.tipT', $(this)).html());
-            $('.contestTy', tt).html($('.tipC', $(this)).html());
+            var $contestType = $('.tipC', $(this));
+            $('.contestTy', tt).html($contestType.html());
+            if ($contestType.data('contest_type') == 'develop') {
+                tt.addClass('devTooltip');
+            } else if (tt.hasClass('devTooltip')) {
+                tt.removeClass('devTooltip');
+            }
 
             if ($(this).hasClass('itco')) {
                 var tempTcoTooltipTitle = typeof tcoTooltipTitle !== "undefined" ? tcoTooltipTitle : "TCO-14";
@@ -1042,6 +1057,7 @@ appChallenges = {
                     $('.colCh a, .cgCh a', row).attr("href", contestLinkUrl);
 
                     $('.tipC', row).html(rec.challengeType);
+					$('.tipC', row).data('contest_type', rec.challengeCommunity);
 
                     $('.vStartDate', row).html(startDate);
 
@@ -1154,6 +1170,7 @@ appChallenges = {
 
                     $('.type', con).html(rec.challengeType);
                     $('.tipC', con).html(rec.challengeType);
+					$('.tipC', con).data('contest_type', rec.challengeCommunity);
                     $('.vStartDate', con).html(startDate);
                     if (checkPointDate) {
                         $('.vEndRound', con).html(checkPointDate);
@@ -1303,7 +1320,8 @@ appChallenges = {
                 }
 
                 $('.tipC', row).html(rec.challengeType);
-
+                $('.tipC', row).data('contest_type', rec.challengeCommunity);
+				
                 $('.vStartDate', row).html(startDate);
 
                 if (checkPointDate) {
@@ -1388,6 +1406,8 @@ appChallenges = {
                 $('.colCh a, .cgCh a', con).attr("href", contestLinkUrl);
 
                 $('.tipC', con).html(rec.challengeType);
+				$('.tipC', con).data('contest_type', rec.challengeCommunity);
+
                 $('.vStartDate', con).html(startDate);
 
                 if (checkPointDate) {
@@ -1549,6 +1569,7 @@ appChallenges = {
                 }
 
                 $('.colType .tipC', row).html(rec.challengeType);
+				$('.colType .tipC', row).data('contest_type', rec.challengeCommunity);
 
                 $('.vStartDate', row).html(startDate);
 
@@ -1643,6 +1664,7 @@ appChallenges = {
                 $('.colCh a, .cgCh a', row).attr("href", contestLinkUrl);
 
                 $('.tipC', row).html(rec.challengeType);
+				$('.tipC', row).data('contest_type', rec.challengeCommunity);
 
                 $('.vStartDate', row).html(startDate);
 
@@ -1733,6 +1755,8 @@ appChallenges = {
                 $('.colCh a, .cgCh a', con).attr("href", contestLinkUrl);
 
                 $('.tipC', con).html(rec.challengeType);
+				$('.tipC', con).data('contest_type', rec.challengeCommunity);
+
                 $('.vStartDate', con).html(startDate);
 
                 if (checkPointDate) {
@@ -1819,6 +1843,7 @@ appChallenges = {
                 $('.contestName', row).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/ico-track-develop.png" />' + rec.challengeName + '<img alt="" class="allContestTCOIco" src="' + stylesheet_dir + '/i/tco-flag-develop.png" />');
                 $('.contestName', row).parents(".inTCO").addClass("hasTCOIco");
                 $('.tipC', row).html(rec.challengeType);
+				$('.tipC', row).data('contest_type', rec.challengeCommunity);
                 $('.colPay', row).html("$" + app.formatCur(purse));
                 $('.colTP', row).html(20);
                 $('.colReg', row).html('<a href="javascript:;">' + rec.numRegistrants + '</a>');
