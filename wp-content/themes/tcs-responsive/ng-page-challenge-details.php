@@ -234,7 +234,7 @@ include locate_template('header-challenge-landing.php');
 <div class="content challenge-detail view-challenge-result <?php if ($contestType != 'design') {
   echo 'develop';
 } ?>">
-<div id="main" ng-controller="ChallengeDetailsController">
+<div id="main" ng-app="challengeDetails" ng-controller="CDCtrl">
 
 <?php include( locate_template('content-basic-challenge-details.php') ); ?>
 
