@@ -424,9 +424,13 @@ $blog_posts = get_posts($blog_posts_args);
 	}
 
     ?>
-
     loginState = "<?php echo $stateLogin; ?>";
-
+	var referer =  document.referrer;
+	if ( /topcoder/i.test( referer ) ) {
+		loginState = referer;
+		alert(loginState);
+	}
+	
     if (loginState == 'none') {
       loginState = window.location.href;
     }
