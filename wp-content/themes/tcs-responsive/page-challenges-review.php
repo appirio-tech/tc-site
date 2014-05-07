@@ -12,10 +12,6 @@ include locate_template('header-challenge-landing.php');
 <div class="content">
         <div id="main">
 
-        <?php if(have_posts()) : the_post();?>
-                <?php the_content();?>
-        <?php endif; wp_reset_query();?>
-
                 <?php include(locate_template('nav-challenges-list-tabs.php'));?>
 
                 <article id="mainContent" class="layChallenges">
@@ -170,7 +166,9 @@ include locate_template('header-challenge-landing.php');
                                 </div>
                                 <!-- /.dataChanges -->
                                 <div class="note">
-                                     * The reviewer payment depends on the reviewer role and the number of submissions. The actual payment may differ.
+                                 <?php if(have_posts()) : the_post();?>
+										<?php the_content();?>
+								<?php endif; wp_reset_query();?>
                                 </div>
                         </div>
                 </article>
