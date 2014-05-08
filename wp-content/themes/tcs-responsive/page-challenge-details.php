@@ -566,8 +566,6 @@ include locate_template('header-challenge-landing.php');
           echo "--";
         }
         echo '</td>';
-        error_log('hi');
-        error_log(serialize($value));
         echo '<td>';
         if ($value->submissionStatus == "Active") {
           echo '<i class="successIcon"></i>';
