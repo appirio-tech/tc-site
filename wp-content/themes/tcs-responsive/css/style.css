@@ -555,6 +555,16 @@
         border-top: 3px solid #FF8A00;
     }
 
+    .successIcon {
+      background: url(../i/ico-okay-check.png) no-repeat;
+      background-position: 0 0;
+    }
+
+    .failureIcon {
+      background: url(../i/ico-failed-x.png) no-repeat;
+      background-position: 0 0;
+    }
+
     .layChallenges .views > a{
     display: inline-block;
     height: 30px;
