@@ -387,16 +387,16 @@ $blog_posts = get_posts($blog_posts_args);
 </div><!-- /.tooltip -->
 <?php wp_footer(); ?>
 <script>
+  function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
   var socialProviderId = "", socialUserName = "", socialEmail = "", socialProvider = "";
   var utmSource = '', utmMedium = '', utmCampaign = '';
   var loginState = '';
   $(function () {
-    function getParameterByName(name) {
-      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-      results = regex.exec(location.search);
-      return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-    }
     utmSource = getParameterByName('utmSource');
     utmMedium = getParameterByName('utmMedium');
     utmCampaign = getParameterByName('utmCampaign');

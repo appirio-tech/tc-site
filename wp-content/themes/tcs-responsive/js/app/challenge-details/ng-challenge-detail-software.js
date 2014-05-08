@@ -36,20 +36,72 @@ var cdapp = angular.module('challengeDetails', ['restangular'])
   });
 }]);
 
-cdapp.factory('ChallengeService', ['Restangular', 'API_URL', function(Restangular, API_URL) {
-  return Restangular.withConfig(function(RestangularConfigurer) {
+cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', function(Restangular, API_URL, $q) {
+  var service = Restangular.withConfig(function(RestangularConfigurer) {
     RestangularConfigurer.setBaseUrl(API_URL);
   });
+  service.getChallenge = function(id) {
+    var defer = $q.defer();
+    service.one(challengeType).one('challenges', id).getList().then(function(challenge) {
+      challenge = challenge[0];
+      var submissionMap = {};
+      challenge.submissions.map(function(submission) {
+        if (submissions[submission.handle]) {
+          var neu = new Date(submission.submissionDate);
+          var alt = new Date(submissionMap[submission.handle]);
+          if (neu > alt) {
+            submissionMap[submission.handle] = submission.submissionDate;
+          }
+        } else {
+          submissionMap[submission.handle] = submission.submissionDate;
+        }
+      });
+      challenge.registrants.map(function(x) {
+        x.lastSubmissionDate = submissionMap[x.handle];
+      });
+      if (challenge.allowStockArt) {
+        challenge.allowStockArt = challenge.allowStockArt == 'true';
+      }
+      defer.resolve(challenge);
+    });
+    return defer.promise;
+  }
+  return service;
 }]);
 
 cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scope, ChallengeService, $sce) {
   $scope.trust = function(x) {
     return $sce.trustAsHtml(x);
   }
+  $scope.formatDate = function(date) {
+    function pad0(x) {
+      return (x+'').length == 1 ? '0' + x : x;
+    }
+    if (!date) return '--';
+    if (typeof date == 'string') date = new Date(date);
+    else console.log(date);
+    var month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][date.getMonth()];
+    var day = date.getDate();
+    var year = date.getFullYear();
+    var time = pad0((date.getUTCHours() + 20) % 24) + ':' + pad0(date.getUTCMinutes());
+    return month + ' ' + day + ', ' + year + ' ' + time + ' EDT';
+  }
+
   challengeId = location.href.match(/s\/(\d+)/)[1];
-  ChallengeService.one(challengeType).one('challenges', challengeId).getList().then(function(challenge) {
+  ChallengeService.getChallenge(challengeId).then(function(challenge) {
     console.log(challenge);
-    $scope.challenge = challenge[0];
+    chglo = challenge;
+    $scope.challenge = challenge;
+    $scope.siteURL = siteURL;
+    $scope.challengeType = getParameterByName('type');
+    $scope.isDesign = $scope.challengeType == 'design';
+    $scope.inSubmission = inSubmission = challenge.currentPhaseName.indexOf('Submission') >= 0;
+    $scope.inScreening = inScreening = challenge.currentPhaseName.indexOf('Screening') >= 0;
+    $scope.inReview = inReview = challenge.currentPhaseName.indexOf('Review') >= 0;
+    $scope.hasFiletypes = (challenge.filetypes != undefined) && challenge.filetypes.length > 0;
+    globby = $scope;
+
+
   });
 }]);
 

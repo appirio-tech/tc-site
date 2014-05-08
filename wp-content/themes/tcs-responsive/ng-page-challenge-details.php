@@ -146,81 +146,7 @@ function challenge_submit_disabled($contest) {
   return $submitDisabled;
 }
 
-// Ad submission dates to registrants
-// @TODO move this to a class
-if (!empty( $contest->submissions )) {
-  $submission_map = array();
-  switch ($contestType) {
-    case "develop":
-      $submission_map = createDevelopSubmissionMap($contest);
-      foreach ($registrants as &$registrant) {
-        if ($submission_map[ $registrant->handle ]) {
-          $registrant->lastSubmissionDate = $submission_map[ $registrant->handle ]->submissionDate;
-        }
-      }
-      break;
-    case "design":
-      $submission_map = createDesignSubmissionMap($contest);
-      foreach ($registrants as &$registrant) {
-        if ($submission_map[ $registrant->handle ]) {
-          $registrant->lastSubmissionDate = $submission_map[ $registrant->handle ]->submissionTime;
-        }
-      }
-      break;
-  }
-}
 
-
-function createDesignSubmissionMap($contest) {
-  $submission_map = array();
-  foreach ($contest->submissions as $submission) {
-    if ($submission_map[ $submission->submitter ]) {
-      $sub_date = new DateTime($submission->submissionDate);
-      if ($cur_date->diff($sub_date) > 0) {
-        $submission_map[ $submission->submitter ] = $submission;
-        $cur_date                                 = new DateTime($submission->submissionDate);
-      }
-    }
-    else {
-      $submission_map[ $submission->submitter ] = $submission;
-      $cur_date                                 = new DateTime($submission->submissionDate);
-    }
-  }
-
-  return $submission_map;
-}
-
-function createDevelopSubmissionMap($contest) {
-  $submissions = array_filter(
-    $contest->submissions,
-    function ($submission) {
-      if ($submission->submissionStatus === "Active") {
-        return TRUE;
-      }
-      else {
-        return FALSE;
-      }
-    }
-  );
-
-  // 'user' => latest submissions
-  $submission_map = array();
-  foreach ($submissions as $submission) {
-    if ($submission_map[ $submission->handle ]) {
-      $sub_date = new DateTime($submission->submissionDate);
-      if ($cur_date->diff($sub_date) > 0) {
-        $submission_map[ $submission->handle ] = $submission;
-        $cur_date                              = new DateTime($submission->submissionDate);
-      }
-    }
-    else {
-      $submission_map[ $submission->handle ] = $submission;
-      $cur_date                              = new DateTime($submission->submissionDate);
-    }
-  }
-
-  return $submission_map;
-}
 
 $documents = isset($contest->Documents) ? $contest->Documents : array();
 
@@ -231,10 +157,8 @@ include locate_template('header-challenge-landing.php');
 
 ?>
 
-<div class="content challenge-detail view-challenge-result <?php if ($contestType != 'design') {
-  echo 'develop';
-} ?>">
-<div id="main" ng-app="challengeDetails" ng-controller="CDCtrl">
+<div ng-app="challengeDetails" ng-controller="CDCtrl" class="content challenge-detail view-challenge-result {{challengeType != 'design' ? 'develop' : ''">
+<div id="main">
 
 <?php include( locate_template('content-basic-challenge-details.php') ); ?>
 
@@ -247,41 +171,35 @@ include locate_template('header-challenge-landing.php');
 <section class="tabsWrap">
 <nav class="tabNav">
   <div class="topRightTitle topRightTitleAlt">
-    <?php if ($contestType != 'design'): ?>
-      <a ng-href="http://apps.topcoder.com/forums/?module=Category&categoryID={{challenge.forumId}}"
-         class="contestForumIcon" target="_blank">Challenge Discussion</a>
-    <?php else: ?>
-      <a ng-href="http://studio.topcoder.com/forums?module=ThreadList&forumID={{challenge.forumId}}"
-         class="contestForumIcon" target="_blank">Challenge Discussion</a>
-    <?php endif; ?>
+    <a ng-if="challengeType != 'design'" ng-href="http://apps.topcoder.com/forums/?module=Category&categoryID={{challenge.forumId}}"
+        class="contestForumIcon" target="_blank">Challenge Discussion</a>
+    <a ng-if="challengeType == 'design'" ng-href="http://studio.topcoder.com/forums?module=ThreadList&forumID={{challenge.forumId}}"
+       class="contestForumIcon" target="_blank">Challenge Discussion</a>
   </div>
   <ul>
-    <?php if ($contestType != 'design'): ?>
-      <li><a href="#contest-overview" class="<?php if ($tab !== "checkpoints") { echo "active"; } ?> link">Details</a></li>
-      <li><a href="#viewRegistrant" class="link">Registrants</a></li>
-      <?php if (( !empty( $checkpointData ) && $checkpointData != "Error in processing request" ) || ( $tab === "checkpoints" )): ?>
-        <li><a href="#checkpoints" class="link <?php if ($tab === "checkpoints") { echo "active"; } ?>">Checkpoints</a></li>
-      <?php endif; ?>
-      <li><a href="#winner" class="link">Results</a></li>
+    <li ng-if="!isDesign"><a href="#contest-overview" class="<?php if ($tab !== "checkpoints") { echo "active"; } ?> link">Details</a></li>
+    <li ng-if="!isDesign"><a href="#viewRegistrant" class="link">Registrants</a></li>
+    <?php if (( !empty( $checkpointData ) && $checkpointData != "Error in processing request" ) || ( $tab === "checkpoints" )): ?>
+      <li><a href="#checkpoints" class="link <?php if ($tab === "checkpoints") { echo "active"; } ?>">Checkpoints</a></li>
+    <?php endif; ?>
+    <li ng-if="!isDesign"><a href="#winner" class="link">Results</a></li>
 
+    <li ng-if="isDesign"><a href="#contest-overview" class="<?php if ($tab !== "checkpoints") { echo "active"; } ?> link">Details</a></li>
+    <li ng-if="isDesign"><a href="#viewRegistrant" class="link">Registrants</a></li>
+    <?php if (( !empty( $checkpointData ) && $checkpointData != "Error in processing request" ) || ( $tab === "checkpoints" )): ?>
+      <li><a href="#checkpoints" class="link <?php if ($tab === "checkpoints") { echo "active"; } ?>">Checkpoints</a></li>
+    <?php endif; ?>
+    <?php if (strpos($contest->currentPhaseName, 'Submission') !== FALSE): ?>
+      <li><span class="inactive">Submissions</span></li>
     <?php else: ?>
-      <li><a href="#contest-overview" class="<?php if ($tab !== "checkpoints") { echo "active"; } ?> link">Details</a></li>
-      <li><a href="#viewRegistrant" class="link">Registrants</a></li>
-      <?php if (( !empty( $checkpointData ) && $checkpointData != "Error in processing request" ) || ( $tab === "checkpoints" )): ?>
-        <li><a href="#checkpoints" class="link <?php if ($tab === "checkpoints") { echo "active"; } ?>">Checkpoints</a></li>
-      <?php endif; ?>
-      <?php if (strpos($contest->currentPhaseName, 'Submission') !== FALSE): ?>
-        <li><span class="inactive">Submissions</span></li>
-      <?php else: ?>
-        <li><a href="#submissions" class="link">Submissions</a></li>
-      <?php endif; ?>
-      <?php if (strpos($contest->currentPhaseName, 'Submission') !== FALSE ||
-          strpos($contest->currentPhaseName, 'Screening') !== FALSE ||
-          strpos($contest->currentPhaseName, 'Review') !== FALSE): ?>
-        <li><span class="inactive">Results</span></li>
-      <?php else: ?>
-        <li><a href="#winner" class="link">Results</a></li>
-      <?php endif; ?>
+      <li><a href="#submissions" class="link">Submissions</a></li>
+    <?php endif; ?>
+    <?php if (strpos($contest->currentPhaseName, 'Submission') !== FALSE ||
+        strpos($contest->currentPhaseName, 'Screening') !== FALSE ||
+        strpos($contest->currentPhaseName, 'Review') !== FALSE): ?>
+      <li><span class="inactive">Results</span></li>
+    <?php else: ?>
+      <li><a href="#winner" class="link">Results</a></li>
     <?php endif; ?>
   </ul>
 </nav>
@@ -293,71 +211,48 @@ include locate_template('header-challenge-landing.php');
 </nav>
 <nav class="tabNav firstTabNav designSecondTabNav mobile hide">
   <ul>
-    <?php if (strpos($contest->currentPhaseName, 'Submission') !== FALSE): ?>
-      <li><span class="inactive">Checkpoints</span></li>
-    <?php else: ?>
-      <?php if (!empty( $checkpointData ) && empty( $checkpointData->error )): ?>
-      <li><a href="<?php echo CURRENT_FULL_URL; ?>&tab=checkpoints" class="link">Checkpoints</a></li>
+    <li ng-if="inSubmission"><span class="inactive">Checkpoints</span></li>
+    <?php if (!empty( $checkpointData ) && empty( $checkpointData->error )): ?>
+      <li ng-if="!inSubmission"><a href="<?php echo CURRENT_FULL_URL; ?>&tab=checkpoints" class="link">Checkpoints</a></li>
     <?php endif; ?>
-    <?php endif; ?>
-    <?php if (strpos($contest->currentPhaseName, 'Submission') !== FALSE): ?>
-      <li><span class="inactive">Submissions</span></li>
-    <?php else: ?>
-      <li><a href="#submissions" class="link">Submissions</a></li>
-    <?php endif; ?>
+    <li ng-if="inSubmission"><span class="inactive">Submissions</span></li>
+    <li ng-if="!inSubmission"><a href="#submissions" class="link">Submissions</a></li>
     </li>
     <li>
-      <?php if (strpos($contest->currentPhaseName, 'Submission') !== FALSE ||
-                strpos($contest->currentPhaseName, 'Screening') !== FALSE ||
-                strpos($contest->currentPhaseName, 'Review') !== FALSE): ?>
-    <li><span class="inactive">Results</span></li>
-  <?php else: ?>
-    <li><a href="#winner" class="link">Results</a></li>
-  <?php endif; ?>
+      <li ng-if="inSubmission || inScreening || inReview"><span class="inactive">Results</span></li>
+      <li ng-if="!(inSubmission || inScreening || inReview)"><a href="#winner" class="link">Results</a></li>
     </li>
   </ul>
 </nav>
 
 <div id="contest-overview" class="tableWrap <?php echo ( $activeTab == 'checkpoints' ) ? 'hide' : ''; ?> tab">
-  <?php if ($contestType != 'design'): ?>
-  <article id="contestOverview">
+  <article ng-if="!isDesign" id="contestOverview">
     <h1>Challenge Overview</h1>
 
     <p ng-bind-html="trust(challenge.detailedRequirements)"></p>
 
     <article id="platforms">
       <h1>Platforms</h1>
-      <?php
-
-      echo '<ul>';
-      if (!empty( $contest->platforms )) {
-        foreach ($contest->platforms as $value) {
-          echo '<li><strong>' . $value . '</li></strong>';
-        }
-      }
-      else {
-        echo '<li><strong>Not Specified</li></strong>';
-      }
-      echo '</ul>';
-      ?>
+      <ul>
+        <li ng-if="hasPlatforms = challenge.platforms && challenge.platforms.length > 0" ng-repeat="platform in challenge.platforms" >
+          <strong>{{platform}}</strong>
+        </li>
+        <li ng-if="!hasPlatforms">
+          <strong>Not Specified</strong>
+        </li>
+      </ul>
     </article>
 
     <article id="technologies">
       <h1>Technologies</h1>
       <div class="technologyTags">
-      <?php
+        <li ng-if="hasTechnology = challenge.technology && challenge.technology.length > 0" ng-repeat="tech in technology">
+          <span>{{tech}}</span>
+        </li>
+        <li ng-if="!hasTechnology">
+          <strong>Not Specified</strong>
+        </li>
 
-      echo '<ul>';
-      if (!empty( $contest->technology )) {
-        foreach ($contest->technology as $value) {
-          echo '<li><span>' . $value . '</span></li>';
-        }
-      }
-      else {
-        echo '<li><strong>Not Specified</li></strong>';
-      }
-      echo '</ul>';
-      ?>
       <div class="clear"></div>
       </div>
     </article>
@@ -415,15 +310,14 @@ include locate_template('header-challenge-landing.php');
   </article>
 
 </div>
-<?php else: ?>
-<article id="contestOverview">
+<article ng-if="isDesign" id="contestOverview">
 
   <article id="contestSummary">
     <h1>CONTEST SUMMARY</h1>
 
     <p class="paragraph"></p>
 
-    <p><?php echo $contest->introduction; ?></p>
+    <p></p>
 
     <p class="paragraph1"><b>Please read the contest specification carefully and watch the forums for any
         questions or feedback concerning this contest. It is important that you monitor any updates
@@ -441,13 +335,13 @@ include locate_template('header-challenge-landing.php');
     <p class="paragraph"></p>
 
     <p style="margin: 0px 0px 0px 15px; padding: 0px; color: rgb(64, 64, 64);"><span
-        style="line-height: 1.6em;"><?php echo $contest->round1Introduction; ?></span></p>
+        style="line-height: 1.6em;" ng-bind-html="trust(challenge.round1Introduction)"></span></p>
 
     <span class="subTitle">Round Two (2)</span>
 
     <p class="paragraph"></p>
 
-    <p><span style="color: rgb(64, 64, 64); font-size: 13px;"><?php echo $contest->round2Introduction; ?></span></p>
+    <p><span style="color: rgb(64, 64, 64); font-size: 13px;" ng-bind-html="trust(challenge.round2Introduction)"></span></p>
 
     <p></p>
 
@@ -479,22 +373,18 @@ include locate_template('header-challenge-landing.php');
   <article id="fullDescription">
     <h1>FULL DESCRIPTION &amp; PROJECT GUIDE</h1>
 
-    <p><?php echo $contest->detailedRequirements; ?></p>
+    <p ng-bind-html="trust(challenge.detailedRequirements)"></p>
   </article>
 
   <article id="stockPhotography">
     <h1>STOCK PHOTOGRAPHY</h1>
 
-      <?php
-      if ($contest->allowStockArt != "false") {
-          echo '<p> Stock photography is allowed in this challenge.<br>
-                      <a href="http://help.topcoder.com/design/design-copyright-and-font-policies/policy-for-stock-photos-in-design-submissions/">See this page for more details.</a></p>';
-      } else {
-          echo '<p>Stock photography is not allowed in this challenge. All submitted elements must be designed solely by you.<br>
-                      <a href="http://help.topcoder.com/design/design-copyright-and-font-policies/policy-for-stock-photos-in-design-submissions/">See
-                        this page for more details.</a></p>';
-      }
-      ?>
+    <p ng-if="challenge.allowStockArt"> Stock photography is allowed in this challenge.<br>
+      <a href="http://help.topcoder.com/design/design-copyright-and-font-policies/policy-for-stock-photos-in-design-submissions/">See this page for more details.</a></p>
+
+    <p ng-if="!challenge.allowStockArt">Stock photography is not allowed in this challenge. All submitted elements must be designed solely by you.<br>
+      <a href="http://help.topcoder.com/design/design-copyright-and-font-policies/policy-for-stock-photos-in-design-submissions/">See
+         this page for more details.</a></p>
 
   </article>
 
@@ -583,27 +473,25 @@ include locate_template('header-challenge-landing.php');
 </article>
 
 </div>
-<?php endif; ?>
 <div id="viewRegistrant" class="tableWrap hide tab">
 
 
   <article>
-    <h1>REGISTRANTS</h1>
+    <h1>
+        REGISTRANTS
+    </h1>
     <table class="registrantsTable">
       <thead>
       <tr>
         <th class="handleColumn">
           <div>Handle</div>
         </th>
-        <?php if ($contestType != 'design'): ?>
-          <th class="ratingColumn">
-            <div>Rating</div>
-          </th>
-
-          <th class="reliabilityColumn">
-            <div>Reliability</div>
-          </th>
-        <?php endif; ?>
+        <th ng-if="challengeType != 'design'" class="ratingColumn">
+          <div>Rating</div>
+        </th>
+        <th ng-if="challengeType != 'design'" class="reliabilityColumn">
+          <div>Reliability</div>
+        </th>
         <th class="regDateColumn">
           <div>Registration Date</div>
         </th>
@@ -613,86 +501,24 @@ include locate_template('header-challenge-landing.php');
       </tr>
       </thead>
       <tbody>
-      <?php foreach ($registrants as $key => $value) {
-        $handleLink = get_bloginfo("siteurl") . "/member-profile/" . $value->handle;
-        echo '<tr >';
-        echo '<td class="handleColumn">';
-        echo '<span>' . '<a href="' . $handleLink . '" style="' . $value->color . '">' . $value->handle . '</a></span>';
-        echo '</td>';
-        if ($contestType != 'design') {
-          echo '<td class="ratingColumn">';
-          echo '<span style="' . $value->colorStyle . '">';
-          echo isset( $value->rating ) ? $value->rating : 0;
-          echo '</span>';
-          echo '</td>';
-
-          echo '<td class="reliabilityColumn">';
-          echo $value->reliability;
-          echo '</td>';
-        }
-
-        echo '<td class="regDateColumn">';
-        echo date("M d, Y H:i T", strtotime($value->registrationDate));
-        echo '</td>';
-        echo '<td class="subDateColumn">';
-        if ($value->lastSubmissionDate) {
-          echo date("M d, Y H:i T", strtotime($value->lastSubmissionDate));
-        }
-        else {
-          echo "--";
-        }
-        echo '</td>';
-        echo '</tr>';
-
-      }  ?>
+      <tr ng-repeat="registrant in challenge.registrants">
+        <td class="handleColumn">
+            <span>
+                <a ng-href="{{siteURL + '/member-profile' + registrant.handle}}">{{registrant.handle}}</a>
+            </span>
+        </td>
+        <td ng-if="challengeType != 'design'" class="ratingColumn">
+            <span style="{{registrant.colorStyle}}">{{registrant.rating || 0}}</span>
+        </td>
+        <td ng-if="challengeType != 'design'" class="reliabilityColumn">
+            <span>{{registrant.reliability}}</span>
+        </td>
+        <td class="regDateColumn">{{formatDate(registrant.registrationDate)}}</td>
+        <td class="subDateColumn">{{formatDate(registrant.lastSubmissionDate)}}</td>
+      </tr>
       </tbody>
     </table>
 
-    <div class="registrantsTable mobile hide">
-      <?php foreach ($registrants as $key => $value) {
-        $handleLink = get_bloginfo("siteurl") . "/member-profile/" . $value->handle;
-        echo '<div class="registrantSection">';
-        echo '<div class="registrantSectionRow registrantHandle">' . '<a href="' . $handleLink . '" style="' . $value->color . '">' . $value->handle . '</a></div>';
-        if ($contestType != 'design') {
-          echo '<div class="registrantSectionRow">';
-          echo '<div class="registrantLabel">Rating:</div>';
-          echo '<div class="registrantField">';
-          echo '<span style="' . $value->ratings_color . '">';
-          echo $value->max_rating;
-          echo '</span>';
-          echo '</div>';
-          echo '<div class="clear"></div>';
-          echo '</div>';
-          echo '<div class="registrantSectionRow">';
-          echo '<div class="registrantLabel">Reliability:</div>';
-          echo '<div class="registrantField">' . $value->reliability . '</div>';
-          echo '<div class="clear"></div>';
-          echo '</div>';
-        }
-        echo '<div class="registrantSectionRow">';
-        echo '<div class="registrantLabel">Registration Date:</div>';
-        echo '<div class="registrantField">';
-        echo date(
-               "M d, Y H:i T",
-               strtotime($value->registrationDate)
-             ) . '</div>';
-        echo '<div class="clear"></div>';
-        echo '</div>';
-        echo '<div class="registrantSectionRow">';
-        echo '<div class="registrantLabel">Submission Date:</div>';
-        echo '<div class="registrantField">';
-        if ($value->lastSubmissionDate) {
-          echo date("M d, Y H:i T", strtotime($value->lastSubmissionDate));
-        }
-        else {
-          echo "--";
-        }
-        echo '</div>';
-        echo '<div class="clear"></div>';
-        echo '</div>';
-        echo '</div>';
-      }  ?>
-    </div>
 
   </article>
 
@@ -729,13 +555,10 @@ include locate_template('header-challenge-landing.php');
 
 <div class="topRightTitle">
 
-  <?php if ($contestType != 'design'): ?>
-    <a ng-href="http://apps.topcoder.com/forums/?module=Category&categoryID={{challenge.forumId}}"
+    <a ng-if="challengeType != 'design'" ng-href="http://apps.topcoder.com/forums/?module=Category&categoryID={{challenge.forumId}}"
        class="contestForumIcon" target="_blank">Challenge Discussion</a>
-  <?php else: ?>
-    <a ng-href="http://studio.topcoder.com/forums?module=ThreadList&forumID={{challenge.forumId}}"
+    <a ng-if="challengeType == 'design'" ng-href="http://studio.topcoder.com/forums?module=ThreadList&forumID={{challenge.forumId}}"
        class="contestForumIcon" target="_blank">Challenge Discussion</a>
-  <?php endif; ?>
 
 </div>
 
@@ -743,11 +566,10 @@ include locate_template('header-challenge-landing.php');
 
 <div class="slider">
 <ul>
-<?php if ($contestType != 'design'): ?>
-  <div class="slideBox">
+  <div ng-hide="isDesign = challengeType == 'design'" class="slideBox">
     <?php include locate_template('content-challenge-downloads.php'); ?>
   </div>
-  <li class="slide">
+  <li ng-hide="isDesign" class="slide">
 
     <div class="reviewStyle slideBox">
       <h3>Review Style:</h3>
@@ -767,36 +589,33 @@ include locate_template('header-challenge-landing.php');
     <!-- End review style section -->
 
   </li>
-  <?php if (isset( $contest->screeningScorecardId ) && isset( $contest->reviewScorecardId )) : ?>
-  <li class="slide">
+  <li ng-hide="isDesign && challenge.screeningScorecardId && challenge.reviewScorecardId" class="slide">
 
     <div class="contestLinks slideBox">
       <h3>Contest Links:</h3>
 
       <div class="inner">
         <p><a
-            href="https://software.topcoder.com/review/actions/ViewScorecard.do?method=viewScorecard&scid=<?php echo $contest->screeningScorecardId; ?>">Screening
+            href="https://software.topcoder.com/review/actions/ViewScorecard.do?method=viewScorecard&scid={{challenge.screeningScorecardId}}">Screening
             Scorecard</a></p>
 
         <p><a
-            href="http://software.topcoder.com/review/actions/ViewScorecard.do?method=viewScorecard&scid=<?php echo $contest->reviewScorecardId; ?>">Review
+            href="http://software.topcoder.com/review/actions/ViewScorecard.do?method=viewScorecard&scid={{challenge.reviewScorecardId}}">Review
             Scorecard</a></p>
       </div>
 
     </div>
 
   </li>
-<?php endif; ?>
 
-  <li class="slide">
+  <li ng-if="isDesign" class="slide">
     <div class="forumFeed slideBox">&nbsp;<br/>
     </div>
   </li>
-<?php else: ?>
-  <li class="slide">
+  <li ng-if="isDesign" class="slide">
     <?php include locate_template('content-challenge-downloads.php'); ?>
   </li>
-  <li class="slide">
+  <li ng-if="isDesign" class="slide">
     <div class="slideBox">
       <h3>How to Format Your Submission:</h3>
 
@@ -831,41 +650,37 @@ include locate_template('header-challenge-landing.php');
       </div>
     </div>
   </li>
-  <li class="slide">
+  <li ng-if="isDesign" class="slide">
     <div class="slideBox">
       <!-- <h3>Forums Feed:</h3> -->
       <div class="inner"></div>
     </div>
   </li>
-  <li class="slide">
+  <li ng-if="isDesign" class="slide">
     <div class="slideBox">
       <h3>Source Files:</h3>
 
       <div class="inner">
         <ul>
-          <?php if (empty($contest->filetypes)) : ?>
-            <li><strong>Text or Word Document containing all of your ideas and supporting information.</strong></li>
-          <?php else:
-            foreach ($contest->filetypes as $filetype) {
-              echo '<li><strong>' . $filetype .'</strong></li>';
-            }
-          endif; ?>
+            <li ng-if="!hasFiletypes"><strong>Text or Word Document containing all of your ideas and supporting information.</strong></li>
+            <li ng-if="hasFiletypes" ng-repeat="filetype in challenge.filetypes">
+              <strong>{{filetype}}</strong>
+            </li>
         </ul>
 
         <p>You must include all source files with your submission. </p>
       </div>
     </div>
   </li>
-  <li class="slide">
+  <li ng-if="isDesign" class="slide">
     <div class="slideBox">
       <h3>Submission Limit:</h3>
 
       <div class="inner">
-        <p><strong><?php echo $contest->submissionLimit; ?></strong></p>
+        <p><strong>{{challenge.submissionLimit}}</strong></p>
       </div>
     </div>
   </li>
-<?php endif; ?>
 <li class="slide">
   <div class="slideBox">
     <h3>Share:</h3>
@@ -881,7 +696,7 @@ include locate_template('header-challenge-landing.php');
         <a class="addthis_counter addthis_bubble_style"></a>
       </div>
       <script type="text/javascript">var addthis_config = {"data_track_addressbar": true};
-        var addthis_share = { url: location.href, title: "<?php echo $contest->challengeName;?>" }</script>
+        var addthis_share = { url: location.href, title: "{{challenge.challengeName}}" }</script>
       <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52f22306211cecfc"></script>
       <!-- AddThis Button END -->
     </div>
