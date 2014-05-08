@@ -248,10 +248,10 @@ include locate_template('header-challenge-landing.php');
 <nav class="tabNav">
   <div class="topRightTitle topRightTitleAlt">
     <?php if ($contestType != 'design'): ?>
-      <a href="http://apps.topcoder.com/forums/?module=Category&categoryID=<?php echo $contest->forumId; ?>"
+      <a ng-href="http://apps.topcoder.com/forums/?module=Category&categoryID={{challenge.forumId}}"
          class="contestForumIcon" target="_blank">Challenge Discussion</a>
     <?php else: ?>
-      <a href="http://studio.topcoder.com/forums?module=ThreadList&forumID=<?php echo $contest->forumId; ?>"
+      <a ng-href="http://studio.topcoder.com/forums?module=ThreadList&forumID={{challenge.forumId}}"
          class="contestForumIcon" target="_blank">Challenge Discussion</a>
     <?php endif; ?>
   </div>
@@ -323,7 +323,7 @@ include locate_template('header-challenge-landing.php');
   <article id="contestOverview">
     <h1>Challenge Overview</h1>
 
-    <p><?php echo $contest->detailedRequirements; ?></p>
+    <p ng-bind-html="trust(challenge.detailedRequirements)"></p>
 
     <article id="platforms">
       <h1>Platforms</h1>
@@ -363,7 +363,7 @@ include locate_template('header-challenge-landing.php');
     </article>
 
     <h3>Final Submission Guidelines</h3>
-    <?php echo $contest->finalSubmissionGuidelines; ?>
+    <div ng-bind-html="trust(challenge.finalSubmissionGuidelines)"></div>
 
 
 
@@ -730,10 +730,10 @@ include locate_template('header-challenge-landing.php');
 <div class="topRightTitle">
 
   <?php if ($contestType != 'design'): ?>
-    <a href="http://apps.topcoder.com/forums/?module=Category&categoryID=<?php echo $contest->forumId; ?>"
+    <a ng-href="http://apps.topcoder.com/forums/?module=Category&categoryID={{challenge.forumId}}"
        class="contestForumIcon" target="_blank">Challenge Discussion</a>
   <?php else: ?>
-    <a href="http://studio.topcoder.com/forums?module=ThreadList&forumID=<?php echo $contest->forumId; ?>"
+    <a ng-href="http://studio.topcoder.com/forums?module=ThreadList&forumID={{challenge.forumId}}"
        class="contestForumIcon" target="_blank">Challenge Discussion</a>
   <?php endif; ?>
 

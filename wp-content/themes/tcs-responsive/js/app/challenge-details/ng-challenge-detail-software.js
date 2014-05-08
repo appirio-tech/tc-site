@@ -42,7 +42,10 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', function(Restangula
   });
 }]);
 
-cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', function($scope, ChallengeService) {
+cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scope, ChallengeService, $sce) {
+  $scope.trust = function(x) {
+    return $sce.trustAsHtml(x);
+  }
   challengeId = location.href.match(/s\/(\d+)/)[1];
   ChallengeService.one(challengeType).one('challenges', challengeId).getList().then(function(challenge) {
     console.log(challenge);
