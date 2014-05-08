@@ -75,6 +75,7 @@ if (!empty( $contest->submissions )) {
       foreach ($registrants as &$registrant) {
         if ($submission_map[ $registrant->handle ]) {
           $registrant->lastSubmissionDate = $submission_map[ $registrant->handle ]->submissionDate;
+          $registrant->submissionStatus = $submission_map[ $registrant->handle  ]->submissionStatus;
         }
       }
       break;
@@ -83,6 +84,7 @@ if (!empty( $contest->submissions )) {
       foreach ($registrants as &$registrant) {
         if ($submission_map[ $registrant->handle ]) {
           $registrant->lastSubmissionDate = $submission_map[ $registrant->handle ]->submissionTime;
+          $registrant->submissionStatus = $submission_map[ $registrant->handle  ]->submissionStatus;
         }
       }
       break;
@@ -529,6 +531,9 @@ include locate_template('header-challenge-landing.php');
         <th class="subDateColumn">
           <div>Submission Date</div>
         </th>
+        <th class="successColumn">
+          <div></div>
+        </th>
       </tr>
       </thead>
       <tbody>
@@ -559,6 +564,16 @@ include locate_template('header-challenge-landing.php');
         }
         else {
           echo "--";
+        }
+        echo '</td>';
+        error_log('hi');
+        error_log(serialize($value));
+        echo '<td>';
+        if ($value->submissionStatus == "Active") {
+          echo '<i class="successIcon"></i>';
+        }
+        else if ($value->submissionStatus != "") {
+          echo '<i class="failureIcon"></i>';
         }
         echo '</td>';
         echo '</tr>';
