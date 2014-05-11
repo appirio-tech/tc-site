@@ -92,6 +92,7 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
     console.log(challenge);
     chglo = challenge;
     $scope.challenge = challenge;
+    $scope.activeTab = 'overview';
     $scope.siteURL = siteURL;
     $scope.challengeType = getParameterByName('type');
     $scope.isDesign = $scope.challengeType == 'design';

@@ -177,30 +177,26 @@ include locate_template('header-challenge-landing.php');
        class="contestForumIcon" target="_blank">Challenge Discussion</a>
   </div>
   <ul>
-    <li ng-if="!isDesign"><a href="#contest-overview" class="<?php if ($tab !== "checkpoints") { echo "active"; } ?> link">Details</a></li>
+    <li ng-if="!isDesign"><a href="#contest-overview" class="{{activeTab == 'active' ? 'active' : ''}} link">Details</a></li>
     <li ng-if="!isDesign"><a href="#viewRegistrant" class="link">Registrants</a></li>
-    <?php if (( !empty( $checkpointData ) && $checkpointData != "Error in processing request" ) || ( $tab === "checkpoints" )): ?>
-      <li><a href="#checkpoints" class="link <?php if ($tab === "checkpoints") { echo "active"; } ?>">Checkpoints</a></li>
-    <?php endif; ?>
+    <!-- FIXME: took out checkpoint stuff here
+    < ?php if (( !empty( $checkpointData ) && $checkpointData != "Error in processing request" ) || ( $tab === "checkpoints" )): ?>
+      <li><a href="#checkpoints" class="link {{activeTab == 'checkpoints' ? 'active' : ''}}">Checkpoints</a></li>
+    < ?php endif; ?>
+    -->
     <li ng-if="!isDesign"><a href="#winner" class="link">Results</a></li>
 
-    <li ng-if="isDesign"><a href="#contest-overview" class="<?php if ($tab !== "checkpoints") { echo "active"; } ?> link">Details</a></li>
+    <li ng-if="isDesign"><a href="#contest-overview" class="{{activeTab != 'checkpoints' ? 'active' : ''}} link">Details</a></li>
     <li ng-if="isDesign"><a href="#viewRegistrant" class="link">Registrants</a></li>
-    <?php if (( !empty( $checkpointData ) && $checkpointData != "Error in processing request" ) || ( $tab === "checkpoints" )): ?>
-      <li><a href="#checkpoints" class="link <?php if ($tab === "checkpoints") { echo "active"; } ?>">Checkpoints</a></li>
-    <?php endif; ?>
-    <?php if (strpos($contest->currentPhaseName, 'Submission') !== FALSE): ?>
-      <li><span class="inactive">Submissions</span></li>
-    <?php else: ?>
-      <li><a href="#submissions" class="link">Submissions</a></li>
-    <?php endif; ?>
-    <?php if (strpos($contest->currentPhaseName, 'Submission') !== FALSE ||
-        strpos($contest->currentPhaseName, 'Screening') !== FALSE ||
-        strpos($contest->currentPhaseName, 'Review') !== FALSE): ?>
-      <li><span class="inactive">Results</span></li>
-    <?php else: ?>
-      <li><a href="#winner" class="link">Results</a></li>
-    <?php endif; ?>
+    <!-- FIXME: more checkpoint stuff commented out
+    < ?php if (( !empty( $checkpointData ) && $checkpointData != "Error in processing request" ) || ( $tab === "checkpoints" )): ?>
+      <li><a href="#checkpoints" class="link < ?php if ($tab === "checkpoints") { echo "active"; } ?>">Checkpoints</a></li>
+    < ?php endif; ?>
+    -->
+    <li ng-if="inSubmission"><span class="inactive">Submissions</span></li>
+    <li ng-if="!inSubmission"><a href="#submissions" class="link">Submissions</a></li>
+    <li ng-if="inSubmission || inScreening || inReview"><span class="inactive">Results</span></li>
+    <li ng-if="!(inSubmission || inScreening || inReview)"><a href="#winner" class="link">Results</a></li>
   </ul>
 </nav>
 <nav class="tabNav firstTabNav designFirstTabNav mobile hide">
@@ -212,9 +208,9 @@ include locate_template('header-challenge-landing.php');
 <nav class="tabNav firstTabNav designSecondTabNav mobile hide">
   <ul>
     <li ng-if="inSubmission"><span class="inactive">Checkpoints</span></li>
-    <?php if (!empty( $checkpointData ) && empty( $checkpointData->error )): ?>
+    <!-- FIXME: took out checkpoint data stuff here. It didn't seem like it was being used.
       <li ng-if="!inSubmission"><a href="<?php echo CURRENT_FULL_URL; ?>&tab=checkpoints" class="link">Checkpoints</a></li>
-    <?php endif; ?>
+    -->
     <li ng-if="inSubmission"><span class="inactive">Submissions</span></li>
     <li ng-if="!inSubmission"><a href="#submissions" class="link">Submissions</a></li>
     </li>
@@ -225,7 +221,7 @@ include locate_template('header-challenge-landing.php');
   </ul>
 </nav>
 
-<div id="contest-overview" class="tableWrap <?php echo ( $activeTab == 'checkpoints' ) ? 'hide' : ''; ?> tab">
+<div id="contest-overview" class="tableWrap {{activeTab == 'checkpoints' ? 'hide' : ''}} tab">
   <article ng-if="!isDesign" id="contestOverview">
     <h1>Challenge Overview</h1>
 
@@ -529,7 +525,7 @@ include locate_template('header-challenge-landing.php');
   <?php include( locate_template('page-challenge-result.php') ); ?>
 
 </div>
-<div id="checkpoints" class="tableWrap <?php echo ( $activeTab == 'checkpoints' ) ? '' : 'hide'; ?> tab">
+<div id="checkpoints" class="tableWrap {{activeTab == 'checkpoints' ? '' : 'hide'}} tab">
 
 
   <article>
