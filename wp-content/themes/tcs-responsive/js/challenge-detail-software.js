@@ -344,7 +344,7 @@ $(function () {
     }
   });
 
-  $(".challengeRegisterBtn").click(function () {
+  $(".challengeRegisterBtn").click(function (event) {
     if ($(this).hasClass("disabled")) { return false; }
     var tcjwt = getCookie('tcjwt');
     if (tcjwt) {
@@ -371,15 +371,17 @@ $(function () {
     } else {
       $('.actionLogin').click();
     }
+    event.preventDefault();
   });
 
   if (autoRegister) {
     $(".challengeRegisterBtn").click();
   }
 
-  $("#registerSuccess .closeModal").click(function () {
+  $("#registerSuccess .closeModal").click(function (event) {
     closeModal();
-    window.location.href = siteURL + "/challenge-details/" + challengeId + "?type=" + challengeType + "&nocache=true";
+    window.location.href = loginState = siteURL + "/challenge-details/" + challengeId + "?type=" + challengeType + "&nocache=true";
+    event.preventDefault();
   });
 
 });
