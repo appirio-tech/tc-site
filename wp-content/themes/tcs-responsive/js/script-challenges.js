@@ -950,7 +950,7 @@ appChallenges = {
         param.challengeType = contest_type;
         param.challengeId = challenge_id;
         param.jwtToken = $.cookie('tcjwt');
-        if (param.jwtToken !== null && param.jwtToken.length > 0) {
+        if (typeof param.jwtToken !== 'undefined' && param.jwtToken.length > 0) {
 
             $.ajax({
                 url: ajaxUrl,
