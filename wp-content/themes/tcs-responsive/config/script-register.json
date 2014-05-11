@@ -113,7 +113,7 @@
         "moment.min.js",
         "moment-timezone.min.js",
         "moment-data.js",
-								"jquery.cookie.js"
+		"jquery.cookie.js"
       ],
       "css": [
         "base.css",
