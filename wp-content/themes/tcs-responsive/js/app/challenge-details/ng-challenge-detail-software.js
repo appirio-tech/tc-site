@@ -62,6 +62,22 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', function(Rest
       if (challenge.allowStockArt) {
         challenge.allowStockArt = challenge.allowStockArt == 'true';
       }
+      if ((new Date(challenge.registrationEndDate)) > new Date()) {
+        challenge.registrationDisable = false;
+      } else {
+        challenge.registrationDisable = true;
+      }
+      challenge.submitDisabled = true;
+      if (challenge.submissionEndDate && challenge.currentStatus != 'Completed') {
+        if (new Date(challenge.submissionEndDate)) > new Date()) {
+          challenge.submitDisabled = false;
+        }
+        var handleMap = {};
+        challenge.registrants.each(function(x) {
+          handleMap[x.handle] = true;
+        });
+        if (!handleMap[handle]) challenge.submitDisabled = true;
+      }
       defer.resolve(challenge);
     });
     return defer.promise;
@@ -73,6 +89,14 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
   $scope.trust = function(x) {
     return $sce.trustAsHtml(x);
   }
+  $scope.range = function(from, to) {
+    var ans = [];
+    for (var i = from; i < to; i++) {
+      ans.push[i];
+    }
+    return ans;
+  }
+  $scope.max = function(x, y) { return x > y ? x : y; };
   $scope.formatDate = function(date) {
     function pad0(x) {
       return (x+'').length == 1 ? '0' + x : x;

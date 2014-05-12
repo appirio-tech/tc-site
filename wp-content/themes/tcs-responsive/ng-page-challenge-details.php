@@ -26,6 +26,7 @@ function tc_challenge_details_js() {
     var challengeId = "<?php echo $contestID;?>";
     var challengeType = "<?php echo $contestType;?>";
     var autoRegister = "<?php echo get_query_var('autoRegister');?>";
+    var handle = "<?php echo $handle; ?>";
 
     var registrants = ["anonymous"
       <?php
