@@ -69,11 +69,11 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', function(Rest
       }
       challenge.submitDisabled = true;
       if (challenge.submissionEndDate && challenge.currentStatus != 'Completed') {
-        if (new Date(challenge.submissionEndDate)) > new Date()) {
+        if ((new Date(challenge.submissionEndDate)) > new Date()) {
           challenge.submitDisabled = false;
         }
         var handleMap = {};
-        challenge.registrants.each(function(x) {
+        challenge.registrants.map(function(x) {
           handleMap[x.handle] = true;
         });
         if (!handleMap[handle]) challenge.submitDisabled = true;
