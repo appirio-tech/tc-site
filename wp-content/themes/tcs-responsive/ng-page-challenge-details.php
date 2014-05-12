@@ -161,7 +161,7 @@ include locate_template('header-challenge-landing.php');
 <div ng-app="challengeDetails" ng-controller="CDCtrl" class="content challenge-detail view-challenge-result {{challengeType != 'design' ? 'develop' : ''">
 <div id="main">
 
-<?php include( locate_template('content-basic-challenge-details.php') ); ?>
+<?php include( locate_template('ng-content-basic-challenge-details.php') ); ?>
 
 
 <article id="mainContent" class="splitLayout <?php if (!empty( $activeTab )) {echo 'currentTab-' . $activeTab;} ?>">
@@ -523,7 +523,7 @@ include locate_template('header-challenge-landing.php');
 </div>
 <div id="winner" class="tableWrap hide tab">
 
-  <?php include( locate_template('page-challenge-result.php') ); ?>
+  <?php include( locate_template('ng-page-challenge-result.php') ); ?>
 
 </div>
 <div id="checkpoints" class="tableWrap {{activeTab == 'checkpoints' ? '' : 'hide'}} tab">
@@ -564,7 +564,7 @@ include locate_template('header-challenge-landing.php');
 <div class="slider">
 <ul>
   <div ng-hide="isDesign = challengeType == 'design'" class="slideBox">
-    <?php include locate_template('content-challenge-downloads.php'); ?>
+    <?php include locate_template('ng-content-challenge-downloads.php'); ?>
   </div>
   <li ng-hide="isDesign" class="slide">
 
@@ -610,7 +610,7 @@ include locate_template('header-challenge-landing.php');
     </div>
   </li>
   <li ng-if="isDesign" class="slide">
-    <?php include locate_template('content-challenge-downloads.php'); ?>
+    <?php include locate_template('ng-content-challenge-downloads.php'); ?>
   </li>
   <li ng-if="isDesign" class="slide">
     <div class="slideBox">
