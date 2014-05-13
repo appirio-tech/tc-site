@@ -158,7 +158,7 @@ include locate_template('header-challenge-landing.php');
 
 ?>
 
-<div ng-app="challengeDetails" ng-controller="CDCtrl" class="content challenge-detail view-challenge-result {{challengeType != 'design' ? 'develop' : ''">
+<div ng-app="challengeDetails" ng-controller="CDCtrl" class="content challenge-detail view-challenge-result {{challengeType != 'design' ? 'develop' : ''}}">
 <div id="main">
 
 <?php include( locate_template('ng-content-basic-challenge-details.php') ); ?>
@@ -194,10 +194,10 @@ include locate_template('header-challenge-landing.php');
       <li><a href="#checkpoints" class="link < ?php if ($tab === "checkpoints") { echo "active"; } ?>">Checkpoints</a></li>
     < ?php endif; ?>
     -->
-    <li ng-if="inSubmission"><span class="inactive">Submissions</span></li>
-    <li ng-if="!inSubmission"><a href="#submissions" class="link">Submissions</a></li>
-    <li ng-if="inSubmission || inScreening || inReview"><span class="inactive">Results</span></li>
-    <li ng-if="!(inSubmission || inScreening || inReview)"><a href="#winner" class="link">Results</a></li>
+    <li ng-if="isDesign && inSubmission"><span class="inactive">Submissions</span></li>
+    <li ng-if="isDesign && !inSubmission"><a href="#submissions" class="link">Submissions</a></li>
+    <li ng-if="isDesign && (inSubmission || inScreening || inReview)"><span class="inactive">Results</span></li>
+    <li ng-if="isDesign && !(inSubmission || inScreening || inReview)"><a href="#winner" class="link">Results</a></li>
   </ul>
 </nav>
 <nav class="tabNav firstTabNav designFirstTabNav mobile hide">
@@ -470,7 +470,7 @@ include locate_template('header-challenge-landing.php');
 </article>
 
 </div>
-<div id="viewRegistrant" class="tableWrap hide tab">
+<div id="viewRegistrant" class="tableWrap hide tab" style="">
 
 
   <article>

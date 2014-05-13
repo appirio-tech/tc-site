@@ -40,6 +40,23 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', function(Rest
   var service = Restangular.withConfig(function(RestangularConfigurer) {
     RestangularConfigurer.setBaseUrl(API_URL);
   });
+  service.getResults = function(id) {
+    var defer = $q.defer();
+    service.one(challengeType).one('challenges').one('result', id).getList().then(function(results) {
+      results = results[0];
+      defer.resolve(results);
+    });
+    return defer.promise;
+  }
+  service.getCheckpointData = function(id) {
+    var defer = $q.defer();
+    service.one(challengeType).one('challenges').one('checkpoint', id).getList().then(function(data) {
+      data = data[0];
+      if (data.error) defer.resolve(false);
+      defer.resolve(data);
+    });
+    return defer.promise;
+  }
   service.getChallenge = function(id) {
     var defer = $q.defer();
     service.one(challengeType).one('challenges', id).getList().then(function(challenge) {
@@ -112,6 +129,17 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
   }
 
   challengeId = location.href.match(/s\/(\d+)/)[1];
+  $scope.round = Math.round;
+  $scope.currentTab = 'details';
+  ChallengeService.getCheckpointData(challengeId).then(function(data) {
+    if (!data) {
+      $scope.checkpointData = false;
+      $scope.numCheckpointSubmissions = -1;
+    } else {
+      $scope.checkpointData = data;
+      $scope.numCheckpointSubmissions = data.numberOfSubmissions;
+    }
+  })
   ChallengeService.getChallenge(challengeId).then(function(challenge) {
     console.log(challenge);
     chglo = challenge;
@@ -126,7 +154,31 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
     $scope.hasFiletypes = (challenge.filetypes != undefined) && challenge.filetypes.length > 0;
     globby = $scope;
 
-
+    if (challenge.currentPhaseEndDate == '') {
+      ChallengeService.getResults(challengeId).then(function(results) {
+        $scope.results = results;
+        $scope.submissionMap = {};
+        results.results.map(function(x) {
+          $scope.submissionMap[x.placement] = x;
+        });
+        $scope.firstPlaceSubmission = $scope.submissionMap[1];
+        $scope.secondPlaceSubmission = $scope.submissionMap[1];
+        $scope.submissions = [];
+        var i = 1;
+        while (submissionMap[i]) {
+          $scope.submissions.push(submissionMap[i]);
+          i++;
+        }
+        $scope.initialScoreSum = 0;
+        $scope.finalScoreSum = 0;
+        $scope.submissions.map(function(x) {
+          $scope.initialScoreSum += x.initialScore;
+          $scope.finalScoreSum += x.finalScore;
+        });
+      });
+    } else {
+      $scope.submissions = false;
+    }
   });
 }]);
 
@@ -672,7 +724,8 @@ app.tabNavinit = function () {
     if (tabIdx > 0) {
       id = "#" + id.substr(tabIdx + 4);
     }
-    $('.tab', $(this).closest('.tabsWrap')).hide();
+    var old = $('a.active').attr('href');
+    $(old).hide();
     $(id).fadeIn();
     $('.active', $(this).closest('nav')).removeClass('active');
     $(this).addClass('active');

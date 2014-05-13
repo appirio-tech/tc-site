@@ -25,163 +25,39 @@ if($nrOfPrizes > 1){
 }
 ?>
 
-<?php if($submissionCount != 0): ?>
-
-<?php
-if ($contestType == 'design'):
-  if($nrOfPrizes > 2){
-    $thirdPlacedSubmission = $submission_map[3];
-  }
-?>
-<article>
-    <?php 
-    if (isset($firstPlacedSubmission)):
-      $registrationDate = $firstPlacedSubmission->registrationDate;
-    ?>
-    <div class="winnerRow">
-        <div class="place first">1<span>st</span></div>
+<article ng-if="isDesign && submissions.length > 0">
+    <div ng-if="firstPlaceSubmission" ng-repeat="submission in submissions" class="winnerRow {{$index > 1 ? 'hideOnMobi' : ''}}">
+        <div class="place {{['first', 'second', 'third', 'other'][$index]}}">{{$index + 1}}<span>{{(placeSuffix = ['st', 'nd', 'rd'][$index]) ? placeSuffix : 'th'}}</span></div>
         <!-- #/end place-->
         <div class="image">
-            <img src="<?php echo $firstPlacedSubmission->previewDownloadLink; ?>" alt="winner"/>
+            <img src="{{submission.previewDownloadLink}}" alt="winner"/>
         </div>
         
         <!-- #/end image-->
         <div class="details">
-            <a href="<?php bloginfo('wpurl'); ?>/member-profile/<?php echo $firstPlacedSubmission->handle; ?>" class="coderTextOrange"><?php echo $firstPlacedSubmission->handle; ?></a>
+            <a href="<?php bloginfo('wpurl'); ?>/member-profile/{{submission.handle}}" class="coderTextOrange">{{submission.handle}}</a>
             <div class="">
-                <h3>$<?php echo $contest->prize[0]; ?></h3>
+                <h3>${{challenge.prize[0]}}</h3>
                 <span class="title">PRIZE</span>
                 <span class="date">Registration Date</span>
-                <span class="time"><?php echo date("M d, Y H:i", strtotime("$registrationDate")) . " EST"; ?></span>
+                <span class="time">{{formatDate(submission.registrationDate)}}</span>
             </div>
             <div class="">
-                <h3><?php echo $firstPlacedSubmission->points; ?></h3>
+                <h3>{{submission.points}}</h3>
                 <span class="title">Studio Cup Points</span>
                 <span class="date">Submitted Date</span>
-                <span class="time"><?php echo date("M d, Y H:i", strtotime("$firstPlacedSubmission->submissionDate")) . " EST"; ?></span>
+                <span class="time">{{formatDate(submission.submissionDate)}}</span>
             </div>
         </div>
         <!-- #/end details-->
         <div class="actions">
-            <a href="<?php echo $firstPlacedSubmission->previewDownloadLink; ?>" class="view">View</a>
-            <a href="<?php echo $firstPlacedSubmission->submissionDownloadLink; ?>" class="download">Download</a>
+            <a href="{{submission.previewDownloadLink}}" class="view">View</a>
+            <a href="{{submission.submissionDownloadLink}}" class="download">Download</a>
         </div>
         <!-- #/end actions-->
         <div class="clear"></div>
     </div>
-    <!--#/end winnerrow-->
-    <?php endif; ?>
-    <?php 
-    if (isset($secondPlacedSubmission)):
-      $registrationDate = $secondPlacedSubmission->registrationDate;
-    ?>
-    <div class="winnerRow">
-        <div class="place second">2<span>nd</span></div>
-        <!-- #/end place-->
-        <div class="image">
-            <img src="<?php echo $secondPlacedSubmission->previewDownloadLink; ?>" alt="winner" alt="winner"/>
-        </div>
-        <!-- #/end image-->
-        <div class="details">
-            <a href="<?php bloginfo('wpurl'); ?>/member-profile/<?php echo $secondPlacedSubmission->handle; ?>" class="coderTextOrange"><?php echo $secondPlacedSubmission->handle; ?></a>
-            <div class="">
-                <h3>$<?php echo $contest->prize[1]; ?></h3>
-                <span class="title">PRIZE</span>
-                <span class="date">Registration Date</span>
-                <span class="time"><?php echo date("M d, Y H:i", strtotime("$registrationDate")) . " EST"; ?></span>
-            </div>
-            <div class="">
-                <h3><?php echo $secondPlacedSubmission->points; ?></h3>
-                <span class="title">Studio Cup Points</span>
-                <span class="date">Submitted Date</span>
-                <span class="time"><?php echo date("M d, Y H:i", strtotime("$secondPlacedSubmission->submissionDate")) . " EST"; ?></span>
-            </div>
-        </div>
-        <!-- #/end details-->
-        <div class="actions">
-            <a href="<?php echo $secondPlacedSubmission->previewDownloadLink; ?>" class="view">View</a>
-            <a href="<?php echo $secondPlacedSubmission->submissionDownloadLink; ?>" class="download">Download</a>
-        </div>
-        <!-- #/end actions-->
-        <div class="clear"></div>
-    </div>
-    <!--#/end winnerrow-->
-    <?php endif; ?>
-    <?php 
-    if (isset($thirdPlacedSubmission)):
-      $registrationDate = $thirdPlacedSubmission->registrationDate;
-    ?>
-    <div class="winnerRow hideOnMobi">
-        <div class="place third">3<span>rd</span></div>
-        <!-- #/end place-->
-        <div class="image">
-            <img src="<?php echo $thirdPlacedSubmission->previewDownloadLink; ?>" alt="winner" alt="winner"/>
-        </div>
-        <!-- #/end image-->
-        <div class="details">
-            <a href="<?php bloginfo('wpurl'); ?>/member-profile/<?php echo $thirdPlacedSubmission->handle; ?>" class="coderTextOrange"><?php echo $thirdPlacedSubmission->handle; ?></a>
-            <div class="">
-                <h3>$<?php echo $contest->prize[2]; ?></h3>
-                <span class="title">PRIZE</span>
-                <span class="date">Registration Date</span>
-                <span class="time"><?php echo date("M d, Y H:i", strtotime("$registrationDate")) . " EST"; ?></span>
-            </div>
-            <div class="">
-                <h3><?php echo $thirdPlacedSubmission->points; ?></h3>
-                <span class="title">Studio Cup Points</span>
-                <span class="date">Submitted Date</span>
-                <span class="time"><?php echo date("M d, Y H:i", strtotime("$thirdPlacedSubmission->submissionDate")) . " EST"; ?></span>
-            </div>
-        </div>
-        <!-- #/end details-->
-        <div class="actions">
-            <a href="<?php echo $thirdPlacedSubmission->previewDownloadLink; ?>" class="view">View</a>
-            <a href="<?php echo $thirdPlacedSubmission->submissionDownloadLink; ?>" class="download">Download</a>
-        </div>
-        <!-- #/end actions-->
-        <div class="clear"></div>
-    </div>
-    <!--#/end winnerrow-->
-    <?php endif; ?>
-    <?php 
-    for ($i = 3; $i < $nrOfPrizes; $i++) :
-      $submission = $submission_map[$i+1];
-      if(isset($submission)):
-        $registrationDate = $submission->registrationDate;
-        $submissionTime = $submission->submissionDate;
-    ?>
-    <div class="winnerRow hideOnMobi">
-        <div class="place other"><?php echo $i+1; ?><span>th</span></div>
-        <!-- #/end place-->
-        <div class="image">
-            <img src="<?php echo $submission->previewDownloadLink; ?>" alt="winner" alt="winner"/>
-        </div>
-        <!-- #/end image-->
-        <div class="details">
-            <a href="<?php bloginfo('wpurl'); ?>/member-profile/<?php echo $submission->handle; ?>" class="coderTextOrange"><?php echo $submission->handle; ?></a>
-            <div class="">
-                <h3>$<?php if($nrOfPrizes > $i) { echo $contest->prize[$i]; } else { echo "0"; } ?></h3>
-                <span class="title">PRIZE</span>
-                <span class="date">Registration Date</span>
-                <span class="time"><?php echo date("M d, Y H:i", strtotime("$registrationDate")) . " EST"; ?></span>
-            </div>
-            <div class="">
-                <h3><?php echo $submission->points; ?></h3>
-                <span class="title">Studio Cup Points</span>
-                <span class="date">Submitted Date</span>
-                <span class="time"><?php echo date("M d, Y H:i", strtotime("$submissionTime")) . " EST"; ?></span>
-            </div>
-        </div>
-        <!-- #/end details-->
-        <div class="actions">
-            <a href="<?php echo $submission->previewDownloadLink; ?>" class="view">View</a>
-            <a href="<?php echo $submission->submissionDownloadLink; ?>" class="download">Download</a>
-        </div>
-        <!-- #/end actions-->
-        <div class="clear"></div>
-    </div>
-    <?php endif; ?>
-    <?php endfor; ?>
+
     <!--#/end winnerrow-->
     <div class="winnerRow hideOnMobi hide">
         <div class="place other client">CLIENT<span>SELECTION</span></div>
@@ -222,19 +98,19 @@ if ($contestType == 'design'):
         <div class="registrant">
             <h2>Registrants</h2>
             <div class="values">
-                <span class="count"><?php echo $contest->numberOfRegistrants; ?></span>
+                <span class="count">{{challenge.numberOfRegistrants}}</span>
             </div>
         </div>
         <!--#/end registrant-->
-        <div class="round <?php if($nrOfCheckpointSubmissions == -1) { echo 'hide'; } ?>">
+        <div class="round {{numCheckpointSubmissions == -1 ? 'hide' : ''">
             <h2>Round 1 (Checkpoint)</h2>
             <!--<div class="values">
-                <span class="count"><?php echo $nrOfCheckpointSubmissions; ?><span class="sup">&nbsp;</span></span>
+                <span class="count"><span class="sup">&nbsp;</span></span>
                 <span class="type">Submitter</span>
                 <span class="type">&nbsp;</span>
             </div>-->
             <div class="values">
-                <span class="count"><?php echo $nrOfCheckpointSubmissions; ?></span>
+                <span class="count"></span>
                 <span class="type">Submissions</span>
             </div>
             <!--<div class="values">
@@ -251,7 +127,7 @@ if ($contestType == 'design'):
                 <span class="type">&nbsp;</span>
             </div>-->
             <div class="values">
-                <span class="count"><?php echo count($submissions); ?></span>
+                <span class="count">{{submissions.length}}</span>
                 <span class="type">Submissions</span>
             </div>
             <!--<div class="values">
@@ -265,28 +141,27 @@ if ($contestType == 'design'):
     <!--#/end competitionDetails-->
 </article>
 
-<?php else: ?>
-<article>
+<article ng-if="!isDesign && submissions.length > 0">
     <?php if (isset($firstPlacedSubmission)): ?>
-    <div class="winnerRow">
+    <div ng-if="firstPlaceSubmission" class="winnerRow">
         <div class="place first">1<span>st</span></div>
         <!-- #/end place-->
         <div class="details">
-            <a href="<?php bloginfo('wpurl'); ?>/member-profile/<?php echo $firstPlacedSubmission->handle; ?>" class="coderTextYellow"><?php echo $firstPlacedSubmission->handle; ?></a>
+            <a href="<?php bloginfo('wpurl'); ?>/member-profile/{{firstPlaceSubmission.handle}}" class="coderTextYellow">{{firstPlaceSubmission.handle}}</a>
         </div>
         <!-- #/end details-->
         <div class="price">
-            <span class="price">$<?php echo $contest->prize[0]; ?></span>
+            <span class="price">${{challenge.prize[0]}}</span>
             <span>PRIZE</span>
         </div>
         <!-- #/end price-->
         <div class="point">
-            <span class="point"><?php echo $firstPlacedSubmission->points; ?></span>
+            <span class="point">{{firstPlaceSubmission.points}}</span>
             <span>DR POINT</span>
         </div>
         <!-- #/end price-->
         <div class="actions">
-            <a href="<?php echo $firstPlacedSubmission->submissionDownloadLink; ?>" class="download">Download</a>
+            <a href="{{firstPlaceSubmission.submissionDownloadLink" class="download">Download</a>
         </div>
         <!-- #/end actions-->
         <div class="clear"></div>
@@ -294,25 +169,25 @@ if ($contestType == 'design'):
     <!--#/end winnerrow-->
     <?php endif; ?>
     <?php if (isset($secondPlacedSubmission)): ?>
-    <div class="winnerRow">
+    <div ng-if="secondPlaceSubmission" class="winnerRow">
         <div class="place second">2<span>nd</span></div>
         <!-- #/end place-->
         <div class="details">
-            <a href="<?php bloginfo('wpurl'); ?>/member-profile/<?php echo $secondPlacedSubmission->handle; ?>" class="coderTextGray"><?php echo $secondPlacedSubmission->handle; ?></a>
+            <a href="<?php bloginfo('wpurl'); ?>/member-profile/{{secondPlaceSubmission.handle}}" class="coderTextGray">{{secondPlaceSubmission.handle}}</a>
         </div>
         <!-- #/end details-->
         <div class="price">
-            <span class="price">$<?php echo $contest->prize[1]; ?></span>
+            <span class="price">${{challenge.prize[1]}}</span>
             <span>PRIZE</span>
         </div>
         <!-- #/end price-->
         <div class="point">
-            <span class="point"><?php echo $secondPlacedSubmission->points; ?></span>
+            <span class="point">{{secondPlaceSubmission.points}}</span>
             <span>DR POINT</span>
         </div>
         <!-- #/end price-->
         <div class="actions">
-            <a href="<?php echo $secondPlacedSubmission->submissionDownloadLink; ?>" class="download">Download</a>
+            <a href="{{secondPlaceSubmission.submissionDownloadLink}}" class="download">Download</a>
         </div>
         <!-- #/end actions-->
         <div class="clear"></div>
@@ -351,13 +226,13 @@ if ($contestType == 'design'):
           $initialScoreSum += $submissions[$i]->initialScore;
           $finalScoreSum += $submissions[$i]->finalScore;
         ?>
-        <tr class="<?php if ($i % 2 == 1) { echo 'alt'; } ?>">
-            <td class="leftAlign"><a href="<?php bloginfo('wpurl'); ?>/member-profile/<?php echo $submission->handle; ?>" class="coderTextGray"><?php echo $submission->handle; ?></a></td>
-            <td><?php echo date("M d, Y H:i", strtotime("$registrationDate")) . " EST"; ?></td>
-            <td><?php echo date("M d, Y H:i", strtotime("$submission->submissionDate")) . " EST"; ?></td>
-            <td><span class="pass"><?php echo $submission->screeningScore; ?></span></td>
-            <td><span class="initialScore"><?php echo $submission->initialScore; ?></span>/<a href="javascript:" class="finalScore"><?php echo $submission->finalScore; ?></a> </td>
-            <td><a href="<?php echo $submission->submissionDownloadLink; ?>">Download</a></td>
+        <tr ng-repeat="submission in submissions" class="{{$index % 2 == 1 ? 'alt' : ''}}">
+            <td class="leftAlign"><a href="<?php bloginfo('wpurl'); ?>/member-profile/{{submission.handle}}" class="coderTextGray">{{submission.handle}}</a></td>
+            <td>{{formatDate(submission.registrationDate)}}</td>
+            <td>{{formatDate(submission.submissionDate)}}</td>
+            <td><span class="pass">{{submission.screeningScore}}</span></td>
+            <td><span class="initialScore">{{submission.initialScore}}</span>/<a href="javascript:" class="finalScore">{{submission.finalScore}}</a> </td>
+            <td><a href="{{submission.submissionDownloadLink}}">Download</a></td>
         </tr>
         <?php endfor; ?>
         </tbody>
@@ -373,26 +248,26 @@ if ($contestType == 'design'):
           $finalScoreSum += $submissions[$i]->finalScore;        
         ?>
         
-        <div class="registrantSection">
-            <div class="registrantSectionRow registrantHandle"><a href="<?php bloginfo('wpurl'); ?>/member-profile/<?php echo $submissions[$i]->handle; ?>" class=" coder coderTextYellow"><?php echo $submissions[$i]->handle; ?></a></div>
+        <div ng-repeat="submission in submissions" class="registrantSection">
+            <div class="registrantSectionRow registrantHandle"><a href="<?php bloginfo('wpurl'); ?>/member-profile/{{submission.handle}}" class=" coder coderTextYellow">{{submission.handle}}</a></div>
             <div class="registrantSectionRow">
                 <div class="registrantLabel">Registration Date:</div>
-                <div class="registrantField"><?php echo date("M d, Y H:i", strtotime("$registrationDate")) . " EST"; ?></div>
+                <div class="registrantField">{{formatDate(submission.registrationDate)}}</div>
                 <div class="clear"></div>
             </div>
             <div class="registrantSectionRow">
                 <div class="registrantLabel">Submission Date:</div>
-                <div class="registrantField"><?php echo date("M d, Y H:i", strtotime("$submission->submissionDate")) . " EST"; ?></div>
+                <div class="registrantField">{{formatDate(submission.submissionDate)}}</div>
                 <div class="clear"></div>
             </div>
             <div class="registrantSectionRow">
                 <div class="registrantLabel">Screening Score:</div>
-                <div class="registrantField"><span class="pass"><?php echo $submissions[$i]->screeningScore; ?></span></div>
+                <div class="registrantField"><span class="pass">{{submission.screeningScore}}</span></div>
                 <div class="clear"></div>
             </div>
             <div class="registrantSectionRow">
                 <div class="registrantLabel">Initial/ Final Score:</div>
-                <div class="registrantField"><a href="javascript:"><?php echo $submissions[$i]->initialScore; ?>/<?php echo $submissions[$i]->finalScore; ?></a></div>
+                <div class="registrantField"><a href="javascript:">{{submission.screeningScore}}/{{submission.finalScore}}</a></div>
                 <div class="clear"></div>
             </div>
             <div class="registrantSectionRow">
@@ -406,19 +281,19 @@ if ($contestType == 'design'):
         <div class="registrant">
             <h2>Registrants</h2>
             <div class="values">
-                <span class="count"><?php echo $contest->numberOfRegistrants; ?></span>
+                <span class="count">{{challenge.numberOfRegistrants}}</span>
             </div>
         </div>
         <!--#/end registrant-->
-        <div class="round <?php if($nrOfCheckpointSubmissions == -1) { echo 'hide'; } ?>">
+        <div class="round {{!checkpointData ? 'hide' : ''">
             <h2>Checkpoint</h2>
             <!--<div class="values">
-                <span class="count"><?php echo $nrOfCheckpointSubmissions; ?><span class="sup">&nbsp;</span></span>
+                <span class="count"><span class="sup">&nbsp;</span></span>
                 <span class="type">Submitter</span>
                 <span class="type">&nbsp;</span>
             </div>-->
             <div class="values">
-                <span class="count"><?php echo $nrOfCheckpointSubmissions; ?></span>
+                <span class="count">{{numCheckpointSubmissions}}</span>
                 <span class="type">Submissions</span>
             </div>
             <!--<div class="values">
@@ -430,12 +305,12 @@ if ($contestType == 'design'):
         <div class="round round2">
             <h2>Final</h2>
             <!--<div class="values">
-                <span class="count"><?php echo count($submissions); ?><span class="sup">&nbsp;</span></span>
+                <span class="count"><span class="sup">&nbsp;</span></span>
                 <span class="type">Submitter</span>
                 <span class="type">&nbsp;</span>
             </div>-->
             <div class="values">
-                <span class="count"><?php echo count($submissions); ?></span></span>
+                <span class="count"></span></span>
                 <span class="type">Submissions</span>
             </div>
             <!--<div class="values">
@@ -447,12 +322,12 @@ if ($contestType == 'design'):
         <div class="average">
             <h2>AVERAGE SCORE</h2>
             <div class="values">
-                <span class="count"><?php echo round($initialScoreSum/$submissionCount, 2); ?><span class="sup">&nbsp;</span></span>
+                <span class="count">{{round(initialScoreSum * 100 / submissions.length) / 100}}<span class="sup">&nbsp;</span></span>
                 <span class="type">Average</span>
                 <span class="type">Initial Score</span>
             </div>
             <div class="values">
-                <span class="count"><?php echo round($finalScoreSum/$submissionCount, 2); ?><span class="sup">&nbsp;</span></span>
+                <span class="count">{{round(finalScoreSum * 100 / submissions.length) / 100}}<span class="sup">&nbsp;</span></span>
                 <span class="type">Average</span>
                 <span class="type">Final Score</span>
             </div>
@@ -462,8 +337,7 @@ if ($contestType == 'design'):
     </div>
 
 </article>
+<div ng-if="!submissions || submissions.length == 0">
+  There are no submissions for this contest.
+</div>
 
-<?php endif; ?>
-<?php else: ?>
-There are no submissions for this contest.
-<?php endif; ?>

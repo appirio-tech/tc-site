@@ -130,7 +130,7 @@
     <td ng-if="isDesign" colspan="2">
         <p class="scPoints"><span>{{challenge.digitalRunPoints ? challenge.digitalRunPoints : 'NO'}}</span> STUDIO CUP POINTS</p>
     </td>
-    <td colspan="3">
+    <td ng-if="isDesign" colspan="3">
       <p class="scPoints"><span>{{challenge.numberOfCheckpointsPrizes}}</span> CHECKPOINT AWARDS WORTH <span>${{challenge.topCheckPointPrize}}</span>
         EACH</p>
     </td>
