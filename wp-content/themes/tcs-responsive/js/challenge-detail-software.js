@@ -66,11 +66,6 @@ $(document).ready(function () {
     $('.registrantsTable.mobile').addClass('hide');
   }
 
-  if ($('.loading').length <= 0) {
-    $('body').append('<div class="loading">Loading...</div>');
-  } else {
-    $('.loading').show();
-  }
   $('a[href="' + getAnchor(location.href) + '"]').click();
 
   // init tab nav
@@ -79,12 +74,28 @@ $(document).ready(function () {
   var tcsso = getCookie('tcsso');
   var tcjwt = getCookie('tcjwt');
 
+  if (typeof challengeId != 'undefined') {
+    if ($('.loading').length <= 0) {
+      $('body').append('<div class="loading">Loading...</div>');
+    } else {
+      $('.loading').show();
+    }
 
-  getChallenge(tcjwt, function(challenge) {
-    updateRegSubButtons(challenge);
-    addDocuments(challenge);
-    $('.loading').hide();
-  });
+    if (tcjwt) {
+      getChallenge(tcjwt, function(challenge) {
+        updateRegSubButtons(challenge);
+        addDocuments(challenge);
+        $('.loading').hide();
+      });
+    } else {
+        var now = new Date();
+        if (registrationUntil && now.getTime() < registrationUntil.getTime()) {
+          $('.challengeRegisterBtn').removeClass('disabled');
+        }
+        $('.loading').hide();
+    }
+  }
+
 
   function updateRegSubButtons(challenge) {
     // if there was an error getting the challenge then enable the buttons
@@ -138,6 +149,8 @@ $(document).ready(function () {
       }, function (data) {
         callback(data);
       });
+    } else {
+      $('.loading').hide();
     }
   }
 });

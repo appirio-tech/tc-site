@@ -773,47 +773,6 @@ function get_social_validity_ajax(
     return $social_validity;
 }
 
-/*
- * Get countries for country dropdown
- */
-add_action( 'wp_ajax_get_countries', 'get_countries_controller' );
-add_action( 'wp_ajax_nopriv_get_countries', 'get_countries_controller' );
-
-function get_countries_controller()
-{
-    $userkey = get_option( 'api_user_key' );
-
-    $countries = get_countries_ajax();
-
-    wp_send_json( $countries );
-}
-
-function get_countries_ajax()
-{
-
-    $url = 'http://api.topcoder.com/v2/data/countries';
-
-    $args     = array(
-        'httpversion' => get_option( 'httpversion' ),
-        'timeout'     => get_option( 'request_timeout' )
-    );
-    $response = wp_remote_get( $url, $args );
-
-    if (is_wp_error( $response ) || ! isset ( $response ['body'] )) {
-        $countries = json_decode( $response['body'] );
-        return $countries;
-    }
-    if ($response ['response'] ['code'] == 200) {
-
-//print $response ['body'];
-        $countries = json_decode( $response['body'] );
-        return $countries;
-    }
-
-    $countries = json_decode( $response['body'] );
-    return $countries;
-}
-
 /**
  * Get challenges to be used in rss
  *
@@ -974,3 +933,67 @@ function get_all_platforms_and_technologies_ajax() {
     }
     return "Error in processing request";
 }
+
+/**
+ * Legacy code only for backward compatibility
+ */
+
+
+function get_active_contest_ajax_controller()
+{
+  $userkey       = get_option( 'api_user_key' );
+  $contest_type  = $_GET ['contest_type'];
+  $page          = get_query_var( 'pages' );
+  $post_per_page = $_GET['pageSize'];
+  $page          = $_GET ['pageIndex'];
+  $sortColumn    = $_GET ['sortColumn'];
+  $sortOrder     = $_GET ['sortOrder'];
+
+  $contest_list = get_active_contests_ajax( $userkey, $contest_type, $page, $post_per_page, $sortColumn, $sortOrder );
+  if (isset( $contest_list->data )) {
+    wp_send_json( $contest_list->data );
+  } else {
+    wp_send_json_error();
+  }
+}
+add_action('wp_ajax_get_upcoming_contest', 'get_upcoming_contest_ajax_controller');
+add_action('wp_ajax_nopriv_get_upcoming_contest', 'get_upcoming_contest_ajax_controller');
+function get_upcoming_contest_ajax_controller() {
+  $userkey = get_option('api_user_key');
+  $contest_type = $_GET ['contest_type'];
+  $page = get_query_var('pages');
+  $post_per_page = $_GET['pageSize'];
+  $page = $_GET ['pageIndex'];
+  $sortColumn = $_GET ['sortColumn'];
+  $sortOrder = $_GET ['sortOrder'];
+
+  $contest_list = get_upcoming_contests_ajax($userkey, $contest_type, $page, $post_per_page, $sortColumn, $sortOrder);
+  if (isset($contest_list->data)) {
+    wp_send_json($contest_list->data);
+  }
+  else {
+    wp_send_json_error();
+  }
+}
+
+add_action('wp_ajax_get_active_contest', 'get_active_contest_ajax_controller');
+add_action('wp_ajax_nopriv_get_active_contest', 'get_active_contest_ajax_controller');
+function get_past_contest_ajax_controller() {
+  $userkey = get_option('api_user_key');
+  $contest_type = $_GET ['contest_type'];
+  $page = get_query_var('pages');
+  $post_per_page = $_GET ['pageSize'];
+  $sortColumn = $_GET ['sortColumn'];
+  $sortOrder = $_GET ['sortOrder'];
+
+  $contest_list = get_past_contests_ajax($userkey, $contest_type, $page, $post_per_page, $sortColumn, $sortOrder);
+  if (isset($contest_list->data)) {
+    wp_send_json($contest_list->data);
+  }
+  else {
+    wp_send_json_error();
+  }
+}
+
+add_action( 'wp_ajax_get_past_contest', 'get_past_contest_ajax_controller' );
+add_action( 'wp_ajax_nopriv_get_past_contest', 'get_past_contest_ajax_controller' );
