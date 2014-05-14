@@ -171,7 +171,7 @@ include locate_template('header-challenge-landing.php');
 
 <section class="tabsWrap">
 <nav class="tabNav">
-  <div class="topRightTitle topRightTitleAlt">
+  <div class="topRightTitle topRightTitleAlt" style="position: relative;">
     <a ng-if="challengeType != 'design'" ng-href="http://apps.topcoder.com/forums/?module=Category&categoryID={{challenge.forumId}}"
         class="contestForumIcon" target="_blank">Challenge Discussion</a>
     <a ng-if="challengeType == 'design'" ng-href="http://studio.topcoder.com/forums?module=ThreadList&forumID={{challenge.forumId}}"
@@ -548,9 +548,9 @@ include locate_template('header-challenge-landing.php');
 
 </div>
 <!-- /.mainStream -->
-<aside class="sideStream  grid-1-3">
+<aside class="sideStream  grid-1-3" style="float: left;">
 
-<div class="topRightTitle">
+<div class="topRightTitle" style="position: relative;">
 
     <a ng-if="challengeType != 'design'" ng-href="http://apps.topcoder.com/forums/?module=Category&categoryID={{challenge.forumId}}"
        class="contestForumIcon" target="_blank">Challenge Discussion</a>
