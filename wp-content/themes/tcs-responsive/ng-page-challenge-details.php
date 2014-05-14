@@ -46,21 +46,23 @@ function tc_challenge_details_js() {
 
 $isChallengeDetails = TRUE;
 
+$contestID = get_query_var('contestID');
+$contestType    = filter_input(INPUT_GET, 'type', FILTER_SANITIZE_STRING);
+$contestType    = empty( $contestType ) ? "develop" : $contestType;
+$noCache        = get_query_var('nocache');
+/*
 $values = get_post_custom($post->ID);
 
 $userkey = get_option('api_user_key');
 $siteURL = site_url();
 
 
-$contestID = get_query_var('contestID');
 
-$contestType    = filter_input(INPUT_GET, 'type', FILTER_SANITIZE_STRING);
-$contestType    = empty( $contestType ) ? "develop" : $contestType;
-$noCache        = get_query_var('nocache');
 $contest        = get_contest_detail('', $contestID, $contestType, $noCache);
 $registrants    = empty( $contest->registrants ) ? array() : $contest->registrants;
 $checkpointData = get_checkpoint_details($contestID, $contestType);
 
+*/
 $registerDisable = FALSE;
 $submitDisabled  = FALSE;
 /*
@@ -95,7 +97,6 @@ if ($contest->submissionEndDate && $contest->currentStatus !== "Completed") {
  * @param $contest
  *
  * @return bool
- */
 function challenge_register_disabled($contest) {
   global $handle;
 
@@ -116,6 +117,7 @@ function challenge_register_disabled($contest) {
   return $registerDisable;
 }
 
+ */
 
 /**
  * Should the submit button be active
@@ -127,7 +129,6 @@ function challenge_register_disabled($contest) {
  * @param $contest
  *
  * @return bool
- */
 function challenge_submit_disabled($contest) {
   global $handle;
   $submitDisabled = TRUE;
@@ -147,9 +148,13 @@ function challenge_submit_disabled($contest) {
   return $submitDisabled;
 }
 
+ */
 
+/*
 
 $documents = isset($contest->Documents) ? $contest->Documents : array();
+
+*/
 
 // need for header file
 $contest_type = $contestType;
