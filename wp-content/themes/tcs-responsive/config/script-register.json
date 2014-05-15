@@ -113,7 +113,9 @@
         "moment.min.js",
         "moment-timezone.min.js",
         "moment-data.js",
-								"jquery.cookie.js"
+		"jquery.cookie.js",
+        "jquery.inputmask.js",
+        "jquery.inputmask.date.extensions.js"
       ],
       "css": [
         "base.css",
