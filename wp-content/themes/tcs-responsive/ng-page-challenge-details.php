@@ -154,7 +154,7 @@ include locate_template('header-challenge-landing.php');
 
 ?>
 
-<div ng-app="challengeDetails" ng-controller="CDCtrl" class="content challenge-detail view-challenge-result {{challengeType != 'design' ? 'develop' : ''}}">
+<div dw-loading="challenge" dw-loading-options="{text: 'Loading challenge...', spinner: true}" ng-app="challengeDetails" ng-controller="CDCtrl" id="cdNgMain" class="hide content challenge-detail view-challenge-result {{challengeType != 'design' ? 'develop' : ''}}">
 <div id="main">
 
 <?php include( locate_template('ng-content-basic-challenge-details.php') ); ?>
