@@ -268,7 +268,7 @@
         <span
           class="CEDate">{{challenge.currentStatus == 'Completed' ? 'Completed' : challenge.currentPhaseName}}</span>
       </div>
-      <span class="timeLeft">
+      <span ng-if="challenge.currentStatus != 'Completed' && challenge.currentStatus != 'Deleted' && challenge.currentPhaseRemainingTime > 0" class="timeLeft">
         {{daysLeft(challenge.currentPhaseRemainingTime)}} <small>Days</small>
         {{hoursLeft(challenge.currentPhaseRemainingTime)}} <small>Hours</small>
         {{minsLeft(challenge.currentPhaseRemainingTime)}} <small>Mins</small>

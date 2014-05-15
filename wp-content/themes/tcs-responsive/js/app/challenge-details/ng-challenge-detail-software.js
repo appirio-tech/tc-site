@@ -93,7 +93,7 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', function(Rest
         challenge.registrants.map(function(x) {
           handleMap[x.handle] = true;
         });
-        if (!handleMap[handle]) challenge.submitDisabled = true;
+        //if (!handleMap[handle]) challenge.submitDisabled = true;
       }
       defer.resolve(challenge);
     });
@@ -140,18 +140,21 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
   challengeId = location.href.match(/s\/(\d+)/)[1];
   $scope.round = Math.round;
   $scope.currentTab = 'details';
-  ChallengeService.getCheckpointData(challengeId).then(function(data) {
-    if (!data || data.error) {
-      $scope.checkpointData = false;
-      $scope.checkpointResults = false;
-      $scope.numCheckpointSubmissions = -1;
-    } else {
-      $scope.checkpointData = data;
-      $scope.checkpointResults = data.checkpointResults;
-      $scope.numCheckpointSubmissions = data.numberOfSubmissions;
-    }
-  })
+  
   ChallengeService.getChallenge(challengeId).then(function(challenge) {
+    if (challenge.checkpointSubmissionEndDate && challenge.checkpointSubmissionEndDate != '') {
+      ChallengeService.getCheckpointData(challengeId).then(function(data) {
+          if (!data || data.error) {
+            $scope.checkpointData = false;
+            $scope.checkpointResults = false;
+            $scope.numCheckpointSubmissions = -1;
+          } else {
+            $scope.checkpointData = data;
+            $scope.checkpointResults = data.checkpointResults;
+            $scope.numCheckpointSubmissions = data.numberOfSubmissions;
+          }
+        });
+    }
     console.log(challenge);
     chglo = challenge;
     $scope.challenge = challenge;
@@ -176,8 +179,8 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
         $scope.secondPlaceSubmission = $scope.submissionMap[1];
         $scope.submissions = [];
         var i = 1;
-        while (submissionMap[i]) {
-          $scope.submissions.push(submissionMap[i]);
+        while ($scope.submissionMap[i]) {
+          $scope.submissions.push($scope.submissionMap[i]);
           i++;
         }
         $scope.initialScoreSum = 0;

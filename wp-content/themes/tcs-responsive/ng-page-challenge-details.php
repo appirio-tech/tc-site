@@ -26,7 +26,7 @@ function tc_challenge_details_js() {
     var challengeId = "<?php echo $contestID;?>";
     var challengeType = "<?php echo $contestType;?>";
     var autoRegister = "<?php echo get_query_var('autoRegister');?>";
-    var handle = "<?php echo $handle; ?>";
+    var handle = ""; // fix me
   </script>
 <?php
 }
@@ -527,7 +527,7 @@ include locate_template('header-challenge-landing.php');
 
   <article>
     <!-- TODO: ng-ify this -->
-    <?php include( locate_template('content-checkpoint.php') ); ?>
+    <?php include( locate_template('ng-content-checkpoint.php') ); ?>
   </article>
 
 </div>
