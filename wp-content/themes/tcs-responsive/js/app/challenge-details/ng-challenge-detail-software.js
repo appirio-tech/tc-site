@@ -113,6 +113,15 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
     }
     return ans;
   }
+  $scope.daysLeft = function(seconds) {
+    return Math.floor(seconds / (3600 * 24));
+  }
+  $scope.hoursLeft = function(seconds) {
+    return Math.floor(Math.floor(seconds % (3600 * 24)) / 3600);
+  }
+  $scope.minsLeft = function(seconds) {
+    return Math.floor(Math.floor(seconds % 3600) / 60);
+  }
   $scope.max = function(x, y) { return x > y ? x : y; };
   $scope.formatDate = function(date) {
     function pad0(x) {
@@ -132,11 +141,13 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
   $scope.round = Math.round;
   $scope.currentTab = 'details';
   ChallengeService.getCheckpointData(challengeId).then(function(data) {
-    if (!data) {
+    if (!data || data.error) {
       $scope.checkpointData = false;
+      $scope.checkpointResults = false;
       $scope.numCheckpointSubmissions = -1;
     } else {
       $scope.checkpointData = data;
+      $scope.checkpointResults = data.checkpointResults;
       $scope.numCheckpointSubmissions = data.numberOfSubmissions;
     }
   })

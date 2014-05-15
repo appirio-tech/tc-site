@@ -137,7 +137,7 @@
 </tr>
 </tbody>
 </table>
-<!-- TODO: not sure why this code is repeated -- probably get rid of it -->
+<!-- TODO: not sure why this code is repeated -- probably get rid of it (or make sure my fix of it is correct) -->
 <div class="prizeSlider hide">
   <ul>
     <li class="slide">
@@ -269,38 +269,29 @@
           class="CEDate">{{challenge.currentStatus == 'Completed' ? 'Completed' : challenge.currentPhaseName}}</span>
       </div>
       <span class="timeLeft">
-      <!-- TODO: sort this guy out -->
-      <?php
-      if ($contest->currentStatus !== 'Completed' && $contest->currentStatus !== 'Deleted' && $contest->currentPhaseRemainingTime > 0) {
-        $dtF = new DateTime("@0");
-        $dtT = new DateTime("@{$contest->currentPhaseRemainingTime}");
-        echo $dtF->diff($dtT)->format('%a <small>Days</small> %h <small>Hours</small> %i <small>Mins</small>');
-      }
-      ?>
+        {{daysLeft(challenge.currentPhaseRemainingTime)}} <small>Days</small>
+        {{hoursLeft(challenge.currentPhaseRemainingTime)}} <small>Hours</small>
+        {{minsLeft(challenge.currentPhaseRemainingTime)}} <small>Mins</small>
       </span>
     </div>
     <!--End nextBoxContent-->
       <div ng-if="!isDesign" class="nextBoxContent allDeadlineNextBoxContent hide">
         <p><label>Posted On:</label>
-          <!-- TODO: convert date formatting to JS -->
-          <span><?php echo date(
-              "M d, Y H:i T",
-              strtotime("$contest->postingDate"));?>
+          <span>
+            {{formatDate(challenge.postingDate)}}
           </span>
         </p>
 
 
         <p><label>Register By:</label>
-         <span><?php echo date(
-             "M d, Y H:i T",
-             strtotime("$contest->registrationEndDate"));?>
+         <span>
+           {{formatDate(challenge.registrationEndDate)}}
          </span>
         </p>
 
         <p class="last"><label>Submit By:</label>
-          <span><?php echo date(
-              "M d, Y H:i T",
-              strtotime("$contest->submissionEndDate"));?>
+          <span>
+            {{formatDate(challenge.submissionEndDate)}}
           </span>
         </p>
 
@@ -308,31 +299,25 @@
       <!--End nextBoxContent-->
       <div ng-if="isDesign" class="nextBoxContent allDeadlineNextBoxContent studio hide">
         <p><label>Start Date:</label>
-          <span><?php echo date(
-              "M d, Y H:i T",
-              strtotime("$contest->postingDate"));?>
+          <span>
+            {{formatDate(challenge.postingDate)}}
           </span>
         </p>
-        <?php if ($contest->checkpointSubmissionEndDate != "") : ?>
-          <p><label>Checkpoint:</label>
-          <span><?php echo date(
-              "M d, Y H:i T",
-              strtotime("$contest->checkpointSubmissionEndDate"));?>
+          <p ng-if="challenge.checkpointSubmissionEndDate != ''"><label>Checkpoint:</label>
+          <span>
+            {{formatDate(challenge.checkpointSubmissionEndDate)}}
           </span>
           </p>
-        <?php endif; ?>
 
         <p><label>End Date:</label>
-          <span><?php echo date(
-              "M d, Y H:i T",
-              strtotime("$contest->submissionEndDate"));?>
+          <span>
+            {{formatDate(challenge.submissionEndDate)}}
           </span>
         </p>
 
         <p class="last"><label>Winners Announced:</label>
-          <span><?php echo date(
-              "M d, Y H:i T",
-              strtotime("$contest->appealsEndDate"));?>
+          <span>
+            {{formatDate(challenge.appealsEndDate)}}
           </span>
         </p>
       </div>

@@ -1,4 +1,7 @@
 <?php
+/*
+ * TODO: delete this
+ *
 $contestResults = get_contest_results($contestID, $contestType);
 $submissions = $contestResults->results;
 $submission_map = array();
@@ -23,6 +26,7 @@ if($nrOfPrizes > 0){
 if($nrOfPrizes > 1){
   $secondPlacedSubmission = $submission_map[2];
 }
+*/
 ?>
 
 <article ng-if="isDesign && submissions.length > 0">
@@ -142,7 +146,6 @@ if($nrOfPrizes > 1){
 </article>
 
 <article ng-if="!isDesign && submissions.length > 0">
-    <?php if (isset($firstPlacedSubmission)): ?>
     <div ng-if="firstPlaceSubmission" class="winnerRow">
         <div class="place first">1<span>st</span></div>
         <!-- #/end place-->
@@ -167,8 +170,6 @@ if($nrOfPrizes > 1){
         <div class="clear"></div>
     </div>
     <!--#/end winnerrow-->
-    <?php endif; ?>
-    <?php if (isset($secondPlacedSubmission)): ?>
     <div ng-if="secondPlaceSubmission" class="winnerRow">
         <div class="place second">2<span>nd</span></div>
         <!-- #/end place-->
@@ -193,7 +194,6 @@ if($nrOfPrizes > 1){
         <div class="clear"></div>
     </div>
     <!--#/end winnerrow-->
-    <?php endif; ?>
     <table class="registrantsTable hideOnMobi">
         <thead>
         <tr>
@@ -217,15 +217,6 @@ if($nrOfPrizes > 1){
         </tr>
         </thead>
         <tbody>
-        <?php 
-        $initialScoreSum = 0;
-        $finalScoreSum = 0;
-        for ($i = 0; $i < $submissionCount; $i++): 
-          $submission = $submissions[$i];
-          $registrationDate = $submission->registrationDate;
-          $initialScoreSum += $submissions[$i]->initialScore;
-          $finalScoreSum += $submissions[$i]->finalScore;
-        ?>
         <tr ng-repeat="submission in submissions" class="{{$index % 2 == 1 ? 'alt' : ''}}">
             <td class="leftAlign"><a href="<?php bloginfo('wpurl'); ?>/member-profile/{{submission.handle}}" class="coderTextGray">{{submission.handle}}</a></td>
             <td>{{formatDate(submission.registrationDate)}}</td>
@@ -234,20 +225,10 @@ if($nrOfPrizes > 1){
             <td><span class="initialScore">{{submission.initialScore}}</span>/<a href="javascript:" class="finalScore">{{submission.finalScore}}</a> </td>
             <td><a href="{{submission.submissionDownloadLink}}">Download</a></td>
         </tr>
-        <?php endfor; ?>
         </tbody>
     </table>
     <div class="registrantsTable onMobi">
-        <?php 
-        $initialScoreSum = 0;
-        $finalScoreSum = 0;
-        for ($i = 0; $i < count($submissions); $i++):
-          $submission = $submissions[$i];
-          $registrationDate = $submission->registrationDate;
-          $initialScoreSum += $submissions[$i]->initialScore;
-          $finalScoreSum += $submissions[$i]->finalScore;        
-        ?>
-        
+
         <div ng-repeat="submission in submissions" class="registrantSection">
             <div class="registrantSectionRow registrantHandle"><a href="<?php bloginfo('wpurl'); ?>/member-profile/{{submission.handle}}" class=" coder coderTextYellow">{{submission.handle}}</a></div>
             <div class="registrantSectionRow">
@@ -275,7 +256,6 @@ if($nrOfPrizes > 1){
                 <div class="clear"></div>
             </div>
         </div>
-        <?php endfor; ?>
     </div>
     <div class="competitionDetails">
         <div class="registrant">
