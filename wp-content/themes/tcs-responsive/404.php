@@ -69,7 +69,7 @@
 		        <br>
 		        &#169; 2014 topcoder. All Rights reserved.
 		        <br>
-		        <a href="#" class="privacyStmtLink">Privacy Policy</a> | <a href="#" class="legalDisclaimerLink">Legal Disclaimer</a>
+		        <a href="http://www.topcoder.com/community/how-it-works/privacy-policy/" class="privacyStmtLink">Privacy Policy</a> | <a href="http://www.topcoder.com/community/how-it-works/terms/" class="legalDisclaimerLink">Terms</a>
 			</section>
 		    </div>
 	    </footer>
