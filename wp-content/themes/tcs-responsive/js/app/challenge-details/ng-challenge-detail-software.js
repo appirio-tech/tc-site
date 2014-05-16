@@ -141,13 +141,10 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', '$loading', fu
   $scope.round = Math.round;
   $scope.currentTab = 'details';
 
-  //$loading.start('challenge');
-  //$scope.loadingClass = 'hide';
+  $loading.start('challenge');
   
   ChallengeService.getChallenge(challengeId).then(function(challenge) {
-    //$loading.finish('challenge');
-    //$scope.loadingClass = '';
-    $('#cdNgMain').removeClass('hide');
+    $loading.finish('challenge');
     if (challenge.checkpointSubmissionEndDate && challenge.checkpointSubmissionEndDate != '') {
       ChallengeService.getCheckpointData(challengeId).then(function(data) {
           if (!data || data.error) {

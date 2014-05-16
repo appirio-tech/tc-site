@@ -1,8 +1,8 @@
 <div class="container">
 <header class="pageHeading aboutPage">
-  <h1>{{challenge.challengeName}}</h1>
+  <h1 ng-bind="challenge.challengeName"></h1>
 
-  <h2>CHALLENGE TYPE: <span>{{challenge.challengeType}}</span></h2>
+  <h2>CHALLENGE TYPE: <span ng-bind="challenge.challengeType"></span></h2>
 </header>
 
 <div id="stepBox">
@@ -31,20 +31,22 @@
       <h2>1st PLACE</h2>
 
       <h3>
-        <small>$</small>{{challenge.prize ? (challenge.prize[0] ? challenge.prize[0] : '') : ''}}
+        <small>$</small><span ng-bind="challenge.prize ? (challenge.prize[0] ? challenge.prize[0] : '') : ''"></span>
       </h3>
     </td>
     <td ng-if="!isDesign && challenge.challengeType != 'Code'" class="fifty">
       <h2>2nd PLACE</h2>
       <h3>
-        <small>$</small>{{challenge.prize ? (challenge.prize[1] ? challenge.prize[1] : '0') : ''}}
+        <small>$</small>
+        <span ng-bind="challenge.prize ? (challenge.prize[1] ? challenge.prize[1] : '0') : ''">
+        </span>
       </h3>
     </td>
       <td ng-if="(designOrCode = isDesign || challenge.challengeType == 'Code') && (challenge.prize && challenge.prize[0])" class="twenty">
         <h2>1st PLACE</h2>
 
         <h3>
-          <small>$</small>{{challenge.prize[0]}}</h3>
+          <small>$</small><span ng-bind="challenge.prize[0]"></span></h3>
       </td>
       <td ng-if="designOrCode && !(challenge.prize && challenge.prize[0])" class="twenty noPrize">
         <h2>1st PLACE</h2>
@@ -56,7 +58,7 @@
         <h2>2nd PLACE</h2>
 
         <h3>
-          <small>$</small>{{challenge.prize[1]}}</h3>
+          <small>$</small><span ng-bind="challenge.prize[1]"></span></h3>
       </td>
       <td ng-if="designOrCode && !(challenge.prize && challenge.prize[1])" class="twenty noPrize">
         <h2>2nd PLACE</h2>
@@ -68,7 +70,7 @@
         <h2>3rd PLACE</h2>
 
         <h3>
-          <small>$</small>{{challenge.prize[2]}}</h3>
+          <small>$</small><span ng-bind="challenge.prize[2]"></span></h3>
       </td>
       <td ng-if="designOrCode && !(challenge.prize && challenge.prize[2])" class="twenty noPrize">
         <h2>3rd PLACE</h2>
@@ -80,19 +82,19 @@
         <h2>4th PLACE</h2>
 
         <h3>
-          <small>$</small>{{challenge.prize[3]}}</h3>
+          <small>$</small><span ng-bind="challenge.prize[3]"></span></h3>
       </td>
       <td ng-if="designOrCode && !(challenge.prize && challenge.prize[3])" class="twenty noPrize">
         <h2>4th PLACE</h2>
 
         <h3>
-          <small>$</small>{{challenge.prize[3]}}</h3>
+          <small>$</small><span ng-bind="challenge.prize[3]"></span></h3>
       </td>
       <td ng-if="designOrCode && (challenge.prize && challenge.prize[4])" class="twenty">
         <h2>5th PLACE</h2>
 
         <h3>
-          <small>$</small>{{challenge.prize[4]}}</h3>
+          <small>$</small><span ng-bind="challenge.prize[4]"></span></h3>
       </td>
       <td ng-if="designOrCode && (challenge.prize && challenge.prize[5])" class="twenty noPrize">
         <h2>5th PLACE</h2>
@@ -107,16 +109,15 @@
 </tr>
 <tr ng-if="challenge.prize  && challenge.prize.length > 5 && (currentPlace = 6)" class="additionalPrizes hide" ng-repeat="i in range(0, (challenge.prize.length - 5) / 5)">
   <td class="twenty" ng-if="challenge.prize.length > 5 + i * 5" ng-repeat="j in range(i * 5, max((i + 1) * 5), challenge.prize.length)">
-    <h2>{{j + 1}}th PLACE</h2>
-    <h3><small>$</small>{{challenge.prize[j]}}</h3>
+    <h2 ng-bind-template="{{j + 1}}'th PLACE'"></h2>
+    <h3><small>$</small><span ng-bind="challenge.prize[j]"></span></h3>
   </td>
 </tr>
 <tr>
     <td ng-if="!isDesign" colspan="{{challenge.challengeType == 'Code' ? '2' : ''">
       <p class="realibilityPara">
         Reliability Bonus
-        <span ng-if="reliabilityBonus && reliabilityBonus.length > 0">
-          {{challenge.reliabilityBonus}}
+        <span ng-if="reliabilityBonus && reliabilityBonus.length > 0" ng-bind="challenge.reliabilityBonus">
         </span>
         <span ng-if="!(reliabilityBonus && reliabilityBonus.length > 0)">
           N/A
@@ -124,14 +125,14 @@
       </p>
     </td>
     <td ng-if="!isDesign" colspan="challenge.challengeType = 'Code' ? '3' : ''">
-      <p class="drPointsPara">DR Points <span>{{challenge.digitalRunPoints ? challenge.digitalRunPoints : 'N/A'}}</span></p>
+      <p class="drPointsPara">DR Points <span ng-bind="challenge.digitalRunPoints ? challenge.digitalRunPoints : 'N/A'"></span></p>
     </td>
     </td>
     <td ng-if="isDesign" colspan="2">
-        <p class="scPoints"><span>{{challenge.digitalRunPoints ? challenge.digitalRunPoints : 'NO'}}</span> STUDIO CUP POINTS</p>
+        <p class="scPoints"><span ng-bind="challenge.digitalRunPoints ? challenge.digitalRunPoints : 'NO'"></span> STUDIO CUP POINTS</p>
     </td>
     <td ng-if="isDesign" colspan="3">
-      <p class="scPoints"><span>{{challenge.numberOfCheckpointsPrizes}}</span> CHECKPOINT AWARDS WORTH <span>${{challenge.topCheckPointPrize}}</span>
+      <p class="scPoints"><span ng-bind="challenge.numberOfCheckpointsPrizes"></span> CHECKPOINT AWARDS WORTH $<span ng-bind="challenge.topCheckPointPrize"></span>
         EACH</p>
     </td>
 </tr>
@@ -149,20 +150,20 @@
       <h2>1st PLACE</h2>
 
       <h3>
-        <small>$</small>{{challenge.prize ? (challenge.prize[0] ? challenge.prize[0] : '') : ''}}
+        <small>$</small><span ng-bind="challenge.prize ? (challenge.prize[0] ? challenge.prize[0] : '') : ''"></span>
       </h3>
     </td>
     <td ng-if="!isDesign && challenge.challengeType != 'Code'" class="fifty">
       <h2>2nd PLACE</h2>
       <h3>
-        <small>$</small>{{challenge.prize ? (challenge.prize[1] ? challenge.prize[1] : '0') : ''}}
+        <small>$</small><span ng-bind="challenge.prize ? (challenge.prize[1] ? challenge.prize[1] : '0') : ''"></span>
       </h3>
     </td>
       <td ng-if="(designOrCode = isDesign || challenge.challengeType == 'Code') && (challenge.prize && challenge.prize[0])" class="twenty">
         <h2>1st PLACE</h2>
 
         <h3>
-          <small>$</small>{{challenge.prize[0]}}</h3>
+          <small>$</small><span ng-bind="challenge.prize[0]"></span></h3>
       </td>
       <td ng-if="designOrCode && !(challenge.prize && challenge.prize[0])" class="twenty noPrize">
         <h2>1st PLACE</h2>
@@ -174,7 +175,7 @@
         <h2>2nd PLACE</h2>
 
         <h3>
-          <small>$</small>{{challenge.prize[1]}}</h3>
+          <small>$</small><span ng-bind="challenge.prize[1]"></span></h3>
       </td>
       <td ng-if="designOrCode && !(challenge.prize && challenge.prize[1])" class="twenty noPrize">
         <h2>2nd PLACE</h2>
@@ -186,7 +187,7 @@
         <h2>3rd PLACE</h2>
 
         <h3>
-          <small>$</small>{{challenge.prize[2]}}</h3>
+          <small>$</small><span ng-bind="challenge.prize[2]"></span></h3>
       </td>
       <td ng-if="designOrCode && !(challenge.prize && challenge.prize[2])" class="twenty noPrize">
         <h2>3rd PLACE</h2>
@@ -198,19 +199,19 @@
         <h2>4th PLACE</h2>
 
         <h3>
-          <small>$</small>{{challenge.prize[3]}}</h3>
+          <small>$</small><span ng-bind="challenge.prize[3]"></span></h3>
       </td>
       <td ng-if="designOrCode && !(challenge.prize && challenge.prize[3])" class="twenty noPrize">
         <h2>4th PLACE</h2>
 
         <h3>
-          <small>$</small>{{challenge.prize[3]}}</h3>
+          <small>$</small><span ng-bind="challenge.prize[3]"></span></h3>
       </td>
       <td ng-if="designOrCode && (challenge.prize && challenge.prize[4])" class="twenty">
         <h2>5th PLACE</h2>
 
         <h3>
-          <small>$</small>{{challenge.prize[4]}}</h3>
+          <small>$</small><span ng-bind="challenge.prize[4]"></span></h3>
       </td>
       <td ng-if="designOrCode && (challenge.prize && challenge.prize[5])" class="twenty noPrize">
         <h2>5th PLACE</h2>
@@ -225,8 +226,8 @@
 </tr>
 <tr ng-if="challenge.prize  && challenge.prize.length > 5 && (currentPlace = 6)" class="additionalPrizes hide" ng-repeat="i in range(0, (challenge.prize.length - 5) / 5)">
   <td class="twenty" ng-if="challenge.prize.length > 5 + i * 5" ng-repeat="j in range(i * 5, max((i + 1) * 5), challenge.prize.length)">
-    <h2>{{j + 1}}th PLACE</h2>
-    <h3><small>$</small>{{challenge.prize[j]}}</h3>
+    <h2 ng-bind-template="{{j + 1}}'th PLACE'"></h2>
+    <h3><small>$</small><span ng-bind="challenge.prize[j]"></span></h3>
   </td>
 </tr>
 <tr>
@@ -242,14 +243,14 @@
       </p>
     </td>
     <td ng-if="!isDesign" colspan="challenge.challengeType = 'Code' ? '3' : ''">
-      <p class="drPointsPara">DR Points <span>{{challenge.digitalRunPoints ? challenge.digitalRunPoints : 'N/A'}}</span></p>
+      <p class="drPointsPara">DR Points <span ng-bind="challenge.digitalRunPoints ? challenge.digitalRunPoints : 'N/A'"></span></p>
     </td>
     </td>
     <td ng-if="isDesign" colspan="2">
-        <p class="scPoints"><span>{{challenge.digitalRunPoints ? challenge.digitalRunPoints : 'NO'}}</span> STUDIO CUP POINTS</p>
+        <p class="scPoints"><span ng-bind="challenge.digitalRunPoints ? challenge.digitalRunPoints : 'NO'"></span> STUDIO CUP POINTS</p>
     </td>
     <td ng-if="isDesign" colspan="3">
-      <p class="scPoints"><span>{{challenge.numberOfCheckpointsPrizes}}</span> CHECKPOINT AWARDS WORTH <span>${{challenge.topCheckPointPrize}}</span>
+      <p class="scPoints"><span ng-bind="challenge.numberOfCheckpointsPrizes"></span> CHECKPOINT AWARDS WORTH $<span ng-bind="challenge.topCheckPointPrize"></span>
         EACH</p>
     </td>
 </tr>        </tbody>
@@ -266,12 +267,12 @@
       <div class="icoTime">
         <span class="nextDTitle">Current Phase</span>
         <span
-          class="CEDate">{{challenge.currentStatus == 'Completed' ? 'Completed' : challenge.currentPhaseName}}</span>
+          class="CEDate" ng-bind="challenge.currentStatus == 'Completed' ? 'Completed' : challenge.currentPhaseName"></span>
       </div>
       <span ng-if="challenge.currentStatus != 'Completed' && challenge.currentStatus != 'Deleted' && challenge.currentPhaseRemainingTime > 0" class="timeLeft">
-        {{daysLeft(challenge.currentPhaseRemainingTime)}} <small>Days</small>
-        {{hoursLeft(challenge.currentPhaseRemainingTime)}} <small>Hours</small>
-        {{minsLeft(challenge.currentPhaseRemainingTime)}} <small>Mins</small>
+        <span ng-bind="daysLeft(challenge.currentPhaseRemainingTime)"></span> <small>Days</small>
+        <span ng-bind="hoursLeft(challenge.currentPhaseRemainingTime)"></span> <small>Hours</small>
+        <span ng-bind="minsLeft(challenge.currentPhaseRemainingTime)"></span> <small>Mins</small>
       </span>
     </div>
     <!--End nextBoxContent-->

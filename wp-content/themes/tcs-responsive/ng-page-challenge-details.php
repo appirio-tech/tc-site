@@ -154,7 +154,7 @@ include locate_template('header-challenge-landing.php');
 
 ?>
 
-<div dw-loading="challenge" dw-loading-options="{text: 'Loading challenge...', spinner: true}" ng-app="challengeDetails" ng-controller="CDCtrl" id="cdNgMain" class="hide content challenge-detail view-challenge-result {{challengeType != 'design' ? 'develop' : ''}}">
+<div dw-loading="challenge" dw-loading-options="{text: 'Loading challenge...', spinner: true}" ng-app="challengeDetails" ng-controller="CDCtrl" class="content challenge-detail view-challenge-result {{challengeType != 'design' ? 'develop' : ''}}">
 <div id="main">
 
 <?php include( locate_template('ng-content-basic-challenge-details.php') ); ?>
@@ -228,7 +228,7 @@ include locate_template('header-challenge-landing.php');
       <h1>Platforms</h1>
       <ul>
         <li ng-if="hasPlatforms = challenge.platforms && challenge.platforms.length > 0" ng-repeat="platform in challenge.platforms" >
-          <strong>{{platform}}</strong>
+          <strong ng-bind="platform"></strong>
         </li>
         <li ng-if="!hasPlatforms">
           <strong>Not Specified</strong>
@@ -240,7 +240,7 @@ include locate_template('header-challenge-landing.php');
       <h1>Technologies</h1>
       <div class="technologyTags">
         <li ng-if="hasTechnology = challenge.technology && challenge.technology.length > 0" ng-repeat="tech in technology">
-          <span>{{tech}}</span>
+          <span ng-bind="tech"></span>
         </li>
         <li ng-if="!hasTechnology">
           <strong>Not Specified</strong>
@@ -497,17 +497,17 @@ include locate_template('header-challenge-landing.php');
       <tr ng-repeat="registrant in challenge.registrants">
         <td class="handleColumn">
             <span>
-                <a ng-href="{{siteURL + '/member-profile' + registrant.handle}}">{{registrant.handle}}</a>
+                <a ng-href="{{siteURL + '/member-profile' + registrant.handle}}" ng-bind="registrant.handle"></a>
             </span>
         </td>
         <td ng-if="challengeType != 'design'" class="ratingColumn">
-            <span style="{{registrant.colorStyle}}">{{registrant.rating || 0}}</span>
+            <span style="{{registrant.colorStyle}}" ng-bind="registrant.rating || 0" ng-bind="registrant.rating || 0"></span>
         </td>
         <td ng-if="challengeType != 'design'" class="reliabilityColumn">
-            <span>{{registrant.reliability}}</span>
+            <span ng-bind="registrant.reliability"></span>
         </td>
-        <td class="regDateColumn">{{formatDate(registrant.registrationDate)}}</td>
-        <td class="subDateColumn">{{formatDate(registrant.lastSubmissionDate)}}</td>
+        <td class="regDateColumn" ng-bind="formatDate(registrant.registrationDate)"></td>
+        <td class="subDateColumn" ng-bind="formatDate(registrant.lastSubmissionDate)"></td>
       </tr>
       </tbody>
     </table>
@@ -658,7 +658,7 @@ include locate_template('header-challenge-landing.php');
         <ul>
             <li ng-if="!hasFiletypes"><strong>Text or Word Document containing all of your ideas and supporting information.</strong></li>
             <li ng-if="hasFiletypes" ng-repeat="filetype in challenge.filetypes">
-              <strong>{{filetype}}</strong>
+              <strong ng-bind="filetype"></strong>
             </li>
         </ul>
 
@@ -671,7 +671,7 @@ include locate_template('header-challenge-landing.php');
       <h3>Submission Limit:</h3>
 
       <div class="inner">
-        <p><strong>{{challenge.submissionLimit}}</strong></p>
+        <p><strong ng-bind="challenge.submissionLimit"></strong></p>
       </div>
     </div>
   </li>
