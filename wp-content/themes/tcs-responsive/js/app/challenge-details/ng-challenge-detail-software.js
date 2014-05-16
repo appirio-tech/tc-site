@@ -1,4 +1,4 @@
-var cdapp = angular.module('challengeDetails', ['restangular', 'darthwade.dwLoading'])
+var cdapp = angular.module('challengeDetails', ['restangular'])
 
 .constant("API_URL", "https://api.topcoder.com/v2")
 
@@ -102,7 +102,7 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', function(Rest
   return service;
 }]);
 
-cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', '$loading', function($scope, ChallengeService, $sce, $loading) {
+cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scope, ChallengeService, $sce) {
   $scope.trust = function(x) {
     return $sce.trustAsHtml(x);
   }
@@ -141,10 +141,8 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', '$loading', fu
   $scope.round = Math.round;
   $scope.currentTab = 'details';
 
-  $loading.start('challenge');
-  
   ChallengeService.getChallenge(challengeId).then(function(challenge) {
-    $loading.finish('challenge');
+    $('#cdNgMain').removeClass('hide');
     if (challenge.checkpointSubmissionEndDate && challenge.checkpointSubmissionEndDate != '') {
       ChallengeService.getCheckpointData(challengeId).then(function(data) {
           if (!data || data.error) {
