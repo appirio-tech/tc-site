@@ -2475,13 +2475,3 @@ hr.light {
 .text-center { text-align: center; }
 /* End of New Home Page styles */
 
-
-/* TESTING FOR ANGULAR NEED TO REMOVE */
-.ngViewport.ng-scope{
-    height: auto !important;
-    overflow-y: hidden;
-}
-
-.ngTopPanel.ng-scope, .ngHeaderContainer{
-    width: auto !important;
-}
