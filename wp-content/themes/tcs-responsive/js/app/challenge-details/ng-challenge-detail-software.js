@@ -129,7 +129,6 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
     }
     if (!date) return '--';
     if (typeof date == 'string') date = new Date(date);
-    else console.log(date);
     var month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][date.getMonth()];
     var day = date.getDate();
     var year = date.getFullYear();
@@ -156,7 +155,6 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
           }
         });
     }
-    console.log(challenge);
     chglo = challenge;
     $scope.challenge = challenge;
     $scope.activeTab = 'overview';

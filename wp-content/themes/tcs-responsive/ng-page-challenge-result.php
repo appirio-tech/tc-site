@@ -1,34 +1,3 @@
-<?php
-/*
- * TODO: delete this
- *
-$contestResults = get_contest_results($contestID, $contestType);
-$submissions = $contestResults->results;
-$submission_map = array();
-for ($i = 0; $i < count($submissions); $i++){
-  $submission_map[$submissions[$i]->placement] = $submissions[$i];
-}
-
-$submissionCount = $contestResults->submissions;
-
-$nrOfCheckpointSubmissions = 0;
-$checkpointDetail = get_contest_checkpoint_detail($contestID, $contestType);
-
-if(isset($checkpointDetail->numberOfSubmissions)){
-  $nrOfCheckpointSubmissions = $checkpointDetail->numberOfSubmissions;
-} else if(isset($checkpointDetail->error)){
-  $nrOfCheckpointSubmissions = -1;
-}
-$nrOfPrizes = count($contest->prize);
-if($nrOfPrizes > 0){
-  $firstPlacedSubmission = $submission_map[1];
-}
-if($nrOfPrizes > 1){
-  $secondPlacedSubmission = $submission_map[2];
-}
-*/
-?>
-
 <article ng-if="isDesign && submissions.length > 0">
     <div ng-if="firstPlaceSubmission" ng-repeat="submission in submissions" class="winnerRow {{$index > 1 ? 'hideOnMobi' : ''}}">
         <div class="place {{['first', 'second', 'third', 'other'][$index]}}">{{$index + 1}}<span>{{(placeSuffix = ['st', 'nd', 'rd'][$index]) ? placeSuffix : 'th'}}</span></div>

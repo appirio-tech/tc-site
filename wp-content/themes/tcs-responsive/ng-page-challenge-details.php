@@ -41,38 +41,10 @@ $contestID = get_query_var('contestID');
 $contestType    = filter_input(INPUT_GET, 'type', FILTER_SANITIZE_STRING);
 $contestType    = empty( $contestType ) ? "develop" : $contestType;
 $noCache        = get_query_var('nocache');
-/*
-$values = get_post_custom($post->ID);
 
-$userkey = get_option('api_user_key');
-$siteURL = site_url();
-
-
-
-$contest        = get_contest_detail('', $contestID, $contestType, $noCache);
-$registrants    = empty( $contest->registrants ) ? array() : $contest->registrants;
-$checkpointData = get_checkpoint_details($contestID, $contestType);
-
-*/
 $registerDisable = FALSE;
 $submitDisabled  = FALSE;
-/*
-$curDate = new DateTime();
-$registerDisable = true;
-if ($contest->registrationEndDate) {
-  $regDate = new DateTime($contest->registrationEndDate);
-  if ($regDate > $curDate) {
-    $registerDisable = false;
-  }
-}
 
-$submitDisabled = true;
-if ($contest->submissionEndDate && $contest->currentStatus !== "Completed") {
-  $submitDate = new DateTime($contest->submissionEndDate);
-  if ($submitDate > $curDate) {
-    $submitDisabled = false;
-  }
-}*/
 
 // @TODO need to fix loading of hanlde before these will work
 //$registerDisable = challenge_register_disabled($contest);
@@ -526,7 +498,6 @@ include locate_template('header-challenge-landing.php');
 
 
   <article>
-    <!-- TODO: ng-ify this -->
     <?php include( locate_template('ng-content-checkpoint.php') ); ?>
   </article>
 
