@@ -4,27 +4,6 @@ var slider;
 var prizeSlider;
 var sliderClone;
 
-var tcjwt = getCookie('tcjwt');
-if (tcjwt && (typeof challengeId != 'undefined')) {
-  $.getJSON(ajaxUrl, {
-    "action": "get_challenge_documents",
-    "challengeId": challengeId,
-    "challengeType": challengeType,
-    "jwtToken": tcjwt.replace(/["]/g, "")
-  }, function (data) {
-    if (data.Documents && $('.downloadDocumentList')) {
-      $('.downloadDocumentList').children().remove();
-      data.Documents.map(function(x) {
-        $('.downloadDocumentList').append($(
-          '<li><a href="'+x.url+'">'+x.documentName+'</a></li>'
-        ));
-      });
-    }
-  });
-}
-
-
-
 function createSlider() {
   sliderClone = $('.columnSideBar .slider > ul:first-child').clone();
   slider = jQuery('.columnSideBar .slider > ul:first-child').bxSlider({
@@ -86,10 +65,94 @@ $(document).ready(function () {
     $('.registrantsTable').not('.mobile').removeClass('hide');
     $('.registrantsTable.mobile').addClass('hide');
   }
+
   $('a[href="' + getAnchor(location.href) + '"]').click();
 
   // init tab nav
   app.tabNavinit();
+
+  var tcsso = getCookie('tcsso');
+  var tcjwt = getCookie('tcjwt');
+
+  if (typeof challengeId != 'undefined') {
+    if ($('.loading').length <= 0) {
+      $('body').append('<div class="loading">Loading...</div>');
+    } else {
+      $('.loading').show();
+    }
+
+    if (tcjwt) {
+      getChallenge(tcjwt, function(challenge) {
+        updateRegSubButtons(challenge);
+        addDocuments(challenge);
+        $('.loading').hide();
+      });
+    } else {
+        var now = new Date();
+        if (registrationUntil && now.getTime() < registrationUntil.getTime()) {
+          $('.challengeRegisterBtn').removeClass('disabled');
+        }
+        $('.loading').hide();
+    }
+  }
+
+
+  function updateRegSubButtons(challenge) {
+    // if there was an error getting the challenge then enable the buttons
+    if (challenge.status == false) {
+      $('.challengeRegisterBtn').removeClass('disabled');
+      $('.challengeSubmissionBtn').removeClass('disabled');
+      $('.challengeSubmissionsBtn').removeClass('disabled');
+    } else {
+      if(tcsso) {
+        var tcssoValues = tcsso.split("|");
+        $.getJSON("http://community.topcoder.com/tc?module=BasicData&c=get_handle_by_id&dsid=30&uid=" + tcssoValues[0] + "&json=true", function(data) {
+          var now = new Date();
+          var handle = data['data'][0]['handle'];
+
+          var registrants = [];
+          $.each(challenge.registrants, function(x, registrant) {
+            registrants.push(registrant.handle)
+          });
+
+          if (registrationUntil && now.getTime() < registrationUntil.getTime() && registrants && registrants.indexOf(handle) == -1) {
+            $('.challengeRegisterBtn').removeClass('disabled');
+          }
+          if (submissionUntil && now.getTime() < submissionUntil.getTime() && registrants && registrants.indexOf(handle) > -1) {
+            $('.challengeSubmissionBtn').removeClass('disabled');
+            $('.challengeSubmissionsBtn').removeClass('disabled');
+          }
+        });
+      }
+    }
+  }
+
+  function addDocuments(challenge) {
+    if (challenge.Documents && $('.downloadDocumentList')) {
+      $('.downloadDocumentList').children().remove();
+      challenge.Documents.map(function(x) {
+        $('.downloadDocumentList').append($(
+          '<li><a href="'+x.url+'">'+x.documentName+'</a></li>'
+        ));
+      });
+    }
+  }
+
+  function getChallenge(tcjwt, callback) {
+    if (tcjwt && (typeof challengeId != 'undefined')) {
+      $.getJSON(ajaxUrl, {
+        "action": "get_challenge_documents",
+        "challengeId": challengeId,
+        "challengeType": challengeType,
+        "nocache": true,
+        "jwtToken": tcjwt.replace(/["]/g, "")
+      }, function (data) {
+        callback(data);
+      });
+    } else {
+      $('.loading').hide();
+    }
+  }
 });
 
 //create/destroy slider based on width
@@ -281,7 +344,8 @@ $(function () {
     }
   });
 
-  $(".challengeRegisterBtn").click(function () {
+  $(".challengeRegisterBtn").click(function (event) {
+    if ($(this).hasClass("disabled")) { return false; }
     var tcjwt = getCookie('tcjwt');
     if (tcjwt) {
       if ($('.loading').length <= 0) {
@@ -307,15 +371,17 @@ $(function () {
     } else {
       $('.actionLogin').click();
     }
+    event.preventDefault();
   });
 
   if (autoRegister) {
     $(".challengeRegisterBtn").click();
   }
 
-  $("#registerSuccess .closeModal").click(function () {
-    closeModal();
-    window.location.href = siteURL + "/challenge-details/" + challengeId + "?type=" + challengeType + "&nocache=true";
+  $("#registerSuccess .closeModal").click(function (event) {
+    $('.modal,#bgModal').hide();
+    window.location.href = loginState = siteURL + "/challenge-details/" + challengeId + "?type=" + challengeType + "&nocache=true";
+    event.preventDefault();
   });
 
 });
@@ -513,4 +579,4 @@ app.tabNavinit = function () {
       $(this).addClass('active');
     }
   })
-}
+};

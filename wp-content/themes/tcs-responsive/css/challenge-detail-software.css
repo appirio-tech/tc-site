@@ -158,7 +158,7 @@
     float: left;
     font-weight: bold;
     text-align: left;
-    width: 155px;
+    width: 150px; /* Issue ID: I-107591 - adjust the value so all the deadlines are displayed correctly. Previous value: 155px */
 }
 
 #stepBox .rightColumn .nextBox .nextDTitle {
@@ -345,6 +345,27 @@
     height: auto;
     padding-left: 12px;
     background: url("../i/bullet.png") no-repeat 0 7px;
+    color: #797979;
+}
+
+/* Issue ID: I-114272 - Add style for ol and li */
+.challenge-detail .tableWrap ol {
+    margin-left: 16px;
+    padding: 0px;
+    margin-bottom: 20px;
+    width: auto;
+    color: #797979;
+}
+
+.challenge-detail .tableWrap ol li {
+    float: none;
+	list-style-type: decimal;
+    list-style-position: outside;
+    font-size: 13px;
+    line-height: 18px;
+    border: none;
+    height: auto;
+    padding-left: 0px;
     color: #797979;
 }
 
@@ -639,6 +660,10 @@
     background: #0096ff !important;
 }
 
+.challenge-detail.develop .btnAction, .challenge-detail.design .btnAction {
+    opacity: 1.0 !important;
+}
+
 .challenge-detail.develop .btnAction {
     background: #64c51c !important;
     border-bottom: 4px solid #46b314 !important;
@@ -720,7 +745,7 @@
 }
 
 #stepBox .rightColumn .nextBox .allDeadlineNextBoxContent.studio label {
-    width: 155px;
+    width: 150px; /* Issue ID: I-107591 - adjust the value so all the deadlines are displayed correctly. Previous value: 155px */
 }
 
 .challenge-detail .tabNav span.inactive {
@@ -2342,7 +2367,21 @@
     }
 }
 
+/* submission status icons */
 
+.successIcon {
+  background: url(../i/ico-okay-check.png) no-repeat;
+  background-position: 0 0;
+  background-size: 40%;
+  padding-left: 30px;
+}
+
+.failureIcon {
+  background: url(../i/ico-failed-x.png) no-repeat;
+  background-position: 0 0;
+  background-size: 40%;
+  padding-left: 30px;
+}
 
 
 

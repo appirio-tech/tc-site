@@ -93,13 +93,10 @@ if( $updatePassword=="true" ) {
 										<span class="err1 error" style="display: none;">Required field</span>
 										<span class="err2 error" style="display: none;">Password confirmation different from above field</span>
 									</div>
-									<?php if(trim($unlockCode)!="") : ?><input type="hidden" name="unlockCode" class="unlockCode" value="<?php echo $unlockCode;?>" /><?php endif; ?>
-									<?php if(trim($unlockCode)=="") : ?>
 									<div class="row">
 										<input class="unlockCode" type="text" maxlength="40" name="unlockCode" placeholder="Unlock Code:" size="50" />
 										<span class="err1 error" style="display: none;">Required field</span>
 									</div>
-									<?php endif;?>
 									<div class="row">
 										<input type="button" class="btnSubmit" value="Submit" />
 									</div>
@@ -169,23 +166,8 @@ if( $updatePassword=="true" ) {
 						</div>
 						<!-- /.sideQuote -->
 						<?php endif;?>
-						<div class="sideMostRecentChallenges">
-							<h3>Most Recent Challenges</h3>
-							<?php 
-								$contest= get_active_contests('develop','30000000');								
-							?>
-							<ul>									
-								<li><a class="contestName contestType1" href="<?php bloginfo('wpurl');?>/challenges/<?php echo $contest->contestId?>">
-										<i></i><?php echo $contest->contestName ?>
-									</a></li>
-								<li class="alt"><a class="contestName contestType2" href="<?php bloginfo('wpurl');?>/challenges/<?php echo $contest->contestId?>">
-										<i></i><?php echo $contest->contestName ?>
-									</a></li>
-								<li><a class="contestName contestType3" href="<?php bloginfo('wpurl');?>/challenges/<?php echo $contest->contestId?>">
-										<i></i><?php echo $contest->contestName ?>
-									</a></li>
-							</ul>
-						</div>
+						
+						<?php get_template_part('content', 'recent-challenges');?>
 						<!-- /.sideMostRecentChallenges -->						
 					</aside>
 					<!-- /.sideStream -->
