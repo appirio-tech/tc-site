@@ -3,6 +3,8 @@
     "default": {
       "name": "default",
       "js": [
+        "jquery.cookie.js",
+        "jwt-auth0.js",
         "jquery.bxslider.js",
         "jquery.easing.1.3.js",
         "jquery.mousewheel.js",
@@ -53,6 +55,7 @@
     "challengelanding": {
       "name": "challengelanding",
       "js": [
+        "jwt-auth0.js",
         "jquery.bxslider.js",
         "jquery.easing.1.3.js",
         "jquery.mousewheel.js",
@@ -73,9 +76,9 @@
         "moment-data.js",
         "chosen.jquery.min.js",
         "script-challenges.js",
-		"jquery.cookie.js",
-		"jquery.inputmask.js",
-		"jquery.inputmask.date.extensions.js"
+        "jquery.cookie.js",
+        "jquery.inputmask.js",
+        "jquery.inputmask.date.extensions.js"
       ],
       "css": [
         "base.css",
@@ -94,6 +97,7 @@
     "challenges": {
       "name": "challenges",
       "js": [
+        "jwt-auth0.js",
         "jquery.bxslider.js",
         "jquery.easing.1.3.js",
         "jquery.mousewheel.js",
@@ -113,7 +117,7 @@
         "moment.min.js",
         "moment-timezone.min.js",
         "moment-data.js",
-		"jquery.cookie.js",
+        "jquery.cookie.js",
         "jquery.inputmask.js",
         "jquery.inputmask.date.extensions.js"
       ],
@@ -134,6 +138,8 @@
     "challengeterms": {
       "name": "challengeterms",
       "js": [
+        "jquery.cookie.js",
+        "jwt-auth0.js",
         "jquery.bxslider.js",
         "jquery.easing.1.3.js",
         "jquery.mousewheel.js",
@@ -164,6 +170,8 @@
     "challengesubmit": {
       "name": "challengesubmit",
       "js": [
+        "jquery.cookie.js",
+        "jwt-auth0.js",
         "jquery.bxslider.js",
         "jquery.easing.1.3.js",
         "jquery.mousewheel.js",
