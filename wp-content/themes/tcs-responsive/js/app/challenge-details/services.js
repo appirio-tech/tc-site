@@ -1,6 +1,15 @@
 cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', '$cookies', function(Restangular, API_URL, $q, $cookies) {
   var service = Restangular.withConfig(function(RestangularConfigurer) {
     RestangularConfigurer.setBaseUrl(API_URL);
+
+    // request config
+    //RestangularConfigurer.setDefaultHttpFields({'withCredentials': true});
+
+    // tcjwt cookie
+    //RestangularConfigurer.setDefaultHeaders({
+    //  'Authorization': 'Bearer ' + $cookies.tcjwt
+    //});
+    
   });
   service.getResults = function(id) {
     var defer = $q.defer();
