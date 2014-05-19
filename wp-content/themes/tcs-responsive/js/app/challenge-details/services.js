@@ -1,4 +1,4 @@
-cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', function(Restangular, API_URL, $q) {
+cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', '$cookies', function(Restangular, API_URL, $q, $cookies) {
   var service = Restangular.withConfig(function(RestangularConfigurer) {
     RestangularConfigurer.setBaseUrl(API_URL);
   });
@@ -39,7 +39,7 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', function(Rest
   }
   service.getChallenge = function(id) {
     var defer = $q.defer();
-    service.one(challengeType).one('challenges', id).getList().then(function(challenge) {
+    service.one(challengeType).one('challenges').getList(id).then(function(challenge) {
       challenge = challenge[0];
       var submissionMap = {};
       challenge.submissions.map(function(submission) {

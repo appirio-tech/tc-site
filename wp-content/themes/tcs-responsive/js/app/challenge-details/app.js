@@ -1,4 +1,4 @@
-var cdapp = angular.module('challengeDetails', ['restangular'])
+var cdapp = angular.module('challengeDetails', ['restangular', 'ngCookies'])
 
 .constant("API_URL", "https://api.topcoder.com/v2")
 
@@ -12,6 +12,9 @@ var cdapp = angular.module('challengeDetails', ['restangular'])
 
   // Base API url
   RestangularProvider.setBaseUrl(API_URL);
+
+  // tcjwt cookie
+  //RestangularProvicer.setDefaultRequestParams({tcjwt: $cookies.tcjwt});
 
   // Format restangular response
 

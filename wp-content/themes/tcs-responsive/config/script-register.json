@@ -265,7 +265,10 @@
         "jquery.qtip.min.js",
         "jquery.jqtransform.js",
         "reset-password.js",
-        "app/challenge-details/ng-challenge-detail-software.js"
+        "app/challenge-details/ng-challenge-detail-software.js",
+        "app/challenge-details/app.js",
+        "app/challenge-details/controllers.js",
+        "app/challenge-details/services.js"
       ],
       "css": [
         "blog.css",
