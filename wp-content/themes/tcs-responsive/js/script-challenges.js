@@ -1177,7 +1177,9 @@ appChallenges = {
                 var round1ScheduledStartDate = app.formatDate2(rec.round1ScheduledStartDate);
                 var round2ScheduledStartDate = app.formatDate2(rec.round2ScheduledStartDate);
                 var contestLinkUrl = app.getContestLinkUrl(rec.challengeId, contest_type);
-                var reviewDetailsLinkUrl = siteurl + "/review-opportunity/design/" + rec.challengeId;
+                //var reviewDetailsLinkUrl = siteurl + "/review-opportunity/design/" + rec.challengeId;
+                // Change to old reivew for now
+                var reviewDetailsLinkUrl = rec.detailLink;
 
                 row.addClass('track-' + trackName);
                 /*
@@ -1222,7 +1224,9 @@ appChallenges = {
                 var row = $(challengesBP.tabDevReview).clone();
 
                 var contestLinkUrl = app.getContestLinkUrl(rec.challengeId, contest_type);
-                var reviewDetailsLinkUrl = siteurl + "/review-opportunity/develop/" + rec.challengeId;
+                //var reviewDetailsLinkUrl = siteurl + "/review-opportunity/develop/" + rec.challengeId;
+                // Change to old reivew for now
+                var reviewDetailsLinkUrl = rec.detailLink;
                 var reviewStart = app.formatDate2(rec.reviewStart);
                 /*
                  * generate table row for develop contest type
