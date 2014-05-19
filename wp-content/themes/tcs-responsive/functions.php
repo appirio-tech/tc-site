@@ -4,7 +4,7 @@
 define('THEME_URL', get_template_directory_uri());
 define('CURRENT_FULL_URL', add_query_arg($wp->query_string, '', home_url($wp->request)));
 if (!defined('TC_API_URL')) {
-  define('TC_API_URL', 'https://api.topcoder.com/v2/');
+  define('TC_API_URL', 'https://api.topcoder.com/v2');
 }
 
 @ini_set('display_errors', 1);
