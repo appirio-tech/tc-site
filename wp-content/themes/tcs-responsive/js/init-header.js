@@ -27,7 +27,7 @@ $(document).ready(function() {
         $('.logoutLink, .linkLogout, .userDetailsWrapper').removeClass('hide').show();
         $('.headerTopRightMenuLink.logIn a').unbind('click');
         $('.headerTopRightMenuLink.logIn a').text("Log Out").removeClass("actionLogin").addClass("actionLogout");
-        var regValues = regCookie.exp.split("|");
+        var regValues = regCookie.sub.split("|");
         $.getJSON("http://community.topcoder.com/tc?module=BasicData&c=get_handle_by_id&dsid=30&uid=" + regValues[1] + "&json=true", function(data) {
           var handle = data['data'][0]['handle'];
           $('.userDetails .coder').text(handle);
