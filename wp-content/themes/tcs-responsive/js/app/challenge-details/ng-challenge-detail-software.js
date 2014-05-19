@@ -44,6 +44,24 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', function(Rest
     var defer = $q.defer();
     service.one(challengeType).one('challenges').one('result', id).getList().then(function(results) {
       results = results[0];
+      var submissionMap = {};
+      results.results.map(function(x) {
+        submissionMap[x.placement] = x;
+      });
+      results.firstPlaceSubmission = submissionMap[1];
+      results.secondPlaceSubmission = submissionMap[2];
+      results.submissions = [];
+      var i = 1;
+      while (submissionMap[i]) {
+        results.submissions.push(submissionMap[i]);
+        i++;
+      }
+      results.initialScoreSum = 0;
+      results.finalScoreSum = 0;
+      results.submissions.map(function(x) {
+        results.initialScoreSum += x.initialScore;
+        results.finalScoreSum += x.finalScore;
+      });
       defer.resolve(results);
     });
     return defer.promise;
@@ -93,7 +111,6 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', function(Rest
         challenge.registrants.map(function(x) {
           handleMap[x.handle] = true;
         });
-        //if (!handleMap[handle]) challenge.submitDisabled = true;
       }
       defer.resolve(challenge);
     });
@@ -170,24 +187,9 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
     if (challenge.currentPhaseEndDate == '') {
       ChallengeService.getResults(challengeId).then(function(results) {
         $scope.results = results;
-        $scope.submissionMap = {};
-        results.results.map(function(x) {
-          $scope.submissionMap[x.placement] = x;
-        });
-        $scope.firstPlaceSubmission = $scope.submissionMap[1];
-        $scope.secondPlaceSubmission = $scope.submissionMap[1];
-        $scope.submissions = [];
-        var i = 1;
-        while ($scope.submissionMap[i]) {
-          $scope.submissions.push($scope.submissionMap[i]);
-          i++;
-        }
-        $scope.initialScoreSum = 0;
-        $scope.finalScoreSum = 0;
-        $scope.submissions.map(function(x) {
-          $scope.initialScoreSum += x.initialScore;
-          $scope.finalScoreSum += x.finalScore;
-        });
+        $scope.firstPlaceSubmission = results.firstPlaceSubmission;
+        $scope.secondPlaceSubmission = results.secondPlaceSubmission;
+        $scope.submissions = results.submissions;
       });
     } else {
       $scope.submissions = false;
