@@ -508,7 +508,7 @@ if (sizeof($contest->prize) > 5) {
         <p><label>Posted On:</label>
           <span><?php echo date(
               "M d, Y H:i T",
-              strtotime("$contest->postingDate"));?>
+              strtotime("$contest->postingDate") + 4 * 60 * 60);?>
           </span>
         </p>
 
@@ -522,12 +522,12 @@ if (sizeof($contest->prize) > 5) {
 
         <!-- Issue ID: I-107591 - add Final Submission in all deadline if finalFixEndDate field is set -->
         <p <?php echo (isset($contest->finalFixEndDate)) ? '' : 'class="last"';?>><label>Submit By:</label>
-          <span><?php echo date("M d, Y H:i T", strtotime("$contest->submissionEndDate"));?></span>
+          <span><?php echo date("M d, Y H:i T", strtotime("$contest->submissionEndDate") + 4 * 60 * 60);?></span>
         </p>
 
 		<?php if (isset($contest->finalFixEndDate)): ?>
 		<p class="last"><label>Final Submission:</label>
-          <span><?php echo date("M d, Y H:i T", strtotime("$contest->finalFixEndDate"));?></span>
+          <span><?php echo date("M d, Y H:i T", strtotime("$contest->finalFixEndDate") + 4 * 60 * 60);?></span>
         </p>
         <?php endif; ?>
 
@@ -540,14 +540,14 @@ if (sizeof($contest->prize) > 5) {
         <p><label>Start Date:</label>
           <span><?php echo date(
               "M d, Y H:i T",
-              strtotime("$contest->postingDate"));?>
+              strtotime("$contest->postingDate") + 4 * 60 * 60);?>
           </span>
         </p>
         <?php if ($contest->checkpointSubmissionEndDate != "") : ?>
           <p><label>Checkpoint:</label>
           <span><?php echo date(
               "M d, Y H:i T",
-              strtotime("$contest->checkpointSubmissionEndDate"));?>
+              strtotime("$contest->checkpointSubmissionEndDate") + 4 * 60 * 60);?>
           </span>
           </p>
         <?php endif; ?>
@@ -555,14 +555,14 @@ if (sizeof($contest->prize) > 5) {
         <p><label>End Date:</label>
           <span><?php echo date(
               "M d, Y H:i T",
-              strtotime("$contest->submissionEndDate"));?>
+              strtotime("$contest->submissionEndDate") + 4 * 60 * 60);?>
           </span>
         </p>
 
         <p class="last"><label>Winners Announced:</label>
           <span><?php echo date(
               "M d, Y H:i T",
-              strtotime("$contest->appealsEndDate"));?>
+              strtotime("$contest->appealsEndDate") + 4 * 60 * 60);?>
           </span>
         </p>
       </div>
