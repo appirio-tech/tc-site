@@ -1764,6 +1764,12 @@ appChallenges = {
                     $ul.append('<li><span>' + sp + '</span></li>');
                   });
 
+                  if (!app.isEmptyArray(rec.platforms)) {
+                    $.each(rec.platforms, function(_, sp){
+                      $ul.append('<li><span>' + sp + '</span></li>');
+                    });
+                  }
+
                   $div.append($ul);
                   $('.colCh', row).append($div);
                 }
