@@ -166,7 +166,7 @@ $blog_posts = get_posts($blog_posts_args);
     <h2>Registered!</h2>
     <p class="success">Thank you for registering. You may now download the challenge files and participate in the challenge forums.</p>
     <p class="submitBtn">
-      <a class="btn closeModal" href="javascript:;">Ok</a>
+      <a class="btn closeModalReg" href="javascript:;">Ok</a>
     </p>
   </div>
 </div><!-- END #registerSuccess -->
@@ -176,7 +176,7 @@ $blog_posts = get_posts($blog_posts_args);
     <h2>Info</h2>
     <p class="failedMessage"></p>
     <p class="submitBtn">
-      <a class="btn closeModal" href="javascript:;">Ok</a>
+      <a class="btn closeModalReg" href="javascript:;">Ok</a>
     </p>
   </div>
 </div><!-- END #registerFailed -->
@@ -781,51 +781,51 @@ $blog_posts = get_posts($blog_posts_args);
       auth0Register.login({
         connection: googleProvider,
         state: loginState,
-        response_type: 'token'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+        response_type: 'token'});
     });
 
     $('.register-facebook').on('click', function () {
       auth0Register.login({connection: facebookProvider,
         state: loginState,
-        response_type: 'token'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+        response_type: 'token'});
     });
 
     $('.register-twitter').on('click', function () {
       auth0Register.login({connection: twitterProvider,
         state: loginState,
-        response_type: 'token'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+        response_type: 'token'});
     });
 
     $('.register-github').on('click', function () {
       auth0Register.login({connection: githubProvider,
         state: loginState,
-        response_type: 'token'});  // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+        response_type: 'token'});
     });
 
     $('.signin-google').on('click', function () {
       auth0Login.login({
         connection: 'google-oauth2',
-        state: loginState}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+        state: loginState});
     });
 
     $('.signin-facebook').on('click', function () {
       auth0Login.login({connection: 'facebook',
-        state: loginState}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+        state: loginState});
     });
 
     $('.signin-twitter').on('click', function () {
       auth0Login.login({connection: 'twitter',
-        state: loginState}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+        state: loginState});
     });
 
     $('.signin-github').on('click', function () {
       auth0Login.login({connection: 'github',
-        state: loginState});  // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+        state: loginState});
     });
 
     $('.signin-etc').on('click', function () {
       auth0Login.login({connection: 'connection-name',
-        state: loginState}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+        state: loginState});
     });
 
     $('.signin-db').on('click', function () {
@@ -843,7 +843,7 @@ $blog_posts = get_posts($blog_posts_args);
       if (empty) return;
       auth0Login.login({
           connection: 'LDAP',
-          state: loginState, // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+          state: loginState,
           username: document.getElementById('username').value,
           password: document.getElementById('password').value
         },

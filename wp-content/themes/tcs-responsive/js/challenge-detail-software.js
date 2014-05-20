@@ -371,17 +371,15 @@ $(function () {
     } else {
       $('.actionLogin').click();
     }
-    event.preventDefault();
   });
 
   if (autoRegister) {
     $(".challengeRegisterBtn").click();
   }
 
-  $("#registerSuccess .closeModal").click(function (event) {
+  $("#registerSuccess .closeModalReg").click(function (event) {
     $('.modal,#bgModal').hide();
-    window.location.href = loginState = siteURL + "/challenge-details/" + challengeId + "?type=" + challengeType + "&nocache=true";
-    event.preventDefault();
+    window.location.href = siteURL + "/challenge-details/" + challengeId + "?type=" + challengeType + "&nocache=true";
   });
 
 });
@@ -398,7 +396,7 @@ $(function () {
   });
 
   $('.expandCollaspeList li a').each(function () {
-    var _this = $(this).parents('li')
+    var _this = $(this).parents('li');
     if (!$(this).hasClass('collapseIcon')) {
       _this.children('.bar').css('border-bottom', '1px solid #e7e7e7');
     } else {
