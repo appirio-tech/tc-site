@@ -63,7 +63,7 @@ tc_remove_end_of_date($contest->appealsEndDate);
 tc_remove_end_of_date($contest->currentPhaseEndDate);
 
 function tc_remove_end_of_date(&$date) {
-  $date = explode('.', $date)[0];
+  $date = reset(explode('.', $date));
 }
 
 
