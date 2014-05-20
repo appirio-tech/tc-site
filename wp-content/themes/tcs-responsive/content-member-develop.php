@@ -82,7 +82,7 @@ array_push ( $challengetypes, 'UI Prototypes' );
 				<h3 class="nocontestStatus text">Member rating unavailable or member didn't participated in any Develop contest.</h3>
 			</header>
 			<?php else:?>
-
+			
 			<header class="head">
 				<div class="trackNRating">
 					<h4 class="trackName"><?php echo $currentChallengetype;
@@ -166,7 +166,7 @@ array_push ( $challengetypes, 'UI Prototypes' );
 									<a class="btn btnHistory isActive">Rating History</a> <a class="btn btnDist">Rating Distribution</a>
 								</div>
 							<?php echo apply_filters('the_content','[tc_ratings_chart_dev handle="'.$handle.'"  challengetype="'.$underscoredCurrentChallengeType.'"]');?>
-
+							
 						</div>
 						</div>
 					</div>
@@ -278,7 +278,7 @@ array_push ( $challengetypes, 'UI Prototypes' );
 			</div>
 			<!-- /#tabularView -->
 			<?php endif;?>
-
+		
 		</div>
 		<!-- /.ratingViews -->
 	</div>
