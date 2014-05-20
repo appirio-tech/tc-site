@@ -675,6 +675,10 @@ $blog_posts = get_posts($blog_posts_args);
 
     if (loginState == 'none') {
       loginState = window.location.href;
+      if ( /action=showlogin/i.test( loginState )) {
+        loginState = referer;
+      }
+
       if ( /action=showlogin/i.test( referer ) ) {
         // few user tested to access directly "?action=showlogin", by this by, loginState would be its own self (contain 'showlogin')
         // avoid loop if 1st login try was failed. failed login will still redirect user to action=showlogin
