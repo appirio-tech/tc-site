@@ -29,7 +29,7 @@
         "jquery.qtip.min.js",
         "jquery.jqtransform.js",
         "reset-password.js",
-		"highcharts.js"
+        "highcharts.js"
 
       ],
       "css": [
