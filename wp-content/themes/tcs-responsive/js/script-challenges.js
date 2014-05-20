@@ -667,7 +667,7 @@ appChallenges = {
                 trackName = "df2f";
                 break;
             case "Application Front-End Design":
-                trackName = "af";
+                trackName = "a";
                 break;
             default:
                 trackName = "o";
