@@ -674,14 +674,11 @@ $blog_posts = get_posts($blog_posts_args);
     var referer =  document.referrer;
 
     if (loginState == 'none') {
-      loginState = 'http://www.topcoder.com';
-      if ( /topcoder/i.test( referer ) ) { // send back to referer e.g /tc site
-        loginState = referer;
-      }
+      loginState = window.location.href;
       if ( /action=showlogin/i.test( referer ) ) {
         // few user tested to access directly "?action=showlogin", by this by, loginState would be its own self (contain 'showlogin')
         // avoid loop if 1st login try was failed. failed login will still redirect user to action=showlogin
-        loginState = 'http://www.topcoder.com';
+        loginState = window.location.href;
       }
     }
     var auth0Login = new Auth0({
