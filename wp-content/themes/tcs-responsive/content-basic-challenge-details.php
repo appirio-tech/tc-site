@@ -562,7 +562,7 @@ if (sizeof($contest->prize) > 5) {
         <p class="last"><label>Winners Announced:</label>
           <span><?php echo date(
               "M d, Y H:i T",
-              strtotime("$contest->appealsEndDate") + 4 * 60 * 60);?>
+              strtotime("$contest->appealsEndDate"));?>
           </span>
         </p>
       </div>
