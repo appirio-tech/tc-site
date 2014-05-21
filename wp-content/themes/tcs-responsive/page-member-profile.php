@@ -122,7 +122,7 @@ $quote = ($coder->quote == '') ? "Member of the world's largest global competiti
 							});
 							//-->
 						</script>
-						<div class="loadingPlaceholder">Loading...</div>
+						<div class="loadingPlaceholder"></div>
 					</div>
 					<!-- /.dataTabs -->
 				</div>
