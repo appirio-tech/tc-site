@@ -115,4 +115,3 @@ function get_template_part_by_ajax_ctrl() {
 
 add_action ( 'wp_ajax_get_template_part_by_ajax', 'get_template_part_by_ajax_ctrl' );
 add_action ( 'wp_ajax_nopriv_get_template_part_by_ajax', 'get_template_part_by_ajax_ctrl' );
-?>
