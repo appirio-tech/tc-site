@@ -925,7 +925,7 @@ a{
     }
 
 .loadingPlaceholder{
-    background: #ff8a00 url(../i/loading.gif) 50% 50% no-repeat;
+    background: url(../i/loading.gif) 50% 50% no-repeat;
     height: 250px;
     border-radius: 5px;
 }
