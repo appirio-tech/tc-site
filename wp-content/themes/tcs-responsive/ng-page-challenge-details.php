@@ -199,10 +199,10 @@ include locate_template('header-challenge-landing.php');
     <article id="platforms">
       <h1>Platforms</h1>
       <ul>
-        <li ng-if="hasPlatforms = challenge.platforms && challenge.platforms.length > 0" ng-repeat="platform in challenge.platforms" >
+        <li ng-if="(hasPlatforms = challenge.platforms && challenge.platforms.length > 0)" ng-repeat="platform in challenge.platforms" >
           <strong ng-bind="platform"></strong>
         </li>
-        <li ng-if="!hasPlatforms">
+        <li ng-if="!(hasPlatforms = challenge.platforms && challenge.platforms.length > 0)">
           <strong>Not Specified</strong>
         </li>
       </ul>
@@ -211,13 +211,15 @@ include locate_template('header-challenge-landing.php');
     <article id="technologies">
       <h1>Technologies</h1>
       <div class="technologyTags">
-        <li ng-if="hasTechnology = challenge.technology && challenge.technology.length > 0" ng-repeat="tech in technology">
-          <span ng-bind="tech"></span>
-        </li>
-        <li ng-if="!hasTechnology">
-          <strong>Not Specified</strong>
-        </li>
+        <ul>
+          <li ng-if="challenge.technology && challenge.technology.length > 0" ng-repeat="tech in challenge.technology">
+            <span>{{tech}}</span>
+          </li>
+          <li ng-if="!(challenge.technology && challenge.technology.length > 0)">
+            <strong>Not Specified</strong>
+          </li>
 
+        </ul>
       <div class="clear"></div>
       </div>
     </article>
