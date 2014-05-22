@@ -667,7 +667,7 @@ appChallenges = {
                 trackName = "df2f";
                 break;
             case "Application Front-End Design":
-                trackName = "af";
+                trackName = "a";
                 break;
             default:
                 trackName = "o";
@@ -1177,7 +1177,9 @@ appChallenges = {
                 var round1ScheduledStartDate = app.formatDate2(rec.round1ScheduledStartDate);
                 var round2ScheduledStartDate = app.formatDate2(rec.round2ScheduledStartDate);
                 var contestLinkUrl = app.getContestLinkUrl(rec.challengeId, contest_type);
-                var reviewDetailsLinkUrl = siteurl + "/review-opportunity/design/" + rec.challengeId;
+                //var reviewDetailsLinkUrl = siteurl + "/review-opportunity/design/" + rec.challengeId;
+                // Change to old reivew for now
+                var reviewDetailsLinkUrl = rec.detailLink;
 
                 row.addClass('track-' + trackName);
                 /*
@@ -1222,7 +1224,9 @@ appChallenges = {
                 var row = $(challengesBP.tabDevReview).clone();
 
                 var contestLinkUrl = app.getContestLinkUrl(rec.challengeId, contest_type);
-                var reviewDetailsLinkUrl = siteurl + "/review-opportunity/develop/" + rec.challengeId;
+                //var reviewDetailsLinkUrl = siteurl + "/review-opportunity/develop/" + rec.challengeId;
+                // Change to old reivew for now
+                var reviewDetailsLinkUrl = rec.detailLink;
                 var reviewStart = app.formatDate2(rec.reviewStart);
                 /*
                  * generate table row for develop contest type
@@ -2338,17 +2342,9 @@ appChallenges = {
     formatDate2: function(date) {
         //some function is passing in undefined timezone_string variable causing js errors, so check if undefined and set default:
         if (typeof timezone_string === 'undefined') {
-        var timezone_string = "America/Toronto"; // lets set to TC timezone
+          var timezone_string = "America/New_York"; // lets set to TC timezone
         }
         return moment(date).tz(timezone_string).format("D MMM YYYY HH:mm z");
-        // var d = new Date(date);
-        // var utcd = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds());
-
-        // // obtain local UTC offset and convert to msec
-        // localOffset = d.getTimezoneOffset() * 60000;
-        // var newdate = new Date(utcd + localOffset);
-
-        // return newdate.toDateString() + ' ' + ((newdate.getUTCHours() < 10 ? '0' : '') + newdate.getUTCHours()) + ':' + ((newdate.getUTCMinutes() < 10 ? '0' : '') + newdate.getUTCMinutes());
     },
 
     getContestDuration: function(dateStart, dateEnd, time) {
