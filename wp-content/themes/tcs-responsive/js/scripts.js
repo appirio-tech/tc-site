@@ -170,7 +170,7 @@ var app = {
         $(this).closest('li').addClass('isActive');
       }
       return false;
-    })
+    });
 
     // main Nav
     $('#mainNav').on(ev, function() {
@@ -408,7 +408,7 @@ var app = {
       $('.loading').hide();
       //$('body').append('<div class="errorLoading">Oops... we had trouble loading ' +challenge_type+ ' Challenges.</div>');
       // setTimeout( "jQuery('.errorLoading').fadeOut();",5000 );
-    });;
+    });
   },
 
   /*
@@ -619,7 +619,7 @@ var app = {
           });
           callback();
         });
-    },
+    }
 
 
   },
@@ -926,15 +926,11 @@ var app = {
   },
 
   formatDate2: function(date) {
+    //some function is passing in undefined timezone_string variable causing js errors, so check if undefined and set default:
+    if (typeof timezone_string === 'undefined') {
+      var timezone_string = "America/New_York"; // lets set to TC timezone
+    }
     return moment(date).tz(timezone_string).format("D MMM YYYY HH:mm z");
-    // var d = new Date(date);
-    // var utcd = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds());
-
-    // // obtain local UTC offset and convert to msec
-    // localOffset = d.getTimezoneOffset() * 60000;
-    // var newdate = new Date(utcd + localOffset);
-
-    // return newdate.toDateString() + ' ' + ((newdate.getUTCHours() < 10 ? '0' : '') + newdate.getUTCHours()) + ':' + ((newdate.getUTCMinutes() < 10 ? '0' : '') + newdate.getUTCMinutes());
   },
 
 
@@ -1642,9 +1638,27 @@ var app = {
         }
       });
     });
+  },
+
+  isLoggedIn: function() {
+    var tcjwt = $.cookie('tcjwt');
+
+    if (typeof tcjwt == "undefined") {
+      return false;
+    }
+
+    var decoded = jwt_decode(tcjwt);
+    var expDate = moment.unix(decoded.exp);
+    var today = new Date();
+    var dateDiff = expDate.diff(today, 'hours');
+    if (dateDiff < 0) {
+      return false;
+    }
+
+    return decoded;
   }
 
-}
+};
 var blueprints = {
   challengeRow: '<tr> \
 						<td class="colCh"><div>\
@@ -1724,13 +1738,13 @@ var blueprints = {
 										</p>\
 									</div>\
 								</div>'
-}
+};
 
 // everythings begins from here
 $(document).ready(function() {
   app.init();
   app.initEvents();
-})
+});
 
 function secondsToString(seconds) {
   var numdays = Math.floor(seconds / 86400);
@@ -1755,4 +1769,4 @@ function numberWithCommas(x) {
 Array.prototype.sum = function() {
   for (var i = 0, sum = 0, max = this.length; i < max; sum += this[i++]);
   return sum;
-}
+};

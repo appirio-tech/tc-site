@@ -121,12 +121,12 @@ appChallenges = {
             } else {
                 $(this).addClass('isActive');
                 $('.searchFilter').fadeIn();
-				
-				// Issue ID: I-111128 - enable/disable datepicker based on the status of the related checkbox
-				$('.otherOpts .row').each(function() {
+
+        // Issue ID: I-111128 - enable/disable datepicker based on the status of the related checkbox
+        $('.otherOpts .row').each(function() {
                     var cbDate = $(this).find('input:checkbox');
-					$('.datepicker', $(this)).datepicker(cbDate.is(':checked') ? 'enable' : 'disable');
-				});
+          $('.datepicker', $(this)).datepicker(cbDate.is(':checked') ? 'enable' : 'disable');
+        });
 
         // populate technology tags
         app.getTechnologyTags($('.chosen-select'));
@@ -667,7 +667,7 @@ appChallenges = {
                 trackName = "df2f";
                 break;
             case "Application Front-End Design":
-                trackName = "af";
+                trackName = "a";
                 break;
             default:
                 trackName = "o";
@@ -790,7 +790,7 @@ appChallenges = {
         if (isAppend != true) {
             $('tbody', table).html(null);
         }
-								$('thead', table).show();
+        $('thead', table).show();
         var count = 0;
         //JS uncaught typeError when no data available, so adding defined check
         if (typeof data.data !== 'undefined' && data.data.length > 0) {
@@ -1177,7 +1177,9 @@ appChallenges = {
                 var round1ScheduledStartDate = app.formatDate2(rec.round1ScheduledStartDate);
                 var round2ScheduledStartDate = app.formatDate2(rec.round2ScheduledStartDate);
                 var contestLinkUrl = app.getContestLinkUrl(rec.challengeId, contest_type);
-                var reviewDetailsLinkUrl = siteurl + "/review-opportunity/design/" + rec.challengeId;
+                //var reviewDetailsLinkUrl = siteurl + "/review-opportunity/design/" + rec.challengeId;
+                // Change to old reivew for now
+                var reviewDetailsLinkUrl = rec.detailLink;
 
                 row.addClass('track-' + trackName);
                 /*
@@ -1222,7 +1224,9 @@ appChallenges = {
                 var row = $(challengesBP.tabDevReview).clone();
 
                 var contestLinkUrl = app.getContestLinkUrl(rec.challengeId, contest_type);
-                var reviewDetailsLinkUrl = siteurl + "/review-opportunity/develop/" + rec.challengeId;
+                //var reviewDetailsLinkUrl = siteurl + "/review-opportunity/develop/" + rec.challengeId;
+                // Change to old reivew for now
+                var reviewDetailsLinkUrl = rec.detailLink;
                 var reviewStart = app.formatDate2(rec.reviewStart);
                 /*
                  * generate table row for develop contest type
@@ -1506,7 +1510,7 @@ appChallenges = {
                     $('.colCh a, .cgCh a', row).attr("href", contestLinkUrl);
 
                     $('.tipC', row).html(rec.challengeType);
-					$('.tipC', row).data('contest_type', rec.challengeCommunity);
+                    $('.tipC', row).data('contest_type', rec.challengeCommunity);
 
                     $('.vStartDate', row).html(startDate);
 
@@ -1538,7 +1542,7 @@ appChallenges = {
     },
 
     addEmptyResult: function(table) {        
-								$('thead', table).hide();
+        $('thead', table).hide();
         var toUpdate = $('tbody', table).length > 0 ? $('tbody', table) : $(table);
         toUpdate.html('<tr><td style="font-size:20px;">There are no active challenges under this category. Please check back later</td></tr>');
     },
@@ -1619,7 +1623,7 @@ appChallenges = {
 
                     $('.type', con).html(rec.challengeType);
                     $('.tipC', con).html(rec.challengeType);
-					$('.tipC', con).data('contest_type', rec.challengeCommunity);
+                    $('.tipC', con).data('contest_type', rec.challengeCommunity);
                     $('.vStartDate', con).html(startDate);
                     if (checkPointDate) {
                         $('.vEndRound', con).html(checkPointDate);
@@ -1707,7 +1711,7 @@ appChallenges = {
         if (isAppend != true) {
             $('tbody', table).html(null);
         }
-								$('thead', table).show();
+        $('thead', table).show();
         var count = 0;
         //JS uncaught typeError when no data available, so adding defined check
         if (typeof data.data !== 'undefined' && data.data.length > 0) {
@@ -1776,7 +1780,7 @@ appChallenges = {
 
                 $('.tipC', row).html(rec.challengeType);
                 $('.tipC', row).data('contest_type', rec.challengeCommunity);
-				
+
                 $('.vStartDate', row).html(startDate);
 
                 if (checkPointDate) {
@@ -1861,7 +1865,7 @@ appChallenges = {
                 $('.colCh a, .cgCh a', con).attr("href", contestLinkUrl);
 
                 $('.tipC', con).html(rec.challengeType);
-				$('.tipC', con).data('contest_type', rec.challengeCommunity);
+                $('.tipC', con).data('contest_type', rec.challengeCommunity);
 
                 $('.vStartDate', con).html(startDate);
 
@@ -1971,7 +1975,7 @@ appChallenges = {
         if (isAppend != true) {
             $('tbody', table).html(null);
         }
-								$('thead', table).show();
+        $('thead', table).show();
         var count = 0;
         //JS uncaught typeError when no data available, so adding defined check
         if (typeof data.data !== 'undefined' && data.data.length > 0) {
@@ -2024,7 +2028,7 @@ appChallenges = {
                 }
 
                 $('.colType .tipC', row).html(rec.challengeType);
-				$('.colType .tipC', row).data('contest_type', rec.challengeCommunity);
+                $('.colType .tipC', row).data('contest_type', rec.challengeCommunity);
 
                 $('.vStartDate', row).html(startDate);
 
@@ -2119,7 +2123,7 @@ appChallenges = {
                 $('.colCh a, .cgCh a', row).attr("href", contestLinkUrl);
 
                 $('.tipC', row).html(rec.challengeType);
-				$('.tipC', row).data('contest_type', rec.challengeCommunity);
+                $('.tipC', row).data('contest_type', rec.challengeCommunity);
 
                 $('.vStartDate', row).html(startDate);
 
@@ -2210,7 +2214,7 @@ appChallenges = {
                 $('.colCh a, .cgCh a', con).attr("href", contestLinkUrl);
 
                 $('.tipC', con).html(rec.challengeType);
-				$('.tipC', con).data('contest_type', rec.challengeCommunity);
+                $('.tipC', con).data('contest_type', rec.challengeCommunity);
 
                 $('.vStartDate', con).html(startDate);
 
@@ -2279,7 +2283,7 @@ appChallenges = {
         if (isAppend != true) {
             $('tbody', table).html(null);
         }
-								$('thead', table).show();
+        $('thead', table).show();
         var count = 0;
         //JS uncaught typeError when no data available, so adding defined check
         if (typeof data.data !== 'undefined' && data.data.length > 0) {
@@ -2298,7 +2302,7 @@ appChallenges = {
                 $('.contestName', row).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/ico-track-develop.png" />' + rec.challengeName + '<img alt="" class="allContestTCOIco" src="' + stylesheet_dir + '/i/tco-flag-develop.png" />');
                 $('.contestName', row).parents(".inTCO").addClass("hasTCOIco");
                 $('.tipC', row).html(rec.challengeType);
-				$('.tipC', row).data('contest_type', rec.challengeCommunity);
+                $('.tipC', row).data('contest_type', rec.challengeCommunity);
                 $('.colPay', row).html("$" + app.formatCur(purse));
                 $('.colTP', row).html(20);
                 $('.colReg', row).html('<a href="javascript:;">' + rec.numRegistrants + '</a>');
@@ -2338,17 +2342,9 @@ appChallenges = {
     formatDate2: function(date) {
         //some function is passing in undefined timezone_string variable causing js errors, so check if undefined and set default:
         if (typeof timezone_string === 'undefined') {
-        var timezone_string = "America/Toronto"; // lets set to TC timezone
+          var timezone_string = "America/New_York"; // lets set to TC timezone
         }
         return moment(date).tz(timezone_string).format("D MMM YYYY HH:mm z");
-        // var d = new Date(date);
-        // var utcd = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds());
-
-        // // obtain local UTC offset and convert to msec
-        // localOffset = d.getTimezoneOffset() * 60000;
-        // var newdate = new Date(utcd + localOffset);
-
-        // return newdate.toDateString() + ' ' + ((newdate.getUTCHours() < 10 ? '0' : '') + newdate.getUTCHours()) + ':' + ((newdate.getUTCMinutes() < 10 ? '0' : '') + newdate.getUTCMinutes());
     },
 
     getContestDuration: function(dateStart, dateEnd, time) {
@@ -2978,15 +2974,9 @@ $.getJSON = function(url, success) {
     });
 };
 
-// everythings begins from here
-$(document).ready(function() {
-    $("#challengeNav a").hide();
-
-});
-
-
 /* fancy drop down platform on advanced search form */
 $(document).ready(function() {
+    $("#challengeNav a").hide();
 
     /*multiple select configurations
     var config = {
@@ -3026,7 +3016,7 @@ $(document).ready(function() {
             }
         }
     });
-	
-	// Issue ID: I-111387 - Add date input masking to both startDate and endDate inputs
-	$('input[type=text].datepicker', '.otherOpts').inputmask('yyyy-mm-dd');
+
+  // Issue ID: I-111387 - Add date input masking to both startDate and endDate inputs
+  $('input[type=text].datepicker', '.otherOpts').inputmask('yyyy-mm-dd');
 });
