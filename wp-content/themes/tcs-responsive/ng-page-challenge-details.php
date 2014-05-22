@@ -31,10 +31,6 @@ function tc_challenge_details_js() {
 <?php
 }
 
-/**
- * Template Name: Challenge details
- */
-
 $isChallengeDetails = TRUE;
 
 $contestID = get_query_var('contestID');
