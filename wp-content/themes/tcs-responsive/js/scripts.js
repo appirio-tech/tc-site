@@ -927,6 +927,9 @@ var app = {
 
   formatDate2: function(date) {
     // remove the end of the date string
+    if (typeof date === 'undefined') {
+     return;
+    }
     var dateArray = date.split('.');
     date = dateArray[0];
 
