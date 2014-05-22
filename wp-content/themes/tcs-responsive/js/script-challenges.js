@@ -2340,10 +2340,6 @@ appChallenges = {
     },
 
     formatDate2: function(date) {
-        // remove the end of the date string
-        var dateArray = date.split('.');
-        date = dateArray[0];
-
         //some function is passing in undefined timezone_string variable causing js errors, so check if undefined and set default:
         if (typeof timezone_string === 'undefined') {
           var timezone_string = "America/New_York"; // lets set to TC timezone
