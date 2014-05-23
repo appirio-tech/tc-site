@@ -2591,7 +2591,7 @@ appChallenges = {
     },
 
     // F2F 30042914 - push all elements of arrayToPush into targetArray if they do not exist yet
-	pushToArrayIfUnique: function(targetArray, arrayToPush) {
+    pushToArrayIfUnique: function(targetArray, arrayToPush) {
         if (app.isEmptyArray(arrayToPush)) {
             return;
         }
