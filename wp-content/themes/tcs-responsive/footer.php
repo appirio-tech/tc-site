@@ -504,6 +504,7 @@ $blog_posts = get_posts($blog_posts_args);
   <span class="err2">Password strength is weak</span>
   <span class="err3">Password cannot contain an apostrophe</span>
   <span class="err4">Password must be between 7 and 30 characters</span>
+  <span class="err5">Password must not contain only spaces</span>
   <span class="valid">Strong</span>
 </p>
 
