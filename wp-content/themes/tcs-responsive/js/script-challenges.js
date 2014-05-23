@@ -3145,17 +3145,6 @@ String.prototype.splice = function(idx, rem, s) {
 // extending base prototype
 $.extend(app, appChallenges);
 
-
-$.getJSON = function(url, success) {
-
-    return $.ajax({
-        dataType: "json",
-        url: url,
-        success: success,
-        cache: false
-    });
-};
-
 /* fancy drop down platform on advanced search form */
 $(document).ready(function() {
     $("#challengeNav a").hide();
