@@ -37,9 +37,7 @@
     <td ng-if="!isDesign && challenge.challengeType != 'Code'" class="fifty">
       <h2>2nd PLACE</h2>
       <h3>
-        <small>$</small>
-        <span ng-bind="challenge.prize ? (challenge.prize[1] ? challenge.prize[1] : '0') : ''">
-        </span>
+        <small>$</small><span ng-bind="challenge.prize ? (challenge.prize[1] ? challenge.prize[1] : '0') : ''"></span>
       </h3>
     </td>
       <td ng-if="(designOrCode = isDesign || challenge.challengeType == 'Code') && (challenge.prize && challenge.prize[0])" class="twenty">
@@ -281,20 +279,20 @@
       <div ng-if="!isDesign" class="nextBoxContent allDeadlineNextBoxContent hide">
         <p><label>Posted On:</label>
           <span>
-            {{formatDate(challenge.postingDate)}}
+            {{formatDate(challenge.postingDate, 2)}}
           </span>
         </p>
 
 
         <p><label>Register By:</label>
          <span>
-           {{formatDate(challenge.registrationEndDate)}}
+           {{formatDate(challenge.registrationEndDate, 2)}}
          </span>
         </p>
 
         <p class="last"><label>Submit By:</label>
           <span>
-            {{formatDate(challenge.submissionEndDate)}}
+            {{formatDate(challenge.submissionEndDate, 2)}}
           </span>
         </p>
 
@@ -303,24 +301,24 @@
       <div ng-if="isDesign" class="nextBoxContent allDeadlineNextBoxContent studio hide">
         <p><label>Start Date:</label>
           <span>
-            {{formatDate(challenge.postingDate)}}
+            {{formatDate(challenge.postingDate, 2)}}
           </span>
         </p>
           <p ng-if="challenge.checkpointSubmissionEndDate != ''"><label>Checkpoint:</label>
           <span>
-            {{formatDate(challenge.checkpointSubmissionEndDate)}}
+            {{formatDate(challenge.checkpointSubmissionEndDate, 2)}}
           </span>
           </p>
 
         <p><label>End Date:</label>
           <span>
-            {{formatDate(challenge.submissionEndDate)}}
+            {{formatDate(challenge.submissionEndDate, 2)}}
           </span>
         </p>
 
         <p class="last"><label>Winners Announced:</label>
           <span>
-            {{formatDate(challenge.appealsEndDate)}}
+            {{formatDate(challenge.appealsEndDate, 2)}}
           </span>
         </p>
       </div>
