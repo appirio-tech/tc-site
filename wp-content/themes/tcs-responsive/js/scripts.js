@@ -1665,7 +1665,7 @@ var app = {
     if (typeof tcsso === 'undefined') {
       callback(handle);
     } else {
-      var uid = tscco.split('|')[0];
+      var uid = tcsso.split('|')[0];
       if (uid) {
         $.getJSON("http://community.topcoder.com/tc?module=BasicData&c=get_handle_by_id&dsid=30&uid=" + uid + "&json=true", function(data) {
           callback(data['data'][0]['handle']);
