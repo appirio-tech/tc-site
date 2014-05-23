@@ -1,4 +1,10 @@
+
+// @TODO move to it's own module do it can be included in other module ie checkpoints, results, etc
+// @TODO is the result from service.one(challengeType).one('challenges').one('result', id) cached?
+// @TODO change to new API endpoints: http://api.topcoder.com/v2/challenges/30041860.  the type is no longer needed
+// @TODO look to combine this service with the challenge already defined.
 cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', '$cookies', function(Restangular, API_URL, $q, $cookies) {
+
   var service = Restangular.withConfig(function(RestangularConfigurer) {
     RestangularConfigurer.setBaseUrl(API_URL);
 
@@ -11,6 +17,7 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', '$cookies', f
     //});
     
   });
+
   service.getResults = function(id) {
     var defer = $q.defer();
     service.one(challengeType).one('challenges').one('result', id).getList().then(function(results) {
@@ -36,7 +43,8 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', '$cookies', f
       defer.resolve(results);
     });
     return defer.promise;
-  }
+  };
+
   service.getCheckpointData = function(id) {
     var defer = $q.defer();
     service.one(challengeType).one('challenges').one('checkpoint', id).getList().then(function(data) {
@@ -45,7 +53,8 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', '$cookies', f
       defer.resolve(data);
     });
     return defer.promise;
-  }
+  };
+
   service.getChallenge = function(id) {
     var defer = $q.defer();
     service.one(challengeType).one('challenges').getList(id).then(function(challenge) {
@@ -62,18 +71,23 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', '$cookies', f
           submissionMap[submission.handle] = submission.submissionDate;
         }
       });
+
       challenge.registrants.map(function(x) {
         x.lastSubmissionDate = submissionMap[x.handle];
       });
+
       if (challenge.allowStockArt) {
         challenge.allowStockArt = challenge.allowStockArt == 'true';
       }
+
       if ((new Date(challenge.registrationEndDate)) > new Date()) {
         challenge.registrationDisable = false;
       } else {
         challenge.registrationDisable = true;
       }
+
       challenge.submitDisabled = true;
+
       if (challenge.submissionEndDate && challenge.currentStatus != 'Completed') {
         if ((new Date(challenge.submissionEndDate)) > new Date()) {
           challenge.submitDisabled = false;
@@ -83,9 +97,11 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', '$cookies', f
           handleMap[x.handle] = true;
         });
       }
+
       defer.resolve(challenge);
     });
     return defer.promise;
-  }
+  };
+
   return service;
 }]);

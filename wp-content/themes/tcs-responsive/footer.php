@@ -213,6 +213,10 @@ $blog_posts = get_posts($blog_posts_args);
   <input type="text" class="name firstName" placeholder="First Name"/>
   <span class="err1">Required field</span>
   <span class="err2">Maximum length is 64 characters</span>
+  <!--Bugfix I-107905: add error message for invalid characters-->
+  <span class="err3">First Name contains invalid characters</span>
+  <span class="err4">First Name cannot consist solely of punctuation</span>
+  <span class="err5">First Name is invalid</span>
   <span class="valid"></span>
 </p>
 
@@ -221,6 +225,10 @@ $blog_posts = get_posts($blog_posts_args);
   <input type="text" class="name lastName" placeholder="Last Name"/>
   <span class="err1">Required field</span>
   <span class="err2">Maximum length is 64 characters</span>
+  <!--Bugfix I-107905: add error message for invalid characters-->
+  <span class="err3">Last Name contains invalid characters</span>
+  <span class="err4">Last Name cannot consist solely of punctuation</span>
+  <span class="err5">Last Name is invalid</span>
   <span class="valid"></span>
 </p>
 

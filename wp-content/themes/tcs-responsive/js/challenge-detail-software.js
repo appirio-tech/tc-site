@@ -103,13 +103,10 @@ $(document).ready(function () {
       $('.challengeSubmissionBtn').removeClass('disabled');
       $('.challengeSubmissionsBtn').removeClass('disabled');
     } else {
-      if(loggedIn) {
-        var uid = loggedIn.sub.split("|")[1];
-        $.getJSON("http://community.topcoder.com/tc?module=BasicData&c=get_handle_by_id&dsid=30&uid=" + uid + "&json=true", function(data) {
-          var now = new Date();
-          var handle = data['data'][0]['handle'];
-
+      if (loggedIn) {
+        app.getHandle(function(handle) {
           var registrants = [];
+          var now = new Date();
           $.each(challenge.registrants, function(x, registrant) {
             registrants.push(registrant.handle)
           });
@@ -554,6 +551,7 @@ $(function () {
 app.tabNavinit = function () {
 
   // tab navs
+if($('#main.coderProfile').lenght<=0){
   $('.tabNav a').off().on(ev, function () {
     var id = $(this).attr('href');
     var tabIdx = id.lastIndexOf('tab=');
@@ -569,6 +567,7 @@ app.tabNavinit = function () {
     $('#mainContent').attr('class', '').addClass('splitLayout').addClass('currentTab-' + id);
     return false;
   });
+}
 
   $('.challenge-detail .tabsWrap .tabNav a').each(function () {
     var value = $.trim($(this).text()).toLocaleLowerCase();

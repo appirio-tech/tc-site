@@ -3,6 +3,9 @@
 // Define once because it's faster
 define('THEME_URL', get_template_directory_uri());
 define('CURRENT_FULL_URL', add_query_arg($wp->query_string, '', home_url($wp->request)));
+if (!defined('TC_API_URL')) {
+  define('TC_API_URL', 'https://api.topcoder.com/v2');
+}
 
 @ini_set('display_errors', 1);
 
@@ -23,6 +26,7 @@ locate_template("lib/rss.php", TRUE);
 locate_template("lib/post_types.php", TRUE);
 locate_template("lib/ajax.php", TRUE);
 locate_template("lib/images.php", TRUE);
+locate_template("lib/member-profile/config.php", TRUE);
 
 if (!empty($skipAdminSSL)) {
   force_ssl_admin(false);

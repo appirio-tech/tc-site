@@ -28,7 +28,9 @@
         "moment-data.js",
         "jquery.qtip.min.js",
         "jquery.jqtransform.js",
-        "reset-password.js"
+        "reset-password.js",
+        "highcharts.js"
+
       ],
       "css": [
         "blog.css",
@@ -110,6 +112,7 @@
         "jquery.easing.1.3.js",
         "jquery.mousewheel.js",
         "scripts.js",
+        "chosen.jquery.min.js",
         "script-challenges.js",
         "register-login.js",
         "init-header.js",
@@ -133,7 +136,8 @@
         "style-responsive.css",
         "style-challenges.css",
         "style-challenges-responsive.css",
-        "jquery.qtip.min.css"
+        "jquery.qtip.min.css",
+        "challenge-tags.css"
       ]
     },
     "challengeterms": {
