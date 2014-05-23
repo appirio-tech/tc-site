@@ -642,7 +642,8 @@ include locate_template('header-challenge-landing.php');
       <h3>Submission Limit:</h3>
 
       <div class="inner">
-        <p><strong ng-bind="challenge.submissionLimit"></strong></p>
+        <!-- Bugfix I-107615: Added check if SubmissionLimit is empty, if so, display "Unlimited" instead of empty value -->
+        <p><strong ng-bind="challenge.submissionLimit.length > 0 ? challenge.submissionLimit : 'Unlimited'"></strong></p>
       </div>
     </div>
   </li>
