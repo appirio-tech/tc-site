@@ -153,7 +153,7 @@ var coder = {
             $('.isActive', $(this).closest('.pager')).removeClass('isActive');
             $(this).addClass('isActive');
             $('.page').hide();
-            $('.page' + parseInt($(this).text().trim())).show();
+            $('.page' + parseInt($.trim($(this).text()))).show();
             if ($('.pageLink:last', pager).hasClass('isActive')) {
                 $('.nextLink', pager).hide();
             }

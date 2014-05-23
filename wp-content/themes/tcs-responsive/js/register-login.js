@@ -48,7 +48,7 @@ $(function () {
   function pwdStrength(pwd) {
 
     var result = 0;
-    if (pwd.trim()=='') return 0;
+    if ($.trim(pwd) == '') return 0;
     if (pwd.length < 7) return -2;
     if (pwd.length > 30) return -3;
     if (pwd.match("'")) return -4;
