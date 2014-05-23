@@ -55,12 +55,15 @@ $submitDisabled  = FALSE;
  * @todo Tom add this to angular
  */
 
-tc_remove_end_of_date($contest->postingDate);
-tc_remove_end_of_date($contest->registrationEndDate);
-tc_remove_end_of_date($contest->checkpointSubmissionEndDate);
-tc_remove_end_of_date($contest->submissionEndDate);
-tc_remove_end_of_date($contest->appealsEndDate);
-tc_remove_end_of_date($contest->currentPhaseEndDate);
+if ($contest) {
+  tc_remove_end_of_date($contest->postingDate);
+  tc_remove_end_of_date($contest->registrationEndDate);
+  tc_remove_end_of_date($contest->checkpointSubmissionEndDate);
+  tc_remove_end_of_date($contest->submissionEndDate);
+  tc_remove_end_of_date($contest->appealsEndDate);
+  tc_remove_end_of_date($contest->currentPhaseEndDate);
+}
+
 
 function tc_remove_end_of_date(&$date) {
   $date = reset(explode('.', $date));
