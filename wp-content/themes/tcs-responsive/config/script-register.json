@@ -156,7 +156,10 @@
         "init-header.js",
         "jquery.qtip.min.js",
         "jquery.jqtransform.js", 
-        "terms.js"
+        "terms.js",
+        "moment.min.js",
+        "moment-timezone.min.js",
+        "moment-data.js"
       ],
       "css": [
         "base.css",
@@ -188,7 +191,10 @@
         "init-header.js",
         "jquery.qtip.min.js",
         "jquery.jqtransform.js",
-        "challenge-submit.js"
+        "challenge-submit.js",
+        "moment.min.js",
+        "moment-timezone.min.js",
+        "moment-data.js"
       ],
       "css": [
         "base.css",
