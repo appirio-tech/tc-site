@@ -10,6 +10,10 @@ var tableHasLoaded = false;
 // I-104467 I-107029: default view for challenges
 var default_view = "#tableView";
 var isSearch = false;
+var selectedPlatforms = '';
+var selectedTechnologies = '';
+
+
 /**
  * Challenges function challenge
  *
@@ -701,7 +705,11 @@ appChallenges = {
               if (typeof data['platforms'] !== 'undefined' && data['platforms'].length > 0) {
                 var $pOptGroup = $('<optgroup label="Platforms">');
                 $.each(data['platforms'], function(key, val) {
-                  $pOptGroup.append('<option value="' + val + '">' + val + '</option>');
+                  if (selectedPlatforms.indexOf(val) == -1) {
+                    $pOptGroup.append('<option value="' + val + '">' + val + '</option>');
+                  } else {
+                    $pOptGroup.append('<option value="' + val + '" selected>' + val + '</option>');
+                  }
                 });
                 $(list).append($pOptGroup);
               }
@@ -709,7 +717,11 @@ appChallenges = {
               if (typeof data['technologies'] !== 'undefined' && data['technologies'].length > 0) {
                 var $tOptGroup = $('<optgroup label="Technologies">');
                 $.each(data['technologies'], function(key, val) {
-                  $tOptGroup.append('<option value="' + val + '">' + val + '</option>');
+                  if (selectedTechnologies.indexOf(val) == -1) {
+                    $tOptGroup.append('<option value="' + val + '">' + val + '</option>');
+                  } else {
+                    $tOptGroup.append('<option value="' + val + '" selected>' + val + '</option>');
+                  }
                 });
                 $(list).append($tOptGroup);
               }
@@ -1304,6 +1316,32 @@ appChallenges = {
                 urlHashes += "challengeType=" + encodeURIComponent(param.challengeType) + "&";
             }
 
+            if (contest_type == 'develop') {
+              var platforms = [];
+              var technologies = [];
+
+              $('.chosen-select :selected').each(function (i, selected) {
+                // categorize each selected value into platforms or technologies
+                var categoryLabel = $(selected).closest('optgroup').prop('label').toLowerCase();
+                var selectedVal = $(selected).val();
+                if (categoryLabel === 'platforms') {
+                  platforms.push(selectedVal);
+                } else if (categoryLabel === 'technologies') {
+                  technologies.push(selectedVal);
+                }
+              });
+
+              if (platforms.length > 0) {
+                param.platforms = platforms.join();
+                urlHashes += "platforms=" + encodeURIComponent(param.platforms) + "&";
+              }
+
+              if (technologies.length > 0) {
+                param.technologies = technologies.join();
+                urlHashes += "technologies=" +  encodeURIComponent(param.technologies) + "&";
+              }
+            }
+
             if(urlHashes && $.trim(urlHashes) != "") {
                 urlHashes = urlHashes.slice(0, -1);
                 window.location.hash = urlHashes;
@@ -1321,7 +1359,6 @@ appChallenges = {
                 // We may have spaces
                 var challengeType = decodeURIComponent(hashes[currentIndex].split("=")[1]);
                 if($.trim(challengeType) != "") {
-                    console.log(challengeType);
                     param.challengeType = challengeType;
                     $("input:radio[name ='radioFilterChallenge'][value='" + challengeType + "']").prop('checked', true);
                 }
@@ -1351,6 +1388,24 @@ appChallenges = {
                     app.toggleDatePicker(fEDate);
                     $("#endDate").val(subEndTo);
                 }
+
+                currentIndex++;
+            }
+
+            if (currentIndex < hashesSize && hashes[currentIndex].indexOf("platforms=") != -1) {
+              var platforms = decodeURIComponent(hashes[currentIndex].split("=")[1]);
+              if($.trim(platforms) != "") {
+                param.platforms = selectedPlatforms =platforms;
+              }
+
+              currentIndex++;
+            }
+
+            if (currentIndex < hashesSize && hashes[currentIndex].indexOf("technologies=") != -1) {
+              var technologies = decodeURIComponent(hashes[currentIndex].split("=")[1]);
+              if($.trim(technologies) != "") {
+                param.technologies = selectedTechnologies = technologies;
+              }
             }
         }
 
@@ -2591,7 +2646,7 @@ appChallenges = {
     },
 
     // F2F 30042914 - push all elements of arrayToPush into targetArray if they do not exist yet
-	pushToArrayIfUnique: function(targetArray, arrayToPush) {
+    pushToArrayIfUnique: function(targetArray, arrayToPush) {
         if (app.isEmptyArray(arrayToPush)) {
             return;
         }
@@ -3144,17 +3199,6 @@ String.prototype.splice = function(idx, rem, s) {
 
 // extending base prototype
 $.extend(app, appChallenges);
-
-
-$.getJSON = function(url, success) {
-
-    return $.ajax({
-        dataType: "json",
-        url: url,
-        success: success,
-        cache: false
-    });
-};
 
 /* fancy drop down platform on advanced search form */
 $(document).ready(function() {

@@ -112,6 +112,7 @@
         "jquery.easing.1.3.js",
         "jquery.mousewheel.js",
         "scripts.js",
+        "chosen.jquery.min.js",
         "script-challenges.js",
         "register-login.js",
         "init-header.js",
