@@ -106,6 +106,7 @@ $(document).ready(function () {
       if (loggedIn) {
         app.getHandle(function(handle) {
           var registrants = [];
+          var now = new Date();
           $.each(challenge.registrants, function(x, registrant) {
             registrants.push(registrant.handle)
           });
