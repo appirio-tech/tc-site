@@ -146,14 +146,12 @@ appChallenges = {
                 $(this).addClass('isActive');
                 $('.searchFilter').fadeIn();
 
-        // Issue ID: I-111128 - enable/disable datepicker based on the status of the related checkbox
-        $('.otherOpts .row').each(function() {
-                    var cbDate = $(this).find('input:checkbox');
-          $('.datepicker', $(this)).datepicker(cbDate.is(':checked') ? 'enable' : 'disable');
-        });
+              // Issue ID: I-111128 - enable/disable datepicker based on the status of the related checkbox
+              $('.otherOpts .row').each(function() {
+                          var cbDate = $(this).find('input:checkbox');
+                $('.datepicker', $(this)).datepicker(cbDate.is(':checked') ? 'enable' : 'disable');
+              });
 
-        // populate technology tags
-        app.getTechnologyTags($('.chosen-select'));
             }
         });
 
@@ -3162,7 +3160,10 @@ $.getJSON = function(url, success) {
 $(document).ready(function() {
     $("#challengeNav a").hide();
 
-    /*multiple select configurations
+    // populate technology tags
+    app.getTechnologyTags($('.chosen-select'));
+
+    // multiple select configurations
     var config = {
         '.chosen-select': {},
         '.chosen-select-deselect': { allow_single_deselect: true },
@@ -3172,7 +3173,7 @@ $(document).ready(function() {
     };
     for (var selector in config) {
         $(selector).chosen(config[selector]);
-    }*/
+    }
 
     //set equal height to row contestGrid boxes
     var index = 0, minWidth = 1019, cols = $(window).width() > minWidth ? 3 : 1, rows = 0;
