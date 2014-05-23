@@ -2237,9 +2237,12 @@ appChallenges = {
                 $('.colPur', row).html("$" + purse);
 
                 $('.colPhase', row).html('Completed');
-
-                $('.winBages', row).html('<a href="' + siteurl+ '/challenge-details/' +rec.challengeId+'?type='+ rec.challengeCommunity +'#winner">View Winners</a>');
-
+                //Bugfix I-106745: Output "N/A" instead of "View Winners" link if no eligible submissions to contest
+                if (rec.numSubmissions > 0) {
+                    $('.winBages', row).html('<a href="' + siteurl+ '/challenge-details/' +rec.challengeId+'?type='+ rec.challengeCommunity +'#winner">View Winners</a>');
+                } else {
+                    $('.winBages', row).html('N/A');
+                }
                 $('.moreWin', row).hide();
 
                 $('.colReg', row).html('<a href="' + contestLinkUrl + '#viewRegistrant">' + rec.numRegistrants + '</a>');
