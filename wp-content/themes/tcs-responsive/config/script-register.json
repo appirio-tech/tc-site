@@ -136,7 +136,7 @@
         "style-challenges.css",
         "style-challenges-responsive.css",
         "jquery.qtip.min.css",
-		"challenge-tags.css"
+        "challenge-tags.css"
       ]
     },
     "challengeterms": {
