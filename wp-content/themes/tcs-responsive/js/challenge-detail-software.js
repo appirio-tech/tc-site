@@ -103,12 +103,8 @@ $(document).ready(function () {
       $('.challengeSubmissionBtn').removeClass('disabled');
       $('.challengeSubmissionsBtn').removeClass('disabled');
     } else {
-      if(loggedIn) {
-        var uid = loggedIn.sub.split("|")[1];
-        $.getJSON("http://community.topcoder.com/tc?module=BasicData&c=get_handle_by_id&dsid=30&uid=" + uid + "&json=true", function(data) {
-          var now = new Date();
-          var handle = data['data'][0]['handle'];
-
+      if (loggedIn) {
+        app.getHandle(function(handle) {
           var registrants = [];
           $.each(challenge.registrants, function(x, registrant) {
             registrants.push(registrant.handle)

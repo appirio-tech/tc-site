@@ -1656,6 +1656,22 @@ var app = {
     }
 
     return decoded;
+  },
+
+  getHandle: function(callback) {
+    var tcsso = $.cookie('tcsso');
+
+    var handle = '';
+    if (typeof tcsso === 'undefined') {
+      callback(handle);
+    } else {
+      var uid = tscco.split('|')[0];
+      if (uid) {
+        $.getJSON("http://community.topcoder.com/tc?module=BasicData&c=get_handle_by_id&dsid=30&uid=" + uid + "&json=true", function(data) {
+          callback(data['data'][0]['handle']);
+        });
+      }
+    }
   }
 
 };
