@@ -699,9 +699,10 @@ caption.reviewDetail {
 
 .dataTable .colStandings .winBages {
     overflow: hidden;
-
     padding-bottom: 7px;
     margin: 0 -4px;
+    /*Bugfix I-106745: center text alignment on "View Winners" links and "N/A" output in Winners column*/
+    text-align: center;
 }
 
 .dataTable .colStandings .winner {
