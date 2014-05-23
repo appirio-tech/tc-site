@@ -816,7 +816,14 @@ include locate_template('header-challenge-landing.php');
       <h3>Submission Limit:</h3>
 
       <div class="inner">
-        <p><strong><?php echo $contest->submissionLimit; ?></strong></p>
+        <p><strong><?php
+        //Bugfix I-107615: Added check if SubmissionLimit is empty, if so, display "Unlimited" instead of empty value
+        if (!empty($contest->submissionLimit)) {
+            echo $contest->submissionLimit;
+        } else {
+            echo "Unlimited";
+        }
+        ?></strong></p>
       </div>
     </div>
   </li>
