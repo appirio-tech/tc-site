@@ -115,9 +115,9 @@
     <td ng-if="!isDesign" colspan="{{challenge.challengeType == 'Code' ? '2' : ''">
       <p class="realibilityPara">
         Reliability Bonus
-        <span ng-if="reliabilityBonus && reliabilityBonus.length > 0" ng-bind="challenge.reliabilityBonus">
+        <span ng-if="reliabilityBonus" ng-bind-template="${{challenge.reliabilityBonus}}">
         </span>
-        <span ng-if="!(reliabilityBonus && reliabilityBonus.length > 0)">
+        <span ng-if="!(reliabilityBonus)">
           N/A
         </span>
       </p>

@@ -142,8 +142,10 @@ include locate_template('header-challenge-landing.php');
        class="contestForumIcon" target="_blank">Challenge Discussion</a>
   </div>
   <ul>
-    <li ng-if="!isDesign"><a href="#contest-overview" class="{{activeTab == 'active' ? 'active' : ''}} link">Details</a></li>
-    <li ng-if="!isDesign"><a href="#viewRegistrant" class="link">Registrants</a></li>
+    <li ng-if="!isDesign"><a href="#contest-overview" class="active link">Details</a></li>
+    <li ng-if="!isDesign">
+      <a href="#viewRegistrant" class="link">Registrants</a>
+    </li>
     <!-- FIXME: took out checkpoint stuff here
     < ?php if (( !empty( $checkpointData ) && $checkpointData != "Error in processing request" ) || ( $tab === "checkpoints" )): ?>
       <li><a href="#checkpoints" class="link {{activeTab == 'checkpoints' ? 'active' : ''}}">Checkpoints</a></li>
@@ -151,7 +153,7 @@ include locate_template('header-challenge-landing.php');
     -->
     <li ng-if="!isDesign"><a href="#winner" class="link">Results</a></li>
 
-    <li ng-if="isDesign"><a href="#contest-overview" class="{{activeTab != 'checkpoints' ? 'active' : ''}} link">Details</a></li>
+    <li ng-if="isDesign"><a href="#contest-overview" class="active link">Details</a></li>
     <li ng-if="isDesign"><a href="#viewRegistrant" class="link">Registrants</a></li>
     <!-- FIXME: more checkpoint stuff commented out
     < ?php if (( !empty( $checkpointData ) && $checkpointData != "Error in processing request" ) || ( $tab === "checkpoints" )): ?>
@@ -514,9 +516,9 @@ include locate_template('header-challenge-landing.php');
 
 </div>
 <!-- /.mainStream -->
-<aside class="sideStream  grid-1-3" style="float: left;">
+<aside class="sideStream grid-1-3" style="float: left;">
 
-<div class="topRightTitle" style="position: relative;">
+<div class="topRightTitle">
 
     <a ng-if="challengeType != 'design'" ng-href="http://apps.topcoder.com/forums/?module=Category&categoryID={{challenge.forumId}}"
        class="contestForumIcon" target="_blank">Challenge Discussion</a>
