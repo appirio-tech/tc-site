@@ -61,7 +61,8 @@ $achievements_map = array(
 	"Twenty Five First Placement Win" => array(id => 21, active => false, groupClass => "First-Place-Wins", specificClass => "First-Place-Wins-25"),
 	"Fifty First Placement Win" => array(id => 21, active => false, groupClass => "First-Place-Wins", specificClass => "First-Place-Wins-50"),
 	"One Hundred First Placement Win" => array(id => 21, active => false, groupClass => "First-Place-Wins", specificClass => "First-Place-Wins-100"),
-	"Two Hundred And Fifty First Placement Win" => array(id => 21, active => false, groupClass => "First-Place-Wins", specificClass => "First-Place-Wins-250")
+	"Two Hundred And Fifty First Placement Win" => array(id => 21, active => false, groupClass => "First-Place-Wins", specificClass => "First-Place-Wins-250"),
+	"Getting Started" => array(id => 21, active => false, groupClass => "HP-Badges-Level-1", specificClass => "Getting-Started")		
 );
 $single_achievements_map = array(
 	"Marathon Match Winner" => array(id => 121, active => false, groupClass => "Marathon-Match-Winner"),
