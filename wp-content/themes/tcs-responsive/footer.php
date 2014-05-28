@@ -571,38 +571,39 @@ $blog_posts = get_posts($blog_posts_args);
     </div>
     <!-- END .socials -->
     <h2>Login With a TopCoder Account</h2>
+    <div class="tc-login-form">
+      <form class="login" id="loginForm">
+        <p class="row">
+          <label>Username</label>
+          <input id="username" type="text" class="name" placeholder="Username"/>
+          <span class="err1">Your username or password are incorrect</span>
+          <span class="err3">Please input your username</span>
+        </p>
 
-    <form class="login" id="loginForm">
-      <p class="row">
-        <label>Username</label>
-        <input id="username" type="text" class="name" placeholder="Username"/>
-        <span class="err1">Your username or password are incorrect</span>
-        <span class="err3">Please input your username</span>
-      </p>
+        <p class="row">
+          <label>Password</label>
+          <input id="password" type="password" class="pwd" placeholder="Password"/>
+          <span class="err4">Please input your password</span>
+        </p>
 
-      <p class="row">
-        <label>Password</label>
-        <input id="password" type="password" class="pwd" placeholder="Password"/>
-        <span class="err4">Please input your password</span>
-      </p>
+        <p class="row lSpace">
+          <label><input type="checkbox"/>Remember me</label>
+        </p>
 
-      <p class="row lSpace">
-        <label><input type="checkbox"/>Remember me</label>
-      </p>
-
-      <p class="row lSpace btns">
-        <a href="javascript:;" class="signin-db btn btnSubmit">Login</a>
-		<?php
-			$fp_page = get_page_by_path( 'password-recovery' );
-			$fp_link = get_permalink($fp_page->ID);
-      $fp_link = str_replace('http:', 'https:', $fp_link);
-		?>
-        <a href="<?php echo $fp_link; //http://community.topcoder.com/tc?module=FindUser ?>" target="_blank" class="forgotPwd">Forgot
-          password?</a>
-      </p>
-
+        <p class="row lSpace btns">
+          <a href="javascript:;" class="signin-db btn btnSubmit">Login</a>
+            <?php
+                $fp_page = get_page_by_path( 'password-recovery' );
+                $fp_link = get_permalink($fp_page->ID);
+                $fp_link = str_replace('http:', 'https:', $fp_link);
+            ?>
+          <a href="<?php echo $fp_link; //http://community.topcoder.com/tc?module=FindUser ?>" target="_blank" class="forgotPwd">Forgot
+            password?</a>
+        </p>
+      </form>
+      <div class="register-text"><p>Not a member? <a href="javascript:;" class="switch-to-register">Register Now!</a></p></div>
       <div class="clear"></div>
-    </form>
+    </div>
     <!-- END .form login -->
   </div>
 </div><!-- END #login -->

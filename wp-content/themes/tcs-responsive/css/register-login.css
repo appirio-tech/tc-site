@@ -791,4 +791,11 @@ Thanks modal
         width: 100%;
     }
 }
+form#loginForm.login {
+    float: left;
+    margin-right: 10px;
+}
 
+.tc-login-form .register-text {
+    margin-top: 10px;
+}
