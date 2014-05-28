@@ -345,10 +345,10 @@
         "reset-password.js",
         "app/challenges/app.js",
         "app/challenges/module-challenges.js",
-        "app/challenges/controllers-challenges.js",
-        "app/challenges/directives-challenges.js",
+        "app/challenges/controllers/challengeListingCtrl.js",
+        "app/challenges//directives/directives-challenges.js",
         "app/challenges/filters-challenges.js",
-        "app/challenges/services-challenges.js",
+        "app/challenges/services/challengeService.js",
         "app/challenges/services/templateService.js",
         "app/challenges/services/gridService.js",
         "app/challenges/lib/angular-loading-bar-0.3.0/loading-bar.js"
