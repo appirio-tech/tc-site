@@ -166,8 +166,6 @@ function createDevelopSubmissionMap($contest) {
   return $submission_map;
 }
 
-$documents = isset($contest->Documents) ? $contest->Documents : array();
-
 // need for header file
 $contest_type = $contestType;
 
@@ -700,7 +698,20 @@ include locate_template('header-challenge-landing.php');
 <ul>
 <?php if ($contestType != 'design'): ?>
   <div class="slideBox">
-    <?php include locate_template('content-challenge-downloads.php'); ?>
+  <?php
+  /*
+  Bugfix I-114581: got rid of separate downloads template, Documents could never be loaded this way
+  because $contest object will never contain Documents since required Authorization header is never sent in PHP API request from get_contest_detail().
+  Left over few lines of HTML do not need own template file.
+  */
+  ?>
+    <h3>Downloads:</h3>
+    <div class="inner">
+        <ul class="downloadDocumentList">
+            <!--Display loading message while JS API request completes-->
+            <li><strong>Loading...</strong></li>
+        </ul>
+    </div>
   </div>
   <li class="slide">
 
@@ -749,7 +760,14 @@ include locate_template('header-challenge-landing.php');
   </li>
 <?php else: ?>
   <li class="slide">
-    <?php include locate_template('content-challenge-downloads.php'); ?>
+  <!-- Bugfix I-114581 -->
+    <h3>Downloads:</h3>
+    <div class="inner">
+        <ul class="downloadDocumentList">
+            <!--Display loading message while JS API request completes-->
+            <li><strong>Loading...</strong></li>
+        </ul>
+    </div>
   </li>
   <li class="slide">
     <div class="slideBox">
