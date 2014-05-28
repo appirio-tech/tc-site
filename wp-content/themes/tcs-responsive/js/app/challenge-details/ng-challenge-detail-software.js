@@ -531,16 +531,30 @@ $(function () {
 });
 
 
-app.tabNavinit = function () {
+app.tabNavinit = function() {
 
   // tab navs
-  $('.tabNav a').off().on(ev, function () {
+  $('.tabNav a').off().on(ev, function() {
     var id = $(this).attr('href');
     var tabIdx = id.lastIndexOf('tab=');
     if (tabIdx > 0) {
       id = "#" + id.substr(tabIdx + 4);
     }
     var old = $('a.active').attr('href');
+//    for (var i = 0; i < old.length; i++) {
+//      if (old[i][0] != '#') continue;
+//      var x = old[i];
+//      var hideme = $(x).attr('href');
+//      $(hideme).css({'display':'none'});
+//      console.log(hideme);
+//    }
+//    old.map(function(x) {
+//      console.log('yo');
+//      console.log(x);
+//      var href = $(x).attr('href');
+//      $(href).hide();
+//      console.log('hiding ' + href);
+//    });
     $(old).hide();
     $(id).fadeIn();
     $('.active', $(this).closest('nav')).removeClass('active');
