@@ -766,7 +766,7 @@ include locate_template('header-challenge-landing.php');
         </ul>
 
         <p>Trouble formatting your submission or want to learn more?
-          <a href="http://topcoder.com/home/studio/the-process/how-to-submit-to-a-contest/">Read the FAQs</a>.</p>
+          <a href="http://topcoder.com/home/studio/the-process/how-to-submit-to-a-contest/">Read this FAQs</a>.</p>
 <!-- Bugfix I-111397: removed empty link tags surrounding text -->
         <p><strong>Fonts:</strong><br> All fonts within your design must be declared when you submit. DO NOT include any font files in your submission or source files.
         <a href="http://topcoder.com/home/studio/the-process/font-policy/" style="white-space:nowrap;">Read the font policy here</a>.
