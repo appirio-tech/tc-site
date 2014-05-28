@@ -347,7 +347,7 @@
         "app/challenges/module-challenges.js",
         "app/challenges/controllers/challengeListingCtrl.js",
         "app/challenges//directives/directives-challenges.js",
-        "app/challenges/filters-challenges.js",
+        "app/challenges/filters/filters-challenges.js",
         "app/challenges/services/challengeService.js",
         "app/challenges/services/templateService.js",
         "app/challenges/services/gridService.js",
