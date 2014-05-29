@@ -9,7 +9,8 @@ for ($i = 0; $i < count($submissions); $i++){
 $submissionCount = $contestResults->submissions;
 
 $nrOfCheckpointSubmissions = 0;
-$checkpointDetail = get_contest_checkpoint_detail($contestID, $contestType);
+// From page-challenge-details.php
+$checkpointDetail = $checkpointData;
 
 if(isset($checkpointDetail->numberOfSubmissions)){
   $nrOfCheckpointSubmissions = $checkpointDetail->numberOfSubmissions;
