@@ -575,10 +575,10 @@ $(function () {
         if (isValid && $('#register a.btnSubmit').html() == 'Sign Up') {
           $('#register a.btnSubmit').html('Please Wait');
           $('#register .btnSubmit').addClass('pleaseWait');
-		  // Issue ID: I-107903 - Disable all the fields on the registration form
-		  $('#register').find('input, select').prop('disabled', true);
-		  $('.customSelectInner').css('color', 'silver');
-		  $('#register a.btnSubmit').bind('click', false);
+          // Issue ID: I-107903 - Disable all the fields on the registration form
+          $('#register').find('input, select').prop('disabled', true);
+          $('.customSelectInner').css('color', 'silver');
+          $('#register a.btnSubmit').bind('click', false);
           var fields = {
             firstName: $('#registerForm input.firstName').val(),
             lastName: $('#registerForm input.lastName').val(),
@@ -619,10 +619,10 @@ $(function () {
               alert(data.description);
 
             }
-			// Issue ID: I-107903 - re-enable all the fields on the registration form
-		    $('#register').find('input, select').prop('disabled', false);
-			$('.customSelectInner').css('color', '#000000');
-		    $('#register a.btnSubmit').unbind('click', false);
+            // Issue ID: I-107903 - re-enable all the fields on the registration form
+            $('#register').find('input, select').prop('disabled', false);
+            $('.customSelectInner').css('color', '#000000');
+            $('#register a.btnSubmit').unbind('click', false);
             $('#register .btnSubmit').html('Sign Up');
           }, "json");
         }
@@ -704,6 +704,12 @@ $(function () {
       else $span.css('opacity', 0);
     });
   });
+
+  $('.switch-to-register').click(function() {
+    $('#login').hide();
+    showModal('#register');
+  });
+
 });
 
 // modal
@@ -751,3 +757,4 @@ function resetRegisterFields() {
   $('#registerForm span.strength span.field').removeClass('red').removeClass('green');
   $('#registerForm span.valid').hide();
 }
+
