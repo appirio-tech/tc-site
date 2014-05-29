@@ -159,7 +159,7 @@ include locate_template('header-challenge-landing.php');
     < ?php endif; ?>
     -->
     <!--<li ng-if="isDesign && inSubmission"><span class="inactive">Submissions</span></li>-->
-    <li ng-if="isDesign && !inSubmission"><a href="#submissions" class="link">Submissions</a></li>
+    <li><a href="#submissions" class="link">Submissions</a></li>
     <li ng-if="isDesign && (inSubmission || inScreening || inReview)"><span class="inactive">Results</span></li>
     <li ng-if="isDesign && !(inSubmission || inScreening || inReview)"><a href="#winner" class="link">Results</a></li>
   </ul>
