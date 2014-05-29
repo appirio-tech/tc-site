@@ -90,7 +90,8 @@ $(document).ready(function () {
         var tcssoValues = tcsso.split("|");
         $.getJSON("http://community.topcoder.com/tc?module=BasicData&c=get_handle_by_id&dsid=30&uid=" + tcssoValues[0] + "&json=true", function(data) {
           var now = new Date();
-          var handle = data['data'][0]['handle'];
+          // TODO: eliminate global var
+          handle = data['data'][0]['handle'];
 
           var registrants = [];
           $.each(challenge.registrants, function(x, registrant) {

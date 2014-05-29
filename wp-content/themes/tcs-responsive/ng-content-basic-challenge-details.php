@@ -18,7 +18,7 @@
     <a ng-if="isDesign" class="btn btnAction {{challenge.submitDisabled ? 'disabled' : ''}}" target="_blank"
        href="http://studio.topcoder.com/?module=ViewRegistration&ct={{challenge.challengeId}}"><span>2</span> <strong>Submit
         Your Entries</strong></a>
-    <a ng-if="isDesign" class="btn btnAction" target="_blank"
+    <a ng-if="isDesign" class="btn btnAction {{challenge.submitDisabled ? 'disabled' : ''}}" target="_blank"
        href="http://studio.topcoder.com/?module=ViewSubmission&ct={{challenge.challengeId}}"><span>3</span> <strong>View
         Your Submission</strong></a>
 </div>

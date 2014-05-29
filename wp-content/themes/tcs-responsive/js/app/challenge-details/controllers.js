@@ -1,6 +1,5 @@
 // @TODO Split out the different parts of the page into different contorllers
 cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scope, ChallengeService, $sce) {
-  $scope.log = console.log;
   $scope.trust = function(x) {
     return $sce.trustAsHtml(x);
   };
