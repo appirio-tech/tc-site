@@ -166,7 +166,7 @@ $blog_posts = get_posts($blog_posts_args);
     <h2>Registered!</h2>
     <p class="success">Thank you for registering. You may now download the challenge files and participate in the challenge forums.</p>
     <p class="submitBtn">
-      <a class="btn closeModal" href="javascript:;">Ok</a>
+      <a class="btn closeModalReg" href="javascript:;">Ok</a>
     </p>
   </div>
 </div><!-- END #registerSuccess -->
@@ -176,7 +176,7 @@ $blog_posts = get_posts($blog_posts_args);
     <h2>Info</h2>
     <p class="failedMessage"></p>
     <p class="submitBtn">
-      <a class="btn closeModal" href="javascript:;">Ok</a>
+      <a class="btn closeModalReg" href="javascript:;">Ok</a>
     </p>
   </div>
 </div><!-- END #registerFailed -->
@@ -213,6 +213,10 @@ $blog_posts = get_posts($blog_posts_args);
   <input type="text" class="name firstName" placeholder="First Name"/>
   <span class="err1">Required field</span>
   <span class="err2">Maximum length is 64 characters</span>
+  <!--Bugfix I-107905: add error message for invalid characters-->
+  <span class="err3">First Name contains invalid characters</span>
+  <span class="err4">First Name cannot consist solely of punctuation</span>
+  <span class="err5">First Name is invalid</span>
   <span class="valid"></span>
 </p>
 
@@ -221,6 +225,10 @@ $blog_posts = get_posts($blog_posts_args);
   <input type="text" class="name lastName" placeholder="Last Name"/>
   <span class="err1">Required field</span>
   <span class="err2">Maximum length is 64 characters</span>
+  <!--Bugfix I-107905: add error message for invalid characters-->
+  <span class="err3">Last Name contains invalid characters</span>
+  <span class="err4">Last Name cannot consist solely of punctuation</span>
+  <span class="err5">Last Name is invalid</span>
   <span class="valid"></span>
 </p>
 
@@ -563,38 +571,39 @@ $blog_posts = get_posts($blog_posts_args);
     </div>
     <!-- END .socials -->
     <h2>Login With a TopCoder Account</h2>
+    <div class="tc-login-form">
+      <form class="login" id="loginForm">
+        <p class="row">
+          <label>Username</label>
+          <input id="username" type="text" class="name" placeholder="Username"/>
+          <span class="err1">Your username or password are incorrect</span>
+          <span class="err3">Please input your username</span>
+        </p>
 
-    <form class="login" id="loginForm">
-      <p class="row">
-        <label>Username</label>
-        <input id="username" type="text" class="name" placeholder="Username"/>
-        <span class="err1">Your username or password are incorrect</span>
-        <span class="err3">Please input your username</span>
-      </p>
+        <p class="row">
+          <label>Password</label>
+          <input id="password" type="password" class="pwd" placeholder="Password"/>
+          <span class="err4">Please input your password</span>
+        </p>
 
-      <p class="row">
-        <label>Password</label>
-        <input id="password" type="password" class="pwd" placeholder="Password"/>
-        <span class="err4">Please input your password</span>
-      </p>
+        <p class="row lSpace">
+          <label><input type="checkbox"/>Remember me</label>
+        </p>
 
-      <p class="row lSpace">
-        <label><input type="checkbox"/>Remember me</label>
-      </p>
-
-      <p class="row lSpace btns">
-        <a href="javascript:;" class="signin-db btn btnSubmit">Login</a>
-		<?php
-			$fp_page = get_page_by_path( 'password-recovery' );
-			$fp_link = get_permalink($fp_page->ID);
-      $fp_link = str_replace('http:', 'https:', $fp_link);
-		?>
-        <a href="<?php echo $fp_link; //http://community.topcoder.com/tc?module=FindUser ?>" target="_blank" class="forgotPwd">Forgot
-          password?</a>
-      </p>
-
+        <p class="row lSpace btns">
+          <a href="javascript:;" class="signin-db btn btnSubmit">Login</a>
+            <?php
+                $fp_page = get_page_by_path( 'password-recovery' );
+                $fp_link = get_permalink($fp_page->ID);
+                $fp_link = str_replace('http:', 'https:', $fp_link);
+            ?>
+          <a href="<?php echo $fp_link; //http://community.topcoder.com/tc?module=FindUser ?>" target="_blank" class="forgotPwd">Forgot
+            password?</a>
+        </p>
+      </form>
+      <div class="register-text"><p>Not a member? <a href="javascript:;" class="switch-to-register">Register Now!</a></p></div>
       <div class="clear"></div>
-    </form>
+    </div>
     <!-- END .form login -->
   </div>
 </div><!-- END #login -->
@@ -631,16 +640,16 @@ $blog_posts = get_posts($blog_posts_args);
 </div><!-- /.tooltip -->
 <?php wp_footer(); ?>
 <script>
+  function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
   var socialProviderId = "", socialUserName = "", socialEmail = "", socialProvider = "";
   var utmSource = '', utmMedium = '', utmCampaign = '';
   var loginState = '';
   $(function () {
-    function getParameterByName(name) {
-      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-      results = regex.exec(location.search);
-      return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-    }
     function getHashParameterByName(name) {
       name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
       var regex = new RegExp("[\\#&]" + name + "=([^&#]*)"),
@@ -674,14 +683,15 @@ $blog_posts = get_posts($blog_posts_args);
     var referer =  document.referrer;
 
     if (loginState == 'none') {
-      loginState = 'http://www.topcoder.com';
-      if ( /topcoder/i.test( referer ) ) { // send back to referer e.g /tc site
+      loginState = window.location.href;
+      if ( /action=showlogin/i.test( loginState )) {
         loginState = referer;
       }
+
       if ( /action=showlogin/i.test( referer ) ) {
         // few user tested to access directly "?action=showlogin", by this by, loginState would be its own self (contain 'showlogin')
         // avoid loop if 1st login try was failed. failed login will still redirect user to action=showlogin
-        loginState = 'http://www.topcoder.com';
+        loginState = window.location.href;
       }
     }
     var auth0Login = new Auth0({
@@ -781,51 +791,51 @@ $blog_posts = get_posts($blog_posts_args);
       auth0Register.login({
         connection: googleProvider,
         state: loginState,
-        response_type: 'token'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+        response_type: 'token'});
     });
 
     $('.register-facebook').on('click', function () {
       auth0Register.login({connection: facebookProvider,
         state: loginState,
-        response_type: 'token'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+        response_type: 'token'});
     });
 
     $('.register-twitter').on('click', function () {
       auth0Register.login({connection: twitterProvider,
         state: loginState,
-        response_type: 'token'}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+        response_type: 'token'});
     });
 
     $('.register-github').on('click', function () {
       auth0Register.login({connection: githubProvider,
         state: loginState,
-        response_type: 'token'});  // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+        response_type: 'token'});
     });
 
     $('.signin-google').on('click', function () {
       auth0Login.login({
         connection: 'google-oauth2',
-        state: loginState}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+        state: loginState});
     });
 
     $('.signin-facebook').on('click', function () {
       auth0Login.login({connection: 'facebook',
-        state: loginState}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+        state: loginState});
     });
 
     $('.signin-twitter').on('click', function () {
       auth0Login.login({connection: 'twitter',
-        state: loginState}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+        state: loginState});
     });
 
     $('.signin-github').on('click', function () {
       auth0Login.login({connection: 'github',
-        state: loginState});  // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+        state: loginState});
     });
 
     $('.signin-etc').on('click', function () {
       auth0Login.login({connection: 'connection-name',
-        state: loginState}); // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+        state: loginState});
     });
 
     $('.signin-db').on('click', function () {
@@ -843,7 +853,7 @@ $blog_posts = get_posts($blog_posts_args);
       if (empty) return;
       auth0Login.login({
           connection: 'LDAP',
-          state: loginState, // this tells Auth0 to send the user back to the main site after login. Please replace the var for current page URL.
+          state: loginState,
           username: document.getElementById('username').value,
           password: document.getElementById('password').value
         },

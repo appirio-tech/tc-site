@@ -68,11 +68,10 @@ $(document).ready(function () {
 
   $('a[href="' + getAnchor(location.href) + '"]').click();
 
+  var loggedIn = app.isLoggedIn();
+
   // init tab nav
   app.tabNavinit();
-
-  var tcsso = getCookie('tcsso');
-  var tcjwt = getCookie('tcjwt');
 
   if (typeof challengeId != 'undefined') {
     if ($('.loading').length <= 0) {
@@ -81,8 +80,8 @@ $(document).ready(function () {
       $('.loading').show();
     }
 
-    if (tcjwt) {
-      getChallenge(tcjwt, function(challenge) {
+    if (loggedIn) {
+      getChallenge($.cookie('tcjwt'), function(challenge) {
         updateRegSubButtons(challenge);
         addDocuments(challenge);
         $('.loading').hide();
@@ -104,13 +103,10 @@ $(document).ready(function () {
       $('.challengeSubmissionBtn').removeClass('disabled');
       $('.challengeSubmissionsBtn').removeClass('disabled');
     } else {
-      if(tcsso) {
-        var tcssoValues = tcsso.split("|");
-        $.getJSON("http://community.topcoder.com/tc?module=BasicData&c=get_handle_by_id&dsid=30&uid=" + tcssoValues[0] + "&json=true", function(data) {
-          var now = new Date();
-          var handle = data['data'][0]['handle'];
-
+      if (loggedIn) {
+        app.getHandle(function(handle) {
           var registrants = [];
+          var now = new Date();
           $.each(challenge.registrants, function(x, registrant) {
             registrants.push(registrant.handle)
           });
@@ -346,8 +342,9 @@ $(function () {
 
   $(".challengeRegisterBtn").click(function (event) {
     if ($(this).hasClass("disabled")) { return false; }
-    var tcjwt = getCookie('tcjwt');
-    if (tcjwt) {
+
+    var loggedInCookie = app.isLoggedIn();
+    if (loggedInCookie) {
       if ($('.loading').length <= 0) {
         $('body').append('<div class="loading">Loading...</div>');
       } else {
@@ -356,7 +353,7 @@ $(function () {
       $.getJSON(ajaxUrl, {
         "action": "register_to_challenge",
         "challengeId": challengeId,
-        "jwtToken": tcjwt.replace(/["]/g, "")
+        "jwtToken": $.cookie('tcjwt').replace(/["]/g, "")
       }, function (data) {
         $('.loading').hide();
         if (data["message"] === "ok") {
@@ -371,17 +368,15 @@ $(function () {
     } else {
       $('.actionLogin').click();
     }
-    event.preventDefault();
   });
 
   if (autoRegister) {
     $(".challengeRegisterBtn").click();
   }
 
-  $("#registerSuccess .closeModal").click(function (event) {
+  $("#registerSuccess .closeModalReg").click(function (event) {
     $('.modal,#bgModal').hide();
-    window.location.href = loginState = siteURL + "/challenge-details/" + challengeId + "?type=" + challengeType + "&nocache=true";
-    event.preventDefault();
+    window.location.href = siteURL + "/challenge-details/" + challengeId + "?type=" + challengeType + "&nocache=true";
   });
 
 });
@@ -398,7 +393,7 @@ $(function () {
   });
 
   $('.expandCollaspeList li a').each(function () {
-    var _this = $(this).parents('li')
+    var _this = $(this).parents('li');
     if (!$(this).hasClass('collapseIcon')) {
       _this.children('.bar').css('border-bottom', '1px solid #e7e7e7');
     } else {
@@ -556,6 +551,7 @@ $(function () {
 app.tabNavinit = function () {
 
   // tab navs
+if($('#main.coderProfile').lenght<=0){
   $('.tabNav a').off().on(ev, function () {
     var id = $(this).attr('href');
     var tabIdx = id.lastIndexOf('tab=');
@@ -571,6 +567,7 @@ app.tabNavinit = function () {
     $('#mainContent').attr('class', '').addClass('splitLayout').addClass('currentTab-' + id);
     return false;
   });
+}
 
   $('.challenge-detail .tabsWrap .tabNav a').each(function () {
     var value = $.trim($(this).text()).toLocaleLowerCase();

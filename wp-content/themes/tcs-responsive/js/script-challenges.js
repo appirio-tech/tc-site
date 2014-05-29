@@ -10,9 +10,18 @@ var tableHasLoaded = false;
 // I-104467 I-107029: default view for challenges
 var default_view = "#tableView";
 var isSearch = false;
+var selectedPlatforms = '';
+var selectedTechnologies = '';
+
+
 /**
- * Challenges function
-challenge
+ * Challenges function challenge
+ *
+ * Changelog:
+ *
+ * Release Assembly - topcoder Wordpress Bug Fixes 4 Challenge:
+ * - Added handling logic for url hash parameters for design and develop challenges. Effectively creating
+ *    linkable search pages.
  */
 appChallenges = {
     init: function() {
@@ -81,6 +90,25 @@ appChallenges = {
             }
         }
     },
+    toggleDatePicker: function(checkBox) {
+        var row = checkBox.closest('.row');
+        if (row.hasClass('subRow1')) {
+            row = row.parent();
+        }
+        if (checkBox.is(':checked')) {
+            $('.datepicker', row).datepicker("option", "disabled", false);
+            $('.datepicker', row).datepicker('enable');
+            $('img', row).css('opacity', 1).css('filter', 'alpha(opacity=100)');
+            $('img', row).closest('.row').removeClass('isDisabled');
+            $('input:text, select', row).removeAttr('disabled');
+        } else {
+            $('.datepicker', row).datepicker("option", "disabled", true);
+            $('.datepicker', row).datepicker('disable');
+            $('img', row).css('opacity', 1).css('opacity', 0.5).css('filter', 'alpha(opacity=50)');
+            $('img', row).closest('.row').addClass('isDisabled');
+            $('input:text, select', row).attr('disabled', 'disabled');
+        }
+    },
     bindEvents: function() {
 
         // filter check/ uncheck
@@ -121,15 +149,13 @@ appChallenges = {
             } else {
                 $(this).addClass('isActive');
                 $('.searchFilter').fadeIn();
-				
-				// Issue ID: I-111128 - enable/disable datepicker based on the status of the related checkbox
-				$('.otherOpts .row').each(function() {
-                    var cbDate = $(this).find('input:checkbox');
-					$('.datepicker', $(this)).datepicker(cbDate.is(':checked') ? 'enable' : 'disable');
-				});
 
-        // populate technology tags
-        app.getTechnologyTags($('.chosen-select'));
+              // Issue ID: I-111128 - enable/disable datepicker based on the status of the related checkbox
+              $('.otherOpts .row').each(function() {
+                          var cbDate = $(this).find('input:checkbox');
+                $('.datepicker', $(this)).datepicker(cbDate.is(':checked') ? 'enable' : 'disable');
+              });
+
             }
         });
 
@@ -138,23 +164,7 @@ appChallenges = {
         });
 
         $('.otherOpts input:checkbox').on('change', function() {
-            var row = $(this).closest('.row');
-            if (row.hasClass('subRow1')) {
-                row = row.parent();
-            }
-            if ($(this).is(':checked')) {
-                // Issue ID: I-111128 - enable the datepicker
-                $('.datepicker', row).datepicker("enable");
-                $('img', row).css('opacity', 1).css('filter', 'alpha(opacity=100)');
-                $('img', row).closest('.row').removeClass('isDisabled');
-                $('input:text, select', row).removeAttr('disabled');
-            } else {
-                // Issue ID: I-111128 - enable the datepicker
-                $('.datepicker', row).datepicker("disable");
-                $('img', row).css('opacity', 1).css('opacity', 0.5).css('filter', 'alpha(opacity=50)');
-                $('img', row).closest('.row').addClass('isDisabled');
-                $('input:text, select', row).attr('disabled', 'disabled');
-            }
+            app.toggleDatePicker($(this));
         });
 
         //searchFilter
@@ -163,7 +173,11 @@ appChallenges = {
             $('.advSearch').removeClass('isActive');
         });
         $('.searchFilter .btnApply').on(ev, function() {
+            // Clear url hashes, because we want a fresh search!
+            window.location.hash = "";
+
             isSearch = true;
+
             app.initAjaxData();
             $(this).closest('.searchFilter').fadeOut('fast');
             $('.advSearch').removeClass('isActive');
@@ -667,7 +681,7 @@ appChallenges = {
                 trackName = "df2f";
                 break;
             case "Application Front-End Design":
-                trackName = "af";
+                trackName = "a";
                 break;
             default:
                 trackName = "o";
@@ -691,7 +705,11 @@ appChallenges = {
               if (typeof data['platforms'] !== 'undefined' && data['platforms'].length > 0) {
                 var $pOptGroup = $('<optgroup label="Platforms">');
                 $.each(data['platforms'], function(key, val) {
-                  $pOptGroup.append('<option value="' + val + '">' + val + '</option>');
+                  if (selectedPlatforms.indexOf(val) == -1) {
+                    $pOptGroup.append('<option value="' + val + '">' + val + '</option>');
+                  } else {
+                    $pOptGroup.append('<option value="' + val + '" selected>' + val + '</option>');
+                  }
                 });
                 $(list).append($pOptGroup);
               }
@@ -699,7 +717,11 @@ appChallenges = {
               if (typeof data['technologies'] !== 'undefined' && data['technologies'].length > 0) {
                 var $tOptGroup = $('<optgroup label="Technologies">');
                 $.each(data['technologies'], function(key, val) {
-                  $tOptGroup.append('<option value="' + val + '">' + val + '</option>');
+                  if (selectedTechnologies.indexOf(val) == -1) {
+                    $tOptGroup.append('<option value="' + val + '">' + val + '</option>');
+                  } else {
+                    $tOptGroup.append('<option value="' + val + '" selected>' + val + '</option>');
+                  }
                 });
                 $(list).append($tOptGroup);
               }
@@ -790,7 +812,7 @@ appChallenges = {
         if (isAppend != true) {
             $('tbody', table).html(null);
         }
-								$('thead', table).show();
+        $('thead', table).show();
         var count = 0;
         //JS uncaught typeError when no data available, so adding defined check
         if (typeof data.data !== 'undefined' && data.data.length > 0) {
@@ -1177,7 +1199,9 @@ appChallenges = {
                 var round1ScheduledStartDate = app.formatDate2(rec.round1ScheduledStartDate);
                 var round2ScheduledStartDate = app.formatDate2(rec.round2ScheduledStartDate);
                 var contestLinkUrl = app.getContestLinkUrl(rec.challengeId, contest_type);
-                var reviewDetailsLinkUrl = siteurl + "/review-opportunity/design/" + rec.challengeId;
+                //var reviewDetailsLinkUrl = siteurl + "/review-opportunity/design/" + rec.challengeId;
+                // Change to old reivew for now
+                var reviewDetailsLinkUrl = rec.detailLink;
 
                 row.addClass('track-' + trackName);
                 /*
@@ -1222,7 +1246,9 @@ appChallenges = {
                 var row = $(challengesBP.tabDevReview).clone();
 
                 var contestLinkUrl = app.getContestLinkUrl(rec.challengeId, contest_type);
-                var reviewDetailsLinkUrl = siteurl + "/review-opportunity/develop/" + rec.challengeId;
+                //var reviewDetailsLinkUrl = siteurl + "/review-opportunity/develop/" + rec.challengeId;
+                // Change to old reivew for now
+                var reviewDetailsLinkUrl = rec.detailLink;
                 var reviewStart = app.formatDate2(rec.reviewStart);
                 /*
                  * generate table row for develop contest type
@@ -1270,6 +1296,119 @@ appChallenges = {
             param.sortOrder = 'desc';
         }
 
+        var urlHashes = window.location.hash;
+        // If the hash is empty, we want to get the parameters from the search form and populate the url hash
+        if(!urlHashes || $.trim(urlHashes) === "") {
+            var startDate = $("#startDate").val();
+            var endDate = $("#endDate").val();
+            if ($.trim(startDate) != "" && $('#fSDate').prop('checked')) {
+                param.submissionEndFrom = startDate;
+                urlHashes += "subEndFrom=" + param.submissionEndFrom + "&";
+            }
+            if ($.trim(endDate) != "" && $('#fEDate').prop('checked')) {
+                param.submissionEndTo = endDate;
+                urlHashes += "subEndTo=" + param.submissionEndTo + "&";
+            }
+
+            var challengesRadio = $("input:radio[name ='radioFilterChallenge']:checked").val();
+            if (challengesRadio != null && challengesRadio != "all") {
+                param.challengeType = challengesRadio;
+                urlHashes += "challengeType=" + encodeURIComponent(param.challengeType) + "&";
+            }
+
+            if (contest_type == 'develop') {
+              var platforms = [];
+              var technologies = [];
+
+              $('.chosen-select :selected').each(function (i, selected) {
+                // categorize each selected value into platforms or technologies
+                var categoryLabel = $(selected).closest('optgroup').prop('label').toLowerCase();
+                var selectedVal = $(selected).val();
+                if (categoryLabel === 'platforms') {
+                  platforms.push(selectedVal);
+                } else if (categoryLabel === 'technologies') {
+                  technologies.push(selectedVal);
+                }
+              });
+
+              if (platforms.length > 0) {
+                param.platforms = platforms.join();
+                urlHashes += "platforms=" + encodeURIComponent(param.platforms) + "&";
+              }
+
+              if (technologies.length > 0) {
+                param.technologies = technologies.join();
+                urlHashes += "technologies=" +  encodeURIComponent(param.technologies) + "&";
+              }
+            }
+
+            if(urlHashes && $.trim(urlHashes) != "") {
+                urlHashes = urlHashes.slice(0, -1);
+                window.location.hash = urlHashes;
+            }
+        } else {
+            // Otherwise populate the form with the parameters from the url hash
+            var hashes = urlHashes.substring(1, urlHashes.length).split('&');
+            // Sort hashes, so we are independent from order.
+            hashes.sort();
+            console.log(hashes);
+            var currentIndex = 0;
+            var hashesSize = hashes.length;
+
+            if(currentIndex < hashesSize && hashes[currentIndex].indexOf("challengeType=") != -1) {
+                // We may have spaces
+                var challengeType = decodeURIComponent(hashes[currentIndex].split("=")[1]);
+                if($.trim(challengeType) != "") {
+                    param.challengeType = challengeType;
+                    $("input:radio[name ='radioFilterChallenge'][value='" + challengeType + "']").prop('checked', true);
+                }
+
+                currentIndex++;
+            }
+
+            if(currentIndex < hashesSize && hashes[currentIndex].indexOf("subEndFrom=") != -1) {
+                var subEndFrom = hashes[currentIndex].split("=")[1];
+                if($.trim(subEndFrom) != "") {
+                    param.submissionEndFrom = subEndFrom;
+                    var fSDate = $('#fSDate');
+                    fSDate.prop('checked', true);
+                    app.toggleDatePicker(fSDate);
+                    $("#startDate").val(subEndFrom);
+                }
+
+                currentIndex++;
+            }
+
+            if(currentIndex < hashesSize && hashes[currentIndex].indexOf("subEndTo=") != -1) {
+                var subEndTo = hashes[currentIndex].split("=")[1];
+                if($.trim(subEndTo) != "") {
+                    param.submissionEndTo = subEndTo;
+                    var fEDate = $('#fEDate');
+                    fEDate.prop('checked', true);
+                    app.toggleDatePicker(fEDate);
+                    $("#endDate").val(subEndTo);
+                }
+
+                currentIndex++;
+            }
+
+            if (currentIndex < hashesSize && hashes[currentIndex].indexOf("platforms=") != -1) {
+              var platforms = decodeURIComponent(hashes[currentIndex].split("=")[1]);
+              if($.trim(platforms) != "") {
+                param.platforms = selectedPlatforms =platforms;
+              }
+
+              currentIndex++;
+            }
+
+            if (currentIndex < hashesSize && hashes[currentIndex].indexOf("technologies=") != -1) {
+              var technologies = decodeURIComponent(hashes[currentIndex].split("=")[1]);
+              if($.trim(technologies) != "") {
+                param.technologies = selectedTechnologies = technologies;
+              }
+            }
+        }
+
         var challengesUrlEndFrom = app.getParameterByName('submission_end_date_from');
         if (challengesUrlEndFrom  != null){
             param.submissionEndFrom = challengesUrlEndFrom;
@@ -1294,6 +1433,7 @@ appChallenges = {
         }
         if ($.trim(endDate) != "" && $('#fEDate').prop('checked')) {
             param.submissionEndTo = endDate;
+
         }
 
         // if submission from date is blank form to date isn't
@@ -1505,8 +1645,26 @@ appChallenges = {
                     $('.contestName', row).parents(".inTCO").addClass("hasTCOIco");
                     $('.colCh a, .cgCh a', row).attr("href", contestLinkUrl);
 
+                    // F2F 30042914 - Shows platforms/technologies tags for development contest in cross mix challenge listing
+                    if (rec.challengeCommunity == "develop") {
+                        var tags = [];
+                        app.pushToArrayIfUnique(tags, rec.platforms);
+                                app.pushToArrayIfUnique(tags, rec.technologies);
+
+                        if (tags.length > 0) {
+                            var $div = $('<div>');
+                                    $div.prop("id", rec.challengeId).addClass("technologyTags");
+                                    var $ul =$('<ul>')
+                            $.each(tags, function(index, sp) {
+                                $ul.append('<li><span>' + sp + '</span></li>');
+                          });
+                                    $div.append($ul);
+                                    $('.colCh', row).append($div);
+                        }
+                    }
+
                     $('.tipC', row).html(rec.challengeType);
-					$('.tipC', row).data('contest_type', rec.challengeCommunity);
+                    $('.tipC', row).data('contest_type', rec.challengeCommunity);
 
                     $('.vStartDate', row).html(startDate);
 
@@ -1538,7 +1696,7 @@ appChallenges = {
     },
 
     addEmptyResult: function(table) {        
-								$('thead', table).hide();
+        $('thead', table).hide();
         var toUpdate = $('tbody', table).length > 0 ? $('tbody', table) : $(table);
         toUpdate.html('<tr><td style="font-size:20px;">There are no active challenges under this category. Please check back later</td></tr>');
     },
@@ -1619,7 +1777,7 @@ appChallenges = {
 
                     $('.type', con).html(rec.challengeType);
                     $('.tipC', con).html(rec.challengeType);
-					$('.tipC', con).data('contest_type', rec.challengeCommunity);
+                    $('.tipC', con).data('contest_type', rec.challengeCommunity);
                     $('.vStartDate', con).html(startDate);
                     if (checkPointDate) {
                         $('.vEndRound', con).html(checkPointDate);
@@ -1629,6 +1787,25 @@ appChallenges = {
 
                     $('.vEndDate', con).html(endDate);
                     $('.vPhase', con).html(rec.currentPhaseName);
+
+                    // F2F 30042914 - Shows platforms/technologies tags for development contest in cross mix challenge listing
+                    if (rec.challengeCommunity == "develop") {
+                        var tags = [];
+                        app.pushToArrayIfUnique(tags, rec.platforms);
+                                app.pushToArrayIfUnique(tags, rec.technologies);
+
+                        if (tags.length > 0) {
+                            var $div = $('<div>');
+                                    $div.prop("id", rec.challengeId).addClass("technologyTags");
+                                    var $ul =$('<ul>')
+                            $.each(tags, function(index, sp) {
+                                $ul.append('<li><span>' + sp + '</span></li>');
+                          });
+                                    $div.append($ul);
+                                    $div.append('<div class="clear"></div>');
+                                    $('.cgTime', con).after($div);
+                        }
+                    }
 
                     $('.cgTLeft', con).html('<i></i>' + remainingTime);
                     if (rec.isEnding === "true") {
@@ -1707,7 +1884,7 @@ appChallenges = {
         if (isAppend != true) {
             $('tbody', table).html(null);
         }
-								$('thead', table).show();
+        $('thead', table).show();
         var count = 0;
         //JS uncaught typeError when no data available, so adding defined check
         if (typeof data.data !== 'undefined' && data.data.length > 0) {
@@ -1756,21 +1933,28 @@ appChallenges = {
                 $('.contestName', row).parents(".inTCO").addClass("hasTCOIco");
                 $('.colCh a, .cgCh a', row).attr("href", contestLinkUrl);
 
-                if (contest_type == "develop" && !app.isEmptyArray(rec.technologies)) {
-                  var $div = $('<div>');
-                  $div.prop("id", rec.challengeId).addClass("technologyTags");
-                  var $ul =$('<ul>')
-                  $.each(rec.technologies, function(_, sp){
-                    $ul.append('<li><span>' + sp + '</span></li>');
-                  });
+                // F2F 30042914 - Fix the checking contestType to challengeCommunity
+                // F2F 30042914 - Check if any duplicate platforms/technologies
+                if (rec.challengeCommunity == "develop") {
+                  var tags = [];
+                  app.pushToArrayIfUnique(tags, rec.platforms);
+                          app.pushToArrayIfUnique(tags, rec.technologies);
 
-                  $div.append($ul);
-                  $('.colCh', row).append($div);
+                  if (tags.length > 0) {
+                    var $div = $('<div>');
+                            $div.prop("id", rec.challengeId).addClass("technologyTags");
+                            var $ul =$('<ul>')
+                    $.each(tags, function(index, sp) {
+                      $ul.append('<li><span>' + sp + '</span></li>');
+                  });
+                            $div.append($ul);
+                            $('.colCh', row).append($div);
+                  }
                 }
 
                 $('.tipC', row).html(rec.challengeType);
                 $('.tipC', row).data('contest_type', rec.challengeCommunity);
-				
+
                 $('.vStartDate', row).html(startDate);
 
                 if (checkPointDate) {
@@ -1855,7 +2039,7 @@ appChallenges = {
                 $('.colCh a, .cgCh a', con).attr("href", contestLinkUrl);
 
                 $('.tipC', con).html(rec.challengeType);
-				$('.tipC', con).data('contest_type', rec.challengeCommunity);
+                $('.tipC', con).data('contest_type', rec.challengeCommunity);
 
                 $('.vStartDate', con).html(startDate);
 
@@ -1873,17 +2057,24 @@ appChallenges = {
 
                 $('.vPhase', con).html(rec.currentPhaseName);
 
-                if (contest_type == "develop" && !app.isEmptyArray(rec.technologies)) {
-                  var $div = $('<div>');
-                  $div.prop("id", rec.challengeId).addClass("technologyTags");
-                  var $ul =$('<ul>');
-                  $.each(rec.technologies, function(_, sp){
-                    $ul.append('<li><span>' + sp + '</span></li>');
-                  });
+                // F2F 30042914 - Fix the checking contestType to challengeCommunity
+                // F2F 30042914 - Check if any duplicate platforms/technologies
+                if (rec.challengeCommunity == "develop") {
+                  var tags = [];
+                  app.pushToArrayIfUnique(tags, rec.platforms);
+                          app.pushToArrayIfUnique(tags, rec.technologies);
 
-                  $div.append($ul);
-                  $div.append('<div class="clear"></div>');
-                  $('.cgTime', con).after($div);
+                  if (tags.length > 0) {
+                    var $div = $('<div>');
+                            $div.prop("id", rec.challengeId).addClass("technologyTags");
+                            var $ul =$('<ul>')
+                    $.each(tags, function(index, sp) {
+                      $ul.append('<li><span>' + sp + '</span></li>');
+                  });
+                            $div.append($ul);
+                            $div.append('<div class="clear"></div>');
+                            $('.cgTime', con).after($div);
+                  }
                 }
 
                 $('.cgTLeft', con).html('<i></i>' + remainingTime);
@@ -1965,7 +2156,7 @@ appChallenges = {
         if (isAppend != true) {
             $('tbody', table).html(null);
         }
-								$('thead', table).show();
+        $('thead', table).show();
         var count = 0;
         //JS uncaught typeError when no data available, so adding defined check
         if (typeof data.data !== 'undefined' && data.data.length > 0) {
@@ -2005,20 +2196,28 @@ appChallenges = {
                 $('.contestName', row).parents(".inTCO").addClass("hasTCOIco");
                 $('.colCh a, .cgCh a', row).attr("href", contestLinkUrl);
 
-                if (contest_type == "develop" && !app.isEmptyArray(rec.technologies)) {
-                  var $div = $('<div>');
-                  $div.prop("id", rec.challengeId).addClass("technologyTags");
-                  var $ul =$('<ul>')
-                  $.each(rec.technologies, function(_, sp){
-                    $ul.append('<li><span>' + sp + '</span></li>');
-                  });
+                // F2F 30042914 - Fix the checking contestType to challengeCommunity
+                // F2F 30042914 - Add platforms to the tag
+                // F2F 30042914 - Check if any duplicate platforms/technologies
+                if (rec.challengeCommunity == "develop") {
+                  var tags = [];
+                  app.pushToArrayIfUnique(tags, rec.platforms);
+                          app.pushToArrayIfUnique(tags, rec.technologies);
 
-                  $div.append($ul);
-                  $('.colCh', row).append($div);
+                  if (tags.length > 0) {
+                    var $div = $('<div>');
+                            $div.prop("id", rec.challengeId).addClass("technologyTags");
+                            var $ul =$('<ul>')
+                    $.each(tags, function(index, sp) {
+                      $ul.append('<li><span>' + sp + '</span></li>');
+                  });
+                            $div.append($ul);
+                            $('.colCh', row).append($div);
+                  }
                 }
 
                 $('.colType .tipC', row).html(rec.challengeType);
-				$('.colType .tipC', row).data('contest_type', rec.challengeCommunity);
+                $('.colType .tipC', row).data('contest_type', rec.challengeCommunity);
 
                 $('.vStartDate', row).html(startDate);
 
@@ -2038,9 +2237,12 @@ appChallenges = {
                 $('.colPur', row).html("$" + purse);
 
                 $('.colPhase', row).html('Completed');
-
-                $('.winBages', row).html('<a href="' + siteurl+ '/challenge-details/' +rec.challengeId+'?type='+ rec.challengeCommunity +'#winner">View Winners</a>');
-
+                //Bugfix I-106745: Output "N/A" instead of "View Winners" link if no eligible submissions to contest
+                if (rec.numSubmissions > 0) {
+                    $('.winBages', row).html('<a href="' + siteurl+ '/challenge-details/' +rec.challengeId+'?type='+ rec.challengeCommunity +'#winner">View Winners</a>');
+                } else {
+                    $('.winBages', row).html('N/A');
+                }
                 $('.moreWin', row).hide();
 
                 $('.colReg', row).html('<a href="' + contestLinkUrl + '#viewRegistrant">' + rec.numRegistrants + '</a>');
@@ -2112,8 +2314,26 @@ appChallenges = {
                 $('.contestName', row).parents(".inTCO").addClass("hasTCOIco");
                 $('.colCh a, .cgCh a', row).attr("href", contestLinkUrl);
 
+                // F2F 30042914 - Add technologies to upcoming development contest table
+                if (rec.challengeCommunity == "develop") {
+                  var tags = [];
+                  app.pushToArrayIfUnique(tags, rec.platforms);
+                          app.pushToArrayIfUnique(tags, rec.technologies);
+
+                  if (tags.length > 0) {
+                    var $div = $('<div>');
+                            $div.prop("id", rec.challengeId).addClass("technologyTags");
+                            var $ul =$('<ul>')
+                    $.each(tags, function(index, sp) {
+                      $ul.append('<li><span>' + sp + '</span></li>');
+                  });
+                            $div.append($ul);
+                            $('.colCh', row).append($div);
+                  }
+                }
+
                 $('.tipC', row).html(rec.challengeType);
-				$('.tipC', row).data('contest_type', rec.challengeCommunity);
+                $('.tipC', row).data('contest_type', rec.challengeCommunity);
 
                 $('.vStartDate', row).html(startDate);
 
@@ -2131,7 +2351,10 @@ appChallenges = {
 
                 $('.colDur', row).html(contestDuration);
 
-                $('.colTech', row).html(contestTechnologies);
+                // F2F 30042914 - remove techonologies column for develop contest
+                if (rec.challengeCommunity !== "develop") {
+                          $('.colTech', row).html(contestTechnologies);
+                }
 
                 if (rec.isEnding === "true") {
                     $('.colTLeft', row).addClass('imp');
@@ -2204,7 +2427,7 @@ appChallenges = {
                 $('.colCh a, .cgCh a', con).attr("href", contestLinkUrl);
 
                 $('.tipC', con).html(rec.challengeType);
-				$('.tipC', con).data('contest_type', rec.challengeCommunity);
+                $('.tipC', con).data('contest_type', rec.challengeCommunity);
 
                 $('.vStartDate', con).html(startDate);
 
@@ -2217,10 +2440,30 @@ appChallenges = {
                 $('.vEndDate', con).html(endDate);
                 $('.vStatus', con).html(rec.currentStatus);
 
-                if (!contestTechnologies) {
+                // F2F 30042914 - Fix the checking contestType to challengeCommunity
+                // F2F 30042914 - Check if any duplicate platforms/technologies
+                if (rec.challengeCommunity == "develop") {
+                  var tags = [];
+                  app.pushToArrayIfUnique(tags, rec.platforms);
+                          app.pushToArrayIfUnique(tags, rec.technologies);
+
+                  if (tags.length > 0) {
+                    var $div = $('<div>');
+                            $div.prop("id", rec.challengeId).addClass("technologyTags");
+                            var $ul =$('<ul>')
+                    $.each(tags, function(index, sp) {
+                      $ul.append('<li><span>' + sp + '</span></li>');
+                  });
+                            $div.append($ul);
+                            $div.append('<div class="clear"></div>');
+                            $('.cgTime', con).after($div);
+                  }
+                } else {
+                  if (!contestTechnologies) {
                     contestTechnologies = "N/A";
+                  }
+                  $('.vTech', con).html(contestTechnologies);
                 }
-                $('.vTech', con).html(contestTechnologies);
 
                 $('.cgTLeft', con).html('<i></i>' + contestDuration);
                 if (rec.isEnding === "true") {
@@ -2273,7 +2516,7 @@ appChallenges = {
         if (isAppend != true) {
             $('tbody', table).html(null);
         }
-								$('thead', table).show();
+        $('thead', table).show();
         var count = 0;
         //JS uncaught typeError when no data available, so adding defined check
         if (typeof data.data !== 'undefined' && data.data.length > 0) {
@@ -2292,7 +2535,7 @@ appChallenges = {
                 $('.contestName', row).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/ico-track-develop.png" />' + rec.challengeName + '<img alt="" class="allContestTCOIco" src="' + stylesheet_dir + '/i/tco-flag-develop.png" />');
                 $('.contestName', row).parents(".inTCO").addClass("hasTCOIco");
                 $('.tipC', row).html(rec.challengeType);
-				$('.tipC', row).data('contest_type', rec.challengeCommunity);
+                $('.tipC', row).data('contest_type', rec.challengeCommunity);
                 $('.colPay', row).html("$" + app.formatCur(purse));
                 $('.colTP', row).html(20);
                 $('.colReg', row).html('<a href="javascript:;">' + rec.numRegistrants + '</a>');
@@ -2332,17 +2575,9 @@ appChallenges = {
     formatDate2: function(date) {
         //some function is passing in undefined timezone_string variable causing js errors, so check if undefined and set default:
         if (typeof timezone_string === 'undefined') {
-        var timezone_string = "America/Toronto"; // lets set to TC timezone
+          var timezone_string = "America/New_York"; // lets set to TC timezone
         }
         return moment(date).tz(timezone_string).format("D MMM YYYY HH:mm z");
-        // var d = new Date(date);
-        // var utcd = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds());
-
-        // // obtain local UTC offset and convert to msec
-        // localOffset = d.getTimezoneOffset() * 60000;
-        // var newdate = new Date(utcd + localOffset);
-
-        // return newdate.toDateString() + ' ' + ((newdate.getUTCHours() < 10 ? '0' : '') + newdate.getUTCHours()) + ':' + ((newdate.getUTCMinutes() < 10 ? '0' : '') + newdate.getUTCMinutes());
     },
 
     getContestDuration: function(dateStart, dateEnd, time) {
@@ -2411,7 +2646,19 @@ appChallenges = {
         var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
             results = regex.exec(location.search);
         return results == null ? null : decodeURIComponent(results[1].replace(/\+/g, " "));
-    }
+    },
+
+    // F2F 30042914 - push all elements of arrayToPush into targetArray if they do not exist yet
+    pushToArrayIfUnique: function(targetArray, arrayToPush) {
+        if (app.isEmptyArray(arrayToPush)) {
+            return;
+        }
+        $.each(arrayToPush, function(index, value) {
+            if ($.inArray(value, targetArray)==-1) {
+                targetArray.push(value);
+            }
+        });
+   }
 };
 
 /**
@@ -2595,7 +2842,6 @@ var challengesBP = {
                     </div></td>\
                 <td class="colDur"></td>\
                 <td class="colPur"></td>\
-                <td class="colTech"></td>\
                 <td class="colStat"></td>\
             </tr>',
     grDOpen: '<div class="contest">\
@@ -2761,10 +3007,6 @@ var challengesBP = {
                         <div class="row">\
                             <label class="lbl">Current Status</label>\
                             <div class="val vStatus"></div>\
-                        </div>\
-                        <div class="row">\
-                            <label class="lbl">Technologies</label>\
-                            <div class="val vTech"></div>\
                         </div>\
                     </div>\
                 </div>\
@@ -2961,28 +3203,14 @@ String.prototype.splice = function(idx, rem, s) {
 // extending base prototype
 $.extend(app, appChallenges);
 
-
-$.getJSON = function(url, success) {
-
-    return $.ajax({
-        dataType: "json",
-        url: url,
-        success: success,
-        cache: false
-    });
-};
-
-// everythings begins from here
+/* fancy drop down platform on advanced search form */
 $(document).ready(function() {
     $("#challengeNav a").hide();
 
-});
+    // populate technology tags
+    app.getTechnologyTags($('.chosen-select'));
 
-
-/* fancy drop down platform on advanced search form */
-$(document).ready(function() {
-
-    /*multiple select configurations
+    // multiple select configurations
     var config = {
         '.chosen-select': {},
         '.chosen-select-deselect': { allow_single_deselect: true },
@@ -2992,7 +3220,7 @@ $(document).ready(function() {
     };
     for (var selector in config) {
         $(selector).chosen(config[selector]);
-    }*/
+    }
 
     //set equal height to row contestGrid boxes
     var index = 0, minWidth = 1019, cols = $(window).width() > minWidth ? 3 : 1, rows = 0;
@@ -3020,7 +3248,7 @@ $(document).ready(function() {
             }
         }
     });
-	
-	// Issue ID: I-111387 - Add date input masking to both startDate and endDate inputs
-	$('input[type=text].datepicker', '.otherOpts').inputmask('yyyy-mm-dd');
+
+  // Issue ID: I-111387 - Add date input masking to both startDate and endDate inputs
+  $('input[type=text].datepicker', '.otherOpts').inputmask('yyyy-mm-dd');
 });

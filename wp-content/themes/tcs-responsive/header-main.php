@@ -41,9 +41,8 @@ if (isset($_GET['auth']) && $_GET['auth'] == 'logout') {
   <title><?php wp_title(' - ', TRUE, 'right'); ?></title>
   <meta name="description" content="">
   <meta name="author" content="" >
-
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
 
   <!-- Favicons -->
@@ -66,6 +65,8 @@ if (isset($_GET['auth']) && $_GET['auth'] == 'logout') {
     } else {
       ajaxUrl = "<?php bloginfo('wpurl')?>" + "/wp-admin/admin-ajax.php";
     }
+
+    var tcApiRUL = '<?php echo TC_API_URL; ?>';
     var siteURL = '<?php bloginfo('siteurl');?>';
     var base_url = '<?php bloginfo( 'stylesheet_directory' ); ?>';
     var stylesheet_dir = '<?php echo THEME_URL . '/css'; ?>';
