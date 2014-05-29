@@ -3,9 +3,11 @@ $contestResults = get_contest_results($contestID, $contestType);
 $submissions = $contestResults->results;
 $submission_map = array();
 
-foreach ($submissions as $submission) {
-  if ($submission->submissionStatus == 'Active') {
-    $submission_map[$submission->placement] = $submission;
+if (!empty($submissions)) {
+  foreach ($submissions as $submission) {
+    if ($submission->submissionStatus == 'Active') {
+      $submission_map[$submission->placement] = $submission;
+    }
   }
 }
 
