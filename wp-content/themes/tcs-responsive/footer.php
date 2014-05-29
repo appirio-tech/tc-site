@@ -599,9 +599,10 @@ $blog_posts = get_posts($blog_posts_args);
             ?>
           <a href="<?php echo $fp_link; //http://community.topcoder.com/tc?module=FindUser ?>" target="_blank" class="forgotPwd">Forgot
             password?</a>
+          <span class="not-a-member">Not a member? <a href="javascript:;" class="switch-to-register">Register Now!</a></span>
         </p>
       </form>
-      <div class="register-text"><p>Not a member? <a href="javascript:;" class="switch-to-register">Register Now!</a></p></div>
+      <div class="register-text"></div>
       <div class="clear"></div>
     </div>
     <!-- END .form login -->
