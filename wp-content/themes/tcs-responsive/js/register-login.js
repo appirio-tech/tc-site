@@ -65,7 +65,7 @@ $(function () {
   $('#registerForm input.pwd:password').on('keyup', function () {
     var input = $(this);
 
-    $(this).closest('.row').find('.err1,.err2,.err3,.err4').hide();
+    $(this).closest('.row').find('.err1,.err2,.err3,.err4,.err5').hide();
     $(this).removeClass('invalid');
 
     var strength = pwdStrength($(this).val());
@@ -86,9 +86,14 @@ $(function () {
         $(e).addClass(classname);
       }
     });
-    if (input.val() == "") {
-      input.closest('.row').find('.err1').show();
-      input.closest('.row').find('input:password').addClass('invalid');
+    //Bugfix I-109383: Wrong parameter was used to detect empty values
+    if (strength == 0) {
+        if ($.trim(input.val()) === input.val()) {
+            input.closest('.row').find('.err1').show();
+        } else {
+            input.closest('.row').find('.err5').show();
+        }
+      input.addClass('invalid');
     } else if (strength >= 0 && strength < 3) {
       input.closest('.row').find('.err2').show();
       input.addClass('invalid');
@@ -106,8 +111,8 @@ $(function () {
     input.removeClass('invalid');
     input.closest('.row').find('.err1,.err2').hide();
     if (input.val() == "") {
-      input.closest('.row').find('.err1').show();
-      input.closest('.row').find('input:password').addClass('invalid');
+        input.closest('.row').find('.err1').show();
+      input.addClass('invalid');
     } else if (input.val() != $('#registerForm input.pwd:password').val()) {
       input.closest('.row').find('.err2').show();
       input.addClass('invalid');
@@ -327,6 +332,7 @@ $(function () {
   $('#register input:password').on('keyup', function () {
     var pwd = $('#register form.register input.pwd:password');
     var confirm = $('#register form.register input.confirm:password');
+    //bugfix empty value checking without using trim
     if (pwd.val() == confirm.val() && pwd.val() != '') {
       confirm.parents(".row").find("span.valid").css("display", "inline-block");
       confirm.removeClass('invalid');
@@ -501,10 +507,14 @@ $(function () {
 
     });
     if (!$(this).hasClass("socialRegister")) {
-      $(this).closest('.row').find('.err1,.err2,.err3,.err4').hide();
+      $(this).closest('.row').find('.err1,.err2,.err3,.err4,.err5').hide();
       $('input.pwd:password', frm).each(function () {
-        if ($(this).val() == "") {
-          $(this).closest('.row').find('.err1').show();
+          if ($.trim($(this).val()) == "") {
+              if ($.trim($(this).val()) === $(this).val()) {
+                $(this).closest('.row').find('.err1').show();
+            } else {
+                $(this).closest('.row').find('.err5').show();
+            }
           $(this).closest('.row').find('input:password').addClass('invalid');
           isValid = false;
         } else if ($(".strength .field.red", frm).length > 0) {
@@ -637,8 +647,13 @@ $(function () {
     $('.err1,.err2', frm).hide();
     var isValid = true;
     $('input:password', frm).each(function () {
-      if ($(this).val() == "") {
-        $(this).closest('.row').parent().find('.err2').show();
+    //fixed incorrect value checking
+        if ($.trim($(this).val()) == "") {
+            if ($.trim($(this).val()) === $(this).val()) {
+              $(this).closest('.row').find('.err1').show();
+          } else {
+              $(this).closest('.row').find('.err5').show();
+          }
         $(this).closest('.row').find('input:password').addClass('invalid');
         isValid = false;
       }
