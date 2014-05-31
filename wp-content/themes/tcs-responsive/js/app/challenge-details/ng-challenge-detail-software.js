@@ -96,7 +96,8 @@ $(document).ready(function () {
         var tcssoValues = tcsso.split("|");
         $.getJSON("http://community.topcoder.com/tc?module=BasicData&c=get_handle_by_id&dsid=30&uid=" + tcssoValues[0] + "&json=true", function(data) {
           var now = new Date();
-          var handle = data['data'][0]['handle'];
+          // TODO: eliminate global var
+          handle = data['data'][0]['handle'];
 
           var registrants = [];
           $.each(challenge.registrants, function(x, registrant) {
@@ -549,16 +550,30 @@ $(function () {
 });
 
 
-app.tabNavinit = function () {
+app.tabNavinit = function() {
 
   // tab navs
-  $('.tabNav a').off().on(ev, function () {
+  $('.tabNav a').off().on(ev, function() {
     var id = $(this).attr('href');
     var tabIdx = id.lastIndexOf('tab=');
     if (tabIdx > 0) {
       id = "#" + id.substr(tabIdx + 4);
     }
     var old = $('a.active').attr('href');
+//    for (var i = 0; i < old.length; i++) {
+//      if (old[i][0] != '#') continue;
+//      var x = old[i];
+//      var hideme = $(x).attr('href');
+//      $(hideme).css({'display':'none'});
+//      console.log(hideme);
+//    }
+//    old.map(function(x) {
+//      console.log('yo');
+//      console.log(x);
+//      var href = $(x).attr('href');
+//      $(href).hide();
+//      console.log('hiding ' + href);
+//    });
     $(old).hide();
     $(id).fadeIn();
     $('.active', $(this).closest('nav')).removeClass('active');
