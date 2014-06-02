@@ -66,6 +66,16 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
         });
     }
 
+    // @TODO: put this in a service
+    var reglist = challenge.registrants.map(function(x) { return x.handle; });
+    app.getHandle(function(handle) {
+      if (((new Date(challenge.registrationEndDate)) > new Date()) && reglist.indexOf(handle) == -1) {
+        challenge.registrationDisabled = false;
+      } else {
+        challenge.registrationDisabled = true;
+      }
+    });
+
     chglo = challenge;
     $scope.challenge = challenge;
     $scope.reliabilityBonus = challenge.reliabilityBonus;
