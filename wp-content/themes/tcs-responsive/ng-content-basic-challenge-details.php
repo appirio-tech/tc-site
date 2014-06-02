@@ -11,14 +11,14 @@
 <div class="leftColumn">
     <a ng-show="!isDesign" class="btn btnAction challengeRegisterBtn {{challenge.registrationDisabled ? 'disabled' : ''}}" href="javascript:;"><span>1</span>
       <strong>Register For This Challenge</strong></a>
-    <a ng-show="!isDesign" class="btn btnAction {{challenge.submitDisabled ? 'disabled' : ''}}" target="_blank"
+    <a ng-show="!isDesign" class="btn btnAction {{challenge.submissionDisabled ? 'disabled' : ''}}" target="_blank"
        href="<?php bloginfo("siteurl"); ?>/challenge-details/{{challenge.challengeId}}/submit"><span>2</span>      <strong>Submit Your Entries</strong></a>
     <a ng-show="isDesign" class="btn btnAction challengeRegisterBtn {{challenge.registrationDisabled ? 'disabled' : ''}}" href="javascript:;"><span>1</span> <strong>Register
         For This Challenge</strong></a>
-    <a ng-show="isDesign" class="btn btnAction {{challenge.submitDisabled ? 'disabled' : ''}}" target="_blank"
+    <a ng-show="isDesign" class="btn btnAction {{challenge.submissionDisabled ? 'disabled' : ''}}" target="_blank"
        href="http://studio.topcoder.com/?module=ViewRegistration&ct={{challenge.challengeId}}"><span>2</span> <strong>Submit
         Your Entries</strong></a>
-    <a ng-show="isDesign" class="btn btnAction {{challenge.submitDisabled ? 'disabled' : ''}}" target="_blank"
+    <a ng-show="isDesign" class="btn btnAction {{challenge.submissionDisabled ? 'disabled' : ''}}" target="_blank"
        href="http://studio.topcoder.com/?module=ViewSubmission&ct={{challenge.challengeId}}"><span>3</span> <strong>View
         Your Submission</strong></a>
 </div>

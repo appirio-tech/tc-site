@@ -74,6 +74,11 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
       } else {
         challenge.registrationDisabled = true;
       }
+      if (((new Date(challenge.submissionEndDate)) > new Date()) && reglist.indexOf(handle) > -1) {
+        challenge.submissionDisabled = false;
+      } else {
+        challenge.submissionDisabled = true;
+      }
     });
 
     chglo = challenge;
@@ -104,6 +109,11 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
         console.log('init and fina');
         console.log($scope.initialScoreSum);
         console.log($scope.finalScoreSum);
+        $scope.winningSubmissions = [];
+        for (var i = 0; i < $scope.submissions.length; i++) {
+          if (challenge.prize[i]) $scope.winningSubmissions.push($scope.submissions[i]);
+          else break;
+        }
       });
     } else {
       $scope.submissions = false;

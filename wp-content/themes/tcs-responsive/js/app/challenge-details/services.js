@@ -82,15 +82,10 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', '$cookies', f
 
       challenge.submitDisabled = true;
 
-      if (challenge.submissionEndDate && challenge.currentStatus != 'Completed') {
-        if ((new Date(challenge.submissionEndDate)) > new Date() && reglist.indexOf(handle) > -1) {
-          challenge.submitDisabled = false;
-        }
-        var handleMap = {};
-        challenge.registrants.map(function(x) {
-          handleMap[x.handle] = true;
-        });
-      }
+      var handleMap = {};
+      challenge.registrants.map(function(x) {
+        handleMap[x.handle] = true;
+      });
 
       defer.resolve(challenge);
     });

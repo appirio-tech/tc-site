@@ -1,5 +1,5 @@
 <article ng-show="isDesign && submissions.length > 0">
-    <div ng-if="firstPlaceSubmission" ng-repeat="submission in submissions" class="winnerRow {{$index > 1 ? 'hideOnMobi' : ''}}">
+    <div ng-show="firstPlaceSubmission" ng-repeat="submission in winningSubmissions" class="winnerRow {{$index > 1 ? 'hideOnMobi' : ''}}">
         <div class="place {{['first', 'second', 'third', 'other'][$index]}}">{{$index + 1}}<span>{{(placeSuffix = ['st', 'nd', 'rd'][$index]) ? placeSuffix : 'th'}}</span></div>
         <!-- #/end place-->
         <div class="image">
@@ -10,7 +10,7 @@
         <div class="details">
             <a href="<?php bloginfo('wpurl'); ?>/member-profile/{{submission.handle}}" class="coderTextOrange">{{submission.handle}}</a>
             <div class="">
-                <h3>${{challenge.prize[0]}}</h3>
+                <h3>${{challenge.prize[$index]}}</h3>
                 <span class="title">PRIZE</span>
                 <span class="date">Registration Date</span>
                 <span class="time">{{formatDate(submission.registrationDate)}}</span>
