@@ -26,6 +26,13 @@
       </div>
     </div>
   </div>
+  <div id="{{challenge.challengeId}}" class="technologyTags">
+      <ul>
+          <li ng-repeat="item in challenge.technologies"><span>{{item}}</span></li>
+          <li ng-repeat="item in challenge.platforms"><span>{{item}}</span></li>
+      </ul>
+      <div class="clear"></div>
+  </div>
   <div class="genInfo">
     <p class="cgTLeft" data-hasqtip="0" aria-describedby="qtip-0"><i></i><span ng-bind-html="formatTimeLeft(challenge.currentPhaseRemainingTime, true)"></span>
     </p>

@@ -28,8 +28,8 @@
   </div>
   <div id="{{challenge.challengeId}}" class="technologyTags">
     <ul>
-      <li ng-repeat="tag in challenge.technologies"><span>{{tag}}</span>
-      </li>
+        <li ng-repeat="item in challenge.technologies"><span>{{item}}</span></li>
+        <li ng-repeat="item in challenge.platforms"><span>{{item}}</span></li>
     </ul>
     <div class="clear"></div>
   </div>

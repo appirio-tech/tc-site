@@ -26,8 +26,13 @@
       </div>
       <div class="row">
         <label class="lbl">Technologies</label>
-        <div class="val vTech" ng-show="challenge.technologies.length == 0 || challenge.technologies[0] == ''">N/A</div>
-        <div class="val vTech" ng-hide="challenge.technologies.length == 0 || challenge.technologies[0] == ''">{{challenge.technologies.join(', ')}}</div>
+          <div id="{{challenge.challengeId}}" class="technologyTags">
+              <ul>
+                  <li ng-repeat="item in challenge.technologies"><span>{{item}}</span></li>
+                  <li ng-repeat="item in challenge.platforms"><span>{{item}}</span></li>
+              </ul>
+              <div class="clear"></div>
+          </div>
       </div>
     </div>
   </div>
