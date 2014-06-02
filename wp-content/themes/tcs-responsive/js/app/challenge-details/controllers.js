@@ -46,7 +46,9 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
 
   challengeId = location.href.match(/s\/(\d+)/)[1];
   $scope.round = Math.round;
-  $scope.currentTab = 'details';
+  $scope.activeTab = 'details';
+  if (window.location.hash == '#viewRegistrant') $scope.activeTab = 'registrants';
+  else if (window.location.hash == '#winner') $scope.activeTab = 'winners';
 
   ChallengeService.getChallenge(challengeId).then(function(challenge) {
     $('#cdNgMain').removeClass('hide');
@@ -66,7 +68,6 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
 
     chglo = challenge;
     $scope.challenge = challenge;
-    $scope.activeTab = 'overview';
     $scope.reliabilityBonus = challenge.reliabilityBonus;
     $scope.siteURL = siteURL;
     $scope.challengeType = getParameterByName('type');
