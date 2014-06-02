@@ -6,11 +6,10 @@
             <img alt="allContestTCOIco" class="allContestTCOIco" ng-src="{{images}}/tco-flag-{{row.getProperty('challengeCommunity') != 'data'?row.getProperty('challengeCommunity'):'develop'}}.png" ng-show="contest.contestType != 'data'">
         </a>
     </div>
-    <div id="{{row.getProperty('challengeId')}}" class="technologyTags" ng-show="contest.listTye === 'active' && row.getProperty('technologies').length > 0 && row.getProperty('technologies')[0] != ''">
+    <div id="{{row.getProperty('challengeId')}}" class="technologyTags">
         <ul>
-            <li ng-repeat="tag in row.getProperty('technologies')">
-                <span>{{tag}}</span>
-            </li>
+            <li ng-repeat="item in row.getProperty('technologies')"><span>{{item}}</span></li>
+            <li ng-repeat="item in row.getProperty('platforms')"><span>{{item}}</span></li>
         </ul>
     </div>
 </div>

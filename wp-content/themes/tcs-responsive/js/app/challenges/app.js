@@ -6,7 +6,8 @@ window.tc = angular.module('tc', [
   'tc.challenges.services',
   'tc.challenges.directives',
   'angular-loading-bar',
-  'ngGrid'
+  'ngGrid',
+  'ui.select2'
 ])
 
   .constant("API_URL", "https://api.topcoder.com/v2")
@@ -32,7 +33,7 @@ window.tc = angular.module('tc', [
     RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
       var extractedData;
       // .. to look for getList operations
-      if (operation === "getList") {
+      if (operation === "getList" && data.data) {
         // .. and handle the data and meta data
         extractedData = data.data;
         extractedData.pagination = {
@@ -40,8 +41,11 @@ window.tc = angular.module('tc', [
           pageIndex: data.pageIndex,
           pageSize: data.pageSize
         };
-      } else {
+      } else if (data.data) {
         extractedData = data.data;
+      }
+      else {
+        extractedData = data;
       }
       //loadingBar.complete();
       return extractedData;
