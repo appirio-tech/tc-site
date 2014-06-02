@@ -468,7 +468,7 @@ include locate_template('header-challenge-landing.php');
       <tr ng-repeat="registrant in challenge.registrants">
         <td class="handleColumn">
             <span>
-                <a ng-href="{{siteURL + '/member-profile' + registrant.handle}}" ng-bind="registrant.handle"></a>
+                <a ng-href="{{siteURL + '/member-profile/' + registrant.handle}}" ng-bind="registrant.handle"></a>
             </span>
         </td>
         <td ng-if="challengeType != 'design'" class="ratingColumn">
