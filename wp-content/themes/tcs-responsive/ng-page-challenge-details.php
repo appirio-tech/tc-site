@@ -146,6 +146,7 @@ include locate_template('header-challenge-landing.php');
     <li>
       <a href="#viewRegistrant" class="link">Registrants</a>
     </li>
+    <li ng-show="challenge.checkpoints && challenge.checkpoints.length > 0"><a href="#checkpoints" class="link">Checkpoints</a></li>
     <!-- FIXME: took out checkpoint stuff here
     < ?php if (( !empty( $checkpointData ) && $checkpointData != "Error in processing request" ) || ( $tab === "checkpoints" )): ?>
       <li><a href="#checkpoints" class="link {{activeTab == 'checkpoints' ? 'active' : ''}}">Checkpoints</a></li>

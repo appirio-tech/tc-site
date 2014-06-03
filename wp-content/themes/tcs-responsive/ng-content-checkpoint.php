@@ -1,9 +1,10 @@
-<div ng-if="checkpointData">
+<div ng-show="checkpointData">
   <h1>checkpoint WINNERS</h1>
   <p class="info">The following submissions have received a checkpoint prize.</p>
   <ul class="winnerList">
-    <li ng-repeat="result in checkpointResults" class="{{$index == checkpointResults.length - 1 ? last : ''">
-      <span class="{{$index == 0 ? 'firstPrizeIcon' : ($index == 1 ? 'secondPrizeIcon' : '')">#{{result.submissionId}}</span>
+    <li ng-repeat="result in checkpointResults" class="{{$index == checkpointResults.length - 1 ? last : ''}}">
+      <span class="{{$index == 0 ? 'firstPrizeIcon' : ($index == 1 ? 'secondPrizeIcon' : '')}} prizeIcon"></span>
+      <span class="box">#{{result.submissionId}}</span>
     </li>
   </ul>
   <div class="clear"></div>
@@ -28,4 +29,4 @@
     </li>
   </ul>
 </div>
-<h1 ng-if="!checkpointData">Data is not available.</h1>
+<h1 ng-show="!checkpointData">Data is not available.</h1>

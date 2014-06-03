@@ -62,6 +62,43 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
             $scope.checkpointData = data;
             $scope.checkpointResults = data.checkpointResults;
             $scope.numCheckpointSubmissions = data.numberOfSubmissions;
+
+            // @TODO: This is so hacky. Do it the Angular way instead
+            setTimeout(function() {
+              $('.expandCollaspeList li a').each(function () {
+                var _this = $(this).parents('li')
+                if (!$(this).hasClass('collapseIcon')) {
+                  _this.children('.bar').css('border-bottom', '1px solid #e7e7e7');
+                } else {
+                  _this.children('.bar').css('border-bottom', 'none');
+                }
+              });
+              $('.expandCollaspeList li .bar').on(ev, function () {
+                var _this = $(this).closest('li');
+                if (!$('a', _this).hasClass('collapseIcon')) {
+                  $('a', _this).addClass('collapseIcon');
+                  _this.children('.feedBackContent').hide();
+                  _this.children('.bar').css('border-bottom', 'none');
+                } else {
+                  $('a', _this).removeClass('collapseIcon')
+                  _this.children('.feedBackContent').show();
+                  _this.children('.bar').css('border-bottom', '1px solid #e7e7e7');
+                }
+              });
+
+              // checkpoint box click
+              $('.winnerList .box').on('click', function () {
+                var idx = $(this).closest('li').index();
+                $('a', $('.expandCollaspeList li').eq(idx)).trigger('click');
+                var top = $('a', $('.expandCollaspeList li').eq(idx)).offset().top - 20;
+                var body = $("html, body");
+                body.animate({scrollTop: top}, '500', 'swing');
+              });
+
+
+
+            }, 500);
+           
           }
         });
     }
