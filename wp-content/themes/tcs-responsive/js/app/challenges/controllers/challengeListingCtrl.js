@@ -2,8 +2,8 @@
 (function (angular) {
   'use strict';
   var challengesModule = angular.module('tc.challenges');
-  challengesModule.controller('ChallengeListingCtrl', ['$scope', 'ChallengesService', 'DataService', '$window', 'TemplateService', 'GridService', 'cfpLoadingBar',
-    function ($scope, ChallengesService, DataService, $window, TemplateService, GridService, cfpLoadingBar) {
+  challengesModule.controller('ChallengeListingCtrl', ['$scope', 'ChallengesService', 'ChallengeDataService', 'DataService', '$window', 'TemplateService', 'GridService', 'cfpLoadingBar',
+    function ($scope, ChallengesService, ChallengeDataService, DataService, $window, TemplateService, GridService, cfpLoadingBar) {
 
       function startLoading() {
         cfpLoadingBar.start();
@@ -65,18 +65,50 @@
       function getChallenges(contest) {
         var params = {};
         if (contest.contestType && contest.contestType !== '') {
+
+          // Data is currently going to a different endpoint
+          if (contest.contestType == 'data') {
+            params.listType = contest.listType
+          }
+
           params = {
             type: contest.contestType
           };
         }
-        ChallengesService.all(contest.listType).getList(params).then(function (challenges) {
-            $scope.allChallenges = challenges;
-            $scope.challenges = $scope.setPagingData($scope.allChallenges, $scope.page, $scope.pageSize);
-          },
-          function () {
-            $scope.challenges = [];
-            stopLoading();
-          });
+
+        if (contest.contestType == 'data') {
+          ChallengeDataService.all('').getList(params).then(function(challenges) {
+
+              _.each(challenges, function(challengeItem) {
+                challengeItem.challengeCommunity = 'data';
+                challengeItem.challengeName = challengeItem.fullName;
+                challengeItem.challengeType = 'Marathon';
+                challengeItem.registrationStartDate = challengeItem.startDate;
+                challengeItem.submissionEndDate = challengeItem.endDate;
+                challengeItem.contestType = 'data';
+                challengeItem.numRegistrants = challengeItem.numberOfRegistrants;
+                challengeItem.numSubmissions = challengeItem.numberOfSubmissions;
+                challengeItem.totalPrize = 'N/A';
+              });
+
+              $scope.allChallenges = challenges;
+              $scope.challenges = $scope.setPagingData($scope.allChallenges, $scope.page, $scope.pageSize);
+            },
+            function () {
+              $scope.challenges = [];
+              stopLoading();
+            });
+        } else {
+          ChallengesService.all(contest.listType).getList(params).then(function (challenges) {
+              $scope.allChallenges = challenges;
+              $scope.challenges = $scope.setPagingData($scope.allChallenges, $scope.page, $scope.pageSize);
+            },
+            function () {
+              $scope.challenges = [];
+              stopLoading();
+            });
+        }
+
       }
 
       $scope.submit = function () {

@@ -7,9 +7,15 @@
 
     .factory('ChallengesService', ['Restangular', 'API_URL',
       function (Restangular, API_URL) {
-
-        return Restangular.withConfig(function (RestangularConfigurer) {
+        return  Restangular.withConfig(function (RestangularConfigurer) {
           RestangularConfigurer.setBaseUrl(API_URL + '/challenges');
+        });
+      }])
+
+    .factory('ChallengeDataService', ['Restangular', 'API_URL',
+      function (Restangular, API_URL) {
+        return  Restangular.withConfig(function (RestangularConfigurer) {
+          RestangularConfigurer.setBaseUrl(API_URL + '/data/marathon/challenges');
         });
       }]);
 }(angular));

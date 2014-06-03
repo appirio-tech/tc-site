@@ -11,7 +11,15 @@
           {
             field: 'challengeName',
             fieldName: 'Challenges',
-            width: 340
+            width: 340,
+            visible: contest.challengeCommunity !== 'data'
+          },
+          {
+            field: 'challengeName',
+            fieldName: 'Challenges',
+            width: 340,
+            tplName: 'challengeDataName',
+            visible: contest.challengeCommunity === 'data'
           },
           {
             field: 'challengeType',
@@ -73,7 +81,16 @@
             width: 74,
             minWidth: 74,
             maxWidth: 74,
-            visible: contest.listType !== 'upcoming'
+            visible: contest.listType !== 'upcoming' && contest.challengeCommunity !== 'data'
+          },
+          {
+            field: 'numRegistrants',
+            fieldName: 'Registrants',
+            width: 74,
+            minWidth: 74,
+            maxWidth: 74,
+            tplName: 'dataNumRegistrants',
+            visible: contest.listType !== 'upcoming' && contest.challengeCommunity === 'data'
           },
           {
             field: 'numSubmissions',
