@@ -2,8 +2,8 @@
 (function (angular) {
   'use strict';
   var challengesModule = angular.module('tc.challenges');
-  challengesModule.controller('ChallengeListingCtrl', ['$scope', 'ChallengesService', 'DataService', '$http', '$window', 'TemplateService', 'GridService', '$routeParams',
-    function ($scope, ChallengesService, DataService, $http, $window, TemplateService, GridService, $routeParam) {
+  challengesModule.controller('ChallengeListingCtrl', ['$scope', 'ChallengesService', 'DataService', '$window', 'TemplateService', 'GridService', ,
+    function ($scope, ChallengesService, DataService, $window, TemplateService, GridService) {
       //console.log('routes', $routeParam);
       $scope.allChallenges = [];
       $scope.challenges = [];
