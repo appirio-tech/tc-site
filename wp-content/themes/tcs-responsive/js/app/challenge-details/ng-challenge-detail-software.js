@@ -358,7 +358,9 @@ $(function () {
     $(".challengeRegisterBtn").click();
   }
 
-  $("#registerSuccess .closeModal").click(function () {
+  console.log('hey');
+  console.log($("#registerSuccess .closeModalReg"));
+  $("#registerSuccess .closeModalReg").click(function () {
     closeModal();
     window.location.href = siteURL + "/challenge-details/" + challengeId + "?type=" + challengeType + "&nocache=true";
   });
