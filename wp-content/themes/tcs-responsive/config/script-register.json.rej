@@ -1,9 +1,0 @@
-diff a/wp-content/themes/tcs-responsive/config/script-register.json b/wp-content/themes/tcs-responsive/config/script-register.json	(rejected hunks)
-@@ -316,6 +375,7 @@
-     "page-challenge-submit.php": "challengesubmit",
-     "page-angular-example.php": "angular",
-     "ng-page-challenge-details.php": "ng-details",
-+    "ng-page-challenges.php": "ngChallenges",
-     "default": "default"
-   }
- }

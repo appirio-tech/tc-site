@@ -2,8 +2,11 @@
 (function (angular) {
   'use strict';
   var challengesModule = angular.module('tc.challenges');
-  challengesModule.controller('ChallengeListingCtrl', ['$scope', 'ChallengesService', 'DataService', '$window', 'TemplateService', 'GridService', ,
-    function ($scope, ChallengesService, DataService, $window, TemplateService, GridService) {
+  challengesModule.controller('ChallengeListingCtrl', ['$scope', 'ChallengesService', 'DataService', '$window', 'TemplateService', 'GridService', 'cfpLoadingBar',
+    function ($scope, ChallengesService, DataService, $window, TemplateService, GridService, cfpLoadingBar) {
+
+      cfpLoadingBar.start();
+
       //console.log('routes', $routeParam);
       $scope.allChallenges = [];
       $scope.challenges = [];
@@ -19,7 +22,6 @@
         data: 'Data Science Challenges'
       };
       $scope.view = 'table';
-      //$scope.wordpressConfig = $window.wordpressConfig;
       $scope.getTrackSymbol = TemplateService.getTrackSymbol;
       $scope.formatTimeLeft = TemplateService.formatTimeLeft;
       $scope.getContestDuration = TemplateService.getContestDuration;
@@ -43,6 +45,9 @@
         if (!$scope.$$phase) {
           $scope.$apply();
         }
+
+        cfpLoadingBar.complete();
+
         return pagedData;
       };
 
@@ -60,10 +65,12 @@
           },
           function () {
             $scope.challenges = [];
+            cfpLoadingBar.start();
           });
       }
 
       $scope.submit = function () {
+        cfpLoadingBar.start();
         $scope.filteredChallenges = $scope.allChallenges.filter(function (contest) {
           if ($scope.search.radioFilterChallenge !== 'all' && $scope.search.radioFilterChallenge !== contest.challengeType) {
             return false;
@@ -100,6 +107,7 @@
       });
 
       $scope.$watch('page', function () {
+        cfpLoadingBar.start();
         if($scope.page < 0) {
           $scope.page = 0;
         }
@@ -113,6 +121,7 @@
         }
         getChallenges(contest);
       });
+
       getChallenges($scope.contest);
 
     }]);
