@@ -82,7 +82,7 @@
   </td>
 </tr>
 <tr>
-    <td ng-if="!isDesign" colspan="{{challenge.challengeType == 'Code' ? '2' : ''">
+    <td ng-if="!isDesign" colspan="{{challenge.challengeType == 'Code' ? '2' : ''}}">
       <p class="realibilityPara">
         Reliability Bonus
         <span ng-if="reliabilityBonus" ng-bind-template="${{challenge.reliabilityBonus}}">
@@ -92,7 +92,7 @@
         </span>
       </p>
     </td>
-    <td ng-if="!isDesign" colspan="challenge.challengeType = 'Code' ? '3' : ''">
+    <td ng-if="!isDesign" colspan="{{challenge.challengeType = 'Code' ? '3' : ''}}">
       <p class="drPointsPara">DR Points <span ng-bind="challenge.digitalRunPoints ? challenge.digitalRunPoints : 'N/A'"></span></p>
     </td>
     </td>
@@ -201,7 +201,7 @@
   </td>
 </tr>
 <tr>
-    <td ng-if="!isDesign" colspan="{{challenge.challengeType == 'Code' ? '2' : ''">
+    <td ng-if="!isDesign" colspan="{{challenge.challengeType == 'Code' ? '2' : ''}}">
       <p class="realibilityPara">
         Reliability Bonus
         <span ng-if="reliabilityBonus && reliabilityBonus.length > 0">
@@ -212,7 +212,7 @@
         </span>
       </p>
     </td>
-    <td ng-if="!isDesign" colspan="challenge.challengeType = 'Code' ? '3' : ''">
+    <td ng-if="!isDesign" colspan="{{challenge.challengeType == 'Code' ? '3' : ''}}">
       <p class="drPointsPara">DR Points <span ng-bind="challenge.digitalRunPoints ? challenge.digitalRunPoints : 'N/A'"></span></p>
     </td>
     </td>
