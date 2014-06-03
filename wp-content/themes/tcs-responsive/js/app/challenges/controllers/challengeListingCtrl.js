@@ -5,7 +5,17 @@
   challengesModule.controller('ChallengeListingCtrl', ['$scope', 'ChallengesService', 'DataService', '$window', 'TemplateService', 'GridService', 'cfpLoadingBar',
     function ($scope, ChallengesService, DataService, $window, TemplateService, GridService, cfpLoadingBar) {
 
-      cfpLoadingBar.start();
+      function startLoading() {
+        cfpLoadingBar.start();
+        $scope.loading = true;
+      }
+
+      function stopLoading() {
+        cfpLoadingBar.complete();
+        $scope.loading = false;
+      }
+
+      startLoading();
 
       //console.log('routes', $routeParam);
       $scope.allChallenges = [];
@@ -46,7 +56,7 @@
           $scope.$apply();
         }
 
-        cfpLoadingBar.complete();
+        stopLoading();
 
         return pagedData;
       };
@@ -65,7 +75,7 @@
           },
           function () {
             $scope.challenges = [];
-            cfpLoadingBar.start();
+            stopLoading();
           });
       }
 
@@ -107,7 +117,9 @@
       });
 
       $scope.$watch('page', function () {
-        cfpLoadingBar.start();
+        $scope.challenges = [];
+        startLoading();
+
         if($scope.page < 0) {
           $scope.page = 0;
         }
@@ -115,6 +127,9 @@
       });
 
       $scope.$watchCollection('contest', function (contest) {
+        $scope.challenges = [];
+        startLoading();
+
         $scope.definitions = GridService.definitions(contest);
         if (contest.listType === 'past') {
           $scope.view = 'table';

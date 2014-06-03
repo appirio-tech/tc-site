@@ -72,7 +72,7 @@ get_header(); ?>
             </a>
           </div>
         </div>
-        <div style="font-size:20px;" ng-show="challenges.length === 0">There are no active challenges under this category. Please check back later</div>
+        <div style="font-size:20px;" ng-show="!challenges.length && !loading">There are no active challenges under this category. Please check back later</div>
       </div>
     </article>
   </div>
