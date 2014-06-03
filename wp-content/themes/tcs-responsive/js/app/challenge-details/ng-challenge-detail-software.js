@@ -517,14 +517,10 @@ app.tabNavinit = function() {
 //      var x = old[i];
 //      var hideme = $(x).attr('href');
 //      $(hideme).css({'display':'none'});
-//      console.log(hideme);
 //    }
 //    old.map(function(x) {
-//      console.log('yo');
-//      console.log(x);
 //      var href = $(x).attr('href');
 //      $(href).hide();
-//      console.log('hiding ' + href);
 //    });
     $(old).hide();
     $(id).fadeIn();

@@ -139,13 +139,12 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
         $scope.initialScoreSum = 0;
         $scope.finalScoreSum = 0;
         $scope.submissions.map(function(x) {
-          console.log(x);
           $scope.initialScoreSum += x.initialScore;
           $scope.finalScoreSum += x.finalScore;
         });
-        console.log('init and fina');
-        console.log($scope.initialScoreSum);
-        console.log($scope.finalScoreSum);
+        //console.log('init and fina');
+        //console.log($scope.initialScoreSum);
+        //console.log($scope.finalScoreSum);
         $scope.winningSubmissions = [];
         for (var i = 0; i < $scope.submissions.length; i++) {
           if (challenge.prize[i]) $scope.winningSubmissions.push($scope.submissions[i]);
