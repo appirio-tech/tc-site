@@ -146,12 +146,13 @@ include locate_template('header-challenge-landing.php');
     <li>
       <a href="#viewRegistrant" class="link">Registrants</a>
     </li>
+    <li ng-show="challenge.checkpoints && challenge.checkpoints.length > 0"><a href="#checkpoints" class="link">Checkpoints</a></li>
     <!-- FIXME: took out checkpoint stuff here
     < ?php if (( !empty( $checkpointData ) && $checkpointData != "Error in processing request" ) || ( $tab === "checkpoints" )): ?>
       <li><a href="#checkpoints" class="link {{activeTab == 'checkpoints' ? 'active' : ''}}">Checkpoints</a></li>
     < ?php endif; ?>
     -->
-    <li ng-if="!isDesign"><a href="#winner" class="link">Results</a></li>
+    <li ng-show="!isDesign"><a href="#winner" class="link">Results</a></li>
 
     <!-- FIXME: more checkpoint stuff commented out
     < ?php if (( !empty( $checkpointData ) && $checkpointData != "Error in processing request" ) || ( $tab === "checkpoints" )): ?>
@@ -160,8 +161,8 @@ include locate_template('header-challenge-landing.php');
     -->
     <!--<li ng-if="isDesign && inSubmission"><span class="inactive">Submissions</span></li>-->
     <li ng-show="isDesign && !inSubmission"><a href="#submissions" class="link">Submissions</a></li>
-    <li ng-if="isDesign && (inSubmission || inScreening || inReview)"><span class="inactive">Results</span></li>
-    <li ng-if="isDesign && !(inSubmission || inScreening || inReview)"><a href="#winner" class="link">Results</a></li>
+    <li ng-show="isDesign && (inSubmission || inScreening || inReview)"><span class="inactive">Results</span></li>
+    <li ng-show="isDesign && !(inSubmission || inScreening || inReview)"><a href="#winner" class="link">Results</a></li>
   </ul>
 </nav>
 <nav class="tabNav firstTabNav designFirstTabNav mobile hide">
@@ -176,17 +177,17 @@ include locate_template('header-challenge-landing.php');
     <!-- FIXME: took out checkpoint data stuff here. It didn't seem like it was being used.
       <li ng-if="!inSubmission"><a href="<?php echo CURRENT_FULL_URL; ?>&tab=checkpoints" class="link">Checkpoints</a></li>
     -->
-    <li ng-if="inSubmission"><span class="inactive">Submissions</span></li>
-    <li ng-if="!inSubmission"><a href="#submissions" class="link">Submissions</a></li>
+    <li ng-show="inSubmission"><span class="inactive">Submissions</span></li>
+    <li ng-show="!inSubmission"><a href="#submissions" class="link">Submissions</a></li>
     </li>
     <li>
-      <li ng-if="inSubmission || inScreening || inReview"><span class="inactive">Results</span></li>
-      <li ng-if="!(inSubmission || inScreening || inReview)"><a href="#winner" class="link">Results</a></li>
+      <li ng-show="inSubmission || inScreening || inReview"><span class="inactive">Results</span></li>
+      <li ng-show="!(inSubmission || inScreening || inReview)"><a href="#winner" class="link">Results</a></li>
     </li>
   </ul>
 </nav>
 
-<div ng-if="!isDesign" id="contest-overview" class="tableWrap {{activeTab == 'checkpoints' ? 'hide' : ''}} tab">
+<div ng-if="!isDesign" id="contest-overview" class="tableWrap {{activeTab != 'details' ? 'hide' : ''}} tab">
   <article ng-if="!isDesign" id="contestOverview">
     <h1>Challenge Overview</h1>
 
@@ -273,7 +274,7 @@ include locate_template('header-challenge-landing.php');
   </article>
 
 </div>
-<div ng-if="isDesign" id="contest-overview" class="tableWrap {{activeTab == 'checkpoints' ? 'hide' : ''}} tab">
+<div ng-if="isDesign" id="contest-overview" class="tableWrap {{activeTab != 'details' ? 'hide' : ''}} tab">
 <article ng-if="isDesign" id="contestOverview">
 
   <article id="contestSummary">
@@ -468,7 +469,7 @@ include locate_template('header-challenge-landing.php');
       <tr ng-repeat="registrant in challenge.registrants">
         <td class="handleColumn">
             <span>
-                <a ng-href="{{siteURL + '/member-profile' + registrant.handle}}" ng-bind="registrant.handle"></a>
+                <a ng-href="{{siteURL + '/member-profile/' + registrant.handle}}" ng-bind="registrant.handle"></a>
             </span>
         </td>
         <td ng-if="challengeType != 'design'" class="ratingColumn">

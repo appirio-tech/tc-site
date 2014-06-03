@@ -1,4 +1,3 @@
-
 // @TODO move to it's own module do it can be included in other module ie checkpoints, results, etc
 // @TODO is the result from service.one(challengeType).one('challenges').one('result', id) cached?
 // @TODO change to new API endpoints: http://api.topcoder.com/v2/challenges/30041860.  the type is no longer needed
@@ -82,24 +81,12 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', '$cookies', f
         challenge.allowStockArt = challenge.allowStockArt == 'true';
       }
 
-      var reglist = challenge.registrants.map(function(x) { return x.handle; });
-      if ((new Date(challenge.registrationEndDate)) > new Date() && reglist.indexOf(handle) == -1) {
-        challenge.registrationDisable = false;
-      } else {
-        challenge.registrationDisable = true;
-      }
-
       challenge.submitDisabled = true;
 
-      if (challenge.submissionEndDate && challenge.currentStatus != 'Completed') {
-        if ((new Date(challenge.submissionEndDate)) > new Date() && reglist.indexOf(handle) > -1) {
-          challenge.submitDisabled = false;
-        }
-        var handleMap = {};
-        challenge.registrants.map(function(x) {
-          handleMap[x.handle] = true;
-        });
-      }
+      var handleMap = {};
+      challenge.registrants.map(function(x) {
+        handleMap[x.handle] = true;
+      });
 
       defer.resolve(challenge);
     });

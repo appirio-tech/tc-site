@@ -385,36 +385,6 @@ $(function () {
 
 /* checkpoint contest css*/
 $(function () {
-  // checkpoint box click
-  $('.winnerList .box').on('click', function () {
-    var idx = $(this).closest('li').index();
-    $('a', $('.expandCollaspeList li').eq(idx)).trigger('click');
-    var top = $('a', $('.expandCollaspeList li').eq(idx)).offset().top - 20;
-    var body = $("html, body");
-    body.animate({scrollTop: top}, '500', 'swing');
-  });
-
-  $('.expandCollaspeList li a').each(function () {
-    var _this = $(this).parents('li')
-    if (!$(this).hasClass('collapseIcon')) {
-      _this.children('.bar').css('border-bottom', '1px solid #e7e7e7');
-    } else {
-      _this.children('.bar').css('border-bottom', 'none');
-    }
-  });
-  $('.expandCollaspeList li .bar').on(ev, function () {
-    var _this = $(this).closest('li');
-    if (!$('a', _this).hasClass('collapseIcon')) {
-      $('a', _this).addClass('collapseIcon');
-      _this.children('.feedBackContent').hide();
-      _this.children('.bar').css('border-bottom', 'none');
-    } else {
-      $('a', _this).removeClass('collapseIcon')
-      _this.children('.feedBackContent').show();
-      _this.children('.bar').css('border-bottom', '1px solid #e7e7e7');
-    }
-  });
-
   $('#submissions .jsViewSubmission').on(ev, function () {
     $('.submissionAllView').hide();
     $('.submissionSingleView').show();
@@ -565,14 +535,10 @@ app.tabNavinit = function() {
 //      var x = old[i];
 //      var hideme = $(x).attr('href');
 //      $(hideme).css({'display':'none'});
-//      console.log(hideme);
 //    }
 //    old.map(function(x) {
-//      console.log('yo');
-//      console.log(x);
 //      var href = $(x).attr('href');
 //      $(href).hide();
-//      console.log('hiding ' + href);
 //    });
     $(old).hide();
     $(id).fadeIn();
