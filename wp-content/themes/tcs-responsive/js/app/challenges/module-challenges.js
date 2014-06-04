@@ -4,17 +4,27 @@
   'use strict';
   var challengesModule = angular.module('tc.challenges', ['ngRoute']);
   challengesModule.config(['$httpProvider', '$routeProvider', '$locationProvider', function ($httpProvider, $routeProvider, $locationProvider) {
-    $locationProvider.html5Mode(true);
-    $httpProvider.defaults.useXDomain = true;
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];
-    
-    $routeProvider.
-      when('/challenges/', {
 
-      }).
-      when('/challenges/:contestType/:listType', {
+    $locationProvider.html5Mode(true).hashPrefix('!');
 
+    $routeProvider
+      .when('/challenges/', {
+        controller: 'ChallengeListingCtrl',
+        templateUrl: 'challenge-list.html'
+      })
+      .when('/challenges/:challengeType/', {
+        controller: 'ChallengeListingCtrl',
+        templateUrl: 'challenge-list.html'
+      })
+      .when('/challenges/:challengeType/:challengeStatus', {
+        controller: 'ChallengeListingCtrl',
+        templateUrl: 'challenge-list.html'
+      }).otherwise({
+        controller: function(){
+          $locationProvider.html5Mode(false);
+          window.location.reload();
+        },
+        template : "<div></div>"
       });
-  }
-    ]);
+  }]);
 }(angular));

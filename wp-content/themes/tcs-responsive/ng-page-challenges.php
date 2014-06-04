@@ -1,5 +1,5 @@
 <?php
-/** 
+/**
  * Template Name: Challenges Active Contest List Page - Angular
  */
 
@@ -12,24 +12,64 @@
 tc_setup_angular(); //tcs_responsive_scripts(); 
 // Get the default header
 get_header(); ?>
-<script>
-  window.wordpressConfig = {
-    permalink: '<?php echo get_permalink();?>',
-    stylesheetDirectoryUri: '<?php echo get_stylesheet_directory_uri(); ?>'
-  }
-</script>
+  <script>
+    window.wordpressConfig = {
+      permalink: '<?php echo get_permalink();?>',
+      stylesheetDirectoryUri: '<?php echo get_stylesheet_directory_uri(); ?>'
+    }
+  </script>
 
-<div data-ng-app="tc" class="content">
-  <div id="main" data-ng-controller="ChallengeListingCtrl">
-    <div data-tc-challenges-tabs contest="contest"></div>
+  <div data-ng-app="tc" class="content">
+    <div id="main" data-ng-controller="ChallengeListingCtrl">
+      <div ng-view>
+        <div id="hero">
+          <div class="container grid grid-float">
+            <div class="grid-3-1 track trackUX" ng-class="{isActive: contest.contestType == 'design'}">
+              <a href="/challenges/design/"><i></i>Graphic Design Challenges
+              </a><span class="arrow"></span>
+            </div>
+            <div class="grid-3-1 track trackSD" ng-class="{isActive: contest.contestType == 'develop'}">
+              <a href="/challenges/develop/"><i></i>Software Development Challenges
+              </a><span class="arrow"></span>
+            </div>
+            <div class="grid-3-1 track trackAn" ng-class="{isActive: contest.contestType == 'data'}">
+              <a href="/challenges/data/">
+                <i></i>Data Science Challenges
+              </a><span class="arrow"></span>
+            </div>
+          </div>
+        </div>
+      </div>
 
+
+  <script type="text/ng-template" id="challenge-list.html">
+
+    <div id="hero">
+      <div class="container grid grid-float">
+        <div class="grid-3-1 track trackUX" ng-class="{isActive: contest.contestType == 'design'}">
+          <a href="/challenges/design/"><i></i>Graphic Design Challenges
+          </a><span class="arrow"></span>
+        </div>
+        <div class="grid-3-1 track trackSD" ng-class="{isActive: contest.contestType == 'develop'}">
+          <a href="/challenges/develop/"><i></i>Software Development Challenges
+          </a><span class="arrow"></span>
+        </div>
+        <div class="grid-3-1 track trackAn" ng-class="{isActive: contest.contestType == 'data'}">
+          <a href="/challenges/data/">
+            <i></i>Data Science Challenges
+          </a><span class="arrow"></span>
+        </div>
+      </div>
+    </div>
 
     <article id="mainContent" class="layChallenges">
       <div class="container">
         <header>
           <h1>
             {{titles[contest.contestType]}}
-            <?php get_template_part("content", "rss-icon"); ?>
+            <span class="subscribeTopWrapper">
+              <a class="feedBtn" href="/challenges/feed?list=active&contestType={{contest.contestType}}" title="Subscribe to challenges"></a>
+            </span>
           </h1>
           <aside class="rt" ng-show="contest.listType !== 'past'">
             <span class="views">
@@ -38,8 +78,11 @@ get_header(); ?>
             </span>
           </aside>
         </header>
+
         <div data-tc-challenges-actions contest="contest" search="search" ng-show="contest.contestType && contest.contestType != ''"></div>
+
         <div class="searchFilter hide" tc-challenges-search ng-show="search.show" on-submit="submit" contest="contest" search="search" style="display: block;"></div>
+
         <div class="upcomingCaption" ng-show="contest.listType === 'upcoming'">All upcoming challenges may change</div>
         <div ng-show="challenges.length > 0">
           <div id="tableView" class="viewTab" ng-show="view == 'table'">
@@ -75,7 +118,6 @@ get_header(); ?>
         <div style="font-size:20px;" ng-show="!challenges.length && !loading">There are no active challenges under this category. Please check back later</div>
       </div>
     </article>
-  </div>
-</div>
+  </script>
 
 <?php get_footer(); ?>

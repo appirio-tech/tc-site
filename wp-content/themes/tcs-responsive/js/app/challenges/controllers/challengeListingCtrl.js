@@ -2,8 +2,8 @@
 (function (angular) {
   'use strict';
   var challengesModule = angular.module('tc.challenges');
-  challengesModule.controller('ChallengeListingCtrl', ['$scope', 'ChallengesService', 'ChallengeDataService', 'DataService', '$window', 'TemplateService', 'GridService', 'cfpLoadingBar',
-    function ($scope, ChallengesService, ChallengeDataService, DataService, $window, TemplateService, GridService, cfpLoadingBar) {
+  challengesModule.controller('ChallengeListingCtrl', ['$scope', '$routeParams', 'ChallengesService', 'ChallengeDataService', 'DataService', '$window', 'TemplateService', 'GridService', 'cfpLoadingBar',
+    function ($scope, $routeParams, ChallengesService, ChallengeDataService, DataService, $window, TemplateService, GridService, cfpLoadingBar) {
 
       function startLoading() {
         cfpLoadingBar.start();
@@ -22,9 +22,10 @@
       $scope.challenges = [];
       $scope.filteredChallenges = [];
       $scope.contest = {
-        contestType: '',
-        listType: 'active'
+        contestType: $routeParams.challengeType || '',
+        listType: $routeParams.challengeStatus || 'active'
       };
+
       $scope.titles = {
         '': 'All Open Challenges',
         design: 'Graphic Design Challenges',
