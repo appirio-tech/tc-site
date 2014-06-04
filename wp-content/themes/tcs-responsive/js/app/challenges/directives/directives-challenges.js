@@ -1,7 +1,7 @@
 /*global angular: true*/
 (function () {
   'use strict';
-  var directivesModule = angular.module('tc.challenges.directives', []);
+  var directivesModule = angular.module('tc.challenges.directives', ['ui.bootstrap']);
   directivesModule.directive('tcChallengesActions', ['$location', 'TemplateService',
       function ($location, TemplateService) {
       return {
@@ -25,7 +25,7 @@
       };
     }]);
   directivesModule.directive('tcContestGrid', ['TemplateService',
-                                               function (TemplateService) {
+    function (TemplateService) {
       return {
         restrict: 'A',
         replace: true,
@@ -111,5 +111,20 @@
           }
         }*/
       };
+    }]);
+
+  directivesModule.directive( 'challengePopoverPopup', ['TemplateService', '$compile',
+    function (TemplateService, $compile) {
+
+      return {
+        restrict: 'EA',
+        replace: true,
+        scope: { title: '@', content: '@', placement: '@', animation: '&', isOpen: '&' },
+        templateUrl: TemplateService.challengesBase + '/partials/tooltip-tpl.html'
+      };
+  }]);
+
+  directivesModule.directive( 'challengePopover', [ '$tooltip', function ( $tooltip ) {
+      return $tooltip( 'challengePopover', 'challengePopover', 'mouseenter' );
     }]);
 }(angular));
