@@ -23,12 +23,6 @@ window.tc = angular.module('tc', [
     // Base API url
     RestangularProvider.setBaseUrl(API_URL);
 
-    RestangularProvider.addRequestInterceptor(function(element, operation, what, url) {
-      //loadingBar.start();
-    });
-
-    // Format restangular response
-
     // add a response intereceptor
     RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
       var extractedData;

@@ -69,11 +69,9 @@
           // Data is currently going to a different endpoint
           if (contest.contestType == 'data') {
             params.listType = contest.listType
+          } else {
+            params.type = contest.contestType;
           }
-
-          params = {
-            type: contest.contestType
-          };
         }
 
         if (contest.contestType == 'data') {
