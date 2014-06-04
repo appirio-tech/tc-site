@@ -25,15 +25,15 @@ get_header(); ?>
         <div id="hero">
           <div class="container grid grid-float">
             <div class="grid-3-1 track trackUX" ng-class="{isActive: contest.contestType == 'design'}">
-              <a href="/challenges/design/"><i></i>Graphic Design Challenges
+              <a href="/challenges/design/{{contest.listType}}/"><i></i>Graphic Design Challenges
               </a><span class="arrow"></span>
             </div>
             <div class="grid-3-1 track trackSD" ng-class="{isActive: contest.contestType == 'develop'}">
-              <a href="/challenges/develop/"><i></i>Software Development Challenges
+              <a href="/challenges/develop/{{contest.listType}}/"><i></i>Software Development Challenges
               </a><span class="arrow"></span>
             </div>
             <div class="grid-3-1 track trackAn" ng-class="{isActive: contest.contestType == 'data'}">
-              <a href="/challenges/data/">
+              <a href="/challenges/data/{{contest.listType}}/">
                 <i></i>Data Science Challenges
               </a><span class="arrow"></span>
             </div>
@@ -47,15 +47,15 @@ get_header(); ?>
     <div id="hero">
       <div class="container grid grid-float">
         <div class="grid-3-1 track trackUX" ng-class="{isActive: contest.contestType == 'design'}">
-          <a href="/challenges/design/"><i></i>Graphic Design Challenges
+          <a href="/challenges/design/{{contest.listType}}/"><i></i>Graphic Design Challenges
           </a><span class="arrow"></span>
         </div>
         <div class="grid-3-1 track trackSD" ng-class="{isActive: contest.contestType == 'develop'}">
-          <a href="/challenges/develop/"><i></i>Software Development Challenges
+          <a href="/challenges/develop/{{contest.listType}}/"><i></i>Software Development Challenges
           </a><span class="arrow"></span>
         </div>
         <div class="grid-3-1 track trackAn" ng-class="{isActive: contest.contestType == 'data'}">
-          <a href="/challenges/data/">
+          <a href="/challenges/data/{{contest.listType}}/">
             <i></i>Data Science Challenges
           </a><span class="arrow"></span>
         </div>
@@ -74,7 +74,7 @@ get_header(); ?>
           <aside class="rt" ng-show="contest.listType !== 'past'">
             <span class="views">
               <a href="" ng-click="view = 'grid'" class="gridView" ng-class="{isActive: view == 'grid'}"></a>
-              <a href=""  ng-click="view = 'table'" class="listView" ng-class="{isActive: view == 'table'}"></a>
+              <a href="" ng-click="view = 'table'" class="listView" ng-class="{isActive: view == 'table'}"></a>
             </span>
           </aside>
         </header>

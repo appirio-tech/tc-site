@@ -2,27 +2,6 @@
 (function () {
   'use strict';
   var directivesModule = angular.module('tc.challenges.directives', []);
-  directivesModule.directive('tcChallengesTabs', ['$location', 'TemplateService',
-      function ($location, TemplateService) {
-      return {
-        restrict: 'A',
-        scope: {
-          contest: '='
-        },
-        templateUrl: TemplateService.challengesBase + '/partials/ng-nav-challenges-list-tabs.html',
-        controller: function ($scope) {
-          var ctrl = this;
-          $scope.setContestType = function (type) {
-            $scope.contest.contestType = type;
-          };
-
-          $scope.isActive = function (type) {
-            return $scope.contest.contestType === type;
-          };
-
-        }
-      };
-    }]);
   directivesModule.directive('tcChallengesActions', ['$location', 'TemplateService',
       function ($location, TemplateService) {
       return {
