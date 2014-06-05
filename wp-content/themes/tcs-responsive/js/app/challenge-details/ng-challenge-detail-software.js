@@ -358,8 +358,10 @@ $(function () {
     $(".challengeRegisterBtn").click();
   }
 
-  console.log('hey');
-  console.log($("#registerSuccess .closeModalReg"));
+  $("#registerFailed .closeModalReg").click(function () {
+    closeModal();
+  });
+
   $("#registerSuccess .closeModalReg").click(function () {
     closeModal();
     window.location.href = siteURL + "/challenge-details/" + challengeId + "?type=" + challengeType + "&nocache=true";
