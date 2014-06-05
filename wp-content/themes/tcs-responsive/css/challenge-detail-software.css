@@ -2384,5 +2384,7 @@
   padding-left: 30px;
 }
 
-
-
+/* @TODO: figure out whether we want this */
+#wrapper .logo {
+  margin-left: 20px;
+}
