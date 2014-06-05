@@ -63,8 +63,8 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', '$cookies', f
       var submissionMap = {};
       challenge.submissions.map(function(submission) {
         if (submissions[submission.handle]) {
-          var neu = new Date(submission.submissionDate);
-          var alt = new Date(submissionMap[submission.handle]);
+          var neu = moment(submission.submissionDate);
+          var alt = moment(submissionMap[submission.handle]);
           if (neu > alt) {
             submissionMap[submission.handle] = submission.submissionDate;
           }

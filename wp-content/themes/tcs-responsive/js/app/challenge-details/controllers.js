@@ -35,7 +35,7 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
       return (x+'').length == 1 ? '0' + x : x;
     }
     if (!date) return '--';
-    if (typeof date == 'string') date = new Date(date);
+    if (typeof date == 'string') date = moment(date).toDate();
     var month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][date.getMonth()];
     if (opt == 2) month = month.substring(0, 3);
     var day = date.getDate();
@@ -49,6 +49,7 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
   $scope.activeTab = 'details';
   if (window.location.hash == '#viewRegistrant') $scope.activeTab = 'registrants';
   else if (window.location.hash == '#winner') $scope.activeTab = 'winners';
+  else if (window.location.hash == '#submissions') $scope.activeTab = 'submissions';
 
   ChallengeService.getChallenge(challengeId).then(function(challenge) {
     $('#cdNgMain').removeClass('hide');
@@ -106,12 +107,12 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
     // @TODO: put this in a service
     var reglist = challenge.registrants.map(function(x) { return x.handle; });
     app.getHandle(function(handle) {
-      if (((new Date(challenge.registrationEndDate)) > new Date()) && reglist.indexOf(handle) == -1) {
+      if (((moment(challenge.registrationEndDate)) >moment()) && reglist.indexOf(handle) == -1) {
         challenge.registrationDisabled = false;
       } else {
         challenge.registrationDisabled = true;
       }
-      if (((new Date(challenge.submissionEndDate)) > new Date()) && reglist.indexOf(handle) > -1) {
+      if (((moment(challenge.submissionEndDate)) > moment()) && reglist.indexOf(handle) > -1) {
         challenge.submissionDisabled = false;
       } else {
         challenge.submissionDisabled = true;
