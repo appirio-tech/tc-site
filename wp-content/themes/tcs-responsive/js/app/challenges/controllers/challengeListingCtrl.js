@@ -2,8 +2,8 @@
 (function (angular) {
   'use strict';
   var challengesModule = angular.module('tc.challenges');
-  challengesModule.controller('ChallengeListingCtrl', ['$scope', '$routeParams', 'ChallengesService', 'ChallengeDataService', 'DataService', '$window', 'TemplateService', 'GridService', 'cfpLoadingBar',
-    function ($scope, $routeParams, ChallengesService, ChallengeDataService, DataService, $window, TemplateService, GridService, cfpLoadingBar) {
+  challengesModule.controller('ChallengeListingCtrl', ['$scope', '$routeParams', '$location', 'ChallengesService', 'ChallengeDataService', 'DataService', '$window', 'TemplateService', 'GridService', 'cfpLoadingBar',
+    function ($scope, $routeParams, $location, ChallengesService, ChallengeDataService, DataService, $window, TemplateService, GridService, cfpLoadingBar) {
 
       function startLoading() {
         cfpLoadingBar.start();
@@ -45,10 +45,20 @@
         radioFilterChallenge: 'all',
         show: false,
         allPlatforms: [],
-        allTechnologies: []
+        allTechnologies: [],
       };
       $scope.pageSize = 10;
       $scope.page = 1;
+
+      // Set filters from url
+      $scope.search.fSDate = $routeParams.fSDate;
+      $scope.search.fEDate = $routeParams.fEDate;
+
+      if (Array.isArray($routeParams.technologies)) {
+        $scope.search.technologies = $routeParams.technologies;
+      } else if (typeof $routeParams.technologies == 'string') {
+        $scope.search.technologies = $routeParams.technologies.split(',');
+      }
 
       $scope.setPagingData = function (data, page, pageSize) {
         var pagedData = data.slice((page - 1) * pageSize, page * pageSize);
@@ -100,7 +110,7 @@
         } else {
           ChallengesService.all(contest.listType).getList(params).then(function (challenges) {
               $scope.allChallenges = challenges;
-              $scope.challenges = $scope.setPagingData($scope.allChallenges, $scope.page, $scope.pageSize);
+              filterChallenges();
             },
             function () {
               $scope.challenges = [];
@@ -110,8 +120,7 @@
 
       }
 
-      $scope.submit = function () {
-        cfpLoadingBar.start();
+      function filterChallenges() {
         $scope.filteredChallenges = $scope.allChallenges.filter(function (contest) {
           if ($scope.search.radioFilterChallenge !== 'all' && $scope.search.radioFilterChallenge !== contest.challengeType) {
             return false;
@@ -122,17 +131,25 @@
           if ($scope.search.fEDate && contest.submissionEndDate > $scope.search.fEDate) {
             return false;
           }
-          if($scope.search.technologies && $scope.search.technologies.length > 0) {
-            for(var tech in $scope.search.technologies) {
-              if(contest.technologies && contest.technologies.length > 0 && contest.technologies[0] != '' && contest.technologies.indexOf(tech) == -1) {
-                return false;
-              }
-            }
-          } 
+          if ($scope.search.technologies && $scope.search.technologies.length > 0) {
+            var alltags = _.union(contest.technologies, contest.platforms);
+            alltags = _.compact(alltags);
+            return _.intersection(alltags, $scope.search.technologies).length > 0;
+          }
           return true;
         });
 
         $scope.challenges = $scope.setPagingData($scope.filteredChallenges, $scope.page, $scope.pageSize);
+        $scope.search.show = false;
+      }
+
+      $scope.submit = function () {
+        cfpLoadingBar.start();
+
+        $location.search('fSDate', $scope.search.fSDate);
+        $location.search('fEDate', $scope.search.fEDate);
+        $location.search('technologies', $scope.search.technologies);
+        filterChallenges();
       };
 
       DataService.one('technologies').get().then(function(data) {
