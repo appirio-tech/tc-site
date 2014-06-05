@@ -271,12 +271,12 @@
         <div class="average">
             <h2>AVERAGE SCORE</h2>
             <div class="values">
-                <span class="count">{{round(initialScoreSum * 1.0 / submissions.length)}}<span class="sup">&nbsp;</span></span>
+                <span class="count">{{round(initialScoreSum * 100.0 / submissions.length) / 100}}<span class="sup">&nbsp;</span></span>
                 <span class="type">Average</span>
                 <span class="type">Initial Score</span>
             </div>
             <div class="values">
-                <span class="count">{{round(finalScoreSum * 1.0 / submissions.length)}}<span class="sup">&nbsp;</span></span>
+                <span class="count">{{round(finalScoreSum * 100.0 / submissions.length) / 100}}<span class="sup">&nbsp;</span></span>
                 <span class="type">Average</span>
                 <span class="type">Final Score</span>
             </div>
