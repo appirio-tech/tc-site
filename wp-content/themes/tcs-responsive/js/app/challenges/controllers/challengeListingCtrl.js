@@ -2,8 +2,8 @@
 (function (angular) {
   'use strict';
   var challengesModule = angular.module('tc.challenges');
-  challengesModule.controller('ChallengeListingCtrl', ['$scope', '$routeParams', '$location', 'ChallengesService', 'ChallengeDataService', 'DataService', '$window', 'TemplateService', 'GridService', 'cfpLoadingBar',
-    function ($scope, $routeParams, $location, ChallengesService, ChallengeDataService, DataService, $window, TemplateService, GridService, cfpLoadingBar) {
+  challengesModule.controller('ChallengeListingCtrl', ['$scope', '$routeParams', '$location', '$cookies', 'ChallengesService', 'ChallengeDataService', 'DataService', '$window', 'TemplateService', 'GridService', 'cfpLoadingBar',
+    function ($scope, $routeParams, $location, $cookies, ChallengesService, ChallengeDataService, DataService, $window, TemplateService, GridService, cfpLoadingBar) {
 
       function startLoading() {
         cfpLoadingBar.start();
@@ -32,7 +32,7 @@
         develop: 'Software Development Challenges',
         data: 'Data Science Challenges'
       };
-      $scope.view = 'table';
+      $scope.view = $routeParams.view || $cookies.tcChallengesView || 'table';
       $scope.getTrackSymbol = TemplateService.getTrackSymbol;
       $scope.formatTimeLeft = TemplateService.formatTimeLeft;
       $scope.getContestDuration = TemplateService.getContestDuration;
@@ -45,7 +45,7 @@
         radioFilterChallenge: 'all',
         show: false,
         allPlatforms: [],
-        allTechnologies: [],
+        allTechnologies: []
       };
       $scope.pageSize = 10;
       $scope.page = 1;
@@ -183,6 +183,11 @@
           $scope.view = 'table';
         }
         getChallenges(contest);
+      });
+
+      $scope.$watch('view', function(view) {
+        $location.search('view', view);
+        $cookies.tcChallengesView = view;
       });
 
       getChallenges($scope.contest);

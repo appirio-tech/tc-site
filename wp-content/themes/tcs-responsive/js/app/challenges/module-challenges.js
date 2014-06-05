@@ -2,7 +2,7 @@
 (function (angular) {
     
   'use strict';
-  var challengesModule = angular.module('tc.challenges', ['ngRoute']);
+  var challengesModule = angular.module('tc.challenges', ['ngRoute', 'ngCookies']);
   challengesModule.config(['$httpProvider', '$routeProvider', '$locationProvider', function ($httpProvider, $routeProvider, $locationProvider) {
 
     $locationProvider.html5Mode(true).hashPrefix('!');
