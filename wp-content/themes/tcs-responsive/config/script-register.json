@@ -315,6 +315,7 @@
         "challenge-submit.css",
         "password-recovery.css",
         "challenge-tags.css",
+        "style-404page.css",
         "../js/app/challenge-details/lib/loading-bar.css"
       ]
     }

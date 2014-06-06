@@ -51,15 +51,14 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
   else if (window.location.hash == '#winner') $scope.activeTab = 'winners';
   else if (window.location.hash == '#submissions') $scope.activeTab = 'submissions';
 
+  $scope.numCheckpointSubmissions = -1;
+  $scope.checkpointData = false;
+  $scope.checkpointResults = false;
   ChallengeService.getChallenge(challengeId).then(function(challenge) {
     $('#cdNgMain').removeClass('hide');
     if (challenge.checkpointSubmissionEndDate && challenge.checkpointSubmissionEndDate != '') {
       ChallengeService.getCheckpointData(challengeId).then(function(data) {
-          if (!data || data.error) {
-            $scope.checkpointData = false;
-            $scope.checkpointResults = false;
-            $scope.numCheckpointSubmissions = -1;
-          } else {
+          if (data && !data.error) {
             $scope.checkpointData = data;
             $scope.checkpointResults = data.checkpointResults;
             $scope.numCheckpointSubmissions = data.numberOfSubmissions;
