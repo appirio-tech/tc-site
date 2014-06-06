@@ -80,20 +80,36 @@ var coder = {
 
             var currentTrack = $.trim($(this).text());
             var currentInfo = coderData.Tracks[currentTrack];
+            var ratingTableInfo = coderData.CompetitionHistory[currentTrack];
             var subtab = $(this).closest('.subTrackTabs');
             if ($('.detailedRating .row').length > 0) {
                 $('.detailedRating .row').each(function() {
                     var fieldId = $('.fieldId', $(this)).val();
                     if (typeof(currentInfo[fieldId]) == 'undefined') {
                         if ($('.val a', $(this)).length > 0) {
-                            $('.val a', $(this)).text("N/A");
+                            $('.val a', $(this)).text("");
+                        }
+                        if (fieldId == "reviewerRating") {
+                            $('.val a', $(this)).text("Not rated");
                         } else {
-                            $('.val', $(this)).text("N/A");
+                            $('.val', $(this)).text("");
                         }
                     } else {
                         var cval = currentInfo[fieldId];
                         if (fieldId == "reviewerRating" && parseFloat(currentInfo[fieldId]) >= 0) {
                             cval = parseFloat(currentInfo[fieldId]).toFixed(2);
+                        }
+                        if (fieldId == "reliability" && parseFloat(currentInfo[fieldId]) >= 0) {
+                            cval = parseFloat(currentInfo[fieldId]).toFixed(2) * 100 + '%';
+                        }
+                        if (fieldId == "activeRank" && parseInt(currentInfo[fieldId]) == 0) {
+                            cval = 'Not ranked';
+                        }
+                        if (fieldId == "overallCountryRank" && parseInt(currentInfo[fieldId]) == 0) {
+                            cval = 'Not ranked';
+                        }
+                        if (fieldId == "activeSchoolRank" && parseInt(currentInfo[fieldId]) == 0) {
+                            cval = 'Not ranked';
                         }
                         if ($('.val a', $(this)).length > 0) {
                             $('.val a', $(this)).text(cval);
@@ -117,7 +133,7 @@ var coder = {
             if ($('.ratingTable', subtab).length > 0) {
                 $('.ratingTable .valId', subtab).each(function() {
                     var valId = $(this).val();
-                    $('span', $(this).closest('td')).text(currentInfo[valId]);
+                    $('span', $(this).closest('td')).text(ratingTableInfo[valId]);
                 })
             }
 

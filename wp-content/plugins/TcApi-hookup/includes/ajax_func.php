@@ -477,8 +477,8 @@ function get_challenges_ajax_controller() {
   $challengeType = urlencode($_GET ['challengeType']);
   $startDate = $_GET ['submissionEndFrom'];
   $endDate = $_GET ['submissionEndTo'];
-  $platforms = $_GET['platforms'];
-  $technologies = $_GET['technologies'];
+  $platforms = urlencode($_GET['platforms']);
+  $technologies = urlencode($_GET['technologies']);
 
     $contest_list = get_challenges_ajax(
         $listType,
