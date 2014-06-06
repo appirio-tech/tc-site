@@ -1,4 +1,4 @@
-<?php get_template_part('header-main'); ?>
+<?php get_template_part('header-main-referral'); ?>
 
 </head>
 
@@ -89,8 +89,6 @@ $nav = array(
             </div>
             <div class="userDetails">
               <p class="country"></p>
-              <!-- Bugfix I-109397: add Member Since title -->
-              <p class="lbl">Member Since :</p>
 
               <p class="val memberSince"></p>
 
@@ -114,6 +112,4 @@ $nav = array(
       <!-- /.userWidget -->
     </div>
   </header>
-<!-- Bugfix: I-108496 hidden element needed for non-firefox browsers to detect cache-persist status of page, used for above code to display member details -->
-<input type='hidden' id='cache-persist'>
   <!-- /#header -->

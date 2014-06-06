@@ -477,8 +477,8 @@ function get_challenges_ajax_controller() {
   $challengeType = urlencode($_GET ['challengeType']);
   $startDate = $_GET ['submissionEndFrom'];
   $endDate = $_GET ['submissionEndTo'];
-  $platforms = $_GET['platforms'];
-  $technologies = $_GET['technologies'];
+  $platforms = urlencode($_GET['platforms']);
+  $technologies = urlencode($_GET['technologies']);
 
     $contest_list = get_challenges_ajax(
         $listType,
@@ -555,6 +555,7 @@ function get_challenges_ajax(
     $response = wp_remote_get( $url, $args );
 
     if (is_wp_error( $response ) || ! isset ( $response ['body'] )) {
+        error_log(print_r($response, TRUE));
         return "Error in processing request";
     }
     if ($response ['response'] ['code'] == 200) {
@@ -563,6 +564,7 @@ function get_challenges_ajax(
         return $active_contest_list;
     }
 
+    error_log(print_r($response, TRUE));
     return "Error in processing request";
 }
 
@@ -949,7 +951,7 @@ function generateResetToken($handle = '') {
 
 function changePassword($handle = '', $password = '' , $unlockCode = '') {
 
-    $url = TC_API_URL . "/v2/users/resetPassword/" . $handle;
+    $url = TC_API_URL . "/users/resetPassword/" . $handle;
 
     $arrParam = array('handle' => $handle, 'password' => $password, 'token' => $unlockCode );
     $args = array(
