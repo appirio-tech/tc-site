@@ -22,7 +22,9 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', '$cookies', f
     service.one(challengeType).one('challenges').one('result', id).getList().then(function(results) {
       results = results[0];
       var submissionMap = {};
+      var leftovers = []; // for those that got a score of 0
       results.results.map(function(x) {
+        if (x.placement == 'n/a' || !x.placement) leftovers.push(x);
         submissionMap[x.placement] = x;
       });
       results.firstPlaceSubmission = submissionMap[1];
@@ -33,6 +35,10 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', '$cookies', f
         results.submissions.push(submissionMap[i]);
         i++;
       }
+      while (leftovers.length > 0) {
+        results.submissions.push(leftovers.pop());
+      }
+      leftovers.reverse();
       results.initialScoreSum = 0;
       results.finalScoreSum = 0;
       results.submissions.map(function(x) {

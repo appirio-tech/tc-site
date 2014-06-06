@@ -83,7 +83,7 @@
                 <span class="type">&nbsp;</span>
             </div>-->
             <div class="values">
-                <span class="count"></span>
+                <span class="count">{{numCheckpointSubmissions}}</span>
                 <span class="type">Submissions</span>
             </div>
             <!--<div class="values">

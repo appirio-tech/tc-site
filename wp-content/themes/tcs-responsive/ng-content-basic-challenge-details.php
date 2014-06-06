@@ -262,9 +262,15 @@
          </span>
         </p>
 
-        <p class="last"><label>Submit By:</label>
+        <p class="{{challenge.finalFixEndDate ? '' : 'last'"><label>Submit By:</label>
           <span>
             {{formatDate(challenge.submissionEndDate, 2)}}
+          </span>
+        </p>
+
+        <p ng-if="challenge.finalFixEndDate" class="{{challenge.finalFixEndDate ? 'last' : ''"><label>Final Submission:</label>
+          <span>
+            {{formatDate(challenge.finalFixEndDate, 2)}}
           </span>
         </p>
 
