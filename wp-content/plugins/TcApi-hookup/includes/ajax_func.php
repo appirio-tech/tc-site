@@ -555,6 +555,7 @@ function get_challenges_ajax(
     $response = wp_remote_get( $url, $args );
 
     if (is_wp_error( $response ) || ! isset ( $response ['body'] )) {
+        error_log(print_r($response, TRUE));
         return "Error in processing request";
     }
     if ($response ['response'] ['code'] == 200) {
@@ -563,6 +564,7 @@ function get_challenges_ajax(
         return $active_contest_list;
     }
 
+    error_log(print_r($response, TRUE));
     return "Error in processing request";
 }
 
