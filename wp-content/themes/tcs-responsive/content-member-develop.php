@@ -112,17 +112,17 @@ array_push ( $challengetypes, 'UI Prototypes' );
 					</div>
 					<div class="row fieldRank">
 						<label>Rank:</label>
-						<div class="val"><?php echo $dev->activeRank;?></div>
+						<div class="val"><?php echo ($dev->activeRank == '0') ? "Not ranked" : $dev->activeRank;?></div>
 						<input type="hidden" class="fieldId" value="activeRank">
 					</div>
 					<div class="row fieldCtryRank">
 						<label>Country Rank:</label>
-						<div class="val"><?php echo $dev->overallCountryRank;?></div>
+						<div class="val"><?php echo ($dev->overallCountryRank == '0') ? "Not ranked" : $dev->overallCountryRank;?></div>
 						<input type="hidden" class="fieldId" value="overallCountryRank">
 					</div>
 					<div class="row fieldScRank">
 						<label>School Rank:</label>
-						<div class="val"><?php echo $dev->activeSchoolRank;?></div>
+						<div class="val"><?php echo ($dev->activeSchoolRank == '0') ? "Not ranked" : $dev->activeSchoolRank;?></div>
 						<input type="hidden" class="fieldId" value="activeSchoolRank">
 					</div>
 					<div class="row fieldCompetitions">
@@ -145,7 +145,7 @@ array_push ( $challengetypes, 'UI Prototypes' );
 					<div class="row fieldRevRating">
 						<label>Reviewer Rating: </label>
 						<div class="val">
-							<a href="#"><?php if( !empty($dev->reviewerRating)){echo number_format( $dev->reviewerRating, 2, '.', '');}else{echo "N/A";}?></a>
+							<a href="#"><?php echo ($dev->reviewerRating) ? number_format( $dev->reviewerRating, 2, '.', '') : "Not rated";?></a>
 						</div>
 						<input type="hidden" class="fieldId" value="reviewerRating">
 					</div>
