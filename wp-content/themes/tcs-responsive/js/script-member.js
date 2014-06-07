@@ -87,9 +87,12 @@ var coder = {
                     var fieldId = $('.fieldId', $(this)).val();
                     if (typeof(currentInfo[fieldId]) == 'undefined') {
                         if ($('.val a', $(this)).length > 0) {
-                            $('.val a', $(this)).text("N/A");
+                            $('.val a', $(this)).text("");
+                        }
+                        if (fieldId == "reviewerRating") {
+                            $('.val a', $(this)).text("Not rated");
                         } else {
-                            $('.val', $(this)).text("N/A");
+                            $('.val', $(this)).text("");
                         }
                     } else {
                         var cval = currentInfo[fieldId];
@@ -98,6 +101,15 @@ var coder = {
                         }
                         if (fieldId == "reliability" && parseFloat(currentInfo[fieldId]) >= 0) {
                             cval = parseFloat(currentInfo[fieldId]).toFixed(2) * 100 + '%';
+                        }
+                        if (fieldId == "activeRank" && parseInt(currentInfo[fieldId]) == 0) {
+                            cval = 'Not ranked';
+                        }
+                        if (fieldId == "overallCountryRank" && parseInt(currentInfo[fieldId]) == 0) {
+                            cval = 'Not ranked';
+                        }
+                        if (fieldId == "activeSchoolRank" && parseInt(currentInfo[fieldId]) == 0) {
+                            cval = 'Not ranked';
                         }
                         if ($('.val a', $(this)).length > 0) {
                             $('.val a', $(this)).text(cval);
