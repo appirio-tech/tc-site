@@ -415,6 +415,7 @@
     width: 100%;
     background: #f7f7f7;
     border: 1px solid #e1e1e1;
+    margin-top: 26px;
 }
 
 .challenge-detail .columnSideBar .sidebar {
@@ -2382,6 +2383,3 @@
   background-size: 40%;
   padding-left: 30px;
 }
-
-
-

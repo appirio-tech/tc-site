@@ -7,7 +7,7 @@
     <li ng-if="challenge.Documents && challenge.Documents.length === 0">
       <strong>None</strong>
     </li>
-    <li ng-if="typeof challenge.Documents === 'undefined'">
+    <li ng-if="!challenge.Documents">
       <strong>Register to Download Files (if available)</strong>
     </li>
   </ul>

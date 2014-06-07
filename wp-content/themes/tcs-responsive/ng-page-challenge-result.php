@@ -1,5 +1,5 @@
-<article ng-if="isDesign && submissions.length > 0">
-    <div ng-if="firstPlaceSubmission" ng-repeat="submission in submissions" class="winnerRow {{$index > 1 ? 'hideOnMobi' : ''}}">
+<article ng-show="isDesign && submissions.length > 0">
+    <div ng-show="firstPlaceSubmission" ng-repeat="submission in winningSubmissions" class="winnerRow {{$index > 1 ? 'hideOnMobi' : ''}}">
         <div class="place {{['first', 'second', 'third', 'other'][$index]}}">{{$index + 1}}<span>{{(placeSuffix = ['st', 'nd', 'rd'][$index]) ? placeSuffix : 'th'}}</span></div>
         <!-- #/end place-->
         <div class="image">
@@ -10,7 +10,7 @@
         <div class="details">
             <a href="<?php bloginfo('wpurl'); ?>/member-profile/{{submission.handle}}" class="coderTextOrange">{{submission.handle}}</a>
             <div class="">
-                <h3>${{challenge.prize[0]}}</h3>
+                <h3>${{challenge.prize[$index]}}</h3>
                 <span class="title">PRIZE</span>
                 <span class="date">Registration Date</span>
                 <span class="time">{{formatDate(submission.registrationDate)}}</span>
@@ -83,7 +83,7 @@
                 <span class="type">&nbsp;</span>
             </div>-->
             <div class="values">
-                <span class="count"></span>
+                <span class="count">{{numCheckpointSubmissions}}</span>
                 <span class="type">Submissions</span>
             </div>
             <!--<div class="values">
@@ -114,7 +114,7 @@
     <!--#/end competitionDetails-->
 </article>
 
-<article ng-if="!isDesign && submissions.length > 0">
+<article ng-show="!isDesign && submissions.length > 0">
     <div ng-if="firstPlaceSubmission" class="winnerRow">
         <div class="place first">1<span>st</span></div>
         <!-- #/end place-->
@@ -133,7 +133,7 @@
         </div>
         <!-- #/end price-->
         <div class="actions">
-            <a href="{{firstPlaceSubmission.submissionDownloadLink" class="download">Download</a>
+            <a href="{{firstPlaceSubmission.submissionDownloadLink}}" class="download">Download</a>
         </div>
         <!-- #/end actions-->
         <div class="clear"></div>
@@ -271,12 +271,12 @@
         <div class="average">
             <h2>AVERAGE SCORE</h2>
             <div class="values">
-                <span class="count">{{round(initialScoreSum * 1.0 / submissions.length)}}<span class="sup">&nbsp;</span></span>
+                <span class="count">{{round(initialScoreSum * 100.0 / submissions.length) / 100}}<span class="sup">&nbsp;</span></span>
                 <span class="type">Average</span>
                 <span class="type">Initial Score</span>
             </div>
             <div class="values">
-                <span class="count">{{round(finalScoreSum * 1.0 / submissions.length)}}<span class="sup">&nbsp;</span></span>
+                <span class="count">{{round(finalScoreSum * 100.0 / submissions.length) / 100}}<span class="sup">&nbsp;</span></span>
                 <span class="type">Average</span>
                 <span class="type">Final Score</span>
             </div>

@@ -1,4 +1,3 @@
-
 // @TODO move to it's own module do it can be included in other module ie checkpoints, results, etc
 // @TODO is the result from service.one(challengeType).one('challenges').one('result', id) cached?
 // @TODO change to new API endpoints: http://api.topcoder.com/v2/challenges/30041860.  the type is no longer needed
@@ -23,10 +22,10 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', '$cookies', f
     service.one(challengeType).one('challenges').one('result', id).getList().then(function(results) {
       results = results[0];
       var submissionMap = {};
+      var leftovers = []; // for those that got a score of 0
       results.results.map(function(x) {
-        if (x.submissionStatus == 'Active') {
-          submissionMap[x.placement] = x;
-        }
+        if (x.placement == 'n/a' || !x.placement) leftovers.push(x);
+        submissionMap[x.placement] = x;
       });
       results.firstPlaceSubmission = submissionMap[1];
       results.secondPlaceSubmission = submissionMap[2];
@@ -36,6 +35,10 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', '$cookies', f
         results.submissions.push(submissionMap[i]);
         i++;
       }
+      while (leftovers.length > 0) {
+        results.submissions.push(leftovers.pop());
+      }
+      leftovers.reverse();
       results.initialScoreSum = 0;
       results.finalScoreSum = 0;
       results.submissions.map(function(x) {
@@ -64,8 +67,8 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', '$cookies', f
       var submissionMap = {};
       challenge.submissions.map(function(submission) {
         if (submissions[submission.handle]) {
-          var neu = new Date(submission.submissionDate);
-          var alt = new Date(submissionMap[submission.handle]);
+          var neu = moment(submission.submissionDate);
+          var alt = moment(submissionMap[submission.handle]);
           if (neu > alt) {
             submissionMap[submission.handle] = submission.submissionDate;
           }
@@ -82,24 +85,12 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', '$cookies', f
         challenge.allowStockArt = challenge.allowStockArt == 'true';
       }
 
-      var reglist = challenge.registrants.map(function(x) { return x.handle; });
-      if ((new Date(challenge.registrationEndDate)) > new Date() && reglist.indexOf(handle) == -1) {
-        challenge.registrationDisable = false;
-      } else {
-        challenge.registrationDisable = true;
-      }
-
       challenge.submitDisabled = true;
 
-      if (challenge.submissionEndDate && challenge.currentStatus != 'Completed') {
-        if ((new Date(challenge.submissionEndDate)) > new Date() && reglist.indexOf(handle) > -1) {
-          challenge.submitDisabled = false;
-        }
-        var handleMap = {};
-        challenge.registrants.map(function(x) {
-          handleMap[x.handle] = true;
-        });
-      }
+      var handleMap = {};
+      challenge.registrants.map(function(x) {
+        handleMap[x.handle] = true;
+      });
 
       defer.resolve(challenge);
     });
