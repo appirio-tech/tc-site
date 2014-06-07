@@ -211,6 +211,7 @@
       ]
     },
     "angular": {
+      "name": "angular",
       "js": [
         "jquery.cookie.js",
         "jwt-auth0.js",
@@ -265,6 +266,7 @@
       ]
     },
     "ng-details": {
+      "name": "ng-details",
       "js": [
         "jquery.cookie.js",
         "jwt-auth0.js",
@@ -317,6 +319,7 @@
         "challenge-submit.css",
         "password-recovery.css",
         "challenge-tags.css",
+        "style-404page.css",
         "../js/app/challenge-details/lib/loading-bar.css"
       ]
     },
