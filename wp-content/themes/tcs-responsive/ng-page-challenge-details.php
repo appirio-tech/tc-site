@@ -578,7 +578,7 @@ include locate_template('header-challenge-landing.php');
         <a class="addthis_button_compact"></a>
         <a class="addthis_counter addthis_bubble_style"></a>
       </div>
-      <script type="text/javascript">var addthis_config = {"data_track_addressbar": true};
+      <script type="text/javascript">var addthis_config = {"data_track_addressbar": false};
         var addthis_share = { url: location.href, title: "{{challenge.challengeName}}" }</script>
       <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52f22306211cecfc"></script>
       <!-- AddThis Button END -->
