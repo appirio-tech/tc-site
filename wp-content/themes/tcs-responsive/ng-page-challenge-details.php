@@ -41,80 +41,6 @@ $noCache        = get_query_var('nocache');
 $registerDisable = FALSE;
 $submitDisabled  = FALSE;
 
-
-// @TODO need to fix loading of hanlde before these will work
-//$registerDisable = challenge_register_disabled($contest);
-//$submitDisabled = challenge_submit_disabled($contest);
-
-/**
- * Should the registration button active
- *
- * Registration button should be disabled:
- *  - When the date is after the registration end date
- *  - If the user is already registered
- *
- * @param $contest
- *
- * @return bool
-function challenge_register_disabled($contest) {
-  global $handle;
-
-  $registerDisable = TRUE;
-
-  if ($contest->registrationEndDate) {
-    $curDate = new DateTime();
-    $regDate = new DateTime($contest->registrationEndDate);
-    if ($regDate > $curDate) {
-      $registerDisable = FALSE;
-    }
-  }
-
-  if (is_user_register_for_challenge($handle, $contest)) {
-    $registerDisable = TRUE;
-  }
-
-  return $registerDisable;
-}
-
- */
-
-/**
- * Should the submit button be active
- *
- * Submit button should be disabled:
- *  - If submission date is not passed and challenge is not complete
- *  - If there is a user and the user is registered
- *
- * @param $contest
- *
- * @return bool
-function challenge_submit_disabled($contest) {
-  global $handle;
-  $submitDisabled = TRUE;
-
-  if ($contest->submissionEndDate && $contest->currentStatus !== "Completed") {
-    $curDate    = new DateTime();
-    $submitDate = new DateTime($contest->submissionEndDate);
-    if ($submitDate > $curDate) {
-      $submitDisabled = FALSE;
-    }
-  }
-
-  if (!is_user_register_for_challenge($handle, $contest)) {
-    $submitDisabled = TRUE;
-  }
-
-  return $submitDisabled;
-}
-
- */
-
-/*
-
-$documents = isset($contest->Documents) ? $contest->Documents : array();
-
-*/
-
 // need for header file
 $contest_type = $contestType;
 
@@ -136,10 +62,7 @@ include locate_template('header-challenge-landing.php');
 <section class="tabsWrap">
 <nav class="tabNav">
   <div class="topRightTitle topRightTitleAlt" style="position: relative;">
-    <a ng-if="challengeType != 'design'" ng-href="http://apps.topcoder.com/forums/?module=Category&categoryID={{challenge.forumId}}"
-        class="contestForumIcon" target="_blank">Challenge Discussion</a>
-    <a ng-if="challengeType == 'design'" ng-href="http://studio.topcoder.com/forums?module=ThreadList&forumID={{challenge.forumId}}"
-       class="contestForumIcon" target="_blank">Challenge Discussion</a>
+    <a ng-href="{{challenge.forumLink}}" class="contestForumIcon" target="_blank">Challenge Discussion</a>
   </div>
   <ul>
     <li><a href="#contest-overview" class="active link">Details</a></li>
@@ -147,14 +70,14 @@ include locate_template('header-challenge-landing.php');
       <a href="#viewRegistrant" class="link">Registrants</a>
     </li>
     <li ng-show="challenge.checkpoints && challenge.checkpoints.length > 0"><a href="#checkpoints" class="link">Checkpoints</a></li>
-    <!-- FIXME: took out checkpoint stuff here
+    <!-- @FIXME took out checkpoint stuff here
     < ?php if (( !empty( $checkpointData ) && $checkpointData != "Error in processing request" ) || ( $tab === "checkpoints" )): ?>
       <li><a href="#checkpoints" class="link {{activeTab == 'checkpoints' ? 'active' : ''}}">Checkpoints</a></li>
     < ?php endif; ?>
     -->
     <li ng-show="!isDesign"><a href="#winner" class="link">Results</a></li>
 
-    <!-- FIXME: more checkpoint stuff commented out
+    <!-- @FIXME: more checkpoint stuff commented out
     < ?php if (( !empty( $checkpointData ) && $checkpointData != "Error in processing request" ) || ( $tab === "checkpoints" )): ?>
       <li><a href="#checkpoints" class="link < ?php if ($tab === "checkpoints") { echo "active"; } ?>">Checkpoints</a></li>
     < ?php endif; ?>
@@ -519,12 +442,7 @@ include locate_template('header-challenge-landing.php');
 <aside class="sideStream grid-1-3" style="float: left;">
 
 <div class="topRightTitle">
-
-    <a ng-if="challengeType != 'design'" ng-href="http://apps.topcoder.com/forums/?module=Category&categoryID={{challenge.forumId}}"
-       class="contestForumIcon" target="_blank">Challenge Discussion</a>
-    <a ng-if="challengeType == 'design'" ng-href="http://studio.topcoder.com/forums?module=ThreadList&forumID={{challenge.forumId}}"
-       class="contestForumIcon" target="_blank">Challenge Discussion</a>
-
+    <a ng-href="{{challenge.forumLink}}" class="contestForumIcon" target="_blank">Challenge Discussion</a>
 </div>
 
 <div class="columnSideBar">
