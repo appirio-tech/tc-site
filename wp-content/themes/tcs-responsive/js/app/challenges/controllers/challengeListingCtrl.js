@@ -49,7 +49,14 @@
       };
       $scope.pageSize = 10;
       $scope.page = 1;
-
+      $scope.currentPageSize = $scope.pageSize;
+      $scope.pageHeight = function() {
+        if ($scope.view == 'table') {
+          var output = ($scope.challenges.length * $scope.gridOptions.rowHeight) + 400 + 'px';
+          return output;
+        }
+        return 'auto';
+      };
       // Set filters from url
       $scope.search.fSDate = $routeParams.fSDate;
       $scope.search.fEDate = $routeParams.fEDate;
@@ -191,6 +198,5 @@
       });
 
       getChallenges($scope.contest);
-
     }]);
 }(angular));

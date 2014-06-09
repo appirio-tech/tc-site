@@ -169,7 +169,8 @@
           enableHighlighting: true,
           rowHeight: 140,
           columnDefs: definitionsName,
-          enableRowSelection: false
+          enableRowSelection: false,
+          virtualizationThreshold: 2000 //need to set this high because if number of rows exceeds this number then table breaks and only 6 rows will display in browser
 
         };
       }

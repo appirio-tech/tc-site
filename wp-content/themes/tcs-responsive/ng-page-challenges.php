@@ -20,7 +20,7 @@ get_header(); ?>
   </script>
 
   <div data-ng-app="tc" class="content">
-    <div id="main" data-ng-controller="ChallengeListingCtrl">
+  <div id="main" data-ng-controller="ChallengeListingCtrl" ng-style="{ height: pageHeight() }">
       <div ng-view>
         <div id="hero">
           <div class="container grid grid-float">
@@ -96,13 +96,13 @@ get_header(); ?>
         </div>
         <div class="dataChanges">
           <div class="lt">
-            <a class="viewAll" data-ng-click="challenges = allChallenges">View All</a>
+            <a class="viewAll" ng-show="challenges.length < allChallenges.length" ng-click="currentPageSize = allChallenges.length; challenges = setPagingData(allChallenges, page, currentPageSize);">View All</a>
           </div>
           <div id="challengeNav" class="rt">
             <a class="prevLink" ng-show="page > 1" ng-click="page = page - 1">
               <i></i> Prev
             </a>
-            <a class="nextLink" ng-show="totalServerItems > page * pageSize" ng-click="page = page + 1">
+            <a class="nextLink" ng-show="totalServerItems > page * currentPageSize" ng-click="page = page + 1">
               Next <i></i>
             </a>
           </div>
@@ -118,6 +118,8 @@ get_header(); ?>
         <div style="font-size:20px;" ng-show="!challenges.length && !loading">There are no active challenges under this category. Please check back later</div>
       </div>
     </article>
-  </script>
-
+  </div>
+  <div class="clear"></div>
+</div>
+</script>
 <?php get_footer(); ?>
