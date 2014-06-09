@@ -1,0 +1,15 @@
+<div class="colCh">
+    <div>
+        <a href="/challenge-details/{{row.getProperty('challengeId')}}/?type={{row.getProperty('challengeCommunity')}}" class="contestName">
+            <img alt="allContestIco" class="allContestIco" ng-src="{{images}}/ico-track-{{row.getProperty('challengeCommunity')}}.png">
+            <span ng-cell-text>{{row.getProperty(col.field)}}</span>
+            <img alt="allContestTCOIco" class="allContestTCOIco" ng-src="{{images}}/tco-flag-{{row.getProperty('challengeCommunity') != 'data'?row.getProperty('challengeCommunity'):'develop'}}.png" ng-show="contest.contestType != 'data'">
+        </a>
+    </div>
+    <div id="{{row.getProperty('challengeId')}}" class="technologyTags">
+        <ul>
+            <li ng-repeat="item in row.getProperty('technologies')"><span>{{item}}</span></li>
+            <li ng-repeat="item in row.getProperty('platforms')"><span>{{item}}</span></li>
+        </ul>
+    </div>
+</div>
