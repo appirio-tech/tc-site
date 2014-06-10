@@ -10,7 +10,7 @@ window.tc = angular.module('tc', [
   'ui.select2'
 ])
 
-  .constant("API_URL", "https://api.topcoder.com/v2")
+  .constant("API_URL", tcApiRUL)
 
   .config(['$httpProvider', 'RestangularProvider', 'API_URL', function($httpProvider, RestangularProvider, API_URL) {
     /*
