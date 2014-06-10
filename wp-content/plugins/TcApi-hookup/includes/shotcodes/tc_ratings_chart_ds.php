@@ -82,7 +82,7 @@ function tc_ratings_chart_ds_function($atts, $content = null) {
 		
 		array_push ( $dseries, array (
 				'x' => $mean,
-				'y' => $point->number,
+				'y' => ( $point->number == 0 ) ? null:$point->number,
 				'color' => get_point_color ( $mean ) 
 		) );
 	}
