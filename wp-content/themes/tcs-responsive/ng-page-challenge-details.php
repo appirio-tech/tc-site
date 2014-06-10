@@ -389,7 +389,7 @@ include locate_template('header-challenge-landing.php');
       </tr>
       </thead>
       <tbody>
-      <tr ng-repeat="registrant in challenge.registrants">
+      <tr ng-repeat="registrant in challenge.registrants | orderBy:'handle'">
         <td class="handleColumn">
             <span>
                 <a ng-href="{{siteURL + '/member-profile/' + registrant.handle}}" ng-bind="registrant.handle"></a>
