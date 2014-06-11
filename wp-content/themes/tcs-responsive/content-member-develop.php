@@ -102,8 +102,8 @@ array_push ( $challengetypes, 'UI Prototypes' );
 				<div class="detailedRating">
 					<div class="row fieldPercentile">
 						<label>Percentile:</label>
-						<div class="val"><?php echo $dev->overallPercentile;?></div>
-						<input type="hidden" class="fieldId" value="overallPercentile">
+						<div class="val"><?php echo ($dev->activePercentile == 0) ? "N/A" : $dev->activePercentile;?></div>
+						<input type="hidden" class="fieldId" value="activePercentile">
 					</div>
 					<div class="row fieldVolatility">
 						<label>Volatility:</label>
