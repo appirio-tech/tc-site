@@ -50,7 +50,7 @@
       $scope.definitions = GridService.definitions($scope.contest);
       $scope.gridOptions = GridService.gridOptions('definitions');
       $scope.search = {
-        radioFilterChallenge: 'all',
+        radioFilterChallenge: $routeParams.challengeType || 'all',
         show: false,
         allPlatforms: [],
         allTechnologies: []
@@ -163,6 +163,7 @@
         $location.search('fSDate', $scope.search.fSDate);
         $location.search('fEDate', $scope.search.fEDate);
         $location.search('technologies', $scope.search.technologies);
+        $location.search('challengeType', $scope.search.radioFilterChallenge);
         filterChallenges();
       };
 
