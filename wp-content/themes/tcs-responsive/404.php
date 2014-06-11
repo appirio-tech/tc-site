@@ -54,7 +54,7 @@
 				ERROR 404 : Page not Found
 	                </h1>
 	            </header>
-	            <p class="text404">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris malesuada tristique lacus, vel auctor arcu aliquam sit amet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec placerat, nulla eget suscipit pulvinar, lacus leo consectetur lorem, a lacinia eros tellus eu libero.</p>
+	            <p class="text404"></p>
 		</div>
 	    </article>
 	    <article class="step404">
