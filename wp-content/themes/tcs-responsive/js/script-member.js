@@ -113,6 +113,9 @@ var coder = {
                         if (fieldId == "activeSchoolRank" && parseInt(currentInfo[fieldId]) == 0) {
                             cval = 'Not ranked';
                         }
+                        if (fieldId == "activePercentile" && parseInt(currentInfo[fieldId]) == 0) {
+                            cval = 'N/A';
+                        }
                         if ($('.val a', $(this)).length > 0) {
                             $('.val a', $(this)).text(cval);
                         } else {
