@@ -413,6 +413,7 @@ a{
     .algoLayout .tabNav ul{
         overflow: hidden;    
         width: auto;
+        height: 54px;
         background-color: #D2D2D2;
         display: inline-block;
     }
@@ -467,9 +468,22 @@ a{
         background-repeat: no-repeat;
         background-color: #d2d2d2;
         background-position: 50% 180%;
-    
         padding: 0 13px 0;
-}    
+}
+/*Bugfix I-112763: adjust nav bar to fit all categories*/
+  .algoLayout .tabNav li a.small{
+      height: 34px;
+      line-height: normal;
+      width: auto;
+      color: #fff;
+      display: block;
+      background-image: url(../i/tabNav-arrow.png);
+      background-repeat: no-repeat;
+      background-color: #d2d2d2;
+      background-position: 50% 180%;
+      font-size: 11px;
+      padding: 10px 2px 10px;
+  }
     .algoLayout .tabNav li.alt a{
         padding: 13px 13px 0;
         height: 41px;
