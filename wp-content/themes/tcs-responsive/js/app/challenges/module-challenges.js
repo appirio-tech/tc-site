@@ -16,7 +16,7 @@
         controller: 'ChallengeListingCtrl',
         templateUrl: 'challenge-list.html'
       })
-      .when('/challenges/:challengeType/:challengeStatus', {
+      .when('/challenges/:challengeType/:challengeStatus/', {
         controller: 'ChallengeListingCtrl',
         templateUrl: 'challenge-list.html'
       }).otherwise({

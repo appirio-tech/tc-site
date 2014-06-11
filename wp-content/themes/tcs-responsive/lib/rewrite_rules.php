@@ -67,19 +67,19 @@ function tc_add_custom_rewrite_rules() {
   // Active Challenges
   add_rewrite_rule(
     '^active-challenges/([^/]*)/?$',
-    'challenges/$matches[1]/active',
+    'challenges/$matches[1]/active/',
     'top'
   );
 
   add_rewrite_rule(
     '^past-challenges/([^/]*)/?$',
-    'challenges/$matches[1]/past',
+    'challenges/$matches[1]/past/',
     'top'
   );
 
   add_rewrite_rule(
     '^upcoming-challenges/([^/]*)/?$',
-    'challenges/$matches[1]/upcoming',
+    'challenges/$matches[1]/upcoming/',
     'top'
   );
 

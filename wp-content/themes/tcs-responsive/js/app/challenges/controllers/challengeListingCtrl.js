@@ -32,7 +32,15 @@
         develop: 'Software Development Challenges',
         data: 'Data Science Challenges'
       };
-      $scope.view = $routeParams.view || $cookies.tcChallengesView || 'table';
+
+      if ($routeParams.view) {
+        $scope.view = $routeParams.view;
+      } else if ($cookies.tcChallengesView) {
+        $scope.view = $cookies.tcChallengesView;
+      } else {
+        $scope.view = 'table';
+      }
+
       $scope.getTrackSymbol = TemplateService.getTrackSymbol;
       $scope.formatTimeLeft = TemplateService.formatTimeLeft;
       $scope.getContestDuration = TemplateService.getContestDuration;
@@ -52,8 +60,7 @@
       $scope.currentPageSize = $scope.pageSize;
       $scope.pageHeight = function() {
         if ($scope.view == 'table') {
-          var output = ($scope.challenges.length * $scope.gridOptions.rowHeight) + 400 + 'px';
-          return output;
+          return $scope.challenges.length * $scope.gridOptions.rowHeight + "400px";
         }
         return 'auto';
       };
@@ -193,7 +200,7 @@
       });
 
       $scope.$watch('view', function(view) {
-        $location.search('view', view);
+        //$location.search('view', view);
         $cookies.tcChallengesView = view;
       });
 
