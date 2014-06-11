@@ -109,9 +109,9 @@ $blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the topcoder 
 									$subject = htmlspecialchars(get_bloginfo('name')).' : '.$title;
 									$body = htmlspecialchars($post->post_content);
 									$email_article = 'mailto:?subject='.rawurlencode($subject).'&body='.get_permalink($postId);
-									$twitterText = urlencode(wrap_content_strip_html(wpautop($subject."\nUrl: ".get_permalink($postId)), 400, true,'\n\r',''));
-									$twitterShare = "http://twitter.com/home?status=".$twitterText;
-									$fbShare = "http://www.facebook.com/sharer/sharer.php?s=100&p[url]=".get_permalink($postId)."&p[images][0]=".$imageUrl."&p[title]=".get_the_title()."&p[summary]=".$twitterText;
+									//Bugfix I-109975: Correct format of twitter blog post shares
+									$twitterShare = createTwitterPost($title, get_permalink($postId));
+									$fbShare = "http://www.facebook.com/sharer/sharer.php?s=100&p[url]=".get_permalink($postId)."&p[images][0]=".$imageUrl."&p[title]=".get_the_title()."&p[summary]=" . urlencode(wrap_content_strip_html(wpautop($title), 130, true,'\n\r',''));
 									$gplusShare = "https://plus.google.com/share?url=".get_permalink($postId);
 
 									$authorObj = get_user_by("id",$post->post_author);

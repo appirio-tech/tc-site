@@ -111,13 +111,13 @@ $authorObj = get_user_by("id",$authorId);
 									$dateObj = DateTime::createFromFormat('Y-m-d H:i:s', $post->post_date);
 									$dateStr = $dateObj->format('M j, Y');
 									
-									$twitterText = urlencode(wrap_content_strip_html(wpautop($post->post_content), 130, true,'\n\r',''));
 									$title = htmlspecialchars($post->post_title);
 									$subject = htmlspecialchars(get_bloginfo('name')).' : '.$title;
 									$body = htmlspecialchars($post->post_content);
 									$email_article = 'mailto:?subject='.rawurlencode($subject).'&body='.rawurlencode($body);
-									$twitterShare = "http://twitter.com/home?status=".$twitterText;
-									$fbShare = "http://www.facebook.com/sharer/sharer.php?s=100&p[url]=".get_permalink()."&p[images][0]=".$imageUrl."&p[title]=".get_the_title()."&p[summary]=".$twitterText;
+									//Bugfix I-109975: Correct format of twitter blog post shares
+									$twitterShare = createTwitterPost($title, get_permalink($postId));
+									$fbShare = "http://www.facebook.com/sharer/sharer.php?s=100&p[url]=".get_permalink()."&p[images][0]=".$imageUrl."&p[title]=".get_the_title()."&p[summary]=" . urlencode(wrap_content_strip_html(wpautop($title), 130, true,'\n\r',''));
 									$gplusShare = "https://plus.google.com/share?url=".get_permalink();
 									
 									$authorObj = get_user_by("id",$post->post_author);
