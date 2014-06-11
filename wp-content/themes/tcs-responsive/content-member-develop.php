@@ -48,35 +48,45 @@ array_push ( $challengetypes, 'UI Prototypes' );
 		</script>";?>
 			<nav class="tabNav">
 				<ul>
-						<?php
-						foreach ( $challengetypes as &$challengetype ) {
-
-								$underscoredChallengeType = str_replace ( ' ', '_', $challengetype );
-								$underscoredChallengeType = strtolower ( $underscoredChallengeType );
-
-							if (! empty ( $tracks->{$challengetype} ) && ! empty ( $tracks->{$challengetype}->rating )) {
-								$currentChallengetype = $challengetype;
-
-								if ($underscoredChallengeType == 'ui_prototype_competition') {
-									$underscoredChallengeType = 'ui_prototypes';
-									$currentChallengetype = $underscoredChallengeType;
-								}
-								if ($underscoredChallengeType == 'ria_build_competition') {
-									$underscoredChallengeType = 'ria_build';
-									$currentChallengetype = $underscoredChallengeType;
-								}
-
-								$class = ($underscoredChallengeType == $currentunderscoredChallengeType) ? 'isActive' : '';
-								echo '<li><a class="' . $class . '" href="' . $underscoredChallengeType . '">' . $challengetype . '</a></li>';
-							}
+				<?php
+				$challengeCount = 0;
+				foreach ( $challengetypes as &$challengetype ) {
+					if (! empty ( $tracks->{$challengetype} ) && ! empty ( $tracks->{$challengetype}->rating )) {
+						$challengeCount++;
+					}
+				}
+				if ($challengeCount > 6) {
+					$devClass = "small";
+				} else {
+					$devClass = "";
+				}
+				foreach ( $challengetypes as &$challengetype ) {
+					$underscoredChallengeType = str_replace ( ' ', '_', $challengetype );
+					$underscoredChallengeType = strtolower ( $underscoredChallengeType );
+					if (! empty ( $tracks->{$challengetype} ) && ! empty ( $tracks->{$challengetype}->rating )) {
+						$currentChallengetype = $challengetype;
+						if ($underscoredChallengeType == 'ui_prototype_competition') {
+							$underscoredChallengeType = 'ui_prototypes';
+							$currentChallengetype = $underscoredChallengeType;
 						}
-						if (! empty ( $tracks->{$currentChallengetype} )) {
-							$dev = $tracks->{$currentChallengetype};
-							$devHistory = $competitionHistory->{$currentChallengetype};
-						} else {
-							echo "<h3>Develop</h3>";
+						if ($underscoredChallengeType == 'ria_build_competition') {
+							$underscoredChallengeType = 'ria_build';
+							$currentChallengetype = $underscoredChallengeType;
 						}
-						?>
+						$class = ($underscoredChallengeType == $currentunderscoredChallengeType) ? 'isActive' : '';
+						if ($challengeCount > 6) {
+							$challengetype = str_replace(" ", "<br>", $challengetype);
+						}
+						echo '<li><a class="' . $class . ' ' . $devClass . '" href="' . $underscoredChallengeType . '">' . $challengetype . '</a></li>';
+					}
+				}
+				if (! empty ( $tracks->{$currentChallengetype} )) {
+					$dev = $tracks->{$currentChallengetype};
+					$devHistory = $competitionHistory->{$currentChallengetype};
+				} else {
+					echo "<h3>Develop</h3>";
+				}
+				?>
 				</ul>
 			</nav>
 			<?php  if(empty($tracks->{$currentChallengetype})):?>
