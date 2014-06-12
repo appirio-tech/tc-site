@@ -147,7 +147,7 @@ foreach($coder_achievements as $achievement){
       <?php endif; ?>
       <div class="groupBadge <?php echo $achievement['groupClass']; ?> <?php if($active==false){echo 'hide';} ?>">
       <?php if(substr($achievement['groupClass'], 0, 9 ) == 'HP-Badges'): ?>
-        <span class="subBadge hpLogo "></span>
+      	<span class="subBadge hpLogo "></span>
       <?php endif; ?>
    <?php endif; ?>
     <span data-current="<?php echo $achievement['currentlyEarned']; ?>" data-date="<?php if($active){echo $achievement['date'];} else {echo 'Not Earned Yet';} ?>" data-title="<?php echo $key; ?>" class="subBadge <?php echo $achievement['specificClass']; if($active){echo ' selected';} ?>"></span>
