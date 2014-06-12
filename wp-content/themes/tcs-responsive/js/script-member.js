@@ -268,6 +268,49 @@ var coder = {
                 $('.loading').hide();
             });
         }
+    },
+    //Bugfixes for issues: I-113611, I-113618, I-113621
+    //Re-implemented badge tooltips
+    initMemberBadges: function() {
+      $(".subBadge, .singleBadge").on('mouseenter', function(){
+        var tt = $('#badgeTooltip');
+        $(this).addClass("activeBadge");
+        tt.addClass('isShowing');
+        $('header', tt).html($(this).data("title"));
+        var date = $(this).data("date");
+        if(date === "Not Earned Yet"){
+          $('.earnedOn', tt).html(date);
+        } else {
+          $('.earnedOn', tt).html("Earned on " + date);
+        }
+        //API returns error for many current achievement counts, so hide currentlyEarned in this case
+        if ($(this).data("current") == "(Not Available)") {
+          $('.currentlyEarned', tt).hide();
+        } else {
+          $('.currentlyEarned', tt).show();
+          $('.currentlyEarned span', tt).html("Currently @ " + $(this).data("current"));
+        }
+        tt.css('z-index', '-1').stop().fadeIn();
+
+        window.setTimeout(function() {
+          //check if offset() is defined to fix bug where quick mouseovers of badges gives undefined error in console for offset().top
+          if (typeof $('.activeBadge').offset() !== "undefined") {
+            var ttNew = $('.tooltip.isShowing');
+            var ht = tt.height();
+            var wt = tt.width() - $('.activeBadge').width();
+            var activeLinkTop = $('.activeBadge').offset().top;
+            var top = activeLinkTop - ht - 10;
+            var lt = $('.activeBadge').offset().left - wt / 2;
+            ttNew.css('left', lt).css('top', top);
+            ttNew.css('z-index', '2000').css('opacity', '1');
+            $('.isShowing').removeClass('isShowing');
+            $('.activeBadge').removeClass('activeBadge');
+          }
+        }, 10);
+      });
+      $('.groupBadge, .footer-badges').on('mouseleave', function() {
+        $('#badgeTooltip').css('top', -20000);
+      });
     }
 };
 

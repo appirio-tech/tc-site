@@ -632,10 +632,10 @@ $blog_posts = get_posts($blog_posts_args);
   <div class="inner">
     <header></header>
     <div class="data">
-      <p class="eranedOn"></p>
+      <p class="earnedOn"></p>
     </div>
     <div class="data">
-      <p class="currentlyEearned">Currently @ <span></span></p>
+      <p class="currentlyEarned"><span></span></p>
     </div>
     <div class="arrow"></div>
   </div>

@@ -23,8 +23,9 @@
 }
 
 .subBadge {
-    height:48px;
-    display:inline-block;
+    height: 48px;
+    display: inline-block;
+    margin-right: -3px; /*Bugfix: Need this since using inline-block introduces unwanted space between elements, throwing badge alignment off*/
 }
 
 .progress-meters .subBadge {
@@ -36,8 +37,8 @@
 }
 
 .subBadge.selected {
-    height:48px;
-    display:inline-block;
+    height: 48px;
+    display: inline-block;
     background: url(../i/badgeGroup.grid.png);
 }
 
@@ -165,7 +166,7 @@
     width: 33px;
     background-position: -117px -1394px !important; 
 }
-.Successful-Challenges-200 { 
+.Successful-Challenges-250 {
     width: 50px;
     background-position: -150px -1394px !important; 
 }
@@ -609,4 +610,66 @@ span.subBadge.selected {
 /* HP Badge Level 3 */
 .Social-Evangelist {
     background-position: -192px -624px;
+}
+/*Bugfixes for issues: I-113611, I-113618, I-113621*/
+/* Re-implemented badge tooltips, fixed multiple display issues */
+/* tooltip */
+
+.tooltip {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2000;
+}
+.tooltip .inner {
+  position: relative;
+  min-width: 92px;
+  padding-top: 0;
+  min-height: 30px;
+  border-radius: 3px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,.2);
+  behavior: url(PIE.htc);
+}
+.tooltip .inner>header, .tooltip>header {
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  background: #0096ff;
+  height: 17px;
+  line-height: 17px;
+  border-radius: 3px 3px 0 0;
+  border: none;
+  width: auto;
+  min-width: 82px;
+  behavior: url(PIE.htc);
+  position: relative;
+  padding-left:5px;
+  padding-right:5px;
+  left: 0;
+  top: 0;
+  right: 0;
+}
+.tooltip .earnedOn {
+  font-size: 11px;
+  text-align: center;
+  color: #333;
+  padding: 7px 7px 5px;
+}
+.tooltip .currentlyEarned{
+  font-size: 11px;
+  text-align: center;
+  color: #333;
+  padding: 2px 7px 3px;
+  border-top: 1px solid #eee;
+}
+.tooltip .arrow {
+  position: absolute;
+  left: 50%;
+  bottom: -9px;
+  margin-left: -5px;
+  width: 10px;
+  height: 9px;
+  background: url(../i/tt-arrow.png) no-repeat;
+  background-position: 0 0;
 }
