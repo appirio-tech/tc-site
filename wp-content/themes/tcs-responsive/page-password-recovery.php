@@ -32,7 +32,7 @@ if($tokenObj!=null) {
 		$msg = "Sit tight! A confirmation code is on its way to your email.";
 		$redirect = true;		
 	} elseif( isset($tokenObj->socialProvider) ) {
-		$msg = "It looks like you have a social account associated with your profile. Please login using your social provider.";
+		$msg = 'It looks like you have a social account associated with your profile. You can login using your ' . $tokenObj->socialProvider . ' account, or click <a href="/password-reset">here</a> to reset your password.';
 	}
 }
 /**

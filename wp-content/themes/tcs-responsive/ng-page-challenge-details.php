@@ -472,17 +472,17 @@ include locate_template('header-challenge-landing.php');
     <!-- End review style section -->
 
   </li>
-  <li ng-hide="isDesign && challenge.screeningScorecardId && challenge.reviewScorecardId" class="slide">
+  <li ng-show="challenge.screeningScorecardId || challenge.reviewScorecardId" class="slide">
 
     <div class="contestLinks slideBox">
       <h3>Contest Links:</h3>
 
       <div class="inner">
-        <p><a
+        <p ng-show="challenge.screeningScorecardId"><a
             href="https://software.topcoder.com/review/actions/ViewScorecard.do?method=viewScorecard&scid={{challenge.screeningScorecardId}}">Screening
             Scorecard</a></p>
 
-        <p><a
+        <p ng-show="challenge.reviewScorecardId"><a
             href="http://software.topcoder.com/review/actions/ViewScorecard.do?method=viewScorecard&scid={{challenge.reviewScorecardId}}">Review
             Scorecard</a></p>
       </div>
@@ -578,8 +578,8 @@ include locate_template('header-challenge-landing.php');
         <a class="addthis_button_compact"></a>
         <a class="addthis_counter addthis_bubble_style"></a>
       </div>
-      <script type="text/javascript">var addthis_config = {"data_track_addressbar": true};
-        var addthis_share = { url: location.href, title: "{{challenge.challengeName}}" }</script>
+      <script type="text/javascript">var addthis_config = {"data_track_addressbar": false};
+        var addthis_share = { url: location.href, title: challengeName }</script>
       <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52f22306211cecfc"></script>
       <!-- AddThis Button END -->
     </div>

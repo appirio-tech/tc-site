@@ -108,7 +108,7 @@
         <section class="tags">
             <h5>Technology and Platforms:</h5>
             <div class="data">
-                <select ui-select2="{ allowClear:true, multiple: true }" data-placeholder=" " class="chosen-select hasCustomSelect" multiple ng-model="search.technologies">
+                <select ui-select2="{ allowClear:true, multiple: true, simple_tags: true }" data-placeholder=" " class="chosen-select hasCustomSelect" multiple ng-model="search.technologies">
                     <optgroup label="Platforms">
                         <option ng-repeat="plat in search.allPlatforms track by $index" value="{{ plat }}">{{ plat }}</option>
                     </optgroup>

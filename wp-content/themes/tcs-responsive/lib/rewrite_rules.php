@@ -64,22 +64,22 @@ function tc_add_custom_rewrite_rules() {
 
   // Blog search
   //add_rewrite_rule('^'.BLOG_PERMALINK.'/?$', 'index.php?', 'top');
-  // Active Challenges
+  /*
   add_rewrite_rule(
     '^active-challenges/([^/]*)/?$',
-    'challenges/$matches[1]/active',
+    'challenges/$matches[1]/active/',
     'top'
   );
 
   add_rewrite_rule(
     '^past-challenges/([^/]*)/?$',
-    'challenges/$matches[1]/past',
+    'challenges/$matches[1]/past/',
     'top'
   );
 
   add_rewrite_rule(
     '^upcoming-challenges/([^/]*)/?$',
-    'challenges/$matches[1]/upcoming',
+    'challenges/$matches[1]/upcoming/',
     'top'
   );
 
@@ -93,7 +93,20 @@ function tc_add_custom_rewrite_rules() {
     '^challenges/([^/]*)/([^/]*)/?$',
     'index.php?pagename=challenges',
     'top'
+  );*/
+
+  // @TODO Remove these after ng version goes live
+  add_rewrite_rule(
+    '^active-challenges/([^/]*)/?$',
+    'index.php?pagename=active-challenges&contest_type=$matches[1]',
+    'top'
   );
+
+  // Past Challenges
+  add_rewrite_rule('^past-challenges/([^/]*)/?$', 'index.php?pagename=past-challenges&contest_type=$matches[1]', 'top');
+
+  // Upcoming Challenges
+  add_rewrite_rule('^upcoming-challenges/([^/]*)/?$', 'index.php?pagename=upcoming-challenges&contest_type=$matches[1]', 'top');
   
   // Review Challenges
   add_rewrite_rule(

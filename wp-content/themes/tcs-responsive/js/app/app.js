@@ -13,7 +13,7 @@ window.tc = angular.module('tc', [
   'ngGrid'
 ])
 
-.constant("API_URL", "https://api.topcoder.com/v2")
+.constant("API_URL", tcApiRUL)
 .constant("PHOTO_LINK_LOCATION", "http://community.topcoder.com")
 .constant("MEMBER_PROFILE_TEMPLATE_URL", "/js/app/member-profile/partials/memberProfile.tpl.html")
 

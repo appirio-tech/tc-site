@@ -32,7 +32,15 @@
         develop: 'Software Development Challenges',
         data: 'Data Science Challenges'
       };
-      $scope.view = $routeParams.view || $cookies.tcChallengesView || 'table';
+
+      if ($routeParams.view) {
+        $scope.view = $routeParams.view;
+      } else if ($cookies.tcChallengesView) {
+        $scope.view = $cookies.tcChallengesView;
+      } else {
+        $scope.view = 'table';
+      }
+
       $scope.getTrackSymbol = TemplateService.getTrackSymbol;
       $scope.formatTimeLeft = TemplateService.formatTimeLeft;
       $scope.getContestDuration = TemplateService.getContestDuration;
@@ -42,7 +50,7 @@
       $scope.definitions = GridService.definitions($scope.contest);
       $scope.gridOptions = GridService.gridOptions('definitions');
       $scope.search = {
-        radioFilterChallenge: 'all',
+        radioFilterChallenge: $routeParams.challengeType || 'all',
         show: false,
         allPlatforms: [],
         allTechnologies: []
@@ -52,8 +60,7 @@
       $scope.currentPageSize = $scope.pageSize;
       $scope.pageHeight = function() {
         if ($scope.view == 'table') {
-          var output = ($scope.challenges.length * $scope.gridOptions.rowHeight) + 400 + 'px';
-          return output;
+          return $scope.challenges.length * $scope.gridOptions.rowHeight + "400px";
         }
         return 'auto';
       };
@@ -156,6 +163,7 @@
         $location.search('fSDate', $scope.search.fSDate);
         $location.search('fEDate', $scope.search.fEDate);
         $location.search('technologies', $scope.search.technologies);
+        $location.search('challengeType', $scope.search.radioFilterChallenge);
         filterChallenges();
       };
 
@@ -193,7 +201,7 @@
       });
 
       $scope.$watch('view', function(view) {
-        $location.search('view', view);
+        //$location.search('view', view);
         $cookies.tcChallengesView = view;
       });
 

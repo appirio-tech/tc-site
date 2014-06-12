@@ -55,7 +55,7 @@ function add_share($post = null, $size = 32) {
 <a class="addthis_counter addthis_bubble_style"></a>
 </div>
 <script type="text/javascript">
-var addthis_config = {"data_track_addressbar":true}; addthis_config.ui_email_note = "$excerpt";
+var addthis_config = {"data_track_addressbar":false}; addthis_config.ui_email_note = "$excerpt";
 var addthis_share = { url: location.href, title: "$title" }
 </script>
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52f22306211cecfc"></script>
