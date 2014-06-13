@@ -1,6 +1,6 @@
 <script type="text/javascript">
 $(document).ready(function(){
-  // coder.initMemberBadges();
+   coder.initMemberBadges();
 });
 </script>
 <?php
@@ -92,10 +92,10 @@ $searchResult = search_coder($handle);
 foreach($coder_achievements as $achievement){
   if(isset($achievements_map[$achievement->description])){
     $achievements_map[$achievement->description]["active"] = true;
-    $achievements_map[$achievement->description]["date"] = date("M d, Y H:i", strtotime("$achievement->date")) . " EST";
+    $achievements_map[$achievement->description]["date"] = date("M d, Y", strtotime("$achievement->date"));
   } else if(isset($single_achievements_map[$achievement->description])){
     $single_achievements_map[$achievement->description]["active"] = true;
-    $single_achievements_map[$achievement->description]["date"] = date("M d, Y H:i", strtotime("$achievement->date")) . " EST";
+    $single_achievements_map[$achievement->description]["date"] = date("M d, Y", strtotime("$achievement->date"));
   }
 }
 ?>
@@ -109,7 +109,37 @@ foreach($coder_achievements as $achievement){
       if(isset($searchResult->users)){
         $achievements_current = get_member_achievements_current($searchResult->users[0]->userId, $achievement["id"]);
       }
-      $achievement["currentlyEarned"] = isset($achievements_current->count) ? $achievements_current->count : "(retrieving...)" ;
+      switch($achievement["id"]){
+        case "1":
+          $quantifier = "Post";
+          break;
+        case "6":
+          $quantifier = "Submission";
+          break;
+        case "11":
+          $quantifier = "Prize";
+          break;
+        case "16":
+        case "117":
+          $quantifier = "Placement";
+          break;
+        case "89":
+          $quantifier = "SRM";
+          break;
+        case "99":
+        case "126":
+        case "127":
+          $quantifier = "Problem";
+          break;
+        default:
+          $quantifier = "Win";
+          break;
+      }
+      if (isset($achievements_current->count) && $achievements_current->count > 1) {
+        $quantifier .= "s";
+      }
+      $achievement["currentlyEarned"] = isset($achievements_current->count) ? $achievements_current->count . " " . $quantifier : "(Not Available)" ;
+
  ?>
    <?php if($index % 5 == 0): ?>
       <?php if($index != 0): ?>
@@ -120,7 +150,7 @@ foreach($coder_achievements as $achievement){
       	<span class="subBadge hpLogo "></span>
       <?php endif; ?>
    <?php endif; ?>
-    <span data-current="<?php echo $achievement['currentlyEarned']; ?>" data-date="<?php if($active){echo $achievement['date'];} else {echo 'Not Earned Yet';} ?>" title="<?php echo $key; ?>" data-title="<?php echo $achievement['description']; ?>" class="subBadge <?php echo $achievement['specificClass']; if($active){echo ' selected';} ?>"></span>
+    <span data-current="<?php echo $achievement['currentlyEarned']; ?>" data-date="<?php if($active){echo $achievement['date'];} else {echo 'Not Earned Yet';} ?>" data-title="<?php echo $key; ?>" class="subBadge <?php echo $achievement['specificClass']; if($active){echo ' selected';} ?>"></span>
  <?php $index++; endforeach; ?>
 </div>
 
@@ -134,9 +164,9 @@ foreach($coder_achievements as $achievement){
       if(isset($searchResult->users)){
         $achievements_current = get_member_achievements_current($searchResult->users[0]->userId, $achievement["id"]);
       }
-      $achievement["currentlyEarned"] = isset($achievements_current->count) ? $achievements_current->count : "(retrieving...)" ;
+      $achievement["currentlyEarned"] = isset($achievements_current->count) ? $achievements_current->count . " " . $quantifier : "(Not Available)" ;
   ?>
-    <div data-current="<?php echo $achievement['currentlyEarned']; ?>" data-date="<?php if($active){echo $achievement['date'];} ?>" data-title="<?php echo $key; ?>" title="<?php echo $key; ?>" class="singleBadge <?php echo $achievement['groupClass']; if($active){echo ' selected';} else {echo ' hide';} ?> leftMost" ></div>
+    <div data-current="<?php echo $achievement['currentlyEarned']; ?>" data-date="<?php if($active){echo $achievement['date'];} ?>" data-title="<?php echo $key; ?>" class="singleBadge <?php echo $achievement['groupClass']; if($active){echo ' selected';} else {echo ' hide';} ?> leftMost" ></div>
   <?php endforeach; ?>
   <div class="clear-float"></div>
 </div>
