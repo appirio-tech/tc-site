@@ -22,7 +22,7 @@
       $scope.challenges = [];
       $scope.filteredChallenges = [];
       $scope.contest = {
-        contestType: $routeParams.challengeType || '',
+        contestType: $routeParams.challengeArea || '',
         listType: $routeParams.challengeStatus || 'active'
       };
 

@@ -12,11 +12,11 @@
         controller: 'ChallengeListingCtrl',
         templateUrl: 'challenge-list.html'
       })
-      .when('/challenges/:challengeType/', {
+      .when('/challenges/:challengeArea/', {
         controller: 'ChallengeListingCtrl',
         templateUrl: 'challenge-list.html'
       })
-      .when('/challenges/:challengeType/:challengeStatus/', {
+      .when('/challenges/:challengeArea/:challengeStatus/', {
         controller: 'ChallengeListingCtrl',
         templateUrl: 'challenge-list.html'
       }).otherwise({
