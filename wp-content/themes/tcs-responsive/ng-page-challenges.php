@@ -8,6 +8,13 @@
  * This template shows a list of challenges
  */
 
+function add_base_url() {
+  $output = "<base href=\"" . get_option("siteurl") . "/" . ACTIVE_CONTESTS_PERMALINK . "/\" />";
+  echo $output;
+}
+
+add_action('wp_head', 'add_base_url');
+
 // Add the angluar libraries to WP 
 tc_setup_angular(); //tcs_responsive_scripts(); 
 // Get the default header
@@ -20,7 +27,7 @@ get_header(); ?>
   </script>
 
   <div data-ng-app="tc" class="content">
-  <div id="main" data-ng-controller="ChallengeListingCtrl" ng-style="{ height: pageHeight() }">
+  <div id="main" data-ng-controller="ChallengeListingCtrl">
       <div ng-view>
         <div id="hero">
           <div class="container grid grid-float">

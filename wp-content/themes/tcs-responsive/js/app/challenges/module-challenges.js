@@ -8,23 +8,17 @@
     $locationProvider.html5Mode(true).hashPrefix('!');
 
     $routeProvider
-      .when('/challenges/', {
+      .when('/', {
         controller: 'ChallengeListingCtrl',
         templateUrl: 'challenge-list.html'
       })
-      .when('/challenges/:challengeArea/', {
+      .when('/:challengeArea/', {
         controller: 'ChallengeListingCtrl',
         templateUrl: 'challenge-list.html'
       })
-      .when('/challenges/:challengeArea/:challengeStatus/', {
+      .when('/:challengeArea/:challengeStatus/', {
         controller: 'ChallengeListingCtrl',
         templateUrl: 'challenge-list.html'
-      }).otherwise({
-        controller: function(){
-          $locationProvider.html5Mode(false);
-          window.location.reload();
-        },
-        template : "<div></div>"
       });
   }]);
 }(angular));
