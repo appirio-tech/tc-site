@@ -66,14 +66,14 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', '$cookies', f
       challenge = challenge[0];
       var submissionMap = {};
       challenge.submissions.map(function(submission) {
-        if (submissions[submission.handle]) {
-          var neu = moment(submission.submissionDate);
-          var alt = moment(submissionMap[submission.handle]);
+        if (submissionMap[submission.handle || submission.submitter]) {
+          var neu = moment(submission.submissionDate || submission.submissionTime);
+          var alt = moment(submissionMap[submission.handle || submission.submitter]);
           if (neu > alt) {
-            submissionMap[submission.handle] = submission.submissionDate;
+            submissionMap[submission.handle || submission.submitter] = submission.submissionDate || submission.submissionTime;
           }
         } else {
-          submissionMap[submission.handle] = submission.submissionDate;
+          submissionMap[submission.handle || submission.submitter] = submission.submissionDate || submission.submissionTime;
         }
       });
 
