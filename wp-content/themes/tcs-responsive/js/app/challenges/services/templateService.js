@@ -105,7 +105,7 @@
           style = "color:red";
         }
         if (isNaN(numhours)) {
-          result = "<em style='font-size:14px;'>not available</em>";
+          result = "<em style='font-size:14px;'>N/A</em>";
         } else {
           result = "<span style='font-size:14px;" + style + "'>" + (numdays > 0 ? numdays + sep + "<span style='font-size:10px;'>Day" + ((numdays > 1) ? "s" : "") + "</span> " : "") + numhours + sep + "<span style='font-size:10px;'>Hrs</span> " + (numdays === 0 ? numminutes + sep + "<span style='font-size:10px;'>Min</span> " : "") + "</span>";
         }
