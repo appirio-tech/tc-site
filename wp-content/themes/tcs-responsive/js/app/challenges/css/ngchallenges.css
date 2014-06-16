@@ -144,3 +144,9 @@
 .ngTopPanel.ng-scope, .ngHeaderContainer{
     width: auto !important;
 }
+
+.technologyTags .techTag a {
+    width: auto;
+    padding: 0;
+    color: #666;
+}

@@ -105,15 +105,15 @@
                 </li>
             </ul>
         </section>
-        <section class="tags">
+        <section class="tags" ng-if="search.allPlatforms.length > 0 && search.allTechnologies.length > 0">
             <h5>Technology and Platforms:</h5>
             <div class="data">
-                <select ui-select2="{ allowClear:true, multiple: true, simple_tags: true }" data-placeholder=" " class="chosen-select hasCustomSelect" multiple ng-model="search.technologies">
+                <select ui-select2="{allowClear:true, multiple: true}" data-placeholder="" class="chosen-select hasCustomSelect"  ng-model="search.technologies" multiple>
                     <optgroup label="Platforms">
-                        <option ng-repeat="plat in search.allPlatforms track by $index" value="{{ plat }}">{{ plat }}</option>
+                        <option ng-repeat="plat in search.allPlatforms track by $index" value="plat.{{plat}}">{{plat}}</option>
                     </optgroup>
                     <optgroup label="Technologies">
-                        <option ng-repeat="tech in search.allTechnologies track by $index" value="{{ tech }}">{{ tech }}</option>
+                        <option ng-repeat="tech in search.allTechnologies track by $index" value="tech.{{tech}}">{{tech}}</option>
                     </optgroup>
                 </select>
             </div>

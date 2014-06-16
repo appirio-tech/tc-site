@@ -9,7 +9,7 @@
  */
 
 function add_base_url() {
-  $output = "<base href=\"" . get_option("siteurl") . "/" . ACTIVE_CONTESTS_PERMALINK . "/\" />";
+  $output = "<base href=\"/" . ACTIVE_CONTESTS_PERMALINK . "/\" />";
   echo $output;
 }
 
@@ -27,7 +27,7 @@ get_header(); ?>
   </script>
 
   <div data-ng-app="tc" class="content">
-  <div id="main" data-ng-controller="ChallengeListingCtrl">
+  <div id="main">
       <div ng-view>
         <div id="hero">
           <div class="container grid grid-float">
@@ -122,7 +122,7 @@ get_header(); ?>
             </a>
           </div>
         </div>
-        <div style="font-size:20px;" ng-show="!challenges.length && !loading">There are no active challenges under this category. Please check back later</div>
+        <div style="font-size:20px;display: none;" ng-show="!challenges.length && !loading">There are no active challenges under this category. Please check back later</div>
       </div>
     </article>
   </div>

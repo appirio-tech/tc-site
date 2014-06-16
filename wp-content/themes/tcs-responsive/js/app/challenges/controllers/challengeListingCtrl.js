@@ -1,10 +1,9 @@
-/*global angular: true */
+/*global angular: true, _: true */
 (function (angular) {
   'use strict';
   var challengesModule = angular.module('tc.challenges');
   challengesModule.controller('ChallengeListingCtrl', ['$scope', '$routeParams', '$location', '$cookies', 'ChallengesService', 'ChallengeDataService', 'DataService', '$window', 'TemplateService', 'GridService', 'cfpLoadingBar',
-    function ($scope, $routeParams, $location, $cookies, ChallengesService, ChallengeDataService, DataService, $window, TemplateService, GridService, cfpLoadingBar) {
-
+                                                       function ($scope, $routeParams, $location, $cookies, ChallengesService, ChallengeDataService, DataService, $window, TemplateService, GridService, cfpLoadingBar) {
       function startLoading() {
         cfpLoadingBar.start();
         $scope.loading = true;
@@ -15,6 +14,7 @@
         $scope.loading = false;
       }
 
+      $scope.loading = true;
       startLoading();
 
       //console.log('routes', $routeParam);
@@ -53,7 +53,8 @@
         radioFilterChallenge: $routeParams.challengeType || 'all',
         show: false,
         allPlatforms: [],
-        allTechnologies: []
+        allTechnologies: [],
+        technologies: []
       };
       $scope.pageSize = 10;
       $scope.page = 1;
@@ -67,11 +68,24 @@
       // Set filters from url
       $scope.search.fSDate = $routeParams.fSDate;
       $scope.search.fEDate = $routeParams.fEDate;
-
       if (Array.isArray($routeParams.technologies)) {
-        $scope.search.technologies = $routeParams.technologies;
-      } else if (typeof $routeParams.technologies == 'string') {
-        $scope.search.technologies = $routeParams.technologies.split(',');
+        $scope.search.technologies = $scope.search.technologies.concat($routeParams.technologies.map(function (item) {
+          return 'tech.' + item;
+        }));
+      } else if (typeof $routeParams.technologies === 'string') {
+        $scope.search.technologies = $scope.search.technologies.concat($routeParams.technologies.split(',').map(function (item) {
+          return 'tech.' + item;
+        }));
+      }
+
+      if (Array.isArray($routeParams.platforms)) {
+        $scope.search.technologies = $scope.search.technologies.concat($routeParams.platforms.map(function (item) {
+          return 'plat.' + item;
+        }));
+      } else if (typeof $routeParams.platforms === 'string') {
+        $scope.search.technologies = $scope.search.technologies.concat($routeParams.platforms.split(',').map(function (item) {
+          return 'plat.' + item;
+        }));
       }
 
       $scope.setPagingData = function (data, page, pageSize) {
@@ -92,17 +106,17 @@
         if (contest.contestType && contest.contestType !== '') {
 
           // Data is currently going to a different endpoint
-          if (contest.contestType == 'data') {
-            params.listType = contest.listType
+          if (contest.contestType === 'data') {
+            params.listType = contest.listType;
           } else {
             params.type = contest.contestType;
           }
         }
 
-        if (contest.contestType == 'data') {
-          ChallengeDataService.all('').getList(params).then(function(challenges) {
+        if (contest.contestType === 'data') {
+          ChallengeDataService.all('').getList(params).then(function (challenges) {
 
-              _.each(challenges, function(challengeItem) {
+              _.each(challenges, function (challengeItem) {
                 challengeItem.challengeCommunity = 'data';
                 challengeItem.challengeName = challengeItem.fullName;
                 challengeItem.challengeType = 'Marathon';
@@ -134,6 +148,22 @@
 
       }
 
+      function getTechnologies() {
+        return $scope.search.technologies.filter(function (item) {
+          return item.indexOf('tech.') === 0;
+        }).map(function (item) {
+          return item.substring(5);
+        });
+      }
+
+      function getPlaforms() {
+        return $scope.search.technologies.filter(function (item) {
+          return item.indexOf('plat.') === 0;
+        }).map(function (item) {
+          return item.substring(5);
+        });
+      }
+
       function filterChallenges() {
         $scope.filteredChallenges = $scope.allChallenges.filter(function (contest) {
           if ($scope.search.radioFilterChallenge !== 'all' && $scope.search.radioFilterChallenge !== contest.challengeType) {
@@ -145,10 +175,15 @@
           if ($scope.search.fEDate && contest.submissionEndDate > $scope.search.fEDate) {
             return false;
           }
-          if ($scope.search.technologies && $scope.search.technologies.length > 0) {
-            var alltags = _.union(contest.technologies, contest.platforms);
-            alltags = _.compact(alltags);
-            return _.intersection(alltags, $scope.search.technologies).length > 0;
+          if ($scope.search.technologies.length > 0) {
+            var plats = getPlaforms();
+            var techs = getTechnologies();
+            if (plats.length > 0 && _.intersection(contest.platforms, plats).length === 0) {
+              return false;
+            }
+            if (techs.length > 0 && _.intersection(contest.technologies, techs).length === 0) {
+              return false;
+            }
           }
           return true;
         });
@@ -157,24 +192,43 @@
         $scope.search.show = false;
       }
 
-      $scope.submit = function () {
-        cfpLoadingBar.start();
-
-        $location.search('fSDate', $scope.search.fSDate);
-        $location.search('fEDate', $scope.search.fEDate);
-        $location.search('technologies', $scope.search.technologies);
-        $location.search('challengeType', $scope.search.radioFilterChallenge);
-        filterChallenges();
+      $scope.findByTechnology = function (tech) {
+        $scope.search.technologies = ['tech.' + tech];
+        $scope.submit();
       };
 
-      DataService.one('technologies').get().then(function(data) {
-        if(data) {
+      $scope.findByPlatform = function (plat) {
+        scope.search.technologies = ['plat.' + plat];
+        $scope.submit();
+      };
+
+      $scope.submit = function () {
+        var plats = getPlaforms();
+        var techs = getTechnologies();
+        var search = {};
+        if($scope.search.fSDate) {
+          search.fSDate = $scope.search.fSDate;
+        }
+        if($scope.search.fEDate) {
+          search.fEDate = $scope.search.fEDate;
+        }
+        if(plats.length > 0) {
+          search.platforms = plats;
+        }
+        if(techs.length > 0) {
+          search.technologies = techs;
+        }
+        $location.search(search);
+      };
+
+      DataService.one('technologies').get().then(function (data) {
+        if (data) {
           $scope.search.allTechnologies = data.technologies;
         }
       });
-      
-      DataService.one('platforms').get().then(function(data) {
-        if(data) {
+
+      DataService.one('platforms').get().then(function (data) {
+        if (data) {
           $scope.search.allPlatforms = data.platforms;
         }
       });
@@ -183,26 +237,17 @@
         $scope.challenges = [];
         startLoading();
 
-        if($scope.page < 0) {
+        if ($scope.page < 0) {
           $scope.page = 0;
         }
         $scope.challenges = $scope.setPagingData($scope.filteredChallenges, $scope.page, $scope.pageSize);
       });
 
-      $scope.$watchCollection('contest', function (contest) {
-        $scope.challenges = [];
-        startLoading();
-
-        $scope.definitions = GridService.definitions(contest);
-        if (contest.listType === 'past') {
-          $scope.view = 'table';
+      $scope.$watch('view', function (view, oldView) {
+        if(view !== oldView) {
+          //$location.search('view', view);
+          $cookies.tcChallengesView = view;
         }
-        getChallenges(contest);
-      });
-
-      $scope.$watch('view', function(view) {
-        //$location.search('view', view);
-        $cookies.tcChallengesView = view;
       });
 
       getChallenges($scope.contest);
