@@ -127,8 +127,8 @@ array_push ( $challengetypes, 'UI Prototypes' );
 					</div>
 					<div class="row fieldCtryRank">
 						<label>Country Rank:</label>
-						<div class="val"><?php echo ($dev->overallCountryRank == '0') ? "Not ranked" : $dev->overallCountryRank;?></div>
-						<input type="hidden" class="fieldId" value="overallCountryRank">
+						<div class="val"><?php echo ($dev->activeCountryRank == '0') ? "Not ranked" : $dev->overallCountryRank;?></div>
+						<input type="hidden" class="fieldId" value="activeCountryRank">
 					</div>
 					<div class="row fieldScRank">
 						<label>School Rank:</label>
