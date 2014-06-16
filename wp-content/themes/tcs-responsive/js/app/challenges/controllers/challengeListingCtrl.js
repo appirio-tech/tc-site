@@ -3,7 +3,8 @@
   'use strict';
   var challengesModule = angular.module('tc.challenges');
   challengesModule.controller('ChallengeListingCtrl', ['$scope', '$routeParams', '$location', '$cookies', 'ChallengesService', 'ChallengeDataService', 'DataService', '$window', 'TemplateService', 'GridService', 'cfpLoadingBar',
-                                                       function ($scope, $routeParams, $location, $cookies, ChallengesService, ChallengeDataService, DataService, $window, TemplateService, GridService, cfpLoadingBar) {
+    function ($scope, $routeParams, $location, $cookies, ChallengesService, ChallengeDataService, DataService, $window, TemplateService, GridService, cfpLoadingBar) {
+
       function startLoading() {
         cfpLoadingBar.start();
         $scope.loading = true;
@@ -226,9 +227,9 @@
           $scope.search.allTechnologies = data.technologies;
         }
       });
-
-      DataService.one('platforms').get().then(function (data) {
-        if (data) {
+      
+      DataService.one('platforms').get().then(function(data) {
+        if(data) {
           $scope.search.allPlatforms = data.platforms;
         }
       });
@@ -237,7 +238,7 @@
         $scope.challenges = [];
         startLoading();
 
-        if ($scope.page < 0) {
+        if($scope.page < 0) {
           $scope.page = 0;
         }
         $scope.challenges = $scope.setPagingData($scope.filteredChallenges, $scope.page, $scope.pageSize);
