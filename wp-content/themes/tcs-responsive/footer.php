@@ -699,7 +699,7 @@ $blog_posts = get_posts($blog_posts_args);
     var auth0Login = new Auth0({
       domain: 'topcoder.auth0.com',
       clientID: '<?php echo auth0_clientID(); ?>',
-      callbackURL: 'https://www.topcoder.com/reg2/callback.action',
+      callbackURL: '<?php echo auth0_callbackURL(); ?>',
       state: loginState,
       redirect_uri: window.location.href
     });
