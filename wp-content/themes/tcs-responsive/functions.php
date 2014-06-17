@@ -290,4 +290,9 @@ function auth0_clientID() {
   return defined('CONFIG_AUTH0_CLIENTID') ? CONFIG_AUTH0_CLIENTID : '6ZwZEUo2ZK4c50aLPpgupeg5v2Ffxp9P';
 }
 
+/* function to get auth0 callback url */
+function auth0_callbackURL() {
+  return defined('CONFIG_AUTH0_CALLBACKURL') ? CONFIG_AUTH0_CALLBACKURL : 'https://www.topcoder.com/reg2/callback.action';
+}
+
 add_filter('pre_get_posts','empty_search_filter');
