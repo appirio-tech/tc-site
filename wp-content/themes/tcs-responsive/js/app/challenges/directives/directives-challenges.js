@@ -10,7 +10,7 @@
           contest: '=',
           search: '='
         },
-        templateUrl: TemplateService.challengesBase + '/partials/actions.html',
+        templateUrl: 'actions.html',
         controller: function ($scope) {
           var ctrl = this;
 
