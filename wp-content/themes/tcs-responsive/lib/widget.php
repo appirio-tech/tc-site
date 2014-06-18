@@ -7,6 +7,8 @@ function theme_load_widgets() {
   register_widget('Popular_post_widget');
   register_widget('Subscribe_widget');
   register_widget('Download_banner_widget');
+  register_widget('Quote_widget');
+  register_widget('Recent_challenges');
 }
 
 add_action('widgets_init', 'theme_load_widgets');
@@ -31,21 +33,91 @@ class Related_Content extends WP_Widget {
     $this->WP_Widget('related_content', __('Related_Content', 'inm'), $widget_ops, $control_ops);
   }
 
+  function form( $instance ) {
+    if(isset($instance['num_posts'])) {
+      $num_posts = $instance['num_posts'];
+    }
+    else {
+      $num_posts = __( 4, 'inm' );
+    }
+    ?>
+    <p>
+      <label for="<?php echo $this->get_field_id( 'num_posts' ); ?>"><?php _e( 'Number of Posts:' ); ?></label>
+      <input class="widefat" id="<?php echo $this->get_field_id( 'num_posts' ); ?>" name="<?php echo $this->get_field_name( 'num_posts' ); ?>" type="text" value="<?php echo esc_attr( $num_posts ); ?>" />
+    </p>
+    <?php
+  }
+
+  // Updating widget replacing old instances with new
+  public function update( $new_instance, $old_instance ) {
+    $instance = array();
+    $instance['num_posts'] = ( ! empty( $new_instance['num_posts'] ) ) ? strip_tags( $new_instance['num_posts'] ) : '';
+    return $instance;
+  }
+
+
   /* Display the widget */
   function widget($args, $instance) {
     extract($args);
+     /* Set up some default widget settings. */
+    $defaults = array(
+      'num_posts' => __(4, num_posts)
+    );
+    $instance = wp_parse_args(( array ) $instance, $defaults);
 
     /* Before widget (defined by themes). */
     echo $before_widget;
-
+    $displayedTitle = "Related Content";
     /* Display the widget title if one was input (before and after defined by themes). */
     if ($title) {
-      echo $before_title . $title . $after_title;
+      $displayedTitle = $before_title . $title . $after_title;
     }
     ?>
     <div class="sideFindRelatedContent">
-      <h3>Related Content</h3>
+     <h3><?php echo $displayedTitle; ?></h3>
+			<ul class="relatedContentList">
+			<?php
+			// for use in the loop, list 4 post titles related to first tag on current post
+			$tags = wp_get_post_tags ( $GLOBALS['post']->ID );
+			if ($tags) {
+			    $num_posts = apply_filters( 'num_posts', $instance['num_posts'] );
+					$first_tag = $tags [0]->term_id;
+					$args = array (
+							'tag__in' => array (
+									$first_tag
+							),
+							'post__not_in' => array (
+									$post->ID
+							),
+							'post_type' => array (
+									'post',
+									'page'
+							),
+							'posts_per_page' => $num_posts,
+							'ignore_sticky_posts' => 1
+					);
+					$related_query = new WP_Query ( $args );
+					if ($related_query->have_posts ()) {
+						while ( $related_query->have_posts () ) :
+							$related_query->the_post ();
 
+							$pid = $post->ID;
+							$thumbId = get_post_thumbnail_id ( $pid );
+							$iurl = wp_get_attachment_url ( $thumbId );
+							?>
+						<li><a class="contentLink" href="<?php the_permalink() ?>">
+							<img class="contentThumb" src="<?php echo $iurl;?>" alt="<?php the_title(); ?>">
+							<?php the_title(); ?>
+						</a> <span class="contentBrief"><?php echo custom_excerpt(10) ?></span></li>
+
+				<?php
+						endwhile
+						;
+					}
+					wp_reset_query ();
+				}
+				?>
+				</ul>
     </div>
     <!-- /.sideFindRelatedContent -->
 
@@ -734,4 +806,116 @@ class Download_banner_widget extends WP_Widget {
 
 /**
  * Download Widget end
+ */
+
+/**
+ * Quote Widget
+ */
+class Quote_widget extends WP_Widget {
+  /* Widget setup */
+  function Quote_widget() {
+    /* Widget settings. */
+    $widget_ops = array(
+      'classname' => 'Quote_widget',
+      'description' => __('Quote widget', 'inm')
+    );
+
+    /* Widget control settings. */
+    $control_ops = array(
+      'id_base' => 'quote_widget'
+    );
+
+    /* Create the widget. */
+    $this->WP_Widget('quote_widget', __('Quote_widget', 'inm'), $widget_ops, $control_ops);
+  }
+
+  /* Display the widget */
+  function widget($args, $instance) {
+    extract($args);
+
+    /* Before widget (defined by themes). */
+    echo $before_widget;
+
+    /* Display the widget title if one was input (before and after defined by themes). */
+    if ($title) {
+      echo $before_title . $title . $after_title;
+    }
+    $quote = get_post_meta ( $GLOBALS['post']->ID, "Quote", true );
+		$qAuthor = get_post_meta ( $GLOBALS['post']->ID, "Quote author", true );
+    ?>
+    <div class="sideQuote">
+			<p class="quoteTxt"><?php echo $quote;?></p>
+			<p class="quoterName"><?php echo $qAuthor;?></p>
+		</div>
+
+    <?php
+    echo $after_widget;
+  }
+}
+/**
+ * Quote Widget End
+ */
+
+/**
+ * Recent challenges Widget
+ */
+class Recent_challenges extends WP_Widget {
+  /* Widget setup */
+  function Recent_challenges() {
+    /* Widget settings. */
+    $widget_ops = array(
+      'classname' => 'Recent_challenges',
+      'description' => __('Recent Challenges', 'inm')
+    );
+
+    /* Widget control settings. */
+    $control_ops = array(
+      'id_base' => 'recent_challenges'
+    );
+
+    /* Create the widget. */
+    $this->WP_Widget('recent_challenges', __('Recent_challenges', 'inm'), $widget_ops, $control_ops);
+  }
+
+  /* Display the widget */
+  function widget($args, $instance) {
+    extract($args);
+
+    /* Before widget (defined by themes). */
+    echo $before_widget;
+    $displayedTitle = "Most Recent Challenges";
+    /* Display the widget title if one was input (before and after defined by themes). */
+    if ($title) {
+      $displayedTitle =  $before_title . $title . $after_title;
+    }
+
+    ?>
+    <div class="sideMostRecentChallenges">
+			<h3><?php echo $displayedTitle; ?></h3>
+			<?php
+				$recentDesign = get_active_contests_ajax('','design',1,1);
+				$recentDesign = $recentDesign->data[0];
+				$recentDev= get_active_contests_ajax('','develop',1,1);
+				$recentDev = $recentDev->data[0];
+				$recentData= get_active_contests_ajax('','data/marathan');
+				$recentData = $recentData->data[0];
+				$chLink =  get_page_link_by_slug('challenge-details');
+			?>
+			<ul>
+				<li><a class="contestName contestType1" href="<?php echo $chLink.$recentDev->challengeId ?>">
+						<i></i><?php echo $recentDev->challengeName ?>
+					</a></li>
+				<li class="alt"><a class="contestName contestType2" href="<?php echo $chLink.$recentDesign->challengeId ?>/?type=design">
+						<i></i><?php echo $recentDesign->challengeName ?>
+					</a></li>
+
+			</ul>
+		</div>
+
+    <?php
+    echo $after_widget;
+  }
+}
+/**
+ * Recent challenges Widget End
  */
