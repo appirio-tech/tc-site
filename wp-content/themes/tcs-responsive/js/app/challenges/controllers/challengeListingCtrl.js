@@ -213,6 +213,13 @@
         if($scope.search.fEDate) {
           search.fEDate = $scope.search.fEDate;
         }
+
+
+
+        if ($scope.search.radioFilterChallenge) {
+          search.challengeType = $scope.search.radioFilterChallenge
+        }
+
         if(plats.length > 0) {
           search.platforms = plats;
         }
