@@ -12,14 +12,14 @@
             field: 'challengeName',
             fieldName: 'Challenges',
             width: 340,
-            visible: contest.challengeCommunity !== 'data'
+            visible: contest.contestType !== 'data'
           },
           {
             field: 'challengeName',
             fieldName: 'Challenges',
             width: 340,
             tplName: 'challengeDataName',
-            visible: contest.challengeCommunity === 'data'
+            visible: contest.contestType === 'data'
           },
           {
             field: 'challengeType',
@@ -32,7 +32,17 @@
             minWidth: 194,
             width: 210,
             maxWidth: 210,
-            tplName: 'timeline'
+            tplName: 'developTimeline',
+            visible: contest.listType !== 'upcoming' && contest.contestType == 'develop'
+          },
+          {
+            field: 'registrationStartDate',
+            fieldName: 'Timeline',
+            minWidth: 194,
+            width: 210,
+            maxWidth: 210,
+            tplName: 'designTimeline',
+            visible: contest.listType !== 'upcoming' && contest.contestType == 'design'
           },
           {
             field: 'registrationStartDate',
@@ -81,7 +91,7 @@
             width: 74,
             minWidth: 74,
             maxWidth: 74,
-            visible: contest.listType !== 'upcoming' && contest.challengeCommunity !== 'data'
+            visible: contest.listType !== 'upcoming' && contest.contestType !== 'data'
           },
           {
             field: 'numRegistrants',
@@ -90,7 +100,7 @@
             minWidth: 74,
             maxWidth: 74,
             tplName: 'dataNumRegistrants',
-            visible: contest.listType !== 'upcoming' && contest.challengeCommunity === 'data'
+            visible: contest.listType !== 'upcoming' && contest.contestType === 'data'
           },
           {
             field: 'numSubmissions',
