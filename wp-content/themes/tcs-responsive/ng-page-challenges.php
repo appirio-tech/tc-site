@@ -96,7 +96,7 @@ get_header(); ?>
             <div class="tableWrap tcoTableWRap dataTable tcoTable challengesGrid" ng-grid="gridOptions"></div>
           </div>
         </div>
-        <div id="gridView2" class="viewTab hide" style="display: block;" ng-show="view == 'grid'" ng-class="{contestAll: contest.contestType == ''}">
+        <div id="gridView2" class="viewTab hide" style="display: block;" ng-if="contest.listType != 'past'" ng-show="view == 'grid'" ng-class="{contestAll: contest.contestType == ''}">
           <div class="alt" id="gridAll" ng-class="{contestGrid: true}">
             <div ng-repeat="challenge in challenges" tc-contest-grid challenge="challenge"></div>
           </div>
