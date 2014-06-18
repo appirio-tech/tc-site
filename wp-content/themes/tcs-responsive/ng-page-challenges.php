@@ -130,21 +130,33 @@ get_header(); ?>
 </div>
 </script>
 
-    <script type="text/ng-template" id="actions.html">
-      <div class="actions">
-        <div class="lt challengeType">
-          <ul>
-            <li><a href="/challenges/{{contest.contestType}}/active/" class="link" ng-class="{active: isActive('active')}">Open Challenges</a></li>
-            <li><a href="/challenges/{{contest.contestType}}/past/" class="link" ng-class="{active: isActive('past')}">Past Challenges</a></li>
-            <li><a href="/challenges/{{contest.contestType}}/upcoming/" class="link" ng-class="{active: isActive('upcoming')}">Upcoming Challenges</a></li>
-            <!-- Coming soon!  <li><a href="http://www.topcoder.com/review-opportunities/develop/" class="link">Review Opportunities</a></li> -->
-          </ul>
-        </div>
-        <div class="rt">
-          <a href="javascript:;" class="searchLink advSearch" ng-show="contest.contestType != ''" ng-click="search.show = !search.show">
-            <i></i>Advanced Search
-          </a>
-        </div>
+<script type="text/ng-template" id="actions.html">
+  <div class="actions">
+    <div class="lt challengeType">
+      <ul>
+        <li><a href="/challenges/{{contest.contestType}}/active/" class="link" ng-class="{active: isActive('active')}">Open Challenges</a></li>
+        <li><a href="/challenges/{{contest.contestType}}/past/" class="link" ng-class="{active: isActive('past')}">Past Challenges</a></li>
+        <li><a href="/challenges/{{contest.contestType}}/upcoming/" class="link" ng-class="{active: isActive('upcoming')}">Upcoming Challenges</a></li>
+        <!-- Coming soon!  <li><a href="http://www.topcoder.com/review-opportunities/develop/" class="link">Review Opportunities</a></li> -->
+      </ul>
+    </div>
+    <div class="rt">
+      <a href="javascript:;" class="searchLink advSearch" ng-show="contest.contestType != ''" ng-click="search.show = !search.show">
+        <i></i>Advanced Search
+      </a>
+    </div>
+  </div>
+</script>
+
+<script type="text/ng-template" id="tooltip.html">
+  <div class="tooltip" >
+    <div class="inner">
+      <header>{{popoverTitle}}{{title}}</header>
+      <div class="data">
+        <p class="contestTy">{{content}}</p>
       </div>
-    </script>
+      <div class="arrow"></div>
+    </div>
+  </div>
+</script>
 <?php get_footer(); ?>

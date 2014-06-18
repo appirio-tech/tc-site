@@ -120,7 +120,7 @@
         restrict: 'EA',
         replace: true,
         scope: { title: '@', content: '@', placement: '@', animation: '&', isOpen: '&' },
-        templateUrl: TemplateService.challengesBase + '/partials/tooltip-tpl.html'
+        templateUrl: 'tooltip.html'
       };
   }]);
 
