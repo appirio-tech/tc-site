@@ -10,7 +10,7 @@
           contest: '=',
           search: '='
         },
-        templateUrl: TemplateService.challengesBase + '/partials/actions.html',
+        templateUrl: 'actions.html',
         controller: function ($scope) {
           var ctrl = this;
 
@@ -120,7 +120,7 @@
         restrict: 'EA',
         replace: true,
         scope: { title: '@', content: '@', placement: '@', animation: '&', isOpen: '&' },
-        templateUrl: TemplateService.challengesBase + '/partials/tooltip-tpl.html'
+        templateUrl: 'tooltip.html'
       };
   }]);
 
