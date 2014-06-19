@@ -854,7 +854,7 @@ $blog_posts = get_posts($blog_posts_args);
       }
       if (empty) return;
       auth0Login.login({
-          connection: 'LDAP',
+          connection: '<?php echo auth0_LDAP(); ?>',
           state: loginState,
           username: document.getElementById('username').value,
           password: document.getElementById('password').value
