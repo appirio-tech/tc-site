@@ -324,6 +324,7 @@
       ]
     },
     "ngChallenges": {
+      "name": "ngChallenges",
       "js": [
         "jquery.cookie.js",
         "jwt-auth0.js",
