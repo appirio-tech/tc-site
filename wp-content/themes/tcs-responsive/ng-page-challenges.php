@@ -78,7 +78,7 @@ get_header(); ?>
               <a class="feedBtn" href="/challenges/feed?list=active&contestType={{contest.contestType}}" title="Subscribe to challenges"></a>
             </span>
           </h1>
-          <aside class="rt" ng-show="contest.listType !== 'past'">
+          <aside class="rt" ng-show="contest.listType !== 'past' && contest.contestType !== 'data'">
             <span class="views">
               <a href="" ng-click="view = 'grid'" class="gridView" ng-class="{isActive: view == 'grid'}"></a>
               <a href="" ng-click="view = 'table'" class="listView" ng-class="{isActive: view == 'table'}"></a>
@@ -88,7 +88,7 @@ get_header(); ?>
 
         <div data-tc-challenges-actions contest="contest" search="search" ng-show="contest.contestType && contest.contestType != ''"></div>
 
-        <div class="searchFilter hide" tc-challenges-search ng-show="search.show" on-submit="submit" contest="contest" search="search" style="display: block;"></div>
+        <div class="searchFilter hide" tc-challenges-search ng-show="search.show" ng-if="contest.contestType !== 'data'" on-submit="submit" contest="contest" search="search" style="display: block;"></div>
 
         <div class="upcomingCaption" ng-show="contest.listType === 'upcoming'">All upcoming challenges may change</div>
         <div ng-show="challenges.length > 0">
@@ -96,7 +96,7 @@ get_header(); ?>
             <div class="tableWrap tcoTableWRap dataTable tcoTable challengesGrid" ng-grid="gridOptions"></div>
           </div>
         </div>
-        <div id="gridView2" class="viewTab hide" style="display: block;" ng-if="contest.listType != 'past'" ng-show="view == 'grid'" ng-class="{contestAll: contest.contestType == ''}">
+        <div id="gridView2" class="viewTab hide" style="display: block;" ng-if="contest.listType != 'past' && contest.contestType !== 'data'" ng-show="view == 'grid'" ng-class="{contestAll: contest.contestType == ''}">
           <div class="alt" id="gridAll" ng-class="{contestGrid: true}">
             <div ng-repeat="challenge in challenges" tc-contest-grid challenge="challenge"></div>
           </div>

@@ -1,6 +1,6 @@
-<div class="colCh">
+<div class="colCh" ng-if="row.getProperty('challengeCommunity') !== 'data'">
     <div>
-        <a href="/challenge-details/{{row.getProperty('challengeId')}}/?type={{row.getProperty('challengeCommunity')}}" class="contestName">
+        <a ng-href="/challenge-details/{{row.getProperty('challengeId')}}/?type={{row.getProperty('challengeCommunity')}}" class="contestName">
             <img alt="allContestIco" class="allContestIco" ng-src="{{images}}/ico-track-{{row.getProperty('challengeCommunity')}}.png">
             <span ng-cell-text>{{row.getProperty(col.field)}}</span>
             <img alt="allContestTCOIco" class="allContestTCOIco" ng-src="{{images}}/tco-flag-{{row.getProperty('challengeCommunity') != 'data'?row.getProperty('challengeCommunity'):'develop'}}.png" ng-if="contest.contestType != 'data'">
