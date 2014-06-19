@@ -32,17 +32,7 @@
             minWidth: 194,
             width: 210,
             maxWidth: 210,
-            tplName: 'developTimeline',
-            visible: contest.listType !== 'upcoming' && contest.contestType == 'develop'
-          },
-          {
-            field: 'registrationStartDate',
-            fieldName: 'Timeline',
-            minWidth: 194,
-            width: 210,
-            maxWidth: 210,
-            tplName: 'designTimeline',
-            visible: contest.listType !== 'upcoming' && contest.contestType == 'design'
+            tplName: 'timeline'
           },
           {
             field: 'registrationStartDate',
