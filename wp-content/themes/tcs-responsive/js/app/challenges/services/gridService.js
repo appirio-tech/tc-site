@@ -3,8 +3,8 @@
   'use strict';
   var challengesService = angular.module('tc.challenges.services');
 
-  challengesService.factory('GridService', ['TemplateService',
-    function (TemplateService) {
+  challengesService.factory('GridService', [
+    function () {
 
       function colums(contest) {
         return [
@@ -133,13 +133,12 @@
       }
 
       function fieldTpl(fieldName) {
-        return TemplateService.partial('tableView/' + fieldName + '.html');
+        return 'tableView/' + fieldName + '.html';
       }
 
       function toDef(fieldDef) {
-        var tplName = fieldDef.tplName || fieldDef.field,
-          visible = typeof fieldDef.visible === 'undefined' ? true : fieldDef.visible,
-          tplUrl = fieldTpl(tplName);
+        var tplName = fieldDef.tplName || fieldDef.field;
+
         return {
           field: fieldDef.field,
           displayName: fieldDef.fieldName,
@@ -147,10 +146,10 @@
           resizable: false,
           enableCellEdit: false,
           pinnable: false,
-          visible: visible,
+          visible: typeof fieldDef.visible === 'undefined' ? true : fieldDef.visible,
           width: fieldDef.width,
           minWidth: fieldDef.minWidth,
-          cellTemplate: tplUrl
+          cellTemplate: fieldTpl(tplName)
         };
       }
 
@@ -163,8 +162,8 @@
       function getGridOptions(definitionsName) {
         return {
           data: 'challenges',
-          headerRowTemplate: TemplateService.partial('tableView/header.html'),
-          rowTemplate: TemplateService.partial('tableView/row.html'),
+          headerRowTemplate: 'tableView/header.html',
+          rowTemplate: 'tableView/row.html',
           headerRowHeight: 43,
           enableHighlighting: true,
           rowHeight: 140,
