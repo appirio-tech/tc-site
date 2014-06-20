@@ -41,5 +41,14 @@ if (function_exists ( 'register_sidebar' )) {
       'before_widget' => '',
       'after_widget' => ''
     ) );
+
+  // generic sidebar
+  register_sidebar ( array (
+      'name' => 'Generic Sidebar',
+      'id' => 'generic_sidebar',
+      'description' => 'Sidebar on Generic Pages',
+      'before_widget' => '',
+      'after_widget' => ''
+    ) );
 }
 
