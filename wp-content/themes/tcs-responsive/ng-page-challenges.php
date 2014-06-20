@@ -414,4 +414,230 @@ get_header(); ?>
   <span ng-cell-text><a href="/challenge-details/{{row.getProperty('challengeId')}}/?type={{row.getProperty('challengeCommunity')}}#viewRegistrant">{{row.getProperty(col.field)}}</a></span>
 </script>
 
+<script type="text/ng-template" id="gridView/all.html">
+  <div class="contest track-ff trackSD type-{{challenge.challengeCommunity}}">
+    <div class="cgCh">
+      <a ng-href="/challenge-details/{{challenge.challengeId}}/?type={{challenge.challengeCommunity}}" class="contestName">
+        <img alt="" class="allContestIco" ng-src="{{images}}/ico-track-{{challenge.challengeCommunity}}.png">
+        <span class="gridChallengName">{{challenge.challengeName}}</span>
+        <img alt="" class="allContestTCOIco" src="{{images}}/tco-flag-{{challenge.challengeCommunity}}.png">
+      </a>
+    </div>
+    <div class="cgTime">
+      <div>
+        <div class="row">
+          <label class="lbl">Start Date</label>
+          <div class="val vStartDate">{{challenge.registrationStartDate | date: dateFormat}}</div>
+        </div>
+        <div class="row" ng-show="challenge.checkpointSubmissionEndDate">
+          <label class="lbl">Round 1 End</label>
+          <div class="val vEndRound">{{challenge.checkpointSubmissionEndDate | date: dateFormat}}</div>
+        </div>
+        <div class="row">
+          <label class="lbl">End Date</label>
+          <div class="val vEndDate">{{challenge.submissionEndDate | date: dateFormat}}</div>
+        </div>
+        <div class="row">
+          <label class="lbl">Current Phase</label>
+          <div class="val vPhase">{{challenge.currentPhaseName}}</div>
+        </div>
+      </div>
+    </div>
+    <div id="{{challenge.challengeId}}" class="technologyTags">
+      <ul>
+        <li ng-repeat="item in challenge.technologies"><span class="techTag"><a href="" ng-click="findByTechnology(item)">{{item}}</a></span></li>
+        <li ng-repeat="item in challenge.platforms"><span class="techTag"><a href="" ng-click="findByPlatform(item)">{{item}}</a></span></li>
+      </ul>
+      <div class="clear"></div>
+    </div>
+    <div class="genInfo">
+      <p class="cgTLeft" data-hasqtip="0" aria-describedby="qtip-0"><i></i><span ng-bind-html="formatTimeLeft(challenge.currentPhaseRemainingTime, true)"></span>
+      </p>
+      <p class="cgPur" data-hasqtip="1" aria-describedby="qtip-1"><i></i> {{challenge.totalPrize | currency}}</p>
+      <p class="cgReg" data-hasqtip="2" aria-describedby="qtip-2"><i></i><a href="/challenge-details/{{challenge.challengeId}}/?type={{challenge.challengeCommunity}}#viewRegistrant">{{challenge.numRegistrants}}</a>
+      </p>
+      <p class="cgSub" data-hasqtip="3" aria-describedby="qtip-3"><i></i>{{challenge.numSubmissions}}</p>
+    </div>
+    <i class="ico trackType"> <span class="tooltipData"><span class="tipT">Contest Type</span><span class="tipC">{{challenge.challengeType}}</span></span></i>
+  </div>
+</script>
+
+<script type="text/ng-template" id="gridView/design-active.html">
+  <div class="contest track-ig trackSD type-design">
+    <div class="cgCh">
+      <a ng-href="/challenge-details/{{challenge.challengeId}}/?type={{challenge.challengeCommunity}}" class="contestName">
+        <img alt="" class="allContestIco" ng-src="{{images}}/ico-track-design.png">
+        <span class="gridChallengName">{{challenge.challengeName}}</span>
+        <img alt="" class="allContestTCOIco" ng-src="{{images}}/tco-flag-design.png">
+      </a>
+    </div>
+    <div class="cgTime">
+      <div>
+        <div class="row">
+          <label class="lbl">Start Date</label>
+          <div class="val vStartDate">{{challenge.registrationStartDate | date: dateFormat}}</div>
+        </div>
+        <div class="row" ng-show="challenge.checkpointSubmissionEndDate">
+          <label class="lbl">Round 1 End</label>
+          <div class="val vEndRound">{{challenge.checkpointSubmissionEndDate | date: dateFormat}}</div>
+        </div>
+        <div class="row">
+          <label class="lbl">End Date</label>
+          <div class="val vEndDate">{{challenge.submissionEndDate | date: dateFormat}}</div>
+        </div>
+        <div class="row">
+          <label class="lbl">Current Phase</label>
+          <div class="val vPhase">{{challenge.currentPhaseName}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="genInfo">
+      <p class="cgTLeft" data-hasqtip="0" aria-describedby="qtip-0"><i></i><span ng-bind-html="formatTimeLeft(challenge.currentPhaseRemainingTime, true)"></span>
+      </p>
+      <p class="cgPur" data-hasqtip="1" aria-describedby="qtip-1"><i></i> {{challenge.totalPrize | currency}}</p>
+      <p class="cgReg" data-hasqtip="2" aria-describedby="qtip-2"><i></i><a href="/challenge-details/{{challenge.challengeId}}/?type={{challenge.challengeCommunity}}#viewRegistrant">{{challenge.numRegistrants}}</a>
+      </p>
+      <p class="cgSub" data-hasqtip="3" aria-describedby="qtip-3"><i></i>{{challenge.numSubmissions}}</p>
+    </div>
+    <i class="ico trackType"> <span class="tooltipData"><span class="tipT">Contest Type</span><span class="tipC">{{challenge.challengeType}}</span></span></i>
+  </div>
+</script>
+
+<script type="text/ng-template" id="gridView/design-upcoming.html">
+  <div class="contest">
+    <div class="cgCh">
+      <a ng-href="/challenge-details/{{challenge.challengeId}}/?type={{challenge.challengeCommunity}}" class="contestName">
+        <img alt="" class="allContestIco" ng-src="{{images}}/ico-track-design.png">
+        <span class="gridChallengName">{{challenge.challengeName}}</span>
+        <img alt="" class="allContestTCOIco" ng-src="{{images}}/tco-flag-design.png">
+      </a>
+    </div>
+    <div class="cgTime">
+      <div>
+        <div class="row">
+          <label class="lbl">Start Date</label>
+          <div class="val vStartDate">{{challenge.registrationStartDate | date: dateFormat}}</div>
+        </div>
+        <div class="row">
+          <label class="lbl">Register by</label>
+          <div class="val vStartDate">{{challenge.registrationEndDate | date: dateFormat}}</div>
+        </div>
+        <div class="row">
+          <label class="lbl">Submit by</label>
+          <div class="val vStartDate">{{challenge.submissionEndDate | date: dateFormat}}</div>
+        </div>
+        <div class="row">
+          <label class="lbl">Current Status</label>
+          <div class="val vStatus">{{challenge.status}}</div>
+        </div>
+        <div class="row">
+          <label class="lbl">Technologies</label>
+          <div class="val vTech" ng-show="challenge.technologies.length == 0 || challenge.technologies[0] == ''">N/A</div>
+          <div class="val vTech" ng-hide="challenge.technologies.length == 0 || challenge.technologies[0] == ''">{{challenge.technologies.join(', ')}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="genInfo gdUpcoming">
+      <p class="cgTLeft" data-hasqtip="0" aria-describedby="qtip-0"><i></i>{{getContestDuration(challenge.registrationStartDate, challenge.submissionEndDate)}}</p>
+      <p class="cgPur" data-hasqtip="1" aria-describedby="qtip-1"><i></i> {{challenge.totalPrize | currency}}</p>
+    </div>
+    <i class="ico trackType"> <span class="tooltipData"><span class="tipT">Contest Type</span><span class="tipC">{{challenge.challengeType}}</span></span></i>
+  </div>
+</script>
+
+<script type="text/ng-template" id="gridView/develop-active.html">
+  <div class="contest track-ff trackSD type-develop">
+    <div class="cgCh">
+      <a ng-href="/challenge-details/{{challenge.challengeId}}/?type={{challenge.challengeCommunity}}" class="contestName">
+        <img alt="" class="allContestIco" ng-src="{{images}}/ico-track-develop.png">
+        <span class="gridChallengName">{{challenge.challengeName}}</span>
+        <img alt="" class="allContestTCOIco" ng-src="{{images}}/tco-flag-develop.png">
+      </a>
+    </div>
+    <div class="cgTime">
+      <div>
+        <div class="row">
+          <label class="lbl">Start Date</label>
+          <div class="val vStartDate">{{challenge.registrationStartDate | date: dateFormat}}</div>
+        </div>
+        <div class="row">
+          <label class="lbl">Register by</label>
+          <div class="val vStartDate">{{challenge.registrationEndDate | date: dateFormat}}</div>
+        </div>
+        <div class="row">
+          <label class="lbl">Submit by</label>
+          <div class="val vStartDate">{{challenge.submissionEndDate | date: dateFormat}}</div>
+        </div>
+        <div class="row">
+          <label class="lbl">Current Phase</label>
+          <div class="val vPhase">{{challenge.currentPhaseName}}</div>
+        </div>
+      </div>
+    </div>
+    <div id="{{challenge.challengeId}}" class="technologyTags">
+      <ul>
+        <li ng-repeat="item in challenge.technologies"><span class="techTag"><a href="}" ng-click="findByTechnology(item)">{{item}}</a></span></li>
+        <li ng-repeat="item in challenge.platforms"><span class="techTag"><a href="" ng-click="findByPlatform(item)">{{item}}</a></span></li>
+      </ul>
+      <div class="clear"></div>
+    </div>
+    <div class="genInfo">
+      <p class="cgTLeft" data-hasqtip="0" aria-describedby="qtip-0"><i></i><span ng-bind-html="formatTimeLeft(challenge.currentPhaseRemainingTime, true)"></span>
+      </p>
+      <p class="cgPur" data-hasqtip="1" aria-describedby="qtip-1"><i></i> {{challenge.totalPrize | currency}}</p>
+      <p class="cgReg" data-hasqtip="2" aria-describedby="qtip-2"><i></i><a href="/challenge-details/{{challenge.challengeId}}/?type={{challenge.challengeCommunity}#viewRegistrant">1</a>
+      </p>
+      <p class="cgSub" data-hasqtip="3" aria-describedby="qtip-3"><i></i>{{challenge.numSubmissions}}</p>
+    </div>
+    <i class="ico trackType"> <span class="tooltipData"><span class="tipT">Contest Type</span><span class="tipC">{{challenge.challengeType}}</span></span></i>
+  </div>
+</script>
+
+<script type="text/ng-template" id="gridView/develop-upcoming.html">
+  <div class="contest">
+    <div class="cgCh">
+      <a ng-href="/challenge-details/{{challenge.challengeId}}/?type={{challenge.challengeCommunity}}" class="contestName">
+        <img alt="" class="allContestIco" ng-src="{{images}}/ico-track-develop.png">
+        <span class="gridChallengName">{{challenge.challengeName}}</span>
+        <img alt="" class="allContestTCOIco" ng-src="{{images}}/tco-flag-develop.png">
+      </a>
+    </div>
+    <div class="cgTime">
+      <div>
+        <div class="row">
+          <label class="lbl">Start Date</label>
+          <div class="val vStartDate">{{challenge.registrationStartDate | date: dateFormat}}</div>
+        </div>
+        <div class="row" ng-show="challenge.checkpointSubmissionEndDate">
+          <label class="lbl">Round 1 End</label>
+          <div class="val vEndRound">{{challenge.checkpointSubmissionEndDate | date: dateFormat}}</div>
+        </div>
+        <div class="row">
+          <label class="lbl">End Date</label>
+          <div class="val vEndDate">{{challenge.submissionEndDate | date: dateFormat}}</div>
+        </div>
+        <div class="row">
+          <label class="lbl">Current Status</label>
+          <div class="val vStatus">{{challenge.status}}</div>
+        </div>
+        <div class="row">
+          <label class="lbl">Technologies</label>
+          <div id="{{challenge.challengeId}}" class="technologyTags">
+            <ul>
+              <li ng-repeat="item in challenge.technologies"><span class="techTag"><a href="" ng-click="findByTechnology(item)">{{item}}</a></span></li>
+              <li ng-repeat="item in challenge.platforms"><span class="techTag"><a href="" ng-click="findByPlatform(item)">{{item}}</a></span></li>
+            </ul>
+            <div class="clear"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="genInfo gdUpcoming">
+      <p class="cgTLeft" data-hasqtip="0" aria-describedby="qtip-0"><i></i>{{getContestDuration(challenge.registrationStartDate, challenge.submissionEndDate)}}</p>
+      <p class="cgPur" data-hasqtip="1" aria-describedby="qtip-1"><i></i> {{challenge.totalPrize | currency}}</p>
+    </div>
+    <i class="ico trackType"> <span class="tooltipData"><span class="tipT">Contest Type</span><span class="tipC">{{challenge.challengeType}}</span></span></i>
+  </div>
+</script>
+
 <?php get_footer(); ?>

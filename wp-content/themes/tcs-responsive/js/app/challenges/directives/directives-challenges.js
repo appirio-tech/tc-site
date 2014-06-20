@@ -36,37 +36,9 @@
         link: function (scope, element, attrs) {
           scope.getContentUrl = function () {
             if (!scope.contest.contestType || scope.contest.contestType === '') {
-              return TemplateService.challengesBase + '/partials/gridView/all.html';
+              return 'gridView/all.html';
             } else {
-              return TemplateService.challengesBase + '/partials/gridView/' + scope.contest.contestType + '-' + scope.contest.listType + '.html';
-            }
-          };
-
-        },
-        template: '<div ng-include="getContentUrl()"></div>',
-        //templateUrl: TemplateService.challengesBase + '/partials/gridView/all.html',
-        controller: function ($scope) {
-          $scope.formatTimeLeft = TemplateService.formatTimeLeft;
-          $scope.images = TemplateService.image('');
-          $scope.getContestDuration = TemplateService.getContestDuration;
-        }
-      };
-    }]);
-  directivesModule.directive('tcContestGrid', ['TemplateService',
-                                               function (TemplateService) {
-      return {
-        restrict: 'A',
-        replace: true,
-        scope: {
-          search: '=',
-          submit: '&'
-        },
-        link: function (scope, element, attrs) {
-          scope.getContentUrl = function () {
-            if (!scope.contest.contestType || scope.contest.contestType === '') {
-              return TemplateService.challengesBase + '/partials/gridView/all.html';
-            } else {
-              return TemplateService.challengesBase + '/partials/gridView/' + scope.contest.contestType + '-' + scope.contest.listType + '.html';
+              return 'gridView/' + scope.contest.contestType + '-' + scope.contest.listType + '.html';
             }
           };
 
