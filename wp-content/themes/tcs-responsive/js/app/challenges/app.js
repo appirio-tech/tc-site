@@ -5,7 +5,7 @@ window.tc = angular.module('tc', [
   'tc.challenges',
   'tc.challenges.services',
   'tc.challenges.directives',
-		'tc.AdvancedSearch',
+  'tc.AdvancedSearch',
   'angular-loading-bar',
   'ngGrid',
   'ui.select2'
