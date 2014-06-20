@@ -18,10 +18,10 @@
       function parseFilters() {
         // Set filters from url
         if($routeParams.startDate) {
-          $scope.filter.startDate = new Date($routeParams.startDate);
+          $scope.filter.startDate = moment($routeParams.startDate).toDate();
         }
         if($routeParams.endDate) {
-          $scope.filter.endDate = new Date($routeParams.endDate);
+          $scope.filter.endDate = moment($routeParams.endDate).toDate();
         }
         if (Array.isArray($routeParams.technologies)) {
           $scope.filter.technologies = $routeParams.technologies;
