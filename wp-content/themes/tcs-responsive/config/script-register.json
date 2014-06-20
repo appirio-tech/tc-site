@@ -355,6 +355,7 @@
         "app/challenges/controllers/challengeListingCtrl.js",
         "app/challenges/lib/ui-bootstrap-tpls-0.11.0.min.js",
         "app/challenges/directives/directives-challenges.js",
+								"app/challenges/directives/advanced-search-challenges.js",
         "app/challenges/filters/filters-challenges.js",
         "app/challenges/services/challengeService.js",
         "app/challenges/services/templateService.js",
