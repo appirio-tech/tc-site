@@ -86,9 +86,15 @@ get_header(); ?>
           </aside>
         </header>
 
-        <div data-tc-challenges-actions contest="contest" search="search" ng-show="contest.contestType && contest.contestType != ''"></div>
+        <div data-tc-challenges-actions contest="contest" show-filters="showFilters" ng-show="contest.contestType && contest.contestType != ''"></div>
 
-        <div class="searchFilter hide" tc-challenges-search ng-show="search.show" ng-if="contest.contestType !== 'data'" on-submit="submit" contest="contest" search="search" style="display: block;"></div>
+        <div  advanced-search
+              apply-filter="searchSubmit"
+              technologies="technologies"
+              platforms="platforms"
+              challenge-community="contest.contestType"
+              show-on="showFilters"
+              filter="filter"></div>
 
         <div class="upcomingCaption" ng-show="contest.listType === 'upcoming'">All upcoming challenges may change</div>
         <div ng-show="challenges.length > 0">
@@ -141,7 +147,7 @@ get_header(); ?>
       </ul>
     </div>
     <div class="rt">
-      <a href="javascript:;" class="searchLink advSearch" ng-show="contest.contestType != ''" ng-click="search.show = !search.show">
+      <a href="javascript:;" class="searchLink advSearch" ng-show="contest.contestType != ''" ng-click="showFilters = !showFilters">
         <i></i>Advanced Search
       </a>
     </div>
@@ -156,6 +162,72 @@ get_header(); ?>
         <p class="contestTy">{{content}}</p>
       </div>
       <div class="arrow"></div>
+    </div>
+  </div>
+</script>
+<script type="text/ng-template" id="advanced-search.html">
+    <div class="searchFilter hide">
+    <div class="filterOpts">
+      <section class="types" ng-if="challengeCommunity !== 'data'">
+        <h5>Contest types:</h5>
+        <div class="data">
+          <ul class="list">
+            <li ng-repeat="type in contestTypes">
+              <input type="radio" id="f{{type}}" name="radioFilterChallenge" ng-class="{all: type === 'All'}" value="{{type}}" ng-model="filterOptions.challengeType">
+              <label for="f{{type}}"><strong>{{type}}</strong>
+        </label>
+        </li>
+        </ul>
+        </div>
+        </section>
+      <section class="otherOpts">
+        <ul>
+          <li class="date row">
+            <div class="lbl">
+              <input type="checkbox" id="fSDate" ng-model="chbFrom" />
+              <label for="fSDate"><strong>Submission End From:</strong>
+        </label>
+        </div>
+            <div class="val">
+              <span class="datePickerWrap">
+                <input ng-disabled="!chbFrom" id="startDate" type="text" class="datepicker from" calendar-icon="<?php  echo get_stylesheet_directory_uri(); ?>/i/ico-cal.png" value="{{filterOptions.startDate | date: 'yyyy-MM-dd'}}" />
+        </span>
+        </div>
+        </li>
+          <li class="date row">
+            <div class="lbl">
+              <input type="checkbox" id="fEDate" ng-model="chbTo" />
+              <label ng-disabled="!chbTo" for="fEDate"><strong>Submission End To:</strong>
+        </label>
+        </div>
+
+            <div class="val">
+              <span class="datePickerWrap">
+                <input id="endDate"  type="text" class="datepicker to" calendar-icon="<?php  echo get_stylesheet_directory_uri(); ?>/i/ico-cal.png" value="{{filterOptions.endDate | date: 'yyyy-MM-dd'}}"/>
+        </span>
+        </div>
+        </li>
+        </ul>
+        </section>
+      <section class="tags" ng-if="challengeCommunity === 'develop' && (technologies.length > 0 || platforms.length > 0)">
+        <h5>Technology and Platforms:</h5>
+        <div class="data">
+          <select ui-select2="{allowClear:true, multiple: true}" data-placeholder="" class="chosen-select hasCustomSelect"  ng-model="filterOptions.tags" multiple>
+            <optgroup label="Platforms">
+              <option ng-repeat="plat in platforms track by $index" value="plat.{{plat}}">{{plat}}</option>
+        </optgroup>
+            <optgroup label="Technologies">
+              <option ng-repeat="tech in technologies track by $index" value="tech.{{tech}}">{{tech}}</option>
+        </optgroup>
+        </select>
+        </div>
+        </section>
+      <div class="clear"></div>
+        </div>
+    <!-- /.filterOpts -->
+    <div class="actions">
+      <a ng-click="closeForm()" class="btn btnSecondary btnClose">Close</a>
+      <a ng-click="applyFilter()" class="btn btnApply">Apply</a>
     </div>
   </div>
 </script>

@@ -8,7 +8,7 @@
         restrict: 'A',
         scope: {
           contest: '=',
-          search: '='
+          showFilters: '='
         },
         templateUrl: 'actions.html',
         controller: function ($scope) {

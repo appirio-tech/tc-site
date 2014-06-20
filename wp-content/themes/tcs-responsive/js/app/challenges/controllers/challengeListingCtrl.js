@@ -2,8 +2,8 @@
 (function (angular) {
   'use strict';
   var challengesModule = angular.module('tc.challenges');
-  challengesModule.controller('ChallengeListingCtrl', ['$scope', '$routeParams', '$location', '$cookies', 'ChallengesService', 'ChallengeDataService', 'DataService', '$window', 'TemplateService', 'GridService', 'cfpLoadingBar',
-    function ($scope, $routeParams, $location, $cookies, ChallengesService, ChallengeDataService, DataService, $window, TemplateService, GridService, cfpLoadingBar) {
+  challengesModule.controller('ChallengeListingCtrl', ['$scope', '$routeParams', '$filter', '$location', '$cookies', 'ChallengesService', 'ChallengeDataService', 'DataService', '$window', 'TemplateService', 'GridService', 'cfpLoadingBar',
+    function ($scope, $routeParams, $filter, $location, $cookies, ChallengesService, ChallengeDataService, DataService, $window, TemplateService, GridService, cfpLoadingBar) {
 
       function startLoading() {
         cfpLoadingBar.start();
@@ -15,8 +15,66 @@
         $scope.loading = false;
       }
 
+      function parseFilters() {
+        // Set filters from url
+        if($routeParams.startDate) {
+          $scope.filter.startDate = new Date($routeParams.startDate);
+        }
+        if($routeParams.endDate) {
+          $scope.filter.endDate = new Date($routeParams.endDate);
+        }
+        if (Array.isArray($routeParams.technologies)) {
+          $scope.filter.technologies = $routeParams.technologies;
+        } else if (typeof $routeParams.technologies === 'string') {
+          $scope.filter.technologies = [$routeParams.technologies];
+        }
+
+        if (Array.isArray($routeParams.platforms)) {
+          $scope.filter.platforms = $routeParams.platforms;
+        } else if (typeof $routeParams.platforms === 'string') {
+          $scope.filter.platforms = [$routeParams.platforms];
+        }
+      }
+      
+      function filterChallenges() {
+        $scope.filteredChallenges = $scope.allChallenges.filter(function (contest) {
+          if (   $scope.filter.challengeType
+              && $scope.filter.challengeType !== ''
+              && $scope.filter.challengeType.toLowerCase() !== 'all'
+              && $scope.filter.challengeType !== contest.challengeType) {
+            return false;
+          }
+          var subEndDate = $filter('date')(new Date(contest.submissionEndDate), 'yyyyMMdd');
+          if ($scope.filter.startDate && subEndDate < $filter('date')($scope.filter.startDate, 'yyyyMMdd')) {
+            return false;
+          }
+          if ($scope.filter.endDate && subEndDate > $filter('date')($scope.filter.endDate, 'yyyyMMdd')) {
+            return false;
+          }
+          if ($scope.filter.technologies && $scope.filter.technologies.length > 0 &&  _.intersection(contest.technologies, $scope.filter.technologies).length === 0) {
+            return false;
+          }
+          if ($scope.filter.platforms && $scope.filter.platforms.length > 0 &&  _.intersection(contest.platforms, $scope.filter.platforms).length === 0) {
+            return false;
+          }
+          return true;
+        });
+
+        $scope.challenges = $scope.setPagingData($scope.filteredChallenges, $scope.page, $scope.pageSize);
+        $scope.showFilters = false;
+      }
+
       $scope.loading = true;
       startLoading();
+
+      $scope.filter = {
+        challengeType: $routeParams.challengeType || 'All',
+        technologies: [],
+        platforms: [],
+        startDate: null,
+        endDate: null
+      };
+      parseFilters();
 
       //console.log('routes', $routeParam);
       $scope.allChallenges = [];
@@ -50,44 +108,12 @@
       $scope.images = $window.wordpressConfig.stylesheetDirectoryUri + '/i/';
       $scope.definitions = GridService.definitions($scope.contest);
       $scope.gridOptions = GridService.gridOptions('definitions');
-      $scope.search = {
-        radioFilterChallenge: $routeParams.challengeType || 'all',
-        show: false,
-        allPlatforms: [],
-        allTechnologies: [],
-        technologies: []
-      };
+      $scope.showFilters = false;
+      $scope.technologies = [];
+      $scope.platforms = [];
       $scope.pageSize = 10;
       $scope.page = 1;
       $scope.currentPageSize = $scope.pageSize;
-      $scope.pageHeight = function() {
-        if ($scope.view == 'table') {
-          return $scope.challenges.length * $scope.gridOptions.rowHeight + "400px";
-        }
-        return 'auto';
-      };
-      // Set filters from url
-      $scope.search.fSDate = $routeParams.fSDate;
-      $scope.search.fEDate = $routeParams.fEDate;
-      if (Array.isArray($routeParams.technologies)) {
-        $scope.search.technologies = $scope.search.technologies.concat($routeParams.technologies.map(function (item) {
-          return 'tech.' + item;
-        }));
-      } else if (typeof $routeParams.technologies === 'string') {
-        $scope.search.technologies = $scope.search.technologies.concat($routeParams.technologies.split(',').map(function (item) {
-          return 'tech.' + item;
-        }));
-      }
-
-      if (Array.isArray($routeParams.platforms)) {
-        $scope.search.technologies = $scope.search.technologies.concat($routeParams.platforms.map(function (item) {
-          return 'plat.' + item;
-        }));
-      } else if (typeof $routeParams.platforms === 'string') {
-        $scope.search.technologies = $scope.search.technologies.concat($routeParams.platforms.split(',').map(function (item) {
-          return 'plat.' + item;
-        }));
-      }
 
       $scope.setPagingData = function (data, page, pageSize) {
         var pagedData = data.slice((page - 1) * pageSize, page * pageSize);
@@ -130,7 +156,7 @@
               });
 
               $scope.allChallenges = challenges;
-              $scope.challenges = $scope.setPagingData($scope.allChallenges, $scope.page, $scope.pageSize);
+              filterChallenges();
             },
             function () {
               $scope.challenges = [];
@@ -149,93 +175,45 @@
 
       }
 
-      function getTechnologies() {
-        return $scope.search.technologies.filter(function (item) {
-          return item.indexOf('tech.') === 0;
-        }).map(function (item) {
-          return item.substring(5);
-        });
-      }
-
-      function getPlaforms() {
-        return $scope.search.technologies.filter(function (item) {
-          return item.indexOf('plat.') === 0;
-        }).map(function (item) {
-          return item.substring(5);
-        });
-      }
-
-      function filterChallenges() {
-        $scope.filteredChallenges = $scope.allChallenges.filter(function (contest) {
-          if ($scope.search.radioFilterChallenge !== 'all' && $scope.search.radioFilterChallenge !== contest.challengeType) {
-            return false;
-          }
-          if ($scope.search.fSDate && contest.submissionEndDate < $scope.search.fSDate) {
-            return false;
-          }
-          if ($scope.search.fEDate && contest.submissionEndDate > $scope.search.fEDate) {
-            return false;
-          }
-          if ($scope.search.technologies.length > 0) {
-            var plats = getPlaforms();
-            var techs = getTechnologies();
-            if (plats.length > 0 && _.intersection(contest.platforms, plats).length === 0) {
-              return false;
-            }
-            if (techs.length > 0 && _.intersection(contest.technologies, techs).length === 0) {
-              return false;
-            }
-          }
-          return true;
-        });
-
-        $scope.challenges = $scope.setPagingData($scope.filteredChallenges, $scope.page, $scope.pageSize);
-        $scope.search.show = false;
-      }
-
       $scope.findByTechnology = function (tech) {
-        $scope.search.technologies = ['tech.' + tech];
-        $scope.submit();
+        $scope.submit({technologies: [tech]});
       };
 
       $scope.findByPlatform = function (plat) {
-        scope.search.technologies = ['plat.' + plat];
-        $scope.submit();
+        $scope.submit({platforms: [plat]});
       };
 
-      $scope.submit = function () {
-        var plats = getPlaforms();
-        var techs = getTechnologies();
+      $scope.searchSubmit = function(options) {
         var search = {};
-        if($scope.search.fSDate) {
-          search.fSDate = $scope.search.fSDate;
+        if(options.startDate) {
+          search.startDate = $filter('date')(options.startDate, 'yyyy-MM-dd');
         }
-        if($scope.search.fEDate) {
-          search.fEDate = $scope.search.fEDate;
-        }
-
-        if ($scope.search.radioFilterChallenge) {
-          search.challengeType = $scope.search.radioFilterChallenge
+        if(options.endDate) {
+          search.endDate = $filter('date')(options.endDate, 'yyyy-MM-dd');
         }
 
-        if(plats.length > 0) {
-          search.platforms = plats;
+        if(options.technologies && options.technologies.length > 0) {
+          search.technologies = options.technologies;
         }
-        if(techs.length > 0) {
-          search.technologies = techs;
+
+        if(options.platforms && options.platforms.length > 0) {
+          search.platforms = options.platforms;
+        }
+        if(options.challengeType && options.challengeType.toLowerCase() !== 'all' && options.challengeType !== '') {
+          search.challengeType = options.challengeType;
         }
         $location.search(search);
       };
 
       DataService.one('technologies').get().then(function (data) {
         if (data) {
-          $scope.search.allTechnologies = data.technologies;
+          $scope.technologies = data.technologies;
         }
       });
       
       DataService.one('platforms').get().then(function(data) {
         if(data) {
-          $scope.search.allPlatforms = data.platforms;
+          $scope.platforms = data.platforms;
         }
       });
 
