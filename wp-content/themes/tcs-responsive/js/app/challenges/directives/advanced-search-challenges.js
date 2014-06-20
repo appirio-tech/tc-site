@@ -1,7 +1,7 @@
 /*global angular: true, _: true */
 (function (angular) {
+  'use strict';
   angular.module('tc.AdvancedSearch', ['ui.bootstrap']).directive('advancedSearch', ['$compile', function($compile) {
-    'use strict';
     var developTypes = [
       'All',
       'Component Development',
