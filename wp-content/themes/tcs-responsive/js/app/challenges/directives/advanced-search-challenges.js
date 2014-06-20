@@ -145,7 +145,7 @@ angular.module('tc.AdvancedSearch', ['ui.bootstrap']).directive('advancedSearch'
 
           onSelect: function(selectedDate) {
             $datepickerTo.datepicker("option", "minDate", selectedDate);
-            $scope.filterOptions.startDate = new Date(Date.parse(selectedDate));
+            $scope.filterOptions.startDate = moment(selectedDate).toDate();;
             $scope.$apply();
           }
         });
@@ -157,7 +157,7 @@ angular.module('tc.AdvancedSearch', ['ui.bootstrap']).directive('advancedSearch'
           dateFormat: 'yy-mm-dd',
           onSelect: function(selectedDate) {
             $datepickerFrom.datepicker("option", "maxDate", selectedDate);
-            $scope.filterOptions.endDate = new Date(Date.parse(selectedDate));
+            $scope.filterOptions.endDate = moment(selectedDate).toDate();
             $scope.$apply();
           }
         });
