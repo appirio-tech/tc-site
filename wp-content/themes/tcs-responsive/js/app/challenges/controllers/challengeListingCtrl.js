@@ -91,10 +91,14 @@
         data: 'Data Science Challenges'
       };
 
-      if ($routeParams.view) {
-        $scope.view = $routeParams.view;
-      } else if ($cookies.tcChallengesView) {
-        $scope.view = $cookies.tcChallengesView;
+      if ($scope.contest.listType !== 'past' && $scope.contest.contestType !== 'data') {
+        if ($routeParams.view) {
+          $scope.view = $routeParams.view;
+        } else if ($cookies.tcChallengesView) {
+          $scope.view = $cookies.tcChallengesView;
+        } else {
+          $scope.view = 'table';
+        }
       } else {
         $scope.view = 'table';
       }
@@ -175,7 +179,7 @@
       }
 
       $scope.findByTechnology = function (tech) {
-        $scope.submit({technologies: [tech]});
+        $scope.searchSubmit({technologies: [tech]});
       };
 
       $scope.findByPlatform = function (plat) {
