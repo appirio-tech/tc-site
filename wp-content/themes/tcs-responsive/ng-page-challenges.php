@@ -576,7 +576,7 @@ get_header(); ?>
     </div>
     <div id="{{challenge.challengeId}}" class="technologyTags">
       <ul>
-        <li ng-repeat="item in challenge.technologies"><span class="techTag"><a href="}" ng-click="findByTechnology(item)">{{item}}</a></span></li>
+        <li ng-repeat="item in challenge.technologies"><span class="techTag"><a href="" ng-click="findByTechnology(item)">{{item}}</a></span></li>
         <li ng-repeat="item in challenge.platforms"><span class="techTag"><a href="" ng-click="findByPlatform(item)">{{item}}</a></span></li>
       </ul>
       <div class="clear"></div>
