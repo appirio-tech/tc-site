@@ -80,38 +80,6 @@
         }
       };
     }]);
-  directivesModule.directive('tcChallengesSearch', ['TemplateService',
-                                               function (TemplateService) {
-      return {
-        restrict: 'A',
-        replace: false,
-        scope: {
-          search: '=',
-          submit: '&onSubmit',
-          contest: '='
-        },
-        link: function (scope, element, attrs) {
-          scope.getContentUrl = function () {
-            if (scope.contest.contestType && scope.contest.contestType === 'design') {
-              return TemplateService.challengesBase + '/partials/search-design.html';
-            } else {
-              return TemplateService.challengesBase + '/partials/search-develop.html';
-            }
-          };
-          scope.images = TemplateService.image('');
-          scope.submit = scope.$parent.submit;
-
-        },
-        template: '<div ng-include="getContentUrl()"></div>'
-        //templateUrl: TemplateService.challengesBase + '/partials/gridView/all.html',
-        /*controller: function ($scope) {
-          $scope.images = TemplateService.image('');
-          $scope.submit = function() {
-            console.log('submit2');
-          }
-        }*/
-      };
-    }]);
 
   directivesModule.directive( 'challengePopoverPopup', ['TemplateService', '$compile',
     function (TemplateService, $compile) {

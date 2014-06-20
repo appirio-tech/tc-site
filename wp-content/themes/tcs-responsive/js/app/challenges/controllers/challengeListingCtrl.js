@@ -64,7 +64,6 @@
         $scope.showFilters = false;
       }
 
-      $scope.loading = true;
       startLoading();
 
       $scope.filter = {

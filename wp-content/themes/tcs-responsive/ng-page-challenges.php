@@ -165,6 +165,7 @@ get_header(); ?>
     </div>
   </div>
 </script>
+
 <script type="text/ng-template" id="advanced-search.html">
     <div class="searchFilter hide">
     <div class="filterOpts">
