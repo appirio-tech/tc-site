@@ -313,7 +313,7 @@ get_header(); ?>
 </script>
 
 <script type="text/ng-template" id="tableView/isPrivate.html">
-  <span class="colAccessLevel" ng-class="{public: !row.getProperty(col.field)}"><i></i></span>
+  <span class="colAccessLevel"><i ng-show="row.getProperty('submissionsViewable')=='true'"></i></span>
 </script>
 
 <script type="text/ng-template" id="tableView/numRegistrants.html">
