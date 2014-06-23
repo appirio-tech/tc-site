@@ -383,7 +383,7 @@ include locate_template('header-challenge-landing.php');
         <th class="regDateColumn">
           <div>Registration Date</div>
         </th>
-        <th class="subDateColumn">
+        <th class="subDateColumn" colspan="2">
           <div>Submission Date</div>
         </th>
       </tr>
@@ -403,6 +403,10 @@ include locate_template('header-challenge-landing.php');
         </td>
         <td class="regDateColumn" ng-bind="formatDate(registrant.registrationDate)"></td>
         <td class="subDateColumn" ng-bind="formatDate(registrant.lastSubmissionDate)"></td>
+        <!--bugfix refactored-challenge-details-68: added missing icons -->
+        <td>
+          <i class="{{registrant.submissionStatus === 'Active' ? 'successIcon' : registrant.submissionStatus !== '' ? 'failureIcon' : ''}}"></i>
+        </td>
       </tr>
       </tbody>
     </table>
