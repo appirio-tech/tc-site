@@ -481,7 +481,6 @@
 }
     .layChallenges .actions .lt{
         float: none;
-    
         text-align: center;
         line-height: 42px;
         border-bottom: 1px solid #e7e7e7;
@@ -731,7 +730,11 @@
 }   
 #gridView{
     display: block !important;
-} 
+}
+#gridView2{
+    display: block !important;
+    margin-top: -25px;
+}
 /* contest gird view */
 .contestGrid{
     display: block;
