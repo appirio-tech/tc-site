@@ -19,7 +19,7 @@ $nav = array(
 <div id="wrapper" class="tcssoUsingJS">
   <nav class="sidebarNav mainNav onMobi">
     <ul class="root"><?php wp_nav_menu($nav); ?>
-      <li class="notLogged"><a href="javascript:;" class="btnRegister"><i></i>REGISTER</a></li>
+      <li class="notLogged"><a href="javascript:;" class="btnRegister"><i></i>Sign Up</a></li>
       <li class="userLi isLogged">
         <div class="userInfo">
           <div class="userPic">

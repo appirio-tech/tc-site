@@ -1,6 +1,6 @@
 /*Page Logo*/
 #navigation .container h1.logo{
-    background: url(../i/logo-small.png) 0 0 no-repeat;
+    background: url(../i/logo.png) 0 0 no-repeat;
 }
 /*Menu Workaround for < ie9 */
 .opaque {
@@ -378,4 +378,12 @@ form span.valid {
 	margin-left: 14px;
 	vertical-align: middle;
 	color: #7abd00;
+}
+
+@media screen and (max-width: 1019px) {
+    #navigation .container h1.logo{
+        background: url(../i/logo.png) 0 0 no-repeat;
+        width: 150px;
+        background-size: 100%;
+    }
 }
