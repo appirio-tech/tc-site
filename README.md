@@ -4,7 +4,7 @@
 
 Try to keep php functions in a purposeful location in side the lib/ directory.
 
-All php templat should call get_header();  If using a custom header be sure that header includes main herder at the to
+All php templates should call get_header();  If using a custom header be sure that header includes main herder at the to
 of the template file using the following code.  See header-challenge.php for an example.
 
     <?php
@@ -98,13 +98,13 @@ These are the formating rules our code should follow.
 
 ### AngularJS ###
 
-* There is a sample AngularJS integration with Wordpress on the [angular_service branch](https://github.com/topcoderinc/tc-site/tree/angular_service).
-    * Look at the page template page_angular_example (https://github.com/topcoderinc/tc-site/blob/angular_service/wp-content/themes/tcs-responsive/page-angular-example.php) for integration into Wordpress page template.
+* There is a sample AngularJS integration with Wordpress on the [angular_service branch](https://gitlab.com/topcoderinc/tc-site/tree/angular_service).
+    * Look at the page template page_angular_example (https://gitlab.com/topcoderinc/tc-site/blob/angular_service/wp-content/themes/tcs-responsive/page-angular-example.php) for integration into Wordpress page template.
 
 Here are some general rules to follow
 * General AngularJS development guidelines can be found on the [AngularJS website](https://docs.angularjs.org/guide)
-* root angular directory at tcs-responsive/js/app (https://github.com/topcoderinc/tc-site/tree/angular_service/wp-content/themes/tcs-responsive/js/app)
-Main application file: app.js (https://github.com/topcoderinc/tc-site/blob/angular_service/wp-content/themes/tcs-responsive/js/app/app.js)
+* root angular directory at tcs-responsive/js/app (https://gitlab.com/topcoderinc/tc-site/tree/angular_service/wp-content/themes/tcs-responsive/js/app)
+Main application file: app.js (https://gitlab.com/topcoderinc/tc-site/blob/angular_service/wp-content/themes/tcs-responsive/js/app/app.js)
     * Global level configuration
     * Setup main tc application
 * Organize code into logical directories
@@ -112,8 +112,8 @@ Main application file: app.js (https://github.com/topcoderinc/tc-site/blob/angul
     * Create new folders as needed (i.e members)
 * Separate code into correct folders by type (controllers, services, filters, directives)
 * Use directives or templates to hold all html, preferable templates.
-* Controllers should be implemented by using the controller function on the main app object (the tc variable).  (https://github.com/topcoderinc/tc-site/blob/angular_service/wp-content/themes/tcs-responsive/js/app/challenges/controllers/challengeListingCtrl.js#L3)
-* Services, filters and directives should all be their own modules (https://github.com/topcoderinc/tc-site/blob/angular_service/wp-content/themes/tcs-responsive/js/app/challenges/services/challengeService.js#L3)
+* Controllers should be implemented by using the controller function on the main app object (the tc variable).  (https://gitlab.com/topcoderinc/tc-site/blob/angular_service/wp-content/themes/tcs-responsive/js/app/challenges/controllers/challengeListingCtrl.js#L3)
+* Services, filters and directives should all be their own modules (https://gitlab.com/topcoderinc/tc-site/blob/angular_service/wp-content/themes/tcs-responsive/js/app/challenges/services/challengeService.js#L3)
 * Services should use Restangular (https://github.com/mgonto/restangular)
 * Tables should use ngGrid: http://angular-ui.github.io/ng-grid/
 * DO NOT MANIPULATE THE DOM WITH JQUERY.  See the [Development Guide](https://docs.angularjs.org/guide/directive) for an example directive which manipulates the DOM.
@@ -136,7 +136,7 @@ of the repo. A branch for a given feature takes the name format `<developer name
 This branch should be off of the tc-site `dev` branch. When you are done committing your changes to this branch,
 submit a pull request against our dev branch.
 
-Every Friday (sometimes postponed until Sunday), the `dev` branch gets pushed to our QA server at
+Every Friday (sometimes postponed until Sunday), the `master` branch gets pushed to our QA server at
 [http://tcqa1.topcoder.com](http://tcqa1.topcoder.com). If you need to make changes to your code that is
 already in QA, you will need to do a pull against the most recent release branch, which will look like
 `TC-<date>`. The branch you use for these changes should have the same format as usual, but something like
@@ -164,8 +164,8 @@ to fit your style.
 
 **Working on a challenge**
 
-1. Clone the repository. `git clone https://github.com/topcoderinc/tc-site.git dev`
-    * If you already have a repository setup, be sure to pull down the latest changes: `git pull origin dev`
+1. Clone the repository. `git clone https://gitlab.com/topcoderinc/tc-site.git dev`
+    * If you already have a repository setup, be sure to pull down the latest changes: `git pull origin master`
 1. Create a new branch: `git checkout -b <branch_name>`
 1. Make your changes, add new files, etc.
 1. Make commits as you go on your branch
@@ -174,15 +174,15 @@ to fit your style.
 **Submitting a patch to a challenge**
 
 1. Pull down the latest code: `git fetch origin`
-1. Merge in the latest changes from dev branch: `git merge dev`
-1. Create a patch against the dev branch:  `git diff dev > patchn_ame.patch`
+1. Merge in the latest changes from the master branch: `git merge master`
+1. Create a patch against the master branch:  `git diff master > patchn_ame.patch`
 1. Submit the patch to the challenge
 
 **Creating a pull request for for final approval**
 
-1. Create a fork of the project on GitHub if you haven't already. https://github.com/topcoderinc/tc-site
+1. Create a fork of the project on Gitlab if you haven't already. https://gitlab.com/topcoderinc/tc-site
 1. Add the new remote to your local git repo.  `git remote add <remote_name> <remote_url>` for example
-`git remote add mine git@github.com:indytechcook/tc-site.git`.
+`git remote add mine git@gitlab.com:indytechcook/tc-site.git`.
 1. Make sure all of the code is committed to the branch you were working on above.
 1. Verify code is ready to be pushed by running `git status`
 1. Push code to remote repository. `git push <remote_name> <branch_name>`
@@ -192,7 +192,8 @@ to fit your style.
 
 More Git help can be found on several places online including the following:
 
-* https://help.github.com/
 * http://www.git-scm.com/book
+* https://about.gitlab.com/getting-help/
+* https://help.github.com/
 
 If you prefer to use a GUI, I recommend using SourceTree.  SourceTree is available on Mac and Windows.  http://www.sourcetreeapp.com/
