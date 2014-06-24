@@ -1666,7 +1666,7 @@ var app = {
     } else {
       var uid = tcsso.split('|')[0];
       if (uid) {
-        $.getJSON("http://community.topcoder.com/tc?module=BasicData&c=get_handle_by_id&dsid=30&uid=" + uid + "&json=true", function(data) {
+        $.getJSON(communityURL + '/tc?module=BasicData&c=get_handle_by_id&dsid=30&uid=" + uid + "&json=true", function(data) {
           callback(data['data'][0]['handle']);
         });
       }
