@@ -68,7 +68,7 @@ if (isset($_GET['auth']) && $_GET['auth'] == 'logout') {
 
     var tcApiRUL = '<?php echo TC_API_URL; ?>';
     var siteURL = '<?php bloginfo('siteurl');?>';
-    var communityURL = '<?php community_URL(); ?>';
+    var communityURL = '<?php echo community_URL(); ?>';
     var base_url = '<?php bloginfo( 'stylesheet_directory' ); ?>';
     var stylesheet_dir = '<?php echo THEME_URL . '/css'; ?>';
     var autoRegister = '<?php echo get_query_var('autoRegister'); ?>';
