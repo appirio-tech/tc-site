@@ -354,7 +354,7 @@ select {
     display: none;
 }
 
-.dataTable td.colAccessLevel i {
+.dataTable span.colAccessLevel i {
     height: 20px;
     width: 20px;
     background: url(../i/ico-access-lvl.png) no-repeat;
@@ -362,8 +362,12 @@ select {
     display: inline-block;
 }
 
-.dataTable td.private i {
+.dataTable span.private i {
+    height: 20px;
+    width: 20px;
+    background: url(../i/ico-access-lvl.png) no-repeat;
     background-position: 0 -30px;
+    display: inline-block;
 }
 
 /* tco table */
