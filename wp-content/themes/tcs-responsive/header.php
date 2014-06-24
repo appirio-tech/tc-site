@@ -108,7 +108,7 @@ $nav = array(
         </div>
       </div>
       <a class="onMobi noReg linkLogin actionLogin" href="javascript:;">Log In</a>
-      <span class="btnRegWrap noReg"><a href="javascript:;" class="btn btnRegister">Register</a> </span>
+      <span class="btnRegWrap noReg"><a href="javascript:;" class="btn btnRegister">Sign Up</a> </span>
 
 
       <!-- /.userWidget -->
