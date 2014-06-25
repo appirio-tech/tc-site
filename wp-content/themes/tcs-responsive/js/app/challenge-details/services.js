@@ -79,8 +79,18 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', '$cookies', f
 
       challenge.registrants.map(function(x) {
         x.lastSubmissionDate = submissionMap[x.handle];
+        //initialize submissionStatus on all registrants
+        x.submissionStatus = '';
       });
-
+      //bugfix: refactored-challenge-details-68: copy submissionStatus here for all registered users last submissions into registrants object for easy access
+      challenge.registrants.map(function(x) {
+        challenge.submissions.map(function(y) {
+          if (x.handle == y.handle && x.lastSubmissionDate == y.submissionDate) {
+            x.submissionStatus = y.submissionStatus;
+          }
+        });
+      });
+      
       if (challenge.allowStockArt) {
         challenge.allowStockArt = challenge.allowStockArt == 'true';
       }
