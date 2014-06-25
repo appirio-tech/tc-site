@@ -119,7 +119,9 @@ backgorund modal
     left: 0;
     background: transparent url(../i/bg-modal.png) repeat;
     display: none;
-    z-index: 999;
+	/* Issue ID: I-113951 - Set to the higher value than the footer
+	so the modal dialog won't cut off when the page contains only small content */
+    z-index: 100001;
 }
 /*
 common
@@ -129,7 +131,9 @@ common
     position: fixed;
     left: 50%;
     top: 50%;
-    z-index: 1000;
+	/* Issue ID: I-113951 - Set to the higher value than the footer
+	so the modal dialog won't cut off when the page contains only small content */
+    z-index: 100002;
     width: 950px;
     border: rgba(0,0,0,0.2) solid 10px;
     border-radius: 10px;
