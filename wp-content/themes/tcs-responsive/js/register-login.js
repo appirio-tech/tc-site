@@ -326,6 +326,10 @@ $(function () {
       $(this).closest('.row').find('span.err2').hide();
     } else {
       $(this).parents(".row").find("span.valid").hide();
+
+	  // Issue ID: I-111588 - Show invalid error message when checkbox is not checked
+	  $(this).closest('.row').find('.err1').show();
+	  $(this).addClass('invalid');
     }
   });
 
@@ -352,6 +356,10 @@ $(function () {
       $(this).closest('.row').find('.customSelect').removeClass('invalid');
     } else {
       $(this).parents(".row").find("span.valid").hide();
+
+  	  // Issue ID: I-111588 - Show invalid error message when value is empty after being changed
+	  $(this).closest('.row').find('.err1').show();
+	  $(this).closest('.row').find('.customSelect').addClass('invalid');
     }
   });
 
