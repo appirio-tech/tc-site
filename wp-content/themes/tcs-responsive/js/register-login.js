@@ -40,7 +40,8 @@ $(function () {
   /* validation */
 
   function isValidEmailAddress(emailAddress) {
-    var pattern = new RegExp("(^[\\+_A-Za-z0-9-]+(\\.[\\+_A-Za-z0-9-]+)*@.+(\\.[A-Za-z]{2,}$))");
+    // Issue ID: I-109386 - Change regular expression pattern for better validation on domain name (no space allowed)
+    var pattern = new RegExp("(^[\\+_A-Za-z0-9-]+(\\.[\\+_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,}$))");
     return pattern.test(emailAddress);
   }
 
