@@ -754,6 +754,10 @@ function closeModal() {
   if (window.location.hash.match('access_token')) {
     window.history.pushState({}, 'Home', '/');
   }
+  
+  // Issue ID: I-111638 - reset login fields
+  resetLoginFields();
+  
   loginState = window.location.href;
   $('#registerForm span.socialUnavailableErrorMessage').hide();
 }
@@ -774,3 +778,9 @@ function resetRegisterFields() {
   $('.socialUnavailableErrorMessage').hide();
 }
 
+// Issue ID: I-111638 - Resets the login popup fields
+function resetLoginFields() {
+  $("#loginForm input[type='text'], #registerForm input[type='password']").val("");
+  $('#loginForm .invalid').removeClass('invalid');
+  $('#loginForm .err1,.err3,.err4').hide();
+}
