@@ -73,9 +73,12 @@ $(document).ready(function () {
 
 	}
 	
-	$('.password').on('keyup', function () {
-		$("#formChangePassword .password").parent().find('.error').hide();
-		$("#formChangePassword .confirm").parent().find('.error').hide();
+	/* Issue ID: I-115910 - Add validation on the time of entering password */
+	$('#formChangePassword input.password:password').on('keyup', function () {
+        var input = $(this);
+
+        $(this).closest('.row').find('.err1,.err2,.err3,.err4,.err5').hide();
+        $(this).removeClass('invalid');
 		
 		var strength = pwdStrength($(this).val());
 
@@ -86,9 +89,6 @@ $(document).ready(function () {
 		if (strength >= 3) {
 		  classname = "green";
 		  $(this).parents(".row").find("span.valid").css("display", "inline-block");
-		  $(this).closest('.row').find('input:text').removeClass('invalid');
-		  $(this).closest('.row').find('span.err1').hide();
-		  $(this).closest('.row').find('span.err2').hide();
 		} else {
 		  $(this).parents(".row").find("span.valid").hide();
 		}
@@ -98,8 +98,39 @@ $(document).ready(function () {
 			$(e).addClass(classname);
 		  }
 		});
+
+		 if (strength == 0) {
+            if ($.trim(input.val()) === input.val()) {
+                input.closest('.row').find('.err1').show();
+            } else {
+                input.closest('.row').find('.err5').show();
+            }
+            input.addClass('invalid');
+        } else if (strength >= 0 && strength < 3) {
+            input.closest('.row').find('.err2').show();
+            input.addClass('invalid');
+        } else if (strength == -4) {
+            input.closest('.row').find('.err3').show();
+            input.addClass('invalid');
+        } else if (strength < -1) {
+            input.closest('.row').find('.err4').show();
+            input.addClass('invalid');
+        }	
 	});
 	
+	/* Issue ID: I-115910 - Add matching validation on the time of entering confirmation password */
+    $('#formChangePassword input.confirm:password').on('keyup', function () {
+        var input = $(this);
+        input.removeClass('invalid');
+        input.closest('.row').find('.err1,.err2').hide();
+        if (input.val() == "") {
+            input.closest('.row').find('.err1').show();
+            input.addClass('invalid');
+        } else if (input.val() != $('#formChangePassword input.password:password').val()) {
+            input.closest('.row').find('.err2').show();
+            input.addClass('invalid');
+        }
+    });
 });
 
 

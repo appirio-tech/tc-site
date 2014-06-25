@@ -76,7 +76,9 @@ if( $updatePassword=="true" ) {
 										<input class="password" type="password" maxlength="40" name="password" placeholder="New Password:" size="50" />
 										<span class="err1 error" style="display: none;">Required field</span>
 										<span class="err2 error" style="display: none;">Password strength is weak</span>
+										<span class="err3 error" style="display: none;">Password cannot contain an apostrophe</span>
 										<span class="err4 error" style="display: none;">Password must be between 7 and 30 characters</span>
+										<span class="err5 error" style="display: none;">Password must not contain only spaces</span>
 										<span class="valid" style="display: none;">Strong</span>
 									</div>
 									<p class="row info lSpace">
