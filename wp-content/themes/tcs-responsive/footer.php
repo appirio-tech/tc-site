@@ -781,6 +781,9 @@ $blog_posts = get_posts($blog_posts_args);
       $('#register form.register input.handle:text').trigger('keyup');
       $('#register form.register input.handle:text').trigger('blur');
       $('#register form.register input:checkbox').trigger('change');
+
+	  // Issue ID: I-111588 - Trigger the change event on select so the validation can be performed
+	  $('#register form.register #selCountry').trigger('change');
       $('#register input:password').on('keyup');
       $('select').on('change');
 
