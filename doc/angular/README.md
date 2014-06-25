@@ -1,5 +1,7 @@
-# Namespacing
+# Modules and Namespacing
 
+- You should wrap every file in an anonymous function so as not to pollute
+  the global namespace
 - Everything should be namespaced off of the root application `tc`
 - Every application should create separate modules for its controllers,
   services, directives, filters, etc.

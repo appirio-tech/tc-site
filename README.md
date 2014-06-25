@@ -52,6 +52,9 @@ The json object has two major properties:  packages and templates.
 __packages__:  These are groups of files that work together
 __templates__:  An list of Wordpress templates that do now use the "default" package.
 
+Note that when creating a new package, it is *crucial* that it have a name
+field. Not to have one can break the build.
+
 #### Example: ####
 
 __Loading home page__:
