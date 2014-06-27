@@ -1,8 +1,26 @@
 # Topcoder.com Wordpress site #
 
+## Overview
+
+The [topcoder] site is has several crucial components. The first is Wordpress.
+Not only is all content managed through Wordpress, but all new pages are created
+through Wordpress and our PHP templates utilize the Wordpress platform in many
+ways. The second is the [Topcoder API](http://github.com/topcoderinc/tc-api). Much of our front-end development happens
+independent of the API, but we are ultimately dependent on the API as our access
+point to our data model. Some of this access happens on the backend, in PHP, but
+we are increasingly moving to the frontend. This brings me to the last piece,
+and the one that will increasingly be the most important one for development in
+this repo. Our legacy code is mostly jQuery, but we are in the process of
+rewriting many of our core pages in Angular. In the process, we are moving
+templating and routing from the PHP/Wordpress side to the frontend (and
+Angular).
+
+Below, we explain some of the nuts and bolts to help new developers get
+up-and-running.
+
 ## File Organization ##
 
-Try to keep php functions in a purposeful location in side the lib/ directory.
+Try to keep php functions in a purposeful location inside the lib/ directory.
 
 All php templates should call get_header();  If using a custom header be sure that header includes main herder at the to
 of the template file using the following code.  See header-challenge.php for an example.
@@ -12,72 +30,91 @@ of the template file using the following code.  See header-challenge.php for an 
     ?>
 
 Please be aware of duplicate code.  The use of templates is a key aspect of Wordpress.  Please see
-http://codex.wordpress.org/Function_Reference/get_template_part for more information.
+(http://codex.wordpress.org/Function_Reference/get_template_part) for more information.
 
 ## Javascript and CSS ##
 
-Please keep javascript and css out of the php template files.  All javascript should be contained in a javascript file.
-Feel free to have as many files as needed for code organization as files are concatenated and minified on production.
+There should be no Javascript or CSS in PHP template files; that is, all
+Javascript and CSS should be in separate (and appropriately placed) `*.js` and
+`*.css` files. The only acceptable time to include Javascript in a PHP template
+is to pull data into a Javascript variable from PHP. You can break up Javascript
+and CSS into as many files as is useful for organization without impacting
+performance, since we minify and concatenate all our Javascript and CSS files in
+production (that said, all your JS (especially Angular code) should be
+minification-safe).
 
-The only accept js inside of a php template is assigning javascript variable form a php variable.
+...that said, we should probably teach you how to
 
-### Adding new Javascript and CSS files ###
+## add new JS and CSS files ##
 
-Any new javascript of CSS files must be registered in the file config/script-register.json or it will not be included on the
-page or when minified.
+Our JS and CSS files are concatenated and minified by [Grunt](http://gruntjs.com), which is
+configured in `Gruntfile.js` in the root of this repo. The `grunt` process pulls
+in the file `wp-content/themes/tcs-responsive/config/script-register.json` to
+determine which files are to be concatenated and minified, as well as what
+templates they are to be loaded on.
 
-### Minification and CDN ###
+Each end-product of minification and concatenation is called a "package". Each
+package has three properties: `name`, which is a *required* string that should
+match the name of the package (i.e., the name of the property used to reference
+the package); `js`, which is an array of strings referenced relative to
+`wp-content/themes/tcs-responsive/js`; and `css`, which is an array referenced 
+relative to `wp-content/themes/tcs-responsive/css`. After the "packages"
+section, there is also a "templates" section that gives a mapping of package
+names to PHP templates. This determines which packages will be loaded for which
+templates.
 
-There are new theme options to control JS/CSS optimisations.  The options can be found at /wp-admin/themes.php?page=options.php
-
-* __Use CDN__:  This will change the base url for JS and CSS files to the url entered in the "CDN Base URL" setting.
-  If CDN is being used it's assumed that JS/CSS is also minified.
-
-  **Path**: "{$base_path}/{version}/{$type}/{$asset_name}.min.{$type}";
-
-* __Use Minified JS/CSS__:  This will use the minified version of the CSS and JS which is assumed to be under the dist
-  folder.  Minification can be used without the CDN.  It's assumed you are using the grunt file in this repo to build
-  the CSS/JS minification which put the files in the dist folder.
-
-Files are minified using the included grunt file.  Our build scripts minified and send teh files to CloudFront CDN.
-
-### Script and Style Registry ###
-
-The script and style register is a json file which includes all the scripts and styles to be included on any page.
-The registry allows us to have different groups of js and css files included with different templates.  Any new js
-or css file must be included in the registry.
-
-The json object has two major properties:  packages and templates.
-
-__packages__:  These are groups of files that work together
-__templates__:  An list of Wordpress templates that do now use the "default" package.
-
-Note that when creating a new package, it is *crucial* that it have a name
-field. Not to have one can break the build.
+While there is much JS and CSS that is more or less site-wide, you should
+determine what CSS and JS your package uses and exclude everything else so as to
+ensure optimal performance.
 
 #### Example: ####
 
 __Loading home page__:
 
 1. Template used: front.php
-2. The script loader will look at the script register and see that front.php is not included the template object.
-3. The script loader will use the default package to load the js and css.
-4. If minifized, then load the file which corresponds to the package name, otherwise load all files in the array.
+2. The script loader will look at script-register.js and see that front.php is not included the "templates" object.
+3. Since this page is not in the "templates" object, the page will default to
+   using the "default" JS/CSS package. If minification is being used, this means
+   `default.min.js` and `default.min.css` will be used; otherwise, all the files
+   listed will be loaded individually.
 
-For more information see lib/scripts.php
+For more information see `lib/scripts.php`
+
+### Minification and the CDN ###
+
+There are new theme options to control JS/CSS optimizations.
+The options can be found at `/wp-admin/themes.php?page=options.php`.
+
+* __Use CDN__:  This will change the base url for JS and CSS files to the url entered in the "CDN Base URL" setting.
+  If CDN is being used it's assumed that JS/CSS is also minified.
+
+  **Path**: "{$base_path}/{version}/{$type}/{$asset_name}.min.{$type}";
+
+* __Use Minified JS/CSS__: If "Use CDN" is unchecked, this will attempt to use
+  minified JS and CSS which is assumed to be in the folder
+  `wp-content/themes/tcs-responsive/dist`. To build into this folder, simply run
+  the `grunt` command with no arguments, and then move the files in `dist/js`
+  and `dist/css` into the main `dist` folder. This Grunt script is also
+  responsible for minifying and sending to CloudFront when the CDN is used.
+
 
 ## Local Env Setup ##
 
 When working on the site locally there are a few setup steps.
 
-* The domain must be *.topcoder.com.
+* The domain must be `*.topcoder.com`.
 * Your local webserver must be using port 80.
-* Add a env.php file to the wpcontent/themes/tc-responsive/config directory.  See below for what to put in this file.
-* The data export is kept at https://github.com/topcoderinc/tc-site-data.  These are updated weekly upon releases to production.
+* The data export is kept at https://github.com/topcoderinc/tc-site-data.
+  These are updated weekly upon releases to production.
+  You can import this data in the site's WP dashboard.
+* Add a env.php file to the `wp-content/themes/tcs-responsive/config` directory.
+  See below for what to put in this file.
+
 ## Environmental Variables ##
 
-There is the ability to set variables or settings per environment.  Just add a file called "env.php" in the
-theme's config directory.  I recommend added the following lines for local development.
+If you would like to set environment-specific variables or settings, add a file
+called `env.php` in the `wp-content/themes/tcs-responsive/config` directory.
+We recommend the following lines for purposes of local development.
 
     <?php
     define("WP_SITEURL", "http://local.topcoder.com");
