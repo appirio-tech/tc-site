@@ -2584,7 +2584,7 @@ hr.light {
             margin-bottom: 40px;
         }
             .landing-page .track-boxes .box .text {
-                margin: 5px 60px;
+                margin: 15px 60px 5px;
                 text-align: center;
             }
                 .landing-page .track-boxes .box a{
@@ -2630,11 +2630,15 @@ hr.light {
         padding-top: 20px;
         text-align: center;
     }
-.challenges .box p a {
-    text-decoration: none;
-    color: #3f4242;
-    font-size: 26px;
+
+.challenges .box p {
+	margin: 16px 0;	
 }
+	.challenges .box p a {
+		text-decoration: none;
+		color: #3f4242;
+		font-size: 26px;
+	}
 
 .compete-win {
     height: 332px;
