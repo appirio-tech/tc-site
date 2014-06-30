@@ -133,59 +133,45 @@ We recommend the following lines for purposes of local development.
 These are the formating rules our code should follow.
 
 * Javascript
-    * 2 spaces for indention
-    * Otherwise follow the google standard:  http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
+    * 2 spaces for indention and *no tabs*.
+    * Otherwise follow
+    [Google's guidelines](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml).
 
 ### AngularJS ###
 
-* There is a sample AngularJS integration with Wordpress on the [angular_service branch](https://gitlab.com/topcoderinc/tc-site/tree/angular_service).
-    * Look at the page template page_angular_example (https://gitlab.com/topcoderinc/tc-site/blob/angular_service/wp-content/themes/tcs-responsive/page-angular-example.php) for integration into Wordpress page template.
+* There is a sample AngularJS integration with Wordpress on the
+  [angular_service branch](https://gitlab.com/topcoderinc/tc-site/tree/angular_service).
+* Look at the page template page_angular_example
+    (https://gitlab.com/topcoderinc/tc-site/blob/angular_service/wp-content/themes/tcs-responsive/page-angular-example.php)
+  for integration into Wordpress page template.
+* Before you do any Angular development, you should look at our [detailed
+  Angular
+  guidelines](https://gitlab.com/topcoderinc/tc-site/tree/master/doc/angular/).
 
-Here are some general rules to follow
-* General AngularJS development guidelines can be found on the [AngularJS website](https://docs.angularjs.org/guide)
-* root angular directory at tcs-responsive/js/app (https://gitlab.com/topcoderinc/tc-site/tree/angular_service/wp-content/themes/tcs-responsive/js/app)
-Main application file: app.js (https://gitlab.com/topcoderinc/tc-site/blob/angular_service/wp-content/themes/tcs-responsive/js/app/app.js)
-    * Global level configuration
-    * Setup main tc application
-* Organize code into logical directories
-    * All challenge related code should be under the challenges folder
-    * Create new folders as needed (i.e members)
-* Separate code into correct folders by type (controllers, services, filters, directives)
-* Use directives or templates to hold all html, preferable templates.
-* Controllers should be implemented by using the controller function on the main app object (the tc variable).  (https://gitlab.com/topcoderinc/tc-site/blob/angular_service/wp-content/themes/tcs-responsive/js/app/challenges/controllers/challengeListingCtrl.js#L3)
-* Services, filters and directives should all be their own modules (https://gitlab.com/topcoderinc/tc-site/blob/angular_service/wp-content/themes/tcs-responsive/js/app/challenges/services/challengeService.js#L3)
-* Services should use Restangular (https://github.com/mgonto/restangular)
-* Tables should use ngGrid: http://angular-ui.github.io/ng-grid/
-* DO NOT MANIPULATE THE DOM WITH JQUERY.  See the [Development Guide](https://docs.angularjs.org/guide/directive) for an example directive which manipulates the DOM.
-* The use of external libraries is encourged but they must be approved before use.
-* Use the Angular Loading Bar while the page is being loaded (http://chieffancypants.github.io/angular-loading-bar/)
-
-## Approved AngularJS libraries
-
-* ui-router for Routing: https://github.com/angular-ui/ui-router
-* ng-grid for talbes: http://angular-ui.github.io/ng-grid/
-* Restangular: https://github.com/mgonto/restangular
-* Angular Loading Bar: http://chieffancypants.github.io/angular-loading-bar/
-
-## GIT Information ##
+## Git Information ##
 
 ### Branch Model ###
 
-To contribute to this repository, you must follow our branch model – *even if* you're contributing from a fork
-of the repo. A branch for a given feature takes the name format `<developer name>-<issue or feature ID>-<description>`.
-This branch should be off of the tc-site `dev` branch. When you are done committing your changes to this branch,
-submit a pull request against our dev branch.
+To contribute to this repository, you must follow our branch model – *even if*
+you're contributing from a fork of the repo. A branch for a given feature
+takes the name format `<developer name>-<issue or feature ID>-<description>`.
+Branches should be off of the tc-site `master` branch. When you are done with
+your changes to this branch, you should submit a merge request against our
+master branch.
 
 Every Friday (sometimes postponed until Sunday), the `master` branch gets pushed to our QA server at
 [http://tcqa1.topcoder.com](http://tcqa1.topcoder.com). If you need to make changes to your code that is
 already in QA, you will need to do a pull against the most recent release branch, which will look like
-`TC-<date>`. The branch you use for these changes should have the same format as usual, but something like
+`TC-<date>` (where `<date>` is the date of this coming Thursday – when our releases happen). The branch
+you use for these changes should have the same format as usual, but something like
 `-fix` should be appended to the end.
 
 ### Challenge Submission and Review ###
 
-Registrants in a challenge should work off GIT.  Challenge submissions should be in the form of a git patch.  We will
-follow the [https://drupal.org](Drupal) methodology for patches.  This description of a patch was taken from drupal.org
+Registrants in a challenge should submit their work in Git as merge requests.
+Challenge submissions should be in the form of a git patch.  We will
+follow the [https://drupal.org](Drupal) methodology for patches.  This
+description of a patch was taken from drupal.org:
 
 > Patches are pieces of code that solve an existing issue. In fact, patches describe the changes between a before and
 after state of either a module or core. By applying the patch the issue should no longer exist.
@@ -199,16 +185,16 @@ __Final Submissions should be in the form of a pull request.  See the section on
 
 ### Recommend Workflow for Working on a Challenge ###
 
-These are some workflows to help you get starting with Git.  Once you become more familiar, you can modify the workflow
-to fit your style.
+These are some recommended workflows to help you get started with Git.  Once
+you become more familiar with Git, you can modify the workflow to fit your style.
 
 **Working on a challenge**
 
-1. Clone the repository. `git clone https://gitlab.com/topcoderinc/tc-site.git dev`
+1. Clone the repository. `git clone https://gitlab.com/topcoderinc/tc-site.git`
     * If you already have a repository setup, be sure to pull down the latest changes: `git pull origin master`
 1. Create a new branch: `git checkout -b <branch_name>`
 1. Make your changes, add new files, etc.
-1. Make commits as you go on your branch
+1. Commit changes as you make them with descriptive commit messages
 1. If you create new files be sure to add them to git first `git add <file name>`
 
 **Submitting a patch to a challenge**
@@ -220,13 +206,13 @@ to fit your style.
 
 **Creating a pull request for for final approval**
 
-1. Create a fork of the project on Gitlab if you haven't already. https://gitlab.com/topcoderinc/tc-site
+1. Create a fork of the project on Gitlab if you haven't already.
 1. Add the new remote to your local git repo.  `git remote add <remote_name> <remote_url>` for example
 `git remote add mine git@gitlab.com:indytechcook/tc-site.git`.
 1. Make sure all of the code is committed to the branch you were working on above.
 1. Verify code is ready to be pushed by running `git status`
 1. Push code to remote repository. `git push <remote_name> <branch_name>`
-1. Create a pull request from your branch against the dev branch on the main repository.
+1. Create a pull request from your branch against the master branch on the main repository.
 
 **More Git help**
 
