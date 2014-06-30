@@ -2584,12 +2584,11 @@ hr.light {
             margin-bottom: 40px;
         }
             .landing-page .track-boxes .box .text {
-                margin: 15px 60px 5px;
+                margin: 15px 0 5px;
                 text-align: center;
             }
                 .landing-page .track-boxes .box a{
-                    color: #0071bc;
-                    font-size: 15px;
+                    font-size: 17px;
                 }
                     .landing-page .track-boxes .box a:hover{
                         text-decoration: none;
@@ -2702,7 +2701,10 @@ hr.light {
         margin-bottom: 20px;
         padding: 0;
     }
-
+	
+	.bottom-nav .box .follow-us{
+		margin: 5px 0 16px;
+	}
     .bottom-nav .box a.social{
        margin-left: 8px;
         }
