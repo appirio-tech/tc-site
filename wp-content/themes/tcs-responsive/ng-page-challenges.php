@@ -27,7 +27,7 @@ get_header(); ?>
   </script>
 
   <div data-ng-app="tc" class="content">
-  <div id="main" data-ng-controller="ChallengeListingCtrl">
+  <div id="main">
       <div ng-view>
         <div id="hero">
           <div class="container grid grid-float">
