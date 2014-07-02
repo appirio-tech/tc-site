@@ -795,3 +795,27 @@ Thanks modal
 .not-a-member {
     margin-left: 100px;
 }
+/* login and register page */
+.mainStream #login{
+    max-width: 850px;
+    margin: 0 auto;
+}
+.mainStream #register{
+    max-width: 950px;
+    margin: 0 auto;
+}
+.mainStream #login h2, .mainStream #register h2{
+    border-bottom: 1px solid #e7e7e7;
+    margin: 20px 0;
+}
+.mainStream #login .not-a-member {
+    margin-left: 0;
+}
+@media (max-width: 1019px) {
+    .mainStream #login .lSpace{
+        float: none;
+    }
+    .mainStream #login #loginForm .signin-db{
+        margin: 0 auto 20px auto;
+    }
+}

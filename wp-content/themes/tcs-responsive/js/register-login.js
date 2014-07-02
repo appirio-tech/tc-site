@@ -18,12 +18,14 @@ $(function () {
   });
 
   $('.btnRegister').on('click', function () {
+    if ($('.mainStream #register').length>0) return;
     //document.getElementById("registerForm").reset();
     showModal('#register');
 
   });
 
   $('.actionLogin').on('click', function () {
+    if ($('.mainStream #login').length>0) return;
     document.getElementById("loginForm").reset();
     $('#loginForm .btnSubmit').html('Login');
     $(".pwd, .confirm, .strength").parents(".row").show();
