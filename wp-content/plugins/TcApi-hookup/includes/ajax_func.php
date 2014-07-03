@@ -294,11 +294,14 @@ function get_top_rank( $userKey = '', $contestType = 'Algorithm' )
 
     switch ($contestType) {
         case "develop":
-            $url = TC_API_URL . "/develop/statistics/tops/development?rankType=rank";
+            $url = TC_API_URL . "/users/tops/develop?pageSize=10";
             break;
         case "data":
             $url = TC_API_URL . "/data/srm/statistics/tops";
             break;
+		case "design":
+            $url = TC_API_URL . "/users/tops/design?pageSize=10";
+            break;	
 
     }
 
