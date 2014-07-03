@@ -139,7 +139,7 @@ class Tops_Rank_Widget extends WP_Widget {
 				<tr>
 					<th class="colRank">#</th>
 					<th class="colHandle">Handle</th>
-					<th>Rating</th>
+					<th># of Wins</th>
 				</tr>
 			</thead>
 			<?php
