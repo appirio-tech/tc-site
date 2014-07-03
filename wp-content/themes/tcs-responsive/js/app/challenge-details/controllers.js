@@ -158,9 +158,11 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
         //console.log($scope.finalScoreSum);
         $scope.winningSubmissions = [];
         for (var i = 0; i < $scope.submissions.length; i++) {
-          if (challenge.prize[i]) $scope.winningSubmissions.push($scope.submissions[i]);
+          if (challenge.prize[i] && $scope.submissions[i].submissionStatus != 'Failed Review') $scope.winningSubmissions.push($scope.submissions[i]);
           else break;
         }
+        if ($scope.winningSubmissions.length == 0) $scope.firstPlaceSubmission = false;
+        if ($scope.winningSubmissions.length < 2) $scope.secondPlaceSubmission = false;
       });
     } else {
       $scope.submissions = false;
