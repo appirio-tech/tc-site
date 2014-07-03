@@ -139,14 +139,22 @@ class Tops_Rank_Widget extends WP_Widget {
 				<tr>
 					<th class="colRank">#</th>
 					<th class="colHandle">Handle</th>
-					<th>Rating</th>
+					<th># of Wins</th>
 				</tr>
 			</thead>
-			<tbody>
-			<tr>
-					<td colspan="3">Coming Soon</td>
+			<?php
+			$arrTopRank = get_top_rank($userkey,"design");
+			$arrRank = $arrTopRank->data;
+			if ($arrRank != null)
+			foreach ( $arrRank as $row ) :
+				$handleLink = get_bloginfo ( "siteurl" ) . "/member-profile/" . $row->handle . "/design/";
+				?>
+				<tr>
+					<td><?php echo $row->rank;?></td>
+					<td class="colHandle"><a href="<?php echo $handleLink;?>" class="coderText<?php echo $row->color;?>"><?php echo $row->handle;?></a></td>
+					<td><?php echo $row->rating;?></td>
 				</tr>
-			</tbody>
+			<?php endforeach; ?>
 		</table>
 	</div>
 	<div id="software" class="tableWrap tab">
@@ -164,7 +172,7 @@ class Tops_Rank_Widget extends WP_Widget {
 			$arrRank = $arrTopRank->data;
 			if ($arrRank != null)
 			foreach ( $arrRank as $row ) :
-				$handleLink = get_bloginfo ( "siteurl" ) . "/member-profile/" . $row->handle;
+				$handleLink = get_bloginfo ( "siteurl" ) . "/member-profile/" . $row->handle . "/develop/";
 				?>
 				<tr>
 					<td><?php echo $row->rank;?></td>
