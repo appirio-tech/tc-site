@@ -52,7 +52,8 @@
         "jqtransform.css",
         "challenge-submit.css",
         "password-recovery.css",
-        "challenge-tags.css"
+        "challenge-tags.css",
+        "style-getting-started.css"
       ]
     },
     "challengelanding": {
