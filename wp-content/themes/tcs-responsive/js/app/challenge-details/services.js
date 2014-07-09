@@ -78,7 +78,6 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', '$cookies', f
       });
 
       challenge.registrants.map(function(x) {
-        x.lastSubmissionDate = submissionMap[x.handle];
         //initialize submissionStatus on all registrants
         x.submissionStatus = '';
       });
