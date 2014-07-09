@@ -682,9 +682,7 @@ $blog_posts = get_posts($blog_posts_args);
 
     loginState = "<?php echo $stateLogin; ?>";
 
-    var referer =  document.referrer;
-	
-	
+    var referer =  document.referrer;		
 
     if (loginState == 'none') {
       loginState = window.location.href;
@@ -714,8 +712,6 @@ $blog_posts = get_posts($blog_posts_args);
       }
 	  
     }
-		
-	console.log(loginState);
 		
     var auth0Login = new Auth0({
       domain: 'topcoder.auth0.com',
