@@ -83,9 +83,10 @@ include locate_template('header-challenge-landing.php');
     < ?php endif; ?>
     -->
     <!--<li ng-if="isDesign && inSubmission"><span class="inactive">Submissions</span></li>-->
+    <!-- @FIXME commenting out until submission are available for design
     <li ng-show="isDesign && !inSubmission"><a href="#submissions" class="link">Submissions</a></li>
     <li ng-show="isDesign && (inSubmission || inScreening || inReview)"><span class="inactive">Results</span></li>
-    <li ng-show="isDesign && !(inSubmission || inScreening || inReview)"><a href="#winner" class="link">Results</a></li>
+    <li ng-show="isDesign && !(inSubmission || inScreening || inReview)"><a href="#winner" class="link">Results</a></li>-->
   </ul>
 </nav>
 <nav class="tabNav firstTabNav designFirstTabNav mobile hide">
