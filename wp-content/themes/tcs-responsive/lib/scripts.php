@@ -265,7 +265,8 @@ function tc_setup_angular() {
   wp_enqueue_style('ng-grid');
 
   // ng-cookies
-  wp_register_script('ng-cookies', '//code.angularjs.org/1.2.15/angular-cookies.min.js', array('angularjs'), null, true);
+  //wp_register_script('ng-cookies', '//code.angularjs.org/1.2.15/angular-cookies.min.js', array('angularjs'), null, true);
+  wp_register_script('ng-cookies', '//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular-cookies.min.js', array('angularjs'), null, true);
   wp_enqueue_script('ng-cookies');
 
 }
