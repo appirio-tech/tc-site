@@ -24,34 +24,33 @@
         }
       };
     }]);
-  directivesModule.directive('tcContestGrid', ['TemplateService',
-    function (TemplateService) {
-      return {
-        restrict: 'A',
-        replace: true,
-        /*scope: {
-          challenge: '=',
-          contest: '='
-        },*/
-        link: function (scope, element, attrs) {
-          scope.getContentUrl = function () {
-            if (!scope.contest.contestType || scope.contest.contestType === '') {
-              return 'gridView/all.html';
-            } else {
-              return 'gridView/' + scope.contest.contestType + '-' + scope.contest.listType + '.html';
-            }
-          };
 
-        },
-        template: '<div ng-include="getContentUrl()"></div>',
-        //templateUrl: TemplateService.challengesBase + '/partials/gridView/all.html',
-        controller: function ($scope) {
-          $scope.formatTimeLeft = TemplateService.formatTimeLeft;
-          $scope.images = TemplateService.image('');
-          $scope.getContestDuration = TemplateService.getContestDuration;
-        }
-      };
-    }]);
+  // removed 'tcContestGrid' and replaced it with this: tcContestGridReact for react implementation
+  // also removed templates used by 'tcContestGrid' in favor of 'challenge-grid-view-compiled.js' which contains the template for react
+  directivesModule.directive('tcContestGridReact', ['$filter', 'TemplateService',
+  function ($filter, TemplateService) {
+    return {
+      restrict: 'A',
+      link: function (scope, element, attrs) {
+        scope.$watch('challenges', function(newValue, oldValue){
+            if(scope.challenges.length){
+              React.renderComponent(
+                  window.ChallengeGridAll({scope: scope}),
+                  element[0]
+              );
+          }else{
+
+          }
+        });
+      },
+      controller: function($scope){
+        // expose filters to scope for React
+        $scope.dateFormatFilter = $filter('date');
+        $scope.currencyFilter = $filter('currency');
+        $scope.getContestDuration = TemplateService.getContestDuration;
+      }
+    };
+  }]);
 
   directivesModule.directive( 'challengePopoverPopup', ['TemplateService', '$compile',
     function (TemplateService, $compile) {

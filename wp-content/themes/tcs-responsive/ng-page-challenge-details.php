@@ -403,7 +403,7 @@ include locate_template('header-challenge-landing.php');
             <span ng-bind="registrant.reliability"></span>
         </td>
         <td class="regDateColumn" ng-bind="formatDate(registrant.registrationDate)"></td>
-        <td class="subDateColumn" ng-bind="formatDate(registrant.lastSubmissionDate)"></td>
+        <td class="subDateColumn" ng-bind="formatDate(registrant.submissionDate)"></td>
         <!--bugfix refactored-challenge-details-68: added missing icons -->
         <td>
           <!--
