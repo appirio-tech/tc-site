@@ -8,6 +8,7 @@
       function startLoading() {
         cfpLoadingBar.start();
         $scope.loading = true;
+        $scope.dataDisplayed = $scope.dataDisplayed || false; // to be used to determine whether to display an 'empty' message
       }
 
       function stopLoading() {
@@ -160,19 +161,23 @@
 
               $scope.allChallenges = challenges;
               filterChallenges();
+              $scope.dataDisplayed = true;
             },
             function () {
               $scope.challenges = [];
               stopLoading();
+              $scope.dataDisplayed = true;
             });
         } else {
           ChallengesService.all(contest.listType).getList(params).then(function (challenges) {
               $scope.allChallenges = challenges;
               filterChallenges();
+              $scope.dataDisplayed = true;
             },
             function () {
               $scope.challenges = [];
               stopLoading();
+              $scope.dataDisplayed = true;
             });
         }
 

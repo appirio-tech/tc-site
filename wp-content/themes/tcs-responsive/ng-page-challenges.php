@@ -97,6 +97,12 @@ get_header(); ?>
               filter="filter"></div>
 
         <div class="upcomingCaption" ng-show="contest.listType === 'upcoming'">All upcoming challenges may change</div>
+        <div ng-show="dataDisplayed && challenges.length == 0">
+          <br />
+          <h3>
+            There are no active challenges at this time. Please check back later.
+          </h3>
+        </div>
         <div ng-show="challenges.length > 0">
           <div id="tableView" class="viewTab" ng-show="view == 'table'">
             <div class="tableWrap tcoTableWRap dataTable tcoTable challengesGrid" ng-grid="gridOptions"></div>
