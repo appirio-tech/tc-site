@@ -104,6 +104,7 @@ get_header(); ?>
         </div>
         <div id="gridView2" class="viewTab hide" style="display: block;" ng-show="view == 'grid'" ng-class="{contestAll: contest.contestType == ''}">
           <div class="alt" id="gridAll" ng-class="{contestGrid: true}">
+            <!-- React Implementation -->
             <div tc-contest-grid-react></div>
           </div>
         </div>
@@ -413,5 +414,6 @@ get_header(); ?>
 <script type="text/ng-template" id="tableView/winners.html">
   <span ng-cell-text><a href="/challenge-details/{{row.getProperty('challengeId')}}/?type={{row.getProperty('challengeCommunity')}}#viewRegistrant">{{row.getProperty(col.field)}}</a></span>
 </script>
+
 
 <?php get_footer(); ?>

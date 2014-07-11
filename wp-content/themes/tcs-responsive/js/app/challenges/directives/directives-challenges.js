@@ -25,6 +25,8 @@
       };
     }]);
 
+  // removed 'tcContestGrid' and replaced it with this: tcContestGridReact for react implementation
+  // also removed templates used by 'tcContestGrid' in favor of 'challenge-grid-view-compiled.js' which contains the template for react
   directivesModule.directive('tcContestGridReact', ['$filter', 'TemplateService',
   function ($filter, TemplateService) {
     return {

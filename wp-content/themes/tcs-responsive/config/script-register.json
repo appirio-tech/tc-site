@@ -347,7 +347,6 @@
         "moment-data.js",
         "jquery.qtip.min.js",
         "jquery.jqtransform.js",
-        "jquery.jqtransform.js",
         "react.js",
         "app/challenges/jsx/challenge-grid-view-compiled.js",
         "app/challenges/app.js",
