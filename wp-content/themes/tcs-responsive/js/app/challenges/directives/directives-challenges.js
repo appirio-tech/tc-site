@@ -11,7 +11,7 @@
           showFilters: '='
         },
         templateUrl: 'actions.html',
-        controller: function ($scope) {
+        controller: ['$scope', function ($scope) {
           var ctrl = this;
 
           $scope.setListType = function (type) {
@@ -21,7 +21,7 @@
             return $scope.contest.listType === type;
           };
 
-        }
+        }]
       };
     }]);
 
@@ -43,12 +43,12 @@
           }
         });
       },
-      controller: function($scope){
+      controller: ['$scope', function ($scope) {
         // expose filters to scope for React
         $scope.dateFormatFilter = $filter('date');
         $scope.currencyFilter = $filter('currency');
         $scope.getContestDuration = TemplateService.getContestDuration;
-      }
+      }]
     };
   }]);
 

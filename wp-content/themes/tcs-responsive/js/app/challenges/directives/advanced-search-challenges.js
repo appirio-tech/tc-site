@@ -49,7 +49,7 @@
         actualFilter: '=filter'
       },
 
-      controller: function($scope){
+      controller: ['$scope', function ($scope) {
         $scope.chbFrom = false;
         $scope.chbTo = false;
         var initOptions = {
@@ -103,7 +103,7 @@
         }
 
 
-      },
+      }],
       compile: function (tElement, tAttrs, transclude) {
 
         return function ($scope, $element, attr) {
