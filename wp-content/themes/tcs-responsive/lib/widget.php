@@ -486,10 +486,18 @@ class Popular_post_widget extends WP_Widget {
           while ($postQuery->have_posts()) : 
             $postQuery->the_post(); // advance to next record and set global $post var
             $post;
+            /*Bugfix: show correct thumbnail for posts*/
+            $postId = get_the_ID();
+            $thumbId = get_post_thumbnail_id ( $postId );
+            $iurl = wp_get_attachment_url ( $thumbId );
+            //if empty, show default thumbnail
+            if (empty($iurl)) {
+              $iurl = get_bloginfo('stylesheet_directory') . "/i/content-thumb.png";
+            }
             ?>
             <li>
               <a class="contentLink" href="<?php the_permalink() ?>">
-                <img class="contentThumb" src="<?php bloginfo('stylesheet_directory'); ?>/i/content-thumb.png"
+                <img class="contentThumb" src="<?php echo $iurl;?>"
                      alt="<?php the_title(); ?>">
                 <?php the_title(); ?>
               </a> <span class="contentBrief"><?php echo wrap_content_strip_html(
