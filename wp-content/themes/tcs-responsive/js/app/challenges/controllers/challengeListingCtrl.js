@@ -46,18 +46,23 @@
             return false;
           }
           var subEndDate = $filter('date')(new Date(contest.submissionEndDate), 'yyyyMMdd');
+
           if ($scope.filter.startDate && subEndDate < $filter('date')($scope.filter.startDate, 'yyyyMMdd')) {
             return false;
           }
+
           if ($scope.filter.endDate && subEndDate > $filter('date')($scope.filter.endDate, 'yyyyMMdd')) {
             return false;
           }
-          if ($scope.filter.technologies && $scope.filter.technologies.length > 0 &&  _.intersection(contest.technologies, $scope.filter.technologies).length === 0) {
+
+          if (($scope.filter.technologies && $scope.filter.technologies.length > 0
+            &&  _.intersection(contest.technologies, $scope.filter.technologies).length === 0)
+            || ($scope.filter.platforms && $scope.filter.platforms.length > 0
+            &&  _.intersection(contest.platforms, $scope.filter.platforms).length === 0)
+          ) {
             return false;
           }
-          if ($scope.filter.platforms && $scope.filter.platforms.length > 0 &&  _.intersection(contest.platforms, $scope.filter.platforms).length === 0) {
-            return false;
-          }
+
           return true;
         });
 
