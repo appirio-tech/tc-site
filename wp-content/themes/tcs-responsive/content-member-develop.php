@@ -94,7 +94,7 @@ array_push ( $challengetypes, 'UI Prototypes' );
 				<h3 class="nocontestStatus text">Member rating unavailable or member didn't participated in any Develop contest.</h3>
 			</header>
 			<?php else:?>
-			
+
 			<header class="head">
 				<div class="trackNRating">
 					<h4 class="trackName"><?php echo $currentChallengetype;
@@ -129,11 +129,6 @@ array_push ( $challengetypes, 'UI Prototypes' );
 						<label>Country Rank:</label>
 						<div class="val"><?php echo ($dev->activeCountryRank == '0') ? "Not ranked" : $dev->overallCountryRank;?></div>
 						<input type="hidden" class="fieldId" value="activeCountryRank">
-					</div>
-					<div class="row fieldScRank">
-						<label>School Rank:</label>
-						<div class="val"><?php echo ($dev->activeSchoolRank == '0') ? "Not ranked" : $dev->activeSchoolRank;?></div>
-						<input type="hidden" class="fieldId" value="activeSchoolRank">
 					</div>
 					<div class="row fieldCompetitions">
 						<label>Competitions:</label>
@@ -178,7 +173,7 @@ array_push ( $challengetypes, 'UI Prototypes' );
 									<a class="btn btnHistory isActive">Rating History</a> <a class="btn btnDist">Rating Distribution</a>
 								</div>
 							<?php echo apply_filters('the_content','[tc_ratings_chart_dev handle="'.$handle.'"  challengetype="'.$underscoredCurrentChallengeType.'"]');?>
-							
+
 						</div>
 						</div>
 					</div>
@@ -290,7 +285,7 @@ array_push ( $challengetypes, 'UI Prototypes' );
 			</div>
 			<!-- /#tabularView -->
 			<?php endif;?>
-		
+
 		</div>
 		<!-- /.ratingViews -->
 	</div>
