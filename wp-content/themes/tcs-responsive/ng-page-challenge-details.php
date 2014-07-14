@@ -406,9 +406,7 @@ include locate_template('header-challenge-landing.php');
         <td class="subDateColumn" ng-bind="formatDate(registrant.submissionDate)"></td>
         <!--bugfix refactored-challenge-details-68: added missing icons -->
         <td>
-          <!--
-          <i class="{{registrant.submissionStatus === 'Active' ? 'successIcon' : registrant.submissionStatus !== '' ? 'failureIcon' : ''}}"></i>
-          -->
+          <i class="{{registrant.winner ? 'successIcon' : registrant.submissionStatus.match('Failed') ? 'failureIcon' : ''}}"></i>
         </td>
       </tr>
       </tbody>
