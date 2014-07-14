@@ -116,7 +116,7 @@
       $scope.dateFormat = 'dd MMM yyyy hh:mm EDT';
       $scope.images = $window.wordpressConfig.stylesheetDirectoryUri + '/i/';
       $scope.definitions = GridService.definitions($scope.contest);
-      $scope.gridOptions = GridService.gridOptions('definitions');
+      $scope.gridOptions = GridService.gridOptions( 'definitions' );
       $scope.showFilters = false;
       $scope.technologies = [];
       $scope.platforms = [];
@@ -217,6 +217,16 @@
         }
         $location.search(search);
       };
+      
+      $scope.viewAll = function() {
+        $scope.currentPageSize = $scope.allChallenges.length;
+        if( $scope.page == 1 ) {
+          $scope.challenges = $scope.setPagingData($scope.filteredChallenges, $scope.page, $scope.pageSize);
+        } else {
+          $scope.page = 1; // setPagingData will be called in the 'page' watcher
+        }
+      };
+        
 
       DataService.one('technologies').get().then(function (data) {
         if (data) {
@@ -246,6 +256,38 @@
           $cookies.tcChallengesView = view;
         }
       });
+      
+      $scope.$watch( 'gridOptions.ngGrid.config.sortInfo', function( sortInfo ) {
+        if( sortInfo.fields.length == 0 ) {
+          return;
+        }
+        var sortByInfo = function( a, b ) {
+          for( var i = 0; i < sortInfo.fields.length; ++ i ) {
+            var x = a[ sortInfo.fields[ i ] ];
+            var y = b[ sortInfo.fields[ i ] ];
+            var sign = sortInfo.directions[ i ].toLowerCase() == 'asc' ? -1 : 1;
+            if( ! x && x != 0 && ! y && y != 0 ) {
+              continue;
+            }
+            if( ! x && x != 0 ) {
+              return sign;
+            }
+            if( ! y && y != 0 ) {
+              return -sign;
+            }
+            if( x < y ) {
+              return sign;
+            }
+            if( x > y ) {
+              return -sign;
+            }
+          }
+          return 0;
+        }
+        $scope.allChallenges.sort( sortByInfo );
+        $scope.filteredChallenges.sort( sortByInfo );
+        $scope.challenges = $scope.setPagingData( $scope.filteredChallenges, $scope.page, $scope.pageSize );
+      }, true );
 
       getChallenges($scope.contest);
     }]);
