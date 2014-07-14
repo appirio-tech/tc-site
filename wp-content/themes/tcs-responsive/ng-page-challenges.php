@@ -96,7 +96,7 @@ get_header(); ?>
               show-on="showFilters"
               filter="filter"></div>
 
-        <div class="upcomingCaption" ng-show="contest.listType === 'upcoming'">All upcoming challenges may change</div>
+        <div class="upcomingCaption" ng-show="contest.listType === 'upcoming' && challenges.length != 0">All upcoming challenges may change</div>
         <div ng-show="dataDisplayed && challenges.length == 0">
           <br />
           <h3>
