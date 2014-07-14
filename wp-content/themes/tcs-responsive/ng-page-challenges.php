@@ -177,7 +177,7 @@ get_header(); ?>
     <div class="searchFilter hide">
     <div class="filterOpts">
       <section class="types" ng-if="challengeCommunity !== 'data'">
-        <h5>Contest types:</h5>
+        <h5>Challenge types:</h5>
         <div class="data">
           <ul class="list">
             <li ng-repeat="type in contestTypes">
