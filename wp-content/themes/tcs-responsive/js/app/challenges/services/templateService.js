@@ -98,7 +98,7 @@
           result = "",
           style = "";
         if (seconds < 0) {
-          return $sce.trustAsHtml('<span style="font-size:14px;">0' + sep + '<span style="font-size:10px;">Days</span> 0' + sep + '<span style="font-size:10px;">Hrs</span>');
+          return $sce.trustAsHtml('<span style="font-size:14px;">0' + sep + '<span style="font-size:10px;">Days</span> 0' + sep + '<span style="font-size:10px;">Hr</span>');
         }
 
         if (numdays === 0 && numhours <= 2) {
