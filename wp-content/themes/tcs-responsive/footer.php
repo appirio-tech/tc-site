@@ -37,7 +37,7 @@ $blog_posts = get_posts($blog_posts_args);
             <?php
             if ($tweet->retweeted_status):
               ?>
-              <a href="http://www.twitter.com/<?php echo $tweet->retweeted_status->user->screen_name; ?>">
+              <a href="//www.twitter.com/<?php echo $tweet->retweeted_status->user->screen_name; ?>">
                 @<?php echo $tweet->retweeted_status->user->screen_name; ?>
               </a>
             <?php else: ?>
@@ -101,7 +101,7 @@ $blog_posts = get_posts($blog_posts_args);
         <div class="row">
           <form id="emailForm" onsubmit="return newsletter_check(this)"
                 name="FeedBlitz_9feab01d431311e39e69002590771423" style="display:block" method="POST"
-                action="http://www.feedblitz.com/f/f.fbz?AddNewUserDirect">
+                action="//www.feedblitz.com/f/f.fbz?AddNewUserDirect">
             <input type="email" class="email" name="EMAIL" placeholder="Your email address" maxlength="64"/>
             <input name="FEEDID" type="hidden" value="926643"/>
             <input name="PUBLISHER" type="hidden" value="34610190"/>
@@ -115,7 +115,7 @@ $blog_posts = get_posts($blog_posts_args);
               var x = document.getElementsByName('FeedBlitz_9feab01d431311e39e69002590771423');
               for (i = 0; i < x.length; i++) {
                 x[i].EMAIL.style.display = 'block';
-                x[i].action = 'http://www.feedblitz.com/f/f.fbz?AddNewUserDirect';
+                x[i].action = '//www.feedblitz.com/f/f.fbz?AddNewUserDirect';
               }
             }
             function FeedBlitz_9feab01d431311e39e69002590771423s(v) {
@@ -675,7 +675,7 @@ $blog_posts = get_posts($blog_posts_args);
         //$sig = $matches[2];
         $sso = urlencode($_REQUEST['sso']);
         $sig = $_REQUEST['sig'];
-        $stateLogin = "http://talk.topcoder.com/session/sso_login?sso=$sso&sig=$sig";
+        $stateLogin = "//talk.topcoder.com/session/sso_login?sso=$sso&sig=$sig";
     }
 
     ?>
@@ -724,7 +724,7 @@ $blog_posts = get_posts($blog_posts_args);
     var auth0Register = new Auth0({
       domain: 'topcoder.auth0.com',
       clientID: '<?php echo auth0_clientID(); ?>',
-      callbackURL: utmSource && utmCampaign && utmMedium ? 'http://www.topcoder.com/?action=callback?utmSource=' + utmSource + '&utmCampaign=' + utmCampaign + '&utmMedium=' + utmMedium : 'http://www.topcoder.com/?action=callback',
+      callbackURL: utmSource && utmCampaign && utmMedium ? '//www.topcoder.com/?action=callback?utmSource=' + utmSource + '&utmCampaign=' + utmCampaign + '&utmMedium=' + utmMedium : '//www.topcoder.com/?action=callback',
       state: loginState,
       redirect_uri: window.location.href
     });
