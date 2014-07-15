@@ -17,6 +17,9 @@ appChallengeSubmit = {
         $(this).closest('section.agreement').addClass('notAgreed');
       }
     });
+    $("#termsLink").click(function(event){
+      event.stopPropagation();
+    });
 
     if (challengeType) {
       switch (challengeType) {
