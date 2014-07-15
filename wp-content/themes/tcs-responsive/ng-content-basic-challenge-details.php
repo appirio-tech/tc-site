@@ -92,7 +92,7 @@
         </span>
       </p>
     </td><!-- Bugfix: Added noPrize class when challenge has no DR points -->
-    <td ng-if="!isDesign" colspan="{{challenge.challengeType = 'Code' ? '3' : ''}}" class="{{!challenge.digitalRunPoints ? 'noPrize' : ''}}">
+    <td ng-if="!isDesign" colspan="{{challenge.challengeType == 'Code' ? '3' : ''}}" class="{{!challenge.digitalRunPoints ? 'noPrize' : ''}}">
       <p class="drPointsPara">DR Points <span ng-bind="challenge.digitalRunPoints ? challenge.digitalRunPoints : 'N/A'"></span></p>
     </td>
     </td>
