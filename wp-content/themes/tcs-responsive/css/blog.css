@@ -2,14 +2,14 @@
 
 a.blueLink {
     color: #0071bc;
-    -moz-transition-duration: .3s;
-    -webkit-transition-duration: .3s;
-    transition-duration: .3s;
+    -moz-transition-duration: 0;
+    -webkit-transition-duration: 0;
+    transition-duration: 0;
 }
 
 a.blueLink:hover {
-    color: #0071bc;
-    text-shadow: 0 0 3px #989898;
+    /*Bugfix: changed hover state to gold color without shadow, specified in TC contest: 30044120*/
+    color: #FFB800;
 }
 
 .blogCategoryMenu {
