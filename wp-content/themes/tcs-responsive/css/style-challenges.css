@@ -1109,7 +1109,6 @@ select:disabled {
 }
 
 .ui-datepicker-year {
-    display: none;
 }
 
 .ui-datepicker-calendar td.ui-state-disabled,
