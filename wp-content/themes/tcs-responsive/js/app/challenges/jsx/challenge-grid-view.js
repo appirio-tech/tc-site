@@ -174,7 +174,7 @@
             <div className="clear" />
           </div>
           <div className={classNames[challengeCombo].genInfo !== undefined ? 'genInfo':'genInfo ng-hide'}>
-            <p className="cgTLeft" data-hasqtip="0" aria-describedby="qtip-0"><i /><span dangerouslySetInnerHTML={{__html: scope.formatTimeLeft(challenge.currentPhaseRemainingTime, true)}}></span>
+            <p className="cgTLeft" data-hasqtip="0" aria-describedby="qtip-0"><i /><span dangerouslySetInnerHTML={{__html: scope.formatTimeLeft(challenge.currentPhaseRemainingTime, true, challenge.currentPhaseName)}}></span>
             </p>
             <p className="cgPur" data-hasqtip="1" aria-describedby="qtip-1"><i /> {scope.currencyFilter(challenge.totalPrize)}</p>
             <p className="cgReg" data-hasqtip="2" aria-describedby="qtip-2"><i /><a href={"/challenge-details/" +challenge.challengeId + "/?type=" + challenge.challengeCommunity + "#viewRegistrant"}>{challenge.numRegistrants}</a>

@@ -167,7 +167,7 @@ var ChallengeGridAll = React.createClass({displayName: 'ChallengeGridAll',
             React.DOM.div( {className:"clear"} )
           ),
           React.DOM.div( {className:classNames[challengeCombo].genInfo !== undefined ? 'genInfo':'genInfo ng-hide'},
-            React.DOM.p( {className:"cgTLeft", 'data-hasqtip':"0", 'aria-describedby':"qtip-0"}, React.DOM.i(null ),React.DOM.span( {dangerouslySetInnerHTML:{__html: scope.formatTimeLeft(challenge.currentPhaseRemainingTime, true)}})
+            React.DOM.p( {className:"cgTLeft", 'data-hasqtip':"0", 'aria-describedby':"qtip-0"}, React.DOM.i(null ),React.DOM.span( {dangerouslySetInnerHTML:{__html: scope.formatTimeLeft(challenge.currentPhaseRemainingTime, true, challenge.currentPhaseName)}})
             ),
             React.DOM.p( {className:"cgPur", 'data-hasqtip':"1", 'aria-describedby':"qtip-1"}, React.DOM.i(null ), " ", scope.currencyFilter(challenge.totalPrize)),
             React.DOM.p( {className:"cgReg", 'data-hasqtip':"2", 'aria-describedby':"qtip-2"}, React.DOM.i(null ),React.DOM.a( {href:"/challenge-details/" +challenge.challengeId + "/?type=" + challenge.challengeCommunity + "#viewRegistrant"}, challenge.numRegistrants)
