@@ -27,6 +27,7 @@ appChallengeTerms = {
         "termId": termsOfUseID,
         "jwtToken": tcjwt.replace(/["]/g, "")
       }, function (data) {
+        $(".formContent").addClass("pageContent");
         if (data.title) {
           $(".formContent .terms").show();
           $(".formContent .warning").hide();
