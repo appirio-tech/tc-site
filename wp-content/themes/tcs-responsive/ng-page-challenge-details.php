@@ -27,6 +27,7 @@ function tc_challenge_details_js() {
     var challengeType = "<?php echo $contestType;?>";
     var autoRegister = "<?php echo get_query_var('autoRegister');?>";
     var handle = ""; // fix me
+    var challengeName; //prevent undefined error, value is set in angular script
   </script>
 <?php
 }
