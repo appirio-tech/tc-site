@@ -35,12 +35,21 @@ appChallengeSubmit = {
       if($('#agree').prop('checked')){
         var empty = false;
         if($("#submission").val()===''){
+            $('.formSection .leftCol dd span.error').text('Please upload a submission first');
             $("#submission").closest('dd').addClass('empty');
             empty = true;
         }else if($("#submission").data('type')){
             var type = $("#submission").data('type').split(',');
             var ext = $("#submission").val().split('.').pop().toLowerCase();
             if($.inArray(ext, type) == -1) {
+                //bugfix: if wrong file type, show correct error message
+                if (type.length > 1) {
+                  //display error if multiple file formats available
+                  $('.formSection .leftCol dd span.error').text('Uploaded submissions must be in one of the following file formats: .' + type.join(', .'));
+                } else {
+                  //display error if only one file format is available
+                  $('.formSection .leftCol dd span.error').text('Uploaded submissions must be in .' + type[0] + ' format only');
+                }
                 $("#submission").closest('dd').addClass('empty');
                 empty = true;
             }
