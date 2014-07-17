@@ -141,6 +141,14 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
     $scope.hasFiletypes = (challenge.filetypes != undefined) && challenge.filetypes.length > 0;
     globby = $scope;
 
+    var submissionMap = {};
+    $scope.challenge.submissions.map(function(x) {
+      submissionMap[x.handle] = x;
+    });
+    $scope.challenge.registrants.map(function(x) {
+      if (submissionMap[x.handle]) x.submissionStatus = submissionMap[x.handle].submissionStatus;
+    });
+
     if (challenge.currentStatus == 'Completed' || challenge.currentPhaseEndDate == '') {
       ChallengeService.getResults(challengeId).then(function(results) {
         $scope.results = results;
@@ -157,10 +165,16 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
         //console.log($scope.initialScoreSum);
         //console.log($scope.finalScoreSum);
         $scope.winningSubmissions = [];
+        var winnerMap = {};
         for (var i = 0; i < $scope.submissions.length; i++) {
-          if (challenge.prize[i] && $scope.submissions[i].submissionStatus != 'Failed Review') $scope.winningSubmissions.push($scope.submissions[i]);
-          else break;
+          if (challenge.prize[i] && $scope.submissions[i].submissionStatus != 'Failed Review') {
+            $scope.winningSubmissions.push($scope.submissions[i]);
+            winnerMap[$scope.submissions[i].handle] = true;
+          }
         }
+        $scope.challenge.registrants.map(function(x) {
+          if (winnerMap[x.handle]) x.winner = true;
+        });
         if ($scope.winningSubmissions.length == 0) $scope.firstPlaceSubmission = false;
         if ($scope.winningSubmissions.length < 2) $scope.secondPlaceSubmission = false;
       });

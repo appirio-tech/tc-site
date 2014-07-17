@@ -116,7 +116,7 @@ get_header(); ?>
         </div>
         <div class="dataChanges">
           <div class="lt">
-            <a class="viewAll" ng-show="challenges.length < allChallenges.length" ng-click="viewAll()">View All</a>
+            <a class="viewAll hide" ng-show="challenges.length < allChallenges.length" ng-click="viewAll()">View All</a>
           </div>
           <div id="challengeNav" class="rt">
             <a class="prevLink" ng-show="page > 1" ng-click="page = page - 1">

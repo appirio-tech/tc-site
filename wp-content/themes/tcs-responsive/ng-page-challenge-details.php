@@ -85,8 +85,9 @@ include locate_template('header-challenge-landing.php');
     <!--<li ng-if="isDesign && inSubmission"><span class="inactive">Submissions</span></li>-->
     <!-- @FIXME commenting out until submission are available for design
     <li ng-show="isDesign && !inSubmission"><a href="#submissions" class="link">Submissions</a></li>
+    -->
     <li ng-show="isDesign && (inSubmission || inScreening || inReview)"><span class="inactive">Results</span></li>
-    <li ng-show="isDesign && !(inSubmission || inScreening || inReview)"><a href="#winner" class="link">Results</a></li>-->
+    <li ng-show="isDesign && !(inSubmission || inScreening || inReview)"><a href="#winner" class="link">Results</a></li>
   </ul>
 </nav>
 <nav class="tabNav firstTabNav designFirstTabNav mobile hide">
@@ -406,9 +407,7 @@ include locate_template('header-challenge-landing.php');
         <td class="subDateColumn" ng-bind="formatDate(registrant.submissionDate)"></td>
         <!--bugfix refactored-challenge-details-68: added missing icons -->
         <td>
-          <!--
-          <i class="{{registrant.submissionStatus === 'Active' ? 'successIcon' : registrant.submissionStatus !== '' ? 'failureIcon' : ''}}"></i>
-          -->
+          <i class="{{registrant.winner ? 'successIcon' : registrant.submissionStatus.match('Failed') ? 'failureIcon' : ''}}"></i>
         </td>
       </tr>
       </tbody>
