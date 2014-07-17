@@ -10,13 +10,13 @@
         return [
           {
             field: 'challengeName',
-            fieldName: 'Challenges',
+            fieldName: 'Challenge',
             width: 340,
             visible: contest.contestType !== 'data'
           },
           {
             field: 'challengeName',
-            fieldName: 'Challenges',
+            fieldName: 'Challenge',
             width: 340,
             tplName: 'challengeDataName',
             visible: contest.contestType === 'data'
@@ -49,7 +49,7 @@
           },
           {
             field: 'totalPrize',
-            fieldName: 'Prizes',
+            fieldName: 'Prize',
             width: 73,
             tplName: 'prizes',
             visible: contest.listType !== 'upcoming'
