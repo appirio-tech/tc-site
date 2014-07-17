@@ -31,14 +31,24 @@ if (isset($_GET['auth']) && $_GET['auth'] == 'logout') {
   exit;
 
 }
-
+if (basename(get_permalink()) == "challenges") {
 ?>
-
+<!DOCTYPE html>
+<html lang="en" data-ng-app="tc">
+<head>
+  <meta charset="utf-8">
+  <title ng-bind="pageTitle"></title>
+<?php
+} else {
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <title><?php wp_title(' - ', TRUE, 'right'); ?></title>
+<?php
+}
+?>
   <meta name="description" content="">
   <meta name="author" content="" >
   <meta http-equiv="X-UA-Compatible" content="IE=edge">

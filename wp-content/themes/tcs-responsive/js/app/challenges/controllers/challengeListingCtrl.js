@@ -2,8 +2,8 @@
 (function (angular) {
   'use strict';
   var challengesModule = angular.module('tc.challenges');
-  challengesModule.controller('ChallengeListingCtrl', ['$scope', '$routeParams', '$filter', '$location', '$cookies', 'ChallengesService', 'ChallengeDataService', 'DataService', '$window', 'TemplateService', 'GridService', 'cfpLoadingBar',
-    function ($scope, $routeParams, $filter, $location, $cookies, ChallengesService, ChallengeDataService, DataService, $window, TemplateService, GridService, cfpLoadingBar) {
+  challengesModule.controller('ChallengeListingCtrl', ['$scope', '$rootScope', '$routeParams', '$filter', '$location', '$cookies', 'ChallengesService', 'ChallengeDataService', 'DataService', '$window', 'TemplateService', 'GridService', 'cfpLoadingBar',
+    function ($scope, $rootScope, $routeParams, $filter, $location, $cookies, ChallengesService, ChallengeDataService, DataService, $window, TemplateService, GridService, cfpLoadingBar) {
 
       function startLoading() {
         cfpLoadingBar.start();
@@ -85,9 +85,10 @@
       $scope.allChallenges = [];
       $scope.challenges = [];
       $scope.filteredChallenges = [];
+      //prevent errors from mixed-case URL parameters by converting to lowercase
       $scope.contest = {
-        contestType: $routeParams.challengeArea || '',
-        listType: $routeParams.challengeStatus || 'active'
+        contestType: $routeParams.challengeArea ? $routeParams.challengeArea.toLowerCase() : '',
+        listType: $routeParams.challengeStatus ? $routeParams.challengeStatus.toLowerCase() : 'active'
       };
 
       $scope.titles = {
@@ -96,7 +97,18 @@
         develop: 'Software Development Challenges',
         data: 'Data Science Challenges'
       };
-
+      $scope.titleType = {
+        active: 'Open ',
+        past: 'Past ',
+        upcoming: 'Upcoming '
+      };
+      //set page title
+      var pageTitle = $scope.titles[$scope.contest.contestType] + " - Topcoder";
+      if ($scope.contest.contestType !== '') {
+        pageTitle = $scope.titleType[$scope.contest.listType] + pageTitle;
+      }
+      $rootScope.pageTitle = pageTitle;
+      
       if ($scope.contest.listType !== 'past' && $scope.contest.contestType !== 'data') {
         if ($routeParams.view) {
           $scope.view = $routeParams.view;

@@ -25,8 +25,8 @@ get_header(); ?>
       stylesheetDirectoryUri: '<?php echo get_stylesheet_directory_uri(); ?>'
     }
   </script>
-
-  <div data-ng-app="tc" class="content">
+<!-- moved ng-app to <html> element so page titles can be updated with angular -->
+  <div class="content">
   <div id="main">
       <div ng-view>
         <div id="hero">
