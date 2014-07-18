@@ -79,7 +79,7 @@ if($tokenObj!=null) {
 							?>
 								<form id="formResetPassword" class="formResetPassword" name="formResetPassword" action="" method="POST">
 									<div class="row">
-										<input type="text" class="handleOrEmail" maxlength="40" name="handle" placeholder="Enter your handle or email:" size="50" />
+										<input type="text" class="handleOrEmail" maxlength="40" name="handle" placeholder="Enter your username or email:" size="50" />
 										<span class="err1 error" style="display: none;">Required field</span>
 									</div>
 									<div class="row">

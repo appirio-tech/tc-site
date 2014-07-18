@@ -101,15 +101,15 @@ $siteURL = site_url ();
 								</p>
 							
 								<p class="row">
-									<label>Handle</label>
-									<input type="text" class="handle name" placeholder="Handle"/>
+									<label>Username</label>
+									<input type="text" class="handle name" placeholder="Username"/>
 									<span class="err1">Required field</span>
-									<span class="err2">Handle already exists or is invalid</span>
-									<span class="err3">Handle cannot contain a space</span>
-									<span class="err4">Handle cannot consist solely of punctuation</span>
-									<span class="err5">Handle contains invalid characters</span>
-									<span class="err6">Handle cannot start with "admin"</span>
-									<span class="err7">Handle must be between 2 and 15 characters long</span>
+									<span class="err2">Username already exists or is invalid</span>
+									<span class="err3">Username cannot contain a space</span>
+									<span class="err4">Username cannot consist solely of punctuation</span>
+									<span class="err5">Username contains invalid characters</span>
+									<span class="err6">Username cannot start with "admin"</span>
+									<span class="err7">Username must be between 2 and 15 characters long</span>
 									<span class="valid"></span>
 								</p>
 							
