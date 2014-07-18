@@ -349,32 +349,7 @@ get_header(); ?>
 </script>
 
 <script type="text/ng-template" id="tableView/timeline.html">
-  <div class="colTime" ng-if="row.getProperty('challengeCommunity') == 'develop'">
-    <div>
-      <div class="row">
-        <label class="lbl">Start Date</label>
-        <div class="val vStartDate">{{row.getProperty('registrationStartDate') | date: dateFormat}}</div>
-      </div>
-      <div class="row" ng-show="contest.listType == 'upcoming' && row.getProperty('checkpointSubmissionEndDate')">
-        <label class="lbl ">Round 1 End</label>
-        <div class="val vEndRound">{{row.getProperty('checkpointSubmissionEndDate') | date: dateFormat}}</div>
-      </div>
-      <div class="row" ng-show="contest.listType != 'active'">
-        <label class="lbl">End Date</label>
-        <div class="val vEndDate">{{row.getProperty('submissionEndDate') | date: dateFormat}}</div>
-      </div>
-      <div class="row" ng-show="contest.listType == 'active'">
-        <label class="lbl ">Register by</label>
-        <div class="val vEndRound">{{row.getProperty('registrationEndDate') | date: dateFormat}}</div>
-      </div>
-      <div class="row" ng-show="contest.listType == 'active'">
-        <label class="lbl">Submit by</label>
-        <div class="val vEndDate">{{row.getProperty('submissionEndDate') | date: dateFormat}}</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="colTime" ng-if="row.getProperty('challengeCommunity') == 'design'">
+  <div class="colTime" ng-if="row.getProperty('challengeCommunity') == 'develop' || row.getProperty('challengeCommunity') == 'design'">
     <div>
       <div class="row">
         <label class="lbl">Start Date</label>
@@ -384,13 +359,17 @@ get_header(); ?>
         <label class="lbl ">Round 1 End</label>
         <div class="val vEndRound">{{row.getProperty('checkpointSubmissionEndDate') | date: dateFormat}}</div>
       </div>
-      <div class="row" ng-show="contest.listType != 'active'">
+      <div class="row" ng-show="contest.listType == 'past'">
         <label class="lbl">End Date</label>
         <div class="val vEndDate">{{row.getProperty('submissionEndDate') | date: dateFormat}}</div>
       </div>
-      <div class="row" ng-show="contest.listType == 'active'">
-        <label class="lbl ">End Date</label>
+      <div class="row" ng-show="contest.listType == 'active' || contest.listType == 'upcoming'">
+        <label class="lbl ">Register by</label>
         <div class="val vEndRound">{{row.getProperty('registrationEndDate') | date: dateFormat}}</div>
+      </div>
+      <div class="row" ng-show="contest.listType == 'active' || contest.listType == 'upcoming'">
+        <label class="lbl">Submit by</label>
+        <div class="val vEndDate">{{row.getProperty('submissionEndDate') | date: dateFormat}}</div>
       </div>
     </div>
   </div>
