@@ -219,46 +219,48 @@ include locate_template('header-challenge-landing.php');
   <article id="studioTournamentFormat">
     <h1>CHALLENGE FORMAT</h1>
 
-    <p class="paragraph">This competition will be run as a two-round challenge.</p>
+    <p class="paragraph" ng-if="challenge.numberOfCheckpointsPrizes > 0">This competition will be run as a two-round challenge.</p>
+    <p class="paragraph" ng-if="challenge.numberOfCheckpointsPrizes === 0">This competition will be run as a single-round challenge.</p>
+    <div ng-if="challenge.numberOfCheckpointsPrizes > 0">
+      <span class="subTitle">Round One (1)</span>
 
-    <span class="subTitle">Round One (1)</span>
+      <p class="paragraph"></p>
 
-    <p class="paragraph"></p>
-
-    <p style="margin: 0px 0px 0px 15px; padding: 0px; color: rgb(64, 64, 64);"><span
+      <p style="margin: 0px 0px 0px 15px; padding: 0px; color: rgb(64, 64, 64);"><span
         style="line-height: 1.6em;" ng-bind-html="trust(challenge.round1Introduction)"></span></p>
 
-    <span class="subTitle">Round Two (2)</span>
+      <span class="subTitle">Round Two (2)</span>
 
-    <p class="paragraph"></p>
+      <p class="paragraph"></p>
 
-    <p><span style="color: rgb(64, 64, 64); font-size: 13px;" ng-bind-html="trust(challenge.round2Introduction)"></span></p>
+      <p><span style="color: rgb(64, 64, 64); font-size: 13px;" ng-bind-html="trust(challenge.round2Introduction)"></span></p>
 
-    <p></p>
+      <p></p>
 
 
-    <h6 class="smallTitle red">Regarding the Rounds:</h6>
+      <h6 class="smallTitle red">Regarding the Rounds:</h6>
 
-    <p></p>
+      <p></p>
 
-    <ul class="red">
-      <li>To be eligible for Round 1 prizes and design feedback, you must submit before the Checkpoint
-        deadline.
-      </li>
-      <li>A day or two after the Checkpoint deadline, the contest holder will announce Round 1 winners and
-        provide design feedback to those winners in the "Checkpoints" tab above.
-      </li>
-      <li>You must submit to Round 1 to be eligible to compete in Round 2. If your submission fails
-        screening for a small mistake in Round 1, you may still be eligible to submit to Round 2.
-      </li>
-      <li>Every competitor with a passing Round 1 submission can submit to Round 2, even if they didn't
-        win a Checkpoint prize.
-      </li>
-      <li><a
-          href="http://help.topcoder.com/design/submitting-to-a-design-challenge/multi-round-checkpoint-design-challenges/">Learn
-          more here</a>.
-      </li>
-    </ul>
+      <ul class="red">
+        <li>To be eligible for Round 1 prizes and design feedback, you must submit before the Checkpoint
+          deadline.
+        </li>
+        <li>A day or two after the Checkpoint deadline, the contest holder will announce Round 1 winners and
+          provide design feedback to those winners in the "Checkpoints" tab above.
+        </li>
+        <li>You must submit to Round 1 to be eligible to compete in Round 2. If your submission fails
+          screening for a small mistake in Round 1, you may still be eligible to submit to Round 2.
+        </li>
+        <li>Every competitor with a passing Round 1 submission can submit to Round 2, even if they didn't
+          win a Checkpoint prize.
+        </li>
+        <li><a
+            href="http://help.topcoder.com/design/submitting-to-a-design-challenge/multi-round-checkpoint-design-challenges/">Learn
+            more here</a>.
+        </li>
+      </ul>
+    </div>
   </article>
 
   <article id="fullDescription">
