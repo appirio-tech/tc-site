@@ -221,12 +221,11 @@
       $scope.viewAll = function() {
         $scope.currentPageSize = $scope.allChallenges.length;
         if( $scope.page == 1 ) {
-          $scope.challenges = $scope.setPagingData($scope.filteredChallenges, $scope.page, $scope.pageSize);
+          $scope.challenges = $scope.setPagingData($scope.filteredChallenges, $scope.page, $scope.currentPageSize);
         } else {
           $scope.page = 1; // setPagingData will be called in the 'page' watcher
         }
       };
-        
 
       DataService.one('technologies').get().then(function (data) {
         if (data) {
@@ -247,7 +246,7 @@
         if($scope.page < 0) {
           $scope.page = 0;
         }
-        $scope.challenges = $scope.setPagingData($scope.filteredChallenges, $scope.page, $scope.pageSize);
+        $scope.challenges = $scope.setPagingData($scope.filteredChallenges, $scope.page, $scope.currentPageSize);
       });
 
       $scope.$watch('view', function (view, oldView) {
