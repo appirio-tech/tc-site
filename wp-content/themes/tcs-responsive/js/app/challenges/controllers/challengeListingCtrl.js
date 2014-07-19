@@ -65,8 +65,10 @@
 
           return true;
         });
+    
 
         $scope.challenges = $scope.setPagingData($scope.filteredChallenges, $scope.page, $scope.pageSize);
+
         $scope.showFilters = false;
       }
 
@@ -165,6 +167,13 @@
               });
 
               $scope.allChallenges = challenges;
+              $scope.allChallenges.sort(function(a,b){
+                  var aDate = a.checkpointSubmissionEndDate && a.challengeCommunity == 'design' ? a.checkpointSubmissionEndDate : a.registrationEndDate;
+                  var bDate = b.checkpointSubmissionEndDate && b.challengeCommunity == 'design' ? b.checkpointSubmissionEndDate : b.registrationEndDate;
+                  a = new Date(aDate);
+                  b = new Date(bDate);
+                  return a>b ? -1 : a<b ? 1 : 0;
+              });
               filterChallenges();
               $scope.dataDisplayed = true;
             },
@@ -176,6 +185,14 @@
         } else {
           ChallengesService.all(contest.listType).getList(params).then(function (challenges) {
               $scope.allChallenges = challenges;
+
+              $scope.allChallenges.sort(function(a,b){
+                  var aDate = a.checkpointSubmissionEndDate && a.challengeCommunity == 'design' ? a.checkpointSubmissionEndDate : a.registrationEndDate;
+                  var bDate = b.checkpointSubmissionEndDate && b.challengeCommunity == 'design' ? b.checkpointSubmissionEndDate : b.registrationEndDate;
+                  a = new Date(aDate);
+                  b = new Date(bDate);
+                  return a>b ? -1 : a<b ? 1 : 0;
+              });
               filterChallenges();
               $scope.dataDisplayed = true;
             },
