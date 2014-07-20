@@ -66,4 +66,33 @@
   directivesModule.directive( 'challengePopover', [ '$tooltip', function ( $tooltip ) {
       return $tooltip( 'challengePopover', 'challengePopover', 'mouseenter' );
     }]);
+
+  directivesModule.directive('qtip', function() {
+      return {
+        link: function(scope, element, attrs) {
+          element.qtip({
+            overwrite: true,
+            prerender: false,
+            content: {
+              text: attrs.text,
+              title: attrs.title
+            },
+            style: {
+              classes: 'qtip-' + attrs.community + ' qtip-rounded qtip-shadow'
+            },
+            position: {
+              my: attrs.my || 'bottom center',
+              at: attrs.at || 'top center ',
+              adjust: {
+                y: -12
+              }
+            }
+          });
+
+          scope.$on("$destroy", function() {
+            element.qtip('destroy', true);
+          });
+        }
+      };
+  });
 }(angular));

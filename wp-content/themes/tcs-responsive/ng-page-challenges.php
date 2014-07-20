@@ -280,6 +280,9 @@ get_header(); ?>
         <img alt="allContestIco" class="allContestIco" ng-src="{{images}}/ico-track-{{row.getProperty('challengeCommunity')}}.png">
         <span ng-cell-text>{{row.getProperty(col.field)}}</span>
         <img alt="allContestTCOIco" class="allContestTCOIco" ng-src="{{images}}/tco-flag-{{row.getProperty('challengeCommunity') != 'data'?row.getProperty('challengeCommunity'):'develop'}}.png" ng-if="contest.contestType != 'data'">
+        <span class="track-symbol" qtip title="Challenge Type" text="{{row.getProperty('challengeType')}}" community="{{row.getProperty('challengeCommunity')}}">
+          {{getTrackSymbol(row.getProperty('challengeType')).toUpperCase()}}
+        </span>
       </a>
     </div>
     <div id="{{row.getProperty('challengeId')}}" class="technologyTags">
@@ -304,7 +307,7 @@ get_header(); ?>
 </script>
 
 <script type="text/ng-template" id="tableView/currentPhaseName.html">
-  <div ng-cell-text class="colPhase">{{getPhaseName(contest, row.getProperty('registrationOpen  '))}}</div>
+  <div ng-cell-text class="colPhase">{{row.getProperty('currentPhaseName')}}</div>
 </script>
 
 <script type="text/ng-template" id="tableView/currentPhaseRemainingTime.html">
