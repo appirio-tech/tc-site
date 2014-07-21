@@ -304,7 +304,7 @@ get_header(); ?>
 </script>
 
 <script type="text/ng-template" id="tableView/currentPhaseName.html">
-  <div ng-cell-text class="colPhase">{{getPhaseName(contest, row.getProperty('registrationOpen  '))}}</div>
+  <div ng-cell-text class="colPhase">{{row.getProperty('currentPhaseName')}}</div>
 </script>
 
 <script type="text/ng-template" id="tableView/currentPhaseRemainingTime.html">
