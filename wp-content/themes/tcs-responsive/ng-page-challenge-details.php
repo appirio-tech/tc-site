@@ -496,6 +496,21 @@ include locate_template('header-challenge-landing.php');
     </div>
 
   </li>
+  <li ng-hide="isDesign" class="slide">
+
+    <div class="umltoolLinks slideBox">
+      <h3>Get the UML Tool:</h3>
+
+      <div class="inner">
+        <p><a href="https://github.com/topcoderinc/topcoder-UML-Tool">Github source code repository</a></p>
+        <p><a href="https://github.com/topcoderinc/topcoder-UML-Tool/blob/master/TopCoder%20UML%20Tool.dmg">Mac disk image </a></p>
+        <p><a href="https://github.com/topcoderinc/topcoder-UML-Tool/blob/master/TopCoder_UML_Tool_Installer-1.2.6.jar">Java installer</a></p>
+      </div>
+
+    </div>
+    <!-- End review style section -->
+
+  </li>
 
   <li ng-if="isDesign" class="slide">
     <div class="forumFeed slideBox">&nbsp;<br/>
