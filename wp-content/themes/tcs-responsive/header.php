@@ -29,8 +29,8 @@ $nav = array(
             <a href="" class="coder"></a>
             <p class="country"></p>
             <a href="" class="link myProfileLink">My Profile</a>
-            <a href="http://community.topcoder.com/tc?module=MyHome" class="link">My TopCoder </a>
-            <a href="http://community.topcoder.com/tc?module=MyHome" class="link">Account Settings </a>
+            <a href="//community.topcoder.com/tc?module=MyHome" class="link">My TopCoder </a>
+            <a href="//community.topcoder.com/tc?module=MyHome" class="link">Account Settings </a>
             <a href="javascript:;" class="actionLogout">Log Out</a>
           </div>
         </div>
@@ -53,7 +53,7 @@ $nav = array(
         </div>
         <div class="separator"></div>
         <div class="headerTopRightMenuLink help">
-          <div class="text"><a href="http://help.topcoder.com">Help Center</a></div>
+          <div class="text"><a href="//help.topcoder.com">Help Center</a></div>
           <div class="clear"></div>
         </div>
         <div class="separator beforeSearch"></div>
@@ -102,8 +102,8 @@ $nav = array(
           <div class="action">
             <a class="profileLink" href="">My
               Profile</a>
-            <a href="http://community.topcoder.com/tc?module=MyHome">My TopCoder </a>
-            <a href="http://community.topcoder.com/tc?module=MyHome" class="linkAlt">Account Settings</a>
+            <a href="//community.topcoder.com/tc?module=MyHome">My TopCoder </a>
+            <a href="//community.topcoder.com/tc?module=MyHome" class="linkAlt">Account Settings</a>
           </div>
         </div>
       </div>

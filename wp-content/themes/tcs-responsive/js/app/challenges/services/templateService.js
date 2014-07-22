@@ -89,7 +89,7 @@
         return days;
       }
 
-      function formatTimeLeft(seconds, grid) {
+      function formatTimeLeft(seconds, grid, phase) {
         var sep = (grid) ? '' : ' ',
           numdays = Math.floor(seconds / 86400),
           numhours = Math.floor((seconds % 86400) / 3600),
@@ -97,7 +97,7 @@
           numseconds = ((seconds % 86400) % 3600) % 60,
           result = "",
           style = "";
-        if (seconds < 0) {
+        if (seconds < 0 || phase != 'Submission') {
           return $sce.trustAsHtml('<span style="font-size:14px;">0' + sep + '<span style="font-size:10px;">Days</span> 0' + sep + '<span style="font-size:10px;">Hr</span>');
         }
 

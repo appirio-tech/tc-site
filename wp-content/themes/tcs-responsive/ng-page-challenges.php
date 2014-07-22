@@ -9,7 +9,7 @@
  */
 
 function add_base_url() {
-  $output = "<base href=\"" . get_option("siteurl") . "/" . ACTIVE_CONTESTS_PERMALINK . "/\" />";
+  $output = "<base href=\"" . get_site_url() . "/" . ACTIVE_CONTESTS_PERMALINK . "/\" />";
   echo $output;
 }
 
@@ -116,7 +116,7 @@ get_header(); ?>
         </div>
         <div class="dataChanges">
           <div class="lt">
-            <a class="viewAll" ng-show="challenges.length < allChallenges.length" ng-click="currentPageSize = allChallenges.length; challenges = setPagingData(allChallenges, page, currentPageSize);">View All</a>
+            <a class="viewAll hide" ng-show="challenges.length < allChallenges.length" ng-click="viewAll()">View All</a>
           </div>
           <div id="challengeNav" class="rt">
             <a class="prevLink" ng-show="page > 1" ng-click="page = page - 1">
@@ -150,7 +150,7 @@ get_header(); ?>
         <li><a href="/challenges/{{contest.contestType}}/active/" class="link" ng-class="{active: isActive('active')}">Open Challenges</a></li>
         <li><a href="/challenges/{{contest.contestType}}/past/" class="link" ng-class="{active: isActive('past')}">Past Challenges</a></li>
         <li><a href="/challenges/{{contest.contestType}}/upcoming/" class="link" ng-class="{active: isActive('upcoming')}">Upcoming Challenges</a></li>
-        <!-- Coming soon!  <li><a href="http://www.topcoder.com/review-opportunities/develop/" class="link">Review Opportunities</a></li> -->
+        <!-- Coming soon!  <li><a href="//www.topcoder.com/review-opportunities/develop/" class="link">Review Opportunities</a></li> -->
       </ul>
     </div>
     <div class="rt">
@@ -264,7 +264,7 @@ get_header(); ?>
 <script type="text/ng-template" id="tableView/challengeDataName.html">
   <div class="colCh">
     <div>
-      <a ng-href="http://community.topcoder.com/longcontest/?module=ViewProblemStatement&rd={{row.getProperty('roundId')}}&pm={{row.getProperty('problemId')}}" class="contestName">
+      <a ng-href="//community.topcoder.com/longcontest/?module=ViewProblemStatement&rd={{row.getProperty('roundId')}}&pm={{row.getProperty('problemId')}}" class="contestName">
         <img alt="allContestIco" class="allContestIco" ng-src="{{images}}/ico-track-{{row.getProperty('challengeCommunity')}}.png">
         <span ng-cell-text>{{row.getProperty('fullName')}}</span>
         <img alt="allContestTCOIco" class="allContestTCOIco" ng-src="{{images}}/tco-flag-{{row.getProperty('challengeCommunity') != 'data'?row.getProperty('challengeCommunity'):'develop'}}.png" ng-show="contest.contestType != 'data'">
@@ -304,15 +304,15 @@ get_header(); ?>
 </script>
 
 <script type="text/ng-template" id="tableView/currentPhaseName.html">
-  <div ng-cell-text class="colPhase">{{getPhaseName(contest, row.getProperty('registrationOpen  '))}}</div>
+  <div ng-cell-text class="colPhase">{{row.getProperty('currentPhaseName')}}</div>
 </script>
 
 <script type="text/ng-template" id="tableView/currentPhaseRemainingTime.html">
-  <span ng-cell-text ng-bind-html="formatTimeLeft(row.getProperty(col.field), true)"></span>
+  <span ng-cell-text ng-bind-html="formatTimeLeft(row.getProperty(col.field), true, row.getProperty('currentPhaseName'))"></span>
 </script>
 
 <script type="text/ng-template" id="tableView/dataNumRegistrants.html">
-  <span ng-cell-text><a href="http://community.topcoder.com/longcontest/?module=ViewStandings&rd={{row.getProperty('roundId')}}">{{row.getProperty(col.field)}}</a></span>
+  <span ng-cell-text><a href="//community.topcoder.com/longcontest/?module=ViewStandings&rd={{row.getProperty('roundId')}}">{{row.getProperty(col.field)}}</a></span>
 </script>
 
 <script type="text/ng-template" id="tableView/duration.html">

@@ -172,11 +172,18 @@ function get_popular_ajax() {
   if ($arrPost != NULL) :
     foreach ($arrPost as $post) :
       $postId = $post->ID;
+      /*Bugfix: show correct thumbnail for posts*/
+      $thumbId = get_post_thumbnail_id ( $postId );
+      $iurl = wp_get_attachment_url ( $thumbId );
+      //if empty, show default thumbnail
+      if (empty($iurl)) {
+        $iurl = get_bloginfo('stylesheet_directory') . "/i/content-thumb.png";
+      }
       ?>
       <li>
         <!-- Bug# I-104876 href comes as empty on "show more" -->
         <a class="contentLink" href="<?php echo get_permalink($postId); ?>">
-          <img class="contentThumb" src="<?php bloginfo('stylesheet_directory'); ?>/i/content-thumb.png"
+          <img class="contentThumb" src="<?php echo $iurl;?>"
                alt="<?php echo $post->post_title; ?>">
           <?php echo $post->post_title; ?>
         </a> <span class="contentBrief"><?php echo wrap_content_strip_html(

@@ -102,11 +102,24 @@ The options can be found at `/wp-admin/themes.php?page=options.php`.
 
 When working on the site locally there are a few setup steps.
 
+* Install a web server (Apapche or Nginx)
+* Install PHP (mod_php for Apaache or PHP-FPM for Nginx)
+* Install MySQL
+* Checkout Code
+* Setup a vhost to point to Checkout Code
+* Make sure web server and php are capable of uploading a 20MB file.
 * The domain must be `*.topcoder.com`.
 * Your local webserver must be using port 80.
-* The data export is kept at https://github.com/topcoderinc/tc-site-data.
-  These are updated weekly upon releases to production.
-  You can import this data in the site's WP dashboard.
+* Visit local.topcoder.com
+* Install WordPress
+* Import Prod Data
+    * The data export is kept at https://github.com/topcoderinc/tc-site-data.
+    * The XML file is imported at http://local.topcoder.com/wp-admin/admin.php?import=wordpress
+* Enable plugins: TC API Hookup, Custom field Tempalte, Page-list, Per Page Widgets
+* Activate TC Theme
+* Import cft file from https://github.com/topcoderinc/tc-site-data at http://local.topcoder.com/wp-admin/options-general.php?page=custom-field-template.php
+* Change Permlink to "postname" as http://local.topcoder.com/wp-admin/options-permalink.php
+* Change the Home page to a static page and the front page to "New Home for QA and Profling" at http://www.topcoder.com/wp-admin/options-reading.php
 * Add a env.php file to the `wp-content/themes/tcs-responsive/config` directory.
   See below for what to put in this file.
 

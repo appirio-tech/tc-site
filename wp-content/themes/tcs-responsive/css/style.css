@@ -1451,7 +1451,7 @@
 }
 	.sideFindRelatedContent .relatedContentList li{
 		margin-top: 20px;
-		padding: 0 0 0 66px;
+		padding: 0 0 20px 66px;
 		position: relative;
 		min-height: 55px;
 	}
@@ -1460,13 +1460,14 @@
 	}
 		.sideFindRelatedContent .relatedContentList li .contentThumb{
 			display: block;
+			height: 55px;
+			width: 55px;
 			max-height: 55px;
 			max-width: 55px;
 			position: absolute; 
 			top: 0; 
 			left: 0;
 			cursor: pointer;
-			-moz-transition-duration: .3s; -webkit-transition-duration: .3s; transition-duration: .3s;    
 		}
 		.sideFindRelatedContent .relatedContentList li a.contentLink {
 			-moz-transition-duration: .3s; -webkit-transition-duration: .3s; transition-duration: .3s;

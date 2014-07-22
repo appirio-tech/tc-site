@@ -1622,7 +1622,7 @@ var app = {
   // palceholder
   setPlaceholder: function(selector) {
     $(selector).each(function() {
-      _this = $(this);
+      var _this = $(this);
       var text = _this.attr('placeholder');
       _this.val(text).addClass('isBlured');
       _this.on('focus', function() {

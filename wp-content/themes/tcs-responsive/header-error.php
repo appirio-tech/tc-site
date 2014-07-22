@@ -11,7 +11,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <!-- Favicons -->
 <link rel="shortcut icon" href="<?php bloginfo('template_url'); ?>/favicon.ico" />
-<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:700,400' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/style.css<?php if ($ver) { echo "?v=$v"; } ?>" />
     <script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/jQuery.js" type="text/javascript"></script>
   </head>
