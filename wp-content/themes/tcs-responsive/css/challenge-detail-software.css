@@ -576,7 +576,7 @@ font-size: 18px;
     padding: 0 0 6px;
 }
 
-.contestLinks p {
+.contestLinks p, .umltoolLinks p {
     display: block;
     overflow: hidden;
     border: none;
