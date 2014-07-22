@@ -57,7 +57,7 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
   $scope.checkpointData = false;
   $scope.checkpointResults = false;
   ChallengeService.getChallenge(challengeId).then(function(challenge) {
-    $scope.callComplete = false;
+    $scope.callComplete = true;
     challengeName = challenge.challengeName;
     $('#cdNgMain').removeClass('hide');
     if (challenge.checkpointSubmissionEndDate && challenge.checkpointSubmissionEndDate != '') {
