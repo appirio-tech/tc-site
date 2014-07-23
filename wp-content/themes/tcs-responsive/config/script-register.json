@@ -238,11 +238,21 @@
         "jquery.qtip.min.js",
         "jquery.jqtransform.js",
         "reset-password.js",
-        "app/app.js",
-        "app/challenges/services/challengeService.js",
-        "app/challenges/controllers/challengeListingCtrl.js",
+        "app/member-profile/app.js",
         "app/member-profile/js/services/services-member-profile.js",
-        "app/member-profile/js/controllers/controllers-member-profile.js"
+        "app/member-profile/js/directives/directives-member-profile.js",
+        "app/member-profile/js/directives/badge-directive-member-profile.js",
+        "app/member-profile/js/controllers/controllers-member-profile.js",
+        "app/member-profile/js/controllers/base-controller-member-profile.js",
+        "app/member-profile/js/controllers/design-controller-member-profile.js",
+        "app/member-profile/js/controllers/data-science-controller-member-profile.js",
+        "app/member-profile/js/controllers/develop-controller-member-profile.js",
+        "app/member-profile/js/controllers/badge-controller-member-profile.js",
+        "app/member-profile/js/services/color-service-member-profile.js",
+        "app/member-profile/js/services/chart-service-member-profile.js",
+        "app/member-profile/js/lib/loading-bar/loading-bar.js",
+        "app/member-profile/js/filters/filters-member-profile.js",
+        "highcharts.js"
       ],
       "css": [
         "blog.css",
@@ -250,6 +260,7 @@
         "base.css",
         "style.css",
         "style-profile.css",
+        "ng-style-profile.css",
         "base-responsive.css",
         "style-responsive.css",
         "coder.css",
@@ -263,7 +274,8 @@
         "jqtransform.css",
         "challenge-submit.css",
         "password-recovery.css",
-        "challenge-tags.css"
+        "challenge-tags.css",
+        "../js/app/member-profile/js/lib/loading-bar/loading-bar.css"
       ]
     },
     "ng-details": {

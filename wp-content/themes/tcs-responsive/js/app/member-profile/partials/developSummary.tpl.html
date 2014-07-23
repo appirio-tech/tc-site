@@ -1,0 +1,63 @@
+<header class="head" ng-if="dataCtrl.emptyFlag">
+	<h3 class="nocontestStatus text">Member rating unavailable or member didn't participated in any Develop contest.</h3>
+</header>
+
+<header class="head" ng-if="!dataCtrl.emptyFlag">
+	<div class="trackNRating">
+		<h4 class="trackName" ng-bind="subTrack"></h4>
+		<div class="rating" ng-class="getRatingColor(stats.Tracks[subTrack].rating)" ng-bind="stats.Tracks[subTrack].rating"></div>
+		<div class="lbl" ng-if="stats.Tracks[subTrack].rating">Rating</div>
+	</div>
+
+	<div class="detailedRating">
+		<div class="row fieldPercentile">
+			<label>Percentile:</label>
+			<div class="val" ng-bind="stats.Tracks[subTrack].overallPercentile|| 'loading...'">loading...</div>
+		</div>
+		<div class="row fieldVolatility">
+			<label>Volatility:</label>
+			<div class="val" ng-bind="stats.Tracks[subTrack].volatility|| 'loading...'">loading...</div>
+		</div>
+		<div class="row fieldRank">
+			<label>Rank:</label>
+			<div class="val" ng-bind=" !stats.Tracks[subTrack] | iif : 'loading...' : (stats.Tracks[subTrack].activeRank != 0 | iif : stats.Tracks[subTrack].activeRank : 'Not ranked' )">loading...</div>
+		</div>
+		<div class="row fieldCtryRank">
+			<label>Country Rank:</label>
+			<div class="val" ng-bind="!stats.Tracks[subTrack] | iif : 'loading...' : (stats.Tracks[subTrack].overallCountryRank == 0 | iif : 'Not ranked' : stats.Tracks[subTrack].overallCountryRank )">loading...</div>
+		</div>
+		<div class="row fieldScRank">
+			<label>School Rank:</label>
+			<div class="val" ng-bind="!stats.Tracks[subTrack] | iif : 'loading...' : (stats.Tracks[subTrack].activeSchoolRank != 0 | iif : stats.Tracks[subTrack].activeSchoolRank : 'Not ranked')">loading...</div>
+		</div>
+		<div class="row fieldCompetitions">
+			<label>Competitions:</label>
+			<div class="val">
+				<a href="#" ng-bind="stats.CompetitionHistory[subTrack].competitions|| 'loading...'">loading...</a>
+			</div>
+		</div>
+		<div class="row fieldMaxRating">
+			<label>Maximum Rating: </label>
+			<div class="val" ng-bind="stats.CompetitionHistory[subTrack] | iif : (stats.CompetitionHistory[subTrack].maximumRating | iif : stats.CompetitionHistory[subTrack].maximumRating : 'N/A') : 'loading...' ">loading...</div>
+		</div>
+		<div class="row fieldMinRating">
+			<label>Minimum Rating: </label>
+			<div class="val" ng-bind="stats.CompetitionHistory[subTrack] | iif : (stats.CompetitionHistory[subTrack].minimumRating | iif : stats.CompetitionHistory[subTrack].minimumRating : 'N/A') : 'loading...'">loading...</div>
+		</div>
+		<div class="row fieldRevRating">
+			<label>Reviewer Rating: </label>
+			<div class="val">
+				<a href="#" ng-if="stats.Tracks[subTrack].reviewerRating" ng-bind="stats.Tracks[subTrack].reviewerRating | number : 2 ">loading...</a>
+				<a href="#" ng-if="!stats.Tracks[subTrack].reviewerRating" ng-bind="!stats.Tracks[subTrack] | iif : 'loading...' : 'Not rated' "></a>
+			</div>
+		</div>
+		<div class="row fieldRevRating">
+			<label>Reliability: </label>
+			<div class="val">
+				<a href="#" ng-if="stats.Tracks[subTrack].reliability && stats.Tracks[subTrack].reliability !=='n/a' " ng-bind="(stats.Tracks[subTrack].reliability*100.0 | number : 0 ) + '%'">loading...</a>
+				<a href="#" ng-if="!stats.Tracks[subTrack].reliability || stats.Tracks[subTrack].reliability === 'n/a'" ng-bind="!stats.Tracks[subTrack] | iif : 'loading...' : 'N/A' "></a>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</header>

@@ -1,0 +1,21 @@
+<div id="tabularView" ng-if="showAsTable">
+	<div class="ngRatingTableCaption">Submissions</div>
+	<div class="ngRatingTable dev" ng-grid="gridOptions"></div>
+</div>
+<!-- /#tabularView -->
+<div id="graphView" ng-if="!showAsTable">
+	<div class="subTrackTabs">
+		<div class="srm subTrackTab">
+			<div class="chartWrap" ng-init="history = true;" >
+				<div class="chartTypeSwitcher">
+					<a class="btn btnHistory" ng-click="history = true; reflow()" ng-class="{ isActive : history }">Rating History</a>
+					<a class="btn btnDist" ng-click="history = false; reflow()" ng-class="{ isActive : !history }">Rating Distribution</a>
+				</div>
+				<div class="ratingChart" id="history_chart" ng-show="history" tc-draw-history></div>
+				<div class="ratingChart" id="distribution_chart" ng-hide="history" tc-draw-distribution></div>
+			</div>
+		</div>
+	</div>
+	<!-- /.subTrackTabs -->
+</div>
+<!-- /#graphView -->

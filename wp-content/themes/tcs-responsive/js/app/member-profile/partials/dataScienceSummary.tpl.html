@@ -1,0 +1,47 @@
+		<header class="head">
+			<div class="trackNRating">
+				<h4 class="trackName" ng-show="dataCtrl.subTrack === 'algorithm'">Algorithm Competitions</h4>
+				<h4 class="trackName" ng-show="dataCtrl.subTrack === 'marathon'">Data Science Competitions</h4>
+				<div class="rating" ng-class="getRatingColor(dataCtrl[dataCtrl.subTrack].rating)" ng-bind="dataCtrl[dataCtrl.subTrack].rating"></div>
+				<div class="lbl">Rating</div>
+			</div>
+			<div class="detailedRating">
+				<div class="row">
+					<label>Percentile:</label>
+					<div class="val" ng-bind="dataCtrl[dataCtrl.subTrack].percentile|| 'loading...'">loading...</div>
+				</div>
+				<div class="row">
+					<label>Volatility:</label>
+					<div class="val" ng-bind="dataCtrl[dataCtrl.subTrack].volatility|| 'loading...'">loading...</div>
+				</div>
+				<div class="row">
+					<label>Rank:</label>
+					<div class="val" ng-bind="dataCtrl[dataCtrl.subTrack].rank|| 'loading...'">loading...</div>
+				</div>
+				<div class="row">
+					<label>Default Language:</label>
+					<div class="val" ng-bind="dataCtrl[dataCtrl.subTrack].defaultLanguage|| 'loading...'">loading...</div>
+				</div>
+				<div class="row">
+					<label>Country Rank:</label>
+					<div class="val" ng-bind="dataCtrl[dataCtrl.subTrack].countryRank|| 'loading...'">loading...</div>
+				</div>
+				<div class="row">
+					<label>Competitions:</label>
+					<div class="val" ng-bind="dataCtrl[dataCtrl.subTrack].competitions|| 'loading...'">loading...</div>
+				</div>
+				<div class="row">
+					<label>Maximum Rating: </label>
+					<div class="val" ng-bind="dataCtrl[dataCtrl.subTrack].maximumRating|| 'loading...'">loading...</div>
+				</div>
+				<div class="row">
+					<label>Most Recent Event: </label>
+					<div class="val" ng-bind="(dataCtrl[dataCtrl.subTrack].mostRecentEventName + ' ' + (dataCtrl[dataCtrl.subTrack].mostRecentEventDate  | date : 'MM.dd.yy') ) || 'loading...' ">loading...</div>
+				</div>
+				<div class="row">
+					<label>Minimum Rating: </label>
+					<div class="val" ng-bind="dataCtrl[dataCtrl.subTrack].minimumRating|| 'loading...'">loading...</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</header>

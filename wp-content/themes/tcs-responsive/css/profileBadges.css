@@ -4,7 +4,7 @@
     height: 48px;
     width: 200px;
     background: url(../i/badgeGroup.grid.png);
-    margin: 2px;
+    margin: 2px 20px;
 }
 
 .singleBadge {
@@ -25,7 +25,11 @@
 .subBadge {
     height: 48px;
     display: inline-block;
-    margin-right: -3px; /*Bugfix: Need this since using inline-block introduces unwanted space between elements, throwing badge alignment off*/
+    /*
+    margin-right: -3px;
+    v1.0: Bugfix: Need this since using inline-block introduces unwanted space between elements, throwing badge alignment off
+    v1.1 Removed again in Module Assembly - member profile badges section refactor - Angular
+    */
 }
 
 .progress-meters .subBadge {

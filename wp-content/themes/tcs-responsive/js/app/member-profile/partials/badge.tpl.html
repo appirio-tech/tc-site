@@ -1,0 +1,20 @@
+<aside class="badges">
+  <header class="head">
+    <h4>Badges</h4>
+  </header>
+
+  <div class="badgeGroups">
+    <div class="groupBadge" ng-repeat="achievementGroup in badgeCtrl.achievementGroups" ng-class="achievementGroup.groupClass" ng-show="achievementGroup.specificAchievements[0].active">
+      <span class="subBadge hpLogo " ng-if="achievementGroup.groupClass.substring(0 , 9) === 'HP-Badges'"></span>
+      <span class="subBadge" ng-repeat="achievement in achievementGroup.specificAchievements" ng-class=" achievement.specificClass + ' ' + ( achievement.active | iif : 'selected' : '' )" tc-badge-tooltip="achievement.currentlyEarned achievement.date achievement.name"></span>
+    </div>
+  </div>
+  <!-- /.badge-badges -->
+
+  <div class="footer-badges">
+      <div class="singleBadge"  ng-class=" achievement.groupClass  + ' ' + (achievement.active | iif : 'selected' : '' ) " ng-repeat="achievement in badgeCtrl.singleAchievements" ng-show="achievement.active" tc-badge-tooltip="achievement.currentlyEarned achievement.date achievement.name"></div>
+    <div class="clear-float"></div>
+  </div>
+  <!-- /.footer-badges -->
+
+</aside>
