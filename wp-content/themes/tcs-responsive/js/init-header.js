@@ -67,8 +67,11 @@ function initMemberDetails(pagePersisted){
             "action": "get_member_profile",
             "handle": handle
           }, function(data) {
-            if (data['photoLink']) {
-              $('.userPic img').attr('src', 'http://community.topcoder.com' + data['photoLink']);
+            var photoLink = data['photoLink'];
+            if (photoLink) {
+              if (photoLink.indexOf('//') == -1)
+                photoLink = 'http://community.topcoder.com' + data['photoLink']
+              $('.userPic img').attr('src',  photoLink);
             } else {
               $('.userPic img').attr('src', 'http://community.topcoder.com/i/m/nophoto_login.gif');
             }
