@@ -105,7 +105,7 @@ DesignCtrl.prototype.loadImagesAsync = function (ImageService) {
   $(this.recentWins.recentWinningSubmissions).each(function () {
 
     if (this.preview && this.viewable) {
-      this.fullImage = this.preview.replace('sbt=small', 'sbt=full');
+      this.fullImage = this.preview.replace('sbt=small', 'sbt=medium');
       fullImageSources.push(this.fullImage);
       previewSources.push(this.preview);
     } else {
