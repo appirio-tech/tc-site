@@ -100,7 +100,7 @@ get_header(); ?>
         <div ng-show="dataDisplayed && challenges.length == 0">
           <br />
           <h3>
-            There are no active challenges at this time. Please check back later.
+            There are no challenges at this time. Please check back later.
           </h3>
         </div>
         <div ng-show="challenges.length > 0">
@@ -135,7 +135,7 @@ get_header(); ?>
             </a>
           </div>
         </div>
-        <div style="font-size:20px;display: none;" ng-show="!challenges.length && !loading">There are no active challenges under this category. Please check back later</div>
+        <div style="font-size:20px;display: none;" ng-show="!challenges.length && !loading">There are no challenges under this category. Please check back later.</div>
       </div>
     </article>
   </div>
