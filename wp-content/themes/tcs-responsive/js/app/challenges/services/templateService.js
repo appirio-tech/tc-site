@@ -90,7 +90,7 @@
       }
 
       function formatTimeLeft(seconds, grid, phase) {
-        var sep = (grid) ? '' : ' ',
+        var sep = ' ',
           numdays = Math.floor(seconds / 86400),
           numhours = Math.floor((seconds % 86400) / 3600),
           numminutes = Math.floor(((seconds % 86400) % 3600) / 60),
@@ -98,7 +98,7 @@
           result = "",
           style = "";
         if (seconds < 0 || phase != 'Submission') {
-          return $sce.trustAsHtml('<span style="font-size:14px;">0' + sep + '<span style="font-size:10px;">Days</span> 0' + sep + '<span style="font-size:10px;">Hrs</span>');
+          return $sce.trustAsHtml('<span style="font-size:14px;">0' + sep + '<span style="font-size:10px;">Days</span> 0' + sep + '<span style="font-size:10px;">Hr</span>');
         }
 
         if (numdays === 0 && numhours <= 2) {
