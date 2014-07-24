@@ -300,9 +300,9 @@ get_header(); ?>
 
 <script type="text/ng-template" id="tableView/challengeType.html">
   <div class="colType {{getTrackSymbol(row.getProperty('challengeType'))}}">
-    <i class="ico" challenge-popover-title="Contest Type" challenge-popover="{{row.getProperty('challengeType')}}" challenge-popover-append-to-body="true">
+    <i class="ico" challenge-popover-title="Challenge Type" challenge-popover="{{row.getProperty('challengeType')}}" challenge-popover-append-to-body="true">
         <span class="tooltipData">
-            <span class="tipT">Contest Type</span>
+            <span class="tipT">Challenge Type</span>
             <span class="tipC">{{row.getProperty(col.field)}}</span>
         </span>
     </i>
