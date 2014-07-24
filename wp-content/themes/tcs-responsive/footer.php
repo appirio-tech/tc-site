@@ -197,7 +197,7 @@ $blog_posts = get_posts($blog_posts_args);
         class="shareGithubHover animeButtonHover"></span></span></a>
 
   <p>Using an existing account is quick and easy.<br/>Select the account you would like to use and we'll do the rest for
-    you</p>
+    you.</p>
 
   <div class="clear"></div>
 </div>
@@ -566,7 +566,7 @@ $blog_posts = get_posts($blog_posts_args);
             class="shareGithubHover animeButtonHover"></span></span></a>
 
       <p>Using an existing account is quick and easy.<br/>Select the account you would like to use and we'll do the rest
-        for you</p>
+        for you.</p>
 
       <div class="clear"></div>
     </div>
@@ -682,15 +682,15 @@ $blog_posts = get_posts($blog_posts_args);
 
     loginState = "<?php echo $stateLogin; ?>";
 
-    var referer =  document.referrer;		
+    var referer =  document.referrer;
 
     if (loginState == 'none') {
       loginState = window.location.href;
-	  
-  	  // redirect for non-modal registration	  
+
+  	  // redirect for non-modal registration
 	  if ( $('#mainContent #register').length>0 ) {
 		  loginState = '<?php echo get_page_link_by_slug('community/registration-complete'); ?>';
-	  }	  	 
+	  }
 
 	  // set to home page for non modal login
 	  if ( $('#mainContent #login').length>0 ) {
@@ -700,7 +700,7 @@ $blog_posts = get_posts($blog_posts_args);
 			  loginState = referer;
 		  }
 	  }
-	  
+
       if ( /action=showlogin/i.test( loginState )) {
         loginState = referer;
       }
@@ -710,9 +710,9 @@ $blog_posts = get_posts($blog_posts_args);
         // avoid loop if 1st login try was failed. failed login will still redirect user to action=showlogin
         loginState = window.location.href;
       }
-	  
+
     }
-		
+
     var auth0Login = new Auth0({
       domain: 'topcoder.auth0.com',
       clientID: '<?php echo auth0_clientID(); ?>',
