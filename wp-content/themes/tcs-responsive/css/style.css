@@ -1376,6 +1376,16 @@
 			line-height: 24px;
 			background: url(../i/content-list-dot.png) 0 0 no-repeat;
 		}
+	.pageContent ol {
+		list-style: initial;
+		list-style-type: decimal;
+		list-style-position: outside;
+		padding: 6px 10px 2px 53px;
+	}
+		.pageContent ol li{
+			padding: 0 0 24px 2px;
+			line-height: 24px;
+		}
 	.pageContent .grid-3-1{
 		float: left;
 	}
