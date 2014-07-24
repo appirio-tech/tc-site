@@ -26,7 +26,7 @@ $contest = get_contest_detail('', get_query_var('contestID'), $challengeType);
                             <dd>
                                 <p class="fileNameDisplay fileNameDisplayNoFile">Select file to upload...</p>
                                 <a class="btn fileBrowser btnGreen" href="javascript:;">Browse</a>
-                                <span class="error">Please upload a submission first</span>
+                                <span class="error"></span>
                                 <input id="submission" data-type="zip" type="file" onchange="browseFileTrigger(this)" name="submission"
                                        class="fileInput">
                             </dd>
