@@ -218,7 +218,7 @@ get_header(); ?>
         </ul>
         </section>
       <section class="tags" ng-if="challengeCommunity === 'develop' && (technologies.length > 0 || platforms.length > 0)">
-        <h5>Technology and Platforms:</h5>
+        <h5>Technologies and Platforms:</h5>
         <div class="data">
           <select ui-select2="{allowClear:true, multiple: true}" data-placeholder="" class="chosen-select hasCustomSelect"  ng-model="filterOptions.tags" multiple>
             <optgroup label="Platforms">
