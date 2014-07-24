@@ -56,9 +56,17 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
   $scope.numCheckpointSubmissions = -1;
   $scope.checkpointData = false;
   $scope.checkpointResults = false;
+  $scope.numberOfPassedScreeningSubmissions = false;
+  $scope.numberOfPassedScreeningUniqueSubmitters = false;
+  $scope.numberOfUniqueSubmitters = false;
+  $scope.checkpointPassedScreeningSubmitterPercentage = false;
+  $scope.checkpointPassedScreeningSubmissionPercentage = false;
+  
   ChallengeService.getChallenge(challengeId).then(function(challenge) {
     $scope.callComplete = true;
     challengeName = challenge.challengeName;
+    $scope.challengeType = getParameterByName('type');
+    $scope.isDesign = $scope.challengeType == 'design';
     addthis_share = {url: location.href, title: challengeName};
     $('#cdNgMain').removeClass('hide');
     if (challenge.checkpointSubmissionEndDate && challenge.checkpointSubmissionEndDate != '') {
@@ -67,7 +75,14 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
             $scope.checkpointData = data;
             $scope.checkpointResults = data.checkpointResults;
             $scope.numCheckpointSubmissions = data.numberOfSubmissions;
-
+            //set variables for design challenge checkpoint results
+            if ($scope.isDesign) {
+              $scope.numberOfPassedScreeningSubmissions = data.numberOfPassedScreeningSubmissions;
+              $scope.numberOfPassedScreeningUniqueSubmitters = data.numberOfPassedScreeningUniqueSubmitters;
+              $scope.numberOfUniqueSubmitters = data.numberOfUniqueSubmitters;
+              $scope.checkpointPassedScreeningSubmitterPercentage = Math.floor(($scope.numberOfPassedScreeningUniqueSubmitters / $scope.numberOfUniqueSubmitters) * 100);
+              $scope.checkpointPassedScreeningSubmissionPercentage = Math.floor(($scope.numberOfPassedScreeningSubmissions / $scope.numCheckpointSubmissions) * 100);
+            }
             // @TODO: This is so hacky. Do it the Angular way instead
             setTimeout(function() {
               $('.expandCollaspeList li a').each(function () {
@@ -136,8 +151,6 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
     $scope.challenge = challenge;
     $scope.reliabilityBonus = challenge.reliabilityBonus;
     $scope.siteURL = siteURL;
-    $scope.challengeType = getParameterByName('type');
-    $scope.isDesign = $scope.challengeType == 'design';
     $scope.inSubmission = inSubmission = challenge.currentPhaseName.indexOf('Submission') >= 0;
     $scope.inScreening = inScreening = challenge.currentPhaseName.indexOf('Screening') >= 0;
     $scope.inReview = inReview = challenge.currentPhaseName.indexOf('Review') >= 0;
@@ -158,15 +171,46 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
         $scope.firstPlaceSubmission = results.firstPlaceSubmission;
         $scope.secondPlaceSubmission = results.secondPlaceSubmission;
         $scope.submissions = results.submissions;
+        //set variables for design challenge results
+        if ($scope.isDesign) {
+          //filter all submitters that passed screening
+          var passedScreen = results.results.filter(function(element){
+            if (element.submissionStatus !== "Failed Screening") {
+              return true;
+            }
+            return false;
+          });
+          //push all passing submitter handles to new array
+          var resultPassingHandles = [];
+          passedScreen.forEach(function(el){
+            resultPassingHandles.push(el.handle);
+          });
+          //get number of unique final submitters that have passed screening
+          $scope.finalSubmittersPassedScreening = resultPassingHandles.filter(function(element, elIndex, arr){
+            return arr.indexOf(element) == elIndex;
+          }).length;
+          
+          //push all submitter handles to new array
+          var resultHandles = [];
+          results.results.forEach(function(el){
+            resultHandles.push(el.handle);
+          });
+          //get number of unique final submitters regardless of screening status
+          $scope.numFinalSubmitters = resultHandles.filter(function(element, elIndex, arr){
+            return arr.indexOf(element) == elIndex;
+          }).length;
+        
+          $scope.numFinalSubmissions = results.numSubmissions;
+          $scope.finalSubmissionsPassedScreening = results.submissionsPassedScreening;
+          $scope.finalPassedScreeningSubmitterPercentage = Math.floor(($scope.finalSubmittersPassedScreening / $scope.numFinalSubmitters) * 100);
+          $scope.finalPassedScreeningSubmissionPercentage = Math.floor(($scope.finalSubmissionsPassedScreening / $scope.numFinalSubmissions) * 100);
+        }
         $scope.initialScoreSum = 0;
         $scope.finalScoreSum = 0;
         $scope.submissions.map(function(x) {
           $scope.initialScoreSum += x.initialScore;
           $scope.finalScoreSum += x.finalScore;
         });
-        //console.log('init and fina');
-        //console.log($scope.initialScoreSum);
-        //console.log($scope.finalScoreSum);
         $scope.winningSubmissions = [];
         var winnerMap = {};
         for (var i = 0; i < $scope.submissions.length; i++) {
