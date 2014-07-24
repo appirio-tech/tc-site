@@ -197,7 +197,7 @@ if ($contestType == 'design'):
         </div>
         <!-- #/end image-->
         <div class="details">
-            <a href="javascript:" class="coderTextOrange">Handlegoeshere</a>
+            <a href="javascript:" class="coderTextOrange">Usernamegoeshere</a>
             <div class="">
                 <h3>$200</h3>
                 <span class="title">PRIZE</span>
@@ -329,7 +329,7 @@ if ($contestType == 'design'):
         <thead>
         <tr>
             <th class="leftAlign">
-                <a href="javascript:" class="">Handle</a>
+                <a href="javascript:" class="">Username</a>
             </th>
             <th>
                 <a href="javascript:" class="">Registration Date</a>
