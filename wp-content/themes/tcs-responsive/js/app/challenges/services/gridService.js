@@ -11,13 +11,15 @@
           {
             field: 'challengeName',
             fieldName: 'Challenge',
-            width: 340,
+            minWidth: 290,
+            maxWidth: 340,
             visible: contest.contestType !== 'data'
           },
           {
             field: 'challengeName',
             fieldName: 'Challenge',
-            width: 340,
+            minWidth: 290,
+            maxWidth: 340,
             tplName: 'challengeDataName',
             visible: contest.contestType === 'data'
           },
@@ -29,7 +31,7 @@
           {
             field: 'registrationStartDate',
             fieldName: 'Timeline',
-            minWidth: 194,
+            minWidth: 184,
             width: 210,
             maxWidth: 210,
             tplName: 'timeline'
@@ -111,8 +113,8 @@
           {
             field: 'chalengeId',
             fieldName: 'Winners',
-            width: '*',
-            minWidth: 74,
+            width: '70',
+            minWidth: 70,
             tplName: 'winners',
             visible: contest.listType === 'past'
           },
