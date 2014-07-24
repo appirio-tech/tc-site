@@ -10,9 +10,8 @@
         return [
           {
             field: 'challengeName',
-            fieldName: 'Challenge',
-            minWidth: 290,
-            maxWidth: 340,
+            fieldName: 'Challenges',
+            width: 340,
             visible: contest.contestType !== 'data'
           },
           {
@@ -23,11 +22,11 @@
             tplName: 'challengeDataName',
             visible: contest.contestType === 'data'
           },
-          {
+          /*{
             field: 'challengeType',
             fieldName: 'Type',
             width: 45
-          },
+          },*/
           {
             field: 'registrationStartDate',
             fieldName: 'Timeline',
@@ -66,9 +65,9 @@
           {
             field: 'currentPhaseName',
             fieldName: 'Current Phase',
-            minWidth: 67,
-            width: 110,
-            maxWidth: 120,
+            minWidth: 77,
+            width: 120,
+            maxWidth: 130,
             visible: contest.listType !== 'upcoming'
           },
           {
