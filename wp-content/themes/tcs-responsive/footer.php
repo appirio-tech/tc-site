@@ -724,7 +724,7 @@ $blog_posts = get_posts($blog_posts_args);
     var auth0Register = new Auth0({
       domain: 'topcoder.auth0.com',
       clientID: '<?php echo auth0_clientID(); ?>',
-      callbackURL: utmSource && utmCampaign && utmMedium ? '//www.topcoder.com/?action=callback?utmSource=' + utmSource + '&utmCampaign=' + utmCampaign + '&utmMedium=' + utmMedium : '//www.topcoder.com/?action=callback',
+      callbackURL: utmSource && utmCampaign && utmMedium ? window.location.procotol + '//www.topcoder.com/?action=callback?utmSource=' + utmSource + '&utmCampaign=' + utmCampaign + '&utmMedium=' + utmMedium : window.location.protocol + '//www.topcoder.com/?action=callback',
       state: loginState,
       redirect_uri: window.location.href
     });
