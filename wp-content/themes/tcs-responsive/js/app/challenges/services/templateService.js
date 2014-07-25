@@ -97,7 +97,7 @@
           numseconds = ((seconds % 86400) % 3600) % 60,
           result = "",
           style = "";
-        if (seconds < 0 || phase != 'Submission') {
+        if (seconds < 0) {
           return $sce.trustAsHtml('<span style="font-size:14px;">0' + sep + '<span style="font-size:10px;">Days</span> 0' + sep + '<span style="font-size:10px;">Hr</span>');
         }
 
