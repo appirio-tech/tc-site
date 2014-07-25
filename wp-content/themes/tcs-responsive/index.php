@@ -14,7 +14,7 @@
 			<?php the_title();?>
 		</h3>
 		<div class="article">
-			<div class="post">
+			<div class="pageContent">
 				<?php echo the_content();?>
 			</div>
 			<br />

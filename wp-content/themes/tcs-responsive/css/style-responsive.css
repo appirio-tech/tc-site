@@ -1253,6 +1253,9 @@
 	.pageContent ul .listTitleDash{
 		display: none;	
 	}
+	.pageContent ol {
+		padding: 6px 10px 2px 33px;
+	}
 	.pageContent p.halfPb{
 		padding-bottom: 12px;
 	}
