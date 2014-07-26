@@ -30,6 +30,9 @@ BadgeCtrl.prototype.dealWithBadgeData = function(userId, $scope, MemberProfileSe
     The service method getUser( handle )  already contains achievements information.
     So we don't need another more service method here.
   */
+  
+  var excluded_badgesID = [1,6, 11, 16, 21]; // few data is not available, so lets exclude them.
+  
   $scope.$watch('coder', function () {
     if($scope.coder && $scope.coder.Achievements){
       $($scope.coder.Achievements).each(function(){
@@ -39,7 +42,7 @@ BadgeCtrl.prototype.dealWithBadgeData = function(userId, $scope, MemberProfileSe
           value.date = badgeCtrl.formatDate(this.date);
           value.active = true;
           //get active badge's count if available.
-          if(userId){
+          if(userId && $.inArray(value.id, excluded_badgesID) <= -1 ){
             MemberProfileService.getAchievementCurrent(userId, value.id).then(function (data){
               badgeCtrl.populateData(value, data.count);
             }, function errorCallback(){
