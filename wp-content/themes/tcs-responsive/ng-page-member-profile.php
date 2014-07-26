@@ -12,6 +12,10 @@
 tc_setup_angular();
 
 // Get the default header
+if (!isset($handle) ) {
+  wp_redirect(site_url('404.php'));
+  exit;
+}
 get_header();
 
 ?>
