@@ -211,8 +211,8 @@
         "challenge-submit.css"
       ]
     },
-    "angular": {
-      "name": "angular",
+    "ng-member-profile": {
+      "name": "ng-member-profile",
       "js": [
         "jquery.cookie.js",
         "jwt-auth0.js",
@@ -415,9 +415,8 @@
     "page-terms-list.php": "challengeterms",
     "page-terms-details.php": "challengeterms",
     "page-challenge-submit.php": "challengesubmit",
-    "page-angular-example.php": "angular",
     "ng-page-challenge-details.php": "ng-details",
-    "ng-page-member-profile.php": "angular",
+    "ng-page-member-profile.php": "ng-member-profile",
     "ng-page-challenges.php": "ngChallenges",
     "default": "default"
   }
