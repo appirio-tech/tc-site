@@ -1641,8 +1641,9 @@ var app = {
 
   isLoggedIn: function() {
     var tcjwt = $.cookie('tcjwt');
+    var tcsso = $.cookie('tcsso');
 
-    if (typeof tcjwt == "undefined") {
+    if (typeof tcjwt == "undefined" || typeof tcsso == "undefined") {
       return false;
     }
 
