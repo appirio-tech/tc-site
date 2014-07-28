@@ -252,6 +252,7 @@ a{
 /* algoLayout */
 .algoLayout{
     position: relative;
+    min-height: 605px;
     color: #333; 
 }
     .algoLayout .ratingInfo{
@@ -743,9 +744,12 @@ a{
         display: block;
         position: relative;
         min-height: 36px;
+        max-height: 36px;
         color: #00aeff;
         width: 245px;
         margin: 20px auto 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     .designLayout .winInfo .contestTitle i{
         position: absolute;        
@@ -948,6 +952,12 @@ a{
 
 .loadingPlaceholder{
     background: url(../i/loading.gif) 50% 50% no-repeat;
+    height: 250px;
+    border-radius: 5px;
+}
+
+.loadingPlaceholder2{
+    background: url(../i/ajax-loader.gif) 50% 50% no-repeat;
     height: 250px;
     border-radius: 5px;
 }

@@ -502,10 +502,12 @@ app.ajaxProfileRequest = function() {
             }
 
             // update style
-            $('.submissionCarousel .slider').trigger('iCarousel:pause');
+            // Commented for angular version
+            //$('.submissionCarousel .slider').trigger('iCarousel:pause');
             if (reqProfileData.tab === "design") {
                 $('.dataTabs').addClass('designLayout');
-                app.initDesignCarousel();
+                // Commented for angular version
+                //app.initDesignCarousel();
 
             } else {
                 $('.dataTabs').removeClass('designLayout');
@@ -542,7 +544,8 @@ app.populateProfileTab = function() {
         // update style
         if (reqProfileData.tab === "design") {
             $('.dataTabs').addClass('designLayout');
-            app.initDesignCarousel();
+            // Commented for angular version
+            //app.initDesignCarousel();
         } else {
             $('.dataTabs').removeClass('designLayout');
         }
