@@ -123,6 +123,15 @@ backgorund modal
 	so the modal dialog won't cut off when the page contains only small content */
     z-index: 100001;
 }
+#bgLoadingModal span {
+    display:block;
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    top:50%;
+    left:50%;
+    background: transparent url(../i/ajax_loader_gray_256.gif) no-repeat;
+}
 /*
 common
 */
