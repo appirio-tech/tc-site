@@ -30,7 +30,7 @@ module.exports = function(grunt) {
       useCND: grunt.option('use-cdn') || false,
       useMin: grunt.option('use-min') || false,
       useVer: grunt.option('use-ver') || false,
-      version:Date.now()
+      version: grunt.option('cdn-version') || Date.now()
     };
 
     // Write config to file
