@@ -295,6 +295,13 @@ function auth0_callbackURL() {
   return defined('CONFIG_AUTH0_CALLBACKURL') ? CONFIG_AUTH0_CALLBACKURL : 'https://www.topcoder.com/reg2/callback.action';
 }
 
+/**
+ * Function to get the registartion callback
+ */
+function tc_reg_callback() {
+  return add_query_arg(array('action' => 'callback'), CURRENT_FULL_URL);
+}
+
 /* function to get auth0 LDAP */
 function auth0_LDAP() {
   return defined('CONFIG_AUTH0_LDAP') ? CONFIG_AUTH0_LDAP : 'LDAP';
