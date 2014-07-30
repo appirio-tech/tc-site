@@ -137,12 +137,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-ng-annotate');
 
   // Default task.
-<<<<<<< Updated upstream
-  grunt.registerTask('default', ['clean', 'concat', 'cssmin', 'uglify', 'compress']);
-=======
-  grunt.registerTask('default', ['clean', 'concat', 'cssmin', 'ngAnnotate', 'uglify', 'compress', 'updateJsonConfig']);
->>>>>>> Stashed changes
+  grunt.registerTask('default', ['clean', 'concat', 'cssmin', 'ngAnnotate', 'uglify', 'compress']);
 
 };
