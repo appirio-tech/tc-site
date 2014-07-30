@@ -146,6 +146,8 @@ $blog_posts = get_posts($blog_posts_args);
 
 
 <div id="bgModal"></div><!-- background modal -->
+<div id="bgOverlapModal"></div><!-- background modal -->
+<div id="bgLoadingModal"><span></span></div><!-- background loading -->
 <div id="thanks" class="modal">
   <a href="javascript:;" class="closeBtn closeModal"></a>
 
@@ -180,6 +182,14 @@ $blog_posts = get_posts($blog_posts_args);
     </p>
   </div>
 </div><!-- END #registerFailed -->
+
+<div id="showSubmission" class="modal">
+    <a href="javascript:;" class="btnClose closePopupModal"></a>
+    <div class="content">
+        <img src="http://studio.topcoder.com/?module=DownloadSubmission&sbmid=177659&sbt=full&sfi=1" alt="" style="width:910px; height:850px">
+    </div>
+</div><!-- END #show submission -->
+
 <div id="register" class="modal">
 <a href="javascript:;" class="btnClose closeModal"></a>
 

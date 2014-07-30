@@ -305,12 +305,15 @@
         "jquery.qtip.min.js",
         "jquery.jqtransform.js",
         "reset-password.js",
-        "app/challenge-details/ng-challenge-detail-software.js",
-        "app/challenge-details/ng-challenge-result.js",
+        "app/challenge-details/js/ng-challenge-detail-software.js",
+        "app/challenge-details/js/ng-challenge-result.js",
         "app/challenge-details/app.js",
-        "app/challenge-details/controllers.js",
-        "app/challenge-details/services.js",
-        "app/challenge-details/lib/loading-bar.js"
+        "app/challenge-details/js/controllers/controllers.js",
+        "app/challenge-details/js/controllers/submission-controller.js",
+        "app/challenge-details/js/directives/submission-directives.js",
+        "app/challenge-details/js/services/services.js",
+        "app/challenge-details/js/services/submission-services.js",
+        "app/challenge-details/js/lib/loading-bar/loading-bar.js"
       ],
       "css": [
         "blog.css",
@@ -333,7 +336,7 @@
         "password-recovery.css",
         "challenge-tags.css",
         "style-404page.css",
-        "../js/app/challenge-details/lib/loading-bar.css"
+        "../js/app/challenge-details/js/lib/loading-bar/loading-bar.css"
       ]
     },
     "ngChallenges": {

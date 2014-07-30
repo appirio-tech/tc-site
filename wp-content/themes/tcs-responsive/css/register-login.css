@@ -111,7 +111,7 @@ hover style icons
 /*
 backgorund modal
 */
-#bgModal {
+#bgModal,#bgOverlapModal,#bgLoadingModal {
     position: fixed;
     width: 100%;
     height: 100%;
