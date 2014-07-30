@@ -336,7 +336,7 @@ font-size: 18px;
 .challenge-detail .tableWrap ul {
     margin-left: 0px;
     padding: 0;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     width: auto;
     color: #797979;
     overflow: hidden;
@@ -358,7 +358,7 @@ font-size: 18px;
 .challenge-detail .tableWrap ol {
     margin-left: 16px;
     padding: 0px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     width: auto;
     color: #797979;
 }
@@ -576,7 +576,7 @@ font-size: 18px;
     padding: 0 0 6px;
 }
 
-.contestLinks p {
+.contestLinks p, .umltoolLinks p {
     display: block;
     overflow: hidden;
     border: none;

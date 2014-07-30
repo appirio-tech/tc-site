@@ -25,8 +25,8 @@ get_header(); ?>
       stylesheetDirectoryUri: '<?php echo get_stylesheet_directory_uri(); ?>'
     }
   </script>
-
-  <div data-ng-app="tc" class="content">
+<!-- moved ng-app to <html> element so page titles can be updated with angular -->
+  <div class="content">
   <div id="main">
       <div ng-view>
         <div id="hero">
@@ -96,11 +96,17 @@ get_header(); ?>
               show-on="showFilters"
               filter="filter"></div>
 
-        <div class="upcomingCaption" ng-show="contest.listType === 'upcoming'">All upcoming challenges may change</div>
-        <div ng-show="dataDisplayed && challenges.length == 0">
+        <div class="upcomingCaption" ng-show="contest.listType === 'upcoming' && challenges.length != 0">All upcoming challenges may change</div>
+          <div ng-show="dataDisplayed && challenges.length == 0 && contest.listType !== 'upcoming'">
           <br />
           <h3>
-            There are no active challenges at this time. Please check back later.
+            There are no challenges at this time. Please check back later.
+          </h3>
+        </div>
+        <div ng-show="dataDisplayed && challenges.length == 0 && contest.listType === 'upcoming'">
+          <br />
+          <h3>
+            There are no upcoming challenges at this time. Please check back later.
           </h3>
         </div>
         <div ng-show="challenges.length > 0">
@@ -116,7 +122,7 @@ get_header(); ?>
         </div>
         <div class="dataChanges">
           <div class="lt">
-            <a class="viewAll hide" ng-show="challenges.length < allChallenges.length" ng-click="viewAll()">View All</a>
+            <a class="viewAll" ng-show="challenges.length < allChallenges.length" ng-click="viewAll()">View All</a>
           </div>
           <div id="challengeNav" class="rt">
             <a class="prevLink" ng-show="page > 1" ng-click="page = page - 1">
@@ -135,7 +141,7 @@ get_header(); ?>
             </a>
           </div>
         </div>
-        <div style="font-size:20px;display: none;" ng-show="!challenges.length && !loading">There are no active challenges under this category. Please check back later</div>
+        <div style="font-size:20px;display: none;" ng-show="!challenges.length && !loading">There are no challenges under this category. Please check back later.</div>
       </div>
     </article>
   </div>
@@ -177,7 +183,7 @@ get_header(); ?>
     <div class="searchFilter hide">
     <div class="filterOpts">
       <section class="types" ng-if="challengeCommunity !== 'data'">
-        <h5>Contest types:</h5>
+        <h5>Challenge types:</h5>
         <div class="data">
           <ul class="list">
             <li ng-repeat="type in contestTypes">
@@ -218,7 +224,7 @@ get_header(); ?>
         </ul>
         </section>
       <section class="tags" ng-if="challengeCommunity === 'develop' && (technologies.length > 0 || platforms.length > 0)">
-        <h5>Technology and Platforms:</h5>
+        <h5>Technologies and Platforms:</h5>
         <div class="data">
           <select ui-select2="{allowClear:true, multiple: true}" data-placeholder="" class="chosen-select hasCustomSelect"  ng-model="filterOptions.tags" multiple>
             <optgroup label="Platforms">
@@ -280,6 +286,9 @@ get_header(); ?>
         <img alt="allContestIco" class="allContestIco" ng-src="{{images}}/ico-track-{{row.getProperty('challengeCommunity')}}.png">
         <span ng-cell-text>{{row.getProperty(col.field)}}</span>
         <img alt="allContestTCOIco" class="allContestTCOIco" ng-src="{{images}}/tco-flag-{{row.getProperty('challengeCommunity') != 'data'?row.getProperty('challengeCommunity'):'develop'}}.png" ng-if="contest.contestType != 'data'">
+        <span class="track-symbol" qtip title="Challenge Type" text="{{row.getProperty('challengeType')}}" community="{{row.getProperty('challengeCommunity')}}">
+          {{getTrackSymbol(row.getProperty('challengeType')).toUpperCase()}}
+        </span>
       </a>
     </div>
     <div id="{{row.getProperty('challengeId')}}" class="technologyTags">
@@ -294,9 +303,9 @@ get_header(); ?>
 
 <script type="text/ng-template" id="tableView/challengeType.html">
   <div class="colType {{getTrackSymbol(row.getProperty('challengeType'))}}">
-    <i class="ico" challenge-popover-title="Contest Type" challenge-popover="{{row.getProperty('challengeType')}}" challenge-popover-append-to-body="true">
+    <i class="ico" challenge-popover-title="Challenge Type" challenge-popover="{{row.getProperty('challengeType')}}" challenge-popover-append-to-body="true">
         <span class="tooltipData">
-            <span class="tipT">Contest Type</span>
+            <span class="tipT">Challenge Type</span>
             <span class="tipC">{{row.getProperty(col.field)}}</span>
         </span>
     </i>
@@ -304,7 +313,7 @@ get_header(); ?>
 </script>
 
 <script type="text/ng-template" id="tableView/currentPhaseName.html">
-  <div ng-cell-text class="colPhase">{{getPhaseName(contest, row.getProperty('registrationOpen  '))}}</div>
+  <div ng-cell-text class="colPhase">{{row.getProperty('currentPhaseName')}}</div>
 </script>
 
 <script type="text/ng-template" id="tableView/currentPhaseRemainingTime.html">
@@ -349,32 +358,7 @@ get_header(); ?>
 </script>
 
 <script type="text/ng-template" id="tableView/timeline.html">
-  <div class="colTime" ng-if="row.getProperty('challengeCommunity') == 'develop'">
-    <div>
-      <div class="row">
-        <label class="lbl">Start Date</label>
-        <div class="val vStartDate">{{row.getProperty('registrationStartDate') | date: dateFormat}}</div>
-      </div>
-      <div class="row" ng-show="contest.listType == 'upcoming' && row.getProperty('checkpointSubmissionEndDate')">
-        <label class="lbl ">Round 1 End</label>
-        <div class="val vEndRound">{{row.getProperty('checkpointSubmissionEndDate') | date: dateFormat}}</div>
-      </div>
-      <div class="row" ng-show="contest.listType != 'active'">
-        <label class="lbl">End Date</label>
-        <div class="val vEndDate">{{row.getProperty('submissionEndDate') | date: dateFormat}}</div>
-      </div>
-      <div class="row" ng-show="contest.listType == 'active'">
-        <label class="lbl ">Register by</label>
-        <div class="val vEndRound">{{row.getProperty('registrationEndDate') | date: dateFormat}}</div>
-      </div>
-      <div class="row" ng-show="contest.listType == 'active'">
-        <label class="lbl">Submit by</label>
-        <div class="val vEndDate">{{row.getProperty('submissionEndDate') | date: dateFormat}}</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="colTime" ng-if="row.getProperty('challengeCommunity') == 'design'">
+  <div class="colTime" ng-if="row.getProperty('challengeCommunity') == 'develop' || row.getProperty('challengeCommunity') == 'design'">
     <div>
       <div class="row">
         <label class="lbl">Start Date</label>
@@ -384,13 +368,17 @@ get_header(); ?>
         <label class="lbl ">Round 1 End</label>
         <div class="val vEndRound">{{row.getProperty('checkpointSubmissionEndDate') | date: dateFormat}}</div>
       </div>
-      <div class="row" ng-show="contest.listType != 'active'">
+      <div class="row" ng-show="contest.listType == 'past'">
         <label class="lbl">End Date</label>
         <div class="val vEndDate">{{row.getProperty('submissionEndDate') | date: dateFormat}}</div>
       </div>
-      <div class="row" ng-show="contest.listType == 'active'">
-        <label class="lbl ">End Date</label>
+      <div class="row" ng-show="contest.listType == 'active' || contest.listType == 'upcoming'">
+        <label class="lbl ">Register by</label>
         <div class="val vEndRound">{{row.getProperty('registrationEndDate') | date: dateFormat}}</div>
+      </div>
+      <div class="row" ng-show="contest.listType == 'active' || contest.listType == 'upcoming'">
+        <label class="lbl">Submit by</label>
+        <div class="val vEndDate">{{row.getProperty('submissionEndDate') | date: dateFormat}}</div>
       </div>
     </div>
   </div>
@@ -418,7 +406,7 @@ get_header(); ?>
 </script>
 
 <script type="text/ng-template" id="tableView/winners.html">
-  <span ng-cell-text><a href="/challenge-details/{{row.getProperty('challengeId')}}/?type={{row.getProperty('challengeCommunity')}}#viewRegistrant">{{row.getProperty(col.field)}}</a></span>
+  <span ng-cell-text><a href="/challenge-details/{{row.getProperty('challengeId')}}/?type={{row.getProperty('challengeCommunity')}}#viewRegistrant">View Winners</a></span>
 </script>
 
 

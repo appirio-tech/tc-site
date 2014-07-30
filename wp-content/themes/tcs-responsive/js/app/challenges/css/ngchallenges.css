@@ -126,6 +126,7 @@
 
 .upcomingCaption {
     text-align: center;
+    padding: 10px 0;
 }
 
 .gridChallengName {
@@ -133,6 +134,7 @@
     text-overflow: ellipsis;
     display: inline-block;
     height: 100%;
+    color: #FF8A00;
 }
 
 /* TESTING FOR ANGULAR NEED TO REMOVE */

@@ -2,8 +2,8 @@
 (function (angular) {
   'use strict';
   var challengesModule = angular.module('tc.challenges');
-  challengesModule.controller('ChallengeListingCtrl', ['$scope', '$routeParams', '$filter', '$location', '$cookies', 'ChallengesService', 'ChallengeDataService', 'DataService', '$window', 'TemplateService', 'GridService', 'cfpLoadingBar',
-    function ($scope, $routeParams, $filter, $location, $cookies, ChallengesService, ChallengeDataService, DataService, $window, TemplateService, GridService, cfpLoadingBar) {
+  challengesModule.controller('ChallengeListingCtrl', ['$scope', '$rootScope', '$routeParams', '$filter', '$location', '$cookies', 'ChallengesService', 'ChallengeDataService', 'DataService', '$window', 'TemplateService', 'GridService', 'cfpLoadingBar',
+    function ($scope, $rootScope, $routeParams, $filter, $location, $cookies, ChallengesService, ChallengeDataService, DataService, $window, TemplateService, GridService, cfpLoadingBar) {
 
       function startLoading() {
         cfpLoadingBar.start();
@@ -65,8 +65,10 @@
 
           return true;
         });
+    
 
         $scope.challenges = $scope.setPagingData($scope.filteredChallenges, $scope.page, $scope.pageSize);
+
         $scope.showFilters = false;
       }
 
@@ -85,9 +87,10 @@
       $scope.allChallenges = [];
       $scope.challenges = [];
       $scope.filteredChallenges = [];
+      //prevent errors from mixed-case URL parameters by converting to lowercase
       $scope.contest = {
-        contestType: $routeParams.challengeArea || '',
-        listType: $routeParams.challengeStatus || 'active'
+        contestType: $routeParams.challengeArea ? $routeParams.challengeArea.toLowerCase() : '',
+        listType: $routeParams.challengeStatus ? $routeParams.challengeStatus.toLowerCase() : 'active'
       };
 
       $scope.titles = {
@@ -96,7 +99,18 @@
         develop: 'Software Development Challenges',
         data: 'Data Science Challenges'
       };
-
+      $scope.titleType = {
+        active: 'Open ',
+        past: 'Past ',
+        upcoming: 'Upcoming '
+      };
+      //set page title
+      var pageTitle = $scope.titles[$scope.contest.contestType] + " - Topcoder";
+      if ($scope.contest.contestType !== '') {
+        pageTitle = $scope.titleType[$scope.contest.listType] + pageTitle;
+      }
+      $rootScope.pageTitle = pageTitle;
+      
       if ($scope.contest.listType !== 'past' && $scope.contest.contestType !== 'data') {
         if ($routeParams.view) {
           $scope.view = $routeParams.view;
@@ -165,6 +179,13 @@
               });
 
               $scope.allChallenges = challenges;
+              $scope.allChallenges.sort(function(a,b){
+                  var aDate = a.checkpointSubmissionEndDate && a.challengeCommunity == 'design' ? a.checkpointSubmissionEndDate : a.registrationEndDate;
+                  var bDate = b.checkpointSubmissionEndDate && b.challengeCommunity == 'design' ? b.checkpointSubmissionEndDate : b.registrationEndDate;
+                  a = new Date(aDate);
+                  b = new Date(bDate);
+                  return a>b ? -1 : a<b ? 1 : 0;
+              });
               filterChallenges();
               $scope.dataDisplayed = true;
             },
@@ -176,6 +197,14 @@
         } else {
           ChallengesService.all(contest.listType).getList(params).then(function (challenges) {
               $scope.allChallenges = challenges;
+
+              $scope.allChallenges.sort(function(a,b){
+                  var aDate = a.checkpointSubmissionEndDate && a.challengeCommunity == 'design' ? a.checkpointSubmissionEndDate : a.registrationEndDate;
+                  var bDate = b.checkpointSubmissionEndDate && b.challengeCommunity == 'design' ? b.checkpointSubmissionEndDate : b.registrationEndDate;
+                  a = new Date(aDate);
+                  b = new Date(bDate);
+                  return a>b ? -1 : a<b ? 1 : 0;
+              });
               filterChallenges();
               $scope.dataDisplayed = true;
             },
@@ -221,12 +250,11 @@
       $scope.viewAll = function() {
         $scope.currentPageSize = $scope.allChallenges.length;
         if( $scope.page == 1 ) {
-          $scope.challenges = $scope.setPagingData($scope.filteredChallenges, $scope.page, $scope.pageSize);
+          $scope.challenges = $scope.setPagingData($scope.filteredChallenges, $scope.page, $scope.currentPageSize);
         } else {
           $scope.page = 1; // setPagingData will be called in the 'page' watcher
         }
       };
-        
 
       DataService.one('technologies').get().then(function (data) {
         if (data) {
@@ -247,7 +275,7 @@
         if($scope.page < 0) {
           $scope.page = 0;
         }
-        $scope.challenges = $scope.setPagingData($scope.filteredChallenges, $scope.page, $scope.pageSize);
+        $scope.challenges = $scope.setPagingData($scope.filteredChallenges, $scope.page, $scope.currentPageSize);
       });
 
       $scope.$watch('view', function (view, oldView) {

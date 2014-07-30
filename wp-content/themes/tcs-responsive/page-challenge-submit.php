@@ -26,7 +26,7 @@ $contest = get_contest_detail('', get_query_var('contestID'), $challengeType);
                             <dd>
                                 <p class="fileNameDisplay fileNameDisplayNoFile">Select file to upload...</p>
                                 <a class="btn fileBrowser btnGreen" href="javascript:;">Browse</a>
-                                <span class="error">Please upload a submission first</span>
+                                <span class="error"></span>
                                 <input id="submission" data-type="zip" type="file" onchange="browseFileTrigger(this)" name="submission"
                                        class="fileInput">
                             </dd>
@@ -40,7 +40,7 @@ $contest = get_contest_detail('', get_query_var('contestID'), $challengeType);
                 </section>
                 <section class="agreement notAgreed">
                     <input id="agree" type="checkbox"/>
-                    <label>by clicking this box you agree to our <a href="http://www.topcoder.com/community/terms-and-conditions/" target="_blank">terms and conditions.</a></label>
+                    <label>by clicking this box you agree to our <a id="termsLink" href="http://www.topcoder.com/community/terms-and-conditions/" target="_blank">terms and conditions.</a></label>
                     <a href="javascript:" id="submit" class="btn">Submit</a>
                 </section>
                 <!-- #/end agreement section-->

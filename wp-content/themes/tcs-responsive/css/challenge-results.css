@@ -202,7 +202,6 @@
 #winner .competitionDetails{
     padding: 20px 0 30px;
     border-bottom: 1px solid #e7e7e7;
-    width: 70%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -226,6 +225,7 @@
         border-left: none;
     }
         #winner .competitionDetails > div h2{
+            font-family: 'Source Sans Pro', lato, Arial, Helvetica, sans-serif;
             font-size: 14px;
             color: #00aeff;
             text-transform: uppercase;
@@ -269,7 +269,7 @@
     /*Bugfix refactored-challenge-details-80: fixed inconsistent spacing in results between design and develop*/
     #winner .competitionDetails div.registrant,
     .develop #winner .competitionDetails div.registrant{
-        width: 170px;
+        width: 150px;
     }
     .TC #winner .competitionDetails div.registrant{
         width: 100px;
@@ -281,7 +281,7 @@
     #winner .competitionDetails div.round,
     .develop #winner .competitionDetails div.round,
     .develop #winner .competitionDetails div.average{
-        width: 250px;
+        width: 415px;
     }
     .TC #winner .competitionDetails div.round{
         width: 300px;

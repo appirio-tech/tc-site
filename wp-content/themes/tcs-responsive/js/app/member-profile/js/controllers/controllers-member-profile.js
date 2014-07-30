@@ -43,7 +43,10 @@ tc.controller('MemberProfileCtrl', ['$location', '$state', '$scope', 'MemberProf
 
     // Returns a url for coder's profile. Returns default photo when coder has no pic.
     $scope.getPhotoLink = function (coder) {
-      if (coder && coder.photoLink !== '') {
+        if (coder && coder.photoLink !== '') {
+        if (coder.photoLink.indexOf('//') != -1){
+          return coder.photoLink;
+        }
         return PHOTO_LINK_LOCATION + coder.photoLink;
       }
       return THEME_URL + '/i/default-photo.png';

@@ -16,20 +16,21 @@
           },
           {
             field: 'challengeName',
-            fieldName: 'Challenges',
-            width: 340,
+            fieldName: 'Challenge',
+            minWidth: 290,
+            maxWidth: 340,
             tplName: 'challengeDataName',
             visible: contest.contestType === 'data'
           },
-          {
+          /*{
             field: 'challengeType',
             fieldName: 'Type',
             width: 45
-          },
+          },*/
           {
             field: 'registrationStartDate',
             fieldName: 'Timeline',
-            minWidth: 194,
+            minWidth: 184,
             width: 210,
             maxWidth: 210,
             tplName: 'timeline'
@@ -49,7 +50,7 @@
           },
           {
             field: 'totalPrize',
-            fieldName: 'Prizes',
+            fieldName: 'Prize',
             width: 73,
             tplName: 'prizes',
             visible: contest.listType !== 'upcoming'
@@ -64,9 +65,9 @@
           {
             field: 'currentPhaseName',
             fieldName: 'Current Phase',
-            minWidth: 67,
-            width: 110,
-            maxWidth: 120,
+            minWidth: 77,
+            width: 120,
+            maxWidth: 130,
             visible: contest.listType !== 'upcoming'
           },
           {
@@ -111,8 +112,8 @@
           {
             field: 'chalengeId',
             fieldName: 'Winners',
-            width: '*',
-            minWidth: 74,
+            width: '70',
+            minWidth: 70,
             tplName: 'winners',
             visible: contest.listType === 'past'
           },

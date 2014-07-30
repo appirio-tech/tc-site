@@ -175,7 +175,7 @@ em{
 }
 .loading,.errorLoading{
     position: fixed;
-    z-index: 2000;
+    z-index: 200000;/*have to set really high because website header is hiding this otherwise*/
     left: 50%;
     height: 36px;
     line-height: 34px;
@@ -245,8 +245,7 @@ em{
 #navigation, #main{
     background: #fffffe;
 }
- #main{
- 
+#main{
      position: relative;
 }
 /* header
@@ -710,7 +709,7 @@ em{
 }
 
 .qtip .qtip-content{
-	font-size: 14px;
+	font-size: 12px;
 	padding: 8px;	
 }
 

@@ -27,14 +27,51 @@ appChallengeTerms = {
         "termId": termsOfUseID,
         "jwtToken": tcjwt.replace(/["]/g, "")
       }, function (data) {
+        $(".formContent").addClass("pageContent");
         if (data.title) {
           $(".formContent .terms").show();
           $(".formContent .warning").hide();
           $(".overviewPageTitle").text(data["title"]);
-          $(".termsText").html(data["text"]);
           //Bugfix I-116354
           $('#agreement-section').removeClass('hide');
+          if (data["agreeabilityType"] !== "Electronically-agreeable" && typeof data["docusignTemplateId"] !== "undefined") {
+            //if DocuSign, get URL from docuSign API and output iframe
+            $('.agree-label').hide();
+            $('#termSubmit').text('Go Back');
+            $('.agreement').removeClass('notAgreed');
+            $.ajax({
+              url: tcApiRUL + '/terms/docusign/viewURL',
+              type: 'POST',
+              data: { templateId: data["docusignTemplateId"] },
+              cache: false,
+              beforeSend: function(bxhr) {
+                bxhr.setRequestHeader('Authorization', 'Bearer ' + tcjwt.replace(/["]/g, ""));
+              },
+              complete: function(docuData) {
+                $('.loading').hide();
+                //output iframe when AJAX data returns
+                var responseObj = docuData.responseJSON;
+                if (typeof responseObj["recipientViewUrl"] !== "undefined") {
+                  $(".termsText").html('<iframe class="termsFrame" src="' + responseObj["recipientViewUrl"] + '"></iframe>');
+                } else {
+                  //url not in data result, error
+                  $(".formContent .terms").hide();
+                  $(".formContent .warning").text(responseObj["description"]);
+                  $(".formContent .warning").show();
+                }
+              },
+              error: function(jqXHR, textStatus, errorThrown) {
+                // Handle errors here
+                $(".termsText").html('Sorry, your request could not be completed at this time.');
+              }
+            });
+          } else {
+            $('.loading').hide();
+            //if not docuSign, output normal terms text
+            $(".termsText").html(data["text"]);
+          }
         } else {
+          $('.loading').hide();
           $(".formContent .terms").hide();
           $(".formContent .warning").text(data["error"]["details"]);
           $(".formContent .warning").show();
@@ -59,16 +96,6 @@ appChallengeTerms = {
             });
           }
         });
-
-        // This is absolutly a terrible thing to do but the only way to achieve what tony wants
-        // When the term api is updated to tell if we are using docusign this will go away
-        // and die a very misserable life
-        if (data.title == "Appirio NDA v1") {
-          $('.agree-label').hide();
-          $('.agreement').removeClass('notAgreed');
-        }
-
-        $('.loading').hide();
       });
     } else {
       $('.actionLogin').click();
@@ -95,7 +122,7 @@ appChallengeTerms = {
               allAgreed = false;
             }
             var $tr = $("<tr>", {class: i % 2 == 1 ? "alt" : ""});
-            var $td1 = $("<td>").text(terms[i]["title"]).append(" (").append($("<a>", {target: "_blank", href: siteURL + "/challenge-details/terms/detail/" + terms[i]["termsOfUseId"] + "?contestID=" + challengeId + "&challenge-type=" + challengeType}).text(agreed ? "view" : "view and agree")).append(")");
+            var $td1 = $("<td>").text(terms[i]["title"]).append(" (").append($("<a>", {href: siteURL + "/challenge-details/terms/detail/" + terms[i]["termsOfUseId"] + "?contestID=" + challengeId + "&challenge-type=" + challengeType}).text(agreed ? "view" : "view and agree")).append(")");
             var $td2 = $("<td>").append($("<span>", {class: "status " + (agreed === true ? "complete" : "required")}).text(agreed === true ? "Completed" : "Required"));
             $tr.append($td1).append($td2);
             $(".termTable tbody").append($tr);

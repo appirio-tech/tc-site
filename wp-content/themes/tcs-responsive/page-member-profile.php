@@ -51,8 +51,12 @@ var activeTrack = "<?php echo $track;?>";
 
 <?php
 
-if ($coder->photoLink != '')
-	$photoLink = 'http://community.topcoder.com' . $coder->photoLink;
+if ($coder->photoLink != '') {
+	$photoLink = $coder->photoLink;
+	if (strpos($photoLink,'//') === false) {
+		$photoLink = 'http://community.topcoder.com' . $photoLink;
+	}
+}
 else
 	$photoLink = THEME_URL . '/i/default-photo.png';
 

@@ -158,8 +158,9 @@ $(function () {
       $(this).addClass('invalid');
       $(this).parents(".row").find("span.err2").show();
 
-    } else if (text != '' && !text.match(/^[a-zA-Z0-9. \-_]+$/)) {
+    } else if (text != '' && !text.match(/^[a-zA-Z0-9. \-_']+$/)) {
         //Bugfix I-107905: show error on entry of invalid characters
+		//Bugfix I-251: allow apostrophe in last name
         $(this).parents(".row").find("span.valid").hide();
         $(this).addClass('invalid');
         $(this).closest('.row').find('span.err3').show();

@@ -69,7 +69,7 @@ if( $updatePassword=="true" ) {
 								<form id="formChangePassword" name="formResetPassword" action="" method="POST">
 									<input type="hidden" class="updatePassword" name="updatePassword" value="true" />
 									<div class="row">
-										<input class="handle" type="text" maxlength="40" name="handle" placeholder="Handle:" size="50" />
+										<input class="handle" type="text" maxlength="40" name="handle" placeholder="Username:" size="50" />
 										<span class="err1 error" style="display: none;">Required field</span>
 									</div>
 									<div class="row">

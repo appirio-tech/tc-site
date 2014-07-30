@@ -3053,7 +3053,7 @@ var challengesBP = {
                                 <div class="tipC">\
                                     <img alt="Storyboard" class="imgSB" src="i/storyboard.png" />\
                                     <div class="handleWrap">\
-                                        <a href="#">Handlename</a>\
+                                        <a href="#">Username</a>\
                                     </div>\
                                     <footer>\
                                         <a href="#">View Details</a>\
@@ -3067,7 +3067,7 @@ var challengesBP = {
                                 <div class="tipC">\
                                     <img alt="Storyboard" class="imgSB" src="i/storyboard.png" />\
                                     <div class="handleWrap">\
-                                        <a href="#">Handlename</a>\
+                                        <a href="#">Username</a>\
                                     </div>\
                                     <footer>\
                                         <a href="#">View Details</a>\
@@ -3081,7 +3081,7 @@ var challengesBP = {
                                 <div class="tipC">\
                                     <img alt="Storyboard" class="imgSB" src="i/storyboard.png" />\
                                     <div class="handleWrap">\
-                                        <a href="#">Handlename</a>\
+                                        <a href="#">Username</a>\
                                     </div>\
                                     <footer>\
                                         <a href="#">View Details</a>\

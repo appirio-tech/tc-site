@@ -29,6 +29,7 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', '$cookies', f
       });
       results.firstPlaceSubmission = submissionMap[1];
       results.secondPlaceSubmission = submissionMap[2];
+      results.numSubmissions = results.submissions;
       results.submissions = [];
       var i = 1;
       while (submissionMap[i]) {

@@ -13,13 +13,13 @@ $userkey = get_option ( 'api_user_key' );
 $siteURL = site_url ();
 ?>
 <script type="text/javascript">
-	var siteurl = "<?php bloginfo('siteurl');?>";	
+	var siteurl = "<?php bloginfo('siteurl');?>";
 </script>
 
 <div class="content">
 <div id="main">
 <?php
-	
+
 	if (have_posts ()) :
 		the_post ();
 		?>
@@ -35,9 +35,9 @@ $siteURL = site_url ();
 		<div class="container">
 			<div class="rightSplit  grid-1-1">
 				<div class="mainStream postContent pageContent grid-1-1">
-					
+
 					<?php the_content();?>
-					
+
 					<?php /*
 					<script type="text/javascript">
 						$(document).ready(function() {
@@ -48,18 +48,18 @@ $siteURL = site_url ();
 						});
 					</script>
 					*/ ?>
-						
+
 					<div id="login">
 						<div class="content">
 							<h2>Login Using An Existing Account</h2>
 							<div id="socials">
-								<a class="signin-facebook" href="javascript:;"><span class="animeButton shareFacebook"><span class="shareFacebookHover animeButtonHover"></span></span></a> 
-								<a class="signin-google" href="javascript:;"><span class="animeButton shareGoogle"><span class="shareGoogleHover animeButtonHover"></span></span></a> 
-								<a class="signin-twitter" href="javascript:;"><span class="animeButton shareTwitter"><span class="shareTwitterHover animeButtonHover"></span></span></a> 
+								<a class="signin-facebook" href="javascript:;"><span class="animeButton shareFacebook"><span class="shareFacebookHover animeButtonHover"></span></span></a>
+								<a class="signin-google" href="javascript:;"><span class="animeButton shareGoogle"><span class="shareGoogleHover animeButtonHover"></span></span></a>
+								<a class="signin-twitter" href="javascript:;"><span class="animeButton shareTwitter"><span class="shareTwitterHover animeButtonHover"></span></span></a>
 								<a class="signin-github" href="javascript:;"><span class="animeButton shareGithub"><span class="shareGithubHover animeButtonHover"></span></span></a>
 								<p>
 									Using an existing account is quick and easy.<br/>
-									Select the account you would like to use and we'll do the rest for you
+									Select the account you would like to use and we'll do the rest for you.
 								</p>
 								<div class="clear"></div>
 							</div>
@@ -70,42 +70,42 @@ $siteURL = site_url ();
 									<p class="row">
 										<label>Username</label>
 										<input id="username" type="text" class="name" placeholder="Username"/>
-										<span class="err1">Your username or password are incorrect</span> 
-										<span class="err3">Please input your username</span> 
+										<span class="err1">Your username or password are incorrect</span>
+										<span class="err3">Please input your username</span>
 									</p>
 									<p class="row">
 										<label>Password</label>
 										<input id="password" type="password" class="pwd" placeholder="Password"/>
-										<span class="err4">Please input your password</span> 
+										<span class="err4">Please input your password</span>
 									</p>
 									<p class="row lSpace">
 										<label><input type="checkbox"/> Remember me</label>
 									</p>
-									<p class="row lSpace btns"> 
-										<a href="javascript:;" class="signin-db btn btnSubmit">Login</a> 
-										<a href="<?php echo get_page_link_by_slug('password-recovery'); ?>" target="_blank" class="forgotPwd">Forgot password?</a> 
+									<p class="row lSpace btns">
+										<a href="javascript:;" class="signin-db btn btnSubmit">Login</a>
+										<a href="<?php echo get_page_link_by_slug('password-recovery'); ?>" target="_blank" class="forgotPwd">Forgot password?</a>
 									</p>
-									<p class="row lSpace"> 
-										<span class="not-a-member">Not a member? <a href="javascript:;" class="btnRegister" >Register Now!</a></span> 
+									<p class="row lSpace">
+										<span class="not-a-member">Not a member? <a href="javascript:;" class="btnRegister" >Register Now!</a></span>
 									</p>
 								</form>
 								<div class="register-text"></div>
 								<div class="clear"></div>
 							</div>
-							<!-- END .form login --> 
+							<!-- END .form login -->
 						</div>
 					</div>
 					<!-- END #login -->
 					<?php endif; wp_reset_query();?>
-					
-					<!-- /.pageContent --> 
-					
+
+					<!-- /.pageContent -->
+
 				</div>
 				<!-- /.mainStream -->
-				
+
 				<div class="clear"></div>
 			</div>
-			<!-- /.rightSplit --> 
+			<!-- /.rightSplit -->
 		</div>
 	</article>
 	<!-- /#mainContent -->

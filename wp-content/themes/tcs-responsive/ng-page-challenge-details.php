@@ -27,6 +27,7 @@ function tc_challenge_details_js() {
     var challengeType = "<?php echo $contestType;?>";
     var autoRegister = "<?php echo get_query_var('autoRegister');?>";
     var handle = ""; // fix me
+    var challengeName; //prevent undefined error, value is set in angular script
   </script>
 <?php
 }
@@ -374,7 +375,7 @@ include locate_template('header-challenge-landing.php');
       <thead>
       <tr>
         <th class="handleColumn">
-          <div>Handle</div>
+          <div>Username</div>
         </th>
         <th ng-if="challengeType != 'design'" class="ratingColumn">
           <div>Rating</div>
@@ -496,6 +497,21 @@ include locate_template('header-challenge-landing.php');
     </div>
 
   </li>
+  <li ng-hide="isDesign" class="slide">
+
+    <div class="umltoolLinks slideBox">
+      <h3>Get the UML Tool:</h3>
+
+      <div class="inner">
+        <p><a href="https://github.com/topcoderinc/topcoder-UML-Tool">Github source code repository</a></p>
+        <p><a href="https://github.com/topcoderinc/topcoder-UML-Tool/blob/master/TopCoder%20UML%20Tool.dmg">Mac disk image </a></p>
+        <p><a href="https://github.com/topcoderinc/topcoder-UML-Tool/blob/master/TopCoder_UML_Tool_Installer-1.2.6.jar">Java installer</a></p>
+      </div>
+
+    </div>
+    <!-- End review style section -->
+
+  </li>
 
   <li ng-if="isDesign" class="slide">
     <div class="forumFeed slideBox">&nbsp;<br/>
@@ -585,7 +601,7 @@ include locate_template('header-challenge-landing.php');
         <a class="addthis_counter addthis_bubble_style"></a>
       </div>
       <script type="text/javascript">var addthis_config = {"data_track_addressbar": false};
-        var addthis_share = { url: location.href, title: challengeName }</script>
+        var addthis_share = { url: location.href, title: 'Topcoder Challenge' }</script>
       <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52f22306211cecfc"></script>
       <!-- AddThis Button END -->
     </div>

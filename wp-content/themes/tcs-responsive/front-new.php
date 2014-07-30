@@ -22,13 +22,23 @@ else:
 <?php get_header(); ?>
 
 <?php
- if(preg_match("/.*?action=callback.*$/", $_SERVER["REQUEST_URI"])){
- 		echo '<script type="text/javascript">$(window).load(function(){$(".btnRegister").click();if(window.location.hash!="")$(".pwd, .confirm, .strength").parents(".row").hide();$("#register a.btnSubmit").addClass("socialRegister");});</script>';
- }
  if(preg_match("/.*?action=showlogin.*$/", $_SERVER["REQUEST_URI"])){
  		echo '<script type="text/javascript">$(window).load(function(){$(".actionLogin").click();});</script>';
  }
 ?>
+
+<?php echo '<script type="text/javascript">
+    $(window).load(function(){
+        if(!app.isLoggedIn()){
+            $(\'.content .article a[href="/?action=callback#"]\').attr("onclick", "$(\'.btnRegister\').click(); return false;");
+            
+            if(window.location.hash!="")
+                $(".pwd, .confirm, .strength").parents(".row").hide();
+            $("#register a.btnSubmit").addClass("socialRegister");
+        }
+        $(\'.content .article a[href="/?action=callback#"]\').attr(\'href\', \'#\');
+    });
+</script>'; ?>
 
 <?php 
 global $activity;

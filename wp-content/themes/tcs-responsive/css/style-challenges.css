@@ -771,9 +771,11 @@ caption.reviewDetail {
     background-position: 0 10px;
 }
 
+/*
 #gridAll .cgCh a {
     color: #666;
 }
+*/
 
 #gridAll .cgCh a:hover {
     color: #FF8A00;
@@ -782,6 +784,25 @@ caption.reviewDetail {
 #gridAll .cgCh a img.allContestIco {
     height: 36px;
     padding: 0px;
+}
+
+/*.contestGrid .cgCh a */
+.contestGrid .cgCh span.track-symbol, .dataTable .colCh span.track-symbol {
+    position: absolute;
+    left: 15px;
+    top: 43px;
+    z-index: 10;
+    color: white;
+    font-weight: bold;
+    width: 40px;
+    display: inline-block;
+    text-align: center;
+    font-size: 14px;
+}
+
+.dataTable .colCh span.track-symbol {
+    left: 11px;
+    top: 46px;
 }
 
 .cgCh a:hover img.allContestIco {
@@ -801,6 +822,8 @@ caption.reviewDetail {
     display: inline-block;
     cursor: pointer;
 }
+
+
 
 .contestGrid .contest .trackType .tooltipData {
     display: none;
@@ -1109,7 +1132,6 @@ select:disabled {
 }
 
 .ui-datepicker-year {
-    display: none;
 }
 
 .ui-datepicker-calendar td.ui-state-disabled,

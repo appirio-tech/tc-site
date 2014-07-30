@@ -438,7 +438,7 @@ include locate_template('header-challenge-landing.php');
       <thead>
       <tr>
         <th class="handleColumn">
-          <div>Handle</div>
+          <div>Username</div>
         </th>
         <?php if ($contestType != 'design'): ?>
           <th class="ratingColumn">

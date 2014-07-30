@@ -13,13 +13,13 @@ $userkey = get_option ( 'api_user_key' );
 $siteURL = site_url ();
 ?>
 <script type="text/javascript">
-	var siteurl = "<?php bloginfo('siteurl');?>";	
+	var siteurl = "<?php bloginfo('siteurl');?>";
 </script>
 
 <div class="content">
 <div id="main">
 <?php
-	
+
 	if (have_posts ()) :
 		the_post ();
 		?>
@@ -35,9 +35,9 @@ $siteURL = site_url ();
 		<div class="container">
 			<div class="rightSplit  grid-1-1">
 				<div class="mainStream postContent pageContent grid-1-1">
-					
+
 					<?php the_content();?>
-					
+
 					<?php /*
 					<script type="text/javascript">
 						$(document).ready(function() {
@@ -48,11 +48,11 @@ $siteURL = site_url ();
 						});
 					</script>
 					*/ ?>
-						
+
 					<div id="register">
 						<div class="content">
 							<h2>Register Using An Existing Account</h2>
-						
+
 							<div id="socials">
 						  		<a class="register-facebook" href="javascript:;"><span class="animeButton shareFacebook"><span class="shareFacebookHover animeButtonHover"></span></span></a>
 						  		<a class="register-google" href="javascript:;"><span class="animeButton shareGoogle"><span class="shareGoogleHover animeButtonHover"></span></span></a>
@@ -61,21 +61,21 @@ $siteURL = site_url ();
 
 							  	<p>
 							  		Using an existing account is quick and easy.<br/>
-									Select the account you would like to use and we'll do the rest for you
-								</p>						
-							  	
+									Select the account you would like to use and we'll do the rest for you.
+								</p>
+
 								<div class="clear"></div>
 							</div>
 							<!-- END .socials -->
-						
-						
+
+
 							<h2>Or Register Using Your Email</h2>
-						
+
 							<form class="register" id="registerForm">
 								<p class="row">
 							  		<span class="socialUnavailableErrorMessage">Social profile already in use. Please use another profile or register below</span>
 								</p>
-							
+
 								<p class="row">
 									<label>First Name</label>
 									<input type="text" class="name firstName" placeholder="First Name"/>
@@ -87,7 +87,7 @@ $siteURL = site_url ();
 									<span class="err5">First Name is invalid</span>
 									<span class="valid"></span>
 								</p>
-							
+
 								<p class="row">
 									<label>Last Name</label>
 									<input type="text" class="name lastName" placeholder="Last Name"/>
@@ -99,20 +99,20 @@ $siteURL = site_url ();
 									<span class="err5">Last Name is invalid</span>
 									<span class="valid"></span>
 								</p>
-							
+
 								<p class="row">
-									<label>Handle</label>
-									<input type="text" class="handle name" placeholder="Handle"/>
+									<label>Username</label>
+									<input type="text" class="handle name" placeholder="Username"/>
 									<span class="err1">Required field</span>
-									<span class="err2">Handle already exists or is invalid</span>
-									<span class="err3">Handle cannot contain a space</span>
-									<span class="err4">Handle cannot consist solely of punctuation</span>
-									<span class="err5">Handle contains invalid characters</span>
-									<span class="err6">Handle cannot start with "admin"</span>
-									<span class="err7">Handle must be between 2 and 15 characters long</span>
+									<span class="err2">Username already exists or is invalid</span>
+									<span class="err3">Username cannot contain a space</span>
+									<span class="err4">Username cannot consist solely of punctuation</span>
+									<span class="err5">Username contains invalid characters</span>
+									<span class="err6">Username cannot start with "admin"</span>
+									<span class="err7">Username must be between 2 and 15 characters long</span>
 									<span class="valid"></span>
 								</p>
-							
+
 								<p class="row">
 								<label>Country</label>
 								<select id="selCountry" name="user.country">
@@ -372,7 +372,7 @@ $siteURL = site_url ();
 							  <span class="err3">Email already in use</span>
 							  <span class="valid"></span>
 							</p>
-							
+
 							<p class="row">
 							  <label>Password</label>
 							  <input type="password" class="pwd" placeholder="Password"/>
@@ -383,7 +383,7 @@ $siteURL = site_url ();
 							  <span class="err5">Password must not contain only spaces</span>
 							  <span class="valid">Strong</span>
 							</p>
-							
+
 							<p class="row info lSpace">
 									  <span class="strength">
 										<span class="field"></span>
@@ -393,7 +393,7 @@ $siteURL = site_url ();
 									  </span>
 							  7 characters with letters, numbers, &amp; symbols
 							</p>
-							
+
 							<p class="row">
 							  <label>Password Confirmation</label>
 							  <input type="password" class="confirm" placeholder="Password Confirmation"/>
@@ -401,14 +401,14 @@ $siteURL = site_url ();
 							  <span class="err2">Password confirmation different from above field</span>
 							  <span class="valid"></span>
 							</p>
-							
+
 							<p class="row lSpace">
 							  <label><input type="checkbox">I agree to the <a target="_blank" href="/community/how-it-works/terms/">terms of
 								  service</a> and <a target="_blank" href="/community/how-it-works/privacy-policy/">privacy policy</a></label>
 							  <span class="err1">You must agree to the terms</span>
 							  <span class="err2">You must agree to the terms</span>
 							</p>
-							
+
 							</form>
 						<!-- END .form register -->
 						<div class="clear"></div>
@@ -416,18 +416,18 @@ $siteURL = site_url ();
 						  <a href="javascript:;" class="btn btnSubmit">Sign Up</a>
 						</p>
 						</div>
-					</div><!-- END #register -->					
-					
+					</div><!-- END #register -->
+
 					<?php endif; wp_reset_query();?>
-					
-					<!-- /.pageContent --> 
-					
+
+					<!-- /.pageContent -->
+
 				</div>
 				<!-- /.mainStream -->
-				
+
 				<div class="clear"></div>
 			</div>
-			<!-- /.rightSplit --> 
+			<!-- /.rightSplit -->
 		</div>
 	</article>
 	<!-- /#mainContent -->

@@ -54,12 +54,25 @@ a.blueLink:hover {
     padding-top: 40px;
 }
 /*Bugfix I-112402: ol tags not working for numbered list in blog posts*/
-  .blogPageMainContent ol {
+  .blogPageMainContent .pageContent ol {
     list-style: initial;
     list-style-type: decimal;
     list-style-position: inside;
     padding: 0 0 0 15px;
+    margin: 5px 0;
   }
+  .blogPageMainContent .pageContent ul {
+    list-style: initial;
+    list-style-type: disc;
+    list-style-position: inside;
+    padding: 0 0 0 15px;
+    margin: 5px 0;
+  }
+    .blogPageMainContent .pageContent ul li, .blogPageMainContent .pageContent ol li {
+      line-height: 20px;
+      padding: 0;
+      background: none;
+    }
 .pageTitleWrapper .pageTitle h2.blogPageTitle {
     position: relative;
     background-image: none;

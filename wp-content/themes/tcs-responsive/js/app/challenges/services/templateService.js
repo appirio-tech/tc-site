@@ -90,15 +90,15 @@
       }
 
       function formatTimeLeft(seconds, grid, phase) {
-        var sep = (grid) ? '' : ' ',
+        var sep = ' ',
           numdays = Math.floor(seconds / 86400),
           numhours = Math.floor((seconds % 86400) / 3600),
           numminutes = Math.floor(((seconds % 86400) % 3600) / 60),
           numseconds = ((seconds % 86400) % 3600) % 60,
           result = "",
           style = "";
-        if (seconds < 0 || phase != 'Submission') {
-          return $sce.trustAsHtml('<span style="font-size:14px;">0' + sep + '<span style="font-size:10px;">Days</span> 0' + sep + '<span style="font-size:10px;">Hrs</span>');
+        if (seconds < 0) {
+          return $sce.trustAsHtml('<span style="font-size:14px;">0' + sep + '<span style="font-size:10px;">Days</span> 0' + sep + '<span style="font-size:10px;">Hr</span>');
         }
 
         if (numdays === 0 && numhours <= 2) {
@@ -107,7 +107,7 @@
         if (isNaN(numhours)) {
           result = "<em style='font-size:14px;'>N/A</em>";
         } else {
-          result = "<span style='font-size:14px;" + style + "'>" + (numdays > 0 ? numdays + sep + "<span style='font-size:10px;'> Day" + ((numdays > 1) ? "s" : "") + "</span> " : "") + numhours + sep + "<span style='font-size:10px;'> Hrs</span> " + (numdays === 0 ? numminutes + sep + "<span style='font-size:10px;'>Min</span> " : "") + "</span>";
+          result = "<span style='font-size:14px;" + style + "'>" + (numdays > 0 ? numdays + sep + "<span style='font-size:10px;'> Day" + ((numdays > 1) ? "s" : "") + "</span> " : "") + numhours + sep + "<span style='font-size:10px;'> Hr" + ((numhours > 1) ? "s" : "") + "</span> " + (numdays === 0 ? numminutes + sep + "<span style='font-size:10px;'>Min</span> " : "") + "</span>";
         }
         return $sce.trustAsHtml(result);
       }

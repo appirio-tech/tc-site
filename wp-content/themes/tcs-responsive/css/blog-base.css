@@ -174,15 +174,7 @@ img {
 	.pageContent em{
 		font-style: italic !important;
 	}
-	
-	.pageContent ul{
-		padding: 6px 0 2px 34px;
-	}
-		.pageContent ul li{
-			padding: 0 0 24px 22px;
-			line-height: 24px;
-			background: url(../i/content-list-dot.png) 0 0 no-repeat;
-		}
+
 	.pageContent .grid-3-1{
 		float: left;
 	}

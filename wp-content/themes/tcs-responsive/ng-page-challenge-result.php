@@ -40,7 +40,7 @@
         </div>
         <!-- #/end image-->
         <div class="details">
-            <a href="javascript:" class="coderTextOrange">Handlegoeshere</a>
+            <a href="javascript:" class="coderTextOrange">Usernamegoeshere</a>
             <div class="">
                 <h3>$200</h3>
                 <span class="title">PRIZE</span>
@@ -77,36 +77,40 @@
         <!--#/end registrant-->
         <div class="round {{numCheckpointSubmissions == -1 ? 'hide' : ''}}">
             <h2>Round 1 (Checkpoint)</h2>
-            <!--<div class="values">
-                <span class="count"><span class="sup">&nbsp;</span></span>
+            <div class="values">
+                <span class="count">{{numberOfUniqueSubmitters}}<span class="sup">&nbsp;</span></span>
                 <span class="type">Submitter</span>
                 <span class="type">&nbsp;</span>
-            </div>-->
+            </div>
             <div class="values">
-                <span class="count">{{numCheckpointSubmissions}}</span>
+                <span class="count">{{numberOfPassedScreeningUniqueSubmitters}}<span class="sup">({{checkpointPassedScreeningSubmitterPercentage}}%)</span></span>
+                <span class="type">Passed Screening</span>
+                <span class="type">Submitter</span>
+            </div>
+            <div class="values">
+                <span class="count">{{numberOfPassedScreeningSubmissions}}<span class="sup">({{checkpointPassedScreeningSubmissionPercentage}}%)</span></span>
+                <span class="type">Passed Screening</span>
                 <span class="type">Submissions</span>
             </div>
-            <!--<div class="values">
-                <span class="count">N/A<span class="sup">(N/A%)</span></span>
-                <span class="type">Passed Review</span>
-            </div>-->
         </div>
         <!--#/end round-->
         <div class="round round2">
             <h2>Round 2 (Final)</h2>
-            <!--<div class="values">
-                <span class="count">N/A<span class="sup">&nbsp;</span></span>
+            <div class="values">
+                <span class="count">{{numFinalSubmitters}}<span class="sup">&nbsp;</span></span>
                 <span class="type">Submitter</span>
                 <span class="type">&nbsp;</span>
-            </div>-->
+            </div>
             <div class="values">
-                <span class="count">{{submissions.length}}</span>
+                <span class="count">{{finalSubmittersPassedScreening}}<span class="sup">({{finalPassedScreeningSubmitterPercentage}}%)</span></span>
+                <span class="type">Passed Screening</span>
+                <span class="type">Submitter</span>
+            </div>
+            <div class="values">
+                <span class="count">{{finalSubmissionsPassedScreening}}<span class="sup">({{finalPassedScreeningSubmissionPercentage}}%)</span></span>
+                <span class="type">Passed Screening</span>
                 <span class="type">Submissions</span>
             </div>
-            <!--<div class="values">
-                <span class="count">N/A<span class="sup">(N/A%)</span></span>
-                <span class="type">Passed Review</span>
-            </div>-->
         </div>
         <!--#/end round-->
         <div class="clear"></div>
@@ -167,7 +171,7 @@
         <thead>
         <tr>
             <th class="leftAlign">
-                <a href="javascript:" class="">Handle</a>
+                <a href="javascript:" class="">Username</a>
             </th>
             <th>
                 <a href="javascript:" class="">Registration Date</a>

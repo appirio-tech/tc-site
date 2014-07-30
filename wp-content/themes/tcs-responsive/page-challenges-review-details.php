@@ -64,7 +64,7 @@ include locate_template('header-challenge-landing.php');
                                                 <caption class="reviewDetail">Review Applications</caption>
                                                     <thead>
                                                         <tr>
-                                                            <th class="colAppHandle" data-placeholder="handle">Handle<i></i></th>
+                                                            <th class="colAppHandle" data-placeholder="handle">Username<i></i></th>
                                                             <th class="colAppRole" data-placeholder="role">Role<i></i></th>
                                                             <th class="colAppRating" data-placeholder="reviewerRating">Reviewer Rating<i></i></th>
                                                             <th class="colAppStatus" data-placeholder="status">Status<i></i></th>
