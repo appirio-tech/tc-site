@@ -44,7 +44,8 @@ module.exports = function(grunt) {
           '<%= build.themeDist %>/tc.challengeterms.concat.css': addBaseFilePath(pkg_config.packages.challengeterms.css, themeCSS),
           '<%= build.themeDist %>/tc.challengesubmit.concat.css': addBaseFilePath(pkg_config.packages.challengesubmit.css, themeCSS),
           '<%= build.themeDist %>/tc.ng-details.concat.css': addBaseFilePath(pkg_config.packages['ng-details'].css, themeCSS),
-          '<%= build.themeDist %>/tc.ngChallenges.concat.css': addBaseFilePath(pkg_config.packages.ngChallenges.css, themeCSS)
+          '<%= build.themeDist %>/tc.ngChallenges.concat.css': addBaseFilePath(pkg_config.packages.ngChallenges.css, themeCSS),
+          '<%= build.themeDist %>/tc.ng-member-profile.concat.css': addBaseFilePath(pkg_config.packages['ng-member-profile'].css, themeCSS)
         }
       }
     },
@@ -59,7 +60,8 @@ module.exports = function(grunt) {
           '<%= build.themeDist %>/css/challengeterms.min.css': ['<%= build.themeDist %>/tc.challengeterms.concat.css'],
           '<%= build.themeDist %>/css/challengesubmit.min.css': ['<%= build.themeDist %>/tc.challengesubmit.concat.css'],
           '<%= build.themeDist %>/css/ng-details.min.css': ['<%= build.themeDist %>/tc.ng-details.concat.css'],
-          '<%= build.themeDist %>/css/ngChallenges.min.css': ['<%= build.themeDist %>/tc.ngChallenges.concat.css']
+          '<%= build.themeDist %>/css/ngChallenges.min.css': ['<%= build.themeDist %>/tc.ngChallenges.concat.css'],
+          '<%= build.themeDist %>/css/ng-member-profile.min.css': ['<%= build.themeDist %>/tc.ng-member-profile.concat.css']
         }
       }
     },
@@ -75,7 +77,8 @@ module.exports = function(grunt) {
           '<%= build.themeDist %>/js/challengeterms.min.js': addBaseFilePath(pkg_config.packages.challengeterms.js, themeJS),
           '<%= build.themeDist %>/js/challengesubmit.min.js': addBaseFilePath(pkg_config.packages.challengesubmit.js, themeJS),
           '<%= build.themeDist %>/js/ng-details.min.js': addBaseFilePath(pkg_config.packages['ng-details'].js, themeJS),
-          '<%= build.themeDist %>/js/ngChallenges.min.js': addBaseFilePath(pkg_config.packages.ngChallenges.js, themeJS)
+          '<%= build.themeDist %>/js/ngChallenges.min.js': addBaseFilePath(pkg_config.packages.ngChallenges.js, themeJS),
+          '<%= build.themeDist %>/js/ng-member-profile.min.js': addBaseFilePath(pkg_config.packages['ng-member-profile'].js, themeJS)
         }
       }
     },
