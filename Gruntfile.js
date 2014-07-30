@@ -13,6 +13,7 @@ module.exports = function(grunt) {
 
   var themeCSS = 'wp-content/themes/tcs-responsive/css/';
   var themeJS = 'wp-content/themes/tcs-responsive/js/';
+  var themeAnnotate = 'wp-content/themes/tcs-responsive/dist/annotate/wp-content/themes/tcs-responsive/js/';
 
   // Project configuration.
   grunt.initConfig({
@@ -71,16 +72,35 @@ module.exports = function(grunt) {
       },
       js: {
         files: {
-          '<%= build.themeDist %>/js/default.min.js': addBaseFilePath(pkg_config.packages.default.js, themeJS),
-          '<%= build.themeDist %>/js/challengelanding.min.js': addBaseFilePath(pkg_config.packages.challengelanding.js, themeJS),
-          '<%= build.themeDist %>/js/challenges.min.js': addBaseFilePath(pkg_config.packages.challenges.js, themeJS),
-          '<%= build.themeDist %>/js/challengeterms.min.js': addBaseFilePath(pkg_config.packages.challengeterms.js, themeJS),
-          '<%= build.themeDist %>/js/challengesubmit.min.js': addBaseFilePath(pkg_config.packages.challengesubmit.js, themeJS),
-          '<%= build.themeDist %>/js/ng-details.min.js': addBaseFilePath(pkg_config.packages['ng-details'].js, themeJS),
-          '<%= build.themeDist %>/js/ngChallenges.min.js': addBaseFilePath(pkg_config.packages.ngChallenges.js, themeJS),
-          '<%= build.themeDist %>/js/ng-member-profile.min.js': addBaseFilePath(pkg_config.packages['ng-member-profile'].js, themeJS)
+          '<%= build.themeDist %>/js/default.min.js': addBaseFilePath(pkg_config.packages.default.js, themeAnnotate),
+          '<%= build.themeDist %>/js/challengelanding.min.js': addBaseFilePath(pkg_config.packages.challengelanding.js, themeAnnotate),
+          '<%= build.themeDist %>/js/challenges.min.js': addBaseFilePath(pkg_config.packages.challenges.js, themeAnnotate),
+          '<%= build.themeDist %>/js/challengeterms.min.js': addBaseFilePath(pkg_config.packages.challengeterms.js, themeAnnotate),
+          '<%= build.themeDist %>/js/challengesubmit.min.js': addBaseFilePath(pkg_config.packages.challengesubmit.js, themeAnnotate),
+          '<%= build.themeDist %>/js/ng-details.min.js': addBaseFilePath(pkg_config.packages['ng-details'].js, themeAnnotate),
+          '<%= build.themeDist %>/js/ngChallenges.min.js': addBaseFilePath(pkg_config.packages.ngChallenges.js, themeAnnotate),
+          '<%= build.themeDist %>/js/ng-member-profile.min.js': addBaseFilePath(pkg_config.packages['ng-member-profile'].js, themeAnnotate)
         }
       }
+    },
+    ngAnnotate: {
+        options: {
+          remove: true,
+          add: true,
+          singleQuotes: true
+        },
+        js: {
+            files: [
+                {
+                    expand: true,
+                    src: [
+                      '<%= build.themeJs %>/app/**/*.js', 
+                      '!<%= build.themeJs %>/app/challenges/jsx/**'
+                    ],
+                    dest: '<%= build.themeDist %>/annotate',
+                },
+            ]
+        }
     },
     clean: ['<%= build.themeDist %>/'],
     compress: {
@@ -119,6 +139,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task.
+<<<<<<< Updated upstream
   grunt.registerTask('default', ['clean', 'concat', 'cssmin', 'uglify', 'compress']);
+=======
+  grunt.registerTask('default', ['clean', 'concat', 'cssmin', 'ngAnnotate', 'uglify', 'compress', 'updateJsonConfig']);
+>>>>>>> Stashed changes
 
 };
