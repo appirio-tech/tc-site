@@ -31,7 +31,7 @@ BadgeCtrl.prototype.dealWithBadgeData = function(userId, $scope, MemberProfileSe
     So we don't need another more service method here.
   */
   
-  var excluded_badgesID = [1,6, 11, 16, 21]; // few data is not available, so lets exclude them.
+  var excluded_badgesID = [1,6, 11, 16, 21, 52]; // few data is not available, so lets exclude them.
   
   $scope.$watch('coder', function () {
     if($scope.coder && $scope.coder.Achievements){

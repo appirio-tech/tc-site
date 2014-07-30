@@ -1,5 +1,8 @@
 /*global module:false*/
 module.exports = function(grunt) {
+  // Load grunt libraries from package.json
+  require('load-grunt-tasks')(grunt);
+
   var pkg_config = grunt.file.readJSON('wp-content/themes/tcs-responsive/config/script-register.json');
 
   function addBaseFilePath(files, base) {
@@ -13,6 +16,26 @@ module.exports = function(grunt) {
 
   var themeCSS = 'wp-content/themes/tcs-responsive/css/';
   var themeJS = 'wp-content/themes/tcs-responsive/js/';
+
+  grunt.registerTask('updateJsonConfig', function() {
+    // Get env config from options
+    var envConfig = {
+      auth0ClientID: grunt.option('auth-client-id') || '6ZwZEUo2ZK4c50aLPpgupeg5v2Ffxp9P',
+      auth0CallbackURL: grunt.option('auth-callback-url') || 'https://www.topcoder.com/reg2/callback.action',
+      auth0LDAP: grunt.option('auth-ldap') || 'LDAP',
+      communityURL: grunt.option('community-url') || 'http://community.topcoder.com',
+      mainURL: grunt.option('main-url') || 'http://local.topcoder.com',
+      apiURL: grunt.option('api-url') || 'https://api.topcoder.com/v2',
+      cdnURL: grunt.option('cdn-url') || '',
+      useCND: grunt.option('use-cdn') || false,
+      useMin: grunt.option('use-min') || false,
+      useVer: grunt.option('use-ver') || false,
+      version:Date.now()
+    };
+
+    // Write config to file
+    grunt.file.write('config.json', JSON.stringify(envConfig, null, 2));
+  });
 
   // Project configuration.
   grunt.initConfig({
@@ -105,17 +128,7 @@ module.exports = function(grunt) {
     }
   });
 
-  // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-qunit');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-compress');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-
   // Default task.
-  grunt.registerTask('default', ['clean', 'concat', 'cssmin', 'uglify', 'compress']);
+  grunt.registerTask('default', ['clean', 'concat', 'cssmin', 'uglify', 'compress', 'updateJsonConfig']);
 
 };
