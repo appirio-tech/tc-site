@@ -33,6 +33,7 @@ function tc_update_base_url($settings) {
  */
 function tc_clear_resgistry_cache() {
   delete_transient('tsc_get_asset_map');
+  delete_transient('tc_load_config');
 }
 
 

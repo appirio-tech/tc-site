@@ -9,10 +9,10 @@ define('CURRENT_FULL_URL', add_query_arg($wp->query_string, '', home_url($wp->re
 define("BLOG", "blog");
 
 locate_template('config/env.php', TRUE);
+locate_template('lib/config.php', TRUE);
 
-if (!defined('TC_API_URL')) {
-  define('TC_API_URL', 'https://api.topcoder.com/v2');
-}
+// Setup config
+tc_load_config();
 
 locate_template('lib/scripts.php', TRUE);
 locate_template('lib/widget.php', TRUE);
