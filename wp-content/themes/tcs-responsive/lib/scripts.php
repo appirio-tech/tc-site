@@ -185,9 +185,9 @@ function tsc_get_script_ext() {
 
   // check if the browser supports gzip so we can specify the gzip version of resources
   $ext = '';
-  if ($jsCssUseCDN && strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== false) {
-    $ext = 'gz';
-  }
+  //if ($jsCssUseCDN && strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== false) {
+  //  $ext = 'gz';
+  //}
 
   return $ext;
 }
