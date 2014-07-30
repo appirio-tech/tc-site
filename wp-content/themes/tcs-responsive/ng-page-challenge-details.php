@@ -216,12 +216,10 @@ include locate_template('header-challenge-landing.php');
         the client in the forums.</b></p>
   </article>
 
-  <article id="studioTournamentFormat">
+  <article id="studioTournamentFormat" ng-if="challenge.numberOfCheckpointsPrizes > 0">
     <h1>CHALLENGE FORMAT</h1>
-
-    <p class="paragraph" ng-if="challenge.numberOfCheckpointsPrizes > 0">This competition will be run as a two-round challenge.</p>
-    <p class="paragraph" ng-if="challenge.numberOfCheckpointsPrizes === 0">This competition will be run as a single-round challenge.</p>
-    <div ng-if="challenge.numberOfCheckpointsPrizes > 0">
+    <p class="paragraph">This competition will be run as a two-round challenge.</p>
+    <div>
       <span class="subTitle">Round One (1)</span>
 
       <p class="paragraph"></p>
