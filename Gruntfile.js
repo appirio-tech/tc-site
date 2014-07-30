@@ -11,6 +11,9 @@ module.exports = function(grunt) {
       new_names.push(base + file);
     });
 
+    grunt.log.writeln(base.toString());
+    grunt.log.writeln(new_names.toString());
+
     return new_names
   }
 
@@ -107,23 +110,23 @@ module.exports = function(grunt) {
       }
     },
     ngAnnotate: {
-        options: {
-          remove: true,
-          add: true,
-          singleQuotes: true
-        },
-        js: {
-            files: [
-                {
-                    expand: true,
-                    src: [
-                      '<%= build.themeJs %>/app/**/*.js', 
-                      '!<%= build.themeJs %>/app/challenges/jsx/**'
-                    ],
-                    dest: '<%= build.themeDist %>/annotate',
-                },
-            ]
-        }
+      options: {
+        remove: true,
+        add: true,
+        singleQuotes: true
+      },
+      js: {
+        files: [
+          {
+            expand: true,
+            src: [
+              '<%= build.themeJs %>/**/*.js',
+              '!<%= build.themeJs %>/app/challenges/jsx/**'
+            ],
+            dest: '<%= build.themeDist %>/annotate'
+          }
+        ]
+      }
     },
     clean: ['<%= build.themeDist %>/'],
     compress: {
@@ -150,16 +153,6 @@ module.exports = function(grunt) {
       }
     }
   });
-
-  // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-qunit');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-compress');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task.
   grunt.registerTask('default', ['clean', 'concat', 'cssmin', 'ngAnnotate', 'uglify', 'compress', 'updateJsonConfig']);
