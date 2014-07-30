@@ -11,9 +11,6 @@ module.exports = function(grunt) {
       new_names.push(base + file);
     });
 
-    grunt.log.writeln(base.toString());
-    grunt.log.writeln(new_names.toString());
-
     return new_names
   }
 
@@ -34,7 +31,8 @@ module.exports = function(grunt) {
       useCND: grunt.option('use-cdn') || false,
       useMin: grunt.option('use-min') || false,
       useVer: grunt.option('use-ver') || false,
-      version: grunt.option('cdn-version') || Date.now()
+      version: grunt.option('cdn-version') || Date.now(),
+      useGz: grunt.option('use-gz') || false
     };
 
     // Write config to file
@@ -111,8 +109,6 @@ module.exports = function(grunt) {
     },
     ngAnnotate: {
       options: {
-        remove: true,
-        add: true,
         singleQuotes: true
       },
       js: {

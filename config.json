@@ -9,5 +9,6 @@
   "useCND": 1,
   "useMin": 1,
   "useVer": false,
-  "version": ""
+  "version": "",
+  "useGz": false
 }
