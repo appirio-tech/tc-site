@@ -5,9 +5,10 @@
   "communityURL": "http://community.topcoder.com",
   "mainURL": "http://local.topcoder.com",
   "apiURL": "https://api.topcoder.com/v2",
-  "cdnURL": "",
-  "useCND": false,
-  "useMin": false,
+  "cdnURL": "/wp-content/themes/tcs-responsive",
+  "useCND": 1,
+  "useMin": 1,
   "useVer": false,
-  "version": 1406730183804
+  "version": "",
+  "useGz": false
 }
