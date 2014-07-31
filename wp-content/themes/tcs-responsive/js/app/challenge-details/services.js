@@ -10,11 +10,14 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', '$cookies', f
     // request config
     //RestangularConfigurer.setDefaultHttpFields({'withCredentials': true});
 
-    // tcjwt cookie
-    //RestangularConfigurer.setDefaultHeaders({
-    //  'Authorization': 'Bearer ' + $cookies.tcjwt
-    //});
     
+    // tcjwt cookie
+    if ($cookies.tcjwt) {
+      //We need to send auth header for challenge details if cookie is set, otherwise challenge document info is not included in API response
+      RestangularConfigurer.setDefaultHeaders({
+        'Authorization': 'Bearer ' + $cookies.tcjwt
+      });
+    }
   });
 
   service.getResults = function(id) {

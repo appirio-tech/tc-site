@@ -1,9 +1,9 @@
-<article ng-show="isDesign && submissions.length > 0">
-    <div ng-show="firstPlaceSubmission" ng-repeat="submission in winningSubmissions" class="winnerRow {{$index > 1 ? 'hideOnMobi' : ''}}">
+<article ng-if="isDesign && submissions.length > 0">
+    <div ng-if="firstPlaceSubmission" ng-repeat="submission in winningSubmissions" class="winnerRow {{$index > 1 ? 'hideOnMobi' : ''}}">
         <div class="place {{['first', 'second', 'third', 'other'][$index]}}">{{$index + 1}}<span>{{(placeSuffix = ['st', 'nd', 'rd'][$index]) ? placeSuffix : 'th'}}</span></div>
         <!-- #/end place-->
         <div class="image">
-            <img src="{{submission.previewDownloadLink}}" alt="winner"/>
+            <img ng-src="{{submission.previewDownloadLink}}" alt="winner"/>
         </div>
         
         <!-- #/end image-->
@@ -118,7 +118,7 @@
     <!--#/end competitionDetails-->
 </article>
 
-<article ng-show="!isDesign && submissions.length > 0">
+<article ng-if="!isDesign && submissions.length > 0">
     <div ng-if="firstPlaceSubmission" class="winnerRow">
         <div class="place first">1<span>st</span></div>
         <!-- #/end place-->

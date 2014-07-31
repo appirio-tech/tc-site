@@ -76,14 +76,8 @@ $(document).ready(function () {
     if (tcjwt) {
         getChallenge(tcjwt, function(challenge) {
             updateRegSubButtons(challenge);
-            addDocuments(challenge);
         });
-    } else {
-        //Bugfix I-114581:
-        //if auth cookie is not set, we cannot list Documents or know if any exist, since API requires Auth header to return Documents
-        $('.downloadDocumentList').html('<li><strong>Log In and Register for Challenge to Download Files (if available)</strong></li>');
     }
-
 
   function updateRegSubButtons(challenge) {
     // if there was an error getting the challenge then enable the buttons
@@ -114,29 +108,6 @@ $(document).ready(function () {
         });
       }
     }
-  }
-
-  function addDocuments(challenge) {
-      //Bugfix I-114581 fixed document download messages
-      if (typeof challenge.Documents !== 'undefined' && $('.downloadDocumentList')) {
-          $('.downloadDocumentList').children().remove();
-          //only display "none" if there really are no document downloads available
-          if (challenge.Documents.length === 0) {
-              $('.downloadDocumentList').html('<li><strong>None</strong></li>');
-          } else {
-              //output list of downloads
-              challenge.Documents.map(function(x) {
-                  $('.downloadDocumentList').append($(
-                      '<li><a href="'+x.url+'">'+x.documentName+'</a></li>'
-                  ));
-              });
-          }
-      } else {
-          //Bugfix I-114581:
-          //if auth cookie is set, but user is not registered for challenge they will get this message.
-          //API does not tell us if any downloads exist if not registered, so cannot tell if any will be available
-          $('.downloadDocumentList').html('<li><strong>Register to Download Files (if available)</strong></li>');
-      }
   }
 
   function getChallenge(tcjwt, callback) {
