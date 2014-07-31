@@ -109,45 +109,14 @@ function themeoptions_page() {
       </table>
       <br />
 
-      <h3>JS/CSS Optimations</h3>
+      <h3>JS/CSS Optimations and Config cache</h3>
       <table width="100%">
         <tr>
-          <?php $field = 'jsCssVersioning'; ?>
-          <td width="150"><label for="<?php echo $field; ?>">JS/CSS Versioning:</label></td>
-          <td>
-            <input type="radio" name="<?php echo $field; ?>" value="1" <?php if (get_option($field) == 1): ?>checked="checked"<?php endif; ?> /> Yes
-            <input type="radio" name="<?php echo $field; ?>" value="0" <?php if (get_option($field) != 1): ?>checked="checked"<?php endif; ?> /> No
-          </td>
-        </tr>
-        <tr>
-          <?php $field = 'jsCssCurrentVersion'; ?>
-          <td><label for="<?php echo $field; ?>">Current Version:</label></td>
-          <td><input type="text" id="<?php echo $field; ?>" name="<?php echo $field; ?>" size="100" value="<?php echo (strlen(trim(get_option($field))) == 0) ? date('Ymd') : get_option($field); ?>" /></td>
-        </tr>
-        <tr>
-          <?php $field = 'jsCssUseCDN'; ?>
-          <td width="150"><label for="<?php echo $field; ?>">Use CDN:</label></td>
-          <td>
-            <input type="radio" name="<?php echo $field; ?>" value="1" <?php if (get_option($field) == 1): ?>checked="checked"<?php endif; ?> /> Yes
-            <input type="radio" name="<?php echo $field; ?>" value="0" <?php if (get_option($field) != 1): ?>checked="checked"<?php endif; ?> /> No
-          </td>
-        </tr>
-        <tr>
-          <?php $field = 'jsCssCDNBase'; ?>
-          <td><label for="<?php echo $field; ?>">CDN Base URL:</label></td>
-          <td><input type="text" id="<?php echo $field; ?>" name="<?php echo $field; ?>" size="100" value="<?php echo get_option($field); ?>" /></td>
-        </tr>
-        <tr>
-          <?php $field = 'jsCssUseMin'; ?>
-          <td width="150"><label for="<?php echo $field; ?>">Use Minifed JS/CSS:</label></td>
-          <td>
-            <input type="radio" name="<?php echo $field; ?>" value="1" <?php if (get_option($field) == 1): ?>checked="checked"<?php endif; ?> /> Yes
-            <input type="radio" name="<?php echo $field; ?>" value="0" <?php if (get_option($field) != 1): ?>checked="checked"<?php endif; ?> /> No
-          </td>
+          <p>Settings have been moved to config.json.</p>
         </tr>
         <tr>
           <?php $field="jssCssReset"; ?>
-          <td width="150"><label for="<?php $field; ?>">Reset JS/CSS Registry:</label></td>
+          <td width="150"><label for="<?php $field; ?>">Reset JS/CSS Registry and Config cache:</label></td>
           <td>
             <input type="radio" name="<?php echo $field; ?>" value="1" <?php if (get_option($field) == 1): ?>checked="checked"<?php endif; ?> /> Yes
             <input type="radio" name="<?php echo $field; ?>" value="0" <?php if (get_option($field) != 1): ?>checked="checked"<?php endif; ?> /> No
@@ -221,17 +190,6 @@ function themeoptions_update() {
   update_option ( 'tcoTooltipTitle', $_POST ['tcoTooltipTitle'] );
   update_option ( 'tcoTooltipMessage', $_POST ['tcoTooltipMessage'] );
 
-  // JS/CSS versioning - BUGR-10904
-  update_option ( 'jsCssVersioning', $_POST['jsCssVersioning'] );
-  update_option ( 'jsCssCurrentVersion', $_POST['jsCssCurrentVersion'] );
-
-  update_option ( 'jsCssVersioning', $_POST['jsCssVersioning'] );
-  update_option ( 'jsCssCurrentVersion', $_POST['jsCssCurrentVersion'] );
-
-  update_option ( 'jsCssUseCDN', $_POST['jsCssUseCDN'] );
-  update_option ( 'jsCssCDNBase', $_POST['jsCssCDNBase'] );
-
-  update_option ( 'jsCssUseMin', $_POST['jsCssUseMin'] );
 
   if ($_POST['jssCssReset'] === "1") {
     locate_template("lib/post_copy.php", TRUE);

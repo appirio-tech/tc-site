@@ -1,0 +1,14 @@
+{
+  "auth0ClientID": "6ZwZEUo2ZK4c50aLPpgupeg5v2Ffxp9P",
+  "auth0CallbackURL": "https://www.topcoder.com/reg2/callback.action",
+  "auth0LDAP": "LDAP",
+  "communityURL": "http://community.topcoder.com",
+  "mainURL": "http://local.topcoder.com",
+  "apiURL": "https://api.topcoder.com/v2",
+  "cdnURL": "/wp-content/themes/tcs-responsive",
+  "useCND": 1,
+  "useMin": 1,
+  "useVer": false,
+  "version": "",
+  "useGz": false
+}

@@ -18,12 +18,13 @@ var BaseCtrl = function ($scope) {
   $scope.$watch('coder', function () {
     //If coder is not found, then no need to issue further rest apis.
     if($scope.coder !== undefined && jQuery.isEmptyObject($scope.coder)){
-      // set its data to empty.
+      location.href = '/404.php';
+	  // set its data to empty.
       baseCtrl.cache['develop'] = {};
       baseCtrl.cache['design'] = {};
       baseCtrl.cache['dataScience']['algorithm'] = {};
       baseCtrl.cache['dataScience']['marathon'] = {};
-    }
+    }	
   });
 };
 

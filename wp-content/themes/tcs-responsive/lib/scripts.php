@@ -12,8 +12,6 @@
  */
 
 function tcs_responsive_scripts() {
-  $auth0_client_id = auth0_client_id;
-
   // register scripts that are used everywhere
   $assets = array(
     'jquery' => '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
@@ -27,11 +25,11 @@ function tcs_responsive_scripts() {
 
   tsc_register_master($assets);
 
-  $jsCssUseMin = get_option("jsCssUseMin", false);
+  $jsCssUseMin = TC_USE_MIN;
   $template_map = tsc_get_asset_map();
   $page_template = get_page_template_slug(get_queried_object_id());
-  $ver = get_option('jsCssVersioning') == 1 ? get_option('jsCssCurrentVersion') : '1';
-  $jsCssUseCDN = get_option("jsCssUseCDN", false);
+  $ver = TC_CDN_VER == 1 ? TC_CDN_VER : '1';
+  $jsCssUseCDN = TC_USE_CDN;
 
   if (isset($template_map[$page_template])) {
     $asset_map = $template_map[$page_template];
@@ -158,11 +156,11 @@ function tsc_get_asset_map() {
  */
 function tsc_get_script_base_url() {
 
-  $jsCssUseCDN = get_option("jsCssUseCDN", false);
-  $jsCssCDNBase = get_option("jsCssCDNBase", THEME_URL);
-  $jsCssVersioning = get_option("jsCssVersioning", false);
-  $jsCssCurrentVersion = get_option("jsCssCurrentVersion", false);
-  $jsCssUseMin = get_option("jsCssUseMin", false);
+  $jsCssUseCDN = TC_USE_CDN;
+  $jsCssCDNBase = TC_CDN_URL;
+  $jsCssVersioning = TC_USE_VER;
+  $jsCssCurrentVersion = TC_CDN_VER;
+  $jsCssUseMin = TC_USE_MIN;
 
   // Setup up base url if using cdn.  safe fallback to theme url
   $base_url = $jsCssUseCDN ? $jsCssCDNBase : THEME_URL;
@@ -183,11 +181,11 @@ function tsc_get_script_base_url() {
  * @return string
  */
 function tsc_get_script_ext() {
-  $jsCssUseCDN = get_option("jsCssUseCDN", false);
+  $jsCssUseCDN = TC_USE_CDN;
 
   // check if the browser supports gzip so we can specify the gzip version of resources
   $ext = '';
-  if ($jsCssUseCDN && strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== false) {
+  if (TC_CDN_GZ && $jsCssUseCDN && strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== false) {
     $ext = 'gz';
   }
 

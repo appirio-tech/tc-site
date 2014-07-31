@@ -130,14 +130,23 @@ called `env.php` in the `wp-content/themes/tcs-responsive/config` directory.
 We recommend the following lines for purposes of local development.
 
     <?php
-    define("WP_SITEURL", "http://local.topcoder.com");
-    define("WP_HOME", "http://local.topcoder.com");
-    // if you want to change the api url
-    define('TC_API_URL', 'https://api.topcoder.com/v2');
-    
     force_ssl_admin(false);
     force_ssl_login(false);
     ?>
+    
+Environment variables are loaded form config.json.  The config.json file is built during
+grunt process.  The following command line options can be used ot customize the build:
+
+* auth-client-id: The Auth0 ClientID to use
+* auth-callback-url: The Auth0 callback 
+* auth-ldap:  The Auth0 LDAP connection to use
+* community-url: THe community URL to redirect to after login
+* main-url: The main site URL.  This replaces WP_SITEURL and WP_HOME in env.php
+* api-url: The API URL:  This replaces the TC_API_URL in env.php.
+* cdn-url: This replaces the WP option on the theme settings page.
+* use-cdn: This replaces the WP option on the theme settings page.
+* use-min: This replaces the WP option on the theme settings page.
+* use-ver: This replaces the WP option on the theme settings page.
 
 ## Development Guidelines ##
 
