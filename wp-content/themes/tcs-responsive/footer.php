@@ -247,7 +247,7 @@ $blog_posts = get_posts($blog_posts_args);
 
 <p class="row">
 <label>Country</label>
-<select id="selCountry" name="user.country">
+<select class="applyCustomSelect" id="selCountry" name="user.country">
   <option value="">Please Select</option>
   <option value="Afghanistan">Afghanistan</option>
   <option value="Albania">Albania</option>

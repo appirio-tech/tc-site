@@ -93,6 +93,7 @@ get_header(); ?>
               technologies="technologies"
               platforms="platforms"
               challenge-community="contest.contestType"
+              challenge-status="contest.listType"
               show-on="showFilters"
               filter="filter"></div>
 
@@ -122,13 +123,13 @@ get_header(); ?>
         </div>
         <div class="dataChanges">
           <div class="lt">
-            <a class="viewAll" ng-show="challenges.length < allChallenges.length" ng-click="viewAll()">View All</a>
+            <a class="viewAll" ng-show="challenges.length < pagination.total" ng-click="all()">View All</a>
           </div>
           <div id="challengeNav" class="rt">
-            <a class="prevLink" ng-show="page > 1" ng-click="page = page - 1">
+            <a class="prevLink" ng-show="pagination.pageIndex > 1" ng-click="prev()">
               <i></i> Prev
             </a>
-            <a class="nextLink" ng-show="totalServerItems > page * currentPageSize" ng-click="page = page + 1">
+            <a class="nextLink" ng-show="pagination.total > pagination.pageIndex * pagination.pageSize" ng-click="next()">
               Next <i></i>
             </a>
           </div>
@@ -159,11 +160,7 @@ get_header(); ?>
         <!-- Coming soon!  <li><a href="//www.topcoder.com/review-opportunities/develop/" class="link">Review Opportunities</a></li> -->
       </ul>
     </div>
-    <div class="rt">
-      <a href="javascript:;" class="searchLink advSearch" ng-show="contest.contestType != ''" ng-click="showFilters = !showFilters">
-        <i></i>Advanced Search
-      </a>
-    </div>
+    
   </div>
 </script>
 
@@ -179,7 +176,7 @@ get_header(); ?>
   </div>
 </script>
 
-<script type="text/ng-template" id="advanced-search.html">
+<script type="text/ng-template" id="advanced-search_old.html">
     <div class="searchFilter hide">
     <div class="filterOpts">
       <section class="types" ng-if="challengeCommunity !== 'data'">
@@ -243,6 +240,140 @@ get_header(); ?>
       <a ng-click="closeForm()" class="btn btnSecondary btnClose">Close</a>
       <a ng-click="applyFilter()" class="btn btnApply">Apply</a>
     </div>
+  </div>
+</script>
+    
+<script type="text/ng-template" id="advanced-search.html">
+  <div class="clear new-search-box" ng-if="challengeCommunity !== ''">
+    <input type="text" class="search-text" placeholder="Type a keyword" ng-model="tempOptions.text">
+    <a href="javascript:;" class="searchLink advSearch" ng-click="addKeywords(tempOptions.text)">
+        <i></i>
+    </a>
+    <div class="clear"></div>
+    <div class="selected-tags">
+        <div class="wrapper">
+            <ul class="left tags">
+                <li class="left li-date-range" ng-if="filterOptions.startDate || filterOptions.endDate">
+                  <div class="selecting-tag-wrapper">
+                    <div class="date-ranges selected-tag">
+                      <span class="selected-range left">
+                        from {{formatDate(filterOptions.startDate)}} {{filterOptions.endDate ? ('- ' + formatDate(filterOptions.endDate)) : ''}}
+                      </span>
+                      <span class="tag-closedate right" ng-click="clearDates()"></span>
+                    </div>
+                  </div>
+                </li>
+                <li class="left remove challenges-type" ng-repeat="ch in filterOptions.challengeTypes">
+                  <div class="selecting-tag-wrapper challenge-value">
+                    <div class="selected-tag">{{contestTypes[ch]}}<span class="tag-close right" ng-click="removeChallengeType(ch)"></span>
+                    </div>
+                  </div>
+                </li>
+                <li class="left remove platform-type" ng-repeat="plat in filterOptions.platforms">
+                  <div class="selecting-tag-wrapper platform-value">
+                    <div class="selected-tag">{{plat}}<span class="tag-close right" ng-click="removePlatform(tech)"></span>
+                    </div>
+                  </div>
+                </li>
+                <li class="left remove technology-type" ng-repeat="tech in filterOptions.technologies">
+                  <div class="selecting-tag-wrapper technology-value">
+                    <div class="selected-tag">{{tech}}<span class="tag-close right" ng-click="removeTechnology(tech)"></span>
+                    </div>
+                  </div>
+                </li>
+                <li class="left remove keyword-type" ng-repeat="token in filterOptions.keywords">
+                  <div class="selecting-tag-wrapper keyword-value">
+                    <div class="selected-tag">Text: {{token}}<span class="tag-close right" ng-click="removeKeyword(token)"></span></div>
+                  </div>
+                </li>
+            </ul>
+            <div class="closetag right">
+                <a href="javascript:;" ng-click="reset()" ng-show="hasFilters()">
+                    <span>x</span><i>Clear All Tags</i>
+                </a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <!-- Begin Dropdown filter -->
+    <div class="filter-dropdown">
+        <div class="wrapper">
+            <div class="left challenge-type-selector" ng-hide="challengeCommunity === 'data'" tc-select2-hover>
+                <select ui-select2="{placeholder: 'Challenge Type', searchInputPlaceholder: 'Enter a Challenge Type', width: '100%', noFocus: true}"
+                  ng-model="tempOptions.challengeType" class="challenge-type" ng-change="addChallengeType(tempOptions.challengeType)">
+                    <option></option>
+                    <option ng-repeat="(ct, name) in contestTypes" ng-disabled="filterOptions.challengeTypes.indexOf(ct) !== -1" ng-value="ct">{{name}}</option>
+                </select>
+            </div>
+            <div class="date-picker-wrapper left" tc-date-picker options="filterOptions">
+                <div class="date-text">
+                    <span class="picker-text">Submission End Date Range</span>
+                    <span class="right datepicker-icon"></span>
+                    <div class="clear"></div>
+                </div>
+                <div class="pickers">
+                    <div class="pickers-wrapper">
+                        <div class="picker-cal left">
+                            <div class="pickers-content">
+                                <label class="left datepic-head">Custom Date Range</label>
+                                <div class="left from-wrapper">
+                                    <div class="from-text-box left">
+                                        <span class="limit-label left">From</span>
+                                        <input type="text" class="right from-picker-text" name="from" disabled ng-value="formatDate(filterOptions.startDate)">
+                                    </div>
+                                </div>
+                                <div class="left from-wrapper">
+                                    <div class="to-text-box left">
+                                        <span class="limit-label left">to</span>
+                                        <input type="text" class="right to-picker-text" name="to" disabled ng-value="formatDate(filterOptions.endDate)">
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="calendar">
+                                <div class="from-datepicker"></div>
+                                <div class="to-datepicker"></div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="quick-pick left">
+                            <ul class="quick-pick-list">
+                                <li><a href="javascript:;" ng-click="dateCtrl.today()">Today</a>
+                                </li>
+                                <li><a href="javascript:;" ng-click="dateCtrl.yesterday()">Yesterday</a>
+                                </li>
+                                <li><a href="javascript:;" ng-click="dateCtrl.last7Days()">Last 7 day</a>
+                                </li>
+                                <li><a href="javascript:;" ng-click="dateCtrl.thisMonth()">This Month</a>
+                                </li>
+                                <li><a href="javascript:;" ng-click="dateCtrl.lastMonth()">Last Month</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="left platform-selector" ng-show="challengeCommunity === 'develop' || challengeCommunity === ''" tc-select2-hover>
+                <select ui-select2="{placeholder: 'Platform', searchInputPlaceholder: 'Enter a Platform Tag', width: '100%'}"
+                  ng-model="tempOptions.platform" class="platform" ng-change="addPlatform(tempOptions.platform)">
+                    <option></option>
+                    <option ng-repeat="plat in platforms track by $index" ng-disabled="filterOptions.platforms.indexOf(plat) !== -1">{{plat}}</option>
+                </select>
+            </div>
+
+            <div class="left technology-selector" ng-show="challengeCommunity === 'develop'  || challengeCommunity === ''" tc-select2-hover>
+                <select ui-select2="{placeholder: 'Technology', searchInputPlaceholder: 'Enter a Technology Tag', width: '100%'}"
+                  ng-model="tempOptions.technology" ng-change="addTechnology(tempOptions.technology)" class="technology">
+                    <option></option>
+                    <option ng-repeat="tech in technologies track by $index" ng-disabled="filterOptions.technologies.indexOf(tech) !== -1">{{tech}}</option>
+                </select>
+            </div>
+
+        </div>
+    </div>
+    <!-- End Dropdown filter -->
   </div>
 </script>
 
