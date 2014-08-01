@@ -1,6 +1,10 @@
-var cdapp = angular.module('challengeDetails', ['restangular', 'ngCookies', 'angular-loading-bar'])
+var cdapp = angular.module('challengeDetails', [
+  'restangular', 'ngCookies', 'angular-loading-bar',
+  'tc.SubmissionDirectives', 'tc.SubmissionServices'])
 
 .constant("API_URL", tcApiRUL)
+
+.constant("TEMPLATE_URL", "/js/app/challenge-details/partials/")
 
 .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
   cfpLoadingBarProvider.includeSpinner = false;

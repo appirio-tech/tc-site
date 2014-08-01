@@ -3,7 +3,7 @@
         <div class="place {{['first', 'second', 'third', 'other'][$index]}}">{{$index + 1}}<span>{{(placeSuffix = ['st', 'nd', 'rd'][$index]) ? placeSuffix : 'th'}}</span></div>
         <!-- #/end place-->
         <div class="image">
-            <img src="{{submission.previewDownloadLink}}" alt="winner"/>
+            <img ng-src="{{submission.previewDownloadLink}}" alt="winner"/>
         </div>
         
         <!-- #/end image-->

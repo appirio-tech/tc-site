@@ -28,6 +28,7 @@ function tc_challenge_details_js() {
     var autoRegister = "<?php echo get_query_var('autoRegister');?>";
     var handle = ""; // fix me
     var challengeName; //prevent undefined error, value is set in angular script
+    var THEME_URL = "<?php echo THEME_URL;?>";
   </script>
 <?php
 }
@@ -84,9 +85,7 @@ include locate_template('header-challenge-landing.php');
     < ?php endif; ?>
     -->
     <!--<li ng-if="isDesign && inSubmission"><span class="inactive">Submissions</span></li>-->
-    <!-- @FIXME commenting out until submission are available for design
     <li ng-show="isDesign && !inSubmission"><a href="#submissions" class="link">Submissions</a></li>
-    -->
     <li ng-show="isDesign && (inSubmission || inScreening || inReview)"><span class="inactive">Results</span></li>
     <li ng-show="isDesign && !(inSubmission || inScreening || inReview)"><a href="#winner" class="link">Results</a></li>
   </ul>
@@ -436,16 +435,16 @@ include locate_template('header-challenge-landing.php');
 
 
   <article>
-    Coming Soon...
+    <?php include( locate_template('ng-content-submission.php') ); ?>
   </article>
 
 </div>
 </section>
 </div>
-
+<!-- /.mainStream -->
 
 </div>
-<!-- /.mainStream -->
+<!-- /.rightSplit -->
 <aside class="sideStream grid-1-3" style="float: left;">
 
 <div class="topRightTitle">
@@ -622,7 +621,7 @@ include locate_template('header-challenge-landing.php');
 <!-- /.sideStream -->
 <div class="clear"></div>
 </div>
-<!-- /.rightSplit -->
+<!-- /.container -->
 </article>
 <!-- /#mainContent -->
 
