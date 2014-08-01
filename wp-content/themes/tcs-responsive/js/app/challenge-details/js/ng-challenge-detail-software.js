@@ -1,3 +1,8 @@
+/*
+ * TODO:
+ * - Get rid of jQuery! Move DOM logic into directives, etc.
+ */
+
 var sliderActive = false;
 var prizeSliderActive = false;
 var slider;

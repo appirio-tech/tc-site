@@ -1,5 +1,16 @@
+/*
+ * TODO:
+ * - Bring up to style guide standards
+ *   - lots of different stuff under this heading:
+ *   - move logic out of controllers
+ *   - resolve promises correctly
+ *   - etc
+ * - Eliminate jQuery / move DOM logic to directives
+ * - Split into different controllers where applicable
+ * - Rename file (all files should be named after the units they contain - 
+ *   'controllers.js' is too generic)
+ */
 var challengeName;
-// @TODO Split out the different parts of the page into different contorllers
 cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scope, ChallengeService, $sce) {
   $scope.callComplete = false;
   $scope.trust = function(x) {

@@ -1,3 +1,8 @@
+/* TODO:
+ * - Wrap in anon function
+ * - Change style to match style guide
+ *
+ */
 var cdapp = angular.module('challengeDetails', [
   'restangular', 'ngCookies', 'angular-loading-bar',
   'tc.SubmissionDirectives', 'tc.SubmissionServices'])

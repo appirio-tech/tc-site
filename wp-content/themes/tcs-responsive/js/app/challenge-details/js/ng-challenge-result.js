@@ -1,5 +1,8 @@
 /**
  * Challenge result functions
+ *
+ * TODO:
+ * - Get rid of jQuery! Move DOM logic to directive, etc
  */
 $(document).ready(function () {
   $(".link").click(function(){

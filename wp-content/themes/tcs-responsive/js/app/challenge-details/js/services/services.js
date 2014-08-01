@@ -1,7 +1,8 @@
-// @TODO move to it's own module do it can be included in other module ie checkpoints, results, etc
-// @TODO is the result from service.one(challengeType).one('challenges').one('result', id) cached?
 // @TODO change to new API endpoints: http://api.topcoder.com/v2/challenges/30041860.  the type is no longer needed
-// @TODO look to combine this service with the challenge already defined.
+/* TODO:
+ * - bring up to style guide standards
+ * - rename file to service name
+ */
 cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', '$cookies', function(Restangular, API_URL, $q, $cookies) {
 
   var service = Restangular.withConfig(function(RestangularConfigurer) {

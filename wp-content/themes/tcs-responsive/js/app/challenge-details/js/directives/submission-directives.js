@@ -2,6 +2,9 @@
  * This code is copyright (c) 2014 Topcoder Corporation
  * author: ecnu_haozi
  * version 1.0
+ *
+ * TODO:
+ * - bring up to style guide standards
  */
 'use strict';
 

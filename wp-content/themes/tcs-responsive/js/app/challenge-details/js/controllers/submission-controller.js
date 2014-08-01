@@ -2,6 +2,11 @@
  * This code is copyright (c) 2014 Topcoder Corporation
  * author: ecnu_haozi
  * version 1.0
+ *
+ * TODO:
+ * - Bring up to style guide standards
+ * - Get rid of prototyping and instead directly create methods
+ *   on the controller, which is a little more readable
  */
 'use strict';
 
