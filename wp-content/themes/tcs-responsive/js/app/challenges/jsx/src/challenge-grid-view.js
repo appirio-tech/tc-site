@@ -26,14 +26,14 @@
         var clickHandler = scope.$apply.bind (scope,
                            scope.findByTechnology.bind (null, tech));
         return (
-            <li><span className="techTag"><a href="javascript:;" onClick={clickHandler}>{tech}</a></span></li>
+            <li key={'tech.' + tech}><span className="techTag"><a href="javascript:;" onClick={clickHandler}>{tech}</a></span></li>
           )
       });
       var platRows = _.map(challenge.platforms, function(plat){
         var clickHandler = scope.$apply.bind (scope,
                            scope.findByPlatform.bind (null, plat));
         return (
-            <li><span className="techTag"><a href="javascript:;" onClick={clickHandler}>{plat}</a></span></li>
+            <li key={'plat.' + plat}><span className="techTag"><a href="javascript:;" onClick={clickHandler}>{plat}</a></span></li>
           )
       });
       return (
@@ -112,7 +112,7 @@
         var track = getTrackSymbol(challenge.challengeType);
         var trackTag = 'track-' + track;
         return (
-        <div className={"contest "+ trackTag +" trackSD type-" + challenge.challengeCommunity}>
+        <div className={"contest "+ trackTag +" trackSD type-" + challenge.challengeCommunity} key={challenge.challengeId}>
           <div className="cgCh">
             <a href={"/challenge-details/" +challenge.challengeId+"/?type="+challenge.challengeCommunity} className="contestName">
               <img alt="" className="allContestIco" src={images + '/ico-track-' + challenge.challengeCommunity + '.png'} />
@@ -162,7 +162,7 @@
                 <div className={challenge.technologies !== undefined || challenge.technologies.length !== 0 ? 'technologyTags' : 'technologyTags ng-hide'}>
                   <ChallengeTechsList challenge={challenge} scope={scope}/>
                 </div>
-                <div class="clear"></div>
+                <div className="clear"></div>
               </div>
             </div>
           </div>

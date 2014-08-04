@@ -6,9 +6,9 @@
   "mainURL": "http://local.topcoder.com",
   "apiURL": "https://api.topcoder.com/v2",
   "cdnURL": "/wp-content/themes/tcs-responsive",
-  "useCND": 1,
-  "useMin": 1,
+  "useCND": false,
+  "useMin": false,
   "useVer": false,
-  "version": "",
+  "version": 1406839126455,
   "useGz": false
 }

@@ -393,7 +393,6 @@
         "base-responsive.css",
         "style-responsive.css",
         "coder.css",
-        "contact-about.css",
         "profileBadges.css",
         "register-login.css",
         "blog-base.css",
@@ -406,6 +405,7 @@
         "challenge-tags.css",
         "style-challenges.css",
         "jquery.qtip.min.css",
+        "advanced-search.css",
         "../js/app/challenges/css/ngchallenges.css",
         "../js/app/challenges/lib/angular-loading-bar-0.3.0/loading-bar.css",
         "../js/app/challenges/lib/select2/select2-3.4.8/select2.css"
