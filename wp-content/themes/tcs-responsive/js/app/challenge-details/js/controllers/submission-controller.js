@@ -183,3 +183,4 @@ SubmissionCtrl.prototype.loadImages = function(total, type, id){
  * Register the controller into Angular <code>cdapp</code> module.
  */
 cdapp.controller('SubmissionCtrl', SubmissionCtrl);
+SubmissionCtrl.$inject = ['TEMPLATE_URL', '$scope', 'SubmissionServices'];
