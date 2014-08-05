@@ -25,8 +25,8 @@
                     <p class="submissionInfo">
                         <span class="metaDate" ng-bind="item.formattedDate"></span>
 
-                        <span class="viewSubmission"><a href="javascript:;" ng-bind="item.viewCounter" ng-click="subCtrl.viewSubmission(item)"></a></span>
-                        <span class="download"><a ng-href="{{item.downloadUrl}}" ng-bind="item.downloadCounter"></a></span>
+                        <span class="viewSubmission"><a href="javascript:;" ng-click="subCtrl.viewSubmission(item)"></a></span>
+                        <span class="download"><a ng-href="{{item.downloadUrl}}"></a></span>
                     </p>
                 </div>
             </li>
@@ -97,7 +97,7 @@
 
 
 <div id="round1" class="submissionAllView" ng-if=" challenge.currentStatus === 'Completed' && challenge.submissionsViewable" ng-hide="subCtrl.singleViewMode || !subCtrl.checkPointPagedItems">
-    <h1>ROUND 1 (CHEKCPOINT) SUBMISSIONS</h1>
+    <h1>ROUND 1 (CHECKPOINT) SUBMISSIONS</h1>
     <ul class="submissionList">
         <span ng-repeat="singlePage in subCtrl.checkPointPagedItems" class="submissionPage" ng-show="subCtrl.checkPointCurrentPage === $index || subCtrl.checkPointViewAll">
             <li ng-repeat="item in singlePage">
@@ -256,15 +256,15 @@
         <div class="basicInfo">
             <span class="meataAction">
                 <span class="metaDate" ng-bind="subCtrl.singleViewSubmission.formattedDate"></span>
-                <a href="javascript:;" class="viewSubmission" ng-bind="'Views ' + subCtrl.singleViewSubmission.viewCounter"></a>
-                <a ng-href="{{subCtrl.singleViewSubmission.downloadUrl}}" class="download" ng-bind="'Downloads ' + subCtrl.singleViewSubmission.downloadCounter"></a>
+                <a href="javascript:;" class="viewSubmission"></a>
+                <a ng-href="{{subCtrl.singleViewSubmission.downloadUrl}}" class="download"></a>
                 <a href="javascript:;" class="back btn btnAlt" ng-click="subCtrl.singleViewMode = false" >Back</a>
             </span>
             <span class="subNum" ng-bind=" '#' + subCtrl.singleViewSubmission.submissionId"></span>
             <a ng-href="/member-profile/{{subCtrl.singleViewSubmission.submitter}}/design" class="handle coderTextOrange" ng-bind="subCtrl.singleViewSubmission.submitter"></a>
         </div>
         <!-- /.basicInfo -->
-        <div class="furtherInfo">
+        <div class="furtherInfo hide">
             <h6>DECLARATION</h6>
             <div class="commentInfo">
                 <label>Comment:</label>
