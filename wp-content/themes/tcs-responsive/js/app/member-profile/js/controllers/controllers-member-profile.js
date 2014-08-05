@@ -7,7 +7,7 @@
 /**
  * The main controller for member-profile page.
  */
-tc.controller('MemberProfileCtrl', ['$location', '$state', '$scope', 'MemberProfileService',
+angular.module('tc').controller('MemberProfileCtrl', ['$location', '$state', '$scope', 'MemberProfileService',
   'ColorService', "PHOTO_LINK_LOCATION", "MEMBER_PROFILE_TEMPLATE_URL",
 
   function ($location, $state, $scope, MemberProfileService, ColorService,
