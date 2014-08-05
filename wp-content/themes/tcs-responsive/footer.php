@@ -257,7 +257,7 @@ $blog_posts = get_posts($blog_posts_args);
 
 <p class="row">
 <label>Country</label>
-<select id="selCountry" name="user.country">
+<select class="applyCustomSelect" id="selCountry" name="user.country">
   <option value="">Please Select</option>
   <option value="Afghanistan">Afghanistan</option>
   <option value="Albania">Albania</option>
@@ -697,19 +697,19 @@ $blog_posts = get_posts($blog_posts_args);
     if (loginState == 'none') {
       loginState = window.location.href;
 
-  	  // redirect for non-modal registration
-	  if ( $('#mainContent #register').length>0 ) {
-		  loginState = '<?php echo get_page_link_by_slug('community/registration-complete'); ?>';
-	  }
+      // redirect for non-modal registration
+      if ( $('#mainContent #register').length>0 ) {
+          loginState = '<?php echo get_page_link_by_slug('community/registration-complete'); ?>';
+      }
 
-	  // set to home page for non modal login
-	  if ( $('#mainContent #login').length>0 ) {
-		  if ( referer=='' || referer==loginState) {
-			  loginState = '<?php echo get_home_url(); ?>';
-		  } else {
-			  loginState = referer;
-		  }
-	  }
+      // set to home page for non modal login
+      if ( $('#mainContent #login').length>0 ) {
+          if ( referer=='' || referer==loginState) {
+              loginState = '<?php echo get_home_url(); ?>';
+          } else {
+              loginState = referer;
+          }
+      }
 
       if ( /action=showlogin/i.test( loginState )) {
         loginState = referer;
@@ -734,7 +734,7 @@ $blog_posts = get_posts($blog_posts_args);
     var auth0Register = new Auth0({
       domain: 'topcoder.auth0.com',
       clientID: '<?php echo auth0_clientID(); ?>',
-      callbackURL: utmSource && utmCampaign && utmMedium ? window.location.procotol + '//www.topcoder.com/?action=callback?utmSource=' + utmSource + '&utmCampaign=' + utmCampaign + '&utmMedium=' + utmMedium : window.location.protocol + '//www.topcoder.com/?action=callback',
+      callbackURL: '<?php echo tc_reg_callback(); ?>',
       state: loginState,
       redirect_uri: window.location.href
     });

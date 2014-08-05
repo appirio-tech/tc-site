@@ -115,7 +115,7 @@ $siteURL = site_url ();
 
 								<p class="row">
 								<label>Country</label>
-								<select id="selCountry" name="user.country">
+								<select id="selCountry" class="applyCustomSelect" name="user.country">
 								  <option value="">Please Select</option>
 								  <option value="Afghanistan">Afghanistan</option>
 								  <option value="Albania">Albania</option>

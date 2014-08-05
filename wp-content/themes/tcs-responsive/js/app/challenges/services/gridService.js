@@ -68,12 +68,12 @@
             minWidth: 77,
             width: 120,
             maxWidth: 130,
-            visible: contest.listType !== 'upcoming'
+            visible: contest.listType === 'active'
           },
           {
             field: 'technologies',
             fieldName: 'Technologies',
-            width: 130,
+            width: 152,
             visible: contest.listType === 'upcoming'
           },
           {
@@ -89,7 +89,7 @@
             fieldName: 'Registrants',
             width: 74,
             minWidth: 74,
-            maxWidth: 74,
+            maxWidth: 90,
             tplName: 'dataNumRegistrants',
             visible: contest.listType !== 'upcoming' && contest.contestType === 'data'
           },
@@ -104,30 +104,30 @@
           {
             field: 'numSubmissions',
             fieldName: 'Eligible Submissions',
-            width: 74,
-            minWidth: 74,
+            width: 120,
+            minWidth: 120,
             visible: contest.listType === 'past'
           },
 
           {
             field: 'chalengeId',
             fieldName: 'Winners',
-            width: '70',
-            minWidth: 70,
+            width: 90,
+            minWidth: 90,
             tplName: 'winners',
             visible: contest.listType === 'past'
           },
           {
             field: 'isPrivate',
             fieldName: 'Public/Private',
-            minWidth: 80,
-            width: 80,
+            minWidth: 104,
+            width: 104,
             visible: contest.listType === 'past'
           },
           {
             field: 'status',
             fieldName: 'Status',
-            minWidth: 74,
+            width: 90,
             visible: contest.listType === 'upcoming'
           }
         ];

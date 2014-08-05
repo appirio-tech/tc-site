@@ -11,15 +11,18 @@
     $routeProvider
       .when('/', {
         controller: 'ChallengeListingCtrl',
-        templateUrl: 'challenge-list.html'
+        templateUrl: 'challenge-list.html',
+        reloadOnSearch: false
       })
       .when('/:challengeArea/', {
         controller: 'ChallengeListingCtrl',
-        templateUrl: 'challenge-list.html'
+        templateUrl: 'challenge-list.html',
+        reloadOnSearch: false
       })
       .when('/:challengeArea/:challengeStatus/', {
         controller: 'ChallengeListingCtrl',
-        templateUrl: 'challenge-list.html'
+        templateUrl: 'challenge-list.html',
+        reloadOnSearch: false
       });
   }]);
 }(angular));

@@ -40,7 +40,7 @@ appChallengeTerms = {
             $('#termSubmit').text('Go Back');
             $('.agreement').removeClass('notAgreed');
             $.ajax({
-              url: 'https://api.topcoder.com/v2/terms/docusign/viewURL',
+              url: tcApiRUL + '/terms/docusign/viewURL',
               type: 'POST',
               data: { templateId: data["docusignTemplateId"] },
               cache: false,
