@@ -45,8 +45,10 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', '$window', fun
     var time = pad0((date.getUTCHours() + 20) % 24) + ':' + pad0(date.getUTCMinutes());
     return month + ' ' + day + ', ' + year + ' ' + time + ' EDT';
   };
-  if (location.href.match(/s\/(\d+)/)) {
-    var challengeId = location.href.match(/s\/(\d+)/)[1];
+  //Need to test if regex match of challengeId exists before assigning regex capturing group match to challengeId var, otherwise could result in js error
+  var uriRegexMatches = location.href.match(/s\/(\d+)\//);
+  if (uriRegexMatches) {
+    var challengeId = uriRegexMatches[1];
   } else {
     //if url does not contain a challengeId, it is invalid so redirect to 404
     $window.location.href = '/404';
