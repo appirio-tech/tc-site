@@ -142,6 +142,7 @@ SubmissionCtrl.prototype.selectPreview = function(index){
  */
 SubmissionCtrl.prototype.viewSubmission = function(submission){
   var subCtrl = this;
+  if (!subCtrl.submissionsViewable) return;
   /*
    * Currently API does not provide us the total number of images,
    * so we don't know what is max value FileIndex.numOfImages field
