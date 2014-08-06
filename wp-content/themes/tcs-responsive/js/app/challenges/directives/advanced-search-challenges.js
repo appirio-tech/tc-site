@@ -73,14 +73,23 @@
           return window.moment(date).format("DD MMM YYYY");
         };
         
+
+        /**
+         * Clears date filter
+         */
         $scope.clearDates = function () {
           $scope.filterOptions.startDate = null;
           $scope.filterOptions.endDate = null;
           $scope.applyFilter();
         };
+
+        /**
+         * Adds a filter criteria on technology tag
+         * @param {string} tech - the technology tag
+         */
         $scope.addTechnology = function (tech) {
-          if(!tech || tech === '') {
-            return; 
+          if (!tech || tech === '') {
+            return;
           }
           $scope.filterOptions.technologies.push(tech);
           $timeout(function () {
@@ -89,9 +98,14 @@
           }); // Timeout to let time to select2 to handle selection
           
         };
+
+        /**
+         * Adds a filter criteria on platform tag
+         * @param {string} plat - the platform tag
+         */
         $scope.addPlatform = function (plat) {
-          if(!plat || plat === '') {
-            return; 
+          if (!plat || plat === '') {
+            return;
           }
           $scope.filterOptions.platforms.push(plat);
           $timeout(function () {
@@ -100,9 +114,14 @@
           });
           
         };
+
+        /**
+         * Adds a filter criteria on challenge type
+         * @param {string} ch - the challenge type
+         */
         $scope.addChallengeType = function (ch) {
-          if(!ch || ch === '') {
-            return; 
+          if (!ch || ch === '') {
+            return;
           }
           //Past api does not handle multiple challenge types
           if ($scope.challengeStatus === 'past') {
@@ -115,14 +134,15 @@
             $scope.applyFilter();
           });
         };
+
+        /**
+         * Adds a filter criteria on keyword in challenge name
+         * @param {string} text - the keyword
+         */
         $scope.addKeywords = function (text) {
           if (!text || text.match(/^\s*$/)) {
             return;
           }
-          /*var split = text.split(/,|\s/);
-          $scope.filterOptions.keywords = $scope.filterOptions.keywords.concat(split.filter(function(elem, pos, self) {
-              return self.indexOf(elem) === pos && $scope.filterOptions.keywords.indexOf(elem) === -1;
-          }));*/
           $scope.tempOptions.text = undefined;
           if ($scope.filterOptions.keywords.indexOf(text) === -1) {
             //Past api does not handle multiple keywords
@@ -134,28 +154,54 @@
             $scope.applyFilter();
           }
         };
+
+        /**
+         * Removes a technology filter criteria
+         * @param {string} tech - the technology tag
+         */
         $scope.removeTechnology = function (tech) {
           $scope.filterOptions.technologies.splice($scope.filterOptions.technologies.indexOf(tech), 1);
           $scope.applyFilter();
         };
+
+        /**
+         * Removes a platform filter criteria
+         * @param {string} plat - the platform tag
+         */
         $scope.removePlatform = function (plat) {
           $scope.filterOptions.platforms.splice($scope.filterOptions.platforms.indexOf(plat), 1);
           $scope.applyFilter();
         };
+
+        /**
+         * Removes a ChallengeType filter criteria
+         * @param {string} ch - the ChallengeType
+         */
         $scope.removeChallengeType = function (ch) {
           $scope.filterOptions.challengeTypes.splice($scope.filterOptions.challengeTypes.indexOf(ch), 1);
           $scope.applyFilter();
         };
+
+        /**
+         * Removes a keyword filter criteria
+         * @param {string} keyword - the keyword
+         */
         $scope.removeKeyword = function (keyword) {
           $scope.filterOptions.keywords.splice($scope.filterOptions.keywords.indexOf(keyword), 1);
           $scope.applyFilter();
         };
         
+        /**
+          * Resets the filters
+          */
         $scope.reset = function () {
           $scope.filterOptions = angular.extend({}, initOptions);
           $scope.applyFilter();
         };
         
+        /**
+         * Tests if there is a least one filter applied
+         */
         $scope.hasFilters = function () {
           var f = $scope.filterOptions;
           return f.startDate || f.endDate || f.technologies.length > 0 || f.platforms.length > 0 || f.challengeTypes.length > 0 || f.keywords.length > 0;
@@ -198,6 +244,10 @@
     };
   }])
   
+  /**
+   * Date picker directive
+   * with 2 pickers, from and to bounds
+   */
   .directive('tcDatePicker', function () {
     var moment = window.moment;
     return {
@@ -274,6 +324,11 @@
       }
     }
   })
+
+  /**
+   * Directive that modified the behaviour of ui-select2 directive by enabling opening
+   * on hover and closing on ouse leave
+   */
   .directive('tcSelect2Hover', ['$timeout', function ($timeout) {
     var selects = [];
     return {

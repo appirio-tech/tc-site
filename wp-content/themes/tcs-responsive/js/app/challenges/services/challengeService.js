@@ -5,19 +5,20 @@
   angular.module('tc.challenges.services', [
     'restangular'
   ])
-
-    .factory('ChallengesService2', ['Restangular', 'API_URL',
-      function (Restangular, API_URL) {
-        return Restangular.withConfig(function (RestangularConfigurer) {
-          RestangularConfigurer.setBaseUrl(API_URL + '/challenges');
-        });
-      }])
-  
+    /**
+     * Service to request challenges data rom TC API
+     */
     .factory('ChallengesService', ['Restangular', '$filter', '$q', 'ChallengeDataService',
       function (Restangular, $filter, $q, ChallengeDataService) {
         var mockPaging = ['active', 'upcoming'],
           datas = {},
           defPageSize = 10;
+
+        /**
+         * Filters the challenges based on parameters
+         * @param {Object[]} data - the challenges
+         * @param {Object} params - the filters
+         */
         function filterChallenges(data, params) {
           var technologies,
             platforms,
@@ -81,6 +82,12 @@
 
           return result;
         }
+        /**
+         * Async Callback used for filtering challenges on client
+         * @param {Object[]} data - the challenges
+         * @param {Object} params - the filters
+         * @param {Object} defered - the defered object to populate
+         */
         function thenHandleParams(data, params, defered) {
           var result = data,
             pageIndex = params.pageIndex || 1,
@@ -100,6 +107,11 @@
           defered.resolve(result);
         }
         
+        /**
+         * Gets challenges from backend
+         * @param {string} listType - type of challenges (active, pas, upcoming)
+         * @param {Object} patams - filters
+         */
         function getData(listType, params) {
           if (params.type === 'data') {
             var deferred = $q.defer(),
@@ -139,13 +151,15 @@
         
         return {
           'getChallenges': function (listType, params) {
-            var key = (params.type || 'all') + '_' + (listType || 'active'),
+            var key = (params.type || 'all') + '_' + (listType || 'active'), // cache key
               deferred,
               result;
+            // Is paging/filtering have to be done on server (past challenges)
             if (mockPaging.indexOf(listType) === -1) {
               return getData(listType, params);
             } else {
               deferred = $q.defer();
+              // Are data already fetched?
               if (datas[key]) {
                 thenHandleParams(datas[key], params, deferred);
               } else {

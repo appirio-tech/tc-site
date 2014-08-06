@@ -240,17 +240,19 @@
         $location.search(search);
       };
 
-      DataService.one('technologies').get().then(function (data) {
-        if (data) {
-          $scope.technologies = data.technologies;
-        }
-      });
-      
-      DataService.one('platforms').get().then(function (data) {
-        if (data) {
-          $scope.platforms = data.platforms;
-        }
-      });
+      if ($scope.contest.contestType === 'develop') {
+        DataService.one('technologies').get().then(function (data) {
+          if (data) {
+            $scope.technologies = data.technologies;
+          }
+        });
+
+        DataService.one('platforms').get().then(function (data) {
+          if (data) {
+            $scope.platforms = data.platforms;
+          }
+        });
+      }
 
       $scope.$watch('view', function (view, oldView) {
         if (view !== oldView) {

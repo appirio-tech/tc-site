@@ -176,73 +176,7 @@ get_header(); ?>
   </div>
 </script>
 
-<script type="text/ng-template" id="advanced-search_old.html">
-    <div class="searchFilter hide">
-    <div class="filterOpts">
-      <section class="types" ng-if="challengeCommunity !== 'data'">
-        <h5>Challenge types:</h5>
-        <div class="data">
-          <ul class="list">
-            <li ng-repeat="type in contestTypes">
-              <input type="radio" id="f{{type}}" name="radioFilterChallenge" ng-class="{all: type === 'All'}" value="{{type}}" ng-model="filterOptions.challengeType">
-              <label for="f{{type}}"><strong>{{type}}</strong>
-        </label>
-        </li>
-        </ul>
-        </div>
-        </section>
-      <section class="otherOpts">
-        <ul>
-          <li class="date row">
-            <div class="lbl">
-              <input type="checkbox" id="fSDate" ng-model="chbFrom" />
-              <label for="fSDate"><strong>Submission End From:</strong>
-        </label>
-        </div>
-            <div class="val">
-              <span class="datePickerWrap">
-                <input ng-disabled="!chbFrom" id="startDate" type="text" class="datepicker from" calendar-icon="<?php  echo get_stylesheet_directory_uri(); ?>/i/ico-cal.png" value="{{filterOptions.startDate | date: 'yyyy-MM-dd'}}" />
-        </span>
-        </div>
-        </li>
-          <li class="date row">
-            <div class="lbl">
-              <input type="checkbox" id="fEDate" ng-model="chbTo" />
-              <label ng-disabled="!chbTo" for="fEDate"><strong>Submission End To:</strong>
-        </label>
-        </div>
 
-            <div class="val">
-              <span class="datePickerWrap">
-                <input id="endDate"  type="text" class="datepicker to" calendar-icon="<?php  echo get_stylesheet_directory_uri(); ?>/i/ico-cal.png" value="{{filterOptions.endDate | date: 'yyyy-MM-dd'}}"/>
-        </span>
-        </div>
-        </li>
-        </ul>
-        </section>
-      <section class="tags" ng-if="challengeCommunity === 'develop' && (technologies.length > 0 || platforms.length > 0)">
-        <h5>Technologies and Platforms:</h5>
-        <div class="data">
-          <select ui-select2="{allowClear:true, multiple: true}" data-placeholder="" class="chosen-select hasCustomSelect"  ng-model="filterOptions.tags" multiple>
-            <optgroup label="Platforms">
-              <option ng-repeat="plat in platforms track by $index" value="plat.{{plat}}">{{plat}}</option>
-        </optgroup>
-            <optgroup label="Technologies">
-              <option ng-repeat="tech in technologies track by $index" value="tech.{{tech}}">{{tech}}</option>
-        </optgroup>
-        </select>
-        </div>
-        </section>
-      <div class="clear"></div>
-        </div>
-    <!-- /.filterOpts -->
-    <div class="actions">
-      <a ng-click="closeForm()" class="btn btnSecondary btnClose">Close</a>
-      <a ng-click="applyFilter()" class="btn btnApply">Apply</a>
-    </div>
-  </div>
-</script>
-    
 <script type="text/ng-template" id="advanced-search.html">
   <div class="clear new-search-box" ng-if="challengeCommunity !== ''">
     <input type="text" class="search-text" placeholder="Type a keyword" ng-model="tempOptions.text">
@@ -265,25 +199,33 @@ get_header(); ?>
                 </li>
                 <li class="left remove challenges-type" ng-repeat="ch in filterOptions.challengeTypes">
                   <div class="selecting-tag-wrapper challenge-value">
-                    <div class="selected-tag">{{contestTypes[ch]}}<span class="tag-close right" ng-click="removeChallengeType(ch)"></span>
+                    <div class="selected-tag">
+                      <span class="tag-text left">{{contestTypes[ch]}}</span>
+                      <span class="tag-close right" ng-click="removeChallengeType(ch)"></span>
                     </div>
                   </div>
                 </li>
                 <li class="left remove platform-type" ng-repeat="plat in filterOptions.platforms">
                   <div class="selecting-tag-wrapper platform-value">
-                    <div class="selected-tag">{{plat}}<span class="tag-close right" ng-click="removePlatform(tech)"></span>
+                    <div class="selected-tag">
+                      <span class="tag-text left">{{plat}}</span>
+                      <span class="tag-close right" ng-click="removePlatform(tech)"></span>
                     </div>
                   </div>
                 </li>
                 <li class="left remove technology-type" ng-repeat="tech in filterOptions.technologies">
                   <div class="selecting-tag-wrapper technology-value">
-                    <div class="selected-tag">{{tech}}<span class="tag-close right" ng-click="removeTechnology(tech)"></span>
+                    <div class="selected-tag">
+                      <span class="tag-text left">{{tech}}</span>
+                      <span class="tag-close right" ng-click="removeTechnology(tech)"></span>
                     </div>
                   </div>
                 </li>
                 <li class="left remove keyword-type" ng-repeat="token in filterOptions.keywords">
                   <div class="selecting-tag-wrapper keyword-value">
-                    <div class="selected-tag">Text: {{token}}<span class="tag-close right" ng-click="removeKeyword(token)"></span></div>
+                    <div class="selected-tag">
+                      <span class="tag-text left">Text: {{token}}</span>
+                      <span class="tag-close right" ng-click="removeKeyword(token)"></span></div>
                   </div>
                 </li>
             </ul>
@@ -355,7 +297,7 @@ get_header(); ?>
                 </div>
             </div>
 
-            <div class="left platform-selector" ng-show="challengeCommunity === 'develop' || challengeCommunity === ''" tc-select2-hover>
+            <div class="left platform-selector" ng-show="platforms && platforms.length > 0" tc-select2-hover>
                 <select ui-select2="{placeholder: 'Platform', searchInputPlaceholder: 'Enter a Platform Tag', width: '100%'}"
                   ng-model="tempOptions.platform" class="platform" ng-change="addPlatform(tempOptions.platform)">
                     <option></option>
@@ -363,7 +305,7 @@ get_header(); ?>
                 </select>
             </div>
 
-            <div class="left technology-selector" ng-show="challengeCommunity === 'develop'  || challengeCommunity === ''" tc-select2-hover>
+            <div class="left technology-selector" ng-show="technologies && technologies.length > 0" tc-select2-hover>
                 <select ui-select2="{placeholder: 'Technology', searchInputPlaceholder: 'Enter a Technology Tag', width: '100%'}"
                   ng-model="tempOptions.technology" ng-change="addTechnology(tempOptions.technology)" class="technology">
                     <option></option>
