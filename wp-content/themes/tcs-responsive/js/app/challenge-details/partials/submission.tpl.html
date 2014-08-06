@@ -17,7 +17,7 @@
 		<span ng-repeat="singlePage in subCtrl.submissionPagedItems" class="submissionPage" ng-show="subCtrl.submissionCurrentPage === $index || subCtrl.submissionViewAll">
             <li ng-repeat="item in singlePage">
                 <div>
-                    <a href="javascript:;" ng-click="subCtrl.viewSubmission(item)"><img ng-src="{{item.gridViewImg}}" alt="" width="225" height="226"></a>
+                    <a href="javascript:;" ng-click="subCtrl.viewSubmission(item)"><img ng-src="{{subCtrl.submissionsViewable ? item.gridViewImg : '/wp-content/themes/tcs-responsive/i/img-locked.png'}}" alt="" width="225" height="226"></a>
                     <p>
                         <span class="subNum" ng-bind=" '#' + item.submissionId"></span>
                         <a ng-href="/member-profile/{{item.submitter}}/design" class="handle coderTextOrange" ng-bind="item.submitter"></a>
@@ -102,7 +102,7 @@
         <span ng-repeat="singlePage in subCtrl.checkPointPagedItems" class="submissionPage" ng-show="subCtrl.checkPointCurrentPage === $index || subCtrl.checkPointViewAll">
             <li ng-repeat="item in singlePage">
                 <div>
-                    <a href="javascript:;" ng-click="subCtrl.viewSubmission(item)"><img ng-src="{{item.gridViewImg}}" alt="" width="225" height="226"></a>
+                    <a href="javascript:;" ng-click="subCtrl.viewSubmission(item)"><img ng-src="{{subCtrl.submissionsViewable ? item.gridViewImg : '/wp-content/themes/tcs-responsive/i/img-locked.png'}}" alt="" width="225" height="226"></a>
                     <p>
                         <span class="subNum" ng-bind=" '#' + item.submissionId"></span>
                         <a ng-href="/member-profile/{{item.submitter}}/design" class="handle coderTextOrange" ng-bind="item.submitter"></a>
