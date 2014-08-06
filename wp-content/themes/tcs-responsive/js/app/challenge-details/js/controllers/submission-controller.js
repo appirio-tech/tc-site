@@ -26,7 +26,12 @@ var SubmissionCtrl = function (TEMPLATE_URL, $scope, SubmissionServices) {
        *
        * To simulate private challenge, set mockSubmissionsViewable to false.
        */
-      $scope.challenge.submissionsViewable = subCtrl.mockSubmissionsViewable;
+      if (!$scope.challenge.submissionsViewable || $scope.challenge.submissionsViewable == 'false') {
+        $scope.challenge.submissionsViewable = false;
+      } else {
+        $scope.challenge.submissionsViewable = true;
+      }
+      subCtrl.submissionsViewable = $scope.challenge.submissionsViewable;
 
       if(subCtrl.hasSubmission($scope.challenge.submissions)){
         subCtrl.submissionPagedItems = subCtrl.pagination($scope.challenge.submissions);
