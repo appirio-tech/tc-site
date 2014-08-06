@@ -156,19 +156,16 @@ These are the formating rules our code should follow.
 
 * Javascript
     * 2 spaces for indention and *no tabs*.
+    * For Angular, first follow [our Angular style
+      guide](https://gitlab.com/topcoderinc/angularjs-styleguide/tree/master)
     * Otherwise follow
     [Google's guidelines](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml).
 
 ### AngularJS ###
 
-* There is a sample AngularJS integration with Wordpress on the
-  [angular_service branch](https://gitlab.com/topcoderinc/tc-site/tree/angular_service).
-* Look at the page template page_angular_example
-    (https://gitlab.com/topcoderinc/tc-site/blob/angular_service/wp-content/themes/tcs-responsive/page-angular-example.php)
-  for integration into Wordpress page template.
 * Before you do any Angular development, you should look at our [detailed
   Angular
-  guidelines](https://gitlab.com/topcoderinc/tc-site/tree/master/doc/angular/).
+  guidelines](https://gitlab.com/topcoderinc/angularjs-styleguide/tree/master).
 
 ## Git Information ##
 
