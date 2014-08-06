@@ -140,7 +140,7 @@ appChallengeTerms = {
         $('.loading').hide();
 
         $(".termsBtnRegister").click(function () {
-          window.location = siteURL + "/challenge-details/register/" + challengeId  + "?type=" + challengeType + "&nocache=true";
+          window.location = siteURL + "/challenge-details/" + challengeId  + "/register/?type=" + challengeType + "&nocache=true";
         });
       });
     } else {
