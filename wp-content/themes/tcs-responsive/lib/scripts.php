@@ -30,7 +30,7 @@ function tcs_responsive_scripts() {
   $jsCssUseMin = get_option("jsCssUseMin", false);
   $template_map = tsc_get_asset_map();
   $page_template = get_page_template_slug(get_queried_object_id());
-  $ver = get_option('jsCssVersioning') == 1 ? get_option('jsCssCurrentVersion') : '1';
+  $ver = get_option('jsCssVersioning') == 1 ? get_option('jsCssCurrentVersion') : '2';
   $jsCssUseCDN = get_option("jsCssUseCDN", false);
 
   if (isset($template_map[$page_template])) {
@@ -242,7 +242,7 @@ add_action('wp_head', 'tsc_jquery_local_fallback');
 
 function tc_setup_angular() {
   // Core Angular
-  wp_register_script('angularjs', '//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular.min.js', array('jquery'), null, true);
+  wp_register_script('angularjs', '//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular.js', array('jquery'), null, true);
   wp_enqueue_script('angularjs');
 
   // Angular Route

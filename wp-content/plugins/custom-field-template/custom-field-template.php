@@ -194,7 +194,7 @@ class custom_field_template {
 				add_meta_box('cftdiv', __('Custom Field Template', 'custom-field-template'), array(&$this, 'insert_custom_field'), 'page', 'normal', 'core');
 			endif;
 						
-			if ( empty($options['custom_field_template_deploy_box']) && is_array($options['custom_fields']) ) :
+			if ( empty($options['custom_field_template_deploy_box']) && isset($options['custom_fields']) && is_array($options['custom_fields']) ) :
 				$custom_post_type = array();
 				foreach($options['custom_fields'] as $key => $val ) :
 					if ( isset($options['custom_fields'][$key]['custom_post_type']) ) :

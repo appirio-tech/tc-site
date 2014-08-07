@@ -187,4 +187,4 @@ SubmissionCtrl.prototype.loadImages = function(total, type, id){
 /**
  * Register the controller into Angular <code>cdapp</code> module.
  */
-cdapp.controller('SubmissionCtrl', SubmissionCtrl);
+angular.module('challengeDetails').controller('SubmissionCtrl', SubmissionCtrl);

@@ -3,52 +3,63 @@
  * - Change style to match style guide
  *
  */
-var cdapp = angular.module('challengeDetails', [
-  'restangular', 'ngCookies', 'angular-loading-bar',
-  'tc.SubmissionDirectives', 'tc.SubmissionServices'])
 
-.constant("API_URL", tcApiRUL)
+(function () {
 
-.constant("TEMPLATE_URL", "/js/app/challenge-details/partials/")
+  angular
+    .module('challengeDetails', [
+    'restangular',
+    'ngCookies',
+    'angular-loading-bar',
+    'tc.SubmissionDirectives',
+    'tc.SubmissionServices',
+    'challengeDetails.filters'
+    ])
 
-.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
-  cfpLoadingBarProvider.includeSpinner = false;
-}])
+    .constant("API_URL", tcApiRUL)
 
-.config(['$httpProvider', 'RestangularProvider', 'API_URL', function($httpProvider, RestangularProvider, API_URL) {
-  /*
-   * Enable CORS
-   * http://stackoverflow.com/questions/17289195/angularjs-post-data-to-external-rest-api
-   */
-  $httpProvider.defaults.useXDomain = true;
-  delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    .constant("TEMPLATE_URL", "/js/app/challenge-details/partials/")
 
-  // Base API url
-  RestangularProvider.setBaseUrl(API_URL);
+    .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+      cfpLoadingBarProvider.includeSpinner = false;
+    }])
 
-  //RestangularProvider.setDefaultHttpFields({'withCredentials': true});
+  .config(['$httpProvider', 'RestangularProvider', 'API_URL', DataPreProcessing]);
 
-  // Format restangular response
+  function DataPreProcessing($httpProvider, RestangularProvider, API_URL) {
+    /*
+     * Enable CORS
+     * http://stackoverflow.com/questions/17289195/angularjs-post-data-to-external-rest-api
+     */
+    $httpProvider.defaults.useXDomain = true;
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
-  // add a response intereceptor
-  RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
-    var extractedData;
-    // .. to look for getList operations
-    if (operation === "getList") {
-      // .. and handle the data and meta data
-      extractedData = data.data ? data.data : data;
-      if (!(Object.prototype.toString.call(extractedData) === '[object Array]'))
-        extractedData = [extractedData];
-      extractedData.pagination = {
-        total: data.total,
-        pageIndex: data.pageIndex,
-        pageSize: data.pageSize
-      };
-    } else {
-      extractedData = data.data;
-    }
-    return extractedData;
-  });
-}]);
+    // Base API url
+    RestangularProvider.setBaseUrl(API_URL);
 
+    //RestangularProvider.setDefaultHttpFields({'withCredentials': true});
 
+    // Format restangular response
+
+    // add a response intereceptor
+    RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
+      var extractedData;
+      // .. to look for getList operations
+      if (operation === "getList") {
+        // .. and handle the data and meta data
+        extractedData = data.data ? data.data : data;
+        if (!(Object.prototype.toString.call(extractedData) === '[object Array]'))
+          extractedData = [extractedData];
+        extractedData.pagination = {
+          total: data.total,
+          pageIndex: data.pageIndex,
+          pageSize: data.pageSize
+        };
+      } else {
+        extractedData = data.data;
+      }
+      return extractedData;
+    });
+  }
+
+})();
