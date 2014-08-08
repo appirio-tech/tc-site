@@ -138,7 +138,6 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
       }
     });
 
-    chglo = challenge;
     //Bugfix refactored-challenge-details-40: format currency values with comma delimiters
     if (typeof challenge.reliabilityBonus === 'number') {
       challenge.reliabilityBonus = challenge.reliabilityBonus.format();
@@ -153,11 +152,10 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
     $scope.siteURL = siteURL;
     $scope.challengeType = getParameterByName('type');
     $scope.isDesign = $scope.challengeType == 'design';
-    $scope.inSubmission = inSubmission = challenge.currentPhaseName.indexOf('Submission') >= 0;
-    $scope.inScreening = inScreening = challenge.currentPhaseName.indexOf('Screening') >= 0;
-    $scope.inReview = inReview = challenge.currentPhaseName.indexOf('Review') >= 0;
+    $scope.inSubmission = challenge.currentPhaseName.indexOf('Submission') >= 0;
+    $scope.inScreening = challenge.currentPhaseName.indexOf('Screening') >= 0;
+    $scope.inReview = challenge.currentPhaseName.indexOf('Review') >= 0;
     $scope.hasFiletypes = (challenge.filetypes != undefined) && challenge.filetypes.length > 0;
-    globby = $scope;
 
     var submissionMap = {};
     $scope.challenge.submissions.map(function(x) {

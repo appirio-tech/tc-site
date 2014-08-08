@@ -456,7 +456,7 @@ $(function () {
     handleDeferred = $.Deferred();
   });
 
-  $('select').customSelect();
+  $('select.applyCustomSelect').customSelect();
 
   $('#register a.btnSubmit').on('click', function () {
     var isValid = true;
