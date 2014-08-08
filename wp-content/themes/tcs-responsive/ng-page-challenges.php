@@ -123,7 +123,7 @@ get_header(); ?>
         </div>
         <div class="dataChanges">
           <div class="lt">
-            <a class="viewAll" ng-show="challenges.length < pagination.total && !(contest.contestType == 'design' && contest.listType == 'past')" ng-click="all()">View All</a>
+            <a class="viewAll" ng-show="challenges.length < pagination.total && contest.listType != 'past'" ng-click="all()">View All</a>
           </div>
           <div id="challengeNav" class="rt">
             <a class="prevLink" ng-show="pagination.pageIndex > 1" ng-click="prev()">
