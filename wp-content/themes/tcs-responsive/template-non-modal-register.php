@@ -14,6 +14,10 @@ $siteURL = site_url ();
 ?>
 <script type="text/javascript">
 	var siteurl = "<?php bloginfo('siteurl');?>";
+  $('.btnRegister').remove();
+  setTimeout(function() {
+    $('.modal #registerForm').remove();
+  }, 1000);
 </script>
 
 <div class="content">
