@@ -1658,23 +1658,28 @@ var app = {
     return decoded;
   },
 
+  handle: "",
+
+  // Get loggedin user handle, and remember it.
   getHandle: function(callback) {
+    var self = this;
     var tcsso = $.cookie('tcsso');
 
-    var handle = '';
-    if (typeof tcsso === 'undefined') {
-      callback(handle);
-    } else {
+    if (self.handle !== "" || typeof tcsso === 'undefined') {
+      callback(self.handle);
+    }
+    else if (typeof tcsso !== 'undefined') {
       var uid = tcsso.split('|')[0];
       if (uid) {
         $.getJSON(communityURL + "/tc?module=BasicData&c=get_handle_by_id&dsid=30&uid=" + uid + "&json=true", function(data) {
-          callback(data['data'][0]['handle']);
+          self.handle = data['data'][0]['handle'];
+          callback(self.handle);
         });
       }
     }
   }
-
 };
+
 var blueprints = {
   challengeRow: '<tr> \
 						<td class="colCh"><div>\

@@ -243,34 +243,31 @@
       <!-- Bugfix I-106745: Added check for cancelled contest before display of current phase remaining time -->
       <span ng-if="challenge.currentStatus != 'Completed' && challenge.currentStatus != 'Deleted' && challenge.currentStatus.indexOf('Cancelled') < 0 && challenge.currentPhaseRemainingTime > 0" class="timeLeft">
         <span>{{challenge.currentPhaseRemainingTime | daysLeft}}</span> <small>Days</small>
-        <span ng-bind="hoursLeft(challenge.currentPhaseRemainingTime)"></span> <small>Hours</small>
-        <span ng-bind="minsLeft(challenge.currentPhaseRemainingTime)"></span> <small>Mins</small>
+        <span>{{challenge.currentPhaseRemainingTime | hoursLeft}}</span> <small>Hours</small>
+        <span>{{challenge.currentPhaseRemainingTime | minsLeft}}</span> <small>Mins</small>
       </span>
     </div>
     <!--End nextBoxContent-->
       <div ng-if="!isDesign" class="nextBoxContent allDeadlineNextBoxContent hide">
         <p><label>Posted On:</label>
           <span>
-            {{formatDate(challenge.postingDate, 2)}}
+            {{challenge.postingDate | formatDate:2}}
           </span>
         </p>
-
-
         <p><label>Register By:</label>
          <span>
-           {{formatDate(challenge.registrationEndDate, 2)}}
+           {{challenge.registrationEndDate | formatDate:2}}
          </span>
         </p>
-
         <p class="{{challenge.finalFixEndDate ? '' : 'last'"><label>Submit By:</label>
           <span>
-            {{formatDate(challenge.submissionEndDate, 2)}}
+            {{challenge.submissionEndDate | formatDate:2}}
           </span>
         </p>
 
         <p ng-if="challenge.finalFixEndDate" class="{{challenge.finalFixEndDate ? 'last' : ''"><label>Final Submission:</label>
           <span>
-            {{formatDate(challenge.finalFixEndDate, 2)}}
+            {{challenge.finalFixEndDate | formatDate:2}}
           </span>
         </p>
 
@@ -279,24 +276,24 @@
       <div ng-if="isDesign" class="nextBoxContent allDeadlineNextBoxContent studio hide">
         <p><label>Start Date:</label>
           <span>
-            {{formatDate(challenge.postingDate, 2)}}
+            {{challenge.postingDate | formatDate:2}}
           </span>
         </p>
           <p ng-if="challenge.checkpointSubmissionEndDate != ''"><label>Checkpoint:</label>
           <span>
-            {{formatDate(challenge.checkpointSubmissionEndDate, 2)}}
+            {{challenge.checkpointSubmissionEndDate | formatDate:2}}
           </span>
           </p>
 
         <p><label>End Date:</label>
           <span>
-            {{formatDate(challenge.submissionEndDate, 2)}}
+            {{challenge.submissionEndDate | formatDate:2}}
           </span>
         </p>
 
         <p class="last"><label>Winners Announced:</label>
           <span>
-            {{formatDate(challenge.appealsEndDate, 2)}}
+            {{challenge.appealsEndDate  | formatDate:2}}
           </span>
         </p>
       </div>

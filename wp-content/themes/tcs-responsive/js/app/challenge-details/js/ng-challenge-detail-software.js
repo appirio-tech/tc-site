@@ -43,6 +43,7 @@ function getAnchor(url) {
 
 //create slider if page is wide
 $(document).ready(function () {
+
   if (window.innerWidth < 1019) {
 
     $(".rightColumn").insertAfter('.leftColumn');
@@ -61,6 +62,7 @@ $(document).ready(function () {
     $('.registrantsTable').not('.mobile').addClass('hide');
     $('.registrantsTable.mobile').removeClass('hide');
   } else {
+
     if ($('.studio').length > 0) {
       updateDesignContest();
     }
@@ -70,93 +72,12 @@ $(document).ready(function () {
     $('.registrantsTable').not('.mobile').removeClass('hide');
     $('.registrantsTable.mobile').addClass('hide');
   }
+
   $('a[href="' + getAnchor(location.href) + '"]').click();
 
   // init tab nav
   app.tabNavinit();
 
-  var tcsso = getCookie('tcsso');
-  var tcjwt = getCookie('tcjwt');
-
-    if (tcjwt) {
-        getChallenge(tcjwt, function(challenge) {
-            updateRegSubButtons(challenge);
-            addDocuments(challenge);
-        });
-    } else {
-        //Bugfix I-114581:
-        //if auth cookie is not set, we cannot list Documents or know if any exist, since API requires Auth header to return Documents
-        $('.downloadDocumentList').html('<li><strong>Log In and Register for Challenge to Download Files (if available)</strong></li>');
-    }
-
-
-  function updateRegSubButtons(challenge) {
-    // if there was an error getting the challenge then enable the buttons
-    if (challenge.status == false) {
-      $('.challengeRegisterBtn').removeClass('disabled');
-      $('.challengeSubmissionBtn').removeClass('disabled');
-      $('.challengeSubmissionsBtn').removeClass('disabled');
-    } else {
-      if(tcsso) {
-        var tcssoValues = tcsso.split("|");
-        $.getJSON("http://community.topcoder.com/tc?module=BasicData&c=get_handle_by_id&dsid=30&uid=" + tcssoValues[0] + "&json=true", function(data) {
-          var now = new Date();
-          // TODO: eliminate global var
-          handle = data['data'][0]['handle'];
-
-          var registrants = [];
-          $.each(challenge.registrants, function(x, registrant) {
-            registrants.push(registrant.handle)
-          });
-
-          if (registrationUntil && now.getTime() < registrationUntil.getTime() && registrants && registrants.indexOf(handle) == -1) {
-            $('.challengeRegisterBtn').removeClass('disabled');
-          }
-          if (submissionUntil && now.getTime() < submissionUntil.getTime() && registrants && registrants.indexOf(handle) > -1) {
-            $('.challengeSubmissionBtn').removeClass('disabled');
-            $('.challengeSubmissionsBtn').removeClass('disabled');
-          }
-        });
-      }
-    }
-  }
-
-  function addDocuments(challenge) {
-      //Bugfix I-114581 fixed document download messages
-      if (typeof challenge.Documents !== 'undefined' && $('.downloadDocumentList')) {
-          $('.downloadDocumentList').children().remove();
-          //only display "none" if there really are no document downloads available
-          if (challenge.Documents.length === 0) {
-              $('.downloadDocumentList').html('<li><strong>None</strong></li>');
-          } else {
-              //output list of downloads
-              challenge.Documents.map(function(x) {
-                  $('.downloadDocumentList').append($(
-                      '<li><a href="'+x.url+'">'+x.documentName+'</a></li>'
-                  ));
-              });
-          }
-      } else {
-          //Bugfix I-114581:
-          //if auth cookie is set, but user is not registered for challenge they will get this message.
-          //API does not tell us if any downloads exist if not registered, so cannot tell if any will be available
-          $('.downloadDocumentList').html('<li><strong>Register to Download Files (if available)</strong></li>');
-      }
-  }
-
-  function getChallenge(tcjwt, callback) {
-    if (tcjwt && (typeof challengeId != 'undefined')) {
-      $.getJSON(ajaxUrl, {
-        "action": "get_challenge_documents",
-        "challengeId": challengeId,
-        "challengeType": challengeType,
-        "nocache": true,
-        "jwtToken": tcjwt.replace(/["]/g, "")
-      }, function (data) {
-        callback(data);
-      });
-    }
-  }
 });
 
 //create/destroy slider based on width
@@ -211,21 +132,21 @@ $(window).bind('orientationchange', function (event) {
 var getElementsByClassName = function (searchClass, node, tag) {
   if (document.getElementsByClassName) {
     return  document.getElementsByClassName(searchClass)
-  } else {
-    node = node || document;
-    tag = tag || '*';
-    var returnElements = []
-    var els = (tag === "*" && node.all) ? node.all : node.getElementsByTagName(tag);
-    var i = els.length;
-    searchClass = searchClass.replace(/\-/g, "\\-");
-    var pattern = new RegExp("(^|\\s)" + searchClass + "(\\s|$)");
-    while (--i >= 0) {
-      if (pattern.test(els[i].className)) {
-        returnElements.push(els[i]);
-      }
-    }
-    return returnElements;
   }
+
+  node = node || document;
+  tag = tag || '*';
+  var returnElements = []
+  var els = (tag === "*" && node.all) ? node.all : node.getElementsByTagName(tag);
+  var i = els.length;
+  searchClass = searchClass.replace(/\-/g, "\\-");
+  var pattern = new RegExp("(^|\\s)" + searchClass + "(\\s|$)");
+  while (--i >= 0) {
+    if (pattern.test(els[i].className)) {
+      returnElements.push(els[i]);
+    }
+  }
+  return returnElements;
 };
 
 function hasClass(obj, cls) {
@@ -233,7 +154,9 @@ function hasClass(obj, cls) {
 }
 
 function addClass(obj, cls) {
-  if (!this.hasClass(obj, cls)) obj.className += " " + cls;
+  if (!this.hasClass(obj, cls)) {
+    obj.className += " " + cls;
+  }
 }
 
 function removeClass(obj, cls) {
@@ -539,16 +462,6 @@ app.tabNavinit = function() {
       id = "#" + id.substr(tabIdx + 4);
     }
     var old = $('a.active').attr('href');
-//    for (var i = 0; i < old.length; i++) {
-//      if (old[i][0] != '#') continue;
-//      var x = old[i];
-//      var hideme = $(x).attr('href');
-//      $(hideme).css({'display':'none'});
-//    }
-//    old.map(function(x) {
-//      var href = $(x).attr('href');
-//      $(href).hide();
-//    });
     $(old).hide();
     $(id).fadeIn();
     $('.active', $(this).closest('nav')).removeClass('active');

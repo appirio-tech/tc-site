@@ -6,7 +6,7 @@
  */
 $(document).ready(function () {
   $(".link").click(function(){
-      if($(this).attr("href") === "#winner" || $(this).attr("href") === "#submissions"){
+      if ($(this).attr("href") === "#winner" || $(this).attr("href") === "#submissions") {
         updateTabForResults();
       } else {
         updateTabForNonResults();

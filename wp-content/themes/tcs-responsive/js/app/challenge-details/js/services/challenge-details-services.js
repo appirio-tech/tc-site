@@ -4,29 +4,36 @@
  * - rename file to service name
  */
 
-(function (){
+(function () {
 
   angular
     .module('challengeDetails')
     .factory('ChallengeService', ChallengeService);
 
+  /**
+   *
+   * @param Restangular
+   * @param API_URL
+   * @param $q
+   * @param $cookies
+   * @returns {*}
+   * @constructor
+   */
   function ChallengeService(Restangular, API_URL, $q, $cookies) {
 
     var service = Restangular.withConfig(function(RestangularConfigurer) {
       RestangularConfigurer.setBaseUrl(API_URL);
 
-      // request config
-      //RestangularConfigurer.setDefaultHttpFields({'withCredentials': true});
-
-      // tcjwt cookie
-      //RestangularConfigurer.setDefaultHeaders({
-      //  'Authorization': 'Bearer ' + $cookies.tcjwt
-      //});
-
     });
 
+    /**
+     *
+     * @param id
+     * @returns {ng.IPromise<T>}
+     */
     service.getResults = function(id) {
       var defer = $q.defer();
+
       service.one(challengeType).one('challenges').one('result', id).getList().then(function(results) {
         results = results[0];
         var submissionMap = {};
@@ -54,11 +61,17 @@
           results.initialScoreSum += x.initialScore;
           results.finalScoreSum += x.finalScore;
         });
+
         defer.resolve(results);
       });
       return defer.promise;
     };
 
+    /**
+     *
+     * @param id
+     * @returns {ng.IPromise<T>}
+     */
     service.getCheckpointData = function(id) {
       var defer = $q.defer();
       service.one(challengeType).one('challenges').one('checkpoint', id).getList().then(function(data) {
@@ -69,6 +82,11 @@
       return defer.promise;
     };
 
+    /**
+     * Get challenge data
+     * @param id
+     * @returns {ng.IPromise<T>}
+     */
     service.getChallenge = function(id) {
       var defer = $q.defer();
       service.one(challengeType).one('challenges').getList(id).then(function(challenge) {
@@ -110,9 +128,34 @@
           handleMap[x.handle] = true;
         });
 
+        // Initialize Documents, if not comming
+        if (typeof challenge.Documents === 'undefined') {
+          challenge.Documents = [];
+        }
+
         defer.resolve(challenge);
       });
+
       return defer.promise;
+    };
+
+    /**
+     *
+     * @param challenge
+     */
+    service.completeStepDisabled = function (challenge) {
+
+      var regList = challenge.registrants.map(function(x) { return x.handle; });
+
+      app.getHandle(function(handle) {
+        if (((moment(challenge.registrationEndDate)) >moment()) && regList.indexOf(handle) == -1) {
+          challenge.registrationDisabled = false;
+        }
+        challenge.registrationDisabled = false;
+        if (((moment(challenge.submissionEndDate)) > moment()) && regList.indexOf(handle) > -1) {
+          challenge.submissionDisabled = false;
+        }
+      });
     };
 
     return service;

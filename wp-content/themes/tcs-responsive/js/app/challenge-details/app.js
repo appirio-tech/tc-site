@@ -24,7 +24,13 @@
       cfpLoadingBarProvider.includeSpinner = false;
     }])
 
-  .config(['$httpProvider', 'RestangularProvider', 'API_URL', DataPreProcessing]);
+  .config(DataPreProcessing);
+
+  /**
+   *
+   * @type {string[]}
+   */
+  DataPreProcessing.$inject = ['$httpProvider', 'RestangularProvider', 'API_URL'];
 
   function DataPreProcessing($httpProvider, RestangularProvider, API_URL) {
     /*
@@ -37,8 +43,6 @@
     // Base API url
     RestangularProvider.setBaseUrl(API_URL);
 
-    //RestangularProvider.setDefaultHttpFields({'withCredentials': true});
-
     // Format restangular response
 
     // add a response intereceptor
@@ -48,8 +52,10 @@
       if (operation === "getList") {
         // .. and handle the data and meta data
         extractedData = data.data ? data.data : data;
-        if (!(Object.prototype.toString.call(extractedData) === '[object Array]'))
+        if (!(Object.prototype.toString.call(extractedData) === '[object Array]')) {
           extractedData = [extractedData];
+        }
+
         extractedData.pagination = {
           total: data.total,
           pageIndex: data.pageIndex,

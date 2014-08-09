@@ -14,14 +14,14 @@
       {{checkpointData.generalFeedback}}
     </p>
   </div>
-  <h1 class="noBorder">personal Feedback</h1>
+  <h1 class="noBorder">Personal Feedback</h1>
   <ul class="expandCollaspeList">
     <li ng-repeat="result in checkpointResults">
-      <div class="bar">
-        <a href="javascript:;" class="collapseIcon"></a>
+      <div class="bar" ng-init="feedbackOpen=false" ng-click="feedbackOpen = !feedbackOpen" ng-style="{true: {'border-bottom':'1px solid #e7e7e7'}, false: {'border-bottom':'none'}}[feedbackOpen]">
+        <a ng-class="{true: '', false: 'collapseIcon'}[feedbackOpen]"></a>
         Feedback #{{result.submissionId}}
       </div>
-      <div class="feedBackContent hide">
+      <div class="feedBackContent ng-hide" ng-show="feedbackOpen">
         <p>
           {{result.feedback && result.feedback.length > 0 ? result.feedback : 'N/A'}}
         </p>

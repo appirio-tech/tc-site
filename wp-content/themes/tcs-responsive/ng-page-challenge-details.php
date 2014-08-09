@@ -50,7 +50,7 @@ include locate_template('header-challenge-landing.php');
 
 ?>
 
-<div id="cdNgMain" ng-app="challengeDetails" ng-controller="CDCtrl" class="hide content challenge-detail view-challenge-result {{challengeType != 'design' ? 'develop' : ''}}">
+<div id="cdNgMain" ng-init="callComplete=false" ng-show="callComplete" ng-app="challengeDetails" ng-controller="CDCtrl" class="ng-hide content challenge-detail view-challenge-result {{challengeType != 'design' ? 'develop' : ''}}">
 <div id="main">
 
 <?php include( locate_template('ng-content-basic-challenge-details.php') ); ?>

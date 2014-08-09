@@ -313,11 +313,11 @@
         "app/challenge-details/js/ng-challenge-detail-software.js",
         "app/challenge-details/js/ng-challenge-result.js",
         "app/challenge-details/app.js",
-        "app/challenge-details/js/controllers/controllers.js",
+        "app/challenge-details/js/controllers/challenge-details-controller.js",
         "app/challenge-details/js/filters/filters-challenge-details.js",
         "app/challenge-details/js/controllers/submission-controller.js",
         "app/challenge-details/js/directives/submission-directives.js",
-        "app/challenge-details/js/services/services.js",
+        "app/challenge-details/js/services/challenge-details-services.js",
         "app/challenge-details/js/services/submission-services.js",
         "app/challenge-details/js/lib/loading-bar/loading-bar.js"
       ],
