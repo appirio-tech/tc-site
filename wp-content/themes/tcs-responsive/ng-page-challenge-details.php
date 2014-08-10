@@ -12,6 +12,7 @@ tc_setup_angular();
 
 $activeTab = $tab;
 add_action('wp_head', 'tc_challenge_details_js');
+
 function tc_challenge_details_js() {
   global $contest, $contestType, $contestID, $registrants, $activeTab;
 
@@ -35,10 +36,10 @@ function tc_challenge_details_js() {
 
 $isChallengeDetails = TRUE;
 
-$contestID = get_query_var('contestID');
-$contestType    = filter_input(INPUT_GET, 'type', FILTER_SANITIZE_STRING);
-$contestType    = empty( $contestType ) ? "develop" : $contestType;
-$noCache        = get_query_var('nocache');
+$contestID   = get_query_var('contestID');
+$contestType = filter_input(INPUT_GET, 'type', FILTER_SANITIZE_STRING);
+$contestType = empty( $contestType ) ? "develop" : $contestType;
+$noCache     = get_query_var('nocache');
 
 $registerDisable = FALSE;
 $submitDisabled  = FALSE;
@@ -116,7 +117,7 @@ include locate_template('header-challenge-landing.php');
   <article ng-if="!isDesign" id="contestOverview">
     <h1>Challenge Overview</h1>
 
-    <p ng-bind-html="trust(challenge.detailedRequirements)"></p>
+    <p ng-bind-html="challenge.detailedRequirements | trust"></p>
 
     <article id="platforms">
       <h1>Platforms</h1>
@@ -147,9 +148,7 @@ include locate_template('header-challenge-landing.php');
     </article>
 
     <h3>Final Submission Guidelines</h3>
-    <div ng-bind-html="trust(challenge.finalSubmissionGuidelines)"></div>
-
-
+    <div ng-bind-html="challenge.finalSubmissionGuidelines | trust"></div>
 
     <article id="payments">
       <h1>Payments</h1>
@@ -205,7 +204,7 @@ include locate_template('header-challenge-landing.php');
   <article id="contestSummary">
     <h1>CONTEST SUMMARY</h1>
 
-    <p class="paragraph" ng-bind-html="trust(challenge.introduction)"></p>
+    <p class="paragraph" ng-bind-html="challenge.introduction | trust"></p>
 
     <p></p>
 
@@ -225,13 +224,13 @@ include locate_template('header-challenge-landing.php');
     <p class="paragraph"></p>
 
     <p style="margin: 0px 0px 0px 15px; padding: 0px; color: rgb(64, 64, 64);"><span
-        style="line-height: 1.6em;" ng-bind-html="trust(challenge.round1Introduction)"></span></p>
+        style="line-height: 1.6em;" ng-bind-html="challenge.round1Introduction | trust"></span></p>
 
     <span class="subTitle">Round Two (2)</span>
 
     <p class="paragraph"></p>
 
-    <p><span style="color: rgb(64, 64, 64); font-size: 13px;" ng-bind-html="trust(challenge.round2Introduction)"></span></p>
+    <p><span style="color: rgb(64, 64, 64); font-size: 13px;" ng-bind-html="challenge.round2Introduction | trust"></span></p>
 
     <p></p>
 
@@ -263,7 +262,7 @@ include locate_template('header-challenge-landing.php');
   <article id="fullDescription">
     <h1>FULL DESCRIPTION &amp; PROJECT GUIDE</h1>
 
-    <p ng-bind-html="trust(challenge.detailedRequirements)"></p>
+    <p ng-bind-html="challenge.detailedRequirements | trust"></p>
   </article>
 
   <article id="stockPhotography">
@@ -403,8 +402,8 @@ include locate_template('header-challenge-landing.php');
         <td ng-if="challengeType != 'design'" class="reliabilityColumn">
             <span ng-bind="registrant.reliability"></span>
         </td>
-        <td class="regDateColumn" ng-bind="formatDate(registrant.registrationDate)"></td>
-        <td class="subDateColumn" ng-bind="formatDate(registrant.submissionDate)"></td>
+        <td class="regDateColumn" ng-bind="registrant.registrationDate | formatDate:2"></td>
+        <td class="subDateColumn" ng-bind="registrant.submissionDate | formatDate:2"></td>
         <!--bugfix refactored-challenge-details-68: added missing icons -->
         <td>
           <i class="{{registrant.winner ? 'successIcon' : registrant.submissionStatus.match('Failed') ? 'failureIcon' : ''}}"></i>

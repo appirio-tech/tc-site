@@ -14,24 +14,25 @@
 
   angular
     .module('challengeDetails')
-    .controller('CDCtrl', ChangeDetailCtrl);
+    .controller('CDCtrl', ChallengeDetailCtrl);
 
-  ChangeDetailCtrl.$inject = ['$scope', 'ChallengeService', '$sce'];
+  ChallengeDetailCtrl.$inject = ['$scope', 'ChallengeService'];
 
   /**
    * Controller implementation
    *
    * @param $scope
    * @param ChallengeService
-   * @param $sce
    * @constructor
    */
-  function ChangeDetailCtrl($scope, ChallengeService, $sce) {
-    $scope.callComplete = false;
+  function ChallengeDetailCtrl($scope, ChallengeService) {
 
-    $scope.trust = function (x) {
-      return $sce.trustAsHtml(x);
-    };
+    $scope.registerToChallenge = registerToChallenge;
+    $scope.callCoplete = false;
+    // Global variable available from ng-page-challenge-details.php
+    $scope.challengeType = challengeType;
+
+    $scope.round = Math.round;
 
     $scope.range = function (from, to) {
       var ans = [];
@@ -45,11 +46,6 @@
     $scope.max = function (x, y) {
       return x > y ? x : y;
     };
-
-    // Global variable available from ng-page-challenge-details.php
-    $scope.challengeType = challengeType;
-
-    $scope.round = Math.round;
 
     $scope.activeTab = 'details';
     if (window.location.hash == '#viewRegistrant') {
@@ -69,10 +65,33 @@
     $scope.checkpointPassedScreeningSubmitterPercentage = false;
     $scope.checkpointPassedScreeningSubmissionPercentage = false;
 
-    ChallengeService.getChallenge(challengeId).then(function (challenge) {
-      processChallenge(challenge, $scope, ChallengeService);
-      $scope.callComplete = true;
-    });
+    ChallengeService
+      .getChallenge(challengeId)
+      .then(function (challenge) {
+        processChallenge(challenge, $scope, ChallengeService);
+        $scope.callComplete = true;
+      });
+
+    /**
+     *
+     */
+    function registerToChallenge() {
+
+      ChallengeService
+        .registerToChallenge(challengeId)
+        .then(
+          function (data) {
+            if (data["message"] === "ok") {
+              showModal("#registerSuccess");
+            } else if (data["error"]["details"] === "You should agree with all terms of use.") {
+              window.location = siteURL + "/challenge-details/terms/" + id + "?challenge-type=" + challengeType;
+            } else if (data["error"]["details"]) {
+              showError(data["error"]["details"]);
+            }
+          }
+        );
+    };
+
   }
 
   /**
@@ -89,7 +108,9 @@
     $scope.isDesign = $scope.challengeType == 'design';
 
     if (challenge.checkpointSubmissionEndDate && challenge.checkpointSubmissionEndDate != '') {
-      ChallengeService.getCheckpointData(challengeId).then(function(data) {
+      ChallengeService
+        .getCheckpointData(challengeId)
+        .then(function(data) {
         if (data && !data.error) {
           $scope.checkpointData = data;
           $scope.checkpointResults = data.checkpointResults;
@@ -137,67 +158,71 @@
       if (submissionMap[x.handle]) x.submissionStatus = submissionMap[x.handle].submissionStatus;
     });
 
+    // Result section, if status completed
     if (challenge.currentStatus == 'Completed' || challenge.currentPhaseEndDate == '') {
-      ChallengeService.getResults(challengeId).then(function(results) {
-        $scope.results = results;
-        $scope.firstPlaceSubmission = results.firstPlaceSubmission;
-        $scope.secondPlaceSubmission = results.secondPlaceSubmission;
-        $scope.submissions = results.submissions;
-        //set variables for design challenge results
-        if ($scope.isDesign) {
-          //filter all submitters that passed screening
-          var passedScreen = results.results.filter(function(element){
-            if (element.submissionStatus !== "Failed Screening") {
-              return true;
-            }
-            return false;
-          });
-          //push all passing submitter handles to new array
-          var resultPassingHandles = [];
-          passedScreen.forEach(function(el){
-            resultPassingHandles.push(el.handle);
-          });
-          //get number of unique final submitters that have passed screening
-          $scope.finalSubmittersPassedScreening = resultPassingHandles.filter(function(element, elIndex, arr){
-            return arr.indexOf(element) == elIndex;
-          }).length;
+      ChallengeService
+        .getResults(challengeId)
+        .then(function(results) {
+          $scope.results = results;
+          $scope.firstPlaceSubmission = results.firstPlaceSubmission;
+          $scope.secondPlaceSubmission = results.secondPlaceSubmission;
+          $scope.submissions = results.submissions;
+          //set variables for design challenge results
+          if ($scope.isDesign) {
+            //filter all submitters that passed screening
+            var passedScreen = results.results.filter(function(element){
+              if (element.submissionStatus !== "Failed Screening") {
+                return true;
+              }
+              return false;
+            });
+            //push all passing submitter handles to new array
+            var resultPassingHandles = [];
+            passedScreen.forEach(function(el){
+              resultPassingHandles.push(el.handle);
+            });
+            //get number of unique final submitters that have passed screening
+            $scope.finalSubmittersPassedScreening = resultPassingHandles.filter(function(element, elIndex, arr){
+              return arr.indexOf(element) == elIndex;
+            }).length;
 
-          //push all submitter handles to new array
-          var resultHandles = [];
-          results.results.forEach(function(el){
-            resultHandles.push(el.handle);
-          });
-          //get number of unique final submitters regardless of screening status
-          $scope.numFinalSubmitters = resultHandles.filter(function(element, elIndex, arr){
-            return arr.indexOf(element) == elIndex;
-          }).length;
+            //push all submitter handles to new array
+            var resultHandles = [];
+            results.results.forEach(function(el){
+              resultHandles.push(el.handle);
+            });
+            //get number of unique final submitters regardless of screening status
+            $scope.numFinalSubmitters = resultHandles.filter(function(element, elIndex, arr){
+              return arr.indexOf(element) == elIndex;
+            }).length;
 
-          $scope.numFinalSubmissions = results.numSubmissions;
-          $scope.finalSubmissionsPassedScreening = results.submissionsPassedScreening;
-          $scope.finalPassedScreeningSubmitterPercentage = Math.floor(($scope.finalSubmittersPassedScreening / $scope.numFinalSubmitters) * 100);
-          $scope.finalPassedScreeningSubmissionPercentage = Math.floor(($scope.finalSubmissionsPassedScreening / $scope.numFinalSubmissions) * 100);
-        }
-        $scope.initialScoreSum = 0;
-        $scope.finalScoreSum = 0;
-        $scope.submissions.map(function(x) {
-          $scope.initialScoreSum += x.initialScore;
-          $scope.finalScoreSum += x.finalScore;
-        });
-
-        $scope.winningSubmissions = [];
-        var winnerMap = {};
-        for (var i = 0; i < $scope.submissions.length; i++) {
-          if (challenge.prize[i] && $scope.submissions[i].submissionStatus != 'Failed Review') {
-            $scope.winningSubmissions.push($scope.submissions[i]);
-            winnerMap[$scope.submissions[i].handle] = true;
+            $scope.numFinalSubmissions = results.numSubmissions;
+            $scope.finalSubmissionsPassedScreening = results.submissionsPassedScreening;
+            $scope.finalPassedScreeningSubmitterPercentage = Math.floor(($scope.finalSubmittersPassedScreening / $scope.numFinalSubmitters) * 100);
+            $scope.finalPassedScreeningSubmissionPercentage = Math.floor(($scope.finalSubmissionsPassedScreening / $scope.numFinalSubmissions) * 100);
           }
+          $scope.initialScoreSum = 0;
+          $scope.finalScoreSum = 0;
+          $scope.submissions.map(function(x) {
+            $scope.initialScoreSum += x.initialScore;
+            $scope.finalScoreSum += x.finalScore;
+          });
+
+          $scope.winningSubmissions = [];
+          var winnerMap = {};
+          for (var i = 0; i < $scope.submissions.length; i++) {
+            if (challenge.prize[i] && $scope.submissions[i].submissionStatus != 'Failed Review') {
+              $scope.winningSubmissions.push($scope.submissions[i]);
+              winnerMap[$scope.submissions[i].handle] = true;
+            }
+          }
+          $scope.challenge.registrants.map(function(x) {
+            if (winnerMap[x.handle]) x.winner = true;
+          });
+          if ($scope.winningSubmissions.length == 0) $scope.firstPlaceSubmission = false;
+          if ($scope.winningSubmissions.length < 2) $scope.secondPlaceSubmission = false;
         }
-        $scope.challenge.registrants.map(function(x) {
-          if (winnerMap[x.handle]) x.winner = true;
-        });
-        if ($scope.winningSubmissions.length == 0) $scope.firstPlaceSubmission = false;
-        if ($scope.winningSubmissions.length < 2) $scope.secondPlaceSubmission = false;
-      });
+      );
     } else {
       $scope.submissions = false;
     }

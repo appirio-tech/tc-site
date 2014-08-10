@@ -740,6 +740,11 @@ $(function () {
 });
 
 // modal
+function showError(message) {
+  $("#registerFailed .failedMessage").text(message);
+  showModal("#registerFailed");
+}
+
 /**
  * show modal
  * selector - the jQuery selector of the popup

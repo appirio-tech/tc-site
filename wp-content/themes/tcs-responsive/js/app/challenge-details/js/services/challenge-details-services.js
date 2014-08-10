@@ -10,16 +10,18 @@
     .module('challengeDetails')
     .factory('ChallengeService', ChallengeService);
 
+  ChallengeService.$inject = ['Restangular', 'API_URL', '$q']
+
   /**
+   * Geting challenge information
    *
    * @param Restangular
    * @param API_URL
    * @param $q
-   * @param $cookies
    * @returns {*}
    * @constructor
    */
-  function ChallengeService(Restangular, API_URL, $q, $cookies) {
+  function ChallengeService(Restangular, API_URL, $q) {
 
     var service = Restangular.withConfig(function(RestangularConfigurer) {
       RestangularConfigurer.setBaseUrl(API_URL);
@@ -34,7 +36,13 @@
     service.getResults = function(id) {
       var defer = $q.defer();
 
-      service.one(challengeType).one('challenges').one('result', id).getList().then(function(results) {
+      //challengeType is a global variable.
+      service
+        .one(challengeType)
+        .one('challenges')
+        .one('result', id)
+        .getList()
+        .then(function(results) {
         results = results[0];
         var submissionMap = {};
         var leftovers = []; // for those that got a score of 0
@@ -74,11 +82,20 @@
      */
     service.getCheckpointData = function(id) {
       var defer = $q.defer();
-      service.one(challengeType).one('challenges').one('checkpoint', id).getList().then(function(data) {
-        data = data[0];
-        if (data.error) defer.resolve(false);
-        defer.resolve(data);
-      });
+
+      service
+        .one(challengeType)
+        .one('challenges')
+        .one('checkpoint', id)
+        .getList()
+        .then(function(data) {
+          data = data[0];
+          if (data.error) {
+            defer.resolve(false);
+          }
+          defer.resolve(data);
+        });
+
       return defer.promise;
     };
 
@@ -89,7 +106,11 @@
      */
     service.getChallenge = function(id) {
       var defer = $q.defer();
-      service.one(challengeType).one('challenges').getList(id).then(function(challenge) {
+      service
+        .one(challengeType)
+        .one('challenges')
+        .getList(id)
+        .then(function(challenge) {
         challenge = challenge[0];
         var submissionMap = {};
         challenge.submissions.map(function(submission) {
@@ -151,12 +172,39 @@
         if (((moment(challenge.registrationEndDate)) >moment()) && regList.indexOf(handle) == -1) {
           challenge.registrationDisabled = false;
         }
-        challenge.registrationDisabled = false;
         if (((moment(challenge.submissionEndDate)) > moment()) && regList.indexOf(handle) > -1) {
           challenge.submissionDisabled = false;
         }
       });
     };
+
+    /**
+     *
+     * @param id
+     * @returns {promise}
+     */
+    service.registerToChallenge = function(id) {
+      var defer = $q.defer();
+
+      var tcjwt = getCookie('tcjwt');
+      if (!tcjwt) {
+        defer.resolve({'error':{'details':'Internal error. Try to login again.'}});
+      }
+      var jwtToken = tcjwt.replace(/["]/g, "");
+
+      service
+        .oneUrl('register', ajaxUrl)
+        .get({
+          "action": "register_to_challenge",
+          "challengeId": id,
+          "jwtToken": jwtToken
+        })
+        .then(function(response) {
+          defer.resolve(response);
+        });
+
+      return defer.promise;
+    }
 
     return service;
   }

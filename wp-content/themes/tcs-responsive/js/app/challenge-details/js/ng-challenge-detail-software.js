@@ -271,35 +271,6 @@ $(function () {
     }
   });
 
-  $(".challengeRegisterBtn").click(function () {
-    if ($(this).hasClass("disabled")) { return false; }
-    var tcjwt = getCookie('tcjwt');
-    if (tcjwt) {
-      if ($('.loading').length <= 0) {
-        $('body').append('<div class="loading">Loading...</div>');
-      } else {
-        $('.loading').show();
-      }
-      $.getJSON(ajaxUrl, {
-        "action": "register_to_challenge",
-        "challengeId": challengeId,
-        "jwtToken": tcjwt.replace(/["]/g, "")
-      }, function (data) {
-        $('.loading').hide();
-        if (data["message"] === "ok") {
-          showModal("#registerSuccess");
-        } else if (data["error"]["details"] === "You should agree with all terms of use.") {
-          window.location = siteURL + "/challenge-details/terms/" + challengeId + "?challenge-type=" + challengeType;
-        } else if (data["error"]["details"]) {
-          $("#registerFailed .failedMessage").text(data["error"]["details"]);
-          showModal("#registerFailed");
-        }
-      });
-    } else {
-      $('.actionLogin').click();
-    }
-  });
-
   if (autoRegister) {
     $(".challengeRegisterBtn").click();
   }

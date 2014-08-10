@@ -26,12 +26,15 @@
 
   .config(DataPreProcessing);
 
-  /**
-   *
-   * @type {string[]}
-   */
   DataPreProcessing.$inject = ['$httpProvider', 'RestangularProvider', 'API_URL'];
 
+  /**
+   *
+   * @param $httpProvider
+   * @param RestangularProvider
+   * @param API_URL
+   * @constructor
+   */
   function DataPreProcessing($httpProvider, RestangularProvider, API_URL) {
     /*
      * Enable CORS
@@ -47,11 +50,12 @@
 
     // add a response intereceptor
     RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
-      var extractedData;
+      var extractedData = '';
+
+      extractedData = data.data ? data.data : data;
       // .. to look for getList operations
       if (operation === "getList") {
         // .. and handle the data and meta data
-        extractedData = data.data ? data.data : data;
         if (!(Object.prototype.toString.call(extractedData) === '[object Array]')) {
           extractedData = [extractedData];
         }
@@ -61,9 +65,8 @@
           pageIndex: data.pageIndex,
           pageSize: data.pageSize
         };
-      } else {
-        extractedData = data.data;
       }
+
       return extractedData;
     });
   }

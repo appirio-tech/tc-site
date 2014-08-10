@@ -37,6 +37,13 @@
     .filter('formatDate', formatDate);
 
   /**
+   * Trust method
+   */
+  angular
+    .module('challengeDetails.filters')
+    .filter('trust', trust);
+
+  /**
    * Implementation details
    */
 
@@ -82,5 +89,13 @@
       return month + ' ' + day + ', ' + year + ' ' + time + ' EDT';
     };
   }
+
+  trust.$inject = ['$sce'];
+
+  function trust ($sce) {
+    return function (x) {
+      return $sce.trustAsHtml(x);
+    }
+  };
 
 })();
