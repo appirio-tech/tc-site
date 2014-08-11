@@ -125,11 +125,11 @@ if($rating>0){
 												<td class="colTotal"><?php echo $coder->topTenFinishes; ?></td>
 											</tr>
 											<tr>
-												<td class="colDetails">Avg.Rank</td>
+												<td class="colDetails">Avg. Rank</td>
 												<td class="colTotal"><?php echo $coder->avgRank; ?></td>
 											</tr>
 											<tr class="alt">
-												<td class="colDetails">Avg.Num.Submissions</td>
+												<td class="colDetails">Avg. Num. Submissions</td>
 												<td class="colTotal"><?php echo $coder->avgNumSubmissions; ?></td>
 											</tr>
 											<tr>
