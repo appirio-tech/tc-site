@@ -1,6 +1,6 @@
 var challengeName;
 // @TODO Split out the different parts of the page into different contorllers
-cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scope, ChallengeService, $sce) {
+cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', '$window', function($scope, ChallengeService, $sce, $window) {
   $scope.callComplete = false;
   $scope.trust = function(x) {
     return $sce.trustAsHtml(x);
@@ -45,8 +45,15 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
     var time = pad0((date.getUTCHours() + 20) % 24) + ':' + pad0(date.getUTCMinutes());
     return month + ' ' + day + ', ' + year + ' ' + time + ' EDT';
   };
-
-  challengeId = location.href.match(/s\/(\d+)/)[1];
+  //Need to test if regex match of challengeId exists before assigning regex capturing group match to challengeId var, otherwise could result in js error
+  var uriRegexMatches = location.href.match(/s\/(\d+)\//);
+  if (uriRegexMatches) {
+    var challengeId = uriRegexMatches[1];
+  } else {
+    //if url does not contain a challengeId, it is invalid so redirect to 404
+    $window.location.href = '/404';
+    return false;
+  }
   $scope.round = Math.round;
   $scope.activeTab = 'details';
   if (window.location.hash == '#viewRegistrant') $scope.activeTab = 'registrants';
@@ -63,6 +70,12 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
   $scope.checkpointPassedScreeningSubmissionPercentage = false;
   
   ChallengeService.getChallenge(challengeId).then(function(challenge) {
+    if (challenge.error) {
+      //handle API error response, redirect to 404
+      $window.location.href = '/404';
+      return false;
+    }
+
     $scope.callComplete = true;
     challengeName = challenge.challengeName;
     $scope.challengeType = getParameterByName('type');
@@ -228,6 +241,11 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', function($scop
     } else {
       $scope.submissions = false;
     }
+  },
+  function () {
+    //redirect to 404 if API call fails other than CORS error
+    $window.location.href = '/404';
+    return false;
   });
 }]);
 
