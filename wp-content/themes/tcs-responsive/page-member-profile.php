@@ -87,7 +87,7 @@ $quote = ($coder->quote == '') ? "Member of the world's largest global competiti
 								</div>
 								<?php if (isset($coder->overallEarning)) :?>
 								<div class="memberSince">
-									<label>Total Earnings :</label>
+									<label>Total Earnings:</label>
 									<div class="val"><?php echo '$'.$coder->overallEarning;?></div>
 								</div>
 								<?php endif;?>
