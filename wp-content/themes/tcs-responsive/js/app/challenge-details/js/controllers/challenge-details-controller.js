@@ -107,6 +107,15 @@
     challengeName = challenge.challengeName;
     $scope.isDesign = $scope.challengeType == 'design';
 
+    ChallengeService
+      .getDocuments(challengeId, challengeType)
+      .then(function(data) {
+        if (data && !data.error) {
+          challenge.Documents = data.Documents;
+        }
+      });
+
+
     if (challenge.checkpointSubmissionEndDate && challenge.checkpointSubmissionEndDate != '') {
       ChallengeService
         .getCheckpointData(challengeId)

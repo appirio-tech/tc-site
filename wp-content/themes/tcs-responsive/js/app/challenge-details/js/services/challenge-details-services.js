@@ -206,6 +206,37 @@
       return defer.promise;
     }
 
+    /**
+     *
+     * @param id
+     * @param challengeType
+     * @returns {promise}
+     */
+    service.getDocuments = function(id, challengeType) {
+      var defer = $q.defer();
+
+      var tcjwt = getCookie('tcjwt');
+      if (!tcjwt) {
+        defer.resolve({'error':{'details':'Internal error. Try to login again.'}});
+      }
+      var jwtToken = tcjwt.replace(/["]/g, "");
+
+      service
+        .oneUrl('documents', ajaxUrl)
+        .get({
+          "action": "get_challenge_documents",
+          "challengeId": id,
+          "challengeType": challengeType,
+          "nocache": true,
+          "jwtToken": jwtToken
+        })
+        .then(function(response) {
+          defer.resolve(response);
+        });
+
+      return defer.promise;
+    }
+
     return service;
   }
 
