@@ -129,7 +129,7 @@ $blog_posts = get_posts($blog_posts_args);
     <div class="copyright">
       <section>
         </br>
-        © 2014 topcoder. All Rights reserved.
+        © 2014 topcoder. All Rights Reserved.
         </br>
         <a href="/community/how-it-works/privacy-policy/" class="privacyStmtLink">Privacy Policy</a> | <a
           href="/community/how-it-works/terms/" class="legalDisclaimerLink">Terms</a>
