@@ -833,6 +833,10 @@ font-size: 18px;
     width: 25%;
 }
 
+#viewRegistrant table tr .handleColumnDesign {
+    width: 30%;
+}
+
 #viewRegistrant table tr td.handleColumn {
     font-size: 14px;
 }
@@ -852,8 +856,23 @@ font-size: 18px;
     text-align: center;
 }
 
+#viewRegistrant table tr .regDateColumnDesign {
+    width: 30%;
+    text-align: center;
+}
+
 #viewRegistrant table tr .subDateColumn {
     width: 25%;
+    text-align: center;
+}
+
+#viewRegistrant table tr .subDateColumnDesign {
+    width: 30%;
+    text-align: center;
+}
+
+#viewRegistrant table tr .successIconColumn {
+    width: 10%;
     text-align: center;
 }
 
