@@ -350,8 +350,8 @@ $(function () {
       $(".additionalPrizes").addClass("hide");
     }
   });
-
-  $(".challengeRegisterBtn").on('click', function () {
+  
+  $(".leftColumn").on('click', '.challengeRegisterBtn', function () {
     if ($(this).hasClass("disabled")) { 
       var tcAction = getCookie('tcDelayChallengeAction');
       if (tcAction) {
