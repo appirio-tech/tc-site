@@ -102,7 +102,9 @@
         if (Array.isArray($routeParams.keywords)) {
           $scope.filter.keywords = $routeParams.keywords;
         } else if (typeof $routeParams.keywords === 'string') {
-          $scope.filter.keywords = [$routeParams.keywords];
+          if (!$routeParams.keywords.match(/^\s*$/)) {
+            $scope.filter.keywords = [$routeParams.keywords];
+          }
         } else {
           $scope.filter.keywords = [];
         }
