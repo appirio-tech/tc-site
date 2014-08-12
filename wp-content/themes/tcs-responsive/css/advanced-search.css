@@ -246,14 +246,33 @@ input.search-text::-webkit-input-placeholder {
         .selected-tags ul.tags {
             width: 89%;
         }
+
+        .selected-tags ul.tags li{
+            max-width: 90%;
+        }
             .selected-tags li.left .selecting-tag-wrapper {
                 height: 30px;
                 background: #ff9900;
+                padding-right: 20px;
                 margin-right: 10px;
                 font-size: 14px;
                 color: #fff;
                 border-radius: 5px;
             }
+
+                .selected-tags li span.tag-text{
+                    max-width: 100%;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
+                }
+
+                .selected-tags li span.tag-close{
+                    position: absolute;
+                    right: -20px;
+                }
+
+
                 .selected-tags li span.tag-close,
                 .selected-tags li span.tag-closedate,
                 .selected-tags li span.tag-close-allchallenge,
@@ -271,6 +290,7 @@ input.search-text::-webkit-input-placeholder {
 .selected-tag {
     margin: 5px 0 0 10px;
     line-height: 28px;
+    position: relative;
 }
 .closetag a {
     color:#a0a0a0;
