@@ -302,8 +302,8 @@ a{
     .algoLayout .detailedRating{
         margin-left: 258px;
         overflow: hidden;
-        min-height: 124px;
-        padding-top: 16px;
+        min-height: 132px;
+        padding-top: 8px;
     }
     .algoLayout .detailedRating .row {
         line-height: 22px;
