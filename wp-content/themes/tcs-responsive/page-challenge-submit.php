@@ -33,7 +33,7 @@ $contest = get_contest_detail('', get_query_var('contestID'), $challengeType);
                         </dl>
                     </div>
                     <div class="rightCol col">
-                        <p>Please organize and upload files as per the submission requirements for the challenge</p>
+                        <p>Please organize and upload files as per the submission requirements for the challenge.</p>
                         <p>If you have trouble uploading your file, please submit <a href="https://software.topcoder.com/review/actions/UploadContestSubmission?pid=<?php echo $contestID; ?>">here</a>.</p>
                     </div>
                     <div class="clear"></div>
