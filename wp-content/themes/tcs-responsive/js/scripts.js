@@ -184,10 +184,10 @@ var app = {
     });
 
     $('#mainNav .root > li').mouseenter(function() {
-      $('.child', $(this)).stop().slideDown('fast');
+      $('.child', $(this)).stop(true, true).slideDown('fast');
     });
     $('#mainNav .root > li').mouseleave(function() {
-      $('.child', $(this)).stop().slideUp('fast');
+      $('.child', $(this)).stop(true, true).slideUp('fast');
     });
 
     // footer navigation
