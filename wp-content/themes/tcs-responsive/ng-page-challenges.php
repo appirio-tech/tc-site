@@ -284,7 +284,7 @@ get_header(); ?>
                                 </li>
                                 <li><a href="javascript:;" ng-click="dateCtrl.yesterday()">Yesterday</a>
                                 </li>
-                                <li><a href="javascript:;" ng-click="dateCtrl.last7Days()">Last 7 day</a>
+                                <li><a href="javascript:;" ng-click="dateCtrl.last7Days()">Last 7 days</a>
                                 </li>
                                 <li><a href="javascript:;" ng-click="dateCtrl.thisMonth()">This Month</a>
                                 </li>
