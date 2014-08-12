@@ -64,7 +64,7 @@ $siteURL = site_url ();
 								<div class="clear"></div>
 							</div>
 							<!-- END .socials -->
-							<h2>Login With a TopCoder Account</h2>
+							<h2>Login With A Topcoder Account</h2>
 							<div class="tc-login-form">
 								<form class="login" id="loginForm">
 									<p class="row">
