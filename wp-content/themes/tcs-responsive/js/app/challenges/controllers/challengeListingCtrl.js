@@ -83,6 +83,12 @@
         } else {
           $scope.filter.endDate = undefined;
         }
+        if ($scope.filter.startDate && $scope.filter.endDate) {
+          if ($scope.filter.startDate.getTime() > $scope.filter.endDate.getTime()) {
+            $scope.filter.startDate = undefined;
+            $scope.filter.endDate = undefined;
+          }
+        }
         if (Array.isArray($routeParams.technologies)) {
           $scope.filter.technologies = $routeParams.technologies;
         } else if (typeof $routeParams.technologies === 'string') {
