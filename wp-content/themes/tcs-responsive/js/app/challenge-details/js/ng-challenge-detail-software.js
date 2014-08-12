@@ -352,7 +352,6 @@ $(function () {
   });
   
   $(".leftColumn").on('click', '.challengeRegisterBtn', function () {
-    console.log('slammo');
     if ($(this).hasClass("disabled")) { 
       var tcAction = getCookie('tcDelayChallengeAction');
       if (tcAction) {
