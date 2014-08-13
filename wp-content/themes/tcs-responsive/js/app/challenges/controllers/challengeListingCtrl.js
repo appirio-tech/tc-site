@@ -56,6 +56,7 @@
             .then(function (data) {
               $scope.challenges = data;
               $scope.pagination = data.pagination;
+              $location.search('pageIndex', data.pagination.pageIndex)
             }, function () {
               $scope.challenges = [];
             });
@@ -128,10 +129,11 @@
         startDate: null,
         endDate: null
       };
-      
+
+      var queryVars = $location.search();
       $scope.pagination = {
         pageSize: 10,
-        pageIndex: 1
+        pageIndex: typeof queryVars['pageIndex'] == 'undefined' ? 1 : parseInt(queryVars['pageIndex'])
       };
       
       $scope.orderBy = {
