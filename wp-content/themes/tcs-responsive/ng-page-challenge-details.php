@@ -367,9 +367,6 @@ include locate_template('header-challenge-landing.php');
 
 
   <article>
-    <h1>
-        REGISTRANTS
-    </h1>
     <table class="registrantsTable">
       <thead>
       <tr>
