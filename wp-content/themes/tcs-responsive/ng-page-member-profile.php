@@ -32,7 +32,7 @@ get_header();
 					<div class="actions" ng-class="{'trackdesign' : track === 'design'}">
 						<ul class="trackSwitch switchBtns">
 							<li class="first"><a ng-click="switchTab('base.common.design', 'design', undefined);" ng-class="{ isActive : $state.includes('**.design.**') }" tc-change-url="design">Design</a></li>
-							<li><a ng-click="switchTab('base.common.develop.special', 'develop', undefined);" ng-class="{ isActive : $state.includes('**.develop.**') }" tc-change-url="develop">Develop</a></li>
+							<li><a ng-click="switchTab('base.common.develop.special', 'develop', undefined);" ng-class="{ isActive : $state.includes('**.develop.**') }" tc-change-url="develop">Development</a></li>
 							<li class="last"><a ng-click="switchTab('base.common.dataScience.special', 'dataScience', 'algorithm');" ng-class="{ isActive : $state.includes('**.dataScience.**') }" tc-change-url="algorithm">Data Science</a></li>
 						</ul>
 						<!-- /.trackSwitch -->

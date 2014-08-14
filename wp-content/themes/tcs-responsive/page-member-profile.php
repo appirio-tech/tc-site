@@ -107,7 +107,7 @@ $quote = ($coder->quote == '') ? "Member of the world's largest global competiti
 					<div class="actions track<?php echo $tab;?>">
 						<ul class="trackSwitch switchBtns">
 							<li class="first"><a href="./?tab=design" class="<?php if($tab == "design"){ echo "isActive";}?>">Design</a></li>
-							<li><a href="./?tab=develop" class="<?php if($tab == "develop"){ echo "isActive";}?>">Develop</a></li>
+							<li><a href="./?tab=develop" class="<?php if($tab == "develop"){ echo "isActive";}?>">Development</a></li>
 							<li class="last"><a href="./?tab=algo" class="<?php if($tab == "algo" || $tab == "marathon" || $tab == null || $tab == ""){ echo "isActive";}?>">Data Science</a></li>
 						</ul>
 						<!-- /.trackSwitch -->
