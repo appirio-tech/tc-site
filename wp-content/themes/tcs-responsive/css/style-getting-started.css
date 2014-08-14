@@ -250,12 +250,6 @@
     padding: 0;
     font-size: 20px;
 }
-/*additional challenge-detail link styles for inserted content on registration complete page*/
-.landing-page .thank-you h4 {
-  padding-bottom: 0;
-  padding-top: 30px;
-  line-height: 35px;
-}
 .landing-page .thank-you img {
     position: absolute;
     left: 162px;
