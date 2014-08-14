@@ -342,9 +342,16 @@ $(function () {
       $(".additionalPrizes").addClass("hide");
     }
   });
-
-  $(".challengeRegisterBtn").click(function () {
-    if ($(this).hasClass("disabled")) { return false; }
+  
+  $(".leftColumn").on('click', '.challengeRegisterBtn', function () {
+    if ($(this).hasClass("disabled")) { 
+      var tcAction = getCookie('tcDelayChallengeAction');
+      if (tcAction) {
+        //delete cookie
+        document.cookie = 'tcDelayChallengeAction=; path=/; domain=.topcoder.com; expires=' + new Date(0).toUTCString();
+      }
+      return false; 
+    }
     var tcjwt = getCookie('tcjwt');
     if (tcjwt) {
       if ($('.loading').length <= 0) {
