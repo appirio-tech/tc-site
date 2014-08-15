@@ -446,11 +446,11 @@ get_header(); ?>
         <div class="val vEndDate">{{row.getProperty('submissionEndDate') | date: dateFormat}}</div>
       </div>
       <div class="row" ng-show="contest.listType == 'active' || contest.listType == 'upcoming'">
-        <label class="lbl ">Register by</label>
+        <label class="lbl ">Register By</label>
         <div class="val vEndRound">{{row.getProperty('registrationEndDate') | date: dateFormat}}</div>
       </div>
       <div class="row" ng-show="contest.listType == 'active' || contest.listType == 'upcoming'">
-        <label class="lbl">Submit by</label>
+        <label class="lbl">Submit By</label>
         <div class="val vEndDate">{{row.getProperty('submissionEndDate') | date: dateFormat}}</div>
       </div>
     </div>
@@ -471,7 +471,7 @@ get_header(); ?>
         <div class="val vEndDate">{{row.getProperty('submissionEndDate') | date: dateFormat}}</div>
       </div>
       <div class="row" ng-show="contest.listType == 'active'">
-        <label class="lbl">Submit by</label>
+        <label class="lbl">Submit By</label>
         <div class="val vEndDate">{{row.getProperty('submissionEndDate') | date: dateFormat}}</div>
       </div>
     </div>
