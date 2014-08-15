@@ -341,7 +341,7 @@ if ($contestType == 'design'):
                 <a href="javascript:" class="">Screening Score</a>
             </th>
             <th>
-                <a href="javascript:" class="">Initial/ Final Score</a>
+                <a href="javascript:" class="">Initial / Final Score</a>
             </th>
             <th>
             </th>
@@ -397,7 +397,7 @@ if ($contestType == 'design'):
                 <div class="clear"></div>
             </div>
             <div class="registrantSectionRow">
-                <div class="registrantLabel">Initial/ Final Score:</div>
+                <div class="registrantLabel">Initial / Final Score:</div>
                 <div class="registrantField"><a href="javascript:"><?php echo $submissions[$i]->initialScore; ?>/<?php echo $submissions[$i]->finalScore; ?></a></div>
                 <div class="clear"></div>
             </div>
