@@ -1,6 +1,6 @@
 var challengeName;
-// @TODO Split out the different parts of the page into different controllers
-cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', '$window', function($scope, ChallengeService, $sce, $window) {
+// @TODO Split out the different parts of the page into different contorllers
+cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', '$window', '$cookies', function($scope, ChallengeService, $sce, $window, $cookies) {
   $scope.callComplete = false;
   $scope.trust = function(x) {
     return $sce.trustAsHtml(x);
@@ -164,10 +164,12 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', '$window', fun
     $scope.siteURL = siteURL;
     $scope.challengeType = getParameterByName('type');
     $scope.isDesign = $scope.challengeType == 'design';
+    $scope.allowDownloads = challenge.currentPhaseName === 'Registration' || challenge.currentPhaseName === 'Submission';
+    $scope.isLoggedIn = typeof $cookies.tcjwt !== 'undefined' && typeof $cookies.tcsso !== 'undefined';
     $scope.inSubmission = challenge.currentPhaseName.indexOf('Submission') >= 0;
     $scope.inScreening = challenge.currentPhaseName.indexOf('Screening') >= 0;
     $scope.inReview = challenge.currentPhaseName.indexOf('Review') >= 0;
-    $scope.hasFiletypes = (challenge.filetypes != undefined) && challenge.filetypes.length > 0;
+    $scope.hasFiletypes = (typeof challenge.filetypes !== 'undefined') && challenge.filetypes.length > 0;
 
     var submissionMap = {};
     $scope.challenge.submissions.map(function(x) {
