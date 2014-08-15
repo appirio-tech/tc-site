@@ -1,6 +1,6 @@
 var challengeName;
 // @TODO Split out the different parts of the page into different contorllers
-cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', '$cookies', function($scope, ChallengeService, $sce, $cookies) {
+cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', '$window', '$cookies', function($scope, ChallengeService, $sce, $window, $cookies) {
   $scope.callComplete = false;
   $scope.trust = function(x) {
     return $sce.trustAsHtml(x);
@@ -45,8 +45,15 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', '$cookies', fu
     var time = pad0((date.getUTCHours() + 20) % 24) + ':' + pad0(date.getUTCMinutes());
     return month + ' ' + day + ', ' + year + ' ' + time + ' EDT';
   };
-
-  challengeId = location.href.match(/s\/(\d+)/)[1];
+  //Need to test if regex match of challengeId exists before assigning regex capturing group match to challengeId var, otherwise could result in js error
+  var uriRegexMatches = location.href.match(/s\/(\d+)\//);
+  if (uriRegexMatches) {
+    var challengeId = uriRegexMatches[1];
+  } else {
+    //if url does not contain a challengeId, it is invalid so redirect to 404
+    $window.location.href = '/404';
+    return false;
+  }
   $scope.round = Math.round;
   $scope.activeTab = 'details';
   if (window.location.hash == '#viewRegistrant') $scope.activeTab = 'registrants';
@@ -63,6 +70,11 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', '$cookies', fu
   $scope.checkpointPassedScreeningSubmissionPercentage = false;
   
   ChallengeService.getChallenge(challengeId).then(function(challenge) {
+    if (challenge.error) {
+      //handle API error response, redirect to 404
+      $window.location.href = '/404';
+      return false;
+    }
     $scope.callComplete = true;
     challengeName = challenge.challengeName;
     $scope.challengeType = getParameterByName('type');
@@ -118,7 +130,7 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', '$cookies', fu
 
 
             }, 500);
-           
+
           }
         });
     }
@@ -138,7 +150,6 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', '$cookies', fu
       }
     });
 
-    chglo = challenge;
     //Bugfix refactored-challenge-details-40: format currency values with comma delimiters
     if (typeof challenge.reliabilityBonus === 'number') {
       challenge.reliabilityBonus = challenge.reliabilityBonus.format();
@@ -151,13 +162,14 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', '$cookies', fu
     $scope.challenge = challenge;
     $scope.reliabilityBonus = challenge.reliabilityBonus;
     $scope.siteURL = siteURL;
+    $scope.challengeType = getParameterByName('type');
+    $scope.isDesign = $scope.challengeType == 'design';
     $scope.allowDownloads = challenge.currentPhaseName === 'Registration' || challenge.currentPhaseName === 'Submission';
     $scope.isLoggedIn = typeof $cookies.tcjwt !== 'undefined' && typeof $cookies.tcsso !== 'undefined';
-    $scope.inSubmission = inSubmission = challenge.currentPhaseName.indexOf('Submission') >= 0;
-    $scope.inScreening = inScreening = challenge.currentPhaseName.indexOf('Screening') >= 0;
-    $scope.inReview = inReview = challenge.currentPhaseName.indexOf('Review') >= 0;
+    $scope.inSubmission = challenge.currentPhaseName.indexOf('Submission') >= 0;
+    $scope.inScreening = challenge.currentPhaseName.indexOf('Screening') >= 0;
+    $scope.inReview = challenge.currentPhaseName.indexOf('Review') >= 0;
     $scope.hasFiletypes = (typeof challenge.filetypes !== 'undefined') && challenge.filetypes.length > 0;
-    globby = $scope;
 
     var submissionMap = {};
     $scope.challenge.submissions.map(function(x) {
@@ -213,6 +225,9 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', '$cookies', fu
           $scope.initialScoreSum += x.initialScore;
           $scope.finalScoreSum += x.finalScore;
         });
+        //console.log('init and fina');
+        //console.log($scope.initialScoreSum);
+        //console.log($scope.finalScoreSum);
         $scope.winningSubmissions = [];
         var winnerMap = {};
         for (var i = 0; i < $scope.submissions.length; i++) {
@@ -230,7 +245,10 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', '$cookies', fu
     } else {
       $scope.submissions = false;
     }
+  },
+  function () {
+    //redirect to 404 if API call fails other than CORS error
+    $window.location.href = '/404';
+    return false;
   });
 }]);
-
-

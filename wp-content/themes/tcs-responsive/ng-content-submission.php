@@ -1,0 +1,1 @@
+<div ng-controller="SubmissionCtrl as subCtrl" ng-include="subCtrl.templateUrl"></div>

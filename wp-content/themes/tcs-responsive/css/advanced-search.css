@@ -1,0 +1,457 @@
+/*
+ * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
+ *
+ * @version 1.0
+ * @author TCSASSEMBLER
+ *
+ * some description to the source file here............
+ *
+ */
+
+/* new style for searchbox begin---------------------- */
+
+/*overrighting css begin---------------*/
+ .searchFilter input[type=text]:disabled,
+ input[type=text]:disabled, select:disabled {
+    background: none;
+}
+.challenge-type-selector {
+    width: 25%;
+    max-width: 247px;
+    margin-right: 2%;
+}
+
+.challenge-type-selector .select2-container {
+    border: 1px solid #e7e7e7;
+}
+
+.platform-selector {
+    width: 15%;
+    max-width: 150px;
+    margin-right: 2%;
+}
+.platform-selector .select2-container {
+    margin-right: 10px;
+    border: 1px solid #e7e7e7;
+}
+.technology-selector {
+    width: 15%;
+    max-width: 150px;
+    margin-right: 2%;
+}
+.technology-selector .select2-container {
+    border: 1px solid #e7e7e7;
+}
+
+.select2-chosen{
+    color: #666 !important;
+}
+.select2-container .select2-choice {
+    background: #ffffff !important;
+    border: none !important;
+    height: 37px !important;
+    line-height: 37px !important;
+}
+.filter-dropdown .select2-container.select2-allowclear .select2-choice abbr {
+    display: none !important;
+}
+.select2-container-active .select2-choice {
+    box-shadow: none !important;
+}
+    .select2-container .select2-choice span {
+        margin: 0 !important;
+    }
+    .select2-container .select2-choice div {
+        display: none !important;
+    }
+    .select2-container .select2-choice .select2-arrow {
+        display: block !important;
+        width: 11px !important;
+        height: 7px !important;
+        background: url("../i/icon-filter.png") no-repeat 0 0 !important;
+        right: 10px !important;
+        top: 14px !important;
+        position: absolute !important;
+        border: none !important;
+    }
+.select2-drop {
+    box-shadow: none !important;
+    width: 336px !important;
+    margin-top: -1px !important;
+    border-radius: 0 !important;
+    height: auto;
+    !important;
+    overflow: auto !important;
+}
+.select2-drop.select-drop-active {
+    background: #fff !important;
+    border: 1px solid #e7e7e7 !important;
+    position: absolute !important;
+    top: 100%;
+    box-shadow: none !important;
+    z-index: 999;
+}
+.select2-drop-active {
+    border: 1px solid #e7e7e7 !important;
+}
+.select2-search {
+    padding: 13px 16px 16px 10px !important;
+}
+    .select2-drop .select2-search input {
+        height: 37px !important;
+        background: #ffffff !important;
+        border: 1px solid #e7e7e7 !important;
+        border-radius: 4px !important;
+        padding: 0 !important;
+        text-indent: 12px;
+    }
+.select2-results {
+    margin: 0 !important;
+    padding: 0 0 0 0 !important;
+}
+    .select2-results li {
+        height: 44px !important;
+        line-height: 44px !important;
+        padding: 0 4px 0 4px !important;
+        color: #666666;
+    }
+    .select2-results li:last-child .select2-result-label,
+    .select2-results li.select2-highlighted .select2-result-label{
+        border-bottom: none;
+    }
+    .select2-results .select2-highlighted {
+        background: #ff9900 !important;
+        color: #fff !important;
+    }
+        .select2-results .select2-result-label{
+            border-bottom: 1px solid #e7e7e7;
+            padding: 0 0 0 15px !important;
+            position: relative;
+            top: -3px;
+            height: 46px;
+            line-height: 48px;
+        }
+.select2-container .select2-choice > .select2-chosen {
+    font-size: 13px !important;
+}
+/*overrighting css end---------------*/
+
+/* filter styles begin --------------*/
+
+
+/*new filter search customization css */
+.actions .subscribeTopWrapper .feedBtn {
+    margin-top: 0;
+}
+.landingChallenges .actions .challengeType {
+    width: auto;
+}
+.clear {
+    clear: both;
+}
+.new-search-box {
+    width: 100%;
+    display: block;
+    height: auto;
+    position: relative;
+    border: 1px solid #e1e1e1;
+    border-bottom: 0;
+}
+    .new-search-box input.search-text {
+        height: 30px;
+    }
+input.search-text::-webkit-input-placeholder {
+    font-weight: 400;
+    font-size: 14px;
+    font-family:"Source Sans Pro", Arial, Helvetica, sans-serif;
+    color: #a0a0a0;
+    font-style:italic;
+}
+    input.search-text::-moz-placeholder {
+        font-weight: 400;
+        font-size: 14px;
+        font-family:"Source Sans Pro", Arial, Helvetica, sans-serif;
+        color: #a0a0a0;
+        font-style:italic;
+    }
+        input.search-text::-ms-input-placeholder {
+            font-weight: 400;
+            font-size: 14px;
+            font-family:"Source Sans Pro", Arial, Helvetica, sans-serif;
+            color: #a0a0a0;
+            font-style:italic;
+        }
+        .date-picker-wrapper .picker-text{
+            font-size: 13px;
+            margin-top: 8px;
+            margin-left: 8px;
+            display: block;
+            float: left;
+            color: #666;
+            font-weight: normal;
+        }
+.select2-input::-webkit-input-placeholder {
+    font-size: 14px;
+    color: #b6b6b6;
+}
+.select2-input::-moz-placeholder {
+    font-size: 14px;
+    color: #b6b6b6;
+}
+/* firefox 19+ */
+ .select2-input::-ms-input-placeholder{
+    font-size: 14px;
+    color: #b6b6b6;
+ }
+/* ie */
+ {
+    font-style:italic;
+}
+.new-search-box input.search-text {
+    width: 95%;
+    background: #fff;
+    border: none;
+    display: block;
+    margin-left: 10px;
+}
+    .searchLink {
+        padding: 4px 9px 5px 35px;
+        background: url(../i/ico-zoom.png) 8px 4px no-repeat;
+        line-height: 20px;
+        border: 1px solid transparent;
+        border-bottom: 0;
+        position: absolute;
+        right: 0;
+        top: 5px;
+        height: 17px;
+    }
+.layChallenges .actions {
+    border-bottom: 0;
+}
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+.selected-tags {
+    padding-left: 8px;
+    padding-right: 10px;
+}
+     .selected-tags .wrapper {
+        border-top: 1px dotted #e7e7e7;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+        .selected-tags ul.tags {
+            width: 89%;
+        }
+            .selected-tags li.left .selecting-tag-wrapper {
+                height: 30px;
+                background: #ff9900;
+                margin-right: 10px;
+                font-size: 14px;
+                color: #fff;
+                border-radius: 5px;
+            }
+                .selected-tags li span.tag-close,
+                .selected-tags li span.tag-closedate,
+                .selected-tags li span.tag-close-allchallenge,
+                .selected-tags li span.tag-close-allplatform,
+                .selected-tags li span.tag-close-alltechnology {
+                    margin-left: 8px;
+                    margin-right: 6px;
+                    margin-top: 11px;
+                    background: url("../i/close-tag.png") no-repeat;
+                    display: block;
+                    width: 7px;
+                    height: 7px;
+                    cursor: pointer;
+                }
+.selected-tag {
+    margin: 5px 0 0 10px;
+    line-height: 28px;
+}
+.closetag a {
+    color:#a0a0a0;
+    font-size: 14px;
+}
+    .closetag span {
+        color: #000;
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 14px;
+        margin-right: 3px;
+        position: relative;
+        top: -1px;
+    }
+/*Begin filter dropd own style*/
+ .filter-dropdown {
+    background: #eeeeee;
+    border-top: 1px solid #e1e1e1;
+    border-bottom: 1px solid #e1e1e1;
+    height: 50px;
+    margin-bottom: 15px;
+}
+    .filter-dropdown .wrapper {
+        padding: 6px 7px;
+    }
+        .select2-result-selectable .select2-match,
+        .select2-result-unselectable .select2-match {
+            font-weight: bold;
+        }
+.select2-results {
+    max-height: 307px !important;
+}
+.platform .select2-results{
+    max-height: 225px;
+}
+.select2-drop {
+    background:
+}
+/*End filter dropdown style*/
+
+/*begin date picker */
+.date-picker-wrapper {
+    width: 25%;
+    max-width: 218px;
+    margin-right: 2%;
+    overflow: hidden;
+}
+    .date-picker-wrapper .date-text {
+        border-radius: 5px;
+        height: 37px;
+        background: #ffffff;
+        border: 1px solid #e7e7e7;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+        .date-picker-wrapper .date-text input[type="text"] {
+            border: none;
+        }
+            .date-picker-wrapper input[type="text"].datepickerss {
+                width: 74%;
+                line-height: 20px;
+                margin-top: 2px;
+            }
+                .date-picker-wrapper input[type="text"] {
+                    border: 1px solid #e7e7e7;
+                    margin: 0 6px 0 2px;
+                }
+.datepicker-icon {
+    display: block;
+    width: 28px;
+    height: 28px;
+    background: url("../i/icon-filter.png") no-repeat 0 -18px;
+    position: relative;
+    top: 3px;
+}
+.pickers {
+    border: 1px solid #e7e7e7;
+    background: #fff;
+    padding: 16px 10px;
+    display: none;
+    width: 658px;
+    height: auto;
+    position: absolute;
+    z-index : 100001;
+}
+.pickers-wrapper{
+    position: relative;
+    margin-bottom: 4px;
+}
+.from-text-box,
+.to-text-box {
+    position: relative;
+    width: 169px;
+    height: 37px;
+    border: 1px solid #e7e7e7;
+    border-radius: 5px;
+}
+.from-text-box {
+    margin-right: 10px;
+}
+.to-text-box {
+    position: relative;
+    left: 10px;
+}
+.date-picker-wrapper .pickers input[type="text"].from-picker-text,
+.date-picker-wrapper .pickers input[type="text"].to-picker-text {
+    width:50%;
+    border: none;
+    margin-top: 3px;
+    color: #666;
+}
+.limit-label {
+    color: #b6b6b6;
+    margin: 10px;
+}
+.datepic-head {
+    line-height: 36px;
+    font-size: 14px;
+    color: #ff9900;
+    margin-right: 18px;
+}
+.from-datepicker.hasDatepicker{
+    display: block;
+    float: left;
+    position: relative;
+}
+.from-datepicker .ui-datepicker {
+    left: 0;
+    margin-right: 10px;
+    top: 10px;
+    position: relative;
+    display: block;
+    float: left;
+}
+.to-datepicker.hasDatepicker{
+    position: relative;
+    display: block;
+    float: left;
+}
+.to-datepicker .ui-datepicker {
+    top: 10px;
+    position: relative;
+    float: left;
+    display: block;
+}
+.date-ranges .selected-range{
+    line-height: 28px;
+}
+/*.quick-pick{
+        margin-left: 20px;
+    }*/
+ .quick-pick-list {
+    position: relative;
+    margin-left: 15px;
+}
+    .quick-pick-list li {
+        width: 133px;
+        height: 30px;
+        display: block;
+        margin-bottom: 5px;
+    }
+        .quick-pick-list li a {
+            width: 133px;
+            height: 30px;
+            display: block;
+            color: #01a8e9;
+            line-height: 29px;
+            padding-left: 10px;
+            background: #eeeeee;
+            margin-bottom: 5px;
+            font-weight: 400;
+        }
+.picker-cal {
+    position: relative;
+}
+.select2-drop-mask {
+    z-index: 0 !important;
+}
+/*filter styles end -----------------*/
+
+/*selected tags styles */
+ .closetag a {
+    line-height: 35px;
+}

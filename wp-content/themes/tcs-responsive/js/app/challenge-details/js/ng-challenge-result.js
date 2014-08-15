@@ -3,14 +3,14 @@
  */
 $(document).ready(function () {
   $(".link").click(function(){
-      if($(this).attr("href") === "#winner"){
+      if($(this).attr("href") === "#winner" || $(this).attr("href") === "#submissions"){
         updateTabForResults();
       } else {
         updateTabForNonResults();
       }
-    });   
+    });
     $('a[href="' + getAnchor(location.href) + '"]').click();
-    
+
     var tcjwt = getCookie('tcjwt');
 
     if (challengeType) {
@@ -30,14 +30,14 @@ function initDevelopResult(tcjwt) {
 function initDesignResult(tcjwt) {
   $(".challenge-detail").addClass("design");
 }
-  
+
 function updateTabForResults(){
   $(".challenge-detail").addClass("view-challenge-result");
   $(".container .rightSplit.grid-3-3").removeClass("grid-3-3");
   $(".columnSideBar").hide();
   $(".topRightTitle").insertAfter(".designSecondTabNav");
 }
-  
+
 function updateTabForNonResults(){
   $(".challenge-detail").removeClass("view-challenge-result");
   $(".container .rightSplit").addClass("grid-3-3");

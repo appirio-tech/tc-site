@@ -37,6 +37,7 @@ function tc_load_config() {
     _tc_local_config_define('TC_USE_MIN', $config_map['useMin']);
     _tc_local_config_define('TC_USE_VER', $config_map['useVer']);
     _tc_local_config_define('TC_CDN_VER', $config_map['version']);
+    _tc_local_config_define('TC_CDN_GZ', $config_map['useGz']);
 }
 
 function _tc_local_config_define($def, $option) {
@@ -58,5 +59,6 @@ function tc_config_defaults() {
         'useMin' => false,
         'useVer' => false,
         'version' => time(),
+        'useGz' => false
     );
 }

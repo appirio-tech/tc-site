@@ -2,15 +2,13 @@
 // @TODO is the result from service.one(challengeType).one('challenges').one('result', id) cached?
 // @TODO change to new API endpoints: http://api.topcoder.com/v2/challenges/30041860.  the type is no longer needed
 // @TODO look to combine this service with the challenge already defined.
-cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', '$cookies', function(Restangular, API_URL, $q, $cookies) {
-
+cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', '$cookies', '$window', function(Restangular, API_URL, $q, $cookies, $window) {
   var service = Restangular.withConfig(function(RestangularConfigurer) {
     RestangularConfigurer.setBaseUrl(API_URL);
 
     // request config
     //RestangularConfigurer.setDefaultHttpFields({'withCredentials': true});
 
-    
     // tcjwt cookie
     if ($cookies.tcjwt) {
       //We need to send auth header for challenge details if cookie is set, otherwise challenge document info is not included in API response
@@ -66,6 +64,12 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', '$cookies', f
 
   service.getChallenge = function(id) {
     var defer = $q.defer();
+    //currently topcoder API server does not have CORS setup properly so we get a CORS error instead of proper error response when requesting an invalid challengeId
+    //so we handle the CORS error with a redirect to 404 with an ErrorInterceptor
+    service.setErrorInterceptor(function(response, deferred, responseHandler) {
+      $window.location.href = '/404';
+      return false;
+    });
     service.one(challengeType).one('challenges').getList(id).then(function(challenge) {
       challenge = challenge[0];
       var submissionMap = {};

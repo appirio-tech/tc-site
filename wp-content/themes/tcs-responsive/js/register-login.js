@@ -456,7 +456,7 @@ $(function () {
     handleDeferred = $.Deferred();
   });
 
-  $('select').customSelect();
+  $('select.applyCustomSelect').customSelect();
 
   $('#register a.btnSubmit').on('click', function () {
     var isValid = true;
@@ -627,6 +627,14 @@ $(function () {
               $('.modal').hide();
               $("#thanks h2").html('Thanks for Registering');
               $("#thanks p").html('We have sent you an email with activation instructions.<br>If you do not receive that email within 1 hour, please email <a href="mailto:support@topcoder.com">support@topcoder.com</a>');
+              if (tcAction) {
+                var tcDoAction = tcAction.split('|');
+                if (tcDoAction[0] === 'register') {
+                  //append challenge registration message
+                  $("#thanks p").after("<div style='padding-bottom: 30px'>In order to register for the selected challenge, you must return to the <a href='/challenge-details/" + tcDoAction[1] + "/?type=" + challengeType + "'>challenge details page</a> after you have activated your account.</div>");
+                  $('#thanks p').css({'padding-bottom': '10px'});
+                }
+              }
               showModal('#thanks');
               $('#registerForm .invalid').removeClass('invalid');
               $('#registerForm .valid').removeClass('valid');
@@ -737,6 +745,18 @@ $(function () {
     showModal('#register');
   });
 
+  /*check if on registration complete page and add challenge detail link - currently only way to this since 
+   *entire page content exists in WP database using generic template*/
+  if ($('.thank-you').length) {
+    var tcAction = getCookie('tcDelayChallengeAction');
+    if (tcAction) {
+      var tcActionValues = tcAction.split('|');
+      if (typeof tcActionValues[2] !== 'undefined' && tcActionValues[0] === 'register' && tcActionValues[2] !== '') {
+          //add link to challenge-details page for challenge new user tried to register for before making topcoder account
+          $('.thank-you').append("<h4>Are you still interested in participating in the <br>&quot;" + decodeURIComponent(tcActionValues[2]) + "&quot; challenge? <br>If so, <a href='/challenge-details/" + tcActionValues[1] + "/register/'>go there now!</a></h4>");
+        }
+    }
+  }
 });
 
 // modal

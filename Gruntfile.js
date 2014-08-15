@@ -16,6 +16,7 @@ module.exports = function(grunt) {
 
   var themeCSS = 'wp-content/themes/tcs-responsive/css/';
   var themeJS = 'wp-content/themes/tcs-responsive/js/';
+  var themeAnnotate = 'wp-content/themes/tcs-responsive/dist/annotate/wp-content/themes/tcs-responsive/js/';
 
   grunt.registerTask('updateJsonConfig', function() {
     // Get env config from options
@@ -30,7 +31,8 @@ module.exports = function(grunt) {
       useCND: grunt.option('use-cdn') || false,
       useMin: grunt.option('use-min') || false,
       useVer: grunt.option('use-ver') || false,
-      version: grunt.option('cdn-version') || Date.now()
+      version: grunt.option('cdn-version') || Date.now(),
+      useGz: grunt.option('use-gz') || false
     };
 
     // Write config to file
@@ -90,7 +92,8 @@ module.exports = function(grunt) {
     },
     uglify: {
       options: {
-        banner: '<%= banner %>'
+        banner: '<%= banner %>',
+        mangle: false
       },
       js: {
         files: {
@@ -103,6 +106,25 @@ module.exports = function(grunt) {
           '<%= build.themeDist %>/js/ngChallenges.min.js': addBaseFilePath(pkg_config.packages.ngChallenges.js, themeJS),
           '<%= build.themeDist %>/js/ng-member-profile.min.js': addBaseFilePath(pkg_config.packages['ng-member-profile'].js, themeJS)
         }
+      }
+    },
+    ngAnnotate: {
+      options: {
+        singleQuotes: true
+      },
+      js: {
+        files: [
+          {
+            expand: true,
+            add: true,
+            remove: true,
+            src: [
+              '<%= build.themeJs %>/**/*.js',
+              '!<%= build.themeJs %>/app/challenges/jsx/**'
+            ],
+            dest: '<%= build.themeDist %>/annotate'
+          }
+        ]
       }
     },
     clean: ['<%= build.themeDist %>/'],
