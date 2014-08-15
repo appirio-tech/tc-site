@@ -14,6 +14,10 @@ $siteURL = site_url ();
 ?>
 <script type="text/javascript">
 	var siteurl = "<?php bloginfo('siteurl');?>";
+  $('.btnRegister').remove();
+  setTimeout(function() {
+    $('.modal #registerForm').remove();
+  }, 1000);
 </script>
 
 <div class="content">
@@ -115,7 +119,7 @@ $siteURL = site_url ();
 
 								<p class="row">
 								<label>Country</label>
-								<select id="selCountry" name="user.country">
+								<select id="selCountry" class="applyCustomSelect" name="user.country">
 								  <option value="">Please Select</option>
 								  <option value="Afghanistan">Afghanistan</option>
 								  <option value="Albania">Albania</option>

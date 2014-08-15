@@ -12,14 +12,14 @@ angular.module('tc.SubmissionDirectives', [])
  * @ImageService to preload the image.
  */
 
-.directive('tcFullScreen', function (ImageService) {
+.directive('tcFullScreen', ['ImageService', function (ImageService) {
   return {
     restrict: 'A',
     link: function(scope, element, attr){
       return new TcFullScreenLinker(scope, element, attr, ImageService);
     }
   }
-})
+}])
 /**
  *The directive which enable the jsScrollPane for given div.
  */

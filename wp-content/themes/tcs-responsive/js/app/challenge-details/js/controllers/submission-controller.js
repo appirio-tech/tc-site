@@ -26,7 +26,12 @@ var SubmissionCtrl = function (TEMPLATE_URL, $scope, SubmissionServices) {
        *
        * To simulate private challenge, set mockSubmissionsViewable to false.
        */
-      $scope.challenge.submissionsViewable = subCtrl.mockSubmissionsViewable;
+      if (!$scope.challenge.submissionsViewable || $scope.challenge.submissionsViewable == 'false') {
+        $scope.challenge.submissionsViewable = false;
+      } else {
+        $scope.challenge.submissionsViewable = true;
+      }
+      subCtrl.submissionsViewable = $scope.challenge.submissionsViewable;
 
       if(subCtrl.hasSubmission($scope.challenge.submissions)){
         subCtrl.submissionPagedItems = subCtrl.pagination($scope.challenge.submissions);
@@ -137,6 +142,7 @@ SubmissionCtrl.prototype.selectPreview = function(index){
  */
 SubmissionCtrl.prototype.viewSubmission = function(submission){
   var subCtrl = this;
+  if (!subCtrl.submissionsViewable) return;
   /*
    * Currently API does not provide us the total number of images,
    * so we don't know what is max value FileIndex.numOfImages field
@@ -183,3 +189,4 @@ SubmissionCtrl.prototype.loadImages = function(total, type, id){
  * Register the controller into Angular <code>cdapp</code> module.
  */
 cdapp.controller('SubmissionCtrl', SubmissionCtrl);
+SubmissionCtrl.$inject = ['TEMPLATE_URL', '$scope', 'SubmissionServices'];

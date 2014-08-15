@@ -456,7 +456,7 @@ $(function () {
     handleDeferred = $.Deferred();
   });
 
-  $('select').customSelect();
+  $('select.applyCustomSelect').customSelect();
 
   $('#register a.btnSubmit').on('click', function () {
     var isValid = true;
@@ -624,7 +624,6 @@ $(function () {
 
           $.post(ajaxUrl + '?action=post_register', fields, function (data) {
             if (data.code == "200") {
-              var tcAction = getCookie('tcDelayChallengeAction');
               $('.modal').hide();
               $("#thanks h2").html('Thanks for Registering');
               $("#thanks p").html('We have sent you an email with activation instructions.<br>If you do not receive that email within 1 hour, please email <a href="mailto:support@topcoder.com">support@topcoder.com</a>');
