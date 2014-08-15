@@ -267,17 +267,13 @@ input.search-text::-webkit-input-placeholder {
                     white-space: nowrap;
                 }
 
-                .selected-tags li span.tag-close{
-                    position: absolute;
-                    right: -20px;
-                }
-
-
                 .selected-tags li span.tag-close,
                 .selected-tags li span.tag-closedate,
                 .selected-tags li span.tag-close-allchallenge,
                 .selected-tags li span.tag-close-allplatform,
                 .selected-tags li span.tag-close-alltechnology {
+                    position: absolute;
+                    right: -20px;
                     margin-left: 8px;
                     margin-right: 6px;
                     margin-top: 11px;
