@@ -632,7 +632,7 @@ $(function () {
                 var tcDoAction = tcAction.split('|');
                 if (tcDoAction[0] === 'register') {
                   //append challenge registration message
-                  $("#thanks p").after("<div style='padding-bottom: 30px'>In order to register for the selected challenge, you must return to the <a href='/challenge-details/" + tcDoAction[1] + "/'>challenge details page</a> after you have activated your account.</div>");
+                  $("#thanks p").after("<div style='padding-bottom: 30px'>In order to register for the selected challenge, you must return to the <a href='/challenge-details/" + tcDoAction[1] + "/?type=" + challengeType + "'>challenge details page</a> after you have activated your account.</div>");
                   $('#thanks p').css({'padding-bottom': '10px'});
                 }
               }
