@@ -57,9 +57,10 @@ if ($contestType == 'all') {
         //$content = apply_filters('the_content', $content);
         $content = str_replace(']]>', ']]&gt;', $content);
         //$content = apply_filters('the_content_feed', $content, 'rss2');
+        $name = trim($contest->challengeName)
         ?>
         <item>
-          <title><?php echo $contest->challengeName ?></title>
+          <title><?php echo $name ?></title>
           <link><?php echo "{$base_url}/{$contest->challengeId}?type={$contest->challengeType}" ?></link>;
           <description><![CDATA[<?php echo $content ?>]]></description>
           <content:encoded><![CDATA[<?php echo $content ?>]]></content:encoded>
