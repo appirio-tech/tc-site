@@ -361,9 +361,9 @@ $(function () {
     } else {
       $(this).parents(".row").find("span.valid").hide();
 
-  	  // Issue ID: I-111588 - Show invalid error message when value is empty after being changed
-	  $(this).closest('.row').find('.err1').show();
-	  $(this).closest('.row').find('.customSelect').addClass('invalid');
+      // Issue ID: I-111588 - Show invalid error message when value is empty after being changed
+      $(this).closest('.row').find('.err1').show();
+      $(this).closest('.row').find('.customSelect').addClass('invalid');
     }
   });
 
@@ -607,15 +607,13 @@ $(function () {
             handle: $('#registerForm input.handle').val(),
             country: $('#registerForm select#selCountry').val(),
             email: $('#registerForm input.email').val(),
-            utmSource: utmSource,
-            utmMedium: utmMedium,
-            utmCampaign: utmCampaign
-          }
+            curUrl: window.location.href
+          };
           if ((typeof socialProviderId != 'undefined') && socialProviderId !== "") {
             fields.socialProviderId = socialProviderId;
             fields.socialUserId = socialUserId;
-            fields.socialProvider = socialProvider,
-              fields.socialUserName = socialUserName;
+            fields.socialProvider = socialProvider;
+            fields.socialUserName = socialUserName;
             fields.socialEmail = socialEmail;
             fields.socialEmailVerified = "t";
           } else {
@@ -624,14 +622,18 @@ $(function () {
 
           $.post(ajaxUrl + '?action=post_register', fields, function (data) {
             if (data.code == "200") {
-              $('.modal').hide();
-              $("#thanks h2").html('Thanks for Registering');
-              $("#thanks p").html('We have sent you an email with activation instructions.<br>If you do not receive that email within 1 hour, please email <a href="mailto:support@topcoder.com">support@topcoder.com</a>');
-              showModal('#thanks');
-              $('#registerForm .invalid').removeClass('invalid');
-              $('#registerForm .valid').removeClass('valid');
-              $('.err1,.err2', frm).hide();
-              resetRegisterFields();
+              if (data.data && data.data.body.next) {
+                window.location.href = data.data.body.next;
+              } else {
+                $('.modal').hide();
+                $("#thanks h2").html('Thanks for Registering');
+                $("#thanks p").html('We have sent you an email with activation instructions.<br>If you do not receive that email within 1 hour, please email <a href="mailto:support@topcoder.com">support@topcoder.com</a>');
+                showModal('#thanks');
+                $('#registerForm .invalid').removeClass('invalid');
+                $('#registerForm .valid').removeClass('valid');
+                $('.err1,.err2', frm).hide();
+                resetRegisterFields();
+              }
             }
             else {
               //$('.modal').hide();
