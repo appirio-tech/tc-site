@@ -1672,8 +1672,19 @@ var app = {
         });
       }
     }
+  },
+  getParameterByName: function(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+    var results = regex.exec(location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  },
+  getHashParameterByName: function(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\#&]" + name + "=([^&#]*)");
+    var results = regex.exec(location.hash);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
   }
-
 };
 var blueprints = {
   challengeRow: '<tr> \

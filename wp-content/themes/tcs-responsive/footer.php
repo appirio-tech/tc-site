@@ -721,6 +721,11 @@ $blog_posts = get_posts($blog_posts_args);
         loginState = window.location.href;
       }
 
+      // Override call back with next param if it exist
+      var nextLoc = getParameterByName('next');
+      if (nextLoc) {
+       loginState = nextLoc;
+      }
     }
 
     var auth0Login = new Auth0({
@@ -728,7 +733,7 @@ $blog_posts = get_posts($blog_posts_args);
       clientID: '<?php echo auth0_clientID(); ?>',
       callbackURL: '<?php echo auth0_callbackURL(); ?>',
       state: loginState,
-      redirect_uri: window.location.href
+      redirect_uri: loginState
     });
 
     var auth0Register = new Auth0({
@@ -736,7 +741,7 @@ $blog_posts = get_posts($blog_posts_args);
       clientID: '<?php echo auth0_clientID(); ?>',
       callbackURL: '<?php echo tc_reg_callback(); ?>',
       state: loginState,
-      redirect_uri: window.location.href
+      redirect_uri: loginState
     });
 
     auth0Register.getProfile(window.location.hash, function (err, profile, id_token, access_token, state) {
