@@ -10,7 +10,7 @@ $values = get_post_custom ( $post->ID );
 $userkey = get_option ( 'api_user_key' );
 $siteURL = site_url ();
 
-function tc_registration_js() {
+function tc_registration_footer_js() {
   ?>
   <script type="text/javascript">
     var siteurl = "<?php bloginfo('siteurl');?>";
@@ -18,13 +18,7 @@ function tc_registration_js() {
     setTimeout(function() {
       $('.modal #registerForm').remove();
     }, 1000);
-  </script>
-<?php
-}
 
-function tc_registration_footer_js() {
-  ?>
-  <script type="text/javascript">
     // If user is logged in then redirect to the correct page
     if (app.isLoggedIn()) {
       // redirect to either next or referer
@@ -40,7 +34,6 @@ function tc_registration_footer_js() {
 <?php
 }
 
-add_action('wp_head', 'tc_registration_js');
 add_action('wp_footer', 'tc_registration_footer_js', 10000);
 
 ?>
