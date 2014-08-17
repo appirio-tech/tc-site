@@ -2509,7 +2509,7 @@ hr.light {
 #searchWidget{
     position: absolute;
     top: 33px;
-    margin-left: -100px;
+    margin-left: -111px;
     width: 410px;
     height: 140px;
     border-top: 3px solid #0096ff;
@@ -2608,6 +2608,7 @@ hr.light {
     vertical-align: middle;
     border: 1px solid #e7e7e7;
     height: 35px;
+	font-size:15px;
 }
 #searchMemberWrapper #memberSearchTable td.header{
     font-weight: bold;
