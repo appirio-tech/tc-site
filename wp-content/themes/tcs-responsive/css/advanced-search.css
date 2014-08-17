@@ -208,7 +208,7 @@ input.search-text::-webkit-input-placeholder {
     font-style:italic;
 }
 .new-search-box input.search-text {
-    width: 95%;
+    width: calc(100% - 60px);
     background: #fff;
     border: none;
     display: block;
