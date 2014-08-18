@@ -81,7 +81,7 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', '$window', '$c
     $scope.isDesign = $scope.challengeType == 'design';
     addthis_share = {url: location.href, title: challengeName};
     $('#cdNgMain').removeClass('hide');
-    if (challenge.currentStatus != 'Stalled' && challenge.checkpointSubmissionEndDate && challenge.checkpointSubmissionEndDate != '') {
+    if (challenge.currentPhaseName != 'Stalled' && challenge.checkpointSubmissionEndDate && challenge.checkpointSubmissionEndDate != '') {
       ChallengeService.getCheckpointData(challengeId).then(function(data) {
           if (data && !data.error) {
             $scope.checkpointData = data;
@@ -179,7 +179,7 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', '$window', '$c
       if (submissionMap[x.handle]) x.submissionStatus = submissionMap[x.handle].submissionStatus;
     });
 
-    if (challenge.currentStatus == 'Completed' || challenge.currentPhaseEndDate == '') {
+    if (challenge.currentPhaseName != 'Stalled' && (challenge.currentStatus == 'Completed' || challenge.currentPhaseEndDate == '')) {
       ChallengeService.getResults(challengeId).then(function(results) {
         $scope.results = results;
         $scope.firstPlaceSubmission = results.firstPlaceSubmission;
@@ -225,9 +225,6 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', '$window', '$c
           $scope.initialScoreSum += x.initialScore;
           $scope.finalScoreSum += x.finalScore;
         });
-        //console.log('init and fina');
-        //console.log($scope.initialScoreSum);
-        //console.log($scope.finalScoreSum);
         $scope.winningSubmissions = [];
         var winnerMap = {};
         for (var i = 0; i < $scope.submissions.length; i++) {
