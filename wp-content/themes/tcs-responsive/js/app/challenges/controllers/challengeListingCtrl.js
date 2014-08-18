@@ -56,7 +56,8 @@
             .then(function (data) {
               $scope.challenges = data;
               $scope.pagination = data.pagination;
-              $location.search('pageIndex', data.pagination.pageIndex)
+              $location.search('pageIndex', data.pagination.pageIndex);
+              $scope.pagination.last = Math.min($scope.pagination.total,$scope.pagination.pageIndex*$scope.pagination.pageSize);
             }, function () {
               $scope.challenges = [];
             });

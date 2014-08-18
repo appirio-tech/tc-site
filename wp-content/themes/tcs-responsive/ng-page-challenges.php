@@ -110,6 +110,27 @@ get_header(); ?>
             There are no upcoming challenges at this time. Please check back later.
           </h3>
         </div>
+        <div class="dataChanges">
+          <div class="lt">
+            <span ng-show="pagination.last">{{(pagination.pageIndex-1)*pagination.pageSize+1}}-{{pagination.last}} of {{pagination.total}}</span><span ng-show="challenges.length < pagination.total && contest.listType != 'past'"> | </span><a class="viewAll" ng-show="challenges.length < pagination.total && contest.listType != 'past'" ng-click="all()">View All</a>
+          </div>
+          <div id="challengeNav" class="rt">
+            <a class="prevLink" ng-show="pagination.pageIndex > 1" ng-click="prev()">
+              <i></i> Prev
+            </a>
+            <a class="nextLink" ng-show="pagination.total > pagination.pageIndex * pagination.pageSize" ng-click="next()">
+              Next <i></i>
+            </a>
+          </div>
+          <div class="mid onMobi">
+            <a ng-hide="contest.listType === 'active'" href="/challenges/develop/active/" class="viewActiveCh">
+              View Active Challenges<i></i>
+            </a>
+            <a ng-hide="contest.listType === 'past'" href="/challenges/develop/past/" class="viewPastCh">
+              View Past Challenges<i></i>
+            </a>
+          </div>
+        </div>
         <div ng-show="challenges.length > 0">
           <div id="tableView" class="viewTab" ng-show="view == 'table'">
             <div class="tableWrap tcoTableWRap dataTable tcoTable challengesGrid" ng-grid="gridOptions"></div>
@@ -123,7 +144,7 @@ get_header(); ?>
         </div>
         <div class="dataChanges">
           <div class="lt">
-            <a class="viewAll" ng-show="challenges.length < pagination.total && contest.listType != 'past'" ng-click="all()">View All</a>
+            <span ng-show="pagination.last">{{(pagination.pageIndex-1)*pagination.pageSize+1}}-{{pagination.last}} of {{pagination.total}}</span><span ng-show="challenges.length < pagination.total && contest.listType != 'past'"> | </span><a class="viewAll" ng-show="challenges.length < pagination.total && contest.listType != 'past'" ng-click="all()">View All</a>
           </div>
           <div id="challengeNav" class="rt">
             <a class="prevLink" ng-show="pagination.pageIndex > 1" ng-click="prev()">
