@@ -81,7 +81,7 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', '$window', '$c
     $scope.isDesign = $scope.challengeType == 'design';
     addthis_share = {url: location.href, title: challengeName};
     $('#cdNgMain').removeClass('hide');
-    if (challenge.checkpointSubmissionEndDate && challenge.checkpointSubmissionEndDate != '') {
+    if challenge.currentStatus != 'Stalled' && (challenge.checkpointSubmissionEndDate && challenge.checkpointSubmissionEndDate != '') {
       ChallengeService.getCheckpointData(challengeId).then(function(data) {
           if (data && !data.error) {
             $scope.checkpointData = data;
