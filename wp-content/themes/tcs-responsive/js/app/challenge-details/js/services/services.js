@@ -86,6 +86,7 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', '$cookies', '
         }
       });
 
+      challenge.registrants = challenge.registrants || [];
       challenge.registrants.map(function(x) {
         //initialize submissionStatus on all registrants
         x.submissionStatus = '';
