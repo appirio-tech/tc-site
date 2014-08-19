@@ -724,7 +724,7 @@
         float: left;
 }   
     #mainContent .dataChanges .nextLink i{
-        top: 2px;
+        top: 4px;
     }
     #mainContent .dataChanges .prevLink{
         display: inline-block;   
@@ -736,7 +736,7 @@
         display: none;
     }
     #mainContent .dataChanges .prevLink i{
-        top: 2px;
+        top: 4px;
     }
 /* data table */
 .dataTable{
