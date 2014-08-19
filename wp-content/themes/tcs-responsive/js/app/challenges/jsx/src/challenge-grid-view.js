@@ -117,7 +117,7 @@
             <a href={"/challenge-details/" +challenge.challengeId+"/?type="+challenge.challengeCommunity} className="contestName">
               <img alt="" className="allContestIco" src={images + '/ico-track-' + challenge.challengeCommunity + '.png'} />
               <span className="gridChallengName">{challenge.challengeName}</span>
-              <img alt="" className="allContestTCOIco" src={images + '/tco-flag-' + challenge.challengeCommunity + '.png'} />
+              <img alt="" className={challenge.challengeCommunity != 'data' ? "allContestTCOIco" : "allContestTCOIco ng-hide"} src={images + '/tco-flag-' + challenge.challengeCommunity + '.png'} />
               <Qtip text={challenge.challengeType} title="Challenge Type" community={challenge.challengeCommunity}>
                 <span className="track-symbol">{track.toUpperCase()}</span>
               </Qtip>
@@ -153,16 +153,6 @@
               <div className={classNames[challengeCombo].currentStatus !== undefined ? 'row':'row ng-hide'}>
                  <label className="lbl">Current Status</label>
                  <div className="val vStatus">{challenge.status}</div>
-              </div>
-              <div className={classNames[challengeCombo].techUpcoming !== undefined ? 'row':'row ng-hide'}>
-                <label className="lbl">Technologies</label>
-                <div className={challenge.technologies === undefined || challenge.technologies.length === 0 ? 'val vTech' : 'val vTech ng-hide'}>
-                  <span>N/A</span>
-                </div>
-                <div className={challenge.technologies !== undefined || challenge.technologies.length !== 0 ? 'technologyTags' : 'technologyTags ng-hide'}>
-                  <ChallengeTechsList challenge={challenge} scope={scope}/>
-                </div>
-                <div className="clear"></div>
               </div>
             </div>
           </div>

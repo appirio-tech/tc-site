@@ -78,7 +78,7 @@ get_header(); ?>
               <a class="feedBtn" target="_self" href="/challenges/feed?list=active&contestType={{contest.contestType || 'all'}}" title="Subscribe to challenges"></a>
             </span>
           </h1>
-          <aside class="rt" ng-show="contest.listType !== 'past' && contest.contestType !== 'data'">
+          <aside class="rt">
             <span class="views">
               <a href="" ng-click="view = 'grid'" class="gridView" ng-class="{isActive: view == 'grid'}"></a>
               <a href="" ng-click="view = 'table'" class="listView" ng-class="{isActive: view == 'table'}"></a>
