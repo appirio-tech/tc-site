@@ -72,7 +72,7 @@
             registerBy : true,
             submitBy : true,
             currentStatus : true,
-            techUpcoming : true,
+            tech : true,
             gdUpcoming : true
           },
           develop_active: {
@@ -92,7 +92,7 @@
             roundEnd : true,
             endDate : true,
             currentStatus : true,
-            techUpcoming : true,
+            tech : true,
             gdUpcoming : true
           },
           data_active: {
@@ -153,7 +153,7 @@
               React.DOM.div( {className:classNames[challengeCombo].currentStatus !== undefined ? 'row':'row ng-hide'}, 
                  React.DOM.label( {className:"lbl"}, "Current Status"),
                  React.DOM.div( {className:"val vStatus"}, challenge.status)
-              ),
+              )/*,
               React.DOM.div( {className:classNames[challengeCombo].techUpcoming !== undefined ? 'row':'row ng-hide'}, 
                 React.DOM.label( {className:"lbl"}, "Technologies"),
                 React.DOM.div( {className:challenge.technologies === undefined || challenge.technologies.length === 0 ? 'val vTech' : 'val vTech ng-hide'}, 
@@ -163,7 +163,7 @@
                   ChallengeTechsList( {challenge:challenge, scope:scope})
                 ),
                 React.DOM.div( {className:"clear"})
-              )
+              )*/
             )
           ),
           React.DOM.div( {id:challenge.challengeId, className:classNames[challengeCombo].tech !== undefined ? 'technologyTags':'technologyTags ng-hide'}, 
