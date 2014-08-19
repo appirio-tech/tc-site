@@ -46,7 +46,7 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', '$window', '$c
     return month + ' ' + day + ', ' + year + ' ' + time + ' EDT';
   };
   //Need to test if regex match of challengeId exists before assigning regex capturing group match to challengeId var, otherwise could result in js error
-  var uriRegexMatches = location.href.match(/s\/(\d+)\//);
+  var uriRegexMatches = location.href.match(/[rs]\/(\d+)\//);
   if (uriRegexMatches) {
     var challengeId = uriRegexMatches[1];
   }
