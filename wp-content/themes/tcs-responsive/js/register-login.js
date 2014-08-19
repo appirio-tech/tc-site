@@ -625,6 +625,7 @@ $(function () {
               if (data.data && data.data.body.next) {
                 window.location.href = data.data.body.next;
               } else {
+                var tcAction = getCookie('tcDelayChallengeAction');
                 $('.modal').hide();
                 $("#thanks h2").html('Thanks for Registering');
                 $("#thanks p").html('We have sent you an email with activation instructions.<br>If you do not receive that email within 1 hour, please email <a href="mailto:support@topcoder.com">support@topcoder.com</a>');
@@ -755,7 +756,7 @@ $(function () {
       var tcActionValues = tcAction.split('|');
       if (typeof tcActionValues[2] !== 'undefined' && tcActionValues[0] === 'register' && tcActionValues[2] !== '') {
           //add link to challenge-details page for challenge new user tried to register for before making topcoder account
-          $('.thank-you').append("<h4>Are you still interested in participating in the <br>&quot;" + decodeURIComponent(tcActionValues[2]) + "&quot; challenge? <br>If so, <a href='/challenge-details/" + tcActionValues[1] + "/register/'>go there now!</a></h4>");
+          $('.thank-you').append("<h4>Are you still interested in participating in the <br>&quot;" + decodeURIComponent(tcActionValues[2]) + "&quot; challenge? <br>If so, <a href='/challenge-details/register/" + tcActionValues[1] + "/'>go there now!</a></h4>");
         }
     }
   }
