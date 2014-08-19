@@ -1315,10 +1315,6 @@ font-size: 18px;
     display: inline-block;
 }
 
-.informationView .meataAction .viewSubmission {
-    color: #333333;
-}
-
 .informationView .meataAction .download {
     color: #333333;
 }
@@ -1344,24 +1340,7 @@ font-size: 18px;
     margin-left: 29px;
 }
 
-#submissions .informationView .meataAction .viewSubmission,
-#submissions .informationView .meataAction .viewSubmission:visited {
-    background: url(../i/winner-actions.png) no-repeat 0 0;
-    padding-left: 29px;
-    height: 23px;
-    font-size: 14px;
-    margin-right: 8px;
-    position: relative;
-    display: inline-block;
-    line-height: 23px;
-}
-
 .informationView .meataAction .download:hover {
-    opacity: .6;
-    color: #FF8A00;
-}
-
-.informationView .meataAction .viewSubmission:hover {
     opacity: .6;
     color: #FF8A00;
 }
