@@ -9,16 +9,16 @@
 <div class="container">
 
 <div class="leftColumn">
-    <a ng-show="!isDesign" ng-click="registerToChallenge()" class="btn btnAction challengeRegisterBtn disabled{{challenge.registrationDisabled || !callComplete ? '' : 'NOT'}}" href="javascript:;"><span>1</span>
+    <a ng-show="!isDesign" ng-click="registerToChallenge()" ng-class="{disabled:challenge.registrationDisabled || !callComplete, disabledNOT:!challenge.registrationDisabled}" class="btn btnAction challengeRegisterBtn" href="javascript:;"><span>1</span>
       <strong>Register For This Challenge</strong></a>
-    <a ng-show="!isDesign" class="btn btnAction disabled{{challenge.submissionDisabled || !callComplete ? '' : 'NOT'}}" target="_blank"
+    <a ng-show="!isDesign" ng-class="{disabled:challenge.submissionDisabled || !callComplete, disabledNOT:!challenge.submissionDisabled}" class="btn btnAction" target="_blank"
        href="<?php bloginfo("siteurl"); ?>/challenge-details/{{challenge.challengeId}}/submit"><span>2</span>      <strong>Submit Your Entries</strong></a>
-    <a ng-show="isDesign" class="btn btnAction challengeRegisterBtn disabled{{challenge.registrationDisabled || !callComplete ? '' : 'NOT'}}" href="javascript:;"><span>1</span> <strong>Register
+    <a ng-show="isDesign" ng-class="{disabled:challenge.registrationDisabled || !callComplete, disabledNOT:!challenge.registrationDisabled}" class="btn btnAction challengeRegisterBtn" href="javascript:;"><span>1</span> <strong>Register
         For This Challenge</strong></a>
-    <a ng-show="isDesign" class="btn btnAction disabled{{challenge.submissionDisabled || !callComplete ? '' : 'NOT'}}" target="_blank"
+    <a ng-show="isDesign" ng-class="{disabled:challenge.submissionDisabled || !callComplete, disabledNOT:!challenge.submissionDisabled}" class="btn btnAction" target="_blank"
        href="http://studio.topcoder.com/?module=ViewRegistration&ct={{challenge.challengeId}}"><span>2</span> <strong>Submit
         Your Entries</strong></a>
-    <a ng-show="isDesign" class="btn btnAction disabled{{challenge.submissionDisabled || !callComplete ? '' : 'NOT'}}" target="_blank"
+    <a ng-show="isDesign" ng-class="{disabled:challenge.submissionDisabled || !callComplete, disabledNOT:!challenge.submissionDisabled}" class="btn btnAction" target="_blank"
        href="http://studio.topcoder.com/?module=ViewSubmission&ct={{challenge.challengeId}}"><span>3</span> <strong>View
         Your Submission</strong></a>
 </div>

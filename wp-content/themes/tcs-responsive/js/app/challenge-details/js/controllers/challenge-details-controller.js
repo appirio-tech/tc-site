@@ -12,11 +12,18 @@
  */
 (function () {
 
+  /**
+   * Create controller Challenge Details
+   */
   angular
     .module('challengeDetails')
     .controller('CDCtrl', ChallengeDetailCtrl);
 
-  ChallengeDetailCtrl.$inject = ['$scope', 'ChallengeService'];
+  /**
+   * Inject dependencies
+   * @type {string[]}
+   */
+  ChallengeDetailCtrl.$inject = ['$scope', 'ChallengeService', '$q'];
 
   /**
    * Controller implementation
@@ -25,7 +32,7 @@
    * @param ChallengeService
    * @constructor
    */
-  function ChallengeDetailCtrl($scope, ChallengeService) {
+  function ChallengeDetailCtrl($scope, ChallengeService, $q) {
 
     $scope.registerToChallenge = registerToChallenge;
     $scope.callCoplete = false;
@@ -33,19 +40,9 @@
     $scope.challengeType = challengeType;
 
     $scope.round = Math.round;
-
-    $scope.range = function (from, to) {
-      var ans = [];
-      for (var i = from; i < to; i++) {
-        ans.push[i];
-      }
-      return ans;
-    };
-
+    $scope.range = rangeFunction;
     // @TODO Move to filter
-    $scope.max = function (x, y) {
-      return x > y ? x : y;
-    };
+    $scope.max = maxFunction;
 
     $scope.activeTab = 'details';
     if (window.location.hash == '#viewRegistrant') {
@@ -65,15 +62,64 @@
     $scope.checkpointPassedScreeningSubmitterPercentage = false;
     $scope.checkpointPassedScreeningSubmissionPercentage = false;
 
-    ChallengeService
-      .getChallenge(challengeId)
-      .then(function (challenge) {
-        processChallenge(challenge, $scope, ChallengeService);
-        $scope.callComplete = true;
-      });
+    var handlePromise = $q.defer();
+    //The handle is needed to enable the buttons
+    app
+      .getHandle(function(handle) {
+        handlePromise.resolve(handle);
+      }
+      );
+
+    handlePromise
+      .promise
+      .then(function(handle) {
+        $scope.handle = handle;
+        initChallengeDetail(handle, $scope, ChallengeService);
+      }
+      );
 
     /**
      *
+     * @param x
+     * @param y
+     * @returns {*}
+     */
+    function maxFunction(x, y) {
+      return x > y ? x : y;
+    }
+
+    /**
+     *
+     * @param from
+     * @param to
+     * @returns {Array}
+     */
+    function rangeFunction(from, to) {
+      var ans = [];
+      for (var i = from; i < to; i++) {
+        ans.push[i];
+      }
+      return ans;
+    }
+
+    /**
+     *
+     * @param handle
+     * @param $scope
+     * @param ChallengeService
+     */
+    function initChallengeDetail(handle, $scope, ChallengeService) {
+      ChallengeService
+        .getChallenge(challengeId)
+        .then(function (challenge) {
+          processChallenge(challenge, handle, $scope, ChallengeService);
+          $scope.callComplete = true;
+        });
+
+    }
+
+    /**
+     * Register to challenge
      */
     function registerToChallenge() {
 
@@ -101,7 +147,7 @@
    * @param $scope
    * @param ChallengeService
    */
-  function processChallenge(challenge, $scope, ChallengeService) {
+  function processChallenge(challenge, handle, $scope, ChallengeService) {
 
     // Global variable available from ng-page-challenge-details.php
     challengeName = challenge.challengeName;
@@ -136,11 +182,6 @@
       });
     }
 
-    challenge.registrationDisabled = true;
-    challenge.submissionDisabled   = true;
-
-    ChallengeService.completeStepDisabled(challenge);
-
     //Bugfix refactored-challenge-details-40: format currency values with comma delimiters
     if (typeof challenge.reliabilityBonus === 'number') {
       challenge.reliabilityBonus = challenge.reliabilityBonus.format();
@@ -153,21 +194,34 @@
     $scope.siteURL   = siteURL;
     $scope.challenge = challenge;
 
+    var regList = challenge.registrants.map(function(x) { return x.handle; });
+    var submissionMap = challenge.submissions.map(function(x) { return x.handle; });
+
+    // this are the buttons for registration and submission
+    $scope.challenge.registrationDisabled = true;
+    $scope.challenge.submissionDisabled   = true;
+
+    // If is not registered, then enable registration
+    if (((moment(challenge.registrationEndDate)) > moment()) && regList.indexOf(handle) == -1) {
+      $scope.challenge.registrationDisabled = false;
+    }
+    // If is not submited, then enable submission
+    if (((moment(challenge.submissionEndDate)) > moment()) && regList.indexOf(handle) > -1) {
+      $scope.challenge.submissionDisabled = false;
+    }
+
+    $scope.challenge.registrants.map(function(x) {
+      if (submissionMap[x.handle]) x.submissionStatus = submissionMap[x.handle].submissionStatus;
+    });
+
     $scope.reliabilityBonus = challenge.reliabilityBonus;
     $scope.inSubmission     = challenge.currentPhaseName.indexOf('Submission') >= 0;
     $scope.inScreening      = challenge.currentPhaseName.indexOf('Screening') >= 0;
     $scope.inReview         = challenge.currentPhaseName.indexOf('Review') >= 0;
     $scope.hasFiletypes     = (challenge.filetypes != undefined) && challenge.filetypes.length > 0;
 
-    var submissionMap = {};
-    $scope.challenge.submissions.map(function(x) {
-      submissionMap[x.handle] = x;
-    });
-    $scope.challenge.registrants.map(function(x) {
-      if (submissionMap[x.handle]) x.submissionStatus = submissionMap[x.handle].submissionStatus;
-    });
-
     // Result section, if status completed
+    $scope.submissions = false;
     if (challenge.currentStatus == 'Completed' || challenge.currentPhaseEndDate == '') {
       ChallengeService
         .getResults(challengeId)
@@ -232,8 +286,6 @@
           if ($scope.winningSubmissions.length < 2) $scope.secondPlaceSubmission = false;
         }
       );
-    } else {
-      $scope.submissions = false;
     }
   }
 

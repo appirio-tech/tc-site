@@ -25,7 +25,6 @@
 
     var service = Restangular.withConfig(function(RestangularConfigurer) {
       RestangularConfigurer.setBaseUrl(API_URL);
-
     });
 
     /**
@@ -158,24 +157,6 @@
       });
 
       return defer.promise;
-    };
-
-    /**
-     *
-     * @param challenge
-     */
-    service.completeStepDisabled = function (challenge) {
-
-      var regList = challenge.registrants.map(function(x) { return x.handle; });
-
-      app.getHandle(function(handle) {
-        if (((moment(challenge.registrationEndDate)) >moment()) && regList.indexOf(handle) == -1) {
-          challenge.registrationDisabled = false;
-        }
-        if (((moment(challenge.submissionEndDate)) > moment()) && regList.indexOf(handle) > -1) {
-          challenge.submissionDisabled = false;
-        }
-      });
     };
 
     /**
