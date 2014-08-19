@@ -222,7 +222,7 @@ angular.module('tc.chartService', [])
           },
           tooltip: {
             'formatter': function () {
-              return this.y + ' Coders';
+              return this.y + (this.y==1?' Coder':' Coders');
             }
           },
           series: [{
