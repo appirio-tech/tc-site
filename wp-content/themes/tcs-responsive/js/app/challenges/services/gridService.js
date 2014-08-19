@@ -38,7 +38,7 @@
           {
             field: 'registrationStartDate',
             fieldName: 'Duration (days)',
-            width: 120,
+            width: 127,
             tplName: 'duration',
             visible: contest.listType === 'upcoming'
           },
@@ -73,7 +73,7 @@
             field: 'technologies',
             fieldName: 'Technologies',
             width: 152,
-            visible: contest.listType === 'upcoming'
+            visible: false
           },
           {
             field: 'numRegistrants',
@@ -126,7 +126,7 @@
           {
             field: 'status',
             fieldName: 'Status',
-            width: 90,
+            width: 242,
             visible: contest.listType === 'upcoming'
           }
         ];
