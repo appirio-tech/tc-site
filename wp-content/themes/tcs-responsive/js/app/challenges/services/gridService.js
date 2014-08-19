@@ -52,15 +52,14 @@
             field: 'totalPrize',
             fieldName: 'Prize',
             width: 73,
-            tplName: 'prizes',
-            visible: contest.listType !== 'upcoming'
+            tplName: 'prizes'
           },
           {
             field: 'firstPlacePrize',
             fieldName: 'First Prize',
             width: 80,
             tplName: 'prizes',
-            visible: contest.listType === 'upcoming'
+            visible: false
           },
           {
             field: 'currentPhaseName',
