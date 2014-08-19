@@ -699,7 +699,7 @@ include locate_template('header-challenge-landing.php');
             here</a>.
         </p>
 
-        <p>Questions? <a href="http://studio.topcoder.com/forums?module=ThreadList&amp;forumID=6">Ask in the Forums</a>.
+        <p>Questions? <a href="http://studio.topcoder.com/forums?module=ThreadList&amp;forumID=6">Ask in the Challenge Discussion Forums</a>.
         </p>
 
       </div>
