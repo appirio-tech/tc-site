@@ -178,7 +178,7 @@ $blog_posts = get_posts($blog_posts_args);
     <h2>Info</h2>
     <p class="failedMessage"></p>
     <p class="submitBtn">
-      <a class="btn closeModalReg" href="javascript:;">Ok</a>
+      <a class="btn closeModal" href="javascript:;">Ok</a>
     </p>
   </div>
 </div><!-- END #registerFailed -->
