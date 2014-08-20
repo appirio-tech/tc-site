@@ -86,7 +86,7 @@ $siteURL = site_url ();
 										<a href="<?php echo get_page_link_by_slug('password-recovery'); ?>" target="_blank" class="forgotPwd">Forgot password?</a>
 									</p>
 									<p class="row lSpace">
-										<span class="not-a-member">Not a member? <a href="javascript:;" class="btnRegister" >Register Now!</a></span>
+										<span class="not-a-member">Not a member? <a href="javascript:;" class="btnRegister" >Sign Up Now!</a></span>
 									</p>
 								</form>
 								<div class="register-text"></div>

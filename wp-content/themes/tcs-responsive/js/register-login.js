@@ -622,27 +622,23 @@ $(function () {
 
           $.post(ajaxUrl + '?action=post_register', fields, function (data) {
             if (data.code == "200") {
-              if (data.data && data.data.body.next) {
-                window.location.href = data.data.body.next;
-              } else {
-                var tcAction = getCookie('tcDelayChallengeAction');
-                $('.modal').hide();
-                $("#thanks h2").html('Thanks for Registering');
-                $("#thanks p").html('We have sent you an email with activation instructions.<br>If you do not receive that email within 1 hour, please email <a href="mailto:support@topcoder.com">support@topcoder.com</a>');
-                if (tcAction) {
-                  var tcDoAction = tcAction.split('|');
-                  if (tcDoAction[0] === 'register') {
-                    //append challenge registration message
-                    $("#thanks p").after("<div style='padding-bottom: 30px'>In order to register for the selected challenge, you must return to the <a href='/challenge-details/" + tcDoAction[1] + "/?type=" + challengeType + "'>challenge details page</a> after you have activated your account.</div>");
-                    $('#thanks p').css({'padding-bottom': '10px'});
-                  }
+              var tcAction = getCookie('tcDelayChallengeAction');
+              $('.modal').hide();
+              $("#thanks h2").html('Thanks for Registering');
+              $("#thanks p").html('We have sent you an email with activation instructions.<br>If you do not receive that email within 1 hour, please email <a href="mailto:support@topcoder.com">support@topcoder.com</a>');
+              if (tcAction) {
+                var tcDoAction = tcAction.split('|');
+                if (tcDoAction[0] === 'register') {
+                  //append challenge registration message
+                  $("#thanks p").after("<div style='padding-bottom: 30px'>In order to register for the selected challenge, you must return to the <a href='/challenge-details/" + tcDoAction[1] + "/?type=" + challengeType + "'>challenge details page</a> after you have activated your account.</div>");
+                  $('#thanks p').css({'padding-bottom': '10px'});
                 }
-                showModal('#thanks');
-                $('#registerForm .invalid').removeClass('invalid');
-                $('#registerForm .valid').removeClass('valid');
-                $('.err1,.err2', frm).hide();
-                resetRegisterFields();
               }
+              showModal('#thanks');
+              $('#registerForm .invalid').removeClass('invalid');
+              $('#registerForm .valid').removeClass('valid');
+              $('.err1,.err2', frm).hide();
+              resetRegisterFields();
             }
             else {
               //$('.modal').hide();
@@ -784,17 +780,14 @@ function centerModal(selector) {
 }
 
 function closeModal() {
-  $('.modal,#bgModal').hide();
-  resetRegisterFields();
-  if (window.location.hash.match('access_token')) {
-    window.history.pushState({}, 'Home', '/');
+  // go to next param if it exists
+  var nextLoc = getParameterByName('next') || getHashParameterByName('state');
+  if (nextLoc) {
+    window.location.href = nextLoc;
   }
-  
-  // Issue ID: I-111638 - reset login fields
-  resetLoginFields();
-  
-  loginState = window.location.href;
-  $('#registerForm span.socialUnavailableErrorMessage').hide();
+  else {
+    window.location.href = "/";
+  }
 }
 
 // Resets the registration popup fields
