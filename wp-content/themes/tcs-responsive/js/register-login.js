@@ -341,7 +341,8 @@ $(function () {
     var pwd = $('#register form.register input.pwd:password');
     var confirm = $('#register form.register input.confirm:password');
     //bugfix empty value checking without using trim
-    if (pwd.val() == confirm.val() && pwd.val() != '') {
+    var strength = pwdStrength(pwd.val());
+    if (pwd.val() == confirm.val() && pwd.val() != '' && strength>0 ) {
       confirm.parents(".row").find("span.valid").css("display", "inline-block");
       confirm.removeClass('invalid');
       confirm.parents(".row").find('span.err1').hide();
