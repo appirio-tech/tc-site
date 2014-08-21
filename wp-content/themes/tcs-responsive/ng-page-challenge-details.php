@@ -22,7 +22,7 @@ function tc_challenge_details_js() {
   <script type="text/javascript">
     var activeTab = "<?php echo $activeTab;?>";
     if (window.location.hash == '#viewRegistrant' || window.location.hash == '#/viewRegistrant') activeTab = 'registrants';
-    else if (window.location.hash == '#winner' || window.location.hash == '#/winner') activeTab = 'winners';
+    else if (window.location.hash == '#winner' || window.location.hash == '#/winner' || window.location.hash == '#winners' || window.location.hash == '#/winners') activeTab = 'results';
     else if (window.location.hash == '#submissions' || window.location.hash == '#/submissions') activeTab = 'submissions';
     var registrationUntil = new Date(<?php echo $regEnd ?> * 1000);
     var submissionUntil = new Date(<?php echo $submissionEnd ?> * 1000);
@@ -421,7 +421,7 @@ include locate_template('header-challenge-landing.php');
 
 
 </div>
-<div id="winner" class="tableWrap {{activeTab != 'winners' ? 'hide' : ''}} tab">
+<div id="winner" class="tableWrap {{activeTab != 'results' ? 'hide' : ''}} tab">
 
   <?php include( locate_template('ng-page-challenge-result.php') ); ?>
 

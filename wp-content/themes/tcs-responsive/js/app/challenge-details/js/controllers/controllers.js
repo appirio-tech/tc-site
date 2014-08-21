@@ -53,7 +53,7 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', '$window', '$c
   $scope.round = Math.round;
   $scope.activeTab = 'details';
   if (window.location.hash == '#viewRegistrant' || window.location.hash == '#/viewRegistrant') $scope.activeTab = 'registrants';
-  else if (window.location.hash == '#winner' || window.location.hash == '#/winner') $scope.activeTab = 'winners';
+  else if (window.location.hash == '#winner' || window.location.hash == '#/winner') $scope.activeTab = 'results';
   else if (window.location.hash == '#submissions' || window.location.hash == '#/submissions') $scope.activeTab = 'submissions';
 
   $scope.numCheckpointSubmissions = -1;
