@@ -4,6 +4,7 @@
  */
 // Hard-coded at the moment. Should be passed in the url. 
 $challengeType = 'develop';
+$type = get_query_var('type');
 get_header('challenge-submit');
 $contest = get_contest_detail('', get_query_var('contestID'), $challengeType);
 ?>
@@ -33,8 +34,12 @@ $contest = get_contest_detail('', get_query_var('contestID'), $challengeType);
                         </dl>
                     </div>
                     <div class="rightCol col">
-                        <p>Please organize and upload files as per the submission requirements for the challenge</p>
+						<?php if ( $type=='develop' ) : ?>                        
+						Please organize and upload files as per the submission requirements for the challenge
+						<?php else : ?>
+						<p>Please organize and upload files as per the submission requirements for the challenge</p>
                         <p>If you have trouble uploading your file, please submit <a href="https://software.topcoder.com/review/actions/UploadContestSubmission?pid=<?php echo $contestID; ?>">here</a>.</p>
+						<?php endif; ?>
                     </div>
                     <div class="clear"></div>
                 </section>
