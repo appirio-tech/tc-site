@@ -173,7 +173,7 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', '$window', '$c
       if (submissionMap[x.handle]) x.submissionStatus = submissionMap[x.handle].submissionStatus;
     });
 
-    if (challenge.currentPhaseName != 'Stalled' && (challenge.currentStatus == 'Completed' || challenge.currentPhaseEndDate == '')) {
+    if (challenge.currentStatus != 'Draft' && challenge.currentPhaseName != 'Stalled' && (challenge.currentStatus == 'Completed' || challenge.currentPhaseEndDate == '')) {
       ChallengeService.getResults(challengeId).then(function(results) {
         $scope.results = results;
         $scope.firstPlaceSubmission = results.firstPlaceSubmission;
