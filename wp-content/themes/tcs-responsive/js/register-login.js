@@ -35,7 +35,7 @@ $(function () {
 
   $('.closeModal,#bgModal').on('click', function () {
     //window.location.replace('/');
-    closeModal();
+    redirectToNext();
   });
 
 
@@ -780,6 +780,20 @@ function centerModal(selector) {
 }
 
 function closeModal() {
+  $('.modal,#bgModal').hide();
+  resetRegisterFields();
+  if (window.location.hash.match('access_token')) {
+    window.history.pushState({}, 'Home', '/');
+  }
+  
+  // Issue ID: I-111638 - reset login fields
+  resetLoginFields();
+  
+  loginState = window.location.href;
+  $('#registerForm span.socialUnavailableErrorMessage').hide();
+}
+
+function redirectToNext() {
   // go to next param if it exists
   var nextLoc = getParameterByName('next') || getHashParameterByName('state');
   if (nextLoc) {
