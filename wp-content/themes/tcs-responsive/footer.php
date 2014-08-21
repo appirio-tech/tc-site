@@ -194,7 +194,7 @@ $blog_posts = get_posts($blog_posts_args);
 <a href="javascript:;" class="btnClose closeModal"></a>
 
 <div class="content">
-<h2>Register Using An Existing Account</h2>
+<h2>Sign Up Using An Existing Account</h2>
 
 <div id="socials">
   <a class="register-facebook" href="javascript:;"><span class="animeButton shareFacebook"><span
@@ -212,7 +212,7 @@ $blog_posts = get_posts($blog_posts_args);
   <div class="clear"></div>
 </div>
 <!-- END .socials -->
-<h2>Or Register Using Your Email</h2>
+<h2>Or Sign Up Using Your Email</h2>
 
 <form class="register" id="registerForm">
 <p class="row">
@@ -610,7 +610,7 @@ $blog_posts = get_posts($blog_posts_args);
             ?>
           <a href="<?php echo $fp_link; //http://community.topcoder.com/tc?module=FindUser ?>" target="_blank" class="forgotPwd">Forgot
             password?</a>
-          <span class="not-a-member">Not a member? <a href="javascript:;" class="switch-to-register">Register Now!</a></span>
+          <span class="not-a-member">Not a member? <a href="javascript:;" class="switch-to-register">Sign Up Now!</a></span>
         </p>
       </form>
       <div class="register-text"></div>
@@ -658,16 +658,16 @@ $blog_posts = get_posts($blog_posts_args);
     results = regex.exec(location.search);
     return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
   }
+  function getHashParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\#&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.hash);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
   var socialProviderId = "", socialUserName = "", socialEmail = "", socialProvider = "";
   var utmSource = '', utmMedium = '', utmCampaign = '';
   var loginState = '';
   $(function () {
-    function getHashParameterByName(name) {
-      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-      var regex = new RegExp("[\\#&]" + name + "=([^&#]*)"),
-      results = regex.exec(location.hash);
-      return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-    }
     utmSource = getParameterByName('utmSource') || getHashParameterByName('utmSource');
     utmMedium = getParameterByName('utmMedium') || getHashParameterByName('utmMedium');
     utmCampaign = getParameterByName('utmCampaign') || getHashParameterByName('utmCampaign');

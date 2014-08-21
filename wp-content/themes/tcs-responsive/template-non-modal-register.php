@@ -18,18 +18,6 @@ function tc_registration_footer_js() {
     setTimeout(function() {
       $('.modal #registerForm').remove();
     }, 1000);
-
-    // If user is logged in then redirect to the correct page
-    if (app.isLoggedIn()) {
-      // redirect to either next or referer
-      if (app.getParameterByName('next')) {
-        window.location.href = app.getParameterByName('next');
-      } else if (document.referrer) {
-        window.location.href = document.referrer;
-      } else {
-        window.location.href = '/';
-      }
-    }
   </script>
 <?php
 }
@@ -74,7 +62,7 @@ add_action('wp_footer', 'tc_registration_footer_js', 10000);
 
 					<div id="register">
 						<div class="content">
-							<h2>Register Using An Existing Account</h2>
+							<h2>Sign Up Using An Existing Account</h2>
 
 							<div id="socials">
 						  		<a class="register-facebook" href="javascript:;"><span class="animeButton shareFacebook"><span class="shareFacebookHover animeButtonHover"></span></span></a>
@@ -92,7 +80,7 @@ add_action('wp_footer', 'tc_registration_footer_js', 10000);
 							<!-- END .socials -->
 
 
-							<h2>Or Register Using Your Email</h2>
+							<h2>Or Sign Up Using Your Email</h2>
 
 							<form class="register" id="registerForm">
 								<p class="row">

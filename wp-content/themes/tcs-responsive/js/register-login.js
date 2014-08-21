@@ -637,12 +637,12 @@ $(function () {
                     //$('#thanks p').css({'padding-bottom': '10px'});
                   }
                 }
-                showModal('#thanks');
-                $('#registerForm .invalid').removeClass('invalid');
-                $('#registerForm .valid').removeClass('valid');
-                $('.err1,.err2', frm).hide();
-                resetRegisterFields();
               }
+              showModal('#thanks');
+              $('#registerForm .invalid').removeClass('invalid');
+              $('#registerForm .valid').removeClass('valid');
+              $('.err1,.err2', frm).hide();
+              resetRegisterFields();
             }
             else {
               //$('.modal').hide();
@@ -784,17 +784,14 @@ function centerModal(selector) {
 }
 
 function closeModal() {
-  $('.modal,#bgModal').hide();
-  resetRegisterFields();
-  if (window.location.hash.match('access_token')) {
-    window.history.pushState({}, 'Home', '/');
+  // go to next param if it exists
+  var nextLoc = getParameterByName('next') || getHashParameterByName('state');
+  if (nextLoc) {
+    window.location.href = nextLoc;
   }
-  
-  // Issue ID: I-111638 - reset login fields
-  resetLoginFields();
-  
-  loginState = window.location.href;
-  $('#registerForm span.socialUnavailableErrorMessage').hide();
+  else {
+    window.location.href = "/";
+  }
 }
 
 // Resets the registration popup fields
