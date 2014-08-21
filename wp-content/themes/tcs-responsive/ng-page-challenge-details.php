@@ -21,6 +21,9 @@ function tc_challenge_details_js() {
   ?>
   <script type="text/javascript">
     var activeTab = "<?php echo $activeTab;?>";
+    if (window.location.hash == '#viewRegistrant' || window.location.hash == '#/viewRegistrant') activeTab = 'registrants';
+    else if (window.location.hash == '#winner' || window.location.hash == '#/winner') activeTab = 'winners';
+    else if (window.location.hash == '#submissions' || window.location.hash == '#/submissions') activeTab = 'submissions';
     var registrationUntil = new Date(<?php echo $regEnd ?> * 1000);
     var submissionUntil = new Date(<?php echo $submissionEnd ?> * 1000);
     var challengeId = "<?php echo $contestID;?>";
@@ -363,7 +366,7 @@ include locate_template('header-challenge-landing.php');
 </article>
 </div>
 
-<div id="viewRegistrant" class="tableWrap hide tab" style="">
+<div id="viewRegistrant" class="tableWrap {{activeTab != 'registrants' ? 'hide' : ''}} tab" style="">
 
 
   <article>
@@ -418,7 +421,7 @@ include locate_template('header-challenge-landing.php');
 
 
 </div>
-<div id="winner" class="tableWrap hide tab">
+<div id="winner" class="tableWrap {{activeTab != 'winners' ? 'hide' : ''}} tab">
 
   <?php include( locate_template('ng-page-challenge-result.php') ); ?>
 
@@ -431,7 +434,7 @@ include locate_template('header-challenge-landing.php');
   </article>
 
 </div>
-<div id="submissions" class="tableWrap hide tab">
+<div id="submissions" class="tableWrap {{activeTab != 'submissions' ? 'hide' : ''}} tab">
 
 
   <article>
