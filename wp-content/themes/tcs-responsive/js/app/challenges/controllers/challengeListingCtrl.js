@@ -210,11 +210,13 @@
       };
 
       $scope.findByTechnology = function (tech) {
-        $scope.searchSubmit({technologies: [tech]});
+        $scope.filter.technologies.push(tech);
+        $scope.searchSubmit($scope.filter);
       };
 
       $scope.findByPlatform = function (plat) {
-        $scope.searchSubmit({platforms: [plat]});
+        $scope.filter.platforms.push(plat);
+        $scope.searchSubmit($scope.filter);
       };
 
       $scope.searchSubmit = function (options) {
