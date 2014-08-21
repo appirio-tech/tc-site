@@ -158,7 +158,7 @@ $blog_posts = get_posts($blog_posts_args);
       please email <a href="mailto:support@topcoder.com">support@topcoder.com</a></p>
 
     <div>
-      <a href="javascript:;" class="btn closeModal">Close</a>
+      <a href="javascript:;" class="btn closeModal redirectOnConfirm">Close</a>
     </div>
   </div>
 </div><!-- END #thanks -->

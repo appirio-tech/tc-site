@@ -33,8 +33,12 @@ $(function () {
     showModal('#login');
   });
 
-  $('.closeModal,#bgModal').on('click', function () {
+  $('.closeModal,#bgModal').not('.redirectOnConfirm').on('click', function () {
     //window.location.replace('/');
+    closeModal();
+  });
+
+  $('.redirectOnConfirm').on('click', function () {
     redirectToNext();
   });
 
