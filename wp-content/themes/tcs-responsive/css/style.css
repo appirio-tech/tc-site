@@ -863,6 +863,9 @@
     text-indent: 20px;
 }    
 /* contest gird view */
+#tableView{
+    padding-top: 15px;
+}
 .layChallenges #gridView{
     border-top: none;
 }
@@ -870,7 +873,6 @@
     display: block;
     overflow: hidden;
     margin: 0 -29px 0 -25px;
-    padding-top: 16px;
 }
 .contestGrid.alt{
     margin: 0 -12px -18px -12px;
