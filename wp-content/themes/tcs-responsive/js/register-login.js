@@ -803,8 +803,11 @@ function redirectToNext() {
   if (nextLoc) {
     window.location.href = nextLoc;
   }
-  else {
+  else if (window.location.pathname == '/register/') {
     window.location.href = "/";
+  }
+  else {
+    closeModal()
   }
 }
 
