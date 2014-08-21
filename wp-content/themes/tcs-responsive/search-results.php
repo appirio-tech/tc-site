@@ -64,8 +64,8 @@ get_header ();
 									    <tr>
 									        <td class="header">No.</td>
 									        <td class="header">Handle</td>
-									        <td class="header">Country</td>
-									        <td class="header">Earning</td>
+									        <!-- <td class="header">Country</td>
+									        <td class="header">Earning</td>  -->
 									    </tr>
 
 										<?php
@@ -76,8 +76,8 @@ get_header ();
 											<tr class="light">
 										        <td class="value"><?php echo $no; ?></td>
 										        <td class="value"><a href="/member-profile/<?php echo $user->handle; ?>"><?php echo $user->handle; ?></a></td>
-										       <td class="value"></td>
-										       <td class="value"></td>
+										      <!-- <td class="value"></td> 
+										       <td class="value"></td>  -->
 										   </tr>
 										<?php endforeach; ?>
 									</table>
