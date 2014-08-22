@@ -98,6 +98,7 @@ get_header(); ?>
               filter="filter"></div>
 
         <div class="upcomingCaption" ng-show="contest.listType === 'upcoming' && challenges.length != 0">All upcoming challenges may change</div>
+        <div class="pastCaption" ng-show="contest.listType === 'past' && challenges.length != 0">Displaying all challenges from the past year. View longer time ranges at your own risk!</div>
           <div ng-show="dataDisplayed && challenges.length == 0 && contest.listType !== 'upcoming'">
           <br />
           <h3>
