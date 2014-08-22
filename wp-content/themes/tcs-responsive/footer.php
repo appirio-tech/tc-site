@@ -652,16 +652,16 @@ $blog_posts = get_posts($blog_posts_args);
 </div><!-- /.tooltip -->
 <?php wp_footer(); ?>
 <script>
-  function getParameterByName(name) {
+  function getParameterByName(name, source) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-    results = regex.exec(location.search);
+    results = regex.exec(source || location.search);
     return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
   }
-  function getHashParameterByName(name) {
+  function getHashParameterByName(name, source) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
     var regex = new RegExp("[\\#&]" + name + "=([^&#]*)"),
-    results = regex.exec(location.hash);
+    results = regex.exec(source || location.hash);
     return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
   }
   var socialProviderId = "", socialUserName = "", socialEmail = "", socialProvider = "";
@@ -671,6 +671,13 @@ $blog_posts = get_posts($blog_posts_args);
     utmSource = getParameterByName('utmSource') || getHashParameterByName('utmSource');
     utmMedium = getParameterByName('utmMedium') || getHashParameterByName('utmMedium');
     utmCampaign = getParameterByName('utmCampaign') || getHashParameterByName('utmCampaign');
+    var stateString = getHashParameterByName('state');
+    if (stateString.length > 0) {
+      var cType = getParameterByName('type', stateString);
+      if (cType.length > 0) {
+        challengeType = cType;
+      }
+    }
     var googleProvider = "google-oauth2";
     var facebookProvider = "facebook";
     var twitterProvider = "twitter";
