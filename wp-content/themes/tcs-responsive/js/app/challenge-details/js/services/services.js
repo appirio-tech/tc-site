@@ -67,11 +67,12 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', '$cookies', '
     //currently topcoder API server does not have CORS setup properly so we get a CORS error instead of proper error response when requesting an invalid challengeId
     //so we handle the CORS error with a redirect to 404 with an ErrorInterceptor
     service.setErrorInterceptor(function(response, deferred, responseHandler) {
-      $window.location.href = '/404';
-      return false;
+      //$window.location.href = '/404';
+      //return false;
     });
     service.one(challengeType).one('challenges').getList(id).then(function(challenge) {
       challenge = challenge[0];
+      challenge.submissions = challenge.submissions || [];
       var submissionMap = {};
       challenge.submissions.map(function(submission) {
         if (submissionMap[submission.handle || submission.submitter]) {
@@ -85,6 +86,7 @@ cdapp.factory('ChallengeService', ['Restangular', 'API_URL', '$q', '$cookies', '
         }
       });
 
+      challenge.registrants = challenge.registrants || [];
       challenge.registrants.map(function(x) {
         //initialize submissionStatus on all registrants
         x.submissionStatus = '';

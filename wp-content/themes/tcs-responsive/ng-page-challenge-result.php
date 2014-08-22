@@ -291,6 +291,6 @@
 
 </article>
 <div ng-if="!submissions || submissions.length == 0">
-  There are no submissions for this contest.
+  Submissions are available after the review phase.
 </div>
 
