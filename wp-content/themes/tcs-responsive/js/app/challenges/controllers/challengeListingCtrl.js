@@ -19,12 +19,22 @@
       
       function getData(community, listType, order, filter, pageIndex, pageSize) {
         var params = {};
+        var listType = $routeParams.challengeStatus.toLowerCase();
         if (community) {
           params.type = community;
         }
         if (order && order.column) {
           params.sortColumn = order.column;
           params.sortOrder = order.order || 'asc';
+        }
+        if (listType == 'past' && (!filter || !filter.startDate)) {
+          var month = moment().month() + 1 + '';
+          month = month.length < 2 ? '0' + month : month;
+          var year = moment().year() - 1;
+          var startDate = year + '-' + month + '-01';
+          if (!filter) var filter = {startDate: startDate};
+          else filter.startDate = filter.startDate || startDate;
+          filter.startDate = moment(filter.startDate).toDate();
         }
         if (filter) {
           if (filter.startDate) {
