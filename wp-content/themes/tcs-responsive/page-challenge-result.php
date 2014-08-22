@@ -471,5 +471,5 @@ if ($contestType == 'design'):
 
 <?php endif; ?>
 <?php else: ?>
-There are no submissions for this contest.
+Submissions are available after the review phase.
 <?php endif; ?>

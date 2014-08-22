@@ -46,13 +46,9 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', '$window', '$c
     return month + ' ' + day + ', ' + year + ' ' + time + ' EDT';
   };
   //Need to test if regex match of challengeId exists before assigning regex capturing group match to challengeId var, otherwise could result in js error
-  var uriRegexMatches = location.href.match(/s\/(\d+)\//);
+  var uriRegexMatches = location.href.match(/[rs]\/(\d+)\//);
   if (uriRegexMatches) {
     var challengeId = uriRegexMatches[1];
-  } else {
-    //if url does not contain a challengeId, it is invalid so redirect to 404
-    $window.location.href = '/404';
-    return false;
   }
   $scope.round = Math.round;
   $scope.activeTab = 'details';
@@ -72,8 +68,6 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', '$window', '$c
   ChallengeService.getChallenge(challengeId).then(function(challenge) {
     if (challenge.error) {
       //handle API error response, redirect to 404
-      $window.location.href = '/404';
-      return false;
     }
     $scope.callComplete = true;
     challengeName = challenge.challengeName;
@@ -81,7 +75,7 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', '$window', '$c
     $scope.isDesign = $scope.challengeType == 'design';
     addthis_share = {url: location.href, title: challengeName};
     $('#cdNgMain').removeClass('hide');
-    if (challenge.checkpointSubmissionEndDate && challenge.checkpointSubmissionEndDate != '') {
+    if (challenge.currentPhaseName != 'Stalled' && challenge.checkpointSubmissionEndDate && challenge.checkpointSubmissionEndDate != '') {
       ChallengeService.getCheckpointData(challengeId).then(function(data) {
           if (data && !data.error) {
             $scope.checkpointData = data;
@@ -179,7 +173,7 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', '$window', '$c
       if (submissionMap[x.handle]) x.submissionStatus = submissionMap[x.handle].submissionStatus;
     });
 
-    if (challenge.currentStatus == 'Completed' || challenge.currentPhaseEndDate == '') {
+    if (challenge.currentStatus != 'Draft' && challenge.currentPhaseName != 'Stalled' && (challenge.currentStatus == 'Completed' || challenge.currentPhaseEndDate == '')) {
       ChallengeService.getResults(challengeId).then(function(results) {
         $scope.results = results;
         $scope.firstPlaceSubmission = results.firstPlaceSubmission;
@@ -225,9 +219,6 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', '$window', '$c
           $scope.initialScoreSum += x.initialScore;
           $scope.finalScoreSum += x.finalScore;
         });
-        //console.log('init and fina');
-        //console.log($scope.initialScoreSum);
-        //console.log($scope.finalScoreSum);
         $scope.winningSubmissions = [];
         var winnerMap = {};
         for (var i = 0; i < $scope.submissions.length; i++) {
@@ -247,8 +238,5 @@ cdapp.controller('CDCtrl', ['$scope', 'ChallengeService', '$sce', '$window', '$c
     }
   },
   function () {
-    //redirect to 404 if API call fails other than CORS error
-    $window.location.href = '/404';
-    return false;
   });
 }]);

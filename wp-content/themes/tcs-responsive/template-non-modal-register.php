@@ -10,7 +10,7 @@ $values = get_post_custom ( $post->ID );
 $userkey = get_option ( 'api_user_key' );
 $siteURL = site_url ();
 
-function tc_registration_js() {
+function tc_registration_footer_js() {
   ?>
   <script type="text/javascript">
     var siteurl = "<?php bloginfo('siteurl');?>";
@@ -22,25 +22,6 @@ function tc_registration_js() {
 <?php
 }
 
-function tc_registration_footer_js() {
-  ?>
-  <script type="text/javascript">
-    // If user is logged in then redirect to the correct page
-    if (app.isLoggedIn()) {
-      // redirect to either next or referer
-      if (app.getParameterByName('next')) {
-        window.location.href = app.getParameterByName('next');
-      } else if (document.referrer) {
-        window.location.href = document.referrer;
-      } else {
-        window.location.href = '/';
-      }
-    }
-  </script>
-<?php
-}
-
-add_action('wp_head', 'tc_registration_js');
 add_action('wp_footer', 'tc_registration_footer_js', 10000);
 
 ?>
@@ -81,7 +62,7 @@ add_action('wp_footer', 'tc_registration_footer_js', 10000);
 
 					<div id="register">
 						<div class="content">
-							<h2>Register Using An Existing Account</h2>
+							<h2>Sign Up Using An Existing Account</h2>
 
 							<div id="socials">
 						  		<a class="register-facebook" href="javascript:;"><span class="animeButton shareFacebook"><span class="shareFacebookHover animeButtonHover"></span></span></a>
@@ -99,7 +80,7 @@ add_action('wp_footer', 'tc_registration_footer_js', 10000);
 							<!-- END .socials -->
 
 
-							<h2>Or Register Using Your Email</h2>
+							<h2>Or Sign Up Using Your Email</h2>
 
 							<form class="register" id="registerForm">
 								<p class="row">
