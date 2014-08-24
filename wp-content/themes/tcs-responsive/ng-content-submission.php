@@ -1,18 +1,18 @@
 <div ng-controller="SubmissionCtrl as subCtrl">
-<article ng-if=" challenge.currentStatus !== 'Completed' ">
+<article ng-if="CD.challenge.currentStatus !== 'Completed' ">
 	<div class="notView2">
 	    <p><strong>This challenge has not completed yet, submissions are viewable only for completed challenges.</strong></p>
 	</div>
 </article>
 
 <article>
-    <div class="notView" ng-if=" challenge.currentStatus === 'Completed' && !challenge.submissionsViewable ">
+    <div class="notView" ng-if="CD.challenge.currentStatus === 'Completed' && !CD.challenge.submissionsViewable ">
         Private Challenge
         <p>Submissions are not viewable for this challenge</p>
     </div>
 </article>
 
-<div id="round2" class="submissionAllView" ng-if=" challenge.currentStatus === 'Completed' && challenge.submissionsViewable" ng-hide="subCtrl.singleViewMode || !subCtrl.submissionPagedItems">
+<div id="round2" class="submissionAllView" ng-if=" CD.challenge.currentStatus === 'Completed' && CD.challenge.submissionsViewable" ng-hide="subCtrl.singleViewMode || !subCtrl.submissionPagedItems">
     <h1>ROUND 2 (FINAL) SUBMISSIONS</h1>
     <ul class="submissionList">
 		<span ng-repeat="singlePage in subCtrl.submissionPagedItems" class="submissionPage" ng-show="subCtrl.submissionCurrentPage === $index || subCtrl.submissionViewAll">
@@ -97,7 +97,7 @@
 <!-- Submission Section End -->
 
 
-<div id="round1" class="submissionAllView" ng-if=" challenge.currentStatus === 'Completed' && challenge.submissionsViewable" ng-hide="subCtrl.singleViewMode || !subCtrl.checkPointPagedItems">
+<div id="round1" class="submissionAllView" ng-if=" CD.challenge.currentStatus === 'Completed' && CD.challenge.submissionsViewable" ng-hide="subCtrl.singleViewMode || !subCtrl.checkPointPagedItems">
     <h1>ROUND 1 (CHEKCPOINT) SUBMISSIONS</h1>
     <ul class="submissionList">
         <span ng-repeat="singlePage in subCtrl.checkPointPagedItems" class="submissionPage" ng-show="subCtrl.checkPointCurrentPage === $index || subCtrl.checkPointViewAll">

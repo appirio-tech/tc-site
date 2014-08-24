@@ -241,23 +241,6 @@ function updateDesignContest() {
 
 $(function () {
   $('.scroll-pane').jScrollPane();
-  //switch the view all deadline and view next deadline
-  $(".viewAllDeadLineBtn").click(function () {
-    $(".nextDeadlinedeadlineBoxContent").addClass("hide");
-    $(".allDeadlinedeadlineBoxContent").removeClass("hide");
-    $(".nextDeadlineNextBoxContent").addClass("hide");
-    $(".allDeadlineNextBoxContent").removeClass("hide");
-    $(".contestEndedBox").addClass("hide");
-
-  });
-  //switch the view all deadline and view next deadline
-  $(".viewNextDeadLineBtn").click(function () {
-    $(".contestEndedBox").addClass("hide");
-    $(".allDeadlinedeadlineBoxContent").addClass("hide");
-    $(".nextDeadlinedeadlineBoxContent").removeClass("hide");
-    $(".allDeadlineNextBoxContent").addClass("hide");
-    $(".nextDeadlineNextBoxContent").removeClass("hide");
-  });
 
   $(".morePayments.active").click(function () {
     if ($(this).hasClass("closed")) {
