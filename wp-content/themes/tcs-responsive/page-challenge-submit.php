@@ -21,7 +21,7 @@ $contest = get_contest_detail('', get_query_var('contestID'), $challengeType);
                 <section class="formSection browseFile">
                     <h3>SUBMISSION UPLOAD</h3>
 
-                    <div class="leftCol col">
+                    <div class="leftCol col" style="padding-bottom: 20px;">
                         <dl class="group fileField linkRow jqtransformdone" style="z-index: 985;">
                             <dt>Submission File (*.zip)</dt>
                             <dd>
@@ -32,14 +32,10 @@ $contest = get_contest_detail('', get_query_var('contestID'), $challengeType);
                                        class="fileInput">
                             </dd>
                         </dl>
+                        <p style="margin-left: 30px;">If you have trouble uploading your file, please submit <a href="https://software.topcoder.com/review/actions/UploadContestSubmission?pid=<?php echo $contestID; ?>">here</a>.</p>
                     </div>
                     <div class="rightCol col">
-						<?php if ( $type=='develop' ) : ?>                        
-						Please organize and upload files as per the submission requirements for the challenge
-						<?php else : ?>
-						<p>Please organize and upload files as per the submission requirements for the challenge</p>
-                        <p>If you have trouble uploading your file, please submit <a href="https://software.topcoder.com/review/actions/UploadContestSubmission?pid=<?php echo $contestID; ?>">here</a>.</p>
-						<?php endif; ?>
+                      <p>Please organize and upload files as per the submission requirements for the challenge</p>
                     </div>
                     <div class="clear"></div>
                 </section>
