@@ -132,7 +132,7 @@
 
       var queryVars = $location.search();
       $scope.pagination = {
-        pageSize: 10,
+        pageSize: 12,
         pageIndex: typeof queryVars['pageIndex'] == 'undefined' ? 1 : parseInt(queryVars['pageIndex'])
       };
       
