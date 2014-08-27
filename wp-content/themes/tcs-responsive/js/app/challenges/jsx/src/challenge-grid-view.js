@@ -154,18 +154,6 @@
                  <label className="lbl">Current Status</label>
                  <div className="val vStatus">{challenge.status}</div>
               </div>
-              {/*
-              <div className={classNames[challengeCombo].techUpcoming !== undefined ? 'row':'row ng-hide'}>
-                <label className="lbl">Technologies</label>
-                <div className={challenge.technologies === undefined || challenge.technologies.length === 0 ? 'val vTech' : 'val vTech ng-hide'}>
-                  <span>N/A</span>
-                </div>
-                <div className={challenge.technologies !== undefined || challenge.technologies.length !== 0 ? 'technologyTags' : 'technologyTags ng-hide'}>
-                  <ChallengeTechsList challenge={challenge} scope={scope}/>
-                </div>
-                <div className="clear"></div>
-              </div>
-              */}
             </div>
           </div>
           <div id={challenge.challengeId} className={classNames[challengeCombo].tech !== undefined ? 'technologyTags':'technologyTags ng-hide'}>
