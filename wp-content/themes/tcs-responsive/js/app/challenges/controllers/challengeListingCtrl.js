@@ -19,7 +19,7 @@
       
       function getData(community, listType, order, filter, pageIndex, pageSize) {
         var params = {};
-        var listType = $routeParams.challengeStatus.toLowerCase();
+        var listType = $routeParams.challengeStatus ? $routeParams.challengeStatus.toLowerCase() : 'active';
         if (community) {
           params.type = community;
         }
