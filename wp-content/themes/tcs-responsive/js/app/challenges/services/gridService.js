@@ -55,25 +55,12 @@
             tplName: 'prizes'
           },
           {
-            field: 'firstPlacePrize',
-            fieldName: 'First Prize',
-            width: 80,
-            tplName: 'prizes',
-            visible: false
-          },
-          {
             field: 'currentPhaseName',
             fieldName: 'Current Phase',
             minWidth: 77,
             width: 120,
             maxWidth: 130,
             visible: contest.listType === 'active'
-          },
-          {
-            field: 'technologies',
-            fieldName: 'Technologies',
-            width: 152,
-            visible: false
           },
           {
             field: 'numRegistrants',
