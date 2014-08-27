@@ -435,23 +435,23 @@ get_header(); ?>
     <div>
       <div class="row">
         <label class="lbl">Start Date</label>
-        <div class="val vStartDate">{{row.getProperty('registrationStartDate') | date: dateFormat}}</div>
+        <div class="val vStartDate">{{dateFormatFilter(row.getProperty('registrationStartDate'), dateFormat)}}</div>
       </div>
       <div class="row" ng-show="row.getProperty('checkpointSubmissionEndDate')">
         <label class="lbl ">Round 1 End</label>
-        <div class="val vEndRound">{{row.getProperty('checkpointSubmissionEndDate') | date: dateFormat}}</div>
+        <div class="val vEndRound">{{dateFormatFilter(row.getProperty('checkpointSubmissionEndDate'), dateFormat)}}</div>
       </div>
       <div class="row" ng-show="contest.listType == 'past'">
         <label class="lbl">End Date</label>
-        <div class="val vEndDate">{{row.getProperty('submissionEndDate') | date: dateFormat}}</div>
+        <div class="val vEndDate">{{dateFormatFilter(row.getProperty('submissionEndDate'), dateFormat)}}</div>
       </div>
       <div class="row" ng-show="contest.listType == 'active' || contest.listType == 'upcoming'">
         <label class="lbl ">Register by</label>
-        <div class="val vEndRound">{{row.getProperty('registrationEndDate') | date: dateFormat}}</div>
+        <div class="val vEndRound">{{dateFormatFilter(row.getProperty('registrationEndDate'), dateFormat)}}</div>
       </div>
       <div class="row" ng-show="contest.listType == 'active' || contest.listType == 'upcoming'">
         <label class="lbl">Submit by</label>
-        <div class="val vEndDate">{{row.getProperty('submissionEndDate') | date: dateFormat}}</div>
+        <div class="val vEndDate">{{dateFormatFilter(row.getProperty('submissionEndDate'), dateFormat)}}</div>
       </div>
     </div>
   </div>
@@ -460,19 +460,19 @@ get_header(); ?>
     <div>
       <div class="row">
         <label class="lbl">Start Date</label>
-        <div class="val vStartDate">{{row.getProperty('registrationStartDate') | date: dateFormat}}</div>
+        <div class="val vStartDate">{{dateFormatFilter(row.getProperty('registrationStartDate'), dateFormat)}}</div>
       </div>
       <div class="row" ng-show="contest.listType == 'upcoming' && row.getProperty('checkpointSubmissionEndDate')">
         <label class="lbl ">Round 1 End</label>
-        <div class="val vEndRound">{{row.getProperty('checkpointSubmissionEndDate') | date: dateFormat}}</div>
+        <div class="val vEndRound">{{dateFormatFilter(row.getProperty('checkpointSubmissionEndDate'), dateFormat)}}</div>
       </div>
       <div class="row" ng-show="contest.listType != 'active'">
         <label class="lbl">End Date</label>
-        <div class="val vEndDate">{{row.getProperty('submissionEndDate') | date: dateFormat}}</div>
+        <div class="val vEndDate">{{dateFormatFilter(row.getProperty('submissionEndDate'), dateFormat)}}</div>
       </div>
       <div class="row" ng-show="contest.listType == 'active'">
         <label class="lbl">Submit by</label>
-        <div class="val vEndDate">{{row.getProperty('submissionEndDate') | date: dateFormat}}</div>
+        <div class="val vEndDate">{{dateFormatFilter(row.getProperty('submissionEndDate'), dateFormat)}}</div>
       </div>
     </div>
   </div>
