@@ -42,7 +42,10 @@ appChallengeTerms = {
             $.ajax({
               url: tcApiRUL + '/terms/docusign/viewURL',
               type: 'POST',
-              data: { templateId: data["docusignTemplateId"] },
+              data: {
+                templateId: data["docusignTemplateId"],
+                returnUrl: siteURL + "/iframe-break/?dest=/challenge-details/terms/" + challengeId + "?challenge-type=" + challengeType
+              },
               cache: false,
               beforeSend: function(bxhr) {
                 bxhr.setRequestHeader('Authorization', 'Bearer ' + tcjwt.replace(/["]/g, ""));
