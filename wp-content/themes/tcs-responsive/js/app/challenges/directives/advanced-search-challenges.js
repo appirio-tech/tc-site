@@ -287,39 +287,68 @@
              to = element.find('.to-datepicker');
           from.datepicker({
             onSelect: function (selectedDate) {
-              to.datepicker("option", "minDate", selectedDate);
               scope.$apply(function () {
                 scope.filterOptions.startDate = from.datepicker('getDate');
                 scope.applyFilterHandler(scope.filterOptions);
               });
-            },
-            defaultDate: scope.filterOptions.startDate,
-            maxDate: scope.filterOptions.endDate
+            }
           });
         
         to.datepicker({
             onSelect: function (selectedDate) {
-              from.datepicker("option", "maxDate", selectedDate);
               scope.$apply(function () {
                 scope.filterOptions.endDate = to.datepicker('getDate');
                 scope.applyFilterHandler(scope.filterOptions);
               });
-            },
-            defaultDate: scope.filterOptions.endDate,
-            minDate: scope.filterOptions.startDate
+            }
         });
+
         var pickers = element.find('.pickers');
         advancedSearchCtrl.datePicker = pickers[0];
         element.hover(function (event) {
-          advancedSearchCtrl.closeDropdowns(pickers[0]);
-          pickers.show();
+          if (event.hasOwnProperty('originalEvent')) {
+            advancedSearchCtrl.closeDropdowns(pickers[0]);
+            pickers.show();
+          }
         });
-        element.mouseleave(function () {
-          element.find('.pickers').hide();
+        element.mouseleave(function (event) {
+          if (event.hasOwnProperty('originalEvent')) {
+            element.find('.pickers').hide();
+          }
         });
         scope.$on('$destroy', function() {
           element.off('hover');
           element.off('mouseleave')
+        });
+        /*
+        The datepicker operations will trigger mouseover event, which means
+        the code 'hover' the datepicker automatically.
+        See http://bugs.jqueryui.com/ticket/5816
+        So we need a way to tell between a programatic and user triggered event.
+        See http://stackoverflow.com/questions/6674669/in-jquery-how-can-i-tell-between-a-programatic-and-user-click
+         */
+        scope.$watch('filterOptions.startDate ? filterOptions.startDate.getTime() : undefined', function(value) {
+          var date = value ? (new Date(value)) : undefined;
+          from.datepicker('setDate', date);
+          to.datepicker('option', 'minDate', date);
+          if (!from.datepicker('getDate')) {
+            from.find('.ui-datepicker-current-day').removeClass('ui-datepicker-current-day');
+          }
+          if (!to.datepicker('getDate')) {
+            to.find('.ui-datepicker-current-day').removeClass('ui-datepicker-current-day');
+          }
+        });
+
+        scope.$watch('filterOptions.endDate ? filterOptions.endDate.getTime() : undefined', function(value) {
+          var date = value ? (new Date(value)) : undefined;
+          to.datepicker('setDate', date);
+          from.datepicker('option', 'maxDate', date);
+          if (!from.datepicker('getDate')) {
+            from.find('.ui-datepicker-current-day').removeClass('ui-datepicker-current-day');
+          }
+          if (!to.datepicker('getDate')) {
+            to.find('.ui-datepicker-current-day').removeClass('ui-datepicker-current-day');
+          }
         });
       }
     }
