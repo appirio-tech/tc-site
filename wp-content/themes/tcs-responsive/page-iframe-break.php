@@ -20,7 +20,7 @@ window.onload = function() {
 
     document.getElementById('loader').style.display = 'block';
     var loc = getParameterByName('dest') || '/';
-	setTimeout(function() {top.window.location = unescape(loc);}, 10000);
+	setTimeout(function() {top.window.location = unescape(loc);}, 15000);
 }
 </script>
 </head>
