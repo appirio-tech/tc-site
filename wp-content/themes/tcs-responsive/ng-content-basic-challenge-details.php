@@ -249,7 +249,7 @@
     </div>
     <!--End nextBoxContent-->
       <div ng-if="!isDesign" class="nextBoxContent allDeadlineNextBoxContent hide">
-        <p><label>Posted On:</label>
+        <p><label>Start Date:</label>
           <span>
             {{formatDate(challenge.postingDate, 2)}}
           </span>
