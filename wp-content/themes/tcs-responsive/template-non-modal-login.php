@@ -70,13 +70,13 @@ $siteURL = site_url ();
 									<p class="row">
 										<label>Username</label>
 										<input id="username" type="text" class="name" placeholder="Username"/>
-										<span class="err1">Your username or password are incorrect</span>
-										<span class="err3">Please input your username</span>
+										<span class="err1">Your username or password are incorrect.</span>
+										<span class="err3">Please input your username.</span>
 									</p>
 									<p class="row">
 										<label>Password</label>
 										<input id="password" type="password" class="pwd" placeholder="Password"/>
-										<span class="err4">Please input your password</span>
+										<span class="err4">Please input your password.</span>
 									</p>
 									<p class="row lSpace">
 										<label><input type="checkbox"/> Remember me</label>
