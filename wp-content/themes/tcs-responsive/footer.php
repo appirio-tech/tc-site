@@ -911,7 +911,37 @@ $blog_posts = get_posts($blog_posts_args);
     });
   });
 </script>
+<!-- START Google Retargeting Marketing Code -->
+<script type="text/javascript">
+adroll_adv_id = "LOUA2FVRTJDYZC2BMX72Z7";
+adroll_pix_id = "4XU6H3BYL5EQBFHZM4DIUU";
+(function () {
+var oldonload = window.onload;
+window.onload = function(){
+   __adroll_loaded=true;
+   var scr = document.createElement("script");
+   var host = (("https:" == document.location.protocol) ? "https://s.adroll.com" : "http://a.adroll.com");
+   scr.setAttribute('async', 'true');
+   scr.type = "text/javascript";
+   scr.src = host + "/j/roundtrip.js";
+   ((document.getElementsByTagName('head') || [null])[0] ||
+    document.getElementsByTagName('script')[0].parentNode).appendChild(scr);
+   if(oldonload){oldonload()}};
+}());
+</script>
+<!-- END Google Retargeting Marketing Code -->
 
+
+<!-- START Twitter Marketing Code -->
+<script src="//platform.twitter.com/oct.js" type="text/javascript"></script>
+<script type="text/javascript">
+twttr.conversion.trackPid('l4r4k');
+</script>
+<noscript>
+<img height="1" width="1" style="display:none;" alt="" src="https://analytics.twitter.com/i/adsct?txn_id=l4r4k&p_id=Twitter" />
+<img height="1" width="1" style="display:none;" alt="" src="//t.co/i/adsct?txn_id=l4r4k&p_id=Twitter" />
+</noscript>
+<!-- END Twitter Marketing Code -->
 </div>
 
 </body>
