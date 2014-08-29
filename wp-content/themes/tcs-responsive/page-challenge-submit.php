@@ -40,7 +40,7 @@ $contest = get_contest_detail('', get_query_var('contestID'), $challengeType);
                 </section>
                 <section class="agreement notAgreed">
                     <input id="agree" type="checkbox"/>
-                    <label>By clicking this box you agree to our <a id="termsLink" href="http://www.topcoder.com/community/terms-and-conditions/" target="_blank">terms and conditions.</a></label>
+                    <label>By clicking this box you agree to our <a id="termsLink" href="http://www.topcoder.com/community/how-it-works/terms/" target="_blank">terms and conditions.</a></label>
                     <a href="javascript:" id="submit" class="btn">Submit</a>
                 </section>
                 <!-- #/end agreement section-->
