@@ -330,6 +330,7 @@ a{
         float: left;
         max-width: 96px;
         height: 22px;
+        text-transform: capitalize;
         /*
 		Issue ID: I-108002 - don't cut the overflow
 		

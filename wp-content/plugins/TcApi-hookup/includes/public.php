@@ -519,8 +519,8 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 
 
   /* search users  */
-  function tcapi_search_users($handle = '') {
-    $url      = TC_API_URL . "/users/search/?handle=" . $handle;
+  function tcapi_search_users($handle = '', $pageIndex = 1, $pageSize = 20) {
+    $url      = TC_API_URL . "/users/search/?handle=" . $handle . "&pageIndex=" . $pageIndex . "&pageSize=" . $pageSize;
     $args     = array(
       'httpversion' => get_option('httpversion'),
       'timeout'     => 30

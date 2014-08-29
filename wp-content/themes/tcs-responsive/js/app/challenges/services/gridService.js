@@ -10,7 +10,7 @@
         return [
           {
             field: 'challengeName',
-            fieldName: 'Challenges',
+            fieldName: 'Challenge',
             width: 340,
             visible: contest.contestType !== 'data'
           },

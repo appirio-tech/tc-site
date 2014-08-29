@@ -74,9 +74,9 @@ function get_checkpoint_details($contestId, $challengeType) {
   return $TCHOOK_plugin->get_checkpoint_details_fn($contestId, $challengeType);
 }
 
-function search_users($handle) {
+function search_users($handle, $pageIndex=1, $pageSize=20) {
   global $TCHOOK_plugin;
-  return $TCHOOK_plugin->tcapi_search_users($handle);
+  return $TCHOOK_plugin->tcapi_search_users($handle, $pageIndex, $pageSize);
 }
 
 /**

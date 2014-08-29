@@ -61,6 +61,7 @@ if ($contestType == 'all') {
         ?>
         <item>
           <title><?php echo $name ?></title>
+          <guid><?php echo $contest->challengeId ?></guid>
           <link><?php echo "{$base_url}/{$contest->challengeId}?type={$contest->challengeType}" ?></link>;
           <description><![CDATA[<?php echo $content ?>]]></description>
           <content:encoded><![CDATA[<?php echo $content ?>]]></content:encoded>
