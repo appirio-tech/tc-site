@@ -21,13 +21,26 @@ function post_register_controller() {
       'handle' => filter_input(INPUT_POST, 'handle', FILTER_SANITIZE_STRING),
       'country' => filter_input(INPUT_POST, 'country', FILTER_SANITIZE_STRING),
       'regSource' => 'http://www.topcoder.com/',
-      'email' => filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL),
+      'email' => filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL)
     ),
     'cookies' => array()
   );
 
   foreach ($extra_vars as $var_key => $var_value) {
     $params['body'][$var_key] = $var_value;
+  }
+
+  // For backwards compatiblity for non standard marketing url params
+  if (!empty($extra_vars['utmSource'])) {
+    $params['body']['utm_source'] = $extra_vars['utmSource'];
+  }
+
+  if (!empty($extra_vars['utmSource'])) {
+    $params['body']['utm_medium'] = $extra_vars['utmMedium'];
+  }
+
+  if (!empty($extra_vars['utmSource'])) {
+    $params['body']['utm_campaign'] = $extra_vars['utmCampaign'];
   }
 
   // If next param exists then add all of the current url params to it
