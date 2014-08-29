@@ -59,8 +59,26 @@ $nav = array(
         <div class="separator beforeSearch"></div>
         <div class="headerTopRightMenuLink search last">
           <div class="icon"></div>
-          <div class="text"><a href="/search">Search</a></div>
+          <div class="text"><a id="searchButton" href="#">Search</a></div>
           <div class="clear"></div>
+        </div>
+        <div id="searchWidget" class="hide">
+            <div class="box">
+              <div class="upperbox">
+                <div class="searchArea">
+                  <a id="btnSearchType" class="btn btnSearchType" href="#"><span id="searchTypeName">Site</span><i></i></a><input id="searchKeyword" type="text" class="searchInput" name="keyword" maxlength="64">
+                  <div id="requiredText" class="hide">Please input search keyword</div>
+                </div>
+                <div id="searchTypeList" class="hide">
+                  <a class="searchType">Site</a>
+                  <a class="searchType">Members</a>
+                </div>
+              </div>
+              <div class="lowerbox">
+                <div class="searchText">Find what you are looking for.</div>
+                <a id="searchButtonGo" class="btn btnGo" href="#">Go</a>
+              </div>
+            </div>
         </div>
         <div class="clear"></div>
       </div>
