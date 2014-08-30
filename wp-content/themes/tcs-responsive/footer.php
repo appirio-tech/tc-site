@@ -186,7 +186,7 @@ $blog_posts = get_posts($blog_posts_args);
 <div id="showSubmission" class="modal">
     <a href="javascript:;" class="btnClose closePopupModal"></a>
     <div class="content">
-        <img src="http://studio.topcoder.com/?module=DownloadSubmission&sbmid=177659&sbt=full&sfi=1" alt="" style="width:910px; height:850px">
+       <img alt="" style="width:910px; height:850px"> 
     </div>
 </div><!-- END #show submission -->
 
