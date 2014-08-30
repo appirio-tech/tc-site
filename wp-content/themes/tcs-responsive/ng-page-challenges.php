@@ -213,7 +213,7 @@ get_header(); ?>
                   <div class="selecting-tag-wrapper">
                     <div class="date-ranges selected-tag">
                       <span class="selected-range left">
-                        from {{formatDate(filterOptions.startDate)}} {{filterOptions.endDate ? ('to ' + formatDate(filterOptions.endDate)) : ''}}
+                        From {{formatDate(filterOptions.startDate)}} {{filterOptions.endDate ? ('to ' + formatDate(filterOptions.endDate)) : ''}}
                       </span>
                       <span class="tag-closedate right" ng-click="clearDates()"></span>
                     </div>
