@@ -279,7 +279,7 @@ include locate_template('header-challenge-landing.php');
   </article>
 
   <article id="howtosubmit">
-    <h1>How to Submit</h1>
+    <h1>HOW TO SUBMIT</h1>
 
     <p>
     <ul class="howToSubmit">
@@ -308,7 +308,7 @@ include locate_template('header-challenge-landing.php');
   </article>
 
   <article id="winnerselection">
-    <h1>Winner Selection</h1>
+    <h1>WINNER SELECTION</h1>
 
     <p>
       Submissions are viewable to the client as they are entered into the challenge. Winners are selected by the
@@ -317,7 +317,7 @@ include locate_template('header-challenge-landing.php');
   </article>
 
   <article id="payments">
-    <h1>Payments</h1>
+    <h1>PAYMENTS</h1>
 
     <p>TopCoder will compensate members in accordance with the payment structure of this challenge.
       Initial payment for the winning member will be distributed in two installments. The first payment
@@ -336,7 +336,7 @@ include locate_template('header-challenge-landing.php');
 
 
   <article id="eligibility">
-    <h1>Eligibility</h1>
+    <h1>ELIGIBILITY</h1>
 
     <p>You must be a TopCoder member, at least 18 years of age, meeting all of the membership requirements. In addition,
       you must fit into one of the following categories.</p>
