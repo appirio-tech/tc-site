@@ -385,8 +385,11 @@ include locate_template('header-challenge-landing.php');
         <th class="regDateColumn">
           <div>Registration Date</div>
         </th>
-        <th class="subDateColumn" colspan="2">
+        <th class="subDateColumn">
           <div>Submission Date</div>
+        </th>
+        <th class="subDateColumn">
+          <div>Submission Results</div>
         </th>
       </tr>
       </thead>
