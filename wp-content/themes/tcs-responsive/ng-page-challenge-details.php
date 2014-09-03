@@ -388,8 +388,8 @@ include locate_template('header-challenge-landing.php');
         <th class="subDateColumn">
           <div>Submission Date</div>
         </th>
-        <th class="subDateColumn">
-          <div>Submission Results</div>
+        <th class="successColumn">
+          <div>Result</div>
         </th>
       </tr>
       </thead>

@@ -838,7 +838,7 @@ font-size: 18px;
 }
 
 #viewRegistrant table tr .ratingColumn {
-    width: 13%;
+    width: 10%;
     text-align: center;
 }
 
@@ -848,12 +848,17 @@ font-size: 18px;
 }
 
 #viewRegistrant table tr .regDateColumn {
-    width: 25%;
+    width: 20%;
     text-align: center;
 }
 
 #viewRegistrant table tr .subDateColumn {
-    width: 25%;
+    width: 20%;
+    text-align: center;
+}
+
+#viewRegistrant table tr .successColumn {
+    width: 12%;
     text-align: center;
 }
 
