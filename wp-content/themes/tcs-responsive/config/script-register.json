@@ -245,6 +245,7 @@
         "app/member-profile/js/controllers/controllers-member-profile.js",
         "app/member-profile/js/directives/directives-member-profile.js",
         "app/member-profile/js/directives/badge-directive-member-profile.js",
+        "app/member-profile/js/directives/develop-directive-member-profile.js",
         "app/member-profile/js/controllers/base-controller-member-profile.js",
         "app/member-profile/js/controllers/design-controller-member-profile.js",
         "app/member-profile/js/controllers/data-science-controller-member-profile.js",
