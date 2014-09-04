@@ -123,6 +123,7 @@
         .then(function (challenge) {
           processChallenge(challenge, handle, vm, ChallengeService);
           vm.callComplete = true;
+          $('#cdNgMain').show();
         });
 
     }
