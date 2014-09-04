@@ -75,7 +75,7 @@ get_header ();
 												$no++;
 										?>
 											<tr class="light">
-										        <td class="value"><?php echo $no; ?></td>
+										        <td class="value"><?php echo $no + $pageSize * ($pageIndex-1); ?></td>
 										        <td class="value"><a href="/member-profile/<?php echo $user->handle; ?>"><?php echo $user->handle; ?></a></td>
 										      <!-- <td class="value"></td> 
 										       <td class="value"></td>  -->
