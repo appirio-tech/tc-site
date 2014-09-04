@@ -52,6 +52,7 @@ get_header ();
 									$pageSize = $result->pageSize;
 									$users = (array)$result->users;
 								?>
+								<?php if ($result->total > 0): ?>
 									<div class="pagingBox">
 								        Search Results:
 								        <strong><?php echo ($pageIndex-1)*$pageSize+1; ?></strong> to
@@ -81,6 +82,9 @@ get_header ();
 										   </tr>
 										<?php endforeach; ?>
 									</table>
+								<?php else: ?>
+									<div class="noResult">No matches found</div>
+								<?php endif; ?>
 								</div>
 							<?php else: ?>
 								<div id="searchBlogsWrapper">
