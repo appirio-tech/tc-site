@@ -43,16 +43,19 @@ get_header ();
 								<div id="searchMemberWrapper">
 								<?php
 									$keyword = $_GET['s'];
-									$page = 1;
-									if ($_GET['page'])
-										$page = $_GET['page'];
-									$result = search_users($keyword.'%', $page);
-									$total = $result->total;
-									$pageIndex = $result->pageIndex;
-									$pageSize = $result->pageSize;
-									$users = (array)$result->users;
+									if ($keyword)
+									{
+										$page = 1;
+										if ($_GET['page'])
+											$page = $_GET['page'];
+										$result = search_users($keyword.'%', $page);
+										$total = $result->total;
+										$pageIndex = $result->pageIndex;
+										$pageSize = $result->pageSize;
+										$users = (array)$result->users;
+									}
 								?>
-								<?php if ($result->total > 0): ?>
+								<?php if ($keyword && $result->total > 0): ?>
 									<div class="pagingBox">
 								        Search Results:
 								        <strong><?php echo ($pageIndex-1)*$pageSize+1; ?></strong> to
