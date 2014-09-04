@@ -132,19 +132,25 @@
      */
     function registerToChallenge() {
 
-      ChallengeService
-        .registerToChallenge(challengeId)
-        .then(
-          function (data) {
-            if (data["message"] === "ok") {
-              showModal("#registerSuccess");
-            } else if (data["error"]["details"] === "You should agree with all terms of use.") {
-              window.location = siteURL + "/challenge-details/terms/" + id + "?challenge-type=" + challengeType;
-            } else if (data["error"]["details"]) {
-              showError(data["error"]["details"]);
+      if (app.isLoggedIn()) {
+        ChallengeService
+          .registerToChallenge(challengeId)
+          .then(
+            function (data) {
+              if (data["message"] === "ok") {
+                showModal("#registerSuccess");
+              } else if (data["error"]["details"] === "You should agree with all terms of use.") {
+                window.location = siteURL + "/challenge-details/terms/" + vm.challenge.challengeId + "?challenge-type=" + challengeType;
+              } else if (data["error"]["details"]) {
+                showError(data["error"]["details"]);
+              }
             }
-          }
-        );
+          );
+      } else {
+        $('.actionLogin').click();
+      }
+
+      
     };
 
   }
@@ -199,7 +205,7 @@
       challenge.prize[i] = challenge.prize[i].format();
     }
 
-    vm.challenge = challenge;
+    globster = vm.challenge = challenge;
 
     var regList = challenge.registrants.map(function(x) { return x.handle; });
     var submissionMap = challenge.submissions.map(function(x) { return x.handle; });
@@ -297,3 +303,4 @@
   }
 
 })();
+var globster;
