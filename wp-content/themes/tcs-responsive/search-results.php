@@ -43,15 +43,19 @@ get_header ();
 								<div id="searchMemberWrapper">
 								<?php
 									$keyword = $_GET['s'];
-									$page = 1;
-									if ($_GET['page'])
-										$page = $_GET['page'];
-									$result = search_users($keyword.'%', $page);
-									$total = $result->total;
-									$pageIndex = $result->pageIndex;
-									$pageSize = $result->pageSize;
-									$users = (array)$result->users;
+									if ($keyword)
+									{
+										$page = 1;
+										if ($_GET['page'])
+											$page = $_GET['page'];
+										$result = search_users($keyword.'%', $page);
+										$total = $result->total;
+										$pageIndex = $result->pageIndex;
+										$pageSize = $result->pageSize;
+										$users = (array)$result->users;
+									}
 								?>
+								<?php if ($keyword && $result->total > 0): ?>
 									<div class="pagingBox">
 								        Search Results:
 								        <strong><?php echo ($pageIndex-1)*$pageSize+1; ?></strong> to
@@ -74,13 +78,16 @@ get_header ();
 												$no++;
 										?>
 											<tr class="light">
-										        <td class="value"><?php echo $no; ?></td>
+										        <td class="value"><?php echo $no + $pageSize * ($pageIndex-1); ?></td>
 										        <td class="value"><a href="/member-profile/<?php echo $user->handle; ?>"><?php echo $user->handle; ?></a></td>
 										      <!-- <td class="value"></td> 
 										       <td class="value"></td>  -->
 										   </tr>
 										<?php endforeach; ?>
 									</table>
+								<?php else: ?>
+									<div class="noResult">No matches found</div>
+								<?php endif; ?>
 								</div>
 							<?php else: ?>
 								<div id="searchBlogsWrapper">
