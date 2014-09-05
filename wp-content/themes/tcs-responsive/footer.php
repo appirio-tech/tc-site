@@ -942,6 +942,23 @@ twttr.conversion.trackPid('l4r4k');
 <img height="1" width="1" style="display:none;" alt="" src="//t.co/i/adsct?txn_id=l4r4k&p_id=Twitter" />
 </noscript>
 <!-- END Twitter Marketing Code -->
+
+<!-- START KISSmetrics --> 
+<script type="text/javascript">var _kmq = _kmq || [];
+var _kmk = _kmk || '8594aa19a108c4899f379df29fdc8e56ca5985db';
+function _kms(u){
+  setTimeout(function(){
+    var d = document, f = d.getElementsByTagName('script')[0],
+    s = d.createElement('script');
+    s.type = 'text/javascript'; s.async = true; s.src = u;
+    f.parentNode.insertBefore(s, f);
+  }, 1);
+}
+_kms('//i.kissmetrics.com/i.js');
+_kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
+</script>
+<!-- END KISSmetrics --> 
+
 </div>
 
 </body>
