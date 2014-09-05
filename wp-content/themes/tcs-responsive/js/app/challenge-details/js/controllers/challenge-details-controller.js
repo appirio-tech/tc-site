@@ -37,6 +37,7 @@
     var vm = this;
 
     vm.callComplete = false;
+    vm.scope = $scope;
 
     // Global variable available from ng-page-challenge-details.php
     vm.challengeType = challengeType;
@@ -209,7 +210,7 @@
       challenge.prize[i] = challenge.prize[i].format();
     }
 
-    vm.challenge = challenge;
+    vm.scope.challenge = vm.challenge = challenge;
 
     var regList = challenge.registrants.map(function(x) { return x.handle; });
     var submissionMap = challenge.submissions.map(function(x) { return x.handle; });

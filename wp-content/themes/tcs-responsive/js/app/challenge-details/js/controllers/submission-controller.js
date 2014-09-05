@@ -1,3 +1,4 @@
+var glob;
 /**
  * This code is copyright (c) 2014 Topcoder Corporation
  * author: ecnu_haozi
@@ -39,6 +40,7 @@ var sub;
     vm.init(TEMPLATE_URL, SubmissionServices);
 
     $scope.$watch('challenge', function(){
+      glob = $scope.challenge;
       if ($scope.challenge) {
         /*
          * Based on http://docs.tcapi.apiary.io/#studiochallenges,
@@ -48,7 +50,12 @@ var sub;
          *
          * To simulate private challenge, set mockSubmissionsViewable to false.
          */
-        $scope.challenge.submissionsViewable = vm.mockSubmissionsViewable;
+        if (!$scope.challenge.submissionsViewable || $scope.challenge.submissionsViewable == 'false') {
+          $scope.challenge.submissionsViewable = false;
+        } else {
+          $scope.challenge.submissionsViewable = true;
+        }
+        vm.submissionsViewable = $scope.challenge.submissionsViewable = vm.mockSubmissionsViewable;
 
         if (vm.hasSubmission($scope.challenge.submissions)) {
           vm.submissionPagedItems = vm.pagination($scope.challenge.submissions);
@@ -158,6 +165,7 @@ var sub;
      */
     function viewSubmission(submission) {
       var subCtrl = this;
+      if (!subCtrl.submissionsViewable) return;
       /*
        * Currently API does not provide us the total number of images,
        * so we don't know what is max value FileIndex.numOfImages field
