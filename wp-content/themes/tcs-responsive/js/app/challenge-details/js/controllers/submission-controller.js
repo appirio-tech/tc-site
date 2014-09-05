@@ -9,6 +9,7 @@
  *   on the controller, which is a little more readable
  */
 'use strict';
+var sub;
 
 (function() {
 

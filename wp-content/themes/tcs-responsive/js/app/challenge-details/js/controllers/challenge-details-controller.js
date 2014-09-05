@@ -209,7 +209,7 @@
       challenge.prize[i] = challenge.prize[i].format();
     }
 
-    globster = vm.challenge = challenge;
+    vm.challenge = challenge;
 
     var regList = challenge.registrants.map(function(x) { return x.handle; });
     var submissionMap = challenge.submissions.map(function(x) { return x.handle; });
