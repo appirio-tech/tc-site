@@ -1,5 +1,5 @@
-<article ng-if="isDesign && submissions.length > 0">
-    <div ng-if="firstPlaceSubmission" ng-repeat="submission in winningSubmissions" class="winnerRow {{$index > 1 ? 'hideOnMobi' : ''}}">
+<article ng-if="CD.isDesign && CD.submissions.length > 0">
+    <div ng-if="CD.firstPlaceSubmission" ng-repeat="submission in CD.winningSubmissions" class="winnerRow {{$index > 1 ? 'hideOnMobi' : ''}}">
         <div class="place {{['first', 'second', 'third', 'other'][$index]}}">{{$index + 1}}<span>{{(placeSuffix = ['st', 'nd', 'rd'][$index]) ? placeSuffix : 'th'}}</span></div>
         <!-- #/end place-->
         <div class="image">
@@ -10,16 +10,16 @@
         <div class="details">
             <a href="<?php bloginfo('wpurl'); ?>/member-profile/{{submission.handle}}" class="coderTextOrange">{{submission.handle}}</a>
             <div class="">
-                <h3>${{challenge.prize[$index]}}</h3>
+                <h3>${{CD.challenge.prize[$index]}}</h3>
                 <span class="title">PRIZE</span>
                 <span class="date">Registration Date</span>
-                <span class="time">{{formatDate(submission.registrationDate)}}</span>
+                <span class="time">{{submission.registrationDate | formatDate}}</span>
             </div>
             <div class="">
                 <h3>{{submission.points}}</h3>
                 <span class="title">Studio Cup Points</span>
                 <span class="date">Submitted Date</span>
-                <span class="time">{{formatDate(submission.submissionDate)}}</span>
+                <span class="time">{{submission.submissionDate | formatDate}}</span>
             </div>
         </div>
         <!-- #/end details-->
@@ -71,24 +71,24 @@
         <div class="registrant">
             <h2>Registrants</h2>
             <div class="values">
-                <span class="count">{{challenge.numberOfRegistrants}}</span>
+                <span class="count">{{CD.challenge.numberOfRegistrants}}</span>
             </div>
         </div>
         <!--#/end registrant-->
-        <div class="round {{numCheckpointSubmissions == -1 ? 'hide' : ''}}">
+        <div class="round {{CD.numCheckpointSubmissions == -1 ? 'hide' : ''}}">
             <h2>Round 1 (Checkpoint)</h2>
             <div class="values">
-                <span class="count">{{numberOfUniqueSubmitters}}<span class="sup">&nbsp;</span></span>
+                <span class="count">{{CD.numberOfUniqueSubmitters}}<span class="sup">&nbsp;</span></span>
                 <span class="type">Submitter</span>
                 <span class="type">&nbsp;</span>
             </div>
             <div class="values">
-                <span class="count">{{numberOfPassedScreeningUniqueSubmitters}}<span class="sup">({{checkpointPassedScreeningSubmitterPercentage}}%)</span></span>
+                <span class="count">{{CD.numberOfPassedScreeningUniqueSubmitters}}<span class="sup">({{CD.checkpointPassedScreeningSubmitterPercentage}}%)</span></span>
                 <span class="type">Passed Screening</span>
                 <span class="type">Submitter</span>
             </div>
             <div class="values">
-                <span class="count">{{numberOfPassedScreeningSubmissions}}<span class="sup">({{checkpointPassedScreeningSubmissionPercentage}}%)</span></span>
+                <span class="count">{{CD.numberOfPassedScreeningSubmissions}}<span class="sup">({{CD.checkpointPassedScreeningSubmissionPercentage}}%)</span></span>
                 <span class="type">Passed Screening</span>
                 <span class="type">Submissions</span>
             </div>
@@ -97,17 +97,17 @@
         <div class="round round2">
             <h2>Round 2 (Final)</h2>
             <div class="values">
-                <span class="count">{{numFinalSubmitters}}<span class="sup">&nbsp;</span></span>
+                <span class="count">{{CD.numFinalSubmitters}}<span class="sup">&nbsp;</span></span>
                 <span class="type">Submitter</span>
                 <span class="type">&nbsp;</span>
             </div>
             <div class="values">
-                <span class="count">{{finalSubmittersPassedScreening}}<span class="sup">({{finalPassedScreeningSubmitterPercentage}}%)</span></span>
+                <span class="count">{{CD.finalSubmittersPassedScreening}}<span class="sup">({{CD.finalPassedScreeningSubmitterPercentage}}%)</span></span>
                 <span class="type">Passed Screening</span>
                 <span class="type">Submitter</span>
             </div>
             <div class="values">
-                <span class="count">{{finalSubmissionsPassedScreening}}<span class="sup">({{finalPassedScreeningSubmissionPercentage}}%)</span></span>
+                <span class="count">{{CD.finalSubmissionsPassedScreening}}<span class="sup">({{CD.finalPassedScreeningSubmissionPercentage}}%)</span></span>
                 <span class="type">Passed Screening</span>
                 <span class="type">Submissions</span>
             </div>
@@ -118,16 +118,16 @@
     <!--#/end competitionDetails-->
 </article>
 
-<article ng-if="!isDesign && submissions.length > 0">
-    <div ng-if="firstPlaceSubmission" class="winnerRow">
+<article ng-if="!CD.isDesign && CD.submissions.length > 0">
+    <div ng-if="CD.firstPlaceSubmission" class="winnerRow">
         <div class="place first">1<span>st</span></div>
         <!-- #/end place-->
         <div class="details">
-            <a href="<?php bloginfo('wpurl'); ?>/member-profile/{{firstPlaceSubmission.handle}}" class="coderTextYellow">{{firstPlaceSubmission.handle}}</a>
+            <a href="<?php bloginfo('wpurl'); ?>/member-profile/{{CD.firstPlaceSubmission.handle}}" class="coderTextYellow">{{CD.firstPlaceSubmission.handle}}</a>
         </div>
         <!-- #/end details-->
         <div class="price">
-            <span class="price">${{challenge.prize[0]}}</span>
+            <span class="price">${{CD.challenge.prize[0]}}</span>
             <span>PRIZE</span>
         </div>
         <!-- #/end price-->
@@ -137,31 +137,31 @@
         </div>
         <!-- #/end price-->
         <div class="actions">
-            <a href="{{firstPlaceSubmission.submissionDownloadLink}}" class="download">Download</a>
+            <a href="{{CD.firstPlaceSubmission.submissionDownloadLink}}" class="download">Download</a>
         </div>
         <!-- #/end actions-->
         <div class="clear"></div>
     </div>
     <!--#/end winnerrow-->
-    <div ng-if="secondPlaceSubmission && challenge.prize[1]" class="winnerRow">
+    <div ng-if="CD.secondPlaceSubmission && CD.challenge.prize[1]" class="winnerRow">
         <div class="place second">2<span>nd</span></div>
         <!-- #/end place-->
         <div class="details">
-            <a href="<?php bloginfo('wpurl'); ?>/member-profile/{{secondPlaceSubmission.handle}}" class="coderTextGray">{{secondPlaceSubmission.handle}}</a>
+            <a href="<?php bloginfo('wpurl'); ?>/member-profile/{{CD.secondPlaceSubmission.handle}}" class="coderTextGray">{{CD.secondPlaceSubmission.handle}}</a>
         </div>
         <!-- #/end details-->
         <div class="price">
-            <span class="price">${{challenge.prize[1]}}</span>
+            <span class="price">${{CD.challenge.prize[1]}}</span>
             <span>PRIZE</span>
         </div>
         <!-- #/end price-->
         <div class="point">
-            <span class="point">{{secondPlaceSubmission.points}}</span>
+            <span class="point">{{CD.secondPlaceSubmission.points}}</span>
             <span>DR POINT</span>
         </div>
         <!-- #/end price-->
         <div class="actions">
-            <a href="{{secondPlaceSubmission.submissionDownloadLink}}" class="download">Download</a>
+            <a href="{{CD.secondPlaceSubmission.submissionDownloadLink}}" class="download">Download</a>
         </div>
         <!-- #/end actions-->
         <div class="clear"></div>
@@ -190,10 +190,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="submission in submissions" class="{{$index % 2 == 1 ? 'alt' : ''}}">
+        <tr ng-repeat="submission in CD.submissions" class="{{$index % 2 == 1 ? 'alt' : ''}}">
             <td class="leftAlign"><a href="<?php bloginfo('wpurl'); ?>/member-profile/{{submission.handle}}" class="coderTextGray">{{submission.handle}}</a></td>
-            <td>{{formatDate(submission.registrationDate)}}</td>
-            <td>{{formatDate(submission.submissionDate)}}</td>
+            <td>{{submission.registrationDate | formatDate}}</td>
+            <td>{{submission.submissionDate | formatDate}}</td>
             <td><span class="pass">{{submission.screeningScore}}</span></td>
             <td><span class="initialScore">{{submission.initialScore}}</span>/<a href="javascript:" class="finalScore">{{submission.finalScore}}</a> </td>
             <td><a href="{{submission.submissionDownloadLink}}">Download</a></td>
@@ -202,16 +202,16 @@
     </table>
     <div class="registrantsTable onMobi">
 
-        <div ng-repeat="submission in submissions" class="registrantSection">
+        <div ng-repeat="submission in CD.submissions" class="registrantSection">
             <div class="registrantSectionRow registrantHandle"><a href="<?php bloginfo('wpurl'); ?>/member-profile/{{submission.handle}}" class=" coder coderTextYellow">{{submission.handle}}</a></div>
             <div class="registrantSectionRow">
                 <div class="registrantLabel">Registration Date:</div>
-                <div class="registrantField">{{formatDate(submission.registrationDate)}}</div>
+                <div class="registrantField">{{submission.registrationDate | formatDate}}</div>
                 <div class="clear"></div>
             </div>
             <div class="registrantSectionRow">
                 <div class="registrantLabel">Submission Date:</div>
-                <div class="registrantField">{{formatDate(submission.submissionDate)}}</div>
+                <div class="registrantField">{{submission.submissionDate | formatDate}}</div>
                 <div class="clear"></div>
             </div>
             <div class="registrantSectionRow">
@@ -234,11 +234,11 @@
         <div class="registrant">
             <h2>Registrants</h2>
             <div class="values">
-                <span class="count">{{challenge.numberOfRegistrants}}</span>
+                <span class="count">{{CD.challenge.numberOfRegistrants}}</span>
             </div>
         </div>
         <!--#/end registrant-->
-        <div class="round {{!checkpointData ? 'hide' : ''}}">
+        <div class="round {{!CD.checkpointData ? 'hide' : ''}}">
             <h2>Checkpoint</h2>
             <!--<div class="values">
                 <span class="count"><span class="sup">&nbsp;</span></span>
@@ -246,7 +246,7 @@
                 <span class="type">&nbsp;</span>
             </div>-->
             <div class="values">
-                <span class="count">{{numCheckpointSubmissions}}</span>
+                <span class="count">{{CD.numCheckpointSubmissions}}</span>
                 <span class="type">Submissions</span>
             </div>
             <!--<div class="values">
@@ -263,7 +263,7 @@
                 <span class="type">&nbsp;</span>
             </div>-->
             <div class="values">
-                <span class="count" ng-bind="challenge.numberOfSubmissions"></span>
+                <span class="count" ng-bind="CD.challenge.numberOfSubmissions"></span>
                 <span class="type">Submissions</span>
             </div>
             <!--<div class="values">
@@ -275,12 +275,12 @@
         <div class="average">
             <h2>AVERAGE SCORE</h2>
             <div class="values">
-                <span class="count">{{round(initialScoreSum * 100.0 / submissions.length) / 100}}<span class="sup">&nbsp;</span></span>
+                <span class="count">{{round(CD.initialScoreSum * 100.0 / CD.submissions.length) / 100}}<span class="sup">&nbsp;</span></span>
                 <span class="type">Average</span>
                 <span class="type">Initial Score</span>
             </div>
             <div class="values">
-                <span class="count">{{round(finalScoreSum * 100.0 / submissions.length) / 100}}<span class="sup">&nbsp;</span></span>
+                <span class="count">{{round(CD.finalScoreSum * 100.0 / CD.submissions.length) / 100}}<span class="sup">&nbsp;</span></span>
                 <span class="type">Average</span>
                 <span class="type">Final Score</span>
             </div>
@@ -290,7 +290,7 @@
     </div>
 
 </article>
-<div ng-if="!submissions || submissions.length == 0">
-  Submissions are available after the review phase.
+<div ng-if="!CD.submissions || CD.submissions.length == 0">
+    Submissions are available after the review phase.
 </div>
 
