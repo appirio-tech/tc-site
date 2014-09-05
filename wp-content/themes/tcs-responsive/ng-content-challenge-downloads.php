@@ -13,7 +13,7 @@
     <li ng-if="!CD.challenge.Documents && CD.allowDownloads && CD.isLoggedIn">
       <strong>Register to Download Files (if available)</strong>
     </li>
-    <li ng-if="!challenge.Documents && allowDownloads && !isLoggedIn">
+    <li ng-if="!CD.challenge.Documents && CD.allowDownloads && !CD.isLoggedIn">
       <strong>Log In and Register to Download Files <br>(if available)</strong>
     </li>
   </ul>
