@@ -2,6 +2,7 @@
 /*global angular: true, _: true */
 (function (angular) {
   'use strict';
+ 
   angular.module('tc.challenges.services', [
     'restangular'
   ])
@@ -140,9 +141,27 @@
                 challengeItem.numRegistrants = challengeItem.numberOfRegistrants;
                 challengeItem.numSubmissions = challengeItem.numberOfSubmissions;
                 challengeItem.totalPrize = 'N/A';
+                if (!challengeItem.technologies) {
+                  challengeItem.technologies = [];
+                }
+                if (!challengeItem.platforms) {
+                  challengeItem.platforms = [];
+                }
               });
-              deferred.resolve(challenges);
+              if (listType !== 'past') {
+                var devParams = angular.extend(params, {challengeType: 'Code', technologies: 'Data Science', type: 'develop'});
+                delete devParams.listType;
+
+                Restangular.one('challenges').getList(listType, devParams)
+                  .then(function (devChallenges) {
+                    challenges = challenges.concat(devChallenges);
+                    deferred.resolve(challenges);
+                  });
+              } else {
+                deferred.resolve(challenges);
+              }
             });
+           
             return deferred.promise;
           } else {
             return Restangular.one('challenges').getList(listType, params);
@@ -172,7 +191,13 @@
             }
           },
           'getChallengeTypes': function (community) {
-            return Restangular.one(community).one('challengetypes').getList();
+            if (community !== 'data') {
+              return Restangular.one(community).one('challengetypes').getList();
+            } else {
+              var def = $q.defer();
+              def.resolve([]);
+              return def.promise;
+            }
           }
         };
       }])

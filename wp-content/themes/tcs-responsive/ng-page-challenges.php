@@ -362,25 +362,13 @@ get_header(); ?>
   </div>
 </script>
 
-<script type="text/ng-template" id="tableView/challengeDataName.html">
-  <div class="colCh">
-    <div>
-      <a ng-href="//community.topcoder.com/longcontest/?module=ViewProblemStatement&rd={{row.getProperty('roundId')}}&pm={{row.getProperty('problemId')}}" class="contestName">
-        <img alt="allContestIco" class="allContestIco" ng-src="{{images}}/ico-track-{{row.getProperty('challengeCommunity')}}.png">
-        <span ng-cell-text>{{row.getProperty('fullName')}}</span>
-        <img alt="allContestTCOIco" class="allContestTCOIco" ng-src="{{images}}/tco-flag-{{row.getProperty('challengeCommunity') != 'data'?row.getProperty('challengeCommunity'):'develop'}}.png" ng-show="contest.contestType != 'data'">
-      </a>
-    </div>
-  </div>
-</script>
-
 <script type="text/ng-template" id="tableView/challengeName.html">
   <div class="colCh" ng-if="row.getProperty('challengeCommunity') !== 'data'">
     <div>
       <a ng-href="/challenge-details/{{row.getProperty('challengeId')}}/?type={{row.getProperty('challengeCommunity')}}" class="contestName">
         <img alt="allContestIco" class="allContestIco" ng-src="{{images}}/ico-track-{{row.getProperty('challengeCommunity')}}.png">
         <span ng-cell-text>{{row.getProperty(col.field)}}</span>
-        <img alt="allContestTCOIco" class="allContestTCOIco" ng-src="{{images}}/tco-flag-{{row.getProperty('challengeCommunity') != 'data'?row.getProperty('challengeCommunity'):'develop'}}.png" ng-if="contest.contestType != 'data'">
+        <img alt="allContestTCOIco" class="allContestTCOIco" ng-src="{{images}}/tco-flag-{{row.getProperty('challengeCommunity')}}.png">
         <span class="track-symbol" qtip title="Challenge Type" text="{{row.getProperty('challengeType')}}" community="{{row.getProperty('challengeCommunity')}}">
           {{getTrackSymbol(row.getProperty('challengeType')).toUpperCase()}}
         </span>
@@ -391,6 +379,15 @@ get_header(); ?>
         <li ng-repeat="item in row.getProperty('technologies')"><span class="techTag"><a href="" ng-click="findByTechnology(item)">{{item}}</a></span></li>
         <li ng-repeat="item in row.getProperty('platforms')"><span class="techTag"><a href="" ng-click="findByPlatform(item)">{{item}}</a></span></li>
       </ul>
+    </div>
+  </div>
+  <div class="colCh" ng-if="row.getProperty('challengeCommunity') === 'data'">
+    <div>
+      <a ng-href="//community.topcoder.com/longcontest/?module=ViewProblemStatement&rd={{row.getProperty('roundId')}}&pm={{row.getProperty('problemId')}}" class="contestName">
+        <img alt="allContestIco" class="allContestIco" ng-src="{{images}}/ico-track-{{row.getProperty('challengeCommunity')}}.png">
+        <span ng-cell-text>{{row.getProperty('fullName')}}</span>
+        <img alt="allContestTCOIco" class="allContestTCOIco" ng-src="{{images}}/tco-flag-{{row.getProperty('challengeCommunity') != 'data'?row.getProperty('challengeCommunity'):'develop'}}.png" ng-show="contest.contestType != 'data'">
+      </a>
     </div>
   </div>
 
@@ -415,10 +412,6 @@ get_header(); ?>
   <span ng-cell-text ng-bind-html="formatTimeLeft(row.getProperty(col.field), true, row.getProperty('currentPhaseName'))"></span>
 </script>
 
-<script type="text/ng-template" id="tableView/dataNumRegistrants.html">
-  <span ng-cell-text><a href="//community.topcoder.com/longcontest/?module=ViewStandings&rd={{row.getProperty('roundId')}}">{{row.getProperty(col.field)}}</a></span>
-</script>
-
 <script type="text/ng-template" id="tableView/duration.html">
   <div class="colDur">{{getContestDuration(row.getProperty('registrationStartDate'), row.getProperty('submissionEndDate'))}}</div>
 </script>
@@ -428,7 +421,12 @@ get_header(); ?>
 </script>
 
 <script type="text/ng-template" id="tableView/numRegistrants.html">
-  <span ng-cell-text><a href="/challenge-details/{{row.getProperty('challengeId')}}/?type={{row.getProperty('challengeCommunity')}}#viewRegistrant">{{row.getProperty(col.field)}}</a></span>
+  <span ng-cell-text ng-if="row.getProperty('challengeCommunity') !== 'data'">
+    <a href="/challenge-details/{{row.getProperty('challengeId')}}/?type={{row.getProperty('challengeCommunity')}}#viewRegistrant">{{row.getProperty(col.field)}}</a>
+  </span>
+  <span ng-cell-text ng-if="row.getProperty('challengeCommunity') === 'data'">
+    <a href="//community.topcoder.com/longcontest/?module=ViewStandings&rd={{row.getProperty('roundId')}}">{{row.getProperty(col.field)}}</a>
+  </span>
 </script>
 
 <script type="text/ng-template" id="tableView/numSubmissions.html">
