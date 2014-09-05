@@ -2,8 +2,6 @@
 /*
 Template Name: Non Modal Register
 */
-?>
-<?php
 
 get_header ();
 
@@ -11,10 +9,23 @@ $values = get_post_custom ( $post->ID );
 
 $userkey = get_option ( 'api_user_key' );
 $siteURL = site_url ();
+
+function tc_registration_footer_js() {
+  ?>
+  <script type="text/javascript">
+    var siteurl = "<?php bloginfo('siteurl');?>";
+    $('.btnRegister').remove();
+    setTimeout(function() {
+      $('.modal #registerForm').remove();
+    }, 1000);
+  </script>
+<?php
+}
+
+add_action('wp_footer', 'tc_registration_footer_js', 10000);
+
 ?>
-<script type="text/javascript">
-	var siteurl = "<?php bloginfo('siteurl');?>";
-</script>
+
 
 <div class="content">
 <div id="main">
@@ -51,7 +62,7 @@ $siteURL = site_url ();
 
 					<div id="register">
 						<div class="content">
-							<h2>Register Using An Existing Account</h2>
+							<h2>Sign Up Using An Existing Account</h2>
 
 							<div id="socials">
 						  		<a class="register-facebook" href="javascript:;"><span class="animeButton shareFacebook"><span class="shareFacebookHover animeButtonHover"></span></span></a>
@@ -69,53 +80,51 @@ $siteURL = site_url ();
 							<!-- END .socials -->
 
 
-							<h2>Or Register Using Your Email</h2>
+							<h2>Or Sign Up Using Your Email</h2>
 
 							<form class="register" id="registerForm">
 								<p class="row">
-							  		<span class="socialUnavailableErrorMessage">Social profile already in use. Please use another profile or register below</span>
+							  		<span class="socialUnavailableErrorMessage">Social profile already in use. Please use another profile or register below.</span>
 								</p>
 
 								<p class="row">
 									<label>First Name</label>
 									<input type="text" class="name firstName" placeholder="First Name"/>
-									<span class="err1">Required field</span>
-									<span class="err2">Maximum length is 64 characters</span>
-									<!--Bugfix I-107905: add error message for invalid characters-->
-									<span class="err3">First Name contains invalid characters</span>
-									<span class="err4">First Name cannot consist solely of punctuation</span>
-									<span class="err5">First Name is invalid</span>
+									<span class="err1">Required field.</span>
+									<span class="err2">Maximum length is 64 characters.</span>
+									<span class="err3">First Name contains invalid characters.</span>
+									<span class="err4">First Name cannot consist solely of punctuation.</span>
+									<span class="err5">First Name is invalid.</span>
 									<span class="valid"></span>
 								</p>
 
 								<p class="row">
 									<label>Last Name</label>
 									<input type="text" class="name lastName" placeholder="Last Name"/>
-									<span class="err1">Required field</span>
-									<span class="err2">Maximum length is 64 characters</span>
-									<!--Bugfix I-107905: add error message for invalid characters-->
-									<span class="err3">Last Name contains invalid characters</span>
-									<span class="err4">Last Name cannot consist solely of punctuation</span>
-									<span class="err5">Last Name is invalid</span>
+									<span class="err1">Required field.</span>
+									<span class="err2">Maximum length is 64 characters.</span>
+									<span class="err3">Last Name contains invalid characters.</span>
+									<span class="err4">Last Name cannot consist solely of punctuation.</span>
+									<span class="err5">Last Name is invalid.</span>
 									<span class="valid"></span>
 								</p>
 
 								<p class="row">
 									<label>Username</label>
 									<input type="text" class="handle name" placeholder="Username"/>
-									<span class="err1">Required field</span>
-									<span class="err2">Username already exists or is invalid</span>
-									<span class="err3">Username cannot contain a space</span>
-									<span class="err4">Username cannot consist solely of punctuation</span>
-									<span class="err5">Username contains invalid characters</span>
-									<span class="err6">Username cannot start with "admin"</span>
-									<span class="err7">Username must be between 2 and 15 characters long</span>
+									<span class="err1">Required field.</span>
+									<span class="err2">Username already exists or is invalid.</span>
+									<span class="err3">Username cannot contain a space.</span>
+									<span class="err4">Username cannot consist solely of punctuation.</span>
+									<span class="err5">Username contains invalid characters.</span>
+									<span class="err6">Username cannot start with "admin".</span>
+									<span class="err7">Username must be between 2 and 15 characters long.</span>
 									<span class="valid"></span>
 								</p>
 
 								<p class="row">
 								<label>Country</label>
-								<select id="selCountry" name="user.country">
+								<select id="selCountry" class="applyCustomSelect" name="user.country">
 								  <option value="">Please Select</option>
 								  <option value="Afghanistan">Afghanistan</option>
 								  <option value="Albania">Albania</option>
@@ -361,26 +370,26 @@ $siteURL = site_url ();
 								  <option value="Zambia">Zambia</option>
 								  <option value="Zimbabwe">Zimbabwe</option>
 								</select>
-								<span class="err1">Required field</span>
+								<span class="err1">Required field.</span>
 								<span class="valid"></span>
 							</p>
 							<p class="row">
 							  <label>Email</label>
 							  <input type="text" class="email" placeholder="Email"/>
-							  <span class="err1">Required field</span>
-							  <span class="err2">Invalid email address</span>
-							  <span class="err3">Email already in use</span>
+							  <span class="err1">Required field.</span>
+							  <span class="err2">Invalid email address.</span>
+							  <span class="err3">Email already in use.</span>
 							  <span class="valid"></span>
 							</p>
 
 							<p class="row">
 							  <label>Password</label>
 							  <input type="password" class="pwd" placeholder="Password"/>
-							  <span class="err1">Required field</span>
-							  <span class="err2">Password strength is weak</span>
-							  <span class="err3">Password cannot contain an apostrophe</span>
-							  <span class="err4">Password must be between 7 and 30 characters</span>
-							  <span class="err5">Password must not contain only spaces</span>
+							  <span class="err1">Required field.</span>
+							  <span class="err2">Password strength is weak.</span>
+							  <span class="err3">Password cannot contain an apostrophe.</span>
+							  <span class="err4">Password must be between 7 and 30 characters.</span>
+							  <span class="err5">Password must not contain only spaces.</span>
 							  <span class="valid">Strong</span>
 							</p>
 
@@ -391,22 +400,22 @@ $siteURL = site_url ();
 										<span class="field"></span>
 										<span class="field"></span>
 									  </span>
-							  7 characters with letters, numbers, &amp; symbols
+							  7 characters with letters, numbers, &amp; symbols.
 							</p>
 
 							<p class="row">
 							  <label>Password Confirmation</label>
 							  <input type="password" class="confirm" placeholder="Password Confirmation"/>
-							  <span class="err1">Required field</span>
-							  <span class="err2">Password confirmation different from above field</span>
+							  <span class="err1">Required field.</span>
+							  <span class="err2">Password confirmation different from above field.</span>
 							  <span class="valid"></span>
 							</p>
 
 							<p class="row lSpace">
 							  <label><input type="checkbox">I agree to the <a target="_blank" href="/community/how-it-works/terms/">terms of
-								  service</a> and <a target="_blank" href="/community/how-it-works/privacy-policy/">privacy policy</a></label>
-							  <span class="err1">You must agree to the terms</span>
-							  <span class="err2">You must agree to the terms</span>
+								  service</a> and <a target="_blank" href="/community/how-it-works/privacy-policy/">privacy policy</a>.</label>
+							  <span class="err1">You must agree to the terms.</span>
+							  <span class="err2">You must agree to the terms.</span>
 							</p>
 
 							</form>

@@ -130,14 +130,23 @@ called `env.php` in the `wp-content/themes/tcs-responsive/config` directory.
 We recommend the following lines for purposes of local development.
 
     <?php
-    define("WP_SITEURL", "http://local.topcoder.com");
-    define("WP_HOME", "http://local.topcoder.com");
-    // if you want to change the api url
-    define('TC_API_URL', 'https://api.topcoder.com/v2');
-    
     force_ssl_admin(false);
     force_ssl_login(false);
     ?>
+    
+Environment variables are loaded form config.json.  The config.json file is built during
+grunt process.  The following command line options can be used ot customize the build:
+
+* auth-client-id: The Auth0 ClientID to use
+* auth-callback-url: The Auth0 callback 
+* auth-ldap:  The Auth0 LDAP connection to use
+* community-url: THe community URL to redirect to after login
+* main-url: The main site URL.  This replaces WP_SITEURL and WP_HOME in env.php
+* api-url: The API URL:  This replaces the TC_API_URL in env.php.
+* cdn-url: This replaces the WP option on the theme settings page.
+* use-cdn: This replaces the WP option on the theme settings page.
+* use-min: This replaces the WP option on the theme settings page.
+* use-ver: This replaces the WP option on the theme settings page.
 
 ## Development Guidelines ##
 
@@ -147,19 +156,16 @@ These are the formating rules our code should follow.
 
 * Javascript
     * 2 spaces for indention and *no tabs*.
+    * For Angular, first follow [our Angular style
+      guide](https://gitlab.com/topcoderinc/angularjs-styleguide/tree/master)
     * Otherwise follow
     [Google's guidelines](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml).
 
 ### AngularJS ###
 
-* There is a sample AngularJS integration with Wordpress on the
-  [angular_service branch](https://gitlab.com/topcoderinc/tc-site/tree/angular_service).
-* Look at the page template page_angular_example
-    (https://gitlab.com/topcoderinc/tc-site/blob/angular_service/wp-content/themes/tcs-responsive/page-angular-example.php)
-  for integration into Wordpress page template.
 * Before you do any Angular development, you should look at our [detailed
   Angular
-  guidelines](https://gitlab.com/topcoderinc/tc-site/tree/master/doc/angular/).
+  guidelines](https://gitlab.com/topcoderinc/angularjs-styleguide/tree/master).
 
 ## Git Information ##
 

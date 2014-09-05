@@ -23,7 +23,7 @@
    * Inject dependencies
    * @type {string[]}
    */
-  ChallengeDetailCtrl.$inject = ['$scope', 'ChallengeService', '$q'];
+  ChallengeDetailCtrl.$inject = ['$scope', 'ChallengeService', '$q', '$cookies'];
 
   /**
    * Controller implementation
@@ -32,7 +32,7 @@
    * @param ChallengeService
    * @constructor
    */
-  function ChallengeDetailCtrl($scope, ChallengeService, $q) {
+  function ChallengeDetailCtrl($scope, ChallengeService, $q, $cookies) {
 
     var vm = this;
 
@@ -42,7 +42,7 @@
     vm.challengeType = challengeType;
     vm.siteURL       = siteURL;
 
-    vm.isDesign = (challengeType === 'design');
+    vm.isLoggedIn = typeof $cookies.tcjwt !== 'undefined' && typeof $cookies.tcsso !== 'undefined';
 
     vm.activeTab = 'details';
     if (window.location.hash == '#viewRegistrant') {
@@ -168,6 +168,9 @@
     // Global variable available from ng-page-challenge-details.php
     challengeName = challenge.challengeName;
 
+    vm.isDesign = (challengeType === 'design');
+    vm.allowDownloads = challenge.currentPhaseName === 'Registration' || challenge.currentPhaseName === 'Submission';
+
     ChallengeService
       .getDocuments(challengeId, challengeType)
       .then(function(data) {
@@ -177,7 +180,7 @@
       });
 
 
-    if (challenge.checkpointSubmissionEndDate && challenge.checkpointSubmissionEndDate != '') {
+    if (challenge.currentPhaseName != 'Stalled' && challenge.checkpointSubmissionEndDate && challenge.checkpointSubmissionEndDate != '') {
       ChallengeService
         .getCheckpointData(challengeId)
         .then(function(data) {
@@ -232,11 +235,11 @@
     vm.inSubmission     = challenge.currentPhaseName.indexOf('Submission') >= 0;
     vm.inScreening      = challenge.currentPhaseName.indexOf('Screening') >= 0;
     vm.inReview         = challenge.currentPhaseName.indexOf('Review') >= 0;
-    vm.hasFiletypes     = (challenge.filetypes != undefined) && challenge.filetypes.length > 0;
+    vm.hasFiletypes     = ((typeof challenge.filetypes) !== 'undefined') && challenge.filetypes.length > 0;
 
     // Result section, if status completed
     vm.submissions = false;
-    if (challenge.currentStatus == 'Completed' || challenge.currentPhaseEndDate == '') {
+    if (challenge.currentStatus != 'Draft' && (challenge.currentPhaseName != 'Stalled' || challenge.currentStatus == 'Completed') && (challenge.currentStatus == 'Completed' || challenge.currentPhaseEndDate == '')) {
       ChallengeService
         .getResults(challengeId)
         .then(function(results) {
@@ -304,4 +307,3 @@
   }
 
 })();
-var globster;

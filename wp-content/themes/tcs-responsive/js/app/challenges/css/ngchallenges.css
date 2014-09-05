@@ -124,7 +124,7 @@
     padding-top: 40px;
 }
 
-.upcomingCaption {
+.upcomingCaption,.pastCaption {
     text-align: center;
     padding: 10px 0;
 }

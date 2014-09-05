@@ -16,7 +16,6 @@
     .module('challengeDetails')
     .controller('SubmissionCtrl', SubmissionCtrl);
 
-
   SubmissionCtrl.$inject = ['TEMPLATE_URL', '$scope', 'SubmissionServices'];
 
   /**

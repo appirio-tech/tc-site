@@ -56,4 +56,9 @@ get_header();
 			<!-- /.coderRatings -->
 		</article>
 		<!-- /#mainContent -->
-<?php get_footer(); ?>
+
+<?php
+wp_register_script('raphael-mp', '/wp-content/themes/tcs-responsive/js/raphael-min.js', array('angularjs'), null, true);
+wp_enqueue_script('raphael-mp');	
+get_footer();
+?>

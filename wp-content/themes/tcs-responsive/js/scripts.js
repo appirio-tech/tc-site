@@ -209,8 +209,47 @@ var app = {
       $(this).addClass('active');
       return false;
     });
-  },
 
+    //search widget
+    $('#searchButton').on(ev,function(){
+      $('#searchKeyword').removeClass('required');
+      $('#requiredText').addClass('hide');
+      $("#searchWidget").toggleClass('hide');
+      $(".headerTopRightMenuLink.search").toggleClass('active');
+    });
+
+    $('#btnSearchType').on(ev,function(){
+      $('#btnSearchType').toggleClass('isActive');
+      $('#searchTypeList').toggleClass('hide');
+    });
+
+    $('.searchType').on(ev,function(){
+      $('#searchTypeName').text($(this).text());
+      $('#btnSearchType').toggleClass('isActive');
+      $('#searchTypeList').toggleClass('hide');
+    });
+    $('#searchButtonGo').on(ev,app.submitSearch);
+    $("#searchKeyword").keyup(function(event){
+      $('#searchKeyword').removeClass('required');
+      $('#requiredText').addClass('hide');
+      if(event.keyCode == 13){
+          app.submitSearch();
+      }
+    });
+  },
+  submitSearch: function(){
+      var keyword = $('#searchKeyword').val();
+      if (keyword==""){
+        $('#searchKeyword').addClass('required');
+        $('#requiredText').removeClass('hide');
+        return;
+      }
+      if ($('#searchTypeName').text()=='Site'){
+        window.location.replace("/search?s="+keyword);
+      }else if ($('#searchTypeName').text()=='Members'){
+        window.location.replace("search?s="+keyword+"&scope=member");
+      }
+  },
   setLoading: function() {
     if ($('.loading').length <= 0) {
       $('body').append('<div class="loading">Loading...</div>');
@@ -1677,6 +1716,18 @@ var app = {
         });
       }
     }
+  },
+  getParameterByName: function(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+    var results = regex.exec(location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  },
+  getHashParameterByName: function(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\#&]" + name + "=([^&#]*)");
+    var results = regex.exec(location.hash);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
   }
 };
 

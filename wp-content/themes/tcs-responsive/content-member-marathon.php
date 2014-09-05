@@ -158,7 +158,7 @@ if($rating>0){
 		<!-- /.ratingViews -->
 		<?php else:?>
 		<div class="noParticipation">
-			<h2>Member rating unavailable or member didn't participated in any Marathon competition.</h2>
+			<h2>Member rating unavailable or member didn't participate in any Marathon competitions.</h2>
 		</div>
 		<?php endif;?>
 	</div>

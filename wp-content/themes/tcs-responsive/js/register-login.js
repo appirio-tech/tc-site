@@ -33,9 +33,13 @@ $(function () {
     showModal('#login');
   });
 
-  $('.closeModal,#bgModal').on('click', function () {
+  $('.closeModal,#bgModal').not('.redirectOnConfirm').on('click', function () {
     //window.location.replace('/');
     closeModal();
+  });
+
+  $('.redirectOnConfirm').on('click', function () {
+    redirectToNext();
   });
 
 
@@ -361,9 +365,9 @@ $(function () {
     } else {
       $(this).parents(".row").find("span.valid").hide();
 
-  	  // Issue ID: I-111588 - Show invalid error message when value is empty after being changed
-	  $(this).closest('.row').find('.err1').show();
-	  $(this).closest('.row').find('.customSelect').addClass('invalid');
+      // Issue ID: I-111588 - Show invalid error message when value is empty after being changed
+      $(this).closest('.row').find('.err1').show();
+      $(this).closest('.row').find('.customSelect').addClass('invalid');
     }
   });
 
@@ -456,7 +460,7 @@ $(function () {
     handleDeferred = $.Deferred();
   });
 
-  $('select').customSelect();
+  $('select.applyCustomSelect').customSelect();
 
   $('#register a.btnSubmit').on('click', function () {
     var isValid = true;
@@ -607,15 +611,13 @@ $(function () {
             handle: $('#registerForm input.handle').val(),
             country: $('#registerForm select#selCountry').val(),
             email: $('#registerForm input.email').val(),
-            utmSource: utmSource,
-            utmMedium: utmMedium,
-            utmCampaign: utmCampaign
-          }
+            curUrl: window.location.href
+          };
           if ((typeof socialProviderId != 'undefined') && socialProviderId !== "") {
             fields.socialProviderId = socialProviderId;
             fields.socialUserId = socialUserId;
-            fields.socialProvider = socialProvider,
-              fields.socialUserName = socialUserName;
+            fields.socialProvider = socialProvider;
+            fields.socialUserName = socialUserName;
             fields.socialEmail = socialEmail;
             fields.socialEmailVerified = "t";
           } else {
@@ -624,9 +626,18 @@ $(function () {
 
           $.post(ajaxUrl + '?action=post_register', fields, function (data) {
             if (data.code == "200") {
+              var tcAction = getCookie('tcDelayChallengeAction');
               $('.modal').hide();
               $("#thanks h2").html('Thanks for Registering');
               $("#thanks p").html('We have sent you an email with activation instructions.<br>If you do not receive that email within 1 hour, please email <a href="mailto:support@topcoder.com">support@topcoder.com</a>');
+              if (tcAction) {
+                var tcDoAction = tcAction.split('|');
+                if (tcDoAction[0] === 'register') {
+                  //append challenge registration message
+                  $("#thanks p").after("<div style='padding-bottom: 30px'>In order to register for the selected challenge, you must return to the <a href='/challenge-details/" + tcDoAction[1] + "/?type=" + challengeType + "'>challenge details page</a> after you have activated your account.</div>");
+                  $('#thanks p').css({'padding-bottom': '10px'});
+                }
+              }
               showModal('#thanks');
               $('#registerForm .invalid').removeClass('invalid');
               $('#registerForm .valid').removeClass('valid');
@@ -737,6 +748,18 @@ $(function () {
     showModal('#register');
   });
 
+  /*check if on registration complete page and add challenge detail link - currently only way to this since 
+   *entire page content exists in WP database using generic template*/
+  if ($('.thank-you').length) {
+    var tcAction = getCookie('tcDelayChallengeAction');
+    if (tcAction) {
+      var tcActionValues = tcAction.split('|');
+      if (typeof tcActionValues[2] !== 'undefined' && tcActionValues[0] === 'register' && tcActionValues[2] !== '') {
+          //add link to challenge-details page for challenge new user tried to register for before making topcoder account
+          $('.thank-you').append("<h4>Are you still interested in participating in the <br>&quot;" + decodeURIComponent(tcActionValues[2]) + "&quot; challenge? <br>If so, <a href='/challenge-details/register/" + tcActionValues[1] + "/'>go there now!</a></h4>");
+        }
+    }
+  }
 });
 
 // modal
@@ -777,6 +800,20 @@ function closeModal() {
   
   loginState = window.location.href;
   $('#registerForm span.socialUnavailableErrorMessage').hide();
+}
+
+function redirectToNext() {
+  // go to next param if it exists
+  var nextLoc = getParameterByName('next') || getHashParameterByName('state');
+  if (nextLoc) {
+    window.location.href = nextLoc;
+  }
+  else if (window.location.pathname == '/register/') {
+    window.location.href = "/";
+  }
+  else {
+    closeModal()
+  }
 }
 
 // Resets the registration popup fields

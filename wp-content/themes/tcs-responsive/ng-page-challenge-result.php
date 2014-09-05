@@ -1,9 +1,9 @@
-<article ng-show="CD.isDesign && CD.submissions.length > 0">
-    <div ng-show="CD.firstPlaceSubmission" ng-repeat="submission in CD.winningSubmissions" class="winnerRow {{$index > 1 ? 'hideOnMobi' : ''}}">
+<article ng-if="CD.isDesign && CD.submissions.length > 0">
+    <div ng-if="CD.firstPlaceSubmission" ng-repeat="submission in CD.winningSubmissions" class="winnerRow {{$index > 1 ? 'hideOnMobi' : ''}}">
         <div class="place {{['first', 'second', 'third', 'other'][$index]}}">{{$index + 1}}<span>{{(placeSuffix = ['st', 'nd', 'rd'][$index]) ? placeSuffix : 'th'}}</span></div>
         <!-- #/end place-->
         <div class="image">
-            <img ng-src="{{submission.previewDownloadLink}}" alt="winner"/>
+            <img ng-src="{{submission.previewDownloadLink ? submission.previewDownloadLink : '/wp-content/themes/tcs-responsive/i/img-locked.png'}}" alt="winner"/>
         </div>
         
         <!-- #/end image-->
@@ -118,7 +118,7 @@
     <!--#/end competitionDetails-->
 </article>
 
-<article ng-show="!CD.isDesign && CD.submissions.length > 0">
+<article ng-if="!CD.isDesign && CD.submissions.length > 0">
     <div ng-if="CD.firstPlaceSubmission" class="winnerRow">
         <div class="place first">1<span>st</span></div>
         <!-- #/end place-->

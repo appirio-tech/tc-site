@@ -155,10 +155,10 @@ $blog_posts = get_posts($blog_posts_args);
     <h2>Thanks for joining!</h2>
 
     <p>We have sent you an email with activation instructions.<br/>If you do not receive that email within 1 hour,
-      please email <a href="mailto:support@topcoder.com">support@topcoder.com</a></p>
+      please email <a href="mailto:support@topcoder.com">support@topcoder.com</a>.</p>
 
     <div>
-      <a href="javascript:;" class="btn closeModal">Close</a>
+      <a href="javascript:;" class="btn closeModal redirectOnConfirm">Close</a>
     </div>
   </div>
 </div><!-- END #thanks -->
@@ -194,7 +194,7 @@ $blog_posts = get_posts($blog_posts_args);
 <a href="javascript:;" class="btnClose closeModal"></a>
 
 <div class="content">
-<h2>Register Using An Existing Account</h2>
+<h2>Sign Up Using An Existing Account</h2>
 
 <div id="socials">
   <a class="register-facebook" href="javascript:;"><span class="animeButton shareFacebook"><span
@@ -212,52 +212,52 @@ $blog_posts = get_posts($blog_posts_args);
   <div class="clear"></div>
 </div>
 <!-- END .socials -->
-<h2>Or Register Using Your Email</h2>
+<h2>Or Sign Up Using Your Email</h2>
 
 <form class="register" id="registerForm">
 <p class="row">
-  <span class="socialUnavailableErrorMessage">Social profile already in use. Please use another profile or register below</span>
+  <span class="socialUnavailableErrorMessage">Social profile already in use. Please use another profile or register below.</span>
 </p>
 <p class="row">
   <label>First Name</label>
   <input type="text" class="name firstName" placeholder="First Name"/>
-  <span class="err1">Required field</span>
-  <span class="err2">Maximum length is 64 characters</span>
+  <span class="err1">Required field.</span>
+  <span class="err2">Maximum length is 64 characters.</span>
   <!--Bugfix I-107905: add error message for invalid characters-->
-  <span class="err3">First Name contains invalid characters</span>
-  <span class="err4">First Name cannot consist solely of punctuation</span>
-  <span class="err5">First Name is invalid</span>
+  <span class="err3">First Name contains invalid characters.</span>
+  <span class="err4">First Name cannot consist solely of punctuation.</span>
+  <span class="err5">First Name is invalid.</span>
   <span class="valid"></span>
 </p>
 
 <p class="row">
   <label>Last Name</label>
   <input type="text" class="name lastName" placeholder="Last Name"/>
-  <span class="err1">Required field</span>
-  <span class="err2">Maximum length is 64 characters</span>
+  <span class="err1">Required field.</span>
+  <span class="err2">Maximum length is 64 characters.</span>
   <!--Bugfix I-107905: add error message for invalid characters-->
-  <span class="err3">Last Name contains invalid characters</span>
-  <span class="err4">Last Name cannot consist solely of punctuation</span>
-  <span class="err5">Last Name is invalid</span>
+  <span class="err3">Last Name contains invalid characters.</span>
+  <span class="err4">Last Name cannot consist solely of punctuation.</span>
+  <span class="err5">Last Name is invalid.</span>
   <span class="valid"></span>
 </p>
 
 <p class="row">
   <label>Username</label>
   <input type="text" class="handle name" placeholder="Username"/>
-  <span class="err1">Required field</span>
-  <span class="err2">Username already exists or is invalid</span>
-  <span class="err3">Username cannot contain a space</span>
-  <span class="err4">Username cannot consist solely of punctuation</span>
-  <span class="err5">Username contains invalid characters</span>
-  <span class="err6">Username cannot start with "admin"</span>
-  <span class="err7">Username must be between 2 and 15 characters long</span>
+  <span class="err1">Required field.</span>
+  <span class="err2">Username already exists or is invalid.</span>
+  <span class="err3">Username cannot contain a space.</span>
+  <span class="err4">Username cannot consist solely of punctuation.</span>
+  <span class="err5">Username contains invalid characters.</span>
+  <span class="err6">Username cannot start with "admin".</span>
+  <span class="err7">Username must be between 2 and 15 characters long.</span>
   <span class="valid"></span>
 </p>
 
 <p class="row">
 <label>Country</label>
-<select id="selCountry" name="user.country">
+<select class="applyCustomSelect" id="selCountry" name="user.country">
   <option value="">Please Select</option>
   <option value="Afghanistan">Afghanistan</option>
   <option value="Albania">Albania</option>
@@ -503,26 +503,26 @@ $blog_posts = get_posts($blog_posts_args);
   <option value="Zambia">Zambia</option>
   <option value="Zimbabwe">Zimbabwe</option>
 </select>
-<span class="err1">Required field</span>
+<span class="err1">Required field.</span>
 <span class="valid"></span>
 </p>
 <p class="row">
   <label>Email</label>
   <input type="text" class="email" placeholder="Email"/>
-  <span class="err1">Required field</span>
-  <span class="err2">Invalid email address</span>
-  <span class="err3">Email already in use</span>
+  <span class="err1">Required field.</span>
+  <span class="err2">Invalid email address.</span>
+  <span class="err3">Email already in use.</span>
   <span class="valid"></span>
 </p>
 
 <p class="row">
   <label>Password</label>
   <input type="password" class="pwd" placeholder="Password"/>
-  <span class="err1">Required field</span>
-  <span class="err2">Password strength is weak</span>
-  <span class="err3">Password cannot contain an apostrophe</span>
-  <span class="err4">Password must be between 7 and 30 characters</span>
-  <span class="err5">Password must not contain only spaces</span>
+  <span class="err1">Required field.</span>
+  <span class="err2">Password strength is weak.</span>
+  <span class="err3">Password cannot contain an apostrophe.</span>
+  <span class="err4">Password must be between 7 and 30 characters.</span>
+  <span class="err5">Password must not contain only spaces.</span>
   <span class="valid">Strong</span>
 </p>
 
@@ -533,22 +533,22 @@ $blog_posts = get_posts($blog_posts_args);
 						<span class="field"></span>
 						<span class="field"></span>
 					</span>
-  7 characters with letters, numbers, &amp; symbols
+  7 characters with letters, numbers, &amp; symbols.
 </p>
 
 <p class="row">
   <label>Password Confirmation</label>
   <input type="password" class="confirm" placeholder="Password Confirmation"/>
-  <span class="err1">Required field</span>
-  <span class="err2">Password confirmation different from above field</span>
+  <span class="err1">Required field.</span>
+  <span class="err2">Password confirmation different from above field.</span>
   <span class="valid"></span>
 </p>
 
 <p class="row lSpace">
   <label><input type="checkbox">I agree to the <a target="_blank" href="/community/how-it-works/terms/">terms of
-      service</a> and <a target="_blank" href="/community/how-it-works/privacy-policy/">privacy policy</a></label>
-  <span class="err1">You must agree to the terms</span>
-  <span class="err2">You must agree to the terms</span>
+      service</a> and <a target="_blank" href="/community/how-it-works/privacy-policy/">privacy policy</a>.</label>
+  <span class="err1">You must agree to the terms.</span>
+  <span class="err2">You must agree to the terms.</span>
 </p>
 
 </form>
@@ -587,14 +587,14 @@ $blog_posts = get_posts($blog_posts_args);
         <p class="row">
           <label>Username</label>
           <input id="username" type="text" class="name" placeholder="Username"/>
-          <span class="err1">Your username or password are incorrect</span>
-          <span class="err3">Please input your username</span>
+          <span class="err1">Your username or password are incorrect.</span>
+          <span class="err3">Please input your username.</span>
         </p>
 
         <p class="row">
           <label>Password</label>
           <input id="password" type="password" class="pwd" placeholder="Password"/>
-          <span class="err4">Please input your password</span>
+          <span class="err4">Please input your password.</span>
         </p>
 
         <p class="row lSpace">
@@ -610,7 +610,7 @@ $blog_posts = get_posts($blog_posts_args);
             ?>
           <a href="<?php echo $fp_link; //http://community.topcoder.com/tc?module=FindUser ?>" target="_blank" class="forgotPwd">Forgot
             password?</a>
-          <span class="not-a-member">Not a member? <a href="javascript:;" class="switch-to-register">Register Now!</a></span>
+          <span class="not-a-member">Not a member? <a href="javascript:;" class="switch-to-register">Sign Up Now!</a></span>
         </p>
       </form>
       <div class="register-text"></div>
@@ -652,25 +652,32 @@ $blog_posts = get_posts($blog_posts_args);
 </div><!-- /.tooltip -->
 <?php wp_footer(); ?>
 <script>
-  function getParameterByName(name) {
+  function getParameterByName(name, source) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-    results = regex.exec(location.search);
+    results = regex.exec(source || location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+  function getHashParameterByName(name, source) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\#&]" + name + "=([^&#]*)"),
+    results = regex.exec(source || location.hash);
     return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
   }
   var socialProviderId = "", socialUserName = "", socialEmail = "", socialProvider = "";
   var utmSource = '', utmMedium = '', utmCampaign = '';
   var loginState = '';
   $(function () {
-    function getHashParameterByName(name) {
-      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-      var regex = new RegExp("[\\#&]" + name + "=([^&#]*)"),
-      results = regex.exec(location.hash);
-      return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-    }
     utmSource = getParameterByName('utmSource') || getHashParameterByName('utmSource');
     utmMedium = getParameterByName('utmMedium') || getHashParameterByName('utmMedium');
     utmCampaign = getParameterByName('utmCampaign') || getHashParameterByName('utmCampaign');
+    var stateString = getHashParameterByName('state');
+    if (stateString.length > 0) {
+      var cType = getParameterByName('type', stateString);
+      if (cType.length > 0) {
+        challengeType = cType;
+      }
+    }
     var googleProvider = "google-oauth2";
     var facebookProvider = "facebook";
     var twitterProvider = "twitter";
@@ -697,19 +704,19 @@ $blog_posts = get_posts($blog_posts_args);
     if (loginState == 'none') {
       loginState = window.location.href;
 
-  	  // redirect for non-modal registration
-	  if ( $('#mainContent #register').length>0 ) {
-		  loginState = '<?php echo get_page_link_by_slug('community/registration-complete'); ?>';
-	  }
+      // redirect for non-modal registration
+      if ( $('#mainContent #register').length>0 ) {
+          loginState = '<?php echo get_page_link_by_slug('community/registration-complete'); ?>';
+      }
 
-	  // set to home page for non modal login
-	  if ( $('#mainContent #login').length>0 ) {
-		  if ( referer=='' || referer==loginState) {
-			  loginState = '<?php echo get_home_url(); ?>';
-		  } else {
-			  loginState = referer;
-		  }
-	  }
+      // set to home page for non modal login
+      if ( $('#mainContent #login').length>0 ) {
+          if ( referer=='' || referer==loginState) {
+              loginState = '<?php echo get_home_url(); ?>';
+          } else {
+              loginState = referer;
+          }
+      }
 
       if ( /action=showlogin/i.test( loginState )) {
         loginState = referer;
@@ -721,6 +728,11 @@ $blog_posts = get_posts($blog_posts_args);
         loginState = window.location.href;
       }
 
+      // Override call back with next param if it exist
+      var nextLoc = getParameterByName('next');
+      if (nextLoc) {
+       loginState = nextLoc;
+      }
     }
 
     var auth0Login = new Auth0({
@@ -728,15 +740,15 @@ $blog_posts = get_posts($blog_posts_args);
       clientID: '<?php echo auth0_clientID(); ?>',
       callbackURL: '<?php echo auth0_callbackURL(); ?>',
       state: loginState,
-      redirect_uri: window.location.href
+      redirect_uri: loginState
     });
 
     var auth0Register = new Auth0({
       domain: 'topcoder.auth0.com',
       clientID: '<?php echo auth0_clientID(); ?>',
-      callbackURL: utmSource && utmCampaign && utmMedium ? window.location.procotol + '//www.topcoder.com/?action=callback?utmSource=' + utmSource + '&utmCampaign=' + utmCampaign + '&utmMedium=' + utmMedium : window.location.protocol + '//www.topcoder.com/?action=callback',
+      callbackURL: '<?php echo tc_reg_callback(); ?>',
       state: loginState,
-      redirect_uri: window.location.href
+      redirect_uri: loginState
     });
 
     auth0Register.getProfile(window.location.hash, function (err, profile, id_token, access_token, state) {
@@ -893,13 +905,43 @@ $blog_posts = get_posts($blog_posts_args);
           // invalid user/password
           //alert(err);
           $('#loginForm .btnSubmit').html('Login');
-          $('#loginForm .err1').show().html('Incorrect Username or Password')
+          $('#loginForm .err1').show().html('Incorrect Username or Password.')
             .addClass('invalid');
         });
     });
   });
 </script>
+<!-- START Google Retargeting Marketing Code -->
+<script type="text/javascript">
+adroll_adv_id = "LOUA2FVRTJDYZC2BMX72Z7";
+adroll_pix_id = "4XU6H3BYL5EQBFHZM4DIUU";
+(function () {
+var oldonload = window.onload;
+window.onload = function(){
+   __adroll_loaded=true;
+   var scr = document.createElement("script");
+   var host = (("https:" == document.location.protocol) ? "https://s.adroll.com" : "http://a.adroll.com");
+   scr.setAttribute('async', 'true');
+   scr.type = "text/javascript";
+   scr.src = host + "/j/roundtrip.js";
+   ((document.getElementsByTagName('head') || [null])[0] ||
+    document.getElementsByTagName('script')[0].parentNode).appendChild(scr);
+   if(oldonload){oldonload()}};
+}());
+</script>
+<!-- END Google Retargeting Marketing Code -->
 
+
+<!-- START Twitter Marketing Code -->
+<script src="//platform.twitter.com/oct.js" type="text/javascript"></script>
+<script type="text/javascript">
+twttr.conversion.trackPid('l4r4k');
+</script>
+<noscript>
+<img height="1" width="1" style="display:none;" alt="" src="https://analytics.twitter.com/i/adsct?txn_id=l4r4k&p_id=Twitter" />
+<img height="1" width="1" style="display:none;" alt="" src="//t.co/i/adsct?txn_id=l4r4k&p_id=Twitter" />
+</noscript>
+<!-- END Twitter Marketing Code -->
 </div>
 
 </body>

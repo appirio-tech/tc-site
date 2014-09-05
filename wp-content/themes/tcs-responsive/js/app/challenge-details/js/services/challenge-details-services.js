@@ -111,6 +111,8 @@
         .getList(id)
         .then(function(challenge) {
         challenge = challenge[0];
+        challenge.registrants = challenge.registrants || [];
+        challenge.submissions = challenge.submissions || [];
         var submissionMap = {};
         challenge.submissions.map(function(submission) {
           if (submissionMap[submission.handle || submission.submitter]) {

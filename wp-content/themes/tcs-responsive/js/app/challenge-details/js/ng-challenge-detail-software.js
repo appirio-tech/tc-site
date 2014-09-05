@@ -78,6 +78,20 @@ $(document).ready(function () {
   // init tab nav
   app.tabNavinit();
 
+  var tcsso = getCookie('tcsso');
+  var tcjwt = getCookie('tcjwt');
+
+  var tcAction = getCookie('tcDelayChallengeAction');
+
+  if (tcjwt) {
+    if (tcAction && !autoRegister) {
+      var tcDoAction = tcAction.split('|');
+      if (typeof challengeId !== 'undefined' && tcDoAction[0] === 'register' && tcDoAction[1] === challengeId) {
+        $('.challengeRegisterBtn').click();
+      }
+    }
+  }
+
 });
 
 //create/destroy slider based on width
@@ -253,9 +267,39 @@ $(function () {
       $(".additionalPrizes").addClass("hide");
     }
   });
+  
+  $(".leftColumn").on('click', '.challengeRegisterBtn', function () {
+    if ($(this).hasClass("disabled")) { 
+      var tcAction = getCookie('tcDelayChallengeAction');
+      if (tcAction) {
+        //delete cookie
+        document.cookie = 'tcDelayChallengeAction=; path=/; domain=.topcoder.com; expires=' + new Date(0).toUTCString();
+      }
+      return false; 
+    }
+    var tcjwt = getCookie('tcjwt');
+    if (tcjwt) {
+      var tcAction = getCookie('tcDelayChallengeAction');
+      if (tcAction) {
+        var tcDoAction = tcAction.split('|');
+        if (typeof challengeId !== 'undefined' && tcDoAction[0] === 'register' && tcDoAction[1] === challengeId) {
+          //delete cookie
+          document.cookie = 'tcDelayChallengeAction=; path=/; domain=.topcoder.com; expires=' + new Date(0).toUTCString();
+        }
+      }
+    } else {
+      //set cookie to auto register once user is signed in
+      $.cookie.raw = true;
+      $.cookie('tcDelayChallengeAction', 'register|' + challengeId + '|' + encodeURIComponent(challengeName), {expires: 31, path:'/', domain: '.topcoder.com'});
+      $('.actionLogin').click();
+    }
+  });
 
   if (autoRegister) {
-    $(".challengeRegisterBtn").click();
+    //need timeout because partial template with register button loads AFTER document.ready() triggers
+    window.setTimeout(function(){
+      $(".challengeRegisterBtn").click();
+    }, 2000);
   }
 
   $("#registerFailed .closeModalReg").click(function () {

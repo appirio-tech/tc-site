@@ -91,7 +91,7 @@ array_push ( $challengetypes, 'UI Prototypes' );
 			</nav>
 			<?php  if(empty($tracks->{$currentChallengetype})):?>
 			<header class="head">
-				<h3 class="nocontestStatus text">Member rating unavailable or member didn't participated in any Develop contest.</h3>
+				<h3 class="nocontestStatus text">Member rating unavailable or member didn't participate in any Development challenges.</h3>
 			</header>
 			<?php else:?>
 
