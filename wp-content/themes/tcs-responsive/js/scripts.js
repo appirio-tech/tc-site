@@ -247,7 +247,7 @@ var app = {
       if ($('#searchTypeName').text()=='Site'){
         window.location.replace("/search?s="+keyword);
       }else if ($('#searchTypeName').text()=='Members'){
-        window.location.replace("search?s="+keyword+"&scope=member");
+        window.location.replace("/search?s="+keyword+"&scope=member");
       }
   },
   setLoading: function() {

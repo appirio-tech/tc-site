@@ -383,8 +383,11 @@ include locate_template('header-challenge-landing.php');
         <th class="regDateColumn">
           <div>Registration Date</div>
         </th>
-        <th class="subDateColumn" colspan="2">
+        <th class="subDateColumn">
           <div>Submission Date</div>
+        </th>
+        <th class="successColumn">
+          <div>Result</div>
         </th>
       </tr>
       </thead>
@@ -405,7 +408,8 @@ include locate_template('header-challenge-landing.php');
         <td class="subDateColumn" ng-bind="registrant.submissionDate | formatDate:2"></td>
         <!--bugfix refactored-challenge-details-68: added missing icons -->
         <td>
-          <i class="{{registrant.winner ? 'successIcon' : registrant.submissionStatus.match('Failed') ? 'failureIcon' : ''}}"></i>
+          <i class="{{registrant.winner ? 'successIcon' : registrant.submissionStatus.match('Failed') ? 'failureIcon' : ''}}"
+             title="{{registrant.winner ? 'Pass' : registrant.submissionStatus.match('Failed') ? 'Fail' : ''}}"></i>
         </td>
       </tr>
       </tbody>
