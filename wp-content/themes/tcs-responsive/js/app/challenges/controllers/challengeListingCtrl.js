@@ -200,7 +200,7 @@
       $scope.dateFormat = 'dd MMM yyyy hh:mm EDT';
       $scope.images = $window.wordpressConfig.stylesheetDirectoryUri + '/i/';
       $scope.definitions = GridService.definitions($scope.contest);
-      $scope.gridOptions = GridService.gridOptions('definitions');
+      $scope.gridOptions = GridService.gridOptions('definitions', $scope.contest);
       $scope.showFilters = false;
       $scope.technologies = [];
       $scope.platforms = [];
