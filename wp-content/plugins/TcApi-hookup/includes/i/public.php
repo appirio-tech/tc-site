@@ -323,7 +323,7 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 		$response = wp_remote_get ( $url, $args );
 	
 		if (is_wp_error ( $response ) || ! isset ( $response ['body'] )) {
-			return "Error in processing";
+			return $key == "memberCount" ? "675,000+" : "Error in processing";
 		}
 		if ($response ['response'] ['code'] == 200) {
 			$activity = json_decode ( $response ['body']);
@@ -334,7 +334,7 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 			}
 			return $activity->data[0];
 		}
-		return "Error in processing request";
+		return $key == "memberCount" ? "675,000+" : "Error in processing request";
 	}
 	
 	
