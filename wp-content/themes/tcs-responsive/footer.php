@@ -668,9 +668,16 @@ $blog_posts = get_posts($blog_posts_args);
   var utmSource = '', utmMedium = '', utmCampaign = '';
   var loginState = '';
   $(function () {
-    utmSource = getParameterByName('utmSource') || getHashParameterByName('utmSource');
-    utmMedium = getParameterByName('utmMedium') || getHashParameterByName('utmMedium');
-    utmCampaign = getParameterByName('utmCampaign') || getHashParameterByName('utmCampaign');
+    utmSource = getParameterByName('utmSource') || getHashParameterByName('utmSource') || $.cookie('utmSource');
+    utmMedium = getParameterByName('utmMedium') || getHashParameterByName('utmMedium') || $.cookie('utmMedium');
+    utmCampaign = getParameterByName('utmCampaign') || getHashParameterByName('utmCampaign') || $.cookie('utmCampaign');
+
+    if (utmSource && utmMedium && utmCampaign) {
+      $.cookie('utmSource', utmSource, { expires: 7, path: '/' });
+      $.cookie('utmMedium', utmMedium, { expires: 7, path: '/' });
+      $.cookie('utmCampaign', utmCampaign, { expires: 7, path: '/' });
+    }
+
     var stateString = getHashParameterByName('state');
     if (stateString.length > 0) {
       var cType = getParameterByName('type', stateString);
