@@ -183,7 +183,7 @@
                 <a href="javascript:" class="">Screening Score</a>
             </th>
             <th>
-                <a href="javascript:" class="">Initial/ Final Score</a>
+                <a href="javascript:" class="">Initial / Final Score</a>
             </th>
             <th>
             </th>
@@ -220,7 +220,7 @@
                 <div class="clear"></div>
             </div>
             <div class="registrantSectionRow">
-                <div class="registrantLabel">Initial/ Final Score:</div>
+                <div class="registrantLabel">Initial / Final Score:</div>
                 <div class="registrantField"><a href="javascript:">{{submission.screeningScore}}/{{submission.finalScore}}</a></div>
                 <div class="clear"></div>
             </div>
@@ -293,4 +293,3 @@
 <div ng-if="!CD.submissions || CD.submissions.length == 0">
     Submissions are available after the review phase.
 </div>
-
