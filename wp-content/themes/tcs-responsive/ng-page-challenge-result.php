@@ -291,6 +291,10 @@
 
 </article>
 <div ng-if="!CD.submissions || CD.submissions.length == 0">
-    Submissions are available after the review phase.
+    <div class="notView2">
+        <p>
+            <strong>Submissions are available after the review phase.</strong>
+        </p>
+    </div>
 </div>
 
