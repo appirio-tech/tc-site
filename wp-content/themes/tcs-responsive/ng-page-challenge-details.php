@@ -608,12 +608,6 @@ include locate_template('header-challenge-landing.php');
     </div>
   </div>
 </li>
-<li class="slide">
-  <div class="slideBox">
-    &nbsp;
-    <br/>
-  </div>
-</li>
 </ul>
 </div>
 
