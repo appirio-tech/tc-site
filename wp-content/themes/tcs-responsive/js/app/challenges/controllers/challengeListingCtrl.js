@@ -280,6 +280,8 @@
             column: sortInfo.fields[0],
             order: sortInfo.directions[0]
           };
+          sortInfo.fields.length = 0;
+          sortInfo.directions.length = 0;
           getData($scope.contest.contestType, $scope.contest.listType || 'active',
               $scope.orderBy[$scope.contest.listType || 'active'], $scope.filter, $scope.pagination.pageIndex, $scope.pagination.pageSize);
         }
