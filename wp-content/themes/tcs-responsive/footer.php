@@ -668,14 +668,20 @@ $blog_posts = get_posts($blog_posts_args);
   var utmSource = '', utmMedium = '', utmCampaign = '';
   var loginState = '';
   $(function () {
-    utmSource = getParameterByName('utmSource') || getHashParameterByName('utmSource') || $.cookie('utmSource');
-    utmMedium = getParameterByName('utmMedium') || getHashParameterByName('utmMedium') || $.cookie('utmMedium');
-    utmCampaign = getParameterByName('utmCampaign') || getHashParameterByName('utmCampaign') || $.cookie('utmCampaign');
+    utmSource = getParameterByName('utmSource') || getHashParameterByName('utmSource') 
+      || getParameterByName('utm_source') || getHashParameterByName('utm_source') 
+      || $.cookie('utmSource');
+    utmMedium = getParameterByName('utmMedium') || getHashParameterByName('utmMedium') 
+      || getParameterByName('utm_medium') || getHashParameterByName('utm_medium') 
+      || $.cookie('utmMedium');
+    utmCampaign = getParameterByName('utmCampaign') || getHashParameterByName('utmCampaign')
+      || getParameterByName('utm_campaign') || getHashParameterByName('utm_campaign')
+      || $.cookie('utmCampaign');
 
-    if (utmSource && utmMedium && utmCampaign) {
-      $.cookie('utmSource', utmSource, { expires: 7, path: '/' });
-      $.cookie('utmMedium', utmMedium, { expires: 7, path: '/' });
-      $.cookie('utmCampaign', utmCampaign, { expires: 7, path: '/' });
+    if (utmSource || utmMedium || utmCampaign) {
+      $.cookie('utmSource', utmSource, { expires: 365, path: '/' });
+      $.cookie('utmMedium', utmMedium, { expires: 365, path: '/' });
+      $.cookie('utmCampaign', utmCampaign, { expires: 365, path: '/' });
     }
 
     var stateString = getHashParameterByName('state');
