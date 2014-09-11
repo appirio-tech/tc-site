@@ -103,7 +103,7 @@
         }
         if (Array.isArray($routeParams.technologies)) {
           $scope.filter.technologies = $routeParams.technologies;
-        } else if (typeof $routeParams.technologies === 'string') {
+        } else if (typeof $routeParams.technologies === 'string' && !$routeParams.technologies.match(/^\s*$/)) {
           $scope.filter.technologies = [$routeParams.technologies];
         } else {
           $scope.filter.technologies = [];
@@ -111,7 +111,7 @@
 
         if (Array.isArray($routeParams.platforms)) {
           $scope.filter.platforms = $routeParams.platforms;
-        } else if (typeof $routeParams.platforms === 'string') {
+        } else if (typeof $routeParams.platforms === 'string' && !$routeParams.platforms.match(/^\s*$/)) {
           $scope.filter.platforms = [$routeParams.platforms];
         } else {
           $scope.filter.platforms = [];
@@ -119,15 +119,15 @@
         
         if (Array.isArray($routeParams.keywords)) {
           $scope.filter.keywords = $routeParams.keywords;
-        } else if (typeof $routeParams.keywords === 'string') {
-          $scope.filter.keywords = [$routeParams.keywords];
+        } else if (typeof $routeParams.keywords === 'string' && !$routeParams.keywords.match(/^\s*$/)) {
+            $scope.filter.keywords = [$routeParams.keywords];
         } else {
           $scope.filter.keywords = [];
         }
         
         if (Array.isArray($routeParams.challengeTypes)) {
           $scope.filter.challengeTypes = $routeParams.challengeTypes;
-        } else if (typeof $routeParams.challengeTypes === 'string') {
+        } else if (typeof $routeParams.challengeTypes === 'string' && !$routeParams.challengeTypes.match(/^\s*$/)) {
           $scope.filter.challengeTypes = [$routeParams.challengeTypes];
         } else {
           $scope.filter.challengeTypes = [];
