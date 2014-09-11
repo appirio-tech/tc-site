@@ -316,7 +316,7 @@ input.search-text::-webkit-input-placeholder {
     width: 25%;
     max-width: 218px;
     margin-right: 2%;
-    overflow: hidden;
+    position: relative;
 }
     .date-picker-wrapper .date-text {
         border-radius: 5px;
