@@ -23,7 +23,7 @@
    * Inject dependencies
    * @type {string[]}
    */
-  ChallengeDetailCtrl.$inject = ['$scope', 'ChallengeService', '$q', '$cookies'];
+  ChallengeDetailCtrl.$inject = ['$scope', 'ChallengeService', '$q', '$cookies', '$interval'];
 
   /**
    * Controller implementation
@@ -32,7 +32,7 @@
    * @param ChallengeService
    * @constructor
    */
-  function ChallengeDetailCtrl($scope, ChallengeService, $q, $cookies) {
+  function ChallengeDetailCtrl($scope, ChallengeService, $q, $cookies, $interval) {
 
     var vm = this;
 
@@ -62,6 +62,12 @@
     vm.numberOfUniqueSubmitters = false;
     vm.checkpointPassedScreeningSubmitterPercentage = false;
     vm.checkpointPassedScreeningSubmissionPercentage = false;
+
+    $interval(function() {
+      if (vm.challenge && vm.challenge.currentPhaseRemainingTime) {
+        vm.challenge.currentPhaseRemainingTime -= 5;
+      }
+    }, 5000);
 
     // Methods
     vm.registerToChallenge = registerToChallenge;
