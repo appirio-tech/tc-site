@@ -113,7 +113,7 @@ get_header(); ?>
         </div>
         <div class="dataChanges">
           <div class="lt">
-            <span ng-show="pagination.last">{{(pagination.pageIndex-1)*pagination.pageSize+1}}-{{pagination.last}} of {{pagination.total}}</span><span ng-show="challenges.length < pagination.total"> | </span><a class="viewAll" ng-show="challenges.length < pagination.total" ng-click="all()">View All</a>
+            <span ng-show="pagination.last">{{(pagination.pageIndex-1)*pagination.pageSize+1}}-{{pagination.last}} of {{pagination.total}}</span><span ng-show="challenges.length < pagination.total && contest.listType != 'past'"> | </span><a class="viewAll" ng-show="challenges.length < pagination.total && contest.listType != 'past'" ng-click="all()">View All</a>
           </div>
           <div id="challengeNav" class="rt">
             <a class="prevLink" ng-show="pagination.pageIndex > 1" ng-click="prev()">
@@ -145,7 +145,7 @@ get_header(); ?>
         </div>
         <div class="dataChanges">
           <div class="lt">
-            <span ng-show="pagination.last">{{(pagination.pageIndex-1)*pagination.pageSize+1}}-{{pagination.last}} of {{pagination.total}}</span><span ng-show="challenges.length < pagination.total"> | </span><a class="viewAll" ng-show="challenges.length < pagination.total" ng-click="all()">View All</a>
+            <span ng-show="pagination.last">{{(pagination.pageIndex-1)*pagination.pageSize+1}}-{{pagination.last}} of {{pagination.total}}</span><span ng-show="challenges.length < pagination.total && contest.listType != 'past'"> | </span><a class="viewAll" ng-show="challenges.length < pagination.total && contest.listType != 'past'" ng-click="all()">View All</a>
           </div>
           <div id="challengeNav" class="rt">
             <a class="prevLink" ng-show="pagination.pageIndex > 1" ng-click="prev()">
