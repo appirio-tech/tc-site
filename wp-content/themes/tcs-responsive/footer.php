@@ -244,7 +244,7 @@ $blog_posts = get_posts($blog_posts_args);
 
 <p class="row">
   <label>Username</label>
-  <input type="text" class="handle name" placeholder="Username"/>
+  <input type="text" class="handle name" maxlength="15" placeholder="Username"/>
   <span class="err1">Required field.</span>
   <span class="err2">Username already exists or is invalid.</span>
   <span class="err3">Username cannot contain a space.</span>
@@ -517,7 +517,7 @@ $blog_posts = get_posts($blog_posts_args);
 
 <p class="row">
   <label>Password</label>
-  <input type="password" class="pwd" placeholder="Password"/>
+  <input type="password" class="pwd" maxlength="30" placeholder="Password"/>
   <span class="err1">Required field.</span>
   <span class="err2">Password strength is weak.</span>
   <span class="err3">Password cannot contain an apostrophe.</span>
@@ -538,7 +538,7 @@ $blog_posts = get_posts($blog_posts_args);
 
 <p class="row">
   <label>Password Confirmation</label>
-  <input type="password" class="confirm" placeholder="Password Confirmation"/>
+  <input type="password" class="confirm" maxlength="30" placeholder="Password Confirmation"/>
   <span class="err1">Required field.</span>
   <span class="err2">Password confirmation different from above field.</span>
   <span class="valid"></span>
