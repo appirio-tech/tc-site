@@ -73,12 +73,17 @@ angular.module('tc').controller('MemberProfileCtrl', ['$location', '$state', '$s
     default:
       $scope.switchTab('base.common.develop.special', 'develop', undefined);
     }
-
+    $scope.userExisted = true;
+    $scope.userDataRetrieved = false;
     // Get the user's profile. 'user' is defined in ng-page-member-profile.php
     MemberProfileService.getUser(user).then(function (user) {
       $scope.coder = user;
+      $scope.userExisted = true;
+      $scope.userDataRetrieved = true;
     }, function errorCallback(){
       $scope.coder = {};
+      $scope.userExisted = false;
+      $scope.userDataRetrieved = true;
     });
 
   }

@@ -962,3 +962,44 @@ a{
     height: 250px;
     border-radius: 5px;
 }
+
+.user-not-exist {
+    background: #f2f2f2;
+    position: relative;
+    padding: 30px 20px 40px 20px;
+    width: 80%;
+    margin: 120px auto;
+    text-align: center;
+}
+.user-not-exist h2 {
+    color: #333333;
+    font-size: 36px;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+.user-not-exist h3 {
+    color: #666666;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+}
+
+.hidden {
+  display: none;  
+}
+
+.visible {
+  display: block;
+}
+
+.user-not-exist br.display {
+    display: none;
+}
+
+@media (max-width: 1024px) {
+    .user-not-exist br.display {
+        display: block;
+    }
+}
