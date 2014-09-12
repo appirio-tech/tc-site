@@ -35,12 +35,24 @@ function post_register_controller() {
     $params['body']['utm_source'] = $extra_vars['utmSource'];
   }
 
-  if (!empty($extra_vars['utmSource'])) {
+  if (!empty($extra_vars['utmMedium'])) {
     $params['body']['utm_medium'] = $extra_vars['utmMedium'];
   }
 
-  if (!empty($extra_vars['utmSource'])) {
+  if (!empty($extra_vars['utmCampaign'])) {
     $params['body']['utm_campaign'] = $extra_vars['utmCampaign'];
+  }
+
+  if ($_COOKIE['utmSource']) {
+    $params['body']['utm_source'] = $_COOKIE['utmSource'];
+  }
+
+  if ($_COOKIE['utmMedium']) {
+    $params['body']['utm_medium'] = $_COOKIE['utmMedium'];
+  }
+
+  if ($_COOKIE['utmCampaign']) {
+    $params['body']['utm_campaign'] = $_COOKIE['utmCampaign'];
   }
 
   // If next param exists then add all of the current url params to it

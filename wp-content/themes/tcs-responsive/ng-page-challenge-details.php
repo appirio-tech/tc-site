@@ -372,7 +372,7 @@ include locate_template('header-challenge-landing.php');
       <thead>
       <tr>
         <th class="handleColumn">
-          <div>Username {{CD.isDesign}}</div>
+          <div>Username</div>
         </th>
         <th ng-if="!CD.isDesign" class="ratingColumn">
           <div>Rating</div>
