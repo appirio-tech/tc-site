@@ -16,7 +16,7 @@
        href="<?php bloginfo("siteurl"); ?>/challenge-details/{{CD.challenge.challengeId}}/submit">
         <span>2</span><strong>Submit Your Entries</strong>
     </a>
-    <a ng-show="CD.isDesign" ng-class="{disabled:CD.challenge.registrationDisabled || !CD.callComplete, disabledNOT:!CD.challenge.registrationDisabled}" class="btn btnAction challengeRegisterBtn" href="javascript:;">
+    <a ng-show="CD.isDesign" ng-click="CD.registerToChallenge()" ng-class="{disabled:CD.challenge.registrationDisabled || !CD.callComplete, disabledNOT:!CD.challenge.registrationDisabled}" class="btn btnAction challengeRegisterBtn" href="javascript:;">
         <span>1</span> <strong>Register For This Challenge</strong>
     </a>
     <a ng-show="CD.isDesign" ng-class="{disabled:CD.challenge.submissionDisabled || !CD.callComplete, disabledNOT:!CD.challenge.submissionDisabled}" class="btn btnAction" target="_blank"
