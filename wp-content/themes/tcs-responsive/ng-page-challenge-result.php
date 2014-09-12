@@ -131,9 +131,9 @@
             <span>PRIZE</span>
         </div>
         <!-- #/end price-->
-        <div class="point">
-            <span class="point">{{firstPlaceSubmission.points}}</span>
-            <span>DR POINT</span>
+        <div class="point" ng-show={{CD.firstPlaceSubmission.points}}>
+            <span class="point">{{CD.firstPlaceSubmission.points}}</span>
+            <span>DR POINTS</span>
         </div>
         <!-- #/end price-->
         <div class="actions">
@@ -155,9 +155,9 @@
             <span>PRIZE</span>
         </div>
         <!-- #/end price-->
-        <div class="point">
+        <div class="point" ng-show={{CD.secondPlaceSubmission.points}}>
             <span class="point">{{CD.secondPlaceSubmission.points}}</span>
-            <span>DR POINT</span>
+            <span>DR POINTS</span>
         </div>
         <!-- #/end price-->
         <div class="actions">
