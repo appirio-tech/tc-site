@@ -35,7 +35,6 @@
   function ChallengeDetailCtrl($scope, ChallengeService, $q, $cookies, $interval) {
 
     var vm = this;
-    vim=vm;
 
     vm.callComplete = false;
     vm.scope = $scope;
