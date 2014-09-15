@@ -35,6 +35,7 @@
   function ChallengeDetailCtrl($scope, ChallengeService, $q, $cookies, $interval) {
 
     var vm = this;
+    vim=vm;
 
     vm.callComplete = false;
     vm.scope = $scope;
@@ -187,7 +188,7 @@
       });
 
 
-    if (challenge.currentPhaseName != 'Stalled' && challenge.checkpointSubmissionEndDate && challenge.checkpointSubmissionEndDate != '') {
+    if ((challenge.currentPhaseName != 'Stalled' && challenge.checkpointSubmissionEndDate && challenge.checkpointSubmissionEndDate != '') || (challenge.checkpoints && challenge.checkpoints.length > 0)) {
       ChallengeService
         .getCheckpointData(challengeId)
         .then(function(data) {
