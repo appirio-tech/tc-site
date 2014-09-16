@@ -243,6 +243,9 @@
     vm.inScreening      = challenge.currentPhaseName.indexOf('Screening') >= 0;
     vm.inReview         = challenge.currentPhaseName.indexOf('Review') >= 0;
     vm.hasFiletypes     = ((typeof challenge.filetypes) !== 'undefined') && challenge.filetypes.length > 0;
+    vm.numRegistrants   = challenge.numberOfRegistrants;
+    vm.numSubmissions   = challenge.numberOfSubmissions;
+    vm.numCheckpointSubmissions = challenge.numberOfCheckpointSubmissions;
 
     // Result section, if status completed
     vm.submissions = false;
