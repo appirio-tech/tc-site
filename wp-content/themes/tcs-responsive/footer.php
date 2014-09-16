@@ -220,7 +220,7 @@ $blog_posts = get_posts($blog_posts_args);
 </p>
 <p class="row">
   <label>First Name</label>
-  <input type="text" class="name firstName" placeholder="First Name"/>
+  <input type="text" class="name firstName" maxlength="64" placeholder="First Name"/>
   <span class="err1">Required field.</span>
   <span class="err2">Maximum length is 64 characters.</span>
   <!--Bugfix I-107905: add error message for invalid characters-->
@@ -232,7 +232,7 @@ $blog_posts = get_posts($blog_posts_args);
 
 <p class="row">
   <label>Last Name</label>
-  <input type="text" class="name lastName" placeholder="Last Name"/>
+  <input type="text" class="name lastName" maxlength="64" placeholder="Last Name"/>
   <span class="err1">Required field.</span>
   <span class="err2">Maximum length is 64 characters.</span>
   <!--Bugfix I-107905: add error message for invalid characters-->
