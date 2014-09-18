@@ -59,6 +59,7 @@ function initMemberDetails(pagePersisted){
         $('.actionLogout').attr('href', 'javascript:;');
         $('.loginLink, .linkLogin, .btnRegister').addClass('hide').hide();
         $('.btnRegister').parent('.sign-up').hide();
+        $('*[data-signup-only]').hide();
         $('.logoutLink, .linkLogout, .userDetailsWrapper').removeClass('hide').show();
         $('.headerTopRightMenuLink.logIn a').unbind('click');
         $('.headerTopRightMenuLink.logIn a').text("Log Out").removeClass("actionLogin").addClass("actionLogout");
@@ -146,6 +147,7 @@ function initMemberDetails(pagePersisted){
         });
         $('.loginLink, .linkLogin, .btnRegister').addClass('show').show();
         $('.btnRegister').parent('.sign-up').show();
+        $('*[data-signup-only]').show();
         $('.logoutLink, .linkLogout, .userDetailsWrapper').removeClass('show').hide();
 
       } else {
