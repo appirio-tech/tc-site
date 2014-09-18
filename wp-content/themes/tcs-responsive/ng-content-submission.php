@@ -13,7 +13,7 @@
 </article>
 
 <div id="round2" class="submissionAllView" ng-if=" CD.challenge.currentStatus === 'Completed' && CD.challenge.submissionsViewable" ng-hide="subCtrl.singleViewMode || !subCtrl.submissionPagedItems">
-    <h1>ROUND 2 (FINAL) SUBMISSIONS</h1>
+    <h1 class="center">ROUND 2 (FINAL) SUBMISSIONS</h1>
     <ul class="submissionList">
 		<span ng-repeat="singlePage in subCtrl.submissionPagedItems" class="submissionPage" ng-show="subCtrl.submissionCurrentPage === $index || subCtrl.submissionViewAll">
             <li ng-repeat="item in singlePage">
@@ -98,7 +98,7 @@
 
 
 <div id="round1" class="submissionAllView" ng-if=" CD.challenge.currentStatus === 'Completed' && CD.challenge.submissionsViewable" ng-hide="subCtrl.singleViewMode || !subCtrl.checkPointPagedItems">
-    <h1>ROUND 1 (CHEKCPOINT) SUBMISSIONS</h1>
+    <h1 class="center">ROUND 1 (CHECKPOINT) SUBMISSIONS</h1>
     <ul class="submissionList">
         <span ng-repeat="singlePage in subCtrl.checkPointPagedItems" class="submissionPage" ng-show="subCtrl.checkPointCurrentPage === $index || subCtrl.checkPointViewAll">
             <li ng-repeat="item in singlePage">

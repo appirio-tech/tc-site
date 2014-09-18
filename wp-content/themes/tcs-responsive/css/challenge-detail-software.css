@@ -304,6 +304,11 @@ font-size: 18px;
     padding-bottom: 8px;
 }
 
+h1.center {
+  margin-top: 10px;
+  text-align: center;
+}
+
 .challenge-detail.develop .tableWrap h1 {
     color: #228400;
 }
