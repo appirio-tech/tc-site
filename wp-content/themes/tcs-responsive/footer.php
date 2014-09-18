@@ -168,7 +168,7 @@ $blog_posts = get_posts($blog_posts_args);
     <h2>Registered!</h2>
     <p class="success">Thank you for registering. You may now download the challenge files and participate in the challenge forums.</p>
     <p class="submitBtn">
-      <a class="btn closeModalReg" href="javascript:;">Ok</a>
+      <a class="btn closeModalReg" href="javascript:;">OK</a>
     </p>
   </div>
 </div><!-- END #registerSuccess -->
@@ -178,7 +178,7 @@ $blog_posts = get_posts($blog_posts_args);
     <h2>Info</h2>
     <p class="failedMessage"></p>
     <p class="submitBtn">
-      <a class="btn closeModal" href="javascript:;">Ok</a>
+      <a class="btn closeModal" href="javascript:;">OK</a>
     </p>
   </div>
 </div><!-- END #registerFailed -->
