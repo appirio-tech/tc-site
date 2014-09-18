@@ -79,13 +79,13 @@
             <h2>Round 1 (Checkpoint)</h2>
             <div class="values">
                 <span class="count">{{CD.numberOfUniqueSubmitters}}<span class="sup">&nbsp;</span></span>
-                <span class="type">Submitter</span>
+                <span class="type">Submitters</span>
                 <span class="type">&nbsp;</span>
             </div>
             <div class="values">
                 <span class="count">{{CD.numberOfPassedScreeningUniqueSubmitters}}<span class="sup">({{CD.checkpointPassedScreeningSubmitterPercentage}}%)</span></span>
                 <span class="type">Passed Screening</span>
-                <span class="type">Submitter</span>
+                <span class="type">Submitters</span>
             </div>
             <div class="values">
                 <span class="count">{{CD.numberOfPassedScreeningSubmissions}}<span class="sup">({{CD.checkpointPassedScreeningSubmissionPercentage}}%)</span></span>
@@ -98,13 +98,13 @@
             <h2>Round 2 (Final)</h2>
             <div class="values">
                 <span class="count">{{CD.numFinalSubmitters}}<span class="sup">&nbsp;</span></span>
-                <span class="type">Submitter</span>
+                <span class="type">Submitters</span>
                 <span class="type">&nbsp;</span>
             </div>
             <div class="values">
                 <span class="count">{{CD.finalSubmittersPassedScreening}}<span class="sup">({{CD.finalPassedScreeningSubmitterPercentage}}%)</span></span>
                 <span class="type">Passed Screening</span>
-                <span class="type">Submitter</span>
+                <span class="type">Submitters</span>
             </div>
             <div class="values">
                 <span class="count">{{CD.finalSubmissionsPassedScreening}}<span class="sup">({{CD.finalPassedScreeningSubmissionPercentage}}%)</span></span>
