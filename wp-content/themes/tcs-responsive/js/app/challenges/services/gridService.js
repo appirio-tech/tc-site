@@ -29,7 +29,7 @@
           {
             field: 'registrationStartDate',
             fieldName: 'Duration (days)',
-            width: 120,
+            width: 127,
             tplName: 'duration',
             visible: contest.listType === 'upcoming'
           },
@@ -43,15 +43,7 @@
             field: 'totalPrize',
             fieldName: 'Prize',
             width: 73,
-            tplName: 'prizes',
-            visible: contest.listType !== 'upcoming'
-          },
-          {
-            field: 'firstPlacePrize',
-            fieldName: 'First Prize',
-            width: 80,
-            tplName: 'prizes',
-            visible: contest.listType === 'upcoming'
+            tplName: 'prizes'
           },
           {
             field: 'currentPhaseName',
@@ -60,12 +52,6 @@
             width: 120,
             maxWidth: 130,
             visible: contest.listType === 'active'
-          },
-          {
-            field: 'technologies',
-            fieldName: 'Technologies',
-            width: 152,
-            visible: contest.listType === 'upcoming'
           },
           {
             field: 'numRegistrants',
@@ -109,7 +95,7 @@
           {
             field: 'status',
             fieldName: 'Status',
-            width: 90,
+            width: 242,
             visible: contest.listType === 'upcoming'
           }
         ];
