@@ -20,6 +20,8 @@ foreach ($_ENV as $key => $value) {
 	$_ENV[$key] = filter_input(INPUT_ENV, $key, FILTER_SANITIZE_STRING);
 }
 
+$_REQUEST = array_merge( $_GET, $_POST );
+
 /**
  * Front to the WordPress application. This file doesn't do anything, but loads
  * wp-blog-header.php which does and tells WordPress to load the theme.
