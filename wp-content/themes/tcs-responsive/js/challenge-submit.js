@@ -48,10 +48,10 @@ appChallengeSubmit = {
                 //bugfix: if wrong file type, show correct error message
                 if (type.length > 1) {
                   //display error if multiple file formats available
-                  $('.formSection .leftCol dd span.error').text('Uploaded submissions must be in one of the following file formats: .' + type.join(', .'));
+                  $('.formSection .leftCol dd span.error').text('Submissions must be in one of the following file formats: .' + type.join(', .'));
                 } else {
                   //display error if only one file format is available
-                  $('.formSection .leftCol dd span.error').text('Uploaded submissions must be in .' + type[0] + ' format only');
+                  $('.formSection .leftCol dd span.error').text('Submissions must be in .' + type[0] + ' format only');
                 }
                 $("#submission").closest('dd').addClass('empty');
                 empty = true;
