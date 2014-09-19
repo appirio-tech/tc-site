@@ -68,10 +68,13 @@ include locate_template('header-challenge-landing.php');
   </div>
   <ul>
     <li><a href="#contest-overview" class="active link">Details</a></li>
-    <li>
-      <a href="#viewRegistrant" class="link">Registrants </a>
+    <li ng-show="!CD.isDesign">
+      <a href="#viewRegistrant" class="link">Registrants ({{CD.numRegistrants}}) & Submissions ({{CD.numSubmissions}})</a>
     </li>
-    <li ng-show="(CD.challenge.checkpoints && CD.challenge.checkpoints.length > 0) || CD.checkpointData"><a href="#checkpoints" class="link">Checkpoints</a></li>
+    <li ng-show="CD.isDesign">
+      <a href="#viewRegistrant" class="link">Registrants ({{CD.numRegistrants}})</a>
+    </li>
+    <li ng-show="(CD.challenge.checkpoints && CD.challenge.checkpoints.length > 0) || CD.checkpointData"><a href="#checkpoints" class="link">Checkpoints ({{CD.numCheckpointSubmissions}})</a></li>
     <!-- @FIXME took out checkpoint stuff here
     < ?php if (( !empty( $checkpointData ) && $checkpointData != "Error in processing request" ) || ( $tab === "checkpoints" )): ?>
       <li><a href="#checkpoints" class="link {{activeTab == 'checkpoints' ? 'active' : ''}}">Checkpoints</a></li>
@@ -85,7 +88,7 @@ include locate_template('header-challenge-landing.php');
     < ?php endif; ?>
     -->
     <!--<li ng-if="CD.isDesign && CD.inSubmission"><span class="inactive">Submissions</span></li>-->
-    <li ng-show="CD.isDesign && !CD.inSubmission"><a href="#submissions" class="link">Submissions</a></li>
+    <li ng-show="CD.isDesign && !CD.inSubmission"><a href="#submissions" class="link">Submissions ({{CD.numSubmissions}})</a></li>
     <li ng-show="CD.isDesign && (CD.inSubmission || CD.inScreening || CD.inReview)"><span class="inactive">Results</span></li>
     <li ng-show="CD.isDesign && !(CD.inSubmission || CD.inScreening || CD.inReview)"><a href="#winner" class="link">Results</a></li>
   </ul>
@@ -93,17 +96,19 @@ include locate_template('header-challenge-landing.php');
 <nav class="tabNav firstTabNav designFirstTabNav mobile hide">
   <ul>
     <li><a href="#contest-overview" class="active link">Details</a></li>
-    <li><a href="#viewRegistrant" class="link">Registrants</a></li>
+    <li>
+      <a href="#viewRegistrant" class="link">Registrants ({{CD.numRegistrants}})</a>
+    </li>
   </ul>
 </nav>
 <nav class="tabNav firstTabNav designSecondTabNav mobile hide">
   <ul>
-    <li ng-if="CD.inSubmission"><span class="inactive">Checkpoints</span></li>
+    <li ng-if="CD.inSubmission"><span class="inactive">Checkpoints ({{CD.numCheckpointSubmissions}})</span></li>
     <!-- FIXME: took out checkpoint data stuff here. It didn't seem like it was being used.
       <li ng-if="!CD.inSubmission"><a href="<?php echo CURRENT_FULL_URL; ?>&tab=checkpoints" class="link">Checkpoints</a></li>
     -->
     <li ng-show="CD.inSubmission"><span class="inactive">Submissions</span></li>
-    <li ng-show="!CD.inSubmission"><a href="#submissions" class="link">Submissions</a></li>
+    <li ng-show="!CD.inSubmission"><a href="#submissions" class="link">Submissions ({{CD.numSubmissions}})</a></li>
     </li>
     <li>
       <li ng-show="CD.inSubmission || CD.inScreening || CD.inReview"><span class="inactive">Results</span></li>
@@ -549,7 +554,7 @@ include locate_template('header-challenge-landing.php');
             here</a>.
         </p>
 
-        <p>Questions? <a href="http://studio.topcoder.com/forums?module=ThreadList&amp;forumID=6">Ask in the Forums</a>.
+        <p>Questions? <a href="http://studio.topcoder.com/forums?module=ThreadList&amp;forumID=6">Ask in the Challenge Discussion Forums</a>.
         </p>
 
       </div>

@@ -304,6 +304,11 @@ font-size: 18px;
     padding-bottom: 8px;
 }
 
+h1.center {
+  margin-top: 10px;
+  text-align: center;
+}
+
 .challenge-detail.develop .tableWrap h1 {
     color: #228400;
 }
@@ -596,9 +601,6 @@ font-size: 18px;
 
 .reviewStyle h3 {
     color: #B30000;
-    font-family: "Lucida Sans Unicode", Arial, Helvetica, sans-serif;
-    font-size: 16px;
-    font-weight: normal;
     padding: 0 0 6px;
 }
 

@@ -168,7 +168,7 @@ $blog_posts = get_posts($blog_posts_args);
     <h2>Registered!</h2>
     <p class="success">Thank you for registering. You may now download the challenge files and participate in the challenge forums.</p>
     <p class="submitBtn">
-      <a class="btn closeModalReg" href="javascript:;">Ok</a>
+      <a class="btn closeModalReg" href="javascript:;">OK</a>
     </p>
   </div>
 </div><!-- END #registerSuccess -->
@@ -178,7 +178,7 @@ $blog_posts = get_posts($blog_posts_args);
     <h2>Info</h2>
     <p class="failedMessage"></p>
     <p class="submitBtn">
-      <a class="btn closeModal" href="javascript:;">Ok</a>
+      <a class="btn closeModal" href="javascript:;">OK</a>
     </p>
   </div>
 </div><!-- END #registerFailed -->
@@ -220,7 +220,7 @@ $blog_posts = get_posts($blog_posts_args);
 </p>
 <p class="row">
   <label>First Name</label>
-  <input type="text" class="name firstName" placeholder="First Name"/>
+  <input type="text" class="name firstName" maxlength="64" placeholder="First Name"/>
   <span class="err1">Required field.</span>
   <span class="err2">Maximum length is 64 characters.</span>
   <!--Bugfix I-107905: add error message for invalid characters-->
@@ -232,7 +232,7 @@ $blog_posts = get_posts($blog_posts_args);
 
 <p class="row">
   <label>Last Name</label>
-  <input type="text" class="name lastName" placeholder="Last Name"/>
+  <input type="text" class="name lastName" maxlength="64" placeholder="Last Name"/>
   <span class="err1">Required field.</span>
   <span class="err2">Maximum length is 64 characters.</span>
   <!--Bugfix I-107905: add error message for invalid characters-->
@@ -969,6 +969,8 @@ function _kms(u){
 }
 _kms('//i.kissmetrics.com/i.js');
 _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
+
+_kmq.push(['record', location.pathname]);
 </script>
 <!-- END KISSmetrics --> 
 

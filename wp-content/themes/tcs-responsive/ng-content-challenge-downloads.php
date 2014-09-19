@@ -1,7 +1,7 @@
 <h3>Downloads:</h3>
 <div class="inner">
   <ul class="downloadDocumentList">
-    <li ng-if="CD.challenge.Documents && CD.challenge.Documents.length > 1 && CD.allowDownloads" ng-repeat="document in CD.challenge.Documents">
+    <li ng-if="CD.challenge.Documents && CD.challenge.Documents.length > 0 && CD.allowDownloads" ng-repeat="document in CD.challenge.Documents">
       <a href="{{document.url}}">{{document.documentName}}</a>
     </li>
     <li ng-if="CD.challenge.Documents && CD.challenge.Documents.length === 0 && CD.allowDownloads">
