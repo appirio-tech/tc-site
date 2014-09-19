@@ -5,6 +5,17 @@ appChallengeSubmit = {
   init: function() {
     var tcjwt = getCookie('tcjwt');
 
+    if (!app.isLoggedIn()) {
+      $(function() {
+        $('.actionLogin').click();
+        $('.closeModal,#bgModal').on('click', function() {
+          challengeURL = $('.back').attr('href');
+          window.location.replace(challengeURL);
+          closeModal();
+        });
+      });
+    };
+    
     $('#submitForm').jqTransform();
     $('body').delegate('.fileBrowser', 'click', function() {
       var fileUploaderWrapper = $(this).parent().removeClass('empty');
