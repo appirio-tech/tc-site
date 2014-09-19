@@ -208,10 +208,10 @@ DataScienceCtrl.prototype.populateData = function ($scope) {
       details: 'Top Ten Finishes',
       total: mar.topTenFinishes
     }, {
-      details: 'Avg.Rank',
+      details: 'Avg. Rank',
       total: mar.avgRank
     }, {
-      details: 'Avg.Num.Submissions',
+      details: 'Avg. Num. Submissions',
       total: mar.avgNumSubmissions
     }, {
       details: 'Competitions',
