@@ -508,7 +508,7 @@ $blog_posts = get_posts($blog_posts_args);
 </p>
 <p class="row">
   <label>Email</label>
-  <input type="text" class="email" placeholder="Email"/>
+  <input name="email" type="text" class="email" placeholder="Email"/>
   <span class="err1">Required field.</span>
   <span class="err2">Invalid email address.</span>
   <span class="err3">Email already in use.</span>
@@ -969,8 +969,6 @@ function _kms(u){
 }
 _kms('//i.kissmetrics.com/i.js');
 _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
-
-_kmq.push(['record', location.pathname]);
 </script>
 <!-- END KISSmetrics --> 
 

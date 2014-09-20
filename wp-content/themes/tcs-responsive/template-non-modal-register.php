@@ -375,7 +375,7 @@ add_action('wp_footer', 'tc_registration_footer_js', 10000);
 							</p>
 							<p class="row">
 							  <label>Email</label>
-							  <input type="text" class="email" placeholder="Email"/>
+							  <input name="email" type="text" class="email" placeholder="Email"/>
 							  <span class="err1">Required field.</span>
 							  <span class="err2">Invalid email address.</span>
 							  <span class="err3">Email already in use.</span>

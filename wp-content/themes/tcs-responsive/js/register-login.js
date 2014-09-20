@@ -625,6 +625,9 @@ $(function () {
             fields.password = $('#registerForm  input.pwd').val();
           }
 
+          if (_kmq) 
+            _kmq.push(['record', 'Form Submitted']);
+          
           $.post(ajaxUrl + '?action=post_register', fields, function (data) {
             if (data.code == "200") {
               var tcAction = getCookie('tcDelayChallengeAction');
