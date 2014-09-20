@@ -1,5 +1,10 @@
 /*jslint nomen: true*/
 /*global angular: true, _: true */
+/**
+ * Changelog
+ * 09/17/2014 Add My Challenges Filter and Improve Filters
+ * - Added dates presets for active/upcoming challenges
+*/
 (function (angular) {
   'use strict';
   angular.module('tc.AdvancedSearch', ['ui.bootstrap']).directive('advancedSearch', ['$compile', '$timeout', 'ChallengesService', function ($compile, $timeout, ChallengesService) {
@@ -15,7 +20,8 @@
         searchBarVisible: '=showOn',
         technologies: '=technologies',
         platforms: '=platforms',
-        actualFilter: '=filter'
+        actualFilter: '=filter',
+        authenticated: '=authenticated'
       },
 
       controller: ['$scope', function ($scope) {
@@ -27,7 +33,8 @@
           endDate: undefined,
           technologies: [],
           platforms: [],
-          keywords: []
+          keywords: [],
+          userChallenges: false
         };
         
         $scope.tempOptions = {
@@ -37,7 +44,17 @@
           text: undefined
         };
         
-        $scope.contestTypes = [];
+        $scope.contestTypes = {};
+        
+        function getChallengeTypes(community) {
+          ChallengesService.getChallengeTypes(community).then(function (data) {
+            _.each(data, function (type) {
+              $scope.contestTypes[type.description] = type.name;
+            });
+          });
+        }
+        
+        
         
         this.datePicker = undefined;
         this.selects = [];
@@ -52,15 +69,6 @@
           }
         };
 
-        function getChallengeTypes() {
-          ChallengesService.getChallengeTypes($scope.challengeCommunity).then(function (data) {
-            var contestTypes = {};
-            _.each(data, function (type) {
-              contestTypes[type.description] = type.name;
-            });
-            $scope.contestTypes = contestTypes;
-          });
-        }
 
         $scope.resetFilterOptions = function () {
           $scope.filterOptions = angular.extend({}, initOptions);
@@ -195,7 +203,9 @@
           * Resets the filters
           */
         $scope.reset = function () {
+          var lastUserOption = $scope.filterOptions.userChallenges;
           $scope.filterOptions = angular.extend({}, initOptions);
+          $scope.filterOptions.userChallenges = lastUserOption;
           $scope.applyFilter();
         };
         
@@ -206,6 +216,8 @@
           var f = $scope.filterOptions;
           return f.startDate || f.endDate || f.technologies.length > 0 || f.platforms.length > 0 || f.challengeTypes.length > 0 || f.keywords.length > 0;
         };
+        
+        getChallengeTypes($scope.challengeCommunity);
 
         $scope.resetFilterOptions();
 
@@ -213,8 +225,6 @@
           $scope.filterOptions = angular.extend($scope.filterOptions, $scope.actualFilter);
         }
         
-        getChallengeTypes();
-
       }],
       compile: function (tElement, tAttrs, transclude) {
 
@@ -265,18 +275,38 @@
           $scope.filterOptions.endDate = $scope.filterOptions.startDate;
           $scope.applyFilterHandler($scope.filterOptions);
         };
+        dateCtrl.tomorrow = function() {
+          $scope.filterOptions.startDate = moment().add('days', 1).toDate();
+          $scope.filterOptions.endDate = $scope.filterOptions.startDate;
+          $scope.applyFilterHandler($scope.filterOptions);
+        };
         dateCtrl.last7Days = function() {
           $scope.filterOptions.endDate = new Date();
           $scope.filterOptions.startDate = moment().subtract('days', 7).toDate();
           $scope.applyFilterHandler($scope.filterOptions);
         };
-        dateCtrl.thisMonth = function() {
+        dateCtrl.next7Days = function() {
+          $scope.filterOptions.startDate = new Date();
+          $scope.filterOptions.endDate = moment().add('days', 7).toDate();
+          $scope.applyFilterHandler($scope.filterOptions);
+        };
+        dateCtrl.pastThisMonth = function() {
           $scope.filterOptions.startDate = moment().startOf('month').toDate();
           $scope.filterOptions.endDate = new Date();
           $scope.applyFilterHandler($scope.filterOptions);
         };
+        dateCtrl.thisMonth = function() {
+          $scope.filterOptions.startDate = new Date();
+          $scope.filterOptions.endDate = moment().endOf('month').toDate();
+          $scope.applyFilterHandler($scope.filterOptions);
+        };
         dateCtrl.lastMonth = function() {
           $scope.filterOptions.startDate = moment().subtract('months', 1).startOf('month').toDate();
+          $scope.filterOptions.endDate = moment($scope.filterOptions.startDate).endOf('month').toDate();
+          $scope.applyFilterHandler($scope.filterOptions);
+        };
+        dateCtrl.nextMonth = function() {
+          $scope.filterOptions.startDate = moment().add('months', 1).startOf('month').toDate();
           $scope.filterOptions.endDate = moment($scope.filterOptions.startDate).endOf('month').toDate();
           $scope.applyFilterHandler($scope.filterOptions);
         };
