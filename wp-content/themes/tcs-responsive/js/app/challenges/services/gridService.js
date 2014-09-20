@@ -29,8 +29,7 @@
           {
             field: 'challengeName',
             fieldName: 'Challenge',
-            width: getChallengeNameWidth(contest),
-            visible: contest.contestType !== 'data'
+            width: getChallengeNameWidth(contest)
           },
           /*{
             field: 'challengeType',
