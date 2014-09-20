@@ -74,7 +74,7 @@ include locate_template('header-challenge-landing.php');
     <li ng-show="CD.isDesign">
       <a href="#viewRegistrant" class="link">Registrants ({{CD.numRegistrants}})</a>
     </li>
-    <li ng-show="CD.challenge.checkpoints && CD.challenge.checkpoints.length > 0"><a href="#checkpoints" class="link">Checkpoints ({{CD.numCheckpointSubmissions}})</a></li>
+    <li ng-show="(CD.challenge.checkpoints && CD.challenge.checkpoints.length > 0) || CD.checkpointData"><a href="#checkpoints" class="link">Checkpoints ({{CD.numCheckpointSubmissions}})</a></li>
     <!-- @FIXME took out checkpoint stuff here
     < ?php if (( !empty( $checkpointData ) && $checkpointData != "Error in processing request" ) || ( $tab === "checkpoints" )): ?>
       <li><a href="#checkpoints" class="link {{activeTab == 'checkpoints' ? 'active' : ''}}">Checkpoints</a></li>
