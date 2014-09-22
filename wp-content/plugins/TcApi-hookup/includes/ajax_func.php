@@ -3,6 +3,11 @@
 function post_register_controller() {
   global $_POST;
   $url =  TC_API_URL . "/users";
+
+  // Get the url params form the passed in url
+  $href_parts = parse_url(filter_input(INPUT_POST, 'curUrl', FILTER_SANITIZE_URL));
+  parse_str($href_parts['query'], $extra_vars);
+
   $params = array(
     'method' => 'POST',
     'timeout' => 45,
@@ -16,13 +21,45 @@ function post_register_controller() {
       'handle' => filter_input(INPUT_POST, 'handle', FILTER_SANITIZE_STRING),
       'country' => filter_input(INPUT_POST, 'country', FILTER_SANITIZE_STRING),
       'regSource' => 'http://www.topcoder.com/',
-      'email' => filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL),
-      'utm_source' => filter_input(INPUT_POST, 'utmSource', FILTER_SANITIZE_STRING),
-      'utm_medium' => filter_input(INPUT_POST, 'utmMedium', FILTER_SANITIZE_STRING),
-      'utm_campaign' => filter_input(INPUT_POST, 'utmCampaign', FILTER_SANITIZE_STRING)
+      'email' => filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL)
     ),
     'cookies' => array()
   );
+
+  foreach ($extra_vars as $var_key => $var_value) {
+    $params['body'][$var_key] = $var_value;
+  }
+
+  // For backwards compatiblity for non standard marketing url params
+  if (!empty($extra_vars['utmSource'])) {
+    $params['body']['utm_source'] = $extra_vars['utmSource'];
+  }
+
+  if (!empty($extra_vars['utmMedium'])) {
+    $params['body']['utm_medium'] = $extra_vars['utmMedium'];
+  }
+
+  if (!empty($extra_vars['utmCampaign'])) {
+    $params['body']['utm_campaign'] = $extra_vars['utmCampaign'];
+  }
+
+  if ($_COOKIE['utmSource']) {
+    $params['body']['utm_source'] = $_COOKIE['utmSource'];
+  }
+
+  if ($_COOKIE['utmMedium']) {
+    $params['body']['utm_medium'] = $_COOKIE['utmMedium'];
+  }
+
+  if ($_COOKIE['utmCampaign']) {
+    $params['body']['utm_campaign'] = $_COOKIE['utmCampaign'];
+  }
+
+  // If next param exists then add all of the current url params to it
+  if (isset($params['body']['next'])) {
+    $params['body']['next'] = add_query_arg($extra_vars, $params['body']['next']);
+  }
+
   $socialProviderId = filter_input(INPUT_POST, 'socialProviderId');
   if (isset($socialProviderId)) {
     $params["body"]["socialProviderId"] = $socialProviderId;
@@ -44,14 +81,12 @@ function post_register_controller() {
   #print_r($msg);
   $mm = "";
   if ($msg->error->details) {
-    foreach ($msg->error->details as $m):
-      $mm .= $m;
-    endforeach;
+    foreach ($msg->error->details as $m) {
+        $mm .= $m;
+    }
   }
 
-  wp_send_json(array("code" => $code, "description" => $mm));
-
-
+  wp_send_json(array('code' => $code, 'description' => $mm, 'data' => $params));
 }
 
 add_action( 'wp_ajax_post_register', 'post_register_controller' );

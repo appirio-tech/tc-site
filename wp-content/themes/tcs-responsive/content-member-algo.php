@@ -161,8 +161,8 @@ if ($rating > 0) {
 		<header class="head">
 			<div class="trackNRating">
 				<h4 class="trackName">Algorithm Competitions</h4>
-				<div class="rating <?php echo do_shortcode("[tc_rating_color score='".$coder->rating."' ]") ?>"><?php echo $coder->rating;?></div>
 				<div class="lbl">Rating</div>
+				<div class="rating <?php echo do_shortcode("[tc_rating_color score='".$coder->rating."' ]") ?>"><?php echo $coder->rating;?></div>
 			</div>
 			<div class="detailedRating">
 				<div class="row">
@@ -400,7 +400,7 @@ if ($rating > 0) {
 		<!-- /.ratingViews -->
 		<?php else:?>
 		<div class="noParticipation">
-			<h2>Member rating unavailable or member didn't participated in any Algorithm competition.</h2>
+			<h2>Member rating unavailable or member didn't participate in any Algorithm competitions.</h2>
 		</div>
 		<?php endif;?>
 	</div>

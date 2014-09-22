@@ -39,10 +39,14 @@ appChallengeTerms = {
             $('.agree-label').hide();
             $('#termSubmit').text('Go Back');
             $('.agreement').removeClass('notAgreed');
+            var finalDest = escape(siteURL + "/challenge-details/terms/" + challengeId + "?challenge-type=" + challengeType + "&termId=" + termsOfUseID + "&cb=" + Math.random());
             $.ajax({
               url: tcApiRUL + '/terms/docusign/viewURL',
               type: 'POST',
-              data: { templateId: data["docusignTemplateId"] },
+              data: {
+                templateId: data["docusignTemplateId"],
+                returnUrl: siteURL + "/iframe-break/?dest=" + finalDest
+              },
               cache: false,
               beforeSend: function(bxhr) {
                 bxhr.setRequestHeader('Authorization', 'Bearer ' + tcjwt.replace(/["]/g, ""));
@@ -105,44 +109,59 @@ appChallengeTerms = {
   initList: function (tcjwt) {
     if (app.isLoggedIn()) {
       app.setLoading();
-      $.getJSON(ajaxUrl, {
-        "action": "get_challenge_terms",
-        "challengeId": challengeId,
-        "role": "Submitter",
-        "jwtToken": tcjwt.replace(/["]/g, "")
-      }, function (data) {
-        if (data["terms"]) {
-          $(".formContent .terms, .formContent .termTable").show();
-          $(".formContent .warning").hide();
-          var terms = data["terms"];
-          var allAgreed = true;
-          for (var i = 0; i < terms.length; i++) {
-            var agreed = terms[i]["agreed"]
-            if (agreed === false) {
-              allAgreed = false;
+      var getTerms = function() {
+        $.getJSON(ajaxUrl, {
+          "action": "get_challenge_terms",
+          "challengeId": challengeId,
+          "role": "Submitter",
+          "jwtToken": tcjwt.replace(/["]/g, "")
+        }, function (data) {
+          if (data["terms"]) {
+            $(".formContent .terms, .formContent .termTable").show();
+            $(".formContent .warning").hide();
+            var terms = data["terms"];
+            var allAgreed = true;
+            for (var i = 0; i < terms.length; i++) {
+              var agreed = terms[i]["agreed"]
+              if (agreed === false) {
+                allAgreed = false;
+              }
+              var $tr = $("<tr>", {class: i % 2 == 1 ? "alt" : ""});
+              var $td1 = $("<td>").text(terms[i]["title"]).append(" (").append($("<a>", {href: siteURL + "/challenge-details/terms/detail/" + terms[i]["termsOfUseId"] + "?contestID=" + challengeId + "&challenge-type=" + challengeType}).text(agreed ? "view" : "view and agree")).append(")");
+              var $td2 = $("<td>").append($("<span>", {class: "status " + (agreed === true ? "complete" : "required")}).text(agreed === true ? "Completed" : "Required"));
+              $tr.append($td1).append($td2);
+              $(".termTable tbody").append($tr);
             }
-            var $tr = $("<tr>", {class: i % 2 == 1 ? "alt" : ""});
-            var $td1 = $("<td>").text(terms[i]["title"]).append(" (").append($("<a>", {href: siteURL + "/challenge-details/terms/detail/" + terms[i]["termsOfUseId"] + "?contestID=" + challengeId + "&challenge-type=" + challengeType}).text(agreed ? "view" : "view and agree")).append(")");
-            var $td2 = $("<td>").append($("<span>", {class: "status " + (agreed === true ? "complete" : "required")}).text(agreed === true ? "Completed" : "Required"));
-            $tr.append($td1).append($td2);
-            $(".termTable tbody").append($tr);
-          }
-          if (allAgreed === true) {
-            $(".termsBtnRegister").removeClass("hide");
+            if (allAgreed === true) {
+              $(".termsBtnRegister").removeClass("hide");
+            } else {
+              $(".termsBtnRegister").addClass("hide");
+            }
           } else {
-            $(".termsBtnRegister").addClass("hide");
+            $(".formContent .terms, .formContent .termTable").hide();
+            $(".formContent .warning").text(data["error"]["details"]);
+            $(".formContent .warning").show();
           }
-        } else {
-          $(".formContent .terms, .formContent .termTable").hide();
-          $(".formContent .warning").text(data["error"]["details"]);
-          $(".formContent .warning").show();
-        }
-        $('.loading').hide();
+          $('.loading').hide();
 
-        $(".termsBtnRegister").click(function () {
-          window.location = siteURL + "/challenge-details/" + challengeId  + "/register/?type=" + challengeType + "&nocache=true";
+          $(".termsBtnRegister").click(function () {
+            window.location = siteURL + "/challenge-details/register/" + challengeId  + "?type=" + challengeType + "&nocache=true";
+          });
         });
-      });
+      };
+
+      var termId = getParameterByName('termId');
+      if (termId) {
+        $.getJSON(ajaxUrl, {
+          "action": "agree_challenge_terms",
+          "termId": termId,
+          "jwtToken": tcjwt.replace(/["]/g, "")
+        }, function (data) {
+          getTerms();
+        });
+      }
+      else getTerms();
+
     } else {
       $('.actionLogin').click();
     }

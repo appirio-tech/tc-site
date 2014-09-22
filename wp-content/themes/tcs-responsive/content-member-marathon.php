@@ -30,8 +30,8 @@ if($rating>0){
 		<header class="head">
 			<div class="trackNRating">
 				<h4 class="trackName">Data Science Competitions</h4>
-				<div class="rating <?php echo do_shortcode("[tc_rating_color score='".$coder->rating."' ]") ?>"><?php echo $coder->rating;?></div>
 				<div class="lbl">Rating</div>
+				<div class="rating <?php echo do_shortcode("[tc_rating_color score='".$coder->rating."' ]") ?>"><?php echo $coder->rating;?></div>
 			</div>
 			<div class="detailedRating">
 				<div class="row">
@@ -125,11 +125,11 @@ if($rating>0){
 												<td class="colTotal"><?php echo $coder->topTenFinishes; ?></td>
 											</tr>
 											<tr>
-												<td class="colDetails">Avg.Rank</td>
+												<td class="colDetails">Avg. Rank</td>
 												<td class="colTotal"><?php echo $coder->avgRank; ?></td>
 											</tr>
 											<tr class="alt">
-												<td class="colDetails">Avg.Num.Submissions</td>
+												<td class="colDetails">Avg. Num. Submissions</td>
 												<td class="colTotal"><?php echo $coder->avgNumSubmissions; ?></td>
 											</tr>
 											<tr>
@@ -158,7 +158,7 @@ if($rating>0){
 		<!-- /.ratingViews -->
 		<?php else:?>
 		<div class="noParticipation">
-			<h2>Member rating unavailable or member didn't participated in any Marathon competition.</h2>
+			<h2>Member rating unavailable or member didn't participate in any Marathon competitions.</h2>
 		</div>
 		<?php endif;?>
 	</div>

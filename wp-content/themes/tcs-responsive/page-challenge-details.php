@@ -344,7 +344,7 @@ include locate_template('header-challenge-landing.php');
   </article>
 
   <article id="howtosubmit">
-    <h1>How to Submit</h1>
+    <h1>HOW TO SUBMIT</h1>
 
     <p>
     <ul class="howToSubmit">
@@ -373,7 +373,7 @@ include locate_template('header-challenge-landing.php');
   </article>
 
   <article id="winnerselection">
-    <h1>Winner Selection</h1>
+    <h1>WINNER SELECTION</h1>
 
     <p>
       Submissions are viewable to the client as they are entered into the challenge. Winners are selected by the
@@ -382,7 +382,7 @@ include locate_template('header-challenge-landing.php');
   </article>
 
   <article id="payments">
-    <h1>Payments</h1>
+    <h1>PAYMENTS</h1>
 
     <p>TopCoder will compensate members in accordance with the payment structure of this challenge.
       Initial payment for the winning member will be distributed in two installments. The first payment
@@ -401,7 +401,7 @@ include locate_template('header-challenge-landing.php');
 
 
   <article id="eligibility">
-    <h1>Eligibility</h1>
+    <h1>ELIGIBILITY</h1>
 
     <p>You must be a TopCoder member, at least 18 years of age, meeting all of the membership requirements. In addition,
       you must fit into one of the following categories.</p>
@@ -690,7 +690,7 @@ include locate_template('header-challenge-landing.php');
           <a href="http://topcoder.com/home/studio/the-process/how-to-submit-to-a-contest/">Read this FAQs</a>.</p>
 <!-- Bugfix I-111397: removed empty link tags surrounding text -->
         <p><strong>Fonts:</strong><br> All fonts within your design must be declared when you submit. DO NOT include any font files in your submission or source files.
-        <a href="http://topcoder.com/home/studio/the-process/font-policy/" style="white-space:nowrap;">Read the font policy here</a>.
+        <a href="http://topcoder.com/home/studio/the-process/font-policy/" style="white-space:nowrap;">Read about the font policy here</a>.
         </p>
 
         <p><strong>Screening:</strong><br>All submissions are screened for eligibility before the challenge holder picks
@@ -699,7 +699,7 @@ include locate_template('header-challenge-landing.php');
             here</a>.
         </p>
 
-        <p>Questions? <a href="http://studio.topcoder.com/forums?module=ThreadList&amp;forumID=6">Ask in the Forums</a>.
+        <p>Questions? <a href="http://studio.topcoder.com/forums?module=ThreadList&amp;forumID=6">Ask in the Challenge Discussion Forums</a>.
         </p>
 
       </div>

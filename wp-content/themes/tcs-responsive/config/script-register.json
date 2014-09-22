@@ -308,11 +308,12 @@
         "reset-password.js",
         "app/challenge-details/js/ng-challenge-detail-software.js",
         "app/challenge-details/js/ng-challenge-result.js",
+        "app/challenge-details/js/filters/filters-challenge-details.js",
         "app/challenge-details/app.js",
-        "app/challenge-details/js/controllers/controllers.js",
+        "app/challenge-details/js/controllers/challenge-details-controller.js",
         "app/challenge-details/js/controllers/submission-controller.js",
         "app/challenge-details/js/directives/submission-directives.js",
-        "app/challenge-details/js/services/services.js",
+        "app/challenge-details/js/services/challenge-details-services.js",
         "app/challenge-details/js/services/submission-services.js",
         "app/challenge-details/js/lib/loading-bar/loading-bar.js"
       ],
@@ -377,6 +378,7 @@
         "app/challenges/services/templateService.js",
         "app/challenges/services/gridService.js",
         "app/challenges/services/services-challenges-data.js",
+        "app/challenges/services/user-challenges-service.js",
         "app/challenges/lib/angular-loading-bar-0.3.0/loading-bar.js",
         "app/challenges/lib/select2/select2-3.4.8/select2.min.js",
         "app/challenges/lib/select2/ng-select2.js"

@@ -12,6 +12,7 @@ tc_setup_angular();
 
 $activeTab = $tab;
 add_action('wp_head', 'tc_challenge_details_js');
+
 function tc_challenge_details_js() {
   global $contest, $contestType, $contestID, $registrants, $activeTab;
 
@@ -35,10 +36,10 @@ function tc_challenge_details_js() {
 
 $isChallengeDetails = TRUE;
 
-$contestID = get_query_var('contestID');
-$contestType    = filter_input(INPUT_GET, 'type', FILTER_SANITIZE_STRING);
-$contestType    = empty( $contestType ) ? "develop" : $contestType;
-$noCache        = get_query_var('nocache');
+$contestID   = get_query_var('contestID');
+$contestType = filter_input(INPUT_GET, 'type', FILTER_SANITIZE_STRING);
+$contestType = empty( $contestType ) ? "develop" : $contestType;
+$noCache     = get_query_var('nocache');
 
 $registerDisable = FALSE;
 $submitDisabled  = FALSE;
@@ -50,11 +51,10 @@ include locate_template('header-challenge-landing.php');
 
 ?>
 
-<div id="cdNgMain" ng-app="challengeDetails" ng-controller="CDCtrl" class="hide content challenge-detail view-challenge-result {{challengeType != 'design' ? 'develop' : ''}}">
+<div id="cdNgMain" ng-init="CD.callComplete=false" ng-show="CD.callComplete" ng-app="challengeDetails" ng-controller="CDCtrl as CD" class="hide content challenge-detail view-challenge-result {{CD.challengeType != 'design' ? 'develop' : ''}}">
 <div id="main">
 
 <?php include( locate_template('ng-content-basic-challenge-details.php') ); ?>
-
 
 <article id="mainContent" class="splitLayout <?php if (!empty( $activeTab )) {echo 'currentTab-' . $activeTab;} ?>">
 <div class="container">
@@ -64,67 +64,72 @@ include locate_template('header-challenge-landing.php');
 <section class="tabsWrap">
 <nav class="tabNav">
   <div class="topRightTitle topRightTitleAlt" style="position: relative;">
-    <a ng-href="{{challenge.forumLink}}" class="contestForumIcon" target="_blank">Challenge Discussion</a>
+    <a ng-href="{{CD.challenge.forumLink}}" class="contestForumIcon" target="_blank">Challenge Discussion</a>
   </div>
   <ul>
     <li><a href="#contest-overview" class="active link">Details</a></li>
-    <li>
-      <a href="#viewRegistrant" class="link">Registrants</a>
+    <li ng-show="!CD.isDesign">
+      <a href="#viewRegistrant" class="link">Registrants ({{CD.numRegistrants}}) & Submissions ({{CD.numSubmissions}})</a>
     </li>
-    <li ng-show="challenge.checkpoints && challenge.checkpoints.length > 0"><a href="#checkpoints" class="link">Checkpoints</a></li>
+    <li ng-show="CD.isDesign">
+      <a href="#viewRegistrant" class="link">Registrants ({{CD.numRegistrants}})</a>
+    </li>
+    <li ng-show="(CD.challenge.checkpoints && CD.challenge.checkpoints.length > 0) || CD.checkpointData"><a href="#checkpoints" class="link">Checkpoints ({{CD.numCheckpointSubmissions}})</a></li>
     <!-- @FIXME took out checkpoint stuff here
     < ?php if (( !empty( $checkpointData ) && $checkpointData != "Error in processing request" ) || ( $tab === "checkpoints" )): ?>
       <li><a href="#checkpoints" class="link {{activeTab == 'checkpoints' ? 'active' : ''}}">Checkpoints</a></li>
     < ?php endif; ?>
     -->
-    <li ng-show="!isDesign"><a href="#winner" class="link">Results</a></li>
+    <li ng-show="!CD.isDesign"><a href="#winner" class="link">Results</a></li>
 
     <!-- @FIXME: more checkpoint stuff commented out
     < ?php if (( !empty( $checkpointData ) && $checkpointData != "Error in processing request" ) || ( $tab === "checkpoints" )): ?>
       <li><a href="#checkpoints" class="link < ?php if ($tab === "checkpoints") { echo "active"; } ?>">Checkpoints</a></li>
     < ?php endif; ?>
     -->
-    <!--<li ng-if="isDesign && inSubmission"><span class="inactive">Submissions</span></li>-->
-    <li ng-show="isDesign && !inSubmission"><a href="#submissions" class="link">Submissions</a></li>
-    <li ng-show="isDesign && (inSubmission || inScreening || inReview)"><span class="inactive">Results</span></li>
-    <li ng-show="isDesign && !(inSubmission || inScreening || inReview)"><a href="#winner" class="link">Results</a></li>
+    <!--<li ng-if="CD.isDesign && CD.inSubmission"><span class="inactive">Submissions</span></li>-->
+    <li ng-show="CD.isDesign && !CD.inSubmission"><a href="#submissions" class="link">Submissions ({{CD.numSubmissions}})</a></li>
+    <li ng-show="CD.isDesign && (CD.inSubmission || CD.inScreening || CD.inReview)"><span class="inactive">Results</span></li>
+    <li ng-show="CD.isDesign && !(CD.inSubmission || CD.inScreening || CD.inReview)"><a href="#winner" class="link">Results</a></li>
   </ul>
 </nav>
 <nav class="tabNav firstTabNav designFirstTabNav mobile hide">
   <ul>
     <li><a href="#contest-overview" class="active link">Details</a></li>
-    <li><a href="#viewRegistrant" class="link">Registrants</a></li>
+    <li>
+      <a href="#viewRegistrant" class="link">Registrants ({{CD.numRegistrants}})</a>
+    </li>
   </ul>
 </nav>
 <nav class="tabNav firstTabNav designSecondTabNav mobile hide">
   <ul>
-    <li ng-if="inSubmission"><span class="inactive">Checkpoints</span></li>
+    <li ng-if="CD.inSubmission"><span class="inactive">Checkpoints ({{CD.numCheckpointSubmissions}})</span></li>
     <!-- FIXME: took out checkpoint data stuff here. It didn't seem like it was being used.
-      <li ng-if="!inSubmission"><a href="<?php echo CURRENT_FULL_URL; ?>&tab=checkpoints" class="link">Checkpoints</a></li>
+      <li ng-if="!CD.inSubmission"><a href="<?php echo CURRENT_FULL_URL; ?>&tab=checkpoints" class="link">Checkpoints</a></li>
     -->
-    <li ng-show="inSubmission"><span class="inactive">Submissions</span></li>
-    <li ng-show="!inSubmission"><a href="#submissions" class="link">Submissions</a></li>
+    <li ng-show="CD.inSubmission"><span class="inactive">Submissions</span></li>
+    <li ng-show="!CD.inSubmission"><a href="#submissions" class="link">Submissions ({{CD.numSubmissions}})</a></li>
     </li>
     <li>
-      <li ng-show="inSubmission || inScreening || inReview"><span class="inactive">Results</span></li>
-      <li ng-show="!(inSubmission || inScreening || inReview)"><a href="#winner" class="link">Results</a></li>
+      <li ng-show="CD.inSubmission || CD.inScreening || CD.inReview"><span class="inactive">Results</span></li>
+      <li ng-show="!(CD.inSubmission || CD.inScreening || CD.inReview)"><a href="#winner" class="link">Results</a></li>
     </li>
   </ul>
 </nav>
 
-<div ng-if="!isDesign" id="contest-overview" class="tableWrap {{activeTab != 'details' ? 'hide' : ''}} tab">
-  <article ng-if="!isDesign" id="contestOverview">
+<div ng-if="!CD.isDesign" id="contest-overview" class="tableWrap {{CD.activeTab != 'details' ? 'hide' : ''}} tab">
+  <article ng-if="!CD.isDesign" id="contestOverview">
     <h1>Challenge Overview</h1>
 
-    <p ng-bind-html="trust(challenge.detailedRequirements)"></p>
+    <p ng-bind-html="CD.challenge.detailedRequirements | trust"></p>
 
     <article id="platforms">
       <h1>Platforms</h1>
       <ul>
-        <li ng-if="(hasPlatforms = challenge.platforms && challenge.platforms.length > 0)" ng-repeat="platform in challenge.platforms" >
+        <li ng-if="(hasPlatforms = CD.challenge.platforms && CD.challenge.platforms.length > 0)" ng-repeat="platform in CD.challenge.platforms" >
           <strong ng-bind="platform"></strong>
         </li>
-        <li ng-if="!(hasPlatforms = challenge.platforms && challenge.platforms.length > 0)">
+        <li ng-if="!(hasPlatforms = CD.challenge.platforms && CD.challenge.platforms.length > 0)">
           <strong>Not Specified</strong>
         </li>
       </ul>
@@ -134,10 +139,10 @@ include locate_template('header-challenge-landing.php');
       <h1>Technologies</h1>
       <div class="technologyTags">
         <ul>
-          <li ng-if="challenge.technology && challenge.technology.length > 0" ng-repeat="tech in challenge.technology">
+          <li ng-if="CD.challenge.technology && CD.challenge.technology.length > 0" ng-repeat="tech in CD.challenge.technology">
             <span>{{tech}}</span>
           </li>
-          <li ng-if="!(challenge.technology && challenge.technology.length > 0)">
+          <li ng-if="!(CD.challenge.technology && CD.challenge.technology.length > 0)">
             <strong>Not Specified</strong>
           </li>
 
@@ -147,9 +152,7 @@ include locate_template('header-challenge-landing.php');
     </article>
 
     <h3>Final Submission Guidelines</h3>
-    <div ng-bind-html="trust(challenge.finalSubmissionGuidelines)"></div>
-
-
+    <div ng-bind-html="CD.challenge.finalSubmissionGuidelines | trust"></div>
 
     <article id="payments">
       <h1>Payments</h1>
@@ -199,13 +202,13 @@ include locate_template('header-challenge-landing.php');
   </article>
 
 </div>
-<div ng-if="isDesign" id="contest-overview" class="tableWrap {{activeTab != 'details' ? 'hide' : ''}} tab">
-<article ng-if="isDesign" id="contestOverview">
+<div ng-if="CD.isDesign" id="contest-overview" class="tableWrap {{CD.activeTab != 'details' ? 'hide' : ''}} tab">
+<article ng-if="CD.isDesign" id="contestOverview">
 
   <article id="contestSummary">
     <h1>CONTEST SUMMARY</h1>
 
-    <p class="paragraph" ng-bind-html="trust(challenge.introduction)"></p>
+    <p class="paragraph" ng-bind-html="CD.challenge.introduction | trust"></p>
 
     <p></p>
 
@@ -215,71 +218,71 @@ include locate_template('header-challenge-landing.php');
         the client in the forums.</b></p>
   </article>
 
-  <article id="studioTournamentFormat">
+  <article id="studioTournamentFormat" ng-if="CD.challenge.numberOfCheckpointsPrizes > 0">
     <h1>CHALLENGE FORMAT</h1>
-
     <p class="paragraph">This competition will be run as a two-round challenge.</p>
+    <div>
+      <span class="subTitle">Round One (1)</span>
 
-    <span class="subTitle">Round One (1)</span>
+      <p class="paragraph"></p>
 
-    <p class="paragraph"></p>
+      <p style="margin: 0px 0px 0px 15px; padding: 0px; color: rgb(64, 64, 64);"><span
+          style="line-height: 1.6em;" ng-bind-html="CD.challenge.round1Introduction | trust"></span></p>
 
-    <p style="margin: 0px 0px 0px 15px; padding: 0px; color: rgb(64, 64, 64);"><span
-        style="line-height: 1.6em;" ng-bind-html="trust(challenge.round1Introduction)"></span></p>
+      <span class="subTitle">Round Two (2)</span>
 
-    <span class="subTitle">Round Two (2)</span>
+      <p class="paragraph"></p>
 
-    <p class="paragraph"></p>
+      <p><span style="color: rgb(64, 64, 64); font-size: 13px;" ng-bind-html="CD.challenge.round2Introduction | trust"></span></p>
 
-    <p><span style="color: rgb(64, 64, 64); font-size: 13px;" ng-bind-html="trust(challenge.round2Introduction)"></span></p>
-
-    <p></p>
+      <p></p>
 
 
-    <h6 class="smallTitle red">Regarding the Rounds:</h6>
+      <h6 class="smallTitle red">Regarding the Rounds:</h6>
 
-    <p></p>
+      <p></p>
 
-    <ul class="red">
-      <li>To be eligible for Round 1 prizes and design feedback, you must submit before the Checkpoint
-        deadline.
-      </li>
-      <li>A day or two after the Checkpoint deadline, the contest holder will announce Round 1 winners and
-        provide design feedback to those winners in the "Checkpoints" tab above.
-      </li>
-      <li>You must submit to Round 1 to be eligible to compete in Round 2. If your submission fails
-        screening for a small mistake in Round 1, you may still be eligible to submit to Round 2.
-      </li>
-      <li>Every competitor with a passing Round 1 submission can submit to Round 2, even if they didn't
-        win a Checkpoint prize.
-      </li>
-      <li><a
-          href="http://help.topcoder.com/design/submitting-to-a-design-challenge/multi-round-checkpoint-design-challenges/">Learn
-          more here</a>.
-      </li>
-    </ul>
+      <ul class="red">
+        <li>To be eligible for Round 1 prizes and design feedback, you must submit before the Checkpoint
+          deadline.
+        </li>
+        <li>A day or two after the Checkpoint deadline, the contest holder will announce Round 1 winners and
+          provide design feedback to those winners in the "Checkpoints" tab above.
+        </li>
+        <li>You must submit to Round 1 to be eligible to compete in Round 2. If your submission fails
+          screening for a small mistake in Round 1, you may still be eligible to submit to Round 2.
+        </li>
+        <li>Every competitor with a passing Round 1 submission can submit to Round 2, even if they didn't
+          win a Checkpoint prize.
+        </li>
+        <li><a
+            href="http://help.topcoder.com/design/submitting-to-a-design-challenge/multi-round-checkpoint-design-challenges/">Learn
+            more here</a>.
+        </li>
+      </ul>
+    </div>
   </article>
 
   <article id="fullDescription">
     <h1>FULL DESCRIPTION &amp; PROJECT GUIDE</h1>
 
-    <p ng-bind-html="trust(challenge.detailedRequirements)"></p>
+    <p ng-bind-html="CD.challenge.detailedRequirements | trust"></p>
   </article>
 
   <article id="stockPhotography">
     <h1>STOCK PHOTOGRAPHY</h1>
 
-    <p ng-if="challenge.allowStockArt"> Stock photography is allowed in this challenge.<br>
+    <p ng-if="CD.challenge.allowStockArt"> Stock photography is allowed in this challenge.<br>
       <a href="http://help.topcoder.com/design/design-copyright-and-font-policies/policy-for-stock-photos-in-design-submissions/">See this page for more details.</a></p>
 
-    <p ng-if="!challenge.allowStockArt">Stock photography is not allowed in this challenge. All submitted elements must be designed solely by you.<br>
+    <p ng-if="!CD.challenge.allowStockArt">Stock photography is not allowed in this challenge. All submitted elements must be designed solely by you.<br>
       <a href="http://help.topcoder.com/design/design-copyright-and-font-policies/policy-for-stock-photos-in-design-submissions/">See
          this page for more details.</a></p>
 
   </article>
 
   <article id="howtosubmit">
-    <h1>How to Submit</h1>
+    <h1>HOW TO SUBMIT</h1>
 
     <p>
     <ul class="howToSubmit">
@@ -308,7 +311,7 @@ include locate_template('header-challenge-landing.php');
   </article>
 
   <article id="winnerselection">
-    <h1>Winner Selection</h1>
+    <h1>WINNER SELECTION</h1>
 
     <p>
       Submissions are viewable to the client as they are entered into the challenge. Winners are selected by the
@@ -317,7 +320,7 @@ include locate_template('header-challenge-landing.php');
   </article>
 
   <article id="payments">
-    <h1>Payments</h1>
+    <h1>PAYMENTS</h1>
 
     <p>TopCoder will compensate members in accordance with the payment structure of this challenge.
       Initial payment for the winning member will be distributed in two installments. The first payment
@@ -336,7 +339,7 @@ include locate_template('header-challenge-landing.php');
 
 
   <article id="eligibility">
-    <h1>Eligibility</h1>
+    <h1>ELIGIBILITY</h1>
 
     <p>You must be a TopCoder member, at least 18 years of age, meeting all of the membership requirements. In addition,
       you must fit into one of the following categories.</p>
@@ -376,10 +379,10 @@ include locate_template('header-challenge-landing.php');
         <th class="handleColumn">
           <div>Username</div>
         </th>
-        <th ng-if="challengeType != 'design'" class="ratingColumn">
+        <th ng-if="!CD.isDesign" class="ratingColumn">
           <div>Rating</div>
         </th>
-        <th ng-if="challengeType != 'design'" class="reliabilityColumn">
+        <th ng-if="!CD.isDesign" class="reliabilityColumn">
           <div>Reliability</div>
         </th>
         <th class="regDateColumn">
@@ -392,23 +395,24 @@ include locate_template('header-challenge-landing.php');
       </tr>
       </thead>
       <tbody>
-      <tr ng-repeat="registrant in challenge.registrants | orderBy:'registrationDate'">
-        <td ng-class="challengeType == 'design' ? 'handleColumnDesign' : 'handleColumn'">
+      <tr ng-repeat="registrant in CD.challenge.registrants | orderBy:'registrationDate'">
+        <td ng-class="CD.challengeType == 'design' ? 'handleColumnDesign' : 'handleColumn'">
             <span>
-                <a ng-href="{{siteURL + '/member-profile/' + registrant.handle}}" ng-bind="registrant.handle"></a>
+                <a ng-href="{{CD.siteURL + '/member-profile/' + registrant.handle}}" ng-bind="registrant.handle"></a>
             </span>
         </td>
-        <td ng-if="challengeType != 'design'" class="ratingColumn">
+        <td ng-if="!CD.isDesign" class="ratingColumn">
             <span style="{{registrant.colorStyle}}" ng-bind="registrant.rating || 0" ng-bind="registrant.rating || 0"></span>
         </td>
-        <td ng-if="challengeType != 'design'" class="reliabilityColumn">
+        <td ng-if="!CD.isDesign" class="reliabilityColumn">
             <span ng-bind="registrant.reliability"></span>
         </td>
-        <td ng-class="challengeType == 'design' ? 'regDateColumnDesign' : 'regDateColumn'" ng-bind="formatDate(registrant.registrationDate)"></td>
-        <td ng-class="challengeType == 'design' ? 'subDateColumnDesign' : 'subDateColumn'" ng-bind="formatDate(registrant.submissionDate)"></td>
+        <td ng-class="CD.challengeType == 'design' ? 'regDateColumnDesign' : 'regDateColumn'" ng-bind="registrant.registrationDate | formatDate:2"></td>
+        <td ng-class="CD.challengeType == 'design' ? 'subDateColumnDesign' : 'subDateColumn'" ng-bind="registrant.submissionDate | formatDate:2"></td>
         <!--bugfix refactored-challenge-details-68: added missing icons -->
         <td class="successIconColumn">
-          <i class="{{registrant.winner ? 'successIcon' : registrant.submissionStatus.match('Failed') ? 'failureIcon' : ''}}"></i>
+          <i class="{{registrant.winner ? 'successIcon' : registrant.submissionStatus.match('Failed') ? 'failureIcon' : ''}}"
+             title="{{registrant.winner ? 'Pass' : registrant.submissionStatus.match('Failed') ? 'Fail' : ''}}"></i>
         </td>
       </tr>
       </tbody>
@@ -424,7 +428,7 @@ include locate_template('header-challenge-landing.php');
   <?php include( locate_template('ng-page-challenge-result.php') ); ?>
 
 </div>
-<div id="checkpoints" class="tableWrap {{activeTab == 'checkpoints' ? '' : 'hide'}} tab">
+<div id="checkpoints" class="tableWrap {{CD.activeTab == 'checkpoints' ? '' : 'hide'}} tab">
 
 
   <article>
@@ -449,17 +453,17 @@ include locate_template('header-challenge-landing.php');
 <aside class="sideStream grid-1-3" style="float: left;">
 
 <div class="topRightTitle">
-    <a ng-href="{{challenge.forumLink}}" class="contestForumIcon" target="_blank">Challenge Discussion</a>
+    <a ng-href="{{CD.challenge.forumLink}}" class="contestForumIcon" target="_blank">Challenge Discussion</a>
 </div>
 
 <div class="columnSideBar">
 
 <div class="slider">
 <ul>
-  <div ng-hide="isDesign = challengeType == 'design'" class="slideBox">
+  <div ng-hide="CD.isDesign" class="slideBox">
     <?php include locate_template('ng-content-challenge-downloads.php'); ?>
   </div>
-  <li ng-hide="isDesign" class="slide">
+  <li ng-hide="CD.isDesign" class="slide">
 
     <div class="reviewStyle slideBox">
       <h3>Review Style:</h3>
@@ -479,25 +483,25 @@ include locate_template('header-challenge-landing.php');
     <!-- End review style section -->
 
   </li>
-  <li ng-show="challenge.screeningScorecardId || challenge.reviewScorecardId" class="slide">
+  <li ng-show="CD.challenge.screeningScorecardId || CD.challenge.reviewScorecardId" class="slide">
 
     <div class="contestLinks slideBox">
       <h3>Contest Links:</h3>
 
       <div class="inner">
-        <p ng-show="challenge.screeningScorecardId"><a
-            href="https://software.topcoder.com/review/actions/ViewScorecard.do?method=viewScorecard&scid={{challenge.screeningScorecardId}}">Screening
+        <p ng-show="CD.challenge.screeningScorecardId"><a
+            href="https://software.topcoder.com/review/actions/ViewScorecard.do?method=viewScorecard&scid={{CD.challenge.screeningScorecardId}}">Screening
             Scorecard</a></p>
 
-        <p ng-show="challenge.reviewScorecardId"><a
-            href="http://software.topcoder.com/review/actions/ViewScorecard.do?method=viewScorecard&scid={{challenge.reviewScorecardId}}">Review
+        <p ng-show="CD.challenge.reviewScorecardId"><a
+            href="http://software.topcoder.com/review/actions/ViewScorecard.do?method=viewScorecard&scid={{CD.challenge.reviewScorecardId}}">Review
             Scorecard</a></p>
       </div>
 
     </div>
 
   </li>
-  <li ng-hide="isDesign" class="slide">
+  <li ng-hide="CD.isDesign" class="slide">
 
     <div class="umltoolLinks slideBox">
       <h3>Get the UML Tool:</h3>
@@ -513,14 +517,14 @@ include locate_template('header-challenge-landing.php');
 
   </li>
 
-  <li ng-if="isDesign" class="slide">
+  <li ng-if="CD.isDesign" class="slide">
     <div class="forumFeed slideBox">&nbsp;<br/>
     </div>
   </li>
-  <li ng-if="isDesign" class="slide">
+  <li ng-if="CD.isDesign" class="slide">
     <?php include locate_template('ng-content-challenge-downloads.php'); ?>
   </li>
-  <li ng-if="isDesign" class="slide">
+  <li ng-if="CD.isDesign" class="slide">
     <div class="slideBox">
       <h3>How to Format Your Submission:</h3>
 
@@ -539,7 +543,7 @@ include locate_template('header-challenge-landing.php');
 
         <!-- Bugfix I-111397: removed empty link tags surrounding text -->
         <p><strong>Fonts:</strong><br> All fonts within your design must be declared when you submit. DO NOT include any font files in your submission or source files.
-        <a href="http://topcoder.com/home/studio/the-process/font-policy/" style="white-space:nowrap;">Read the font policy here</a>.
+        <a href="http://topcoder.com/home/studio/the-process/font-policy/" style="white-space:nowrap;">Read about the font policy here</a>.
         </p>
 
         <p><strong>Screening:</strong><br>All submissions are screened for eligibility before the challenge holder picks
@@ -548,26 +552,26 @@ include locate_template('header-challenge-landing.php');
             here</a>.
         </p>
 
-        <p>Questions? <a href="http://studio.topcoder.com/forums?module=ThreadList&amp;forumID=6">Ask in the Forums</a>.
+        <p>Questions? <a href="http://studio.topcoder.com/forums?module=ThreadList&amp;forumID=6">Ask in the Challenge Discussion Forums</a>.
         </p>
 
       </div>
     </div>
   </li>
-  <li ng-if="isDesign" class="slide">
+  <li ng-if="CD.isDesign" class="slide">
     <div class="slideBox">
       <!-- <h3>Forums Feed:</h3> -->
       <div class="inner"></div>
     </div>
   </li>
-  <li ng-if="isDesign" class="slide">
+  <li ng-if="CD.isDesign" class="slide">
     <div class="slideBox">
       <h3>Source Files:</h3>
 
       <div class="inner">
         <ul>
             <li ng-if="!hasFiletypes"><strong>Text or Word Document containing all of your ideas and supporting information.</strong></li>
-            <li ng-if="hasFiletypes" ng-repeat="filetype in challenge.filetypes">
+            <li ng-if="hasFiletypes" ng-repeat="filetype in CD.challenge.filetypes">
               <strong ng-bind="filetype"></strong>
             </li>
         </ul>
@@ -576,13 +580,13 @@ include locate_template('header-challenge-landing.php');
       </div>
     </div>
   </li>
-  <li ng-if="isDesign" class="slide">
+  <li ng-if="CD.isDesign" class="slide">
     <div class="slideBox">
       <h3>Submission Limit:</h3>
 
       <div class="inner">
         <!-- Bugfix I-107615: Added check if SubmissionLimit is empty, if so, display "Unlimited" instead of empty value -->
-        <p><strong ng-bind="challenge.submissionLimit.length > 0 ? challenge.submissionLimit : 'Unlimited'"></strong></p>
+        <p><strong ng-bind="CD.challenge.submissionLimit.length > 0 ? CD.challenge.submissionLimit : 'Unlimited'"></strong></p>
       </div>
     </div>
   </li>

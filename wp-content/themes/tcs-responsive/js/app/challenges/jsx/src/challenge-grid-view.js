@@ -72,7 +72,7 @@
             registerBy : true,
             submitBy : true,
             currentStatus : true,
-            techUpcoming : true,
+            tech : true,
             gdUpcoming : true
           },
           develop_active: {
@@ -92,7 +92,7 @@
             roundEnd : true,
             endDate : true,
             currentStatus : true,
-            techUpcoming : true,
+            tech : true,
             gdUpcoming : true
           },
           data_active: {
@@ -154,16 +154,6 @@
                  <label className="lbl">Current Status</label>
                  <div className="val vStatus">{challenge.status}</div>
               </div>
-              <div className={classNames[challengeCombo].techUpcoming !== undefined ? 'row':'row ng-hide'}>
-                <label className="lbl">Technologies</label>
-                <div className={challenge.technologies === undefined || challenge.technologies.length === 0 ? 'val vTech' : 'val vTech ng-hide'}>
-                  <span>N/A</span>
-                </div>
-                <div className={challenge.technologies !== undefined || challenge.technologies.length !== 0 ? 'technologyTags' : 'technologyTags ng-hide'}>
-                  <ChallengeTechsList challenge={challenge} scope={scope}/>
-                </div>
-                <div className="clear"></div>
-              </div>
             </div>
           </div>
           <div id={challenge.challengeId} className={classNames[challengeCombo].tech !== undefined ? 'technologyTags':'technologyTags ng-hide'}>
@@ -187,8 +177,12 @@
             </Qtip>
           </div>
           <div className={classNames[challengeCombo].gdUpcoming !== undefined ? 'genInfo gdUpcoming':'genInfo gdUpcoming ng-hide'}>
-            <p className="cgTLeft" data-hasqtip={0} aria-describedby="qtip-0"><i />{scope.getContestDuration(challenge.registrationStartDate, challenge.submissionEndDate)}</p>
-            <p className="cgPur" data-hasqtip={1} aria-describedby="qtip-1"><i /> {scope.currencyFilter(challenge.totalPrize)}</p>
+            <Qtip text={scope.getContestDuration(challenge.registrationStartDate, challenge.submissionEndDate)} title="Duration (days)" community={challenge.challengeCommunity}> 
+              <p className="cgTLeft" data-hasqtip={0} aria-describedby="qtip-0"><i />{scope.getContestDuration(challenge.registrationStartDate, challenge.submissionEndDate)}</p>
+            </Qtip>  
+            <Qtip text={scope.currencyFilter(challenge.totalPrize)} title="Total Prize" community={challenge.challengeCommunity}>
+              <p className="cgPur" data-hasqtip={1} aria-describedby="qtip-1"><i /> {scope.currencyFilter(challenge.totalPrize)}</p>
+            </Qtip>
           </div>
         </div>
       );
