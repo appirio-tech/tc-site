@@ -130,7 +130,7 @@
                 React.DOM.div( {className:"val vStartDate"}, scope.dateFormatFilter(challenge.registrationStartDate, scope.dateFormat))
               ),
               React.DOM.div( {className:classNames[challengeCombo].registerBy !== undefined ? 'row':'row ng-hide'}, 
-                React.DOM.label( {className:"lbl"}, "Register by"),
+                React.DOM.label( {className:"lbl"}, "Register By"),
                 React.DOM.div( {className:"val vStartDate"}, scope.dateFormatFilter(challenge.registrationEndDate, scope.dateFormat))
               ),
               React.DOM.div( {className:classNames[challengeCombo].roundEnd !== undefined && challenge.checkpointSubmissionEndDate !== '' ? 'row' : 'row ng-hide'}, 
@@ -142,7 +142,7 @@
                 React.DOM.div( {className:"val vEndDate"}, scope.dateFormatFilter(challenge.submissionEndDate, scope.dateFormat))
               ),
               React.DOM.div( {className:classNames[challengeCombo].submitBy !== undefined ? 'row':'row ng-hide'}, 
-                React.DOM.label( {className:"lbl"}, "Submit by"),
+                React.DOM.label( {className:"lbl"}, "Submit By"),
                   React.DOM.div( {className:"val vStartDate"}, scope.dateFormatFilter(challenge.submissionEndDate, scope.dateFormat))
                 ),
               /*<div className={classNames[challengeCombo].currentPhase !== undefined ? 'row':'row ng-hide'}>

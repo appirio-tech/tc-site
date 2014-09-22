@@ -2707,7 +2707,7 @@ var challengesBP = {
                             <div class="val vStartDate"></div>\
                         </div>\
                         <div class="row">\
-                            <label class="lbl vEndRoundLabel">Register by</label>\
+                            <label class="lbl vEndRoundLabel">Register By</label>\
                             <div class="val vEndRound"></div>\
                         </div>\
                         <div class="row">\
@@ -2775,11 +2775,11 @@ var challengesBP = {
                             <div class="val vStartDate"></div>\
                         </div>\
                         <div class="row">\
-                            <label class="lbl ">Register by</label>\
+                            <label class="lbl ">Register By</label>\
                             <div class="val vEndRound"></div>\
                         </div>\
                         <div class="row">\
-                            <label class="lbl">Submit by</label>\
+                            <label class="lbl">Submit By</label>\
                             <div class="val vEndDate"></div>\
                         </div>\
                     </div></td>\
@@ -2832,11 +2832,11 @@ var challengesBP = {
                             <div class="val vStartDate"></div>\
                         </div>\
                         <div class="row">\
-                            <label class="lbl ">Register by</label>\
+                            <label class="lbl ">Register By</label>\
                             <div class="val vEndRound"></div>\
                         </div>\
                         <div class="row">\
-                            <label class="lbl">Submit by</label>\
+                            <label class="lbl">Submit By</label>\
                             <div class="val vEndDate"></div>\
                         </div>\
                     </div></td>\
@@ -2959,11 +2959,11 @@ var challengesBP = {
                             <div class="val vStartDate"></div>\
                         </div>\
                         <div class="row">\
-                            <label class="lbl">Register by</label>\
+                            <label class="lbl">Register By</label>\
                             <div class="val vEndRound"></div>\
                         </div>\
                         <div class="row">\
-                            <label class="lbl">Submit by</label>\
+                            <label class="lbl">Submit By</label>\
                             <div class="val vEndDate"></div>\
                         </div>\
                         <div class="row">\
@@ -2997,11 +2997,11 @@ var challengesBP = {
                             <div class="val vStartDate"></div>\
                         </div>\
                         <div class="row">\
-                            <label class="lbl">Register by</label>\
+                            <label class="lbl">Register By</label>\
                             <div class="val vEndRound"></div>\
                         </div>\
                         <div class="row">\
-                            <label class="lbl">Submit by</label>\
+                            <label class="lbl">Submit By</label>\
                             <div class="val vEndDate"></div>\
                         </div>\
                         <div class="row">\
