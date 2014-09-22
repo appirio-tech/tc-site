@@ -206,14 +206,14 @@ include locate_template('header-challenge-landing.php');
 <article ng-if="CD.isDesign" id="contestOverview">
 
   <article id="contestSummary">
-    <h1>CONTEST SUMMARY</h1>
+    <h1>CHALLENGE SUMMARY</h1>
 
     <p class="paragraph" ng-bind-html="CD.challenge.introduction | trust"></p>
 
     <p></p>
 
-    <p class="paragraph1"><b>Please read the contest specification carefully and watch the forums for any
-        questions or feedback concerning this contest. It is important that you monitor any updates
+    <p class="paragraph1"><b>Please read the challenge specification carefully and watch the forums for any
+        questions or feedback concerning this challenge. It is important that you monitor any updates
         provided by the client or Studio Admins in the forums. Please post any questions you might have for
         the client in the forums.</b></p>
   </article>
@@ -246,7 +246,7 @@ include locate_template('header-challenge-landing.php');
         <li>To be eligible for Round 1 prizes and design feedback, you must submit before the Checkpoint
           deadline.
         </li>
-        <li>A day or two after the Checkpoint deadline, the contest holder will announce Round 1 winners and
+        <li>A day or two after the Checkpoint deadline, the challenge holder will announce Round 1 winners and
           provide design feedback to those winners in the "Checkpoints" tab above.
         </li>
         <li>You must submit to Round 1 to be eligible to compete in Round 2. If your submission fails
@@ -483,7 +483,7 @@ include locate_template('header-challenge-landing.php');
   <li ng-show="CD.challenge.screeningScorecardId || CD.challenge.reviewScorecardId" class="slide">
 
     <div class="contestLinks slideBox">
-      <h3>Contest Links:</h3>
+      <h3>Challenge Links:</h3>
 
       <div class="inner">
         <p ng-show="CD.challenge.screeningScorecardId"><a
