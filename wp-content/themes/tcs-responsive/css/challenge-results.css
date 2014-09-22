@@ -327,7 +327,6 @@ table.registrantsTable{
             color: #666;
             font-size: 12px;
             padding-bottom: 10px;
-            background: url("../i/sort-arrows.png") no-repeat 50% 15px;
         }
     table.registrantsTable td{
         height: 42px;
