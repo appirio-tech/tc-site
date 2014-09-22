@@ -95,7 +95,8 @@ get_header(); ?>
               challenge-community="contest.contestType"
               challenge-status="contest.listType"
               show-on="showFilters"
-              filter="filter"></div>
+              filter="filter"
+              authenticated="authenticated"></div>
 
         <div class="upcomingCaption" ng-show="contest.listType === 'upcoming' && challenges.length != 0">All upcoming challenges may change</div>
         <div class="pastCaption" ng-show="contest.listType === 'past' && challenges.length != 0">Displaying all challenges from the past year. View longer time ranges at your own risk!</div>
@@ -111,12 +112,12 @@ get_header(); ?>
             There are no upcoming challenges at this time. Please check back later.
           </h3>
         </div>
-        <div class="dataChanges">
+        <div class="dataChanges"  ng-show="challenges && challenges.length > 0">
           <div class="lt">
             <span ng-show="pagination.last">{{(pagination.pageIndex-1)*pagination.pageSize+1}}-{{pagination.last}} of {{pagination.total}}</span><span ng-show="challenges.length < pagination.total && contest.listType != 'past'"> | </span><a class="viewAll" ng-show="challenges.length < pagination.total && contest.listType != 'past'" ng-click="all()">View All</a>
           </div>
           <div id="challengeNav" class="rt">
-            <a class="prevLink" ng-show="pagination.pageIndex > 1" ng-click="prev()">
+            <a class="prevLink" ng-show="pagination.pageIndex > 1 && challenges.length > 0" ng-click="prev()">
               <i></i> Prev
             </a>
             <a class="nextLink" ng-show="pagination.total > pagination.pageIndex * pagination.pageSize" ng-click="next()">
@@ -143,12 +144,12 @@ get_header(); ?>
             <div tc-contest-grid-react></div>
           </div>
         </div>
-        <div class="dataChanges">
+        <div class="dataChanges" ng-show="challenges && challenges.length > 0">
           <div class="lt">
             <span ng-show="pagination.last">{{(pagination.pageIndex-1)*pagination.pageSize+1}}-{{pagination.last}} of {{pagination.total}}</span><span ng-show="challenges.length < pagination.total && contest.listType != 'past'"> | </span><a class="viewAll" ng-show="challenges.length < pagination.total && contest.listType != 'past'" ng-click="all()">View All</a>
           </div>
           <div id="challengeNav" class="rt">
-            <a class="prevLink" ng-show="pagination.pageIndex > 1" ng-click="prev()">
+            <a class="prevLink" ng-show="pagination.pageIndex > 1 && challenges.length > 0" ng-click="prev()">
               <i></i> Prev
             </a>
             <a class="nextLink" ng-show="pagination.total > pagination.pageIndex * pagination.pageSize" ng-click="next()">
@@ -201,7 +202,9 @@ get_header(); ?>
 
 <script type="text/ng-template" id="advanced-search.html">
   <div class="clear new-search-box" ng-if="challengeCommunity !== ''">
-    <input type="text" class="search-text" placeholder="Type a keyword" ng-model="tempOptions.text">
+    <form ng-submit="addKeywords(tempOptions.text)">
+      <input type="text" class="search-text" placeholder="Type a keyword" ng-model="tempOptions.text">
+    </form>
     <a href="javascript:;" class="searchLink advSearch" ng-click="addKeywords(tempOptions.text)">
         <i></i>
     </a>
@@ -301,16 +304,28 @@ get_header(); ?>
                             </div>
                         </div>
                         <div class="quick-pick left">
-                            <ul class="quick-pick-list">
+                            <ul class="quick-pick-list" ng-if="challengeStatus === 'past'">
                                 <li><a href="javascript:;" ng-click="dateCtrl.today()">Today</a>
                                 </li>
                                 <li><a href="javascript:;" ng-click="dateCtrl.yesterday()">Yesterday</a>
                                 </li>
-                                <li><a href="javascript:;" ng-click="dateCtrl.last7Days()">Last 7 day</a>
+                                <li><a href="javascript:;" ng-click="dateCtrl.last7Days()">Last 7 days</a>
+                                </li>
+                                <li><a href="javascript:;" ng-click="dateCtrl.pastThisMonth()">This Month</a>
+                                </li>
+                                <li><a href="javascript:;" ng-click="dateCtrl.lastMonth()">Last Month</a>
+                                </li>
+                            </ul>
+                            <ul class="quick-pick-list" ng-if="challengeStatus !== 'past'">
+                                <li><a href="javascript:;" ng-click="dateCtrl.today()">Today</a>
+                                </li>
+                                <li><a href="javascript:;" ng-click="dateCtrl.tomorrow()">Tomorrow</a>
+                                </li>
+                                <li><a href="javascript:;" ng-click="dateCtrl.next7Days()">Next 7 days</a>
                                 </li>
                                 <li><a href="javascript:;" ng-click="dateCtrl.thisMonth()">This Month</a>
                                 </li>
-                                <li><a href="javascript:;" ng-click="dateCtrl.lastMonth()">Last Month</a>
+                                <li><a href="javascript:;" ng-click="dateCtrl.nextMonth()">Next Month</a>
                                 </li>
                             </ul>
                         </div>
@@ -333,6 +348,10 @@ get_header(); ?>
                     <option></option>
                     <option ng-repeat="tech in technologies track by $index" ng-disabled="filterOptions.technologies.indexOf(tech) !== -1">{{tech}}</option>
                 </select>
+            </div>
+            
+            <div class="right checkbox myChallenges" ng-show="authenticated && challengeStatus === 'active' && challengeCommunity !== 'data'">
+              <label class="myChallengesLabel"><span>My Challenges Only</span><input type="checkbox" ng-model="filterOptions.userChallenges" ng-change="applyFilter()"></label>
             </div>
 
         </div>
@@ -435,6 +454,12 @@ get_header(); ?>
 
 <script type="text/ng-template" id="tableView/prizes.html">
   <span ng-cell-text>{{row.getProperty(col.field) | currency}}</span>
+</script>
+    
+<script type="text/ng-template" id="tableView/roles.html">
+    <div ng-cell-text class="colRoles">
+      <span class="role" title="{{role}}"  ng-repeat="role in row.getProperty(col.field)">{{role}}</span>
+    </div>
 </script>
 
 <script type="text/ng-template" id="tableView/status.html">

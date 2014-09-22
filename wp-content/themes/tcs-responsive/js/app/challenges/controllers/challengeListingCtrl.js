@@ -3,8 +3,8 @@
 (function (angular) {
   'use strict';
   var challengesModule = angular.module('tc.challenges');
-  challengesModule.controller('ChallengeListingCtrl', ['$scope', '$rootScope', '$routeParams', '$filter', '$location', '$cookies', '$timeout', 'ChallengesService', 'ChallengeDataService', 'DataService', '$window', 'TemplateService', 'GridService', 'cfpLoadingBar',
-    function ($scope, $rootScope, $routeParams, $filter, $location, $cookies, $timeout, ChallengesService, ChallengeDataService, DataService, $window, TemplateService, GridService, cfpLoadingBar) {
+  challengesModule.controller('ChallengeListingCtrl', ['$scope', '$rootScope', '$routeParams', '$filter', '$location', '$cookies', '$timeout', '$q', 'ChallengesService', 'ChallengeDataService', 'DataService', '$window', 'TemplateService', 'GridService', 'cfpLoadingBar',
+    function ($scope, $rootScope, $routeParams, $filter, $location, $cookies, $timeout, $q, ChallengesService, ChallengeDataService, DataService, $window, TemplateService, GridService, cfpLoadingBar) {
 
       function startLoading() {
         cfpLoadingBar.start();
@@ -17,9 +17,31 @@
         $scope.loading = false;
       }
       
+      
+      /*
+       * Gets the available challenge types for a community
+       */
+      function getChallengeTypes(community) {
+        var deferred = $q.defer();
+        if (!community || community === '') {
+          deferred.resolve([]);
+          return deferred.promise;
+        }
+        
+        ChallengesService.getChallengeTypes(community).then(function (data) {
+          _.each(data, function (type) {
+            $scope.challengeTypes[type.description] = type.name;
+            $scope.allChallengeTypes.push(type.description);
+          });
+          deferred.resolve($scope.challengeTypes);
+        });
+        return deferred.promise;
+      }
+      
       function getData(community, listType, order, filter, pageIndex, pageSize) {
         var params = {};
         var listType = $routeParams.challengeStatus ? $routeParams.challengeStatus.toLowerCase() : 'active';
+        $scope.challenges = [];
         if (community) {
           params.type = community;
         }
@@ -61,8 +83,15 @@
           if (pageSize && pageSize > 0) {
             params.pageSize = pageSize;
           }
-          $scope.challenges = [];
-          ChallengesService.getChallenges(listType || 'active', params)
+          
+          var type = listType;
+          if(filter.userChallenges) {
+            type = 'user-' + listType;
+            if (!filter.challengeTypes || filter.challengeTypes.length === 0) {
+              params.challengeType = $scope.allChallengeTypes.join(',');
+            }
+          }  
+          ChallengesService.getChallenges(type || 'active', params)
             .then(function (data) {
               $scope.challenges = data;
               $scope.pagination = data.pagination;
@@ -82,7 +111,8 @@
           technologies: [],
           platforms: [],
           startDate: null,
-          endDate: null
+          endDate: null,
+          userChallenges: false
         };
         // Set filters from url
         if ($routeParams.startDate) {
@@ -132,6 +162,7 @@
         } else {
           $scope.filter.challengeTypes = [];
         }
+        $scope.filter.userChallenges = !!$routeParams.userChallenges && $scope.authenticated;
       }
     
       $scope.showFilters = false;
@@ -144,7 +175,8 @@
         technologies: [],
         platforms: [],
         startDate: null,
-        endDate: null
+        endDate: null,
+        userChallenges: false
       };
 
       var queryVars = $location.search();
@@ -160,14 +192,16 @@
         }
       };
       
-      parseFilters();
-
-     
+      
       //prevent errors from mixed-case URL parameters by converting to lowercase
       $scope.contest = {
         contestType: $routeParams.challengeArea ? $routeParams.challengeArea.toLowerCase() : '',
-        listType: $routeParams.challengeStatus ? $routeParams.challengeStatus.toLowerCase() : 'active'
+        listType: $routeParams.challengeStatus ? $routeParams.challengeStatus.toLowerCase() : 'active',
+        isUserChallenges: !!$routeParams.userChallenges
       };
+      
+      
+      parseFilters();
 
       $scope.titles = {
         '': 'All Open Challenges',
@@ -210,6 +244,8 @@
       $scope.showFilters = false;
       $scope.technologies = [];
       $scope.platforms = [];
+      $scope.challengeTypes = [];
+      $scope.allChallengeTypes = [];
 
       $scope.all = function () {
         getData($routeParams.challengeArea, $routeParams.challengeStatus || 'active',
@@ -236,6 +272,7 @@
 
       $scope.searchSubmit = function (options) {
         var search = {};
+        $scope.pagination.pageIndex = 1;
         if (options.startDate) {
           search.startDate = $filter('date')(options.startDate, 'yyyy-MM-dd');
         }
@@ -256,7 +293,11 @@
         if (options.keywords && options.keywords.length > 0) {
           search.keywords = options.keywords;
         }
+        if (options.userChallenges && $scope.authenticated) {
+          search.userChallenges = true;
+        }
         $location.search(search);
+        
       };
 
       if ($scope.contest.contestType === 'develop') {
@@ -281,6 +322,9 @@
       });
       
       $scope.$watch('gridOptions.ngGrid.config.sortInfo', function (sortInfo) {
+        if (!sortInfo) {
+          return; 
+        }
         if (sortInfo.fields.length > 0) {
           $scope.orderBy[$scope.contest.listType || 'active'] = {
             column: sortInfo.fields[0],
@@ -292,13 +336,24 @@
       }, true);
       
       $scope.$on('$locationChangeSuccess', function (event) {
+        
         $timeout(function () {
           parseFilters();
+          if($scope.filter.userChallenges) {
+            $scope.contest.isUserChallenges = true;
+            $scope.definitions = GridService.definitions($scope.contest);
+          } else {
+            $scope.contest.isUserChallenges = false;
+            $scope.definitions = GridService.definitions($scope.contest);
+          }
           getData($scope.contest.contestType, $scope.contest.listType || 'active',
               $scope.orderBy[$scope.contest.listType || 'active'], $scope.filter, $scope.pagination.pageIndex, $scope.pagination.pageSize);
         });
       });
-      getData($scope.contest.contestType, $scope.contest.listType || 'active',
+      
+      getChallengeTypes($scope.contest.contestType).then(function() {
+        getData($scope.contest.contestType, $scope.contest.listType || 'active',
               $scope.orderBy[$scope.contest.listType || 'active'], $scope.filter, $scope.pagination.pageIndex, $scope.pagination.pageSize);
+      }); 
     }]);
 }(angular));
