@@ -391,14 +391,12 @@ include locate_template('header-challenge-landing.php');
         <th class="subDateColumn">
           <div>Submission Date</div>
         </th>
-        <th class="successColumn">
-          <div>Result</div>
-        </th>
+        <th class="successIconColumn"/>
       </tr>
       </thead>
       <tbody>
       <tr ng-repeat="registrant in CD.challenge.registrants | orderBy:'registrationDate'">
-        <td class="handleColumn">
+        <td ng-class="CD.challengeType == 'design' ? 'handleColumnDesign' : 'handleColumn'">
             <span>
                 <a ng-href="{{CD.siteURL + '/member-profile/' + registrant.handle}}" ng-bind="registrant.handle"></a>
             </span>
@@ -409,10 +407,10 @@ include locate_template('header-challenge-landing.php');
         <td ng-if="!CD.isDesign" class="reliabilityColumn">
             <span ng-bind="registrant.reliability"></span>
         </td>
-        <td class="regDateColumn" ng-bind="registrant.registrationDate | formatDate:2"></td>
-        <td class="subDateColumn" ng-bind="registrant.submissionDate | formatDate:2"></td>
+        <td ng-class="CD.challengeType == 'design' ? 'regDateColumnDesign' : 'regDateColumn'" ng-bind="registrant.registrationDate | formatDate:2"></td>
+        <td ng-class="CD.challengeType == 'design' ? 'subDateColumnDesign' : 'subDateColumn'" ng-bind="registrant.submissionDate | formatDate:2"></td>
         <!--bugfix refactored-challenge-details-68: added missing icons -->
-        <td>
+        <td class="successIconColumn">
           <i class="{{registrant.winner ? 'successIcon' : registrant.submissionStatus.match('Failed') ? 'failureIcon' : ''}}"
              title="{{registrant.winner ? 'Pass' : registrant.submissionStatus.match('Failed') ? 'Fail' : ''}}"></i>
         </td>
