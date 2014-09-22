@@ -291,7 +291,7 @@ get_header(); ?>
                                 </div>
                                 <div class="left from-wrapper">
                                     <div class="to-text-box left">
-                                        <span class="limit-label left">to</span>
+                                        <span class="limit-label left">To</span>
                                         <input type="text" class="right to-picker-text" name="to" disabled ng-value="formatDate(filterOptions.endDate)">
                                     </div>
                                 </div>
