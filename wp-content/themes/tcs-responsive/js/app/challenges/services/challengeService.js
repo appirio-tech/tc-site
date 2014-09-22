@@ -1,16 +1,23 @@
 /*jslint nomen: true*/
 /*global angular: true, _: true */
+/**
+* Changelog
+* 09/17/2014 Add My Challenges Filter and Improve Filters
+* - Added UserChallengesService dependency to get the user challenges
+* - route request to UserChallengesService if track type is 'user-active' or 'user-past'
+*/
 (function (angular) {
   'use strict';
+ 
   angular.module('tc.challenges.services', [
     'restangular'
   ])
     /**
      * Service to request challenges data rom TC API
      */
-    .factory('ChallengesService', ['Restangular', '$filter', '$q', 'ChallengeDataService',
-      function (Restangular, $filter, $q, ChallengeDataService) {
-        var mockPaging = ['active', 'upcoming'],
+    .factory('ChallengesService', ['Restangular', '$filter', '$q', 'ChallengeDataService', 'UserChallengesService',
+      function (Restangular, $filter, $q, ChallengeDataService, UserChallengesService) {
+        var mockPaging = ['active', 'upcoming', 'user-active', 'user-past'],
           datas = {},
           defPageSize = 10;
 
@@ -140,10 +147,31 @@
                 challengeItem.numRegistrants = challengeItem.numberOfRegistrants;
                 challengeItem.numSubmissions = challengeItem.numberOfSubmissions;
                 challengeItem.totalPrize = 'N/A';
+                if (!challengeItem.technologies) {
+                  challengeItem.technologies = [];
+                }
+                if (!challengeItem.platforms) {
+                  challengeItem.platforms = [];
+                }
               });
-              deferred.resolve(challenges);
+              if (listType !== 'past') {
+                var devParams = angular.extend(params, {challengeType: 'Code', technologies: 'Data Science', type: 'develop'});
+                delete devParams.listType;
+
+                Restangular.one('challenges').getList(listType, devParams)
+                  .then(function (devChallenges) {
+                    challenges = challenges.concat(devChallenges);
+                    deferred.resolve(challenges);
+                  });
+              } else {
+                deferred.resolve(challenges);
+              }
             });
+           
             return deferred.promise;
+          } else if (listType === 'user-active' || listType === 'user-past') {
+            // Add My Challenges Filter and Improve Filters challenge -- different api endpoint
+            return UserChallengesService.getUserChallenges(listType === 'user-past' ? 'past' : 'active', params);
           } else {
             return Restangular.one('challenges').getList(listType, params);
           }
@@ -153,7 +181,14 @@
           'getChallenges': function (listType, params) {
             var key = (params.type || 'all') + '_' + (listType || 'active'), // cache key
               deferred,
-              result;
+              result,
+              cacheParams = {type: params.type};
+            // For user challenges, as we need to perform a different request in function of challenge types
+            // We include the types as part of the cache key
+            if (listType === 'user-active' || listType === 'user-past') {
+              key = key + params.challengeType;
+              cacheParams.challengeType = params.challengeType;
+            }
             // Is paging/filtering have to be done on server (past challenges)
             if (mockPaging.indexOf(listType) === -1) {
               return getData(listType, params);
@@ -163,7 +198,7 @@
               if (datas[key]) {
                 thenHandleParams(datas[key], params, deferred);
               } else {
-                getData(listType, {type: params.type}).then(function (data) {
+                getData(listType, cacheParams).then(function (data) {
                   datas[key] = data;
                   thenHandleParams(data, params, deferred);
                 });
@@ -171,8 +206,16 @@
               return deferred.promise;
             }
           },
+          // Gets list of known challenge types by community
           'getChallengeTypes': function (community) {
-            return Restangular.one(community).one('challengetypes').getList();
+            if (community && community !== '' && community !== 'data') {
+              return Restangular.one(community).one('challengetypes').getList();
+            } else {
+              // No API for data challenges, so returns empty array here
+              var def = $q.defer();
+              def.resolve([]);
+              return def.promise;
+            }
           }
         };
       }])

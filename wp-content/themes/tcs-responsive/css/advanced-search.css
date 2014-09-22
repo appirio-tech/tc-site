@@ -455,3 +455,19 @@ input.search-text::-webkit-input-placeholder {
  .closetag a {
     line-height: 35px;
 }
+
+.checkbox {
+  height: 37px;
+  line-height: 37px;
+}
+
+.myChallenges label span {
+    display: block;
+    float: left;
+}
+.myChallenges label input {
+    display: block;
+    float: right;
+    margin-top: 13px;
+    margin-left: 5px;
+}

@@ -58,10 +58,13 @@ function initMemberDetails(pagePersisted){
         if (regCookie && pagePersisted === false) {
         $('.actionLogout').attr('href', 'javascript:;');
         $('.loginLink, .linkLogin, .btnRegister').addClass('hide').hide();
+        $('.btnRegister').parent('.sign-up').hide();
+        $('*[data-signup-only]').hide();
         $('.logoutLink, .linkLogout, .userDetailsWrapper').removeClass('hide').show();
         $('.headerTopRightMenuLink.logIn a').unbind('click');
         $('.headerTopRightMenuLink.logIn a').text("Log Out").removeClass("actionLogin").addClass("actionLogout");
         app.getHandle(function(handle) {
+          _kmq.push(['identify', handle]);
           $('.userDetails .coder').text(handle);
           $.get(ajaxUrl, {
             "action": "get_member_profile",
@@ -143,6 +146,8 @@ function initMemberDetails(pagePersisted){
           showModal('#login');
         });
         $('.loginLink, .linkLogin, .btnRegister').addClass('show').show();
+        $('.btnRegister').parent('.sign-up').show();
+        $('*[data-signup-only]').show();
         $('.logoutLink, .linkLogout, .userDetailsWrapper').removeClass('show').hide();
 
       } else {

@@ -33,9 +33,13 @@ $(function () {
     showModal('#login');
   });
 
-  $('.closeModal,#bgModal').on('click', function () {
+  $('.closeModal,#bgModal').not('.redirectOnConfirm').on('click', function () {
     //window.location.replace('/');
     closeModal();
+  });
+
+  $('.redirectOnConfirm').on('click', function () {
+    redirectToNext();
   });
 
 
@@ -341,7 +345,8 @@ $(function () {
     var pwd = $('#register form.register input.pwd:password');
     var confirm = $('#register form.register input.confirm:password');
     //bugfix empty value checking without using trim
-    if (pwd.val() == confirm.val() && pwd.val() != '') {
+    var strength = pwdStrength(pwd.val());
+    if (pwd.val() == confirm.val() && pwd.val() != '' && strength>0 ) {
       confirm.parents(".row").find("span.valid").css("display", "inline-block");
       confirm.removeClass('invalid');
       confirm.parents(".row").find('span.err1').hide();
@@ -361,9 +366,9 @@ $(function () {
     } else {
       $(this).parents(".row").find("span.valid").hide();
 
-  	  // Issue ID: I-111588 - Show invalid error message when value is empty after being changed
-	  $(this).closest('.row').find('.err1').show();
-	  $(this).closest('.row').find('.customSelect').addClass('invalid');
+      // Issue ID: I-111588 - Show invalid error message when value is empty after being changed
+      $(this).closest('.row').find('.err1').show();
+      $(this).closest('.row').find('.customSelect').addClass('invalid');
     }
   });
 
@@ -607,21 +612,22 @@ $(function () {
             handle: $('#registerForm input.handle').val(),
             country: $('#registerForm select#selCountry').val(),
             email: $('#registerForm input.email').val(),
-            utmSource: utmSource,
-            utmMedium: utmMedium,
-            utmCampaign: utmCampaign
-          }
+            curUrl: window.location.href
+          };
           if ((typeof socialProviderId != 'undefined') && socialProviderId !== "") {
             fields.socialProviderId = socialProviderId;
             fields.socialUserId = socialUserId;
-            fields.socialProvider = socialProvider,
-              fields.socialUserName = socialUserName;
+            fields.socialProvider = socialProvider;
+            fields.socialUserName = socialUserName;
             fields.socialEmail = socialEmail;
             fields.socialEmailVerified = "t";
           } else {
             fields.password = $('#registerForm  input.pwd').val();
           }
 
+          if (_kmq) 
+            _kmq.push(['record', 'Form Submitted']);
+          
           $.post(ajaxUrl + '?action=post_register', fields, function (data) {
             if (data.code == "200") {
               var tcAction = getCookie('tcDelayChallengeAction');
@@ -632,7 +638,8 @@ $(function () {
                 var tcDoAction = tcAction.split('|');
                 if (tcDoAction[0] === 'register') {
                   //append challenge registration message
-                  $("#thanks p").after("<p>In order to register for the selected challenge, you must return to the <a href='/challenge-details/" + tcDoAction[1] + "/'>challenge details page</a> after you have activated your account.</p>");
+                  $("#thanks p").after("<div style='padding-bottom: 30px'>In order to register for the selected challenge, you must return to the <a href='/challenge-details/" + tcDoAction[1] + "/?type=" + challengeType + "'>challenge details page</a> after you have activated your account.</div>");
+                  $('#thanks p').css({'padding-bottom': '10px'});
                 }
               }
               showModal('#thanks');
@@ -753,13 +760,18 @@ $(function () {
       var tcActionValues = tcAction.split('|');
       if (typeof tcActionValues[2] !== 'undefined' && tcActionValues[0] === 'register' && tcActionValues[2] !== '') {
           //add link to challenge-details page for challenge new user tried to register for before making topcoder account
-          $('.thank-you').append("<h4>Are you still interested in participating in: <br>&quot;" + decodeURIComponent(tcActionValues[2]) + "&quot; challenge? <br>if so, <a href='/challenge-details/" + tcActionValues[1] + "/register/'>go there now...</a></h4>");
+          $('.thank-you').append("<h4>Are you still interested in participating in the <br>&quot;" + decodeURIComponent(tcActionValues[2]) + "&quot; challenge? <br>If so, <a href='/challenge-details/register/" + tcActionValues[1] + "/'>go there now!</a></h4>");
         }
     }
   }
 });
 
 // modal
+function showError(message) {
+  $("#registerFailed .failedMessage").text(message);
+  showModal("#registerFailed");
+}
+
 /**
  * show modal
  * selector - the jQuery selector of the popup
@@ -792,6 +804,20 @@ function closeModal() {
   
   loginState = window.location.href;
   $('#registerForm span.socialUnavailableErrorMessage').hide();
+}
+
+function redirectToNext() {
+  // go to next param if it exists
+  var nextLoc = getParameterByName('next') || getHashParameterByName('state');
+  if (nextLoc) {
+    window.location.href = nextLoc;
+  }
+  else if (window.location.pathname == '/register/') {
+    window.location.href = "/";
+  }
+  else {
+    closeModal()
+  }
 }
 
 // Resets the registration popup fields
