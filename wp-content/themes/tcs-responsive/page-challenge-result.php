@@ -451,7 +451,7 @@ if ($contestType == 'design'):
         </div>
         <!--#/end round-->
         <div class="average">
-            <h2>AVERAGE SCORE</h2>
+            <h2>AVERAGE SCORES</h2>
             <div class="values">
                 <span class="count"><?php echo round($initialScoreSum/$submissionCount, 2); ?><span class="sup">&nbsp;</span></span>
                 <span class="type">Average</span>

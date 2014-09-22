@@ -273,7 +273,7 @@
         </div>
         <!--#/end round-->
         <div class="average">
-            <h2>AVERAGE SCORE</h2>
+            <h2>AVERAGE SCORES</h2>
             <div class="values">
                 <span class="count">{{round(CD.initialScoreSum * 100.0 / CD.submissions.length) / 100}}<span class="sup">&nbsp;</span></span>
                 <span class="type">Average</span>
