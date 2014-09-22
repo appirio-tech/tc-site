@@ -99,21 +99,17 @@ function tsc_build_asset_path($asset_name, $type, $min = false, $useCDN = false)
     $base_path = tsc_get_script_base_url();
   }
 
-  if (!isset($ext)) {
-    $ext = tsc_get_script_ext();
-  }
+  $ext = tsc_get_script_preext();
+  $ext = $ext . "." . $type;
+
   // if min and cdn use /ver/type/file
   if ($min && $useCDN) {
-    $path =  "{$base_path}/{$type}/{$asset_name}.min.{$type}";
+    $path =  "{$base_path}/{$type}/{$asset_name}.min.{$ext}";
   } elseif ($min) {
     // min and not cdn then use add do not sort by type
-    $path = "{$base_path}/{$asset_name}.min.{$type}";
+    $path = "{$base_path}/{$asset_name}.min.{$ext}";
   } else {
     $path = "{$base_path}/{$type}/{$asset_name}";
-  }
-
-  if ($ext) {
-    $path .=  ".{$ext}";
   }
 
   return $path;
@@ -180,7 +176,7 @@ function tsc_get_script_base_url() {
  *
  * @return string
  */
-function tsc_get_script_ext() {
+function tsc_get_script_preext() {
   $jsCssUseCDN = TC_USE_CDN;
 
   // check if the browser supports gzip so we can specify the gzip version of resources
