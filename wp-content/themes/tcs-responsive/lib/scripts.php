@@ -99,10 +99,9 @@ function tsc_build_asset_path($asset_name, $type, $min = false, $useCDN = false)
     $base_path = tsc_get_script_base_url();
   }
 
-  if (!isset($ext)) {
-    $ext = tsc_get_script_preext();
-    $ext = $ext . "." . $type;
-  }
+  $ext = tsc_get_script_preext();
+  $ext = $ext . "." . $type;
+
   // if min and cdn use /ver/type/file
   if ($min && $useCDN) {
     $path =  "{$base_path}/{$type}/{$asset_name}.min.{$ext}";
