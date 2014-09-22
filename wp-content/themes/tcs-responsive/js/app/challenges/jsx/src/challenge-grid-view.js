@@ -178,7 +178,7 @@
           </div>
           <div className={classNames[challengeCombo].gdUpcoming !== undefined ? 'genInfo gdUpcoming':'genInfo gdUpcoming ng-hide'}>
             <Qtip text={scope.getContestDuration(challenge.registrationStartDate, challenge.submissionEndDate)} title="Duration (days)" community={challenge.challengeCommunity}> 
-              <p className="cgTLeft" data-hasqtip={0} aria-describedby="qtip-0"><i />{scope.getContestDuration(challenge.registrationStartDate, challenge.submissionEndDate)}</p>
+              <p className="cgTLeft" data-hasqtip={0} aria-describedby="qtip-0"><i />{scope.getContestDuration(challenge.registrationStartDate, challenge.submissionEndDate)+(scope.getContestDuration(challenge.registrationStartDate, challenge.submissionEndDate)<2?" Day":" Days")}</p>
             </Qtip>  
             <Qtip text={scope.currencyFilter(challenge.totalPrize)} title="Total Prize" community={challenge.challengeCommunity}>
               <p className="cgPur" data-hasqtip={1} aria-describedby="qtip-1"><i /> {scope.currencyFilter(challenge.totalPrize)}</p>
