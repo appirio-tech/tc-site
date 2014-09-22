@@ -360,7 +360,7 @@ a{
     .algoLayout .ratingViews{
         border: 1px solid #E7E7E7;
         border-top: none;
-        min-height: 492px;
+        min-height: 472px;
     
         position: relative;
     }
@@ -397,7 +397,7 @@ a{
         
     }
     .algoLayout .ratingViews .subTrackTab{
-        min-height: 493px;
+        min-height: 472px;
     }
     /* tabNav */
     .algoLayout .subTrackTabs .tabNav{
