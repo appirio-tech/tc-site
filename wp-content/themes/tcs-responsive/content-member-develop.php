@@ -84,7 +84,7 @@ array_push ( $challengetypes, 'UI Prototypes' );
 					$dev = $tracks->{$currentChallengetype};
 					$devHistory = $competitionHistory->{$currentChallengetype};
 				} else {
-					echo "<h3>Develop</h3>";
+					echo "<h3>Development</h3>";
 				}
 				?>
 				</ul>
