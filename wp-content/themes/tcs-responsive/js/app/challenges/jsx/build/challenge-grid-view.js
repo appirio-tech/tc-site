@@ -178,7 +178,7 @@
           ),
           React.DOM.div( {className: classNames[challengeCombo].gdUpcoming !== undefined ? 'genInfo gdUpcoming':'genInfo gdUpcoming ng-hide'}, 
             Qtip( {text:scope.getContestDuration(challenge.registrationStartDate, challenge.submissionEndDate), title:"Duration (days)", community: challenge.challengeCommunity}, 
-              React.DOM.p( {className:"cgTLeft", 'data-hasqtip':0, 'aria-describedby':"qtip-0"}, React.DOM.i(null), scope.getContestDuration(challenge.registrationStartDate, challenge.submissionEndDate))
+              React.DOM.p( {className:"cgTLeft", 'data-hasqtip':0, 'aria-describedby':"qtip-0"}, React.DOM.i(null), scope.getContestDuration(challenge.registrationStartDate, challenge.submissionEndDate)+(scope.getContestDuration(challenge.registrationStartDate, challenge.submissionEndDate)<2?" Day":" Days"))
             ), 
             Qtip( {text:scope.currencyFilter(challenge.totalPrize), title:"Total Prize", community:challenge.challengeCommunity}, 
               React.DOM.p( {className:"cgPur",'data-hasqtip':1, 'aria-describedby':"qtip-1"}, React.DOM.i(null), " ", scope.currencyFilter(challenge.totalPrize))
