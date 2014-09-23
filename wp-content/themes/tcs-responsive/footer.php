@@ -920,6 +920,7 @@ $blog_posts = get_posts($blog_posts_args);
           $('#loginForm .btnSubmit').html('Login');
           $('#loginForm .err1').show().html('Incorrect Username or Password.')
             .addClass('invalid');
+          $('#password').val('');
         });
     });
   });
