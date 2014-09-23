@@ -270,7 +270,6 @@
           {{CD.challenge.submissionEndDate | formatDate:2}}
         </span>
       </p>
->>>>>>> master
 
       <p ng-if="CD.challenge.finalFixEndDate" class="{{CD.challenge.finalFixEndDate ? 'last' : ''"><label>Final Submission:</label>
         <span>
