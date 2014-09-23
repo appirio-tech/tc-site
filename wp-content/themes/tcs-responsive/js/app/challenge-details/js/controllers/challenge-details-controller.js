@@ -44,7 +44,10 @@
     vm.siteURL       = siteURL;
 
     vm.isLoggedIn = typeof $cookies.tcjwt !== 'undefined' && typeof $cookies.tcsso !== 'undefined';
-
+    vm.delayAction = typeof $cookies.tcDelayChallengeAction !== 'undefined';
+    if (vm.delayAction) {
+      vm.tcDoAction = $cookies.tcDelayChallengeAction.split('|');
+    }
     vm.activeTab = 'details';
     if (window.location.hash == '#viewRegistrant') {
       vm.activeTab = 'registrants';
@@ -147,6 +150,14 @@
             function (data) {
               if (data["message"] === "ok") {
                 showModal("#registerSuccess");
+                //change state of register & submit button
+                vm.challenge.registrationDisabled = true;
+                vm.challenge.submissionDisabled = false;
+                //check if auto registered through delayAction cookie
+                if (vm.delayAction && vm.tcDoAction[0] == 'register' && vm.tcDoAction[1] == vm.challenge.challengeId) {
+                  //delete cookie
+                  document.cookie = 'tcDelayChallengeAction=; path=/; domain=.topcoder.com; expires=' + new Date(0).toUTCString();
+                }
               } else if (data["error"]["details"] === "You should agree with all terms of use.") {
                 window.location = siteURL + "/challenge-details/terms/" + vm.challenge.challengeId + "?challenge-type=" + challengeType;
               } else if (data["error"]["details"]) {
@@ -155,6 +166,10 @@
             }
           );
       } else {
+        //set register Delay cookie for auto register when user returns to page
+        //angularjs $cookies is too basic and does not support setting any cookie options such as expires, so must use jQuery method here
+        $.cookie.raw = true;
+        $.cookie('tcDelayChallengeAction', 'register|' + vm.challenge.challengeId + '|' + encodeURIComponent(vm.challenge.challengeName), {expires: 31, path:'/', domain: '.topcoder.com'});
         $('.actionLogin').click();
       }
 
@@ -171,10 +186,9 @@
    * @param ChallengeService
    */
   function processChallenge(challenge, handle, vm, ChallengeService) {
-
+    
     // Global variable available from ng-page-challenge-details.php
     challengeName = challenge.challengeName;
-
     vm.isDesign = (challengeType === 'design');
     vm.allowDownloads = challenge.currentPhaseName === 'Registration' || challenge.currentPhaseName === 'Submission';
 
@@ -229,6 +243,21 @@
     if (((moment(challenge.registrationEndDate)) > moment()) && regList.indexOf(handle) == -1) {
       vm.challenge.registrationDisabled = false;
     }
+    //check autoRegister (terms link register) and DelayAction cookie status
+    if (autoRegister) {
+      vm.registerToChallenge();
+    } else if (vm.delayAction) {
+      if (typeof challengeId !== 'undefined' && vm.tcDoAction[0] === 'register' && vm.tcDoAction[1] === challengeId) {
+        //check if registration still open
+        if (!vm.challenge.registrationDisabled) {
+          vm.registerToChallenge();
+        } else {
+          //can no longer register, delete cookie
+          document.cookie = 'tcDelayChallengeAction=; path=/; domain=.topcoder.com; expires=' + new Date(0).toUTCString();
+        }
+      }
+    }
+    
     // If is not submited, then enable submission
     if (((moment(challenge.submissionEndDate)) > moment()) && regList.indexOf(handle) > -1) {
       vm.challenge.submissionDisabled = false;

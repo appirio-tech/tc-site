@@ -130,7 +130,7 @@
                 <div className="val vStartDate">{scope.dateFormatFilter(challenge.registrationStartDate, scope.dateFormat)}</div>
               </div>
               <div className={classNames[challengeCombo].registerBy !== undefined ? 'row':'row ng-hide'}>
-                <label className="lbl">Register by</label>
+                <label className="lbl">Register By</label>
                 <div className="val vStartDate">{scope.dateFormatFilter(challenge.registrationEndDate, scope.dateFormat)}</div>
               </div>
               <div className={classNames[challengeCombo].roundEnd !== undefined && challenge.checkpointSubmissionEndDate !== '' ? 'row' : 'row ng-hide'}>
@@ -142,7 +142,7 @@
                 <div className="val vEndDate">{scope.dateFormatFilter(challenge.submissionEndDate, scope.dateFormat)}</div>
               </div>
               <div className={classNames[challengeCombo].submitBy !== undefined ? 'row':'row ng-hide'}>
-                <label className="lbl">Submit by</label>
+                <label className="lbl">Submit By</label>
                   <div className="val vStartDate">{scope.dateFormatFilter(challenge.submissionEndDate, scope.dateFormat)}</div>
                 </div>
               {/*<div className={classNames[challengeCombo].currentPhase !== undefined ? 'row':'row ng-hide'}>
@@ -178,7 +178,7 @@
           </div>
           <div className={classNames[challengeCombo].gdUpcoming !== undefined ? 'genInfo gdUpcoming':'genInfo gdUpcoming ng-hide'}>
             <Qtip text={scope.getContestDuration(challenge.registrationStartDate, challenge.submissionEndDate)} title="Duration (days)" community={challenge.challengeCommunity}> 
-              <p className="cgTLeft" data-hasqtip={0} aria-describedby="qtip-0"><i />{scope.getContestDuration(challenge.registrationStartDate, challenge.submissionEndDate)}</p>
+              <p className="cgTLeft" data-hasqtip={0} aria-describedby="qtip-0"><i />{scope.getContestDuration(challenge.registrationStartDate, challenge.submissionEndDate)+(scope.getContestDuration(challenge.registrationStartDate, challenge.submissionEndDate)<2?" Day":" Days")}</p>
             </Qtip>  
             <Qtip text={scope.currencyFilter(challenge.totalPrize)} title="Total Prize" community={challenge.challengeCommunity}>
               <p className="cgPur" data-hasqtip={1} aria-describedby="qtip-1"><i /> {scope.currencyFilter(challenge.totalPrize)}</p>

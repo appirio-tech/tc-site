@@ -52,7 +52,13 @@
               }
               if (keywords
                   && keywords.length > 0) {
-                reg = new RegExp(keywords.join('|'), 'i');
+                //escape special characters to use in regex
+                var pattern = /([.?*+^$[\]\\(){}|-])/g;
+                keywords.forEach(function(element, index) {
+                  keywords[index] = keywords[index].replace(pattern, "\\$1");
+                });
+
+                var reg = new RegExp(keywords.join('|'), 'i');
                 if (!contest.challengeName.match(reg)) {
                   return false;
                 }

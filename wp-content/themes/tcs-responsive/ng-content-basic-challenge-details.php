@@ -248,9 +248,12 @@
       </div>
       <!-- Bugfix I-106745: Added check for cancelled contest before display of current phase remaining time -->
       <span ng-if="CD.challenge.currentStatus != 'Completed' && CD.challenge.currentStatus != 'Deleted' && CD.challenge.currentStatus.indexOf('Cancelled') < 0 && CD.challenge.currentPhaseRemainingTime > 0" class="timeLeft">
-        <span>{{CD.challenge.currentPhaseRemainingTime | daysLeft}}</span> <small>Days</small>
-        <span>{{CD.challenge.currentPhaseRemainingTime | hoursLeft}}</span> <small>Hours</small>
-        <span>{{CD.challenge.currentPhaseRemainingTime | minsLeft}}</span> <small>Mins</small>
+        <span ng-bind="CD.challenge.currentPhaseRemainingTime | daysLeft"></span>
+        <small><ng-pluralize count="CD.challenge.currentPhaseRemainingTime | daysLeft" when="{'1': 'Day', 'other': 'Days'}"/></small>
+        <span ng-bind="CD.challenge.currentPhaseRemainingTime | hoursLeft"></span>
+        <small><ng-pluralize count="CD.challenge.currentPhaseRemainingTime | hoursLeft" when="{'1': 'Hour', 'other': 'Hours'}"/></small>
+        <span ng-bind="CD.challenge.currentPhaseRemainingTime | minsLeft"></span>
+        <small><ng-pluralize count="CD.challenge.currentPhaseRemainingTime | minsLeft" when="{'1': 'Min', 'other': 'Mins'}"/></small>
       </span>
     </div>
     <!--End nextBoxContent-->

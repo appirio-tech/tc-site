@@ -52,6 +52,7 @@ appChallengeSubmit = {
                 } else {
                   //display error if only one file format is available
                   $('.formSection .leftCol dd span.error').text('Submissions must be in .' + type[0] + ' format only');
+                  $('.fileNameDisplay').html("Select file to upload...").addClass("fileNameDisplayNoFile");
                 }
                 $("#submission").closest('dd').addClass('empty');
                 empty = true;

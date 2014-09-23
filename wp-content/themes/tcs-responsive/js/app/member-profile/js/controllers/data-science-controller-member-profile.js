@@ -78,7 +78,7 @@ DataScienceCtrl.prototype.init = function ($scope) {
       width: '83px'
     }, {
       field: 'failedChallenge',
-      displayName: 'Failed Challenge',
+      displayName: 'Failed Challenges',
       width: '123px'
     }, {
       field: 'failedSysTest',
@@ -108,7 +108,7 @@ DataScienceCtrl.prototype.init = function ($scope) {
       width: '83px'
     }, {
       field: 'failedChallenge',
-      displayName: 'Failed Challenge',
+      displayName: 'Failed Challenges',
       width: '123px'
     }, {
       field: 'failedSysTest',
@@ -134,7 +134,7 @@ DataScienceCtrl.prototype.init = function ($scope) {
       width: '158px'
     }, {
       field: 'failedChallenge',
-      displayName: '#Failed Challenge',
+      displayName: '#Failed Challenges',
       width: '162px'
     }, {
       field: 'challenges',

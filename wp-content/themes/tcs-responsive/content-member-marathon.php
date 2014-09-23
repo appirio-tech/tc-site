@@ -29,7 +29,7 @@ if($rating>0){
 		<?php if($rating>0):?>
 		<header class="head">
 			<div class="trackNRating">
-				<h4 class="trackName">Data Science Competitions</h4>
+				<h4 class="trackName">Marathon Competitions</h4>
 				<div class="lbl">Rating</div>
 				<div class="rating <?php echo do_shortcode("[tc_rating_color score='".$coder->rating."' ]") ?>"><?php echo $coder->rating;?></div>
 			</div>

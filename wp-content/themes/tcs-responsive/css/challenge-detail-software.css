@@ -819,9 +819,8 @@ h1.center {
 }
 
 #viewRegistrant table tr td {
-    height: 30px;
+    height: 40px;
     padding-left: 10px;
-    padding-top: 12px;
     font-size: 12px;
 }
 
@@ -833,6 +832,10 @@ h1.center {
 
 #viewRegistrant table tr .handleColumn {
     width: 25%;
+}
+
+#viewRegistrant table tr .handleColumnDesign {
+    width: 30%;
 }
 
 #viewRegistrant table tr td.handleColumn {
@@ -854,6 +857,11 @@ h1.center {
     text-align: center;
 }
 
+#viewRegistrant table tr .regDateColumnDesign {
+    width: 30%;
+    text-align: center;
+}
+
 #viewRegistrant table tr .subDateColumn {
     width: 20%;
     text-align: center;
@@ -861,6 +869,16 @@ h1.center {
 
 #viewRegistrant table tr .successColumn {
     width: 12%;
+    text-align: center;
+}
+
+#viewRegistrant table tr .subDateColumnDesign {
+    width: 30%;
+    text-align: center;
+}
+
+#viewRegistrant table tr .successIconColumn {
+    width: 10%;
     text-align: center;
 }
 

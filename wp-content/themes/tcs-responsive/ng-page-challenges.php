@@ -216,7 +216,7 @@ get_header(); ?>
                   <div class="selecting-tag-wrapper">
                     <div class="date-ranges selected-tag">
                       <span class="selected-range left">
-                        from {{formatDate(filterOptions.startDate)}} {{filterOptions.endDate ? ('to ' + formatDate(filterOptions.endDate)) : ''}}
+                        From {{formatDate(filterOptions.startDate)}} {{filterOptions.endDate ? ('to ' + formatDate(filterOptions.endDate)) : ''}}
                       </span>
                       <span class="tag-closedate right" ng-click="clearDates()"></span>
                     </div>
@@ -291,7 +291,7 @@ get_header(); ?>
                                 </div>
                                 <div class="left from-wrapper">
                                     <div class="to-text-box left">
-                                        <span class="limit-label left">to</span>
+                                        <span class="limit-label left">To</span>
                                         <input type="text" class="right to-picker-text" name="to" disabled ng-value="formatDate(filterOptions.endDate)">
                                     </div>
                                 </div>
@@ -436,7 +436,7 @@ get_header(); ?>
 </script>
 
 <script type="text/ng-template" id="tableView/isPrivate.html">
-  <span class="{{row.getProperty('submissionsViewable')=='true' ? 'colAccessLevel' : 'private'}}"><i></i></span>
+  <span class="{{row.getProperty('submissionsViewable')=='true' ? 'colAccessLevel' : 'private'}}" qtip title="Access" text="{{row.getProperty('submissionsViewable')=='true' ? 'Public' : 'Private'}}" community="{{row.getProperty('challengeCommunity')}}"><i></i></span>
 </script>
 
 <script type="text/ng-template" id="tableView/numRegistrants.html">
@@ -491,11 +491,11 @@ get_header(); ?>
         <div class="val vEndDate">{{dateFormatFilter(row.getProperty('submissionEndDate'), dateFormat)}}</div>
       </div>
       <div class="row" ng-show="contest.listType == 'active' || contest.listType == 'upcoming'">
-        <label class="lbl ">Register by</label>
+        <label class="lbl ">Register By</label>
         <div class="val vEndRound">{{dateFormatFilter(row.getProperty('registrationEndDate'), dateFormat)}}</div>
       </div>
       <div class="row" ng-show="contest.listType == 'active' || contest.listType == 'upcoming'">
-        <label class="lbl">Submit by</label>
+        <label class="lbl">Submit By</label>
         <div class="val vEndDate">{{dateFormatFilter(row.getProperty('submissionEndDate'), dateFormat)}}</div>
       </div>
     </div>
@@ -516,8 +516,13 @@ get_header(); ?>
         <div class="val vEndDate">{{dateFormatFilter(row.getProperty('submissionEndDate'), dateFormat)}}</div>
       </div>
       <div class="row" ng-show="contest.listType == 'active'">
+<<<<<<< HEAD
         <label class="lbl">Submit by</label>
         <div class="val vEndDate">{{dateFormatFilter(row.getProperty('submissionEndDate'), dateFormat)}}</div>
+=======
+        <label class="lbl">Submit By</label>
+        <div class="val vEndDate">{{row.getProperty('submissionEndDate') | date: dateFormat}}</div>
+>>>>>>> master
       </div>
     </div>
   </div>
