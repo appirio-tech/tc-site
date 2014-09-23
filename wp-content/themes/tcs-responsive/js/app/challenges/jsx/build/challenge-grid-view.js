@@ -168,12 +168,12 @@
             Qtip( {text:scope.currencyFilter(challenge.totalPrize), title:"Total Prize", community:challenge.challengeCommunity}, 
               React.DOM.p( {className:"cgPur", 'data-hasqtip':"1", 'aria-describedby':"qtip-1"}, React.DOM.i(null ), " ", scope.currencyFilter(challenge.totalPrize))
             ),
-            Qtip( {text:challenge.numRegistrants, title:"Registrants", community:challenge.challengeCommunity}, 
-              React.DOM.p( {className:"cgReg", 'data-hasqtip':"2", 'aria-describedby':"qtip-2"}, React.DOM.i(null ),React.DOM.a( {href:"/challenge-details/" +challenge.challengeId + "/?type=" + challenge.challengeCommunity + "#viewRegistrant"}, challenge.numRegistrants)
+            Qtip( {text: ((challenge.numRegistrants==0)?"0":challenge.numRegistrants), title:"Registrants", community:challenge.challengeCommunity},
+              React.DOM.p( {className:"cgReg", 'data-hasqtip':"2", 'aria-describedby':"qtip-2"}, React.DOM.i(null ),React.DOM.a( {href:"/challenge-details/" +challenge.challengeId + "/?type=" + challenge.challengeCommunity + "#viewRegistrant"}, ((challenge.numRegistrants==0)?"0":challenge.numRegistrants))
               )
             ),
-            Qtip( {text:challenge.numSubmissions, title:"Submissions", community:challenge.challengeCommunity}, 
-              React.DOM.p( {className:"cgSub", 'data-hasqtip':"3", 'aria-describedby':"qtip-3"}, React.DOM.i(null ),challenge.numSubmissions)
+            Qtip( {text: ((challenge.numSubmissions==0)?"0":challenge.numSubmissions), title:"Submissions", community:challenge.challengeCommunity},
+              React.DOM.p( {className:"cgSub", 'data-hasqtip':"3", 'aria-describedby':"qtip-3"}, React.DOM.i(null ), ((challenge.numSubmissions==0)?"0":challenge.numSubmissions))
             )
           ),
           React.DOM.div( {className: classNames[challengeCombo].gdUpcoming !== undefined ? 'genInfo gdUpcoming':'genInfo gdUpcoming ng-hide'}, 
