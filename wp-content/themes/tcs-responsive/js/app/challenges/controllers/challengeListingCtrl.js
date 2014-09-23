@@ -237,7 +237,7 @@
       $scope.formatTimeLeft = TemplateService.formatTimeLeft;
       $scope.getContestDuration = TemplateService.getContestDuration;
       $scope.getPhaseName = TemplateService.getPhaseName;
-      $scope.dateFormat = 'dd MMM yyyy hh:mm EDT';
+      $scope.dateFormat = 'MMM D, YYYY HH:mm z';
       $scope.images = $window.wordpressConfig.stylesheetDirectoryUri + '/i/';
       $scope.definitions = GridService.definitions($scope.contest);
       $scope.gridOptions = GridService.gridOptions('definitions');

@@ -44,7 +44,16 @@
         controller: ['$scope',
           function ($scope) {
             // expose filters to scope for React
-            $scope.dateFormatFilter = $filter('date');
+            $scope.dateFormatFilter = function (time, formatString) {
+              //some function is passing in undefined timezone_string variable causing js errors, so check if undefined and set default:
+              if (typeof timezone_string === 'undefined') {
+                var timezone_string = "America/New_York"; // let's set to TC timezone
+              }
+              //using moment we can retrieve correct timezone, we can't do this with the default angularjs's date filter.
+              var date = moment(time).tz(timezone_string).format(formatString);
+              return date;
+            };
+
             $scope.currencyFilter = $filter('currency');
             $scope.getContestDuration = TemplateService.getContestDuration;
           }]

@@ -258,7 +258,7 @@
     </div>
     <!--End nextBoxContent-->
     <div ng-if="!CD.isDesign" class="nextBoxContent allDeadlineNextBoxContent ng-hide" ng-show="!toggleAllNext">
-      <p><label>Posted On:</label>
+      <p><label>Start Date:</label>
         <span>
          {{CD.challenge.postingDate | formatDate:2}}
         </span>
