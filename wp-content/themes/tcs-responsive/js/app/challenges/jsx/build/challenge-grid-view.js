@@ -145,11 +145,11 @@
                 React.DOM.label( {className:"lbl"}, "Submit By"),
                   React.DOM.div( {className:"val vStartDate"}, scope.dateFormatFilter(challenge.submissionEndDate, scope.dateFormat))
                 ),
-              /*<div className={classNames[challengeCombo].currentPhase !== undefined ? 'row':'row ng-hide'}>
-                <label className="lbl">Current Phase</label>
-                <div className="val vPhase">{challenge.currentPhaseName}</div>
-                <div className="clear" />
-              </div>*/
+              React.DOM.div( {className:classNames[challengeCombo].currentPhase !== undefined ? 'row':'row ng-hide'},
+                React.DOM.label( {className:"lbl"}, "Current Phase"),
+                React.DOM.div( {className:"val vPhase"}, challenge.currentPhaseName),
+                React.DOM.div( {className:"clear"} )
+              ),
               React.DOM.div( {className:classNames[challengeCombo].currentStatus !== undefined ? 'row':'row ng-hide'}, 
                  React.DOM.label( {className:"lbl"}, "Current Status"),
                  React.DOM.div( {className:"val vStatus"}, challenge.status)
