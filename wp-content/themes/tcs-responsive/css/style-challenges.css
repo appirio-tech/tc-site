@@ -758,6 +758,10 @@ caption.reviewDetail {
     color: #FFB800
 }
 
+.contestGrid .technologyTags a:hover {
+    color: #FFB800
+}
+
 .contestGrid .cgCh a img {
     position: absolute;
     top: 0;

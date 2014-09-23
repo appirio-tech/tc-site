@@ -1,26 +1,35 @@
 /*global angular: true */
+/**
+ * Changelog
+ * 09/17/2014 Add My Challenges Filter and Improve Filters
+ * - Added My Role column, active if displaying user challenges
+*/
 (function (angular) {
   'use strict';
   var challengesService = angular.module('tc.challenges.services');
 
   challengesService.factory('GridService', [
     function () {
+      
+      function getChallengeNameWidth(contest) {
+        if (!contest.isUserChallenges && contest.contestType !== 'design') {
+          return 400;
+        }
+        if (contest.isUserChallenges && contest.contestType !== 'design') {
+          return 340;
+        }
+        if (!contest.isUserChallenges) {
+          return 340;
+        }
+        return 300;
+      }
 
       function colums(contest) {
         return [
           {
             field: 'challengeName',
-            fieldName: 'Challenges',
-            width: 340,
-            visible: contest.contestType !== 'data'
-          },
-          {
-            field: 'challengeName',
             fieldName: 'Challenge',
-            minWidth: 290,
-            maxWidth: 340,
-            tplName: 'challengeDataName',
-            visible: contest.contestType === 'data'
+            width: getChallengeNameWidth(contest)
           },
           /*{
             field: 'challengeType',
@@ -38,7 +47,7 @@
           {
             field: 'registrationStartDate',
             fieldName: 'Duration (days)',
-            width: 120,
+            width: 127,
             tplName: 'duration',
             visible: contest.listType === 'upcoming'
           },
@@ -52,52 +61,29 @@
             field: 'totalPrize',
             fieldName: 'Prize',
             width: 73,
-            tplName: 'prizes',
-            visible: contest.listType !== 'upcoming'
-          },
-          {
-            field: 'firstPlacePrize',
-            fieldName: 'First Prize',
-            width: 80,
-            tplName: 'prizes',
-            visible: contest.listType === 'upcoming'
+            tplName: 'prizes'
           },
           {
             field: 'currentPhaseName',
             fieldName: 'Current Phase',
-            minWidth: 77,
-            width: 120,
+            minWidth: contest.isUserChallenges ? 70 : 77,
+            width: 90,
             maxWidth: 130,
             visible: contest.listType === 'active'
           },
           {
-            field: 'technologies',
-            fieldName: 'Technologies',
-            width: 152,
-            visible: contest.listType === 'upcoming'
-          },
-          {
             field: 'numRegistrants',
             fieldName: 'Registrants',
-            width: 74,
-            minWidth: 74,
-            maxWidth: 74,
-            visible: contest.listType !== 'upcoming' && contest.contestType !== 'data'
-          },
-          {
-            field: 'numRegistrants',
-            fieldName: 'Registrants',
-            width: 74,
-            minWidth: 74,
+            width: contest.isUserChallenges ? 64 : 74,
+            minWidth: 64,
             maxWidth: 90,
-            tplName: 'dataNumRegistrants',
-            visible: contest.listType !== 'upcoming' && contest.contestType === 'data'
+            visible: contest.listType !== 'upcoming'
           },
           {
             field: 'numSubmissions',
             fieldName: 'Submissions',
-            width: 74,
-            minWidth: 74,
+            width: contest.isUserChallenges ? 70 : 74,
+            minWidth: 70,
             maxWidth: 74,
             visible: contest.listType === 'active'
           },
@@ -127,8 +113,14 @@
           {
             field: 'status',
             fieldName: 'Status',
-            width: 90,
+            width: 242,
             visible: contest.listType === 'upcoming'
+          },
+          {
+            field: 'roles',
+            fieldName: 'My Role',
+            width: 80,
+            visible: contest.isUserChallenges === true
           }
         ];
       }
@@ -171,6 +163,7 @@
           columnDefs: definitionsName,
           enableRowSelection: false,
           useExternalSorting: true,
+          enableColumnResize: false,
           virtualizationThreshold: 2000 //need to set this high because if number of rows exceeds this number then table breaks and only 6 rows will display in browser
 
         };

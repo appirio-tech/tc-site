@@ -129,7 +129,7 @@ $blog_posts = get_posts($blog_posts_args);
     <div class="copyright">
       <section>
         </br>
-        © 2014 topcoder. All Rights reserved.
+        © 2014 topcoder. All Rights Reserved.
         </br>
         <a href="/community/how-it-works/privacy-policy/" class="privacyStmtLink">Privacy Policy</a> | <a
           href="/community/how-it-works/terms/" class="legalDisclaimerLink">Terms</a>
@@ -155,10 +155,10 @@ $blog_posts = get_posts($blog_posts_args);
     <h2>Thanks for joining!</h2>
 
     <p>We have sent you an email with activation instructions.<br/>If you do not receive that email within 1 hour,
-      please email <a href="mailto:support@topcoder.com">support@topcoder.com</a></p>
+      please email <a href="mailto:support@topcoder.com">support@topcoder.com</a>.</p>
 
     <div>
-      <a href="javascript:;" class="btn closeModal">Close</a>
+      <a href="javascript:;" class="btn closeModal redirectOnConfirm">Close</a>
     </div>
   </div>
 </div><!-- END #thanks -->
@@ -168,7 +168,7 @@ $blog_posts = get_posts($blog_posts_args);
     <h2>Registered!</h2>
     <p class="success">Thank you for registering. You may now download the challenge files and participate in the challenge forums.</p>
     <p class="submitBtn">
-      <a class="btn closeModalReg" href="javascript:;">Ok</a>
+      <a class="btn closeModalReg" href="javascript:;">OK</a>
     </p>
   </div>
 </div><!-- END #registerSuccess -->
@@ -178,7 +178,7 @@ $blog_posts = get_posts($blog_posts_args);
     <h2>Info</h2>
     <p class="failedMessage"></p>
     <p class="submitBtn">
-      <a class="btn closeModalReg" href="javascript:;">Ok</a>
+      <a class="btn closeModal" href="javascript:;">OK</a>
     </p>
   </div>
 </div><!-- END #registerFailed -->
@@ -186,7 +186,7 @@ $blog_posts = get_posts($blog_posts_args);
 <div id="showSubmission" class="modal">
     <a href="javascript:;" class="btnClose closePopupModal"></a>
     <div class="content">
-        <img src="http://studio.topcoder.com/?module=DownloadSubmission&sbmid=177659&sbt=full&sfi=1" alt="" style="width:910px; height:850px">
+       <img alt="" style="width:910px; height:850px"> 
     </div>
 </div><!-- END #show submission -->
 
@@ -194,7 +194,7 @@ $blog_posts = get_posts($blog_posts_args);
 <a href="javascript:;" class="btnClose closeModal"></a>
 
 <div class="content">
-<h2>Register Using An Existing Account</h2>
+<h2>Sign Up Using An Existing Account</h2>
 
 <div id="socials">
   <a class="register-facebook" href="javascript:;"><span class="animeButton shareFacebook"><span
@@ -212,46 +212,46 @@ $blog_posts = get_posts($blog_posts_args);
   <div class="clear"></div>
 </div>
 <!-- END .socials -->
-<h2>Or Register Using Your Email</h2>
+<h2>Or Sign Up Using Your Email</h2>
 
 <form class="register" id="registerForm">
 <p class="row">
-  <span class="socialUnavailableErrorMessage">Social profile already in use. Please use another profile or register below</span>
+  <span class="socialUnavailableErrorMessage">Social profile already in use. Please use another profile or register below.</span>
 </p>
 <p class="row">
   <label>First Name</label>
-  <input type="text" class="name firstName" placeholder="First Name"/>
-  <span class="err1">Required field</span>
-  <span class="err2">Maximum length is 64 characters</span>
+  <input type="text" class="name firstName" maxlength="64" placeholder="First Name"/>
+  <span class="err1">Required field.</span>
+  <span class="err2">Maximum length is 64 characters.</span>
   <!--Bugfix I-107905: add error message for invalid characters-->
-  <span class="err3">First Name contains invalid characters</span>
-  <span class="err4">First Name cannot consist solely of punctuation</span>
-  <span class="err5">First Name is invalid</span>
+  <span class="err3">First Name contains invalid characters.</span>
+  <span class="err4">First Name cannot consist solely of punctuation.</span>
+  <span class="err5">First Name is invalid.</span>
   <span class="valid"></span>
 </p>
 
 <p class="row">
   <label>Last Name</label>
-  <input type="text" class="name lastName" placeholder="Last Name"/>
-  <span class="err1">Required field</span>
-  <span class="err2">Maximum length is 64 characters</span>
+  <input type="text" class="name lastName" maxlength="64" placeholder="Last Name"/>
+  <span class="err1">Required field.</span>
+  <span class="err2">Maximum length is 64 characters.</span>
   <!--Bugfix I-107905: add error message for invalid characters-->
-  <span class="err3">Last Name contains invalid characters</span>
-  <span class="err4">Last Name cannot consist solely of punctuation</span>
-  <span class="err5">Last Name is invalid</span>
+  <span class="err3">Last Name contains invalid characters.</span>
+  <span class="err4">Last Name cannot consist solely of punctuation.</span>
+  <span class="err5">Last Name is invalid.</span>
   <span class="valid"></span>
 </p>
 
 <p class="row">
   <label>Username</label>
-  <input type="text" class="handle name" placeholder="Username"/>
-  <span class="err1">Required field</span>
-  <span class="err2">Username already exists or is invalid</span>
-  <span class="err3">Username cannot contain a space</span>
-  <span class="err4">Username cannot consist solely of punctuation</span>
-  <span class="err5">Username contains invalid characters</span>
-  <span class="err6">Username cannot start with "admin"</span>
-  <span class="err7">Username must be between 2 and 15 characters long</span>
+  <input type="text" class="handle name" maxlength="15" placeholder="Username"/>
+  <span class="err1">Required field.</span>
+  <span class="err2">Username already exists or is invalid.</span>
+  <span class="err3">Username cannot contain a space.</span>
+  <span class="err4">Username cannot consist solely of punctuation.</span>
+  <span class="err5">Username contains invalid characters.</span>
+  <span class="err6">Username cannot start with "admin".</span>
+  <span class="err7">Username must be between 2 and 15 characters long.</span>
   <span class="valid"></span>
 </p>
 
@@ -503,26 +503,26 @@ $blog_posts = get_posts($blog_posts_args);
   <option value="Zambia">Zambia</option>
   <option value="Zimbabwe">Zimbabwe</option>
 </select>
-<span class="err1">Required field</span>
+<span class="err1">Required field.</span>
 <span class="valid"></span>
 </p>
 <p class="row">
   <label>Email</label>
-  <input type="text" class="email" placeholder="Email"/>
-  <span class="err1">Required field</span>
-  <span class="err2">Invalid email address</span>
-  <span class="err3">Email already in use</span>
+  <input name="email" type="text" class="email" placeholder="Email"/>
+  <span class="err1">Required field.</span>
+  <span class="err2">Invalid email address.</span>
+  <span class="err3">Email already in use.</span>
   <span class="valid"></span>
 </p>
 
 <p class="row">
   <label>Password</label>
-  <input type="password" class="pwd" placeholder="Password"/>
-  <span class="err1">Required field</span>
-  <span class="err2">Password strength is weak</span>
-  <span class="err3">Password cannot contain an apostrophe</span>
-  <span class="err4">Password must be between 7 and 30 characters</span>
-  <span class="err5">Password must not contain only spaces</span>
+  <input type="password" class="pwd" maxlength="30" placeholder="Password"/>
+  <span class="err1">Required field.</span>
+  <span class="err2">Password strength is weak.</span>
+  <span class="err3">Password cannot contain an apostrophe.</span>
+  <span class="err4">Password must be between 7 and 30 characters.</span>
+  <span class="err5">Password must not contain only spaces.</span>
   <span class="valid">Strong</span>
 </p>
 
@@ -533,22 +533,22 @@ $blog_posts = get_posts($blog_posts_args);
 						<span class="field"></span>
 						<span class="field"></span>
 					</span>
-  7 characters with letters, numbers, &amp; symbols
+  7 characters with letters, numbers, &amp; symbols.
 </p>
 
 <p class="row">
   <label>Password Confirmation</label>
-  <input type="password" class="confirm" placeholder="Password Confirmation"/>
-  <span class="err1">Required field</span>
-  <span class="err2">Password confirmation different from above field</span>
+  <input type="password" class="confirm" maxlength="30" placeholder="Password Confirmation"/>
+  <span class="err1">Required field.</span>
+  <span class="err2">Password confirmation different from above field.</span>
   <span class="valid"></span>
 </p>
 
 <p class="row lSpace">
   <label><input type="checkbox">I agree to the <a target="_blank" href="/community/how-it-works/terms/">terms of
-      service</a> and <a target="_blank" href="/community/how-it-works/privacy-policy/">privacy policy</a></label>
-  <span class="err1">You must agree to the terms</span>
-  <span class="err2">You must agree to the terms</span>
+      service</a> and <a target="_blank" href="/community/how-it-works/privacy-policy/">privacy policy</a>.</label>
+  <span class="err1">You must agree to the terms.</span>
+  <span class="err2">You must agree to the terms.</span>
 </p>
 
 </form>
@@ -581,20 +581,20 @@ $blog_posts = get_posts($blog_posts_args);
       <div class="clear"></div>
     </div>
     <!-- END .socials -->
-    <h2>Login With a TopCoder Account</h2>
+    <h2>Login With A topcoder Account</h2>
     <div class="tc-login-form">
       <form class="login" id="loginForm">
         <p class="row">
           <label>Username</label>
           <input id="username" type="text" class="name" placeholder="Username"/>
-          <span class="err1">Your username or password are incorrect</span>
-          <span class="err3">Please input your username</span>
+          <span class="err1">Your username or password are incorrect.</span>
+          <span class="err3">Please input your username.</span>
         </p>
 
         <p class="row">
           <label>Password</label>
           <input id="password" type="password" class="pwd" placeholder="Password"/>
-          <span class="err4">Please input your password</span>
+          <span class="err4">Please input your password.</span>
         </p>
 
         <p class="row lSpace">
@@ -610,7 +610,7 @@ $blog_posts = get_posts($blog_posts_args);
             ?>
           <a href="<?php echo $fp_link; //http://community.topcoder.com/tc?module=FindUser ?>" target="_blank" class="forgotPwd">Forgot
             password?</a>
-          <span class="not-a-member">Not a member? <a href="javascript:;" class="switch-to-register">Register Now!</a></span>
+          <span class="not-a-member">Not a member? <a href="javascript:;" class="switch-to-register">Sign Up Now!</a></span>
         </p>
       </form>
       <div class="register-text"></div>
@@ -652,25 +652,45 @@ $blog_posts = get_posts($blog_posts_args);
 </div><!-- /.tooltip -->
 <?php wp_footer(); ?>
 <script>
-  function getParameterByName(name) {
+  function getParameterByName(name, source) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-    results = regex.exec(location.search);
+    results = regex.exec(source || location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+  function getHashParameterByName(name, source) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\#&]" + name + "=([^&#]*)"),
+    results = regex.exec(source || location.hash);
     return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
   }
   var socialProviderId = "", socialUserName = "", socialEmail = "", socialProvider = "";
   var utmSource = '', utmMedium = '', utmCampaign = '';
   var loginState = '';
   $(function () {
-    function getHashParameterByName(name) {
-      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-      var regex = new RegExp("[\\#&]" + name + "=([^&#]*)"),
-      results = regex.exec(location.hash);
-      return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    utmSource = getParameterByName('utmSource') || getHashParameterByName('utmSource') 
+      || getParameterByName('utm_source') || getHashParameterByName('utm_source') 
+      || $.cookie('utmSource');
+    utmMedium = getParameterByName('utmMedium') || getHashParameterByName('utmMedium') 
+      || getParameterByName('utm_medium') || getHashParameterByName('utm_medium') 
+      || $.cookie('utmMedium');
+    utmCampaign = getParameterByName('utmCampaign') || getHashParameterByName('utmCampaign')
+      || getParameterByName('utm_campaign') || getHashParameterByName('utm_campaign')
+      || $.cookie('utmCampaign');
+
+    if (utmSource || utmMedium || utmCampaign) {
+      $.cookie('utmSource', utmSource, { expires: 365, path: '/' });
+      $.cookie('utmMedium', utmMedium, { expires: 365, path: '/' });
+      $.cookie('utmCampaign', utmCampaign, { expires: 365, path: '/' });
     }
-    utmSource = getParameterByName('utmSource') || getHashParameterByName('utmSource');
-    utmMedium = getParameterByName('utmMedium') || getHashParameterByName('utmMedium');
-    utmCampaign = getParameterByName('utmCampaign') || getHashParameterByName('utmCampaign');
+
+    var stateString = getHashParameterByName('state');
+    if (stateString.length > 0) {
+      var cType = getParameterByName('type', stateString);
+      if (cType.length > 0) {
+        challengeType = cType;
+      }
+    }
     var googleProvider = "google-oauth2";
     var facebookProvider = "facebook";
     var twitterProvider = "twitter";
@@ -898,12 +918,59 @@ $blog_posts = get_posts($blog_posts_args);
           // invalid user/password
           //alert(err);
           $('#loginForm .btnSubmit').html('Login');
-          $('#loginForm .err1').show().html('Incorrect Username or Password')
+          $('#loginForm .err1').show().html('Incorrect Username or Password.')
             .addClass('invalid');
         });
     });
   });
 </script>
+<!-- START Google Retargeting Marketing Code -->
+<script type="text/javascript">
+adroll_adv_id = "LOUA2FVRTJDYZC2BMX72Z7";
+adroll_pix_id = "4XU6H3BYL5EQBFHZM4DIUU";
+(function () {
+var oldonload = window.onload;
+window.onload = function(){
+   __adroll_loaded=true;
+   var scr = document.createElement("script");
+   var host = (("https:" == document.location.protocol) ? "https://s.adroll.com" : "http://a.adroll.com");
+   scr.setAttribute('async', 'true');
+   scr.type = "text/javascript";
+   scr.src = host + "/j/roundtrip.js";
+   ((document.getElementsByTagName('head') || [null])[0] ||
+    document.getElementsByTagName('script')[0].parentNode).appendChild(scr);
+   if(oldonload){oldonload()}};
+}());
+</script>
+<!-- END Google Retargeting Marketing Code -->
+
+
+<!-- START Twitter Marketing Code -->
+<script src="//platform.twitter.com/oct.js" type="text/javascript"></script>
+<script type="text/javascript">
+twttr.conversion.trackPid('l4r4k');
+</script>
+<noscript>
+<img height="1" width="1" style="display:none;" alt="" src="https://analytics.twitter.com/i/adsct?txn_id=l4r4k&p_id=Twitter" />
+<img height="1" width="1" style="display:none;" alt="" src="//t.co/i/adsct?txn_id=l4r4k&p_id=Twitter" />
+</noscript>
+<!-- END Twitter Marketing Code -->
+
+<!-- START KISSmetrics --> 
+<script type="text/javascript">var _kmq = _kmq || [];
+var _kmk = _kmk || '8594aa19a108c4899f379df29fdc8e56ca5985db';
+function _kms(u){
+  setTimeout(function(){
+    var d = document, f = d.getElementsByTagName('script')[0],
+    s = d.createElement('script');
+    s.type = 'text/javascript'; s.async = true; s.src = u;
+    f.parentNode.insertBefore(s, f);
+  }, 1);
+}
+_kms('//i.kissmetrics.com/i.js');
+_kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
+</script>
+<!-- END KISSmetrics --> 
 
 </div>
 

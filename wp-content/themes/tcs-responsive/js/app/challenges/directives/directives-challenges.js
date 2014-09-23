@@ -30,8 +30,8 @@
       return {
         restrict: 'A',
         link: function (scope, element, attrs) {
-          scope.$watch('challenges', function (newValue, oldValue) {
-            if (scope.challenges.length) {
+          scope.$watch('challenges', function (challenges, oldValue) {
+            if (challenges && challenges.length) {
               React.renderComponent(
                 window.ChallengeGridAll({
                   scope: scope
