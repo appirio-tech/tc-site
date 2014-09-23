@@ -152,14 +152,14 @@
         });
       }
 
-      function getGridOptions(definitionsName) {
+      function getGridOptions(definitionsName, contest) {
         return {
           data: 'challenges',
           headerRowTemplate: 'tableView/header.html',
           rowTemplate: 'tableView/row.html',
           headerRowHeight: 43,
           enableHighlighting: true,
-          rowHeight: 140,
+          rowHeight: contest.contestType !== 'data' ? 140 : 70,
           columnDefs: definitionsName,
           enableRowSelection: false,
           useExternalSorting: true,
