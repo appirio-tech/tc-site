@@ -436,7 +436,7 @@ get_header(); ?>
 </script>
 
 <script type="text/ng-template" id="tableView/isPrivate.html">
-  <span class="{{row.getProperty('submissionsViewable')=='true' ? 'colAccessLevel' : 'private'}}"><i></i></span>
+  <span class="{{row.getProperty('submissionsViewable')=='true' ? 'colAccessLevel' : 'private'}}" qtip title="Access" text="{{row.getProperty('submissionsViewable')=='true' ? 'Public' : 'Private'}}" community="{{row.getProperty('challengeCommunity')}}"><i></i></span>
 </script>
 
 <script type="text/ng-template" id="tableView/numRegistrants.html">
