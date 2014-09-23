@@ -819,9 +819,8 @@ h1.center {
 }
 
 #viewRegistrant table tr td {
-    height: 30px;
+    height: 40px;
     padding-left: 10px;
-    padding-top: 12px;
     font-size: 12px;
 }
 
