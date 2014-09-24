@@ -67,26 +67,20 @@
 
   function formatDate () {
     return function (date, opt) {
-      var pad0 = function (x) {
-        return (x + '').length == 1 ? '0' + x : x;
-      }
-
       if (!date) {
         return '--';
       }
-      if (typeof date == 'string') {
-        date = moment(date).toDate();
+      //some function is passing in undefined timezone_string variable causing js errors, so check if undefined and set default:
+      if (typeof timezone_string === 'undefined') {
+        var timezone_string = "America/New_York"; // let's set to TC timezone
       }
-      var month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][date.getMonth()];
+      var formatString;
       if (opt == 2) {
-        month = month.substring(0, 3);
+        formatString = 'MMM D, YYYY HH:mm z';
+      } else {
+        formatString = 'MMMM D, YYYY HH:mm z';
       }
-
-      var day = date.getDate();
-      var year = date.getFullYear();
-      var time = pad0((date.getUTCHours() + 20) % 24) + ':' + pad0(date.getUTCMinutes());
-
-      return month + ' ' + day + ', ' + year + ' ' + time + ' EDT';
+      return moment(date).tz(timezone_string).format(formatString);
     };
   }
 
