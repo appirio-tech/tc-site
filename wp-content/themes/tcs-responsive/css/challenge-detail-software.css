@@ -461,14 +461,14 @@ h1.center {
 
 
 .challenge-detail .columnSideBar .inner {
-    padding: 10px 10px 0 10px;
+    padding: 10px 10px;
+    border-bottom: 1px solid #e7e7e7;
 }
 
 .challenge-detail .columnSideBar h3 {
     color: #00aeff;
     font-size: 16px;
     font-weight: bold;
-    border-bottom: 1px solid #e7e7e7;
     padding: 11px 10px;
     text-transform: uppercase;
 }
