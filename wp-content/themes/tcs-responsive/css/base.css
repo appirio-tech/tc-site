@@ -109,6 +109,16 @@ h4{
 em{
     font-style: normal;
 }
+sub {
+    vertical-align: sub;
+}
+sup {
+    vertical-align: super;
+}
+sub, sup {
+    font-size: 0.5em;
+    line-height: 100%;
+}
 
 /* layouts */
 .grid{
