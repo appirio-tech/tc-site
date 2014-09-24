@@ -43,12 +43,19 @@
     border: solid #e7e7e7;
     border-width: 1px 0;
 }
-
+.challengesGrid .ngRow,
+.challengesGrid .ngCanvas{
+    width: 100% !important;
+}
 .challengesGrid .ngRow.odd {
     background-color: #f7f7f7;
 }
 .challengesGrid .ngRow.even {
     background-color: #ffffff;
+}
+
+.challengesGrid.dataScienceList .challengeCell {
+   line-height: 70px;
 }
 
 .challengesGrid .challengeCell {

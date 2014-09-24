@@ -135,7 +135,7 @@ get_header(); ?>
         </div>
         <div ng-show="challenges.length > 0">
           <div id="tableView" class="viewTab" ng-show="view == 'table'">
-            <div class="tableWrap tcoTableWRap dataTable tcoTable challengesGrid" ng-grid="gridOptions"></div>
+            <div class="tableWrap tcoTableWRap dataTable tcoTable challengesGrid" ng-class="{dataScienceList : contest.contestType === 'data' }" ng-grid="gridOptions"></div>
           </div>
         </div>
         <div id="gridView2" class="viewTab hide" style="display: block;" ng-show="view == 'grid'" ng-class="{contestAll: contest.contestType == ''}">
