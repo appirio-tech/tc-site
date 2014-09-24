@@ -428,7 +428,7 @@ get_header(); ?>
 </script>
 
 <script type="text/ng-template" id="tableView/currentPhaseRemainingTime.html">
-  <span ng-cell-text ng-bind-html="formatTimeLeft(row.getProperty(col.field), true, row.getProperty('currentPhaseName'))"></span>
+  <span ng-cell-text ng-bind-html="formatTimeLeft(row.getProperty(col.field) || row.getProperty('timeRemaining'), true, row.getProperty('currentPhaseName'))"></span>
 </script>
 
 <script type="text/ng-template" id="tableView/duration.html">
