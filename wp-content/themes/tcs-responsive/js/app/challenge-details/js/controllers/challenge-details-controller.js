@@ -208,7 +208,7 @@
         if (data && !data.error) {
           vm.checkpointData = data;
           vm.checkpointResults = data.checkpointResults;
-          vm.numCheckpointSubmissions = data.numberOfSubmissions;
+          vm.numCheckpointSubmissions = data.numberOfPassedScreeningSubmissions;
           //set variables for design challenge checkpoint results
           if (vm.isDesign) {
             vm.numberOfPassedScreeningSubmissions = data.numberOfPassedScreeningSubmissions;
