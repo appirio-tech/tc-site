@@ -113,6 +113,11 @@
         challenge = challenge[0];
         challenge.registrants = challenge.registrants || [];
         challenge.submissions = challenge.submissions || [];
+
+        if (challenge.event) {
+          challenge.event.url = challenge.event.shortDescription == 'tco15' ? 'http://tco15.topcoder.com/' : 'http://community.topcoder.com/' + challenge.event.shortDescription;
+        }
+
         var submissionMap = {};
         challenge.submissions.map(function(submission) {
           if (submissionMap[submission.handle || submission.submitter]) {

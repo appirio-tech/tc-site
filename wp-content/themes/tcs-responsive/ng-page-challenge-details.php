@@ -460,6 +460,15 @@ include locate_template('header-challenge-landing.php');
   <div ng-hide="CD.isDesign" class="slideBox">
     <?php include locate_template('ng-content-challenge-downloads.php'); ?>
   </div>
+  <li ng-show="CD.challenge.event" class="slide">
+      <div class="contestLinks slideBox">
+      <h3>Eligible Events:</h3>
+
+      <div class="inner">
+        <p><a ng-href="{{CD.challenge.event.url}}" target='_blank'>{{CD.challenge.event.description}}</a></p>
+      </div>
+    </div>
+  </li>
   <li ng-hide="CD.isDesign" class="slide">
 
     <div class="reviewStyle slideBox">
