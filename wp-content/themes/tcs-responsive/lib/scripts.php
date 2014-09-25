@@ -99,8 +99,7 @@ function tsc_build_asset_path($asset_name, $type, $min = false, $useCDN = false)
     $base_path = tsc_get_script_base_url();
   }
 
-  $ext = tsc_get_script_preext();
-  $ext = $ext . "." . $type;
+  $ext = tsc_get_script_preext() . $type;
 
   // if min and cdn use /ver/type/file
   if ($min && $useCDN) {
@@ -182,7 +181,7 @@ function tsc_get_script_preext() {
   // check if the browser supports gzip so we can specify the gzip version of resources
   $ext = '';
   if (TC_CDN_GZ && $jsCssUseCDN && strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== false) {
-    $ext = 'gz';
+    $ext = 'gz.';
   }
 
   return $ext;
