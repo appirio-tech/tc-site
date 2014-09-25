@@ -42,6 +42,7 @@
         var params = {};
         var listType = $routeParams.challengeStatus ? $routeParams.challengeStatus.toLowerCase() : 'active';
         $scope.challenges = [];
+        startLoading();
         if (community) {
           params.type = community;
         }
@@ -95,6 +96,7 @@
             .then(function (data) {
               $scope.challenges = data;
               $scope.pagination = data.pagination;
+              stopLoading();
               $location.search('pageIndex', data.pagination.pageIndex);
               $scope.pagination.last = Math.min($scope.pagination.total,$scope.pagination.pageIndex*$scope.pagination.pageSize);
             }, function () {
@@ -166,8 +168,6 @@
       }
     
       $scope.showFilters = false;
-
-      startLoading();
 
       $scope.filter = {
         challengeTypes: [],
