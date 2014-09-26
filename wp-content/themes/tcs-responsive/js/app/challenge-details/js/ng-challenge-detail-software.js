@@ -415,6 +415,9 @@ app.tabNavinit = function() {
       id = "#" + id.substr(tabIdx + 4);
     }
     var old = $('a.active').attr('href');
+    if (old == id) {
+      return false;
+    }
     $(old).hide();
     $(id).fadeIn();
     $('.active', $(this).closest('nav')).removeClass('active');
