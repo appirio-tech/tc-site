@@ -1,3 +1,8 @@
+/*
+ * TODO:
+ * - Get rid of jQuery! Move DOM logic into directives, etc.
+ */
+
 var sliderActive = false;
 var prizeSliderActive = false;
 var slider;
@@ -38,6 +43,7 @@ function getAnchor(url) {
 
 //create slider if page is wide
 $(document).ready(function () {
+
   if (window.innerWidth < 1019) {
 
     $(".rightColumn").insertAfter('.leftColumn');
@@ -56,6 +62,7 @@ $(document).ready(function () {
     $('.registrantsTable').not('.mobile').addClass('hide');
     $('.registrantsTable.mobile').removeClass('hide');
   } else {
+
     if ($('.studio').length > 0) {
       updateDesignContest();
     }
@@ -65,6 +72,7 @@ $(document).ready(function () {
     $('.registrantsTable').not('.mobile').removeClass('hide');
     $('.registrantsTable.mobile').addClass('hide');
   }
+
   $('a[href="' + getAnchor(location.href) + '"]').click();
 
   // init tab nav
@@ -73,65 +81,6 @@ $(document).ready(function () {
   var tcsso = getCookie('tcsso');
   var tcjwt = getCookie('tcjwt');
 
-  var tcAction = getCookie('tcDelayChallengeAction');
-    if (tcjwt) {
-        getChallenge(tcjwt, function(challenge) {
-            updateRegSubButtons(challenge);
-        });
-    }
-
-  function updateRegSubButtons(challenge) {
-    // if there was an error getting the challenge then enable the buttons
-    if (challenge.status == false) {
-      $('.challengeRegisterBtn').removeClass('disabled');
-      $('.challengeSubmissionBtn').removeClass('disabled');
-      $('.challengeSubmissionsBtn').removeClass('disabled');
-    } else {
-      if(tcsso) {
-        var tcssoValues = tcsso.split("|");
-        $.getJSON("http://community.topcoder.com/tc?module=BasicData&c=get_handle_by_id&dsid=30&uid=" + tcssoValues[0] + "&json=true", function(data) {
-          var now = new Date();
-          // TODO: eliminate global var
-          handle = data['data'][0]['handle'];
-
-          var registrants = [];
-          $.each(challenge.registrants, function(x, registrant) {
-            registrants.push(registrant.handle)
-          });
-
-          if (registrationUntil && now.getTime() < registrationUntil.getTime() && registrants && registrants.indexOf(handle) == -1) {
-            $('.challengeRegisterBtn').removeClass('disabled');
-          }
-          if (submissionUntil && now.getTime() < submissionUntil.getTime() && registrants && registrants.indexOf(handle) > -1) {
-            $('.challengeSubmissionBtn').removeClass('disabled');
-            $('.challengeSubmissionsBtn').removeClass('disabled');
-          }
-        });
-      }
-    }
-    if (tcjwt) {
-      if (tcAction && !autoRegister) {
-        var tcDoAction = tcAction.split('|');
-        if (typeof challengeId !== 'undefined' && tcDoAction[0] === 'register' && tcDoAction[1] === challengeId) {
-          $('.challengeRegisterBtn').click();
-        }
-      }
-    }
-  }
-
-  function getChallenge(tcjwt, callback) {
-    if (tcjwt && (typeof challengeId != 'undefined')) {
-      $.getJSON(ajaxUrl, {
-        "action": "get_challenge_documents",
-        "challengeId": challengeId,
-        "challengeType": challengeType,
-        "nocache": true,
-        "jwtToken": tcjwt.replace(/["]/g, "")
-      }, function (data) {
-        callback(data);
-      });
-    }
-  }
 });
 
 //create/destroy slider based on width
@@ -186,21 +135,21 @@ $(window).bind('orientationchange', function (event) {
 var getElementsByClassName = function (searchClass, node, tag) {
   if (document.getElementsByClassName) {
     return  document.getElementsByClassName(searchClass)
-  } else {
-    node = node || document;
-    tag = tag || '*';
-    var returnElements = []
-    var els = (tag === "*" && node.all) ? node.all : node.getElementsByTagName(tag);
-    var i = els.length;
-    searchClass = searchClass.replace(/\-/g, "\\-");
-    var pattern = new RegExp("(^|\\s)" + searchClass + "(\\s|$)");
-    while (--i >= 0) {
-      if (pattern.test(els[i].className)) {
-        returnElements.push(els[i]);
-      }
-    }
-    return returnElements;
   }
+
+  node = node || document;
+  tag = tag || '*';
+  var returnElements = []
+  var els = (tag === "*" && node.all) ? node.all : node.getElementsByTagName(tag);
+  var i = els.length;
+  searchClass = searchClass.replace(/\-/g, "\\-");
+  var pattern = new RegExp("(^|\\s)" + searchClass + "(\\s|$)");
+  while (--i >= 0) {
+    if (pattern.test(els[i].className)) {
+      returnElements.push(els[i]);
+    }
+  }
+  return returnElements;
 };
 
 function hasClass(obj, cls) {
@@ -208,7 +157,9 @@ function hasClass(obj, cls) {
 }
 
 function addClass(obj, cls) {
-  if (!this.hasClass(obj, cls)) obj.className += " " + cls;
+  if (!this.hasClass(obj, cls)) {
+    obj.className += " " + cls;
+  }
 }
 
 function removeClass(obj, cls) {
@@ -293,23 +244,6 @@ function updateDesignContest() {
 
 $(function () {
   $('.scroll-pane').jScrollPane();
-  //switch the view all deadline and view next deadline
-  $(".viewAllDeadLineBtn").click(function () {
-    $(".nextDeadlinedeadlineBoxContent").addClass("hide");
-    $(".allDeadlinedeadlineBoxContent").removeClass("hide");
-    $(".nextDeadlineNextBoxContent").addClass("hide");
-    $(".allDeadlineNextBoxContent").removeClass("hide");
-    $(".contestEndedBox").addClass("hide");
-
-  });
-  //switch the view all deadline and view next deadline
-  $(".viewNextDeadLineBtn").click(function () {
-    $(".contestEndedBox").addClass("hide");
-    $(".allDeadlinedeadlineBoxContent").addClass("hide");
-    $(".nextDeadlinedeadlineBoxContent").removeClass("hide");
-    $(".allDeadlineNextBoxContent").addClass("hide");
-    $(".nextDeadlineNextBoxContent").removeClass("hide");
-  });
 
   $(".morePayments.active").click(function () {
     if ($(this).hasClass("closed")) {
@@ -322,60 +256,6 @@ $(function () {
       $(".additionalPrizes").addClass("hide");
     }
   });
-  
-  $(".leftColumn").on('click', '.challengeRegisterBtn', function () {
-    if ($(this).hasClass("disabled")) { 
-      var tcAction = getCookie('tcDelayChallengeAction');
-      if (tcAction) {
-        //delete cookie
-        document.cookie = 'tcDelayChallengeAction=; path=/; domain=.topcoder.com; expires=' + new Date(0).toUTCString();
-      }
-      return false; 
-    }
-    var tcjwt = getCookie('tcjwt');
-    if (tcjwt) {
-      if ($('.loading').length <= 0) {
-        $('body').append('<div class="loading">Loading...</div>');
-      } else {
-        $('.loading').show();
-      }
-      $.getJSON(ajaxUrl, {
-        "action": "register_to_challenge",
-        "challengeId": challengeId,
-        "jwtToken": tcjwt.replace(/["]/g, "")
-      }, function (data) {
-        $('.loading').hide();
-        var tcAction = getCookie('tcDelayChallengeAction');
-        if (tcAction) {
-          var tcDoAction = tcAction.split('|');
-          if (typeof challengeId !== 'undefined' && tcDoAction[0] === 'register' && tcDoAction[1] === challengeId) {
-            //delete cookie
-            document.cookie = 'tcDelayChallengeAction=; path=/; domain=.topcoder.com; expires=' + new Date(0).toUTCString();
-          }
-        }
-        if (data["message"] === "ok") {
-          showModal("#registerSuccess");
-        } else if (data["error"]["details"] === "You should agree with all terms of use.") {
-          window.location = siteURL + "/challenge-details/terms/" + challengeId + "?challenge-type=" + challengeType;
-        } else if (data["error"]["details"]) {
-          $("#registerFailed .failedMessage").text(data["error"]["details"]);
-          showModal("#registerFailed");
-        }
-      });
-    } else {
-      //set cookie to auto register once user is signed in
-      $.cookie.raw = true;
-      $.cookie('tcDelayChallengeAction', 'register|' + challengeId + '|' + encodeURIComponent(challengeName), {expires: 31, path:'/', domain: '.topcoder.com'});
-      $('.actionLogin').click();
-    }
-  });
-
-  if (autoRegister) {
-    //need timeout because partial template with register button loads AFTER document.ready() triggers
-    window.setTimeout(function(){
-      $(".challengeRegisterBtn").click();
-    }, 2000);
-  }
 
   $("#registerFailed .closeModalReg").click(function () {
     closeModal();
@@ -535,16 +415,6 @@ app.tabNavinit = function() {
       id = "#" + id.substr(tabIdx + 4);
     }
     var old = $('a.active').attr('href');
-//    for (var i = 0; i < old.length; i++) {
-//      if (old[i][0] != '#') continue;
-//      var x = old[i];
-//      var hideme = $(x).attr('href');
-//      $(hideme).css({'display':'none'});
-//    }
-//    old.map(function(x) {
-//      var href = $(x).attr('href');
-//      $(href).hide();
-//    });
     $(old).hide();
     $(id).fadeIn();
     $('.active', $(this).closest('nav')).removeClass('active');

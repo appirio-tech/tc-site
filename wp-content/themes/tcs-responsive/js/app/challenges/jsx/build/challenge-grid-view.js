@@ -72,7 +72,7 @@
             registerBy : true,
             submitBy : true,
             currentStatus : true,
-            techUpcoming : true,
+            tech : true,
             gdUpcoming : true
           },
           develop_active: {
@@ -92,7 +92,7 @@
             roundEnd : true,
             endDate : true,
             currentStatus : true,
-            techUpcoming : true,
+            tech : true,
             gdUpcoming : true
           },
           data_active: {
@@ -117,7 +117,7 @@
             React.DOM.a( {href:"/challenge-details/" +challenge.challengeId+"/?type="+challenge.challengeCommunity, className:"contestName"}, 
               React.DOM.img( {alt:"", className:"allContestIco", src:images + '/ico-track-' + challenge.challengeCommunity + '.png'} ),
               React.DOM.span( {className:"gridChallengName"}, challenge.challengeName),
-              React.DOM.img( {alt:"", className:"allContestTCOIco", src:images + '/tco-flag-' + challenge.challengeCommunity + '.png'} ),
+              React.DOM.img( {alt:"", className:challenge.challengeCommunity != 'data' ? "allContestTCOIco" : "allContestTCOIco ng-hide", src:images + '/tco-flag-' + challenge.challengeCommunity + '.png'} ),
               Qtip( {text:challenge.challengeType, title:"Challenge Type", community:challenge.challengeCommunity}, 
                 React.DOM.span( {className:"track-symbol"}, track.toUpperCase())
               )
@@ -130,7 +130,7 @@
                 React.DOM.div( {className:"val vStartDate"}, scope.dateFormatFilter(challenge.registrationStartDate, scope.dateFormat))
               ),
               React.DOM.div( {className:classNames[challengeCombo].registerBy !== undefined ? 'row':'row ng-hide'}, 
-                React.DOM.label( {className:"lbl"}, "Register by"),
+                React.DOM.label( {className:"lbl"}, "Register By"),
                 React.DOM.div( {className:"val vStartDate"}, scope.dateFormatFilter(challenge.registrationEndDate, scope.dateFormat))
               ),
               React.DOM.div( {className:classNames[challengeCombo].roundEnd !== undefined && challenge.checkpointSubmissionEndDate !== '' ? 'row' : 'row ng-hide'}, 
@@ -142,27 +142,17 @@
                 React.DOM.div( {className:"val vEndDate"}, scope.dateFormatFilter(challenge.submissionEndDate, scope.dateFormat))
               ),
               React.DOM.div( {className:classNames[challengeCombo].submitBy !== undefined ? 'row':'row ng-hide'}, 
-                React.DOM.label( {className:"lbl"}, "Submit by"),
+                React.DOM.label( {className:"lbl"}, "Submit By"),
                   React.DOM.div( {className:"val vStartDate"}, scope.dateFormatFilter(challenge.submissionEndDate, scope.dateFormat))
                 ),
-              /*<div className={classNames[challengeCombo].currentPhase !== undefined ? 'row':'row ng-hide'}>
-                <label className="lbl">Current Phase</label>
-                <div className="val vPhase">{challenge.currentPhaseName}</div>
-                <div className="clear" />
-              </div>*/
+              React.DOM.div( {className:classNames[challengeCombo].currentPhase !== undefined ? 'row':'row ng-hide'},
+                React.DOM.label( {className:"lbl"}, "Current Phase"),
+                React.DOM.div( {className:"val vPhase"}, challenge.currentPhaseName),
+                React.DOM.div( {className:"clear"} )
+              ),
               React.DOM.div( {className:classNames[challengeCombo].currentStatus !== undefined ? 'row':'row ng-hide'}, 
                  React.DOM.label( {className:"lbl"}, "Current Status"),
                  React.DOM.div( {className:"val vStatus"}, challenge.status)
-              ),
-              React.DOM.div( {className:classNames[challengeCombo].techUpcoming !== undefined ? 'row':'row ng-hide'}, 
-                React.DOM.label( {className:"lbl"}, "Technologies"),
-                React.DOM.div( {className:challenge.technologies === undefined || challenge.technologies.length === 0 ? 'val vTech' : 'val vTech ng-hide'}, 
-                  React.DOM.span(null, "N/A")
-                ),
-                React.DOM.div( {className:challenge.technologies !== undefined || challenge.technologies.length !== 0 ? 'technologyTags' : 'technologyTags ng-hide'}, 
-                  ChallengeTechsList( {challenge:challenge, scope:scope})
-                ),
-                React.DOM.div( {className:"clear"})
               )
             )
           ),
@@ -178,17 +168,21 @@
             Qtip( {text:scope.currencyFilter(challenge.totalPrize), title:"Total Prize", community:challenge.challengeCommunity}, 
               React.DOM.p( {className:"cgPur", 'data-hasqtip':"1", 'aria-describedby':"qtip-1"}, React.DOM.i(null ), " ", scope.currencyFilter(challenge.totalPrize))
             ),
-            Qtip( {text:challenge.numRegistrants, title:"Registrants", community:challenge.challengeCommunity}, 
-              React.DOM.p( {className:"cgReg", 'data-hasqtip':"2", 'aria-describedby':"qtip-2"}, React.DOM.i(null ),React.DOM.a( {href:"/challenge-details/" +challenge.challengeId + "/?type=" + challenge.challengeCommunity + "#viewRegistrant"}, challenge.numRegistrants)
+            Qtip( {text: ((challenge.numRegistrants==0)?"0":challenge.numRegistrants), title:"Registrants", community:challenge.challengeCommunity},
+              React.DOM.p( {className:"cgReg", 'data-hasqtip':"2", 'aria-describedby':"qtip-2"}, React.DOM.i(null ),React.DOM.a( {href:"/challenge-details/" +challenge.challengeId + "/?type=" + challenge.challengeCommunity + "#viewRegistrant"}, ((challenge.numRegistrants==0)?"0":challenge.numRegistrants))
               )
             ),
-            Qtip( {text:challenge.numSubmissions, title:"Submissions", community:challenge.challengeCommunity}, 
-              React.DOM.p( {className:"cgSub", 'data-hasqtip':"3", 'aria-describedby':"qtip-3"}, React.DOM.i(null ),challenge.numSubmissions)
+            Qtip( {text: ((challenge.numSubmissions==0)?"0":challenge.numSubmissions), title:"Submissions", community:challenge.challengeCommunity},
+              React.DOM.p( {className:"cgSub", 'data-hasqtip':"3", 'aria-describedby':"qtip-3"}, React.DOM.i(null ), ((challenge.numSubmissions==0)?"0":challenge.numSubmissions))
             )
           ),
-          React.DOM.div( {className:classNames[challengeCombo].gdUpcoming !== undefined ? 'genInfo gdUpcoming':'genInfo gdUpcoming ng-hide'}, 
-            React.DOM.p( {className:"cgTLeft", 'data-hasqtip':0, 'aria-describedby':"qtip-0"}, React.DOM.i(null ),scope.getContestDuration(challenge.registrationStartDate, challenge.submissionEndDate)),
-            React.DOM.p( {className:"cgPur", 'data-hasqtip':1, 'aria-describedby':"qtip-1"}, React.DOM.i(null ), " ", scope.currencyFilter(challenge.totalPrize))
+          React.DOM.div( {className: classNames[challengeCombo].gdUpcoming !== undefined ? 'genInfo gdUpcoming':'genInfo gdUpcoming ng-hide'}, 
+            Qtip( {text:scope.getContestDuration(challenge.registrationStartDate, challenge.submissionEndDate), title:"Duration (days)", community: challenge.challengeCommunity}, 
+              React.DOM.p( {className:"cgTLeft", 'data-hasqtip':0, 'aria-describedby':"qtip-0"}, React.DOM.i(null), scope.getContestDuration(challenge.registrationStartDate, challenge.submissionEndDate)+(scope.getContestDuration(challenge.registrationStartDate, challenge.submissionEndDate)<2?" Day":" Days"))
+            ), 
+            Qtip( {text:scope.currencyFilter(challenge.totalPrize), title:"Total Prize", community:challenge.challengeCommunity}, 
+              React.DOM.p( {className:"cgPur",'data-hasqtip':1, 'aria-describedby':"qtip-1"}, React.DOM.i(null), " ", scope.currencyFilter(challenge.totalPrize))
+            )
           )
         )
       );

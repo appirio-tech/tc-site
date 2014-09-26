@@ -161,8 +161,8 @@ if ($rating > 0) {
 		<header class="head">
 			<div class="trackNRating">
 				<h4 class="trackName">Algorithm Competitions</h4>
-				<div class="rating <?php echo do_shortcode("[tc_rating_color score='".$coder->rating."' ]") ?>"><?php echo $coder->rating;?></div>
 				<div class="lbl">Rating</div>
+				<div class="rating <?php echo do_shortcode("[tc_rating_color score='".$coder->rating."' ]") ?>"><?php echo $coder->rating;?></div>
 			</div>
 			<div class="detailedRating">
 				<div class="row">
@@ -251,7 +251,7 @@ if ($rating > 0) {
 									<div class="chartWrap chartYellow">
 										<div id="srmChallenge" class="chart"></div>
 										<div class="chartLbl">
-											<em><?php echo $srmClngeVal?>%</em>Challenge
+											<em><?php echo $srmClngeVal?>%</em>Challenges
 										</div>
 										<script type="text/javascript">
 								            <?php echo $srmClnge->render("srmClnge"); ?>
@@ -268,7 +268,7 @@ if ($rating > 0) {
 											<tr>
 												<th class="colProblem">Problem</th>
 												<th>Submitted</th>
-												<th>Failed Challenge</th>
+												<th>Failed Challenges</th>
 												<th>Failed Sys.Test</th>
 												<th>Success %</th>
 											</tr>
@@ -311,7 +311,7 @@ if ($rating > 0) {
 											<tr>
 												<th class="colProblem">Problem</th>
 												<th>Submitted</th>
-												<th>Failed Challenge</th>
+												<th>Failed Challenges</th>
 												<th>Failed Sys.Test</th>
 												<th>Success %</th>
 											</tr>
@@ -353,7 +353,7 @@ if ($rating > 0) {
 										<thead>
 											<tr>
 												<th class="colProblem">Problem</th>
-												<th>#Failed Challenge</th>
+												<th>#Failed Challenges</th>
 												<th>#Challenges</th>
 												<th>Success %</th>
 											</tr>

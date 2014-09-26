@@ -137,6 +137,8 @@ function tcapi_query_vars($query_vars) {
   $query_vars [] = 'type';
   $query_vars [] = 'nocache';
   $query_vars [] = 'challenge-type';
+  $query_vars [] = 'technologies';
+  $query_vars [] = 'platforms';
   return $query_vars;
 }
 

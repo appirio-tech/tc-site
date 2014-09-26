@@ -345,7 +345,8 @@ $(function () {
     var pwd = $('#register form.register input.pwd:password');
     var confirm = $('#register form.register input.confirm:password');
     //bugfix empty value checking without using trim
-    if (pwd.val() == confirm.val() && pwd.val() != '') {
+    var strength = pwdStrength(pwd.val());
+    if (pwd.val() == confirm.val() && pwd.val() != '' && strength>0 ) {
       confirm.parents(".row").find("span.valid").css("display", "inline-block");
       confirm.removeClass('invalid');
       confirm.parents(".row").find('span.err1').hide();
@@ -624,6 +625,9 @@ $(function () {
             fields.password = $('#registerForm  input.pwd').val();
           }
 
+          if (_kmq) 
+            _kmq.push(['record', 'Form Submitted']);
+          
           $.post(ajaxUrl + '?action=post_register', fields, function (data) {
             if (data.code == "200") {
               var tcAction = getCookie('tcDelayChallengeAction');
@@ -634,8 +638,8 @@ $(function () {
                 var tcDoAction = tcAction.split('|');
                 if (tcDoAction[0] === 'register') {
                   //append challenge registration message
-                  //$("#thanks p").after("<div style='padding-bottom: 30px'>In order to register for the selected challenge, you must return to the <a href='/challenge-details/" + tcDoAction[1] + "/?type=" + challengeType + "'>challenge details page</a> after you have activated your account.</div>");
-                  //$('#thanks p').css({'padding-bottom': '10px'});
+                  $("#thanks p").after("<div style='padding-bottom: 30px'>In order to register for the selected challenge, you must return to the <a href='/challenge-details/" + tcDoAction[1] + "/?type=" + challengeType + "'>challenge details page</a> after you have activated your account.</div>");
+                  $('#thanks p').css({'padding-bottom': '10px'});
                 }
               }
               showModal('#thanks');
@@ -763,6 +767,11 @@ $(function () {
 });
 
 // modal
+function showError(message) {
+  $("#registerFailed .failedMessage").text(message);
+  showModal("#registerFailed");
+}
+
 /**
  * show modal
  * selector - the jQuery selector of the popup

@@ -75,10 +75,10 @@ get_header(); ?>
           <h1>
             {{titles[contest.contestType]}}
             <span class="subscribeTopWrapper">
-              <a class="feedBtn" target="_self" href="/challenges/feed?list=active&contestType={{contest.contestType || 'all'}}" title="Subscribe to challenges"></a>
+              <a class="feedBtn" target="_self" href="{{feedUrl}}" title="Subscribe to challenges"></a>
             </span>
           </h1>
-          <aside class="rt" ng-show="contest.listType !== 'past' && contest.contestType !== 'data'">
+          <aside class="rt">
             <span class="views">
               <a href="" ng-click="view = 'grid'" class="gridView" ng-class="{isActive: view == 'grid'}"></a>
               <a href="" ng-click="view = 'table'" class="listView" ng-class="{isActive: view == 'table'}"></a>
@@ -95,9 +95,11 @@ get_header(); ?>
               challenge-community="contest.contestType"
               challenge-status="contest.listType"
               show-on="showFilters"
-              filter="filter"></div>
+              filter="filter"
+              authenticated="authenticated"></div>
 
         <div class="upcomingCaption" ng-show="contest.listType === 'upcoming' && challenges.length != 0">All upcoming challenges may change</div>
+        <div class="pastCaption" ng-show="contest.listType === 'past' && challenges.length != 0">Displaying all challenges from the past year. View longer time ranges at your own risk!</div>
           <div ng-show="dataDisplayed && challenges.length == 0 && contest.listType !== 'upcoming'">
           <br />
           <h3>
@@ -110,9 +112,30 @@ get_header(); ?>
             There are no upcoming challenges at this time. Please check back later.
           </h3>
         </div>
+        <div class="dataChanges"  ng-show="challenges && challenges.length > 0">
+          <div class="lt">
+            <span ng-show="pagination.last">{{(pagination.pageIndex-1)*pagination.pageSize+1}}-{{pagination.last}} of {{pagination.total}}</span><span ng-show="challenges.length < pagination.total && contest.listType != 'past'"> | </span><a class="viewAll" ng-show="challenges.length < pagination.total && contest.listType != 'past'" ng-click="all()">View All</a>
+          </div>
+          <div id="challengeNav" class="rt">
+            <a class="prevLink" ng-show="pagination.pageIndex > 1 && challenges.length > 0" ng-click="prev()">
+              <i></i> Prev
+            </a>
+            <a class="nextLink" ng-show="pagination.total > pagination.pageIndex * pagination.pageSize" ng-click="next()">
+              Next <i></i>
+            </a>
+          </div>
+          <div class="mid onMobi">
+            <a ng-hide="contest.listType === 'active'" href="/challenges/develop/active/" class="viewActiveCh">
+              View Active Challenges<i></i>
+            </a>
+            <a ng-hide="contest.listType === 'past'" href="/challenges/develop/past/" class="viewPastCh">
+              View Past Challenges<i></i>
+            </a>
+          </div>
+        </div>
         <div ng-show="challenges.length > 0">
           <div id="tableView" class="viewTab" ng-show="view == 'table'">
-            <div class="tableWrap tcoTableWRap dataTable tcoTable challengesGrid" ng-grid="gridOptions"></div>
+            <div class="tableWrap tcoTableWRap dataTable tcoTable challengesGrid" ng-class="{dataScienceList : contest.contestType === 'data' }" ng-grid="gridOptions"></div>
           </div>
         </div>
         <div id="gridView2" class="viewTab hide" style="display: block;" ng-show="view == 'grid'" ng-class="{contestAll: contest.contestType == ''}">
@@ -121,12 +144,12 @@ get_header(); ?>
             <div tc-contest-grid-react></div>
           </div>
         </div>
-        <div class="dataChanges">
+        <div class="dataChanges" ng-show="challenges && challenges.length > 0">
           <div class="lt">
-            <a class="viewAll" ng-show="challenges.length < pagination.total && contest.listType != 'past'" ng-click="all()">View All</a>
+            <span ng-show="pagination.last">{{(pagination.pageIndex-1)*pagination.pageSize+1}}-{{pagination.last}} of {{pagination.total}}</span><span ng-show="challenges.length < pagination.total && contest.listType != 'past'"> | </span><a class="viewAll" ng-show="challenges.length < pagination.total && contest.listType != 'past'" ng-click="all()">View All</a>
           </div>
           <div id="challengeNav" class="rt">
-            <a class="prevLink" ng-show="pagination.pageIndex > 1" ng-click="prev()">
+            <a class="prevLink" ng-show="pagination.pageIndex > 1 && challenges.length > 0" ng-click="prev()">
               <i></i> Prev
             </a>
             <a class="nextLink" ng-show="pagination.total > pagination.pageIndex * pagination.pageSize" ng-click="next()">
@@ -179,7 +202,9 @@ get_header(); ?>
 
 <script type="text/ng-template" id="advanced-search.html">
   <div class="clear new-search-box" ng-if="challengeCommunity !== ''">
-    <input type="text" class="search-text" placeholder="Type a keyword" ng-model="tempOptions.text">
+    <form ng-submit="addKeywords(tempOptions.text)">
+      <input type="text" class="search-text" placeholder="Type a keyword" ng-model="tempOptions.text">
+    </form>
     <a href="javascript:;" class="searchLink advSearch" ng-click="addKeywords(tempOptions.text)">
         <i></i>
     </a>
@@ -191,7 +216,7 @@ get_header(); ?>
                   <div class="selecting-tag-wrapper">
                     <div class="date-ranges selected-tag">
                       <span class="selected-range left">
-                        from {{formatDate(filterOptions.startDate)}} {{filterOptions.endDate ? ('- ' + formatDate(filterOptions.endDate)) : ''}}
+                        From {{formatDate(filterOptions.startDate)}} {{filterOptions.endDate ? ('to ' + formatDate(filterOptions.endDate)) : ''}}
                       </span>
                       <span class="tag-closedate right" ng-click="clearDates()"></span>
                     </div>
@@ -266,7 +291,7 @@ get_header(); ?>
                                 </div>
                                 <div class="left from-wrapper">
                                     <div class="to-text-box left">
-                                        <span class="limit-label left">to</span>
+                                        <span class="limit-label left">To</span>
                                         <input type="text" class="right to-picker-text" name="to" disabled ng-value="formatDate(filterOptions.endDate)">
                                     </div>
                                 </div>
@@ -279,16 +304,28 @@ get_header(); ?>
                             </div>
                         </div>
                         <div class="quick-pick left">
-                            <ul class="quick-pick-list">
+                            <ul class="quick-pick-list" ng-if="challengeStatus === 'past'">
                                 <li><a href="javascript:;" ng-click="dateCtrl.today()">Today</a>
                                 </li>
                                 <li><a href="javascript:;" ng-click="dateCtrl.yesterday()">Yesterday</a>
                                 </li>
-                                <li><a href="javascript:;" ng-click="dateCtrl.last7Days()">Last 7 day</a>
+                                <li><a href="javascript:;" ng-click="dateCtrl.last7Days()">Last 7 days</a>
+                                </li>
+                                <li><a href="javascript:;" ng-click="dateCtrl.pastThisMonth()">This Month</a>
+                                </li>
+                                <li><a href="javascript:;" ng-click="dateCtrl.lastMonth()">Last Month</a>
+                                </li>
+                            </ul>
+                            <ul class="quick-pick-list" ng-if="challengeStatus !== 'past'">
+                                <li><a href="javascript:;" ng-click="dateCtrl.today()">Today</a>
+                                </li>
+                                <li><a href="javascript:;" ng-click="dateCtrl.tomorrow()">Tomorrow</a>
+                                </li>
+                                <li><a href="javascript:;" ng-click="dateCtrl.next7Days()">Next 7 days</a>
                                 </li>
                                 <li><a href="javascript:;" ng-click="dateCtrl.thisMonth()">This Month</a>
                                 </li>
-                                <li><a href="javascript:;" ng-click="dateCtrl.lastMonth()">Last Month</a>
+                                <li><a href="javascript:;" ng-click="dateCtrl.nextMonth()">Next Month</a>
                                 </li>
                             </ul>
                         </div>
@@ -311,6 +348,10 @@ get_header(); ?>
                     <option></option>
                     <option ng-repeat="tech in technologies track by $index" ng-disabled="filterOptions.technologies.indexOf(tech) !== -1">{{tech}}</option>
                 </select>
+            </div>
+            
+            <div class="right checkbox myChallenges" ng-show="authenticated && challengeStatus === 'active' && challengeCommunity !== 'data'">
+              <label class="myChallengesLabel"><span>My Challenges Only</span><input type="checkbox" ng-model="filterOptions.userChallenges" ng-change="applyFilter()"></label>
             </div>
 
         </div>
@@ -340,25 +381,13 @@ get_header(); ?>
   </div>
 </script>
 
-<script type="text/ng-template" id="tableView/challengeDataName.html">
-  <div class="colCh">
-    <div>
-      <a ng-href="//community.topcoder.com/longcontest/?module=ViewProblemStatement&rd={{row.getProperty('roundId')}}&pm={{row.getProperty('problemId')}}" class="contestName">
-        <img alt="allContestIco" class="allContestIco" ng-src="{{images}}/ico-track-{{row.getProperty('challengeCommunity')}}.png">
-        <span ng-cell-text>{{row.getProperty('fullName')}}</span>
-        <img alt="allContestTCOIco" class="allContestTCOIco" ng-src="{{images}}/tco-flag-{{row.getProperty('challengeCommunity') != 'data'?row.getProperty('challengeCommunity'):'develop'}}.png" ng-show="contest.contestType != 'data'">
-      </a>
-    </div>
-  </div>
-</script>
-
 <script type="text/ng-template" id="tableView/challengeName.html">
   <div class="colCh" ng-if="row.getProperty('challengeCommunity') !== 'data'">
     <div>
       <a ng-href="/challenge-details/{{row.getProperty('challengeId')}}/?type={{row.getProperty('challengeCommunity')}}" class="contestName">
         <img alt="allContestIco" class="allContestIco" ng-src="{{images}}/ico-track-{{row.getProperty('challengeCommunity')}}.png">
         <span ng-cell-text>{{row.getProperty(col.field)}}</span>
-        <img alt="allContestTCOIco" class="allContestTCOIco" ng-src="{{images}}/tco-flag-{{row.getProperty('challengeCommunity') != 'data'?row.getProperty('challengeCommunity'):'develop'}}.png" ng-if="contest.contestType != 'data'">
+        <img alt="allContestTCOIco" class="allContestTCOIco" ng-src="{{images}}/tco-flag-{{row.getProperty('challengeCommunity')}}.png">
         <span class="track-symbol" qtip title="Challenge Type" text="{{row.getProperty('challengeType')}}" community="{{row.getProperty('challengeCommunity')}}">
           {{getTrackSymbol(row.getProperty('challengeType')).toUpperCase()}}
         </span>
@@ -369,6 +398,15 @@ get_header(); ?>
         <li ng-repeat="item in row.getProperty('technologies')"><span class="techTag"><a href="" ng-click="findByTechnology(item)">{{item}}</a></span></li>
         <li ng-repeat="item in row.getProperty('platforms')"><span class="techTag"><a href="" ng-click="findByPlatform(item)">{{item}}</a></span></li>
       </ul>
+    </div>
+  </div>
+  <div class="colCh" ng-if="row.getProperty('challengeCommunity') === 'data'">
+    <div>
+      <a ng-href="//community.topcoder.com/longcontest/?module=ViewProblemStatement&rd={{row.getProperty('roundId')}}&pm={{row.getProperty('problemId')}}" class="contestName">
+        <img alt="allContestIco" class="allContestIco" ng-src="{{images}}/ico-track-{{row.getProperty('challengeCommunity')}}.png">
+        <span ng-cell-text>{{row.getProperty('fullName')}}</span>
+        <img alt="allContestTCOIco" class="allContestTCOIco" ng-src="{{images}}/tco-flag-{{row.getProperty('challengeCommunity') != 'data'?row.getProperty('challengeCommunity'):'develop'}}.png" ng-show="contest.contestType != 'data'">
+      </a>
     </div>
   </div>
 
@@ -390,11 +428,7 @@ get_header(); ?>
 </script>
 
 <script type="text/ng-template" id="tableView/currentPhaseRemainingTime.html">
-  <span ng-cell-text ng-bind-html="formatTimeLeft(row.getProperty(col.field), true, row.getProperty('currentPhaseName'))"></span>
-</script>
-
-<script type="text/ng-template" id="tableView/dataNumRegistrants.html">
-  <span ng-cell-text><a href="//community.topcoder.com/longcontest/?module=ViewStandings&rd={{row.getProperty('roundId')}}">{{row.getProperty(col.field)}}</a></span>
+  <span ng-cell-text ng-bind-html="formatTimeLeft(row.getProperty(col.field) || row.getProperty('timeRemaining'), true, row.getProperty('currentPhaseName'))"></span>
 </script>
 
 <script type="text/ng-template" id="tableView/duration.html">
@@ -402,11 +436,16 @@ get_header(); ?>
 </script>
 
 <script type="text/ng-template" id="tableView/isPrivate.html">
-  <span class="{{row.getProperty('submissionsViewable')=='true' ? 'colAccessLevel' : 'private'}}"><i></i></span>
+  <span class="{{row.getProperty('submissionsViewable')=='true' ? 'colAccessLevel' : 'private'}}" qtip title="Access" text="{{row.getProperty('submissionsViewable')=='true' ? 'Public' : 'Private'}}" community="{{row.getProperty('challengeCommunity')}}"><i></i></span>
 </script>
 
 <script type="text/ng-template" id="tableView/numRegistrants.html">
-  <span ng-cell-text><a href="/challenge-details/{{row.getProperty('challengeId')}}/?type={{row.getProperty('challengeCommunity')}}#viewRegistrant">{{row.getProperty(col.field)}}</a></span>
+  <span ng-cell-text ng-if="row.getProperty('challengeCommunity') !== 'data'">
+    <a href="/challenge-details/{{row.getProperty('challengeId')}}/?type={{row.getProperty('challengeCommunity')}}#viewRegistrant">{{row.getProperty(col.field)}}</a>
+  </span>
+  <span ng-cell-text ng-if="row.getProperty('challengeCommunity') === 'data'">
+    <a href="//community.topcoder.com/longcontest/?module=ViewStandings&rd={{row.getProperty('roundId')}}">{{row.getProperty(col.field)}}</a>
+  </span>
 </script>
 
 <script type="text/ng-template" id="tableView/numSubmissions.html">
@@ -415,6 +454,12 @@ get_header(); ?>
 
 <script type="text/ng-template" id="tableView/prizes.html">
   <span ng-cell-text>{{row.getProperty(col.field) | currency}}</span>
+</script>
+    
+<script type="text/ng-template" id="tableView/roles.html">
+    <div ng-cell-text class="colRoles">
+      <span class="role" title="{{role}}"  ng-repeat="role in row.getProperty(col.field)">{{role}}</span>
+    </div>
 </script>
 
 <script type="text/ng-template" id="tableView/status.html">
@@ -435,23 +480,23 @@ get_header(); ?>
     <div>
       <div class="row">
         <label class="lbl">Start Date</label>
-        <div class="val vStartDate">{{row.getProperty('registrationStartDate') | date: dateFormat}}</div>
+        <div class="val vStartDate">{{dateFormatFilter(row.getProperty('registrationStartDate'), dateFormat)}}</div>
       </div>
       <div class="row" ng-show="row.getProperty('checkpointSubmissionEndDate')">
         <label class="lbl ">Round 1 End</label>
-        <div class="val vEndRound">{{row.getProperty('checkpointSubmissionEndDate') | date: dateFormat}}</div>
+        <div class="val vEndRound">{{dateFormatFilter(row.getProperty('checkpointSubmissionEndDate'), dateFormat)}}</div>
       </div>
       <div class="row" ng-show="contest.listType == 'past'">
         <label class="lbl">End Date</label>
-        <div class="val vEndDate">{{row.getProperty('submissionEndDate') | date: dateFormat}}</div>
+        <div class="val vEndDate">{{dateFormatFilter(row.getProperty('submissionEndDate'), dateFormat)}}</div>
       </div>
       <div class="row" ng-show="contest.listType == 'active' || contest.listType == 'upcoming'">
-        <label class="lbl ">Register by</label>
-        <div class="val vEndRound">{{row.getProperty('registrationEndDate') | date: dateFormat}}</div>
+        <label class="lbl ">Register By</label>
+        <div class="val vEndRound">{{dateFormatFilter(row.getProperty('registrationEndDate'), dateFormat)}}</div>
       </div>
       <div class="row" ng-show="contest.listType == 'active' || contest.listType == 'upcoming'">
-        <label class="lbl">Submit by</label>
-        <div class="val vEndDate">{{row.getProperty('submissionEndDate') | date: dateFormat}}</div>
+        <label class="lbl">Submit By</label>
+        <div class="val vEndDate">{{dateFormatFilter(row.getProperty('submissionEndDate'), dateFormat)}}</div>
       </div>
     </div>
   </div>
@@ -460,19 +505,24 @@ get_header(); ?>
     <div>
       <div class="row">
         <label class="lbl">Start Date</label>
-        <div class="val vStartDate">{{row.getProperty('registrationStartDate') | date: dateFormat}}</div>
+        <div class="val vStartDate">{{dateFormatFilter(row.getProperty('registrationStartDate'), dateFormat)}}</div>
       </div>
       <div class="row" ng-show="contest.listType == 'upcoming' && row.getProperty('checkpointSubmissionEndDate')">
         <label class="lbl ">Round 1 End</label>
-        <div class="val vEndRound">{{row.getProperty('checkpointSubmissionEndDate') | date: dateFormat}}</div>
+        <div class="val vEndRound">{{dateFormatFilter(row.getProperty('checkpointSubmissionEndDate'), dateFormat)}}</div>
       </div>
       <div class="row" ng-show="contest.listType != 'active'">
         <label class="lbl">End Date</label>
-        <div class="val vEndDate">{{row.getProperty('submissionEndDate') | date: dateFormat}}</div>
+        <div class="val vEndDate">{{dateFormatFilter(row.getProperty('submissionEndDate'), dateFormat)}}</div>
       </div>
       <div class="row" ng-show="contest.listType == 'active'">
+<<<<<<< HEAD
         <label class="lbl">Submit by</label>
+        <div class="val vEndDate">{{dateFormatFilter(row.getProperty('submissionEndDate'), dateFormat)}}</div>
+=======
+        <label class="lbl">Submit By</label>
         <div class="val vEndDate">{{row.getProperty('submissionEndDate') | date: dateFormat}}</div>
+>>>>>>> master
       </div>
     </div>
   </div>

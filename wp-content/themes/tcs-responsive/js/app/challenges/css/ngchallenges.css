@@ -43,12 +43,19 @@
     border: solid #e7e7e7;
     border-width: 1px 0;
 }
-
+.challengesGrid .ngRow,
+.challengesGrid .ngCanvas{
+    width: 100% !important;
+}
 .challengesGrid .ngRow.odd {
     background-color: #f7f7f7;
 }
 .challengesGrid .ngRow.even {
     background-color: #ffffff;
+}
+
+.challengesGrid.dataScienceList .challengeCell {
+   line-height: 70px;
 }
 
 .challengesGrid .challengeCell {
@@ -124,7 +131,7 @@
     padding-top: 40px;
 }
 
-.upcomingCaption {
+.upcomingCaption,.pastCaption {
     text-align: center;
     padding: 10px 0;
 }
@@ -152,6 +159,35 @@
     padding: 0;
     color: #666;
 }
+
+.challengesGrid .challengeCell .colRolesWrapper {
+    display: block;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 140px;
+    line-height: 115px;
+    vertical-align: middle;
+}
+
+
+.challengesGrid .challengeCell .colRoles {
+   display: inline-block;
+   padding-top: 15px;
+}
+
+.challengesGrid .challengeCell .colRoles .role {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 80px;
+    line-height: normal;
+}
+
+.myChallengesLabel {
+    font-size: 13px;
+}
+
 /* Mobile View Fix */   
 @media (max-width: 1019px) {
     .hideOnMobile, .contestGrid .contest .hideOnMobile {

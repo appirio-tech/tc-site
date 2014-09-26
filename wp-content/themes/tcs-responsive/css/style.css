@@ -724,7 +724,7 @@
         float: left;
 }   
     #mainContent .dataChanges .nextLink i{
-        top: 2px;
+        top: 4px;
     }
     #mainContent .dataChanges .prevLink{
         display: inline-block;   
@@ -736,7 +736,7 @@
         display: none;
     }
     #mainContent .dataChanges .prevLink i{
-        top: 2px;
+        top: 4px;
     }
 /* data table */
 .dataTable{
@@ -863,6 +863,9 @@
     text-indent: 20px;
 }    
 /* contest gird view */
+#tableView{
+    padding-top: 15px;
+}
 .layChallenges #gridView{
     border-top: none;
 }
@@ -870,7 +873,6 @@
     display: block;
     overflow: hidden;
     margin: 0 -29px 0 -25px;
-    padding-top: 16px;
 }
 .contestGrid.alt{
     margin: 0 -12px -18px -12px;
@@ -2496,4 +2498,121 @@ hr.light {
 #loginFirst {
 	display: none;
 	margin-bottom: 600px;
+}
+
+/* search widget */
+.headerTopRightMenuLink.search.active{
+    background-color: #00aeff;
+    color: white;
+}
+.headerTopRightMenuLink.search.active .icon{
+    z-index: 1;
+}
+#searchWidget{
+    position: absolute;
+    top: 33px;
+    margin-left: -111px;
+    width: 410px;
+    height: 140px;
+    border-top: 3px solid #0096ff;
+    z-index: 11;
+    background-color: white;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+#searchWidget .upperbox{
+    height: 80px;
+    border-bottom: 1px solid #e7e7e7;
+}
+#searchWidget .lowerbox{
+    height: 60px;
+}
+#searchWidget .searchText{
+    margin: 20px 0 20px 15px;
+    font-size: 16px;
+    color: #8f8f8f;
+    float:left;
+}
+#searchWidget .btnGo{
+    width: 60px;
+    margin:10px 15px 10px 0;
+    float: right;
+}
+#searchWidget .searchArea{
+    padding: 20px 20px;
+}
+#searchWidget .btnSearchType{
+    border-radius: 4px 0 0 4px;
+    background: #666666;
+    border-bottom: 4px solid #474747;
+}
+#searchWidget .btnSearchType i {
+    display: inline-block;
+    width: 16px;
+    height: 9px;
+    position: absolute;
+    right: 13px;
+    top: 13px;
+    background: url(../i/ico-arrow.png) no-repeat;
+    background-position: 0 0;
+    transition-duration: .3s;
+    cursor: pointer;
+}
+#searchWidget .btnSearchType.isActive i {
+    background-position: 0 -12px;
+}
+#searchWidget .searchInput{
+    border-radius: 0 4px 4px 0;
+    background: white;
+    border: 1px solid #e3e3e3;
+    width: 220px;
+    height: 23px;
+    padding-top: 5px;
+}
+#searchWidget .searchInput.required{
+    border: 1px solid red;
+}
+#searchWidget #requiredText{
+    color: red;
+    font-size: 12px;
+    float: right;
+}
+#searchWidget #searchTypeList{
+    margin: -20px 0 0 20px;
+    width: 130px;
+    text-align: center;
+    position: absolute;
+    z-index: 12;
+}
+#searchWidget .searchType{
+    background: white;
+    border: 1px solid #e3e3e3;
+    padding: 10px 15px;
+    display: block;
+}
+#searchWidget #searchTypeList .searchType:hover{
+    background: #ff9900;
+    color: white;
+}
+#searchMemberWrapper .pagingBox{
+    text-align: center;
+}
+#searchMemberWrapper #memberSearchTable{
+    width: 100%;
+    border: 1px solid #e7e7e7; */
+    border-bottom: 7px solid #e7e7e7;
+    font-size:20px;
+    text-align: center;
+}
+#searchMemberWrapper #memberSearchTable td{
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #e7e7e7;
+    height: 35px;
+	font-size:15px;
+}
+#searchMemberWrapper #memberSearchTable td.header{
+    font-weight: bold;
+    background-color: #f1f1f1;
 }

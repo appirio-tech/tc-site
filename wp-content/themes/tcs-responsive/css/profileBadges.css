@@ -24,12 +24,7 @@
 
 .subBadge {
     height: 48px;
-    display: inline-block;
-    /*
-    margin-right: -3px;
-    v1.0: Bugfix: Need this since using inline-block introduces unwanted space between elements, throwing badge alignment off
-    v1.1 Removed again in Module Assembly - member profile badges section refactor - Angular
-    */
+    float: left;
 }
 
 .progress-meters .subBadge {

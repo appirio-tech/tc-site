@@ -84,7 +84,7 @@ array_push ( $challengetypes, 'UI Prototypes' );
 					$dev = $tracks->{$currentChallengetype};
 					$devHistory = $competitionHistory->{$currentChallengetype};
 				} else {
-					echo "<h3>Develop</h3>";
+					echo "<h3>Development</h3>";
 				}
 				?>
 				</ul>
@@ -101,10 +101,8 @@ array_push ( $challengetypes, 'UI Prototypes' );
 								$underscoredCurrentChallengeType = str_replace ( ' ', '_', $currentChallengetype );
 								$underscoredCurrentChallengeType = strtolower ( $underscoredCurrentChallengeType );?>
 					</h4>
-					<div class="rating <?php echo do_shortcode("[tc_rating_color score='".$dev->rating."' ]") ?>"><?php echo $dev->rating;?></div>
 					<div class="lbl">Rating</div>
-					<div class="lbl">
-					</div>
+					<div class="rating <?php echo do_shortcode("[tc_rating_color score='".$dev->rating."' ]") ?>"><?php echo $dev->rating;?></div>
 				</div>
 
 

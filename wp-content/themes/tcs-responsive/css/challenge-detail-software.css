@@ -205,7 +205,7 @@ font-size: 18px;
     color: #FFFFFE;
     font-size: 30px;
     line-height: 30px;
-    margin-left: 20px;
+    margin-left: 2px;
 }
 
 #stepBox .rightColumn .nextBox .timeLeft small {
@@ -302,6 +302,11 @@ font-size: 18px;
     border-bottom: 1px solid #e7e7e7;
     margin-bottom: 10px;
     padding-bottom: 8px;
+}
+
+h1.center {
+  margin-top: 10px;
+  text-align: center;
 }
 
 .challenge-detail.develop .tableWrap h1 {
@@ -456,14 +461,14 @@ font-size: 18px;
 
 
 .challenge-detail .columnSideBar .inner {
-    padding: 10px 10px 0 10px;
+    padding: 10px 10px;
+    border-bottom: 1px solid #e7e7e7;
 }
 
 .challenge-detail .columnSideBar h3 {
     color: #00aeff;
     font-size: 16px;
     font-weight: bold;
-    border-bottom: 1px solid #e7e7e7;
     padding: 11px 10px;
     text-transform: uppercase;
 }
@@ -596,9 +601,6 @@ font-size: 18px;
 
 .reviewStyle h3 {
     color: #B30000;
-    font-family: "Lucida Sans Unicode", Arial, Helvetica, sans-serif;
-    font-size: 16px;
-    font-weight: normal;
     padding: 0 0 6px;
 }
 
@@ -817,9 +819,8 @@ font-size: 18px;
 }
 
 #viewRegistrant table tr td {
-    height: 30px;
+    height: 40px;
     padding-left: 10px;
-    padding-top: 12px;
     font-size: 12px;
 }
 
@@ -833,12 +834,16 @@ font-size: 18px;
     width: 25%;
 }
 
+#viewRegistrant table tr .handleColumnDesign {
+    width: 30%;
+}
+
 #viewRegistrant table tr td.handleColumn {
     font-size: 14px;
 }
 
 #viewRegistrant table tr .ratingColumn {
-    width: 13%;
+    width: 10%;
     text-align: center;
 }
 
@@ -848,12 +853,32 @@ font-size: 18px;
 }
 
 #viewRegistrant table tr .regDateColumn {
-    width: 25%;
+    width: 20%;
+    text-align: center;
+}
+
+#viewRegistrant table tr .regDateColumnDesign {
+    width: 30%;
     text-align: center;
 }
 
 #viewRegistrant table tr .subDateColumn {
-    width: 25%;
+    width: 20%;
+    text-align: center;
+}
+
+#viewRegistrant table tr .successColumn {
+    width: 12%;
+    text-align: center;
+}
+
+#viewRegistrant table tr .subDateColumnDesign {
+    width: 30%;
+    text-align: center;
+}
+
+#viewRegistrant table tr .successIconColumn {
+    width: 10%;
     text-align: center;
 }
 

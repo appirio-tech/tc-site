@@ -137,16 +137,18 @@ module.exports = function(grunt) {
           {
             expand: true,
             src: [
-              '<%= build.themeDist %>/js/*.min.*',
-              '!<%= build.themeDist %>/js/  *.gz'
-            ]
+              '<%= build.themeDist %>/js/*.min.js',
+              '!<%= build.themeDist %>/js/*.gz.js'
+            ],
+            ext: '.min.gz.js'
           },
           {
             expand: true,
             src: [
-              '<%= build.themeDist %>/css/*.min.*',
-              '!<%= build.themeDist %>/css/*.gz'
-            ]
+              '<%= build.themeDist %>/css/*.min.css',
+              '!<%= build.themeDist %>/css/*.gz.css'
+            ],
+            ext: '.min.gz.css'
           }
         ]
       }

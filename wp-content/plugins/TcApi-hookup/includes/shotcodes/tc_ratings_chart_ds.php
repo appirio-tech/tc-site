@@ -240,7 +240,7 @@ function tc_ratings_chart_ds_function($atts, $content = null) {
 	);
 	$distChart->tooltip = array (
 			'formatter' => new HighchartJsExpr ( "function() {
-		        return this.y +' Coders';
+		        return this.y + (this.y==1?' Coder':' Coders');
 		    }" ) 
 	);
 	$distChart->series [] = array (

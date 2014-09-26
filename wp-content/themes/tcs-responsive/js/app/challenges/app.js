@@ -8,7 +8,8 @@ window.tc = angular.module('tc', [
   'tc.AdvancedSearch',
   'angular-loading-bar',
   'ngGrid',
-  'ui.select2'
+  'ui.select2',
+  'ngCookies'
 ])
 
   .constant("API_URL", tcApiRUL)
@@ -24,7 +25,7 @@ window.tc = angular.module('tc', [
     // Base API url
     RestangularProvider.setBaseUrl(API_URL);
     RestangularProvider.setDefaultHttpFields({cache: true});
-
+    
     // add a response intereceptor
     RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
       var extractedData;
@@ -46,4 +47,11 @@ window.tc = angular.module('tc', [
       //loadingBar.complete();
       return extractedData;
     });
+  }])
+  // Check if the user is authenticated by checking its tcjwt cookie
+  .run(['Restangular', '$cookies', '$rootScope', function(Restangular, $cookies, $rootScope) {
+    if($cookies.tcjwt) {
+      Restangular.setDefaultHeaders({Authorization: "Bearer " + $cookies.tcjwt});
+      $rootScope.authenticated = true;
+    }
   }]);

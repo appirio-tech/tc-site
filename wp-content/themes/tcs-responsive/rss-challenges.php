@@ -8,12 +8,14 @@ echo '<?xml-stylesheet type="text/xsl" media="screen" href="' . get_stylesheet_d
 
 $listType = get_query_var('list');
 $contestType = get_query_var('contestType');
+$technologies = get_query_var('technologies');
+$platforms = get_query_var('platforms');
 $contests = array();
 
 if ($contestType == 'all') {
-    $contestDesign = get_contests_rss($listType, 'design');
-    $contestDevelop = get_contests_rss($listType, 'develop');
-    $contestData = get_contests_rss($listType, 'data');
+    $contestDesign = get_contests_rss($listType, 'design', $technologies, $platforms);
+    $contestDevelop = get_contests_rss($listType, 'develop', $technologies, $platforms);
+    $contestData = get_contests_rss($listType, 'data', $technologies, $platforms);
 
     if (isset($contestDesign->data) && is_array($contestDesign->data) && !empty($contestDesign->data)) {
         $contests += $contestDesign->data;
@@ -28,7 +30,7 @@ if ($contestType == 'all') {
     }
 
 } else {
-    $contests = get_contests_rss($listType, $contestType);
+    $contests = get_contests_rss($listType, $contestType, $technologies, $platforms);
     $contests = isset($contests->data) && is_array($contests->data) ? $contests->data : array();
 }
 
@@ -62,6 +64,7 @@ if ($contestType == 'all') {
         <item>
           <title><?php echo $name ?></title>
           <link><?php echo "{$base_url}/{$contest->challengeId}?type={$contest->challengeType}" ?></link>;
+          <pubDate><?php echo date('d M Y H:i T', strtotime($contest->registrationStartDate)) ?></pubDate>
           <description><![CDATA[<?php echo $content ?>]]></description>
           <content:encoded><![CDATA[<?php echo $content ?>]]></content:encoded>
           <?php rss_enclosure(); ?>
