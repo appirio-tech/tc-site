@@ -529,7 +529,7 @@ get_header(); ?>
 </script>
 
 <script type="text/ng-template" id="tableView/winners.html">
-  <span ng-cell-text><a href="/challenge-details/{{row.getProperty('challengeId')}}/?type={{row.getProperty('challengeCommunity')}}#viewRegistrant">View Winners</a></span>
+  <span ng-cell-text><a href="/challenge-details/{{row.getProperty('challengeId')}}/?type={{row.getProperty('challengeCommunity')}}#winner">View Winners</a></span>
 </script>
 
 

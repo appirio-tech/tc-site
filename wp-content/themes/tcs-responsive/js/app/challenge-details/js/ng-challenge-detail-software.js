@@ -424,14 +424,22 @@ app.tabNavinit = function() {
     $('#mainContent').attr('class', '').addClass('splitLayout').addClass('currentTab-' + id);
     return false;
   });
-
-  $('.challenge-detail .tabsWrap .tabNav a').each(function () {
-    var value = $.trim($(this).text()).toLocaleLowerCase();
-    if (activeTab === value) {
-      $('.active', $(this).closest('ul')).removeClass('active');
-      $(this).addClass('active');
-    }
-  })
+  if (activeTab && activeTab.length > 0) {
+    $('.challenge-detail .tabsWrap .tabNav a.active').each(function () {
+      $(this).removeClass('active');
+    });
+    $('.challenge-detail .tabsWrap .tabNav a').each(function () {
+      var value = $.trim($(this).text()).toLocaleLowerCase();
+      if (activeTab === value) {
+        $(this).addClass('active');
+        if ($(this).attr("href") === "#winner" || $(this).attr("href") === "#submissions") {
+          updateTabForResults();
+        } else {
+          updateTabForNonResults();
+        }
+      }
+    });
+  }
 }
 //This function adds number formatting to JS number prototype
 /**

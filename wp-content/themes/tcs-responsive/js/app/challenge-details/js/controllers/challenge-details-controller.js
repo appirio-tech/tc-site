@@ -49,13 +49,9 @@
       vm.tcDoAction = $cookies.tcDelayChallengeAction.split('|');
     }
     vm.activeTab = 'details';
-    if (window.location.hash == '#viewRegistrant') {
-      vm.activeTab = 'registrants';
-    } else if (window.location.hash == '#winner') {
-      vm.activeTab = 'winners';
-    } else if (window.location.hash == '#submissions') {
-      vm.activeTab = 'submissions';
-    }
+    if (window.location.hash == '#viewRegistrant' || window.location.hash == '#/viewRegistrant') vm.activeTab = 'registrants';
+    else if (window.location.hash == '#winner' || window.location.hash == '#/winner') vm.activeTab = 'results';
+    else if (window.location.hash == '#submissions' || window.location.hash == '#/submissions') vm.activeTab = 'submissions';
 
     vm.numCheckpointSubmissions = -1;
     vm.checkpointData = false;
