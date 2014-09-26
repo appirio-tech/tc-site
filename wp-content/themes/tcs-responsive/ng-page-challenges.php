@@ -75,7 +75,7 @@ get_header(); ?>
           <h1>
             {{titles[contest.contestType]}}
             <span class="subscribeTopWrapper">
-              <a class="feedBtn" target="_self" href="/challenges/feed?list=active&contestType={{contest.contestType || 'all'}}" title="Subscribe to challenges"></a>
+              <a class="feedBtn" target="_self" href="{{feedUrl}}" title="Subscribe to challenges"></a>
             </span>
           </h1>
           <aside class="rt" ng-show="contest.listType !== 'past' && contest.contestType !== 'data'">

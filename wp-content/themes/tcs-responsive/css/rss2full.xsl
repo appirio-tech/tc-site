@@ -179,30 +179,16 @@
     <xsl:template match="item" xmlns:dc="http://purl.org/dc/elements/1.1/">
         <li class="regularitem">
             <h4 class="itemtitle">
-                <xsl:choose>
-                    <xsl:when test="guid[@isPermaLink='true' or not(@isPermaLink)]">
-                        <a href="{normalize-space(guid)}">
-                            <xsl:value-of select="title"/>
-                        </a>
-                    </xsl:when>
-                    <xsl:when test="link">
-                        <a href="{normalize-space(link)}">
-                            <xsl:value-of select="title"/>
-                        </a>
-                    </xsl:when>
-                    <xsl:otherwise>
+                <xsl:if test="link">
+                    <a href="{normalize-space(link)}">
                         <xsl:value-of select="title"/>
-                    </xsl:otherwise>
-                </xsl:choose>
+                    </a>
+                </xsl:if>
             </h4>
             <h5 class="itemposttime">
-                <xsl:if test="count(child::pubDate)=1">
-                    <span>Posted:</span>
+                <xsl:if test="pubDate">
+                    <span>Posted: </span>
                     <xsl:value-of select="pubDate"/>
-                </xsl:if>
-                <xsl:if test="count(child::dc:date)=1">
-                    <span>Posted:</span>
-                    <xsl:value-of select="dc:date"/>
                 </xsl:if>
             </h5>
             <div class="itemcontent" name="decodeable">

@@ -103,6 +103,19 @@
         }
       }
 
+      function generateFeedUrl() {
+        var url = '/challenges/feed?';
+        url += 'list=' + ($scope.contest.listType || 'active');
+        url += '&contestType=' + ($scope.contest.contestType || 'all');
+        if ($scope.filter.technologies.length > 0) {
+          url += '&technologies=' + $scope.filter.technologies.join(',');
+        }
+        if ($scope.filter.platforms.length > 0) {
+          url += '&platforms=' + $scope.filter.platforms.join(',');
+        }
+        $scope.feedUrl = url;
+      }
+
       function parseFilters() {
         var moment = $window.moment;
         $scope.filter = {
@@ -163,6 +176,8 @@
           $scope.filter.challengeTypes = [];
         }
         $scope.filter.userChallenges = !!$routeParams.userChallenges && $scope.authenticated;
+
+        generateFeedUrl();
       }
     
       $scope.showFilters = false;
@@ -199,8 +214,7 @@
         listType: $routeParams.challengeStatus ? $routeParams.challengeStatus.toLowerCase() : 'active',
         isUserChallenges: !!$routeParams.userChallenges
       };
-      
-      
+            
       parseFilters();
 
       $scope.titles = {
@@ -214,6 +228,7 @@
         past: 'Past ',
         upcoming: 'Upcoming '
       };
+
       //set page title
       var pageTitle = $scope.titles[$scope.contest.contestType] + " - Topcoder";
       if ($scope.contest.contestType !== '') {

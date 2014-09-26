@@ -936,12 +936,14 @@ function get_social_validity_ajax(
  *
  * @param $listType
  * @param $challengeType
+ * @param $technologies[optional]
+ * @param $platforms[optional]
  *
  * @return array|mixed|string
  */
-function get_contests_rss($listType, $challengeType)
+function get_contests_rss($listType, $challengeType, $technologies = "", $platforms = "")
 {
-    $url = TC_API_URL . "/challenges/rss?listType={$listType}&challengeType={$challengeType}";
+    $url = TC_API_URL . "/challenges/rss?listType={$listType}&challengeType={$challengeType}&technologies={$technologies}&platforms={$platforms}";
 
     $args     = array(
         'httpversion' => get_option( 'httpversion' ),
