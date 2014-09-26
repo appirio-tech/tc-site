@@ -91,6 +91,12 @@ appChallengeSubmit = {
                   xhr.abort();
                   $( ".uploadBar .loader" ).stop();
                   $('.container').removeClass('uploading');
+                  /* Issue #664 - reset input[type=file]
+                    To provide maximum browser compatibility, reset the whole form first and then set #agree prop back */
+                  var agreed = $('#agree').prop('checked');
+                  $('#submitForm')[0].reset();
+                  $('#submission').closest('dd').find('.fileNameDisplay').html('Select file to upload...').addClass("fileNameDisplayNoFile");
+                  $('#agree').prop('checked', agreed);
                 });
               };
               fileReader.readAsDataURL(submission);
