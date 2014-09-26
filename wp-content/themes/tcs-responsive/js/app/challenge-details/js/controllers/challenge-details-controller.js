@@ -236,7 +236,7 @@
     vm.challenge.submissionDisabled   = true;
 
     // If is not registered, then enable registration
-    if (((moment(challenge.registrationEndDate)) > moment()) && regList.indexOf(handle) == -1) {
+    if (((moment(challenge.phases[0].scheduledStartTime)) < moment() && (moment(challenge.registrationEndDate)) > moment()) && regList.indexOf(handle) == -1) {
       vm.challenge.registrationDisabled = false;
     }
     //check autoRegister (terms link register) and DelayAction cookie status
