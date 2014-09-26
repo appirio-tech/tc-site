@@ -117,7 +117,7 @@
             React.DOM.a( {href:"/challenge-details/" +challenge.challengeId+"/?type="+challenge.challengeCommunity, className:"contestName"}, 
               React.DOM.img( {alt:"", className:"allContestIco", src:images + '/ico-track-' + challenge.challengeCommunity + '.png'} ),
               React.DOM.span( {className:"gridChallengName"}, challenge.challengeName),
-              React.DOM.img( {alt:"", className:"allContestTCOIco", src:images + '/tco-flag-' + challenge.challengeCommunity + '.png'} ),
+              React.DOM.img( {alt:"", className:challenge.challengeCommunity != 'data' ? "allContestTCOIco" : "allContestTCOIco ng-hide", src:images + '/tco-flag-' + challenge.challengeCommunity + '.png'} ),
               Qtip( {text:challenge.challengeType, title:"Challenge Type", community:challenge.challengeCommunity}, 
                 React.DOM.span( {className:"track-symbol"}, track.toUpperCase())
               )

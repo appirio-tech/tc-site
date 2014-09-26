@@ -117,7 +117,7 @@
             <a href={"/challenge-details/" +challenge.challengeId+"/?type="+challenge.challengeCommunity} className="contestName">
               <img alt="" className="allContestIco" src={images + '/ico-track-' + challenge.challengeCommunity + '.png'} />
               <span className="gridChallengName">{challenge.challengeName}</span>
-              <img alt="" className="allContestTCOIco" src={images + '/tco-flag-' + challenge.challengeCommunity + '.png'} />
+              <img alt="" className={challenge.challengeCommunity != 'data' ? "allContestTCOIco" : "allContestTCOIco ng-hide"} src={images + '/tco-flag-' + challenge.challengeCommunity + '.png'} />
               <Qtip text={challenge.challengeType} title="Challenge Type" community={challenge.challengeCommunity}>
                 <span className="track-symbol">{track.toUpperCase()}</span>
               </Qtip>
