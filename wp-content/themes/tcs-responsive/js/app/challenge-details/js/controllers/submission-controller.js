@@ -42,20 +42,12 @@ var sub;
     $scope.$watch('challenge', function(){
       glob = $scope.challenge;
       if ($scope.challenge) {
-        /*
-         * Based on http://docs.tcapi.apiary.io/#studiochallenges,
-         * there should be "submissionsViewable" on
-         * http://api.topcoder.com/v2/design/challenges/30041860
-         * for now just hardcode var for that.
-         *
-         * To simulate private challenge, set mockSubmissionsViewable to false.
-         */
         if (!$scope.challenge.submissionsViewable || $scope.challenge.submissionsViewable == 'false') {
           $scope.challenge.submissionsViewable = false;
         } else {
           $scope.challenge.submissionsViewable = true;
         }
-        vm.submissionsViewable = vm.mockSubmissionsViewable = $scope.challenge.submissionsViewable;
+        vm.submissionsViewable = $scope.challenge.submissionsViewable;
 
         if (vm.hasSubmission($scope.challenge.submissions)) {
           vm.submissionPagedItems = vm.pagination($scope.challenge.submissions);
@@ -144,7 +136,6 @@ var sub;
       this.stockArtThreshold = 3;
 
       //init mock data.
-      this.mockSubmissionsViewable = true;
       this.mockDownloadCounter = 40;
       this.mockViewCounter = 290;
       this.mockPreviewTotal = 4;
@@ -162,10 +153,14 @@ var sub;
     /**
      * The method is triggered when view a single submission.
      * @submission the submission to view.
+     * @isFromResultSubmission [optional] if the submission object is from challenge result
      */
-    function viewSubmission(submission) {
+    function viewSubmission(submission, isFromResultSubmission) {
       var subCtrl = this;
-      if (!subCtrl.submissionsViewable) return;
+      if (isFromResultSubmission) {
+        submission = findSubmission(submission);
+      }
+      if (!subCtrl.submissionsViewable || typeof submission === 'undefined' || submission === null) return;
       /*
        * Currently API does not provide us the total number of images,
        * so we don't know what is max value FileIndex.numOfImages field
@@ -186,6 +181,22 @@ var sub;
       subCtrl.singleViewSubmission = submission;
       subCtrl.selectPreview(0);
       subCtrl.singleViewMode = true;
+    }
+
+    /**
+     * Use submitter and submissionTime to find submission object of a result submission
+     * @resultSubmission submission of challenge result
+     */
+    function findSubmission(resultSubmission) {
+      var submissions = $scope.challenge.submissions;
+      if (hasSubmission(submissions)) {
+        for (var i = 0; i < submissions.length; i++) {
+          if (submissions[i].submitter === resultSubmission.handle && submissions[i].submissionTime === resultSubmission.submissionDate) {
+            return submissions[i];
+          }
+        }
+      }
+      return null;
     }
 
     /**
