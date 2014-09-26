@@ -88,12 +88,12 @@
   </td>
 </tr>
 <tr><!-- Bugfix: Added noPrize class when challenge has no reliability bonus -->
-    <td ng-if="!CD.isDesign" colspan="{{CD.challenge.challengeType == 'Code' ? '2' : ''}}" class="{{!CD.challenge.reliabilityBonus ? 'noPrize' : ''}}">
+    <td ng-if="!CD.isDesign" colspan="{{CD.challenge.challengeType == 'Code' ? '2' : ''}}" class="{{ (!CD.challenge.reliabilityBonus || CD.challenge.challengeType === 'Bug Hunt') ? 'noPrize' : ''}}">
       <p class="realibilityPara">
         Reliability Bonus
-        <span ng-if="CD.reliabilityBonus" ng-bind-template="${{CD.challenge.reliabilityBonus}}">
+        <span ng-if="CD.reliabilityBonus && CD.challenge.challengeType !== 'Bug Hunt'" ng-bind-template="${{CD.challenge.reliabilityBonus}}">
         </span>
-        <span ng-if="!(CD.reliabilityBonus)">
+        <span ng-if="!(CD.reliabilityBonus) || CD.challenge.challengeType === 'Bug Hunt'">
           N/A
         </span>
       </p>
