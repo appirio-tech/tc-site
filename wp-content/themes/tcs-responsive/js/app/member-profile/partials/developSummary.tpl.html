@@ -48,14 +48,14 @@
 			<label>Reviewer Rating: </label>
 			<div class="val">
 				<a href="#" ng-if="stats.Tracks[subTrack].reviewerRating" ng-bind="stats.Tracks[subTrack].reviewerRating | number : 2 ">loading...</a>
-				<a href="#" ng-if="!stats.Tracks[subTrack].reviewerRating" ng-bind="!stats.Tracks[subTrack] | iif : 'loading...' : 'Not rated' "></a>
+				<span ng-if="!stats.Tracks[subTrack].reviewerRating" ng-bind="!stats.Tracks[subTrack] | iif : 'loading...' : 'Not rated' ">loading...</span>
 			</div>
 		</div>
 		<div class="row fieldRevRating">
 			<label>Reliability: </label>
 			<div class="val">
 				<a href="#" ng-if="stats.Tracks[subTrack].reliability && stats.Tracks[subTrack].reliability !=='n/a' " ng-bind="(stats.Tracks[subTrack].reliability*100.0 | number : 0 ) + '%'">loading...</a>
-				<a href="#" ng-if="!stats.Tracks[subTrack].reliability || stats.Tracks[subTrack].reliability === 'n/a'" ng-bind="!stats.Tracks[subTrack] | iif : 'loading...' : 'N/A' "></a>
+				<span ng-if="!stats.Tracks[subTrack].reliability || stats.Tracks[subTrack].reliability === 'n/a'" ng-bind="!stats.Tracks[subTrack] | iif : 'loading...' : 'N/A' ">loading...</span>
 			</div>
 		</div>
 		<div class="clear"></div>
