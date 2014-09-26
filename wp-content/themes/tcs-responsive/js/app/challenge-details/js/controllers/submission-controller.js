@@ -55,7 +55,7 @@ var sub;
         } else {
           $scope.challenge.submissionsViewable = true;
         }
-        vm.submissionsViewable = $scope.challenge.submissionsViewable = vm.mockSubmissionsViewable;
+        vm.submissionsViewable = vm.mockSubmissionsViewable = $scope.challenge.submissionsViewable;
 
         if (vm.hasSubmission($scope.challenge.submissions)) {
           vm.submissionPagedItems = vm.pagination($scope.challenge.submissions);
