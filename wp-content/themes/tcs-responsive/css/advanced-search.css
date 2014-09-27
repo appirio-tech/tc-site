@@ -174,7 +174,7 @@ input.search-text::-webkit-input-placeholder {
         color: #a0a0a0;
         font-style:italic;
     }
-        input.search-text::-ms-input-placeholder {
+        input.search-text:-ms-input-placeholder {
             font-weight: 400;
             font-size: 14px;
             font-family:"Source Sans Pro", Arial, Helvetica, sans-serif;
