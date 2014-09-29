@@ -123,6 +123,9 @@
         background: #ff9900 !important;
         color: #fff !important;
     }
+    .select2-results .select2-disabled .select2-result-label {
+        cursor: default;
+    }
         .select2-results .select2-result-label{
             border-bottom: 1px solid #e7e7e7;
             padding: 0 0 0 15px !important;
