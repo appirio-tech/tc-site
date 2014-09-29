@@ -1465,7 +1465,8 @@ the specific language governing permissions and limitations under the Apache Lic
                 // that way any unselectable headers above it will also be scrolled
                 // into view
 
-                results.scrollTop(0);
+                // Comment to fix known issue: https://github.com/ivaynberg/select2/issues/2570
+                // results.scrollTop(0);
                 return;
             }
 
