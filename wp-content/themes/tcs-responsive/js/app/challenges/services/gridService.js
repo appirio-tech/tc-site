@@ -12,6 +12,9 @@
     function () {
       
       function getChallengeNameWidth(contest) {
+        if (contest.listType == 'past' || contest.listType == 'upcoming') {
+         return 340;
+        }
         if (!contest.isUserChallenges && contest.contestType !== 'design') {
           return 400;
         }
