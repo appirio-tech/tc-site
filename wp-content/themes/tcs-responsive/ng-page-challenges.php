@@ -80,8 +80,8 @@ get_header(); ?>
           </h1>
           <aside class="rt">
             <span class="views">
-              <a href="" ng-click="view = 'grid'" class="gridView" ng-class="{isActive: view == 'grid'}"></a>
-              <a href="" ng-click="view = 'table'" class="listView" ng-class="{isActive: view == 'table'}"></a>
+              <a href="" ng-click="view = 'grid'" class="gridView" ng-class="{isActive: view == 'grid'}" qtip title="Layout" text="Grid View" community="design"></a>
+              <a href="" ng-click="view = 'table'" class="listView" ng-class="{isActive: view == 'table'}" qtip title="Layout" text="List View" community="design"></a>
             </span>
           </aside>
         </header>
