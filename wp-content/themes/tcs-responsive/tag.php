@@ -199,7 +199,7 @@ $categories = $activeMenuObj!=null ? $activeMenuObj->cat_name : "Categories";
             //wp_reset_query();
             wp_reset_postdata(); // reset post global var since it was updated above
             $args = "post_type=".BLOG;
-            $args .= "&posts_per_page=-1&cat=$catId";
+            $args .= "&posts_per_page=-1&tag_id=$tag_id";
             //$wpQueryAll = query_posts($args);
             $allPostsQuery = new WP_Query($args);
             $allPostsQuery->get_posts();
