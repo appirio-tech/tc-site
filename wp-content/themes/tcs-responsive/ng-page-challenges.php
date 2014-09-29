@@ -234,7 +234,7 @@ get_header(); ?>
                   <div class="selecting-tag-wrapper platform-value">
                     <div class="selected-tag">
                       <span class="tag-text left">{{plat}}</span>
-                      <span class="tag-close right" ng-click="removePlatform(tech)"></span>
+                      <span class="tag-close right" ng-click="removePlatform(plat)"></span>
                     </div>
                   </div>
                 </li>
