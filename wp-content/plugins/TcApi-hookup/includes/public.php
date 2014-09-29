@@ -363,7 +363,7 @@ class TCHOOK_Public extends TCHOOK_Plugin {
   function tcapi_get_coder($atts, $handle = "") {
     $handle        = clean_pre($handle);
     $coder_profile = get_member_profile($handle);
-    $coder_ratings = $coder_profile->ratingsSummary;
+    $coder_ratings = $coder_profile->ratingSummary;
     $coder_handle  = $coder_profile->handle;
 
     if ($coder_handle != "") {
