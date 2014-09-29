@@ -21,6 +21,7 @@
   border-radius: 4px;
   background: #fafafa;
   border: 1px solid #e1e1e1;
+  max-width: 100%;
 }
 /*About Us page*/
 .pageView #mainContent{
