@@ -190,6 +190,26 @@ $blog_posts = get_posts($blog_posts_args);
     </div>
 </div><!-- END #show submission -->
 
+<div id="designSubmissionCommentExample" class="modal">
+  <a href="javascript:;" class="btnClose closeModal"></a>
+  <div class="content">
+    <h2>Comment Examples</h2>
+
+    <strong>Example 1:</strong><br>
+    The logo represents movement and "taking action" rather than being stagnant.
+    The colors I chose signify power and give the brand a strong feel.<br><br>
+
+    <strong>Example 2:</strong><br>
+    This is a revised version of my previous submission. Changes include a new
+    header graphic, new font choices for the pop-up box and new icons for the
+    widget on the fourth page.<br><br>
+
+    <strong>Example 3:</strong><br>
+    This is my Round 2 submission. I have implemented all of the feedback you
+    gave me after Round 1 and I hope you like the changes.<br><br>
+  </div>
+</div><!-- END #show submission -->
+
 <div id="register" class="modal">
 <a href="javascript:;" class="btnClose closeModal"></a>
 

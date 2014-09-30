@@ -1,29 +1,26 @@
-/* TODO:
- * - Wrap in anon function
- * - Change style to match style guide
- *
+'use strict';
+
+/**
+ * This code is copyright (c) 2014 Topcoder Corporation
+ * author: TCSASSEMBLER
+ * version 1.0
  */
 
-(function () {
+/*jslint nomen: true*/
+/*global angular: true, _: true */
+(function(angular) {
 
-  angular
-    .module('challengeDetails', [
+  'use strict';
+  angular.module('tc.submissionUpload', [
     'restangular',
     'ngCookies',
-    'angular-loading-bar',
-    'tc.SubmissionDirectives',
-    'tc.SubmissionServices',
-    'challengeDetails.filters',
-    'challengeDetails.services'
-    ])
+    'challengeDetails.services',
+    'tc.shared.services.utils',
+    'tc.shared.directives.tcScrollToTop',
+    'tc.shared.directives.tcNumberOnly'
+  ])
 
-    .constant("API_URL", tcApiRUL)
-
-    .constant("TEMPLATE_URL", "/js/app/challenge-details/partials/")
-
-    .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
-      cfpLoadingBarProvider.includeSpinner = false;
-    }])
+  .constant("API_URL", tcApiRUL)
 
   .config(DataPreProcessing);
 
@@ -72,4 +69,4 @@
     });
   }
 
-})();
+}(angular));
