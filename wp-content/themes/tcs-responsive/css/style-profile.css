@@ -3,7 +3,8 @@ a{
 }
 .nocontestStatus{
     height: 550px;
-    line-height: 300px;
+    line-height: 30px;
+    margin-top: 120px;
     text-align: center;
     color: #FF8A00;    
 }
