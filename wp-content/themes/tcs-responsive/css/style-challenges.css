@@ -197,7 +197,6 @@ select {
     top: 4px;
     background: url(../i/tco/tco-arrow.png) no-repeat;
     background-position: 0 10px;
-    padding-bottom: 8px;
 
     -moz-transition-duration: .2s;
     -webkit-transition-duration: .2s;

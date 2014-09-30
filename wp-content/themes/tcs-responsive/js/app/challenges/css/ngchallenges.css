@@ -78,7 +78,7 @@
 }
 
 .challengesGrid .challengeCell .colDur {
-    line-height: 110px;
+    line-height: normal;
     vertical-align: middle;
 }
 

@@ -432,7 +432,7 @@ get_header(); ?>
 </script>
 
 <script type="text/ng-template" id="tableView/duration.html">
-  <div class="colDur">{{getContestDuration(row.getProperty('registrationStartDate'), row.getProperty('submissionEndDate'))}}</div>
+  <span class="colDur">{{getContestDuration(row.getProperty('registrationStartDate'), row.getProperty('submissionEndDate'))}}</span>
 </script>
 
 <script type="text/ng-template" id="tableView/isPrivate.html">
