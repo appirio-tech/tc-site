@@ -1,0 +1,50 @@
+<form action="http://studio.topcoder.com/" method="POST" name="submitForm" enctype="multipart/form-data" id="submitForm" autocomplete="off" tc-jq-transform ng-hide="uCtrl.uploadState === 'success'">
+    <section class="formSection browseFile">
+        <h3>SUBMISSION UPLOAD</h3>
+
+        <div class="leftCol col" style="padding-bottom: 20px;">
+            <dl class="group fileField linkRow jqtransformdone" style="z-index: 985;">
+                <dt>Submission File (*.zip)</dt>
+                <dd tc-browse-file tc-validate-file-browser="submission">
+                    <p class="fileNameDisplay fileNameDisplayNoFile">Select file to upload...</p>
+                    <a class="btn fileBrowser btnGreen" href="javascript:;">Browse</a>
+                    <span class="error"></span>
+                    <input id="submission" data-type="zip" type="file" name="submission"
+                           class="fileInput">
+                </dd>
+            </dl>
+            <p style="margin-left: 30px;">If you have trouble uploading your file, please submit <a ng-href="https://software.topcoder.com/review/actions/UploadContestSubmission?pid={{uCtrl.challengeId}}" href>here</a>.</p>
+        </div>
+        <div class="rightCol col">
+          <p>Please organize and upload files as per the submission requirements for the challenge</p>
+        </div>
+        <div class="clear"></div>
+    </section>
+    <section class="agreement notAgreed" ng-class="{'notAgreed' : !uCtrl.termsAgreed}">
+        <input id="agree" type="checkbox" ng-model="uCtrl.termsAgreed"/>
+        <label>By clicking this box you agree to our <a id="termsLink" href="http://www.topcoder.com/community/how-it-works/terms/" target="_blank">terms and conditions.</a></label>
+        <a href="javascript:" id="submit" class="btn" tc-submit>Submit</a>
+    </section>
+    <!-- #/end agreement section-->
+    <section class="uploadContent" tc-upload-bar>
+        <h3>Uploading Submission</h3>
+
+        <p>Please don’t close the browser until the file is uploaded</p>
+
+        <div class="uploadBar">
+            <div class="loader"></div>
+            <div class="percentage">0%</div>
+        </div>
+        <!-- #/end uploadBar-->
+        <div class="buttonBar">
+            <a href="javascript:" id="cancelUpload" class="btn btnGreen">Cancel</a>
+        </div>
+        <!-- #/end buttonBar-->
+    </section>
+    <!-- #/end upload section-->
+</form>
+
+<section class="viewSubmission" ng-show="uCtrl.uploadState === 'success'">
+    <h2>Submission successfully uploaded</h2>
+</section>
+<!-- /#end view submission-->

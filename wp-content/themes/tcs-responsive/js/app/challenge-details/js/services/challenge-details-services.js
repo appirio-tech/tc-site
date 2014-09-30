@@ -7,7 +7,7 @@
 (function () {
 
   angular
-    .module('challengeDetails')
+    .module('challengeDetails.services', [])
     .factory('ChallengeService', ChallengeService);
 
   ChallengeService.$inject = ['Restangular', 'API_URL', '$q']
