@@ -516,13 +516,8 @@ get_header(); ?>
         <div class="val vEndDate">{{dateFormatFilter(row.getProperty('submissionEndDate'), dateFormat)}}</div>
       </div>
       <div class="row" ng-show="contest.listType == 'active'">
-<<<<<<< HEAD
         <label class="lbl">Submit by</label>
         <div class="val vEndDate">{{dateFormatFilter(row.getProperty('submissionEndDate'), dateFormat)}}</div>
-=======
-        <label class="lbl">Submit By</label>
-        <div class="val vEndDate">{{row.getProperty('submissionEndDate') | date: dateFormat}}</div>
->>>>>>> master
       </div>
     </div>
   </div>
