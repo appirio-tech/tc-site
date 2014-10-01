@@ -83,7 +83,7 @@ $siteURL = site_url ();
 										$iurl = wp_get_attachment_url ( $thumbId );
 										?>
 									<li><a class="contentLink" href="<?php the_permalink() ?>">
-										<img class="contentThumb" src="<?php echo $iurl;?>" alt="<?php the_title(); ?>">
+										<div class="contentThumb" style="background-image: url('<?php echo $iurl;?>')" alt="<?php the_title(); ?>"></div>
 										<?php the_title(); ?>
 									</a> <span class="contentBrief"><?php echo custom_excerpt(10) ?></span></li>
 									
