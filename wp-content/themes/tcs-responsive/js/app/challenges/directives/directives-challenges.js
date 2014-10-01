@@ -31,14 +31,12 @@
         restrict: 'A',
         link: function (scope, element, attrs) {
           scope.$watch('challenges', function (challenges, oldValue) {
-            if (challenges && challenges.length) {
-              React.renderComponent(
-                window.ChallengeGridAll({
-                  scope: scope
-                }),
-                element[0]
-              );
-            }
+            React.renderComponent(
+              window.ChallengeGridAll({
+                scope: scope
+              }),
+              element[0]
+            );
           });
         },
         controller: ['$scope',
