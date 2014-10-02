@@ -325,7 +325,7 @@ a.blueLink:hover {
 
 .subscribeBox .text {
     display: block;
-    height: 32px;
+    height: 32px !important;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
