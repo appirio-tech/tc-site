@@ -192,11 +192,13 @@ $(window).resize(function () {
       $('.grid-1-3').insertAfter('.rightSplit');
       $('.scroll-pane').jScrollPane({ autoReinitialise: true });
 
-      slider.destroySlider();
-      sliderActive = false;
-      // Replace the destroyed slider with a previously cloned one
-      // Hack for a known bxslider bug: http://stackoverflow.com/questions/16283955/window-resize-with-bxslider-destroyed-breaks-style
-      $('.slider > ul:first-child').replaceWith(sliderClone);
+      if ($('.columnSideBar .slider').length) {
+        slider.destroySlider();
+        sliderActive = false;
+        // Replace the destroyed slider with a previously cloned one
+        // Hack for a known bxslider bug: http://stackoverflow.com/questions/16283955/window-resize-with-bxslider-destroyed-breaks-style
+        $('.slider > ul:first-child').replaceWith(sliderClone);
+      };
     }
     if ($('.studio').length > 0) {
       updateDesignContest();
