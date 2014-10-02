@@ -943,7 +943,7 @@ function get_social_validity_ajax(
  */
 function get_contests_rss($listType, $challengeType, $technologies = "", $platforms = "")
 {
-    $url = TC_API_URL . "/challenges/rss?listType={$listType}&challengeType={$challengeType}&technologies={$technologies}&platforms={$platforms}";
+    $url = TC_API_URL . "/challenges/rss?listType={$listType}&challengeType={$challengeType}";//&technologies={$technologies}&platforms={$platforms}";
 
     $args     = array(
         'httpversion' => get_option( 'httpversion' ),

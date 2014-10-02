@@ -54,10 +54,6 @@
     background-color: #ffffff;
 }
 
-.challengesGrid.dataScienceList .challengeCell {
-   line-height: 70px;
-}
-
 .challengesGrid .challengeCell {
    text-align: center;
    line-height: 110px;
