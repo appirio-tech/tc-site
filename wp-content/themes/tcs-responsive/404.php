@@ -38,7 +38,7 @@
 </head>
 
 <body>
-	<div id="wrapper" class="tcssoUsingJS">
+	<div id="wrapper404" class="tcssoUsingJS">
 		<header id="navigation">
 	    <div class="container">
 		<div class="clear"></div>
