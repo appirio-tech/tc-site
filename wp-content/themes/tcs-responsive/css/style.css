@@ -1277,6 +1277,9 @@
     
         margin-bottom: 26px;
 }
+    #whatsHappening .featuredImg img{
+        max-height: 100%;
+    }
     #whatsHappening .slide{
         font-size: 12px;
     }
