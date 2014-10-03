@@ -380,22 +380,23 @@ $(function () {
     emailValidationAttempted = true;
     var email = $('#register form.register input.email:text').val();
     email = email.replace('+', '%2B');
+
+    var showInvalid = function() {
+      emailIsFree = false;
+      var node = $('#register form.register input.email:text');
+      $('input.email').closest('p.row').find('.err3').show();
+      $('input.email').closest('p.row').find('input:text').addClass('invalid');
+      $('input.email').closest('p.row').find('span.valid').hide();
+      emailDeferred.resolve();
+    }
+
     $.ajax({
       type: 'GET',
-      data: {
-        email: email,
-        action: 'get_email_validity'
-      },
       dataType: 'json',
-      url: ajaxUrl,
+      url: tcApiRUL + '/users/validateEmail?email=' + email + '&cb='+ Math.random(),
       success: function(data) {
         if (data.error || !data.available) {
-          emailIsFree = false;
-          var node = $('#register form.register input.email:text');
-          $('input.email').closest('p.row').find('.err3').show();
-          $('input.email').closest('p.row').find('input:text').addClass('invalid');
-          $('input.email').closest('p.row').find('span.valid').hide();
-          emailDeferred.resolve();
+          showInvalid();
         } else {
           emailIsFree = true;
           var node = $('#register form.register input.email:text');
@@ -407,9 +408,7 @@ $(function () {
           emailDeferred.resolve();
         }
       }
-    }).fail(function() {
-      console.log('fail with '+ email);
-    });
+    }).fail(function() { showInvalid(); });
   }
   $('#register form.register input.email:text').blur(function() {
     validateEmail();
@@ -424,23 +423,24 @@ $(function () {
     handleChanged = false;
     handleValidationAttempted = true;
     var handle = $('#register form.register input.name.handle:text').val();
+
+    var showInvalid = function() {
+      handleIsFree = false;
+      var node = $('#register form.register input.name.handle:text');
+      $('input.handle').closest('.row').find('.err2').show();
+      $('input.handle').closest('.row').find('input:text').addClass('invalid');
+      $('input.handle').closest('.row').find('span.valid').hide();
+      handleDeferred.resolve(); 
+    }
+
     $.ajax({
       type: 'GET',
-      data: {
-        handle: handle,
-        action: 'get_handle_validity'
-      },
       dataType: 'json',
-      url: ajaxUrl,
+      url: tcApiRUL + '/users/validate/' + handle + '?cb='+ Math.random(),
       success: function(data) {
         if (handleChanged) return;
-        if (data.error) {
-          handleIsFree = false;
-          var node = $('#register form.register input.name.handle:text');
-          $('input.handle').closest('.row').find('.err2').show();
-          $('input.handle').closest('.row').find('input:text').addClass('invalid');
-          $('input.handle').closest('.row').find('span.valid').hide();
-          handleDeferred.resolve();
+        if (data.error || !data.valid) {
+          showInvalid();
         } else {
           handleIsFree = true;
           var node = $('#register form.register input.name.handle:text');
@@ -452,7 +452,8 @@ $(function () {
         }
       }
     }).fail(function() {
-      console.log('fail with '+handleState.handle);
+        if (handleChanged) return;
+        showInvalid();
     });
   }
   $('#register form.register input.name.handle:text').blur(function() {
