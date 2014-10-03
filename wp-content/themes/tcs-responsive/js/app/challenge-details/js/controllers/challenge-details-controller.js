@@ -76,6 +76,17 @@
     $scope.range = rangeFunction;
     $scope.max   = maxFunction;
 
+    $scope.showRegistrants = function() {
+      var current = $('a.active').attr('href');
+      $(current).hide();
+      $("#viewRegistrant").fadeIn();
+      $('a.active').removeClass('active');
+      $('a[href="#viewRegistrant"]').addClass('active');
+
+      $('#mainContent').attr('class', '').addClass('splitLayout').addClass('currentTab-viewRegistrant');
+
+      updateTabForNonResults();
+    }
 
     var handlePromise = $q.defer();
     //The handle is needed to enable the buttons
