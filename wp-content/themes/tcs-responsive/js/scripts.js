@@ -968,7 +968,7 @@ var app = {
     if (typeof timezone_string === 'undefined') {
       var timezone_string = "America/New_York"; // lets set to TC timezone
     }
-    return moment(date).tz(timezone_string).format("D MMM YYYY HH:mm z");
+    return moment(date).tz(timezone_string).format("MMM D, YYYY HH:mm z");
   },
 
 

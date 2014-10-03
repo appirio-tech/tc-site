@@ -144,7 +144,7 @@ angular.module('tc.chartService', [])
           tooltip: {
             'formatter': function () {
               return 'Challenge: <b>' + this.point.name + '</b><br/>Date: ' +
-                Highcharts.dateFormat('%e %b %Y', this.x) + '<br/>Rating: ' + this.y;
+                Highcharts.dateFormat('%b %e, %Y', this.x) + '<br/>Rating: ' + this.y;
             }
           },
           series: [{

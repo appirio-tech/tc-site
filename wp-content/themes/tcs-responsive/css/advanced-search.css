@@ -352,7 +352,7 @@ input.search-text::-webkit-input-placeholder {
             }
                 .date-picker-wrapper input[type="text"] {
                     border: 1px solid #e7e7e7;
-                    margin: 0 6px 0 2px;
+                    margin: 0 2px;
                 }
 .datepicker-icon {
     display: block;
@@ -393,7 +393,7 @@ input.search-text::-webkit-input-placeholder {
 }
 .date-picker-wrapper .pickers input[type="text"].from-picker-text,
 .date-picker-wrapper .pickers input[type="text"].to-picker-text {
-    width:50%;
+    width:55%;
     border: none;
     margin-top: 3px;
     color: #666;

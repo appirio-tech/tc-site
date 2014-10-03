@@ -78,7 +78,7 @@
           if (!date) {
             return '';
           }
-          return window.moment(date).format("DD MMM YYYY");
+          return window.moment(date).format("MMM D, YYYY");
         };
         
 
