@@ -31,6 +31,18 @@ if (isset($_GET['auth']) && $_GET['auth'] == 'logout') {
   exit;
 
 }
+if (isset($_COOKIE['rememberMe'])) {
+  unset($_COOKIE['rememberMe']);
+  setcookie('rememberMe', '', time() - 3600, '/', '.topcoder.com');
+  if (isset($_COOKIE['tcsso'])) {
+    // Set tcsso cookie to expire in one year
+    setcookie('tcsso', $_COOKIE['tcsso'], time() + 3600 * 24 * 365, '/', '.topcoder.com');
+  }
+  if (isset($_COOKIE['tcjwt'])) {
+    // Set tcjwt cookie to expire in one year
+    setcookie('tcjwt', $_COOKIE['tcjwt'], time() + 3600 * 24 * 365, '/', '.topcoder.com');
+  }
+}
 if (basename(get_permalink()) == "challenges") {
 ?>
 <!DOCTYPE html>
