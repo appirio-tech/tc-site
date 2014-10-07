@@ -137,7 +137,7 @@
             <span>DR POINTS</span>
         </div>
         <!-- #/end price-->
-        <div class="actions">
+        <div class="actions" ng-show="{{subCtrl.submissionsViewable || CD.firstPlaceSubmission.handle == CD.handle}}">
             <a href="{{CD.firstPlaceSubmission.submissionDownloadLink}}" class="download">Download</a>
         </div>
         <!-- #/end actions-->
@@ -161,7 +161,7 @@
             <span>DR POINTS</span>
         </div>
         <!-- #/end price-->
-        <div class="actions">
+        <div class="actions" ng-show="{{subCtrl.submissionsViewable || CD.secondPlaceSubmission.handle == CD.handle}}">
             <a href="{{CD.secondPlaceSubmission.submissionDownloadLink}}" class="download">Download</a>
         </div>
         <!-- #/end actions-->
@@ -197,7 +197,7 @@
             <td>{{submission.submissionDate | formatDate}}</td>
             <td><span class="pass">{{submission.screeningScore}}</span></td>
             <td><span class="initialScore">{{submission.initialScore}}</span>/<a href="javascript:" class="finalScore">{{submission.finalScore}}</a> </td>
-            <td><a href="{{submission.submissionDownloadLink}}">Download</a></td>
+            <td><a href="{{submission.submissionDownloadLink}}" ng-show="{{subCtrl.submissionsViewable || submission.handle == CD.handle}}">Download</a></td>
         </tr>
         </tbody>
     </table>
