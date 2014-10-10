@@ -569,12 +569,6 @@ include locate_template('header-challenge-landing.php');
   </li>
   <li ng-if="CD.isDesign" class="slide">
     <div class="slideBox">
-      <!-- <h3>Forums Feed:</h3> -->
-      <div class="inner"></div>
-    </div>
-  </li>
-  <li ng-if="CD.isDesign" class="slide">
-    <div class="slideBox">
       <h3>Source Files:</h3>
 
       <div class="inner">
