@@ -263,6 +263,9 @@ img {
 			width: 55px;
 			max-height: 55px;
 			max-width: 55px;
+			background-repeat: no-repeat;
+			background-size: 100%;
+			background-position: center;
 			position: absolute; 
 			top: 0; 
 			left: 0;
