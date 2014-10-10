@@ -79,7 +79,7 @@ $authorObj = get_user_by("id",$authorId);
 								$catName = $activeMenuObj->cat_name;
 								$feedUrl = get_author_feed_link($authorId, '');
 							?>
-							<a class="currentCatLink rssCat">Browse Post Write by : <?php echo $authorObj->display_name;?></a>
+							<span class="currentCatLink rssCat">Browse Post Write by : <?php echo $authorObj->display_name;?></span>
 							<!--<a class="feedBtn" href="<?php echo $feedUrl;?>">Subscribe to <?php echo $authorObj->display_name;?></a>-->
 						</div>
 						<div class="blogsWrapper">

@@ -731,6 +731,7 @@ h3.popularPostTitle {
     height: 38px;
     line-height: 38px;
     padding-left: 50px;
+    padding-right: 10px;
     font-size: 15px;
     color: #666666;
 }
@@ -753,6 +754,7 @@ h3.popularPostTitle {
     background: url(../i/rss.png) no-repeat center left;
     padding-left: 25px;
     font-size: 16px;
+    line-height: 38px;
 }
 
 .subscribeTopWrapper .feedBtn:hover {

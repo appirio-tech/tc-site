@@ -94,7 +94,7 @@ $blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the topcoder 
 								$postCount = $postQuery->found_count;
 								//$postCount = count($wpQueryAll);
 							?>
-							<a class="currentCatLink searchFoundTitle"><?php echo $postCount?> results for '<?php echo $searchKey;?>'</a>
+							<span class="currentCatLink searchFoundTitle"><?php echo $postCount?> results for '<?php echo $searchKey;?>'</span>
 						</div>
 						<div id="searchBlogsWrapper" class="blogsWrapper">
 							<input type="hidden" class="pageNo" value="<?php echo $currPage; ?>" />

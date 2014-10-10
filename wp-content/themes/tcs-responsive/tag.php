@@ -74,7 +74,7 @@ $categories = $activeMenuObj!=null ? $activeMenuObj->cat_name : "Categories";
               $catName = $activeMenuObj->cat_name;
               $feedUrl = get_bloginfo("wpurl")."/feed/?tag=$tag_id&post_type=blog";
               ?>
-              <a class="currentCatLink rssCat">Browsing '<?php echo single_tag_title( '', false );?>'</a>
+              <span class="currentCatLink rssCat">Browsing '<?php echo single_tag_title( '', false );?>'</span>
             </div>
             <div class="blogsWrapper">
               <input type="hidden" class="pageNo" value="<?php echo $currPage; ?>" />
