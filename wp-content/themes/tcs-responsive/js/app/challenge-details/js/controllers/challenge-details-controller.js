@@ -134,6 +134,14 @@
 
     }
 
+    function updateChallengeDetail() {
+      ChallengeService
+        .getChallenge(challengeId)
+        .then(function (challenge) {
+          processChallenge(challenge, vm.handle, vm, ChallengeService);
+        });
+    }
+
     /**
      * Register to challenge
      */
@@ -154,6 +162,7 @@
                   //delete cookie
                   document.cookie = 'tcDelayChallengeAction=; path=/; domain=.topcoder.com; expires=' + new Date(0).toUTCString();
                 }
+                updateChallengeDetail();
               } else if (data["error"]["details"] === "You should agree with all terms of use.") {
                 window.location = siteURL + "/challenge-details/terms/" + vm.challenge.challengeId + "?challenge-type=" + challengeType;
               } else if (data["error"]["details"]) {
