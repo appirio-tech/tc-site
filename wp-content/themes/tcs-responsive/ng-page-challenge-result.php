@@ -1,5 +1,5 @@
 <article ng-if="CD.isDesign && CD.submissions.length > 0">
-    <div ng-if="CD.firstPlaceSubmission" ng-repeat="submission in CD.winningSubmissions" class="winnerRow {{$index > 1 ? 'hideOnMobi' : ''}}">
+    <div ng-if="CD.firstPlaceSubmission" ng-repeat="submission in CD.winningSubmissions" class="winnerRow">
         <div class="place {{['first', 'second', 'third', 'other'][$index]}}">{{$index + 1}}<span>{{(placeSuffix = ['st', 'nd', 'rd'][$index]) ? placeSuffix : 'th'}}</span></div>
         <!-- #/end place-->
         <div class="image">
@@ -119,7 +119,7 @@
 </article>
 
 <article ng-if="!CD.isDesign && CD.submissions.length > 0">
-    <div ng-if="CD.firstPlaceSubmission" class="winnerRow">
+    <div ng-if="CD.challenge.challengeType != 'Code' && CD.firstPlaceSubmission" class="winnerRow">
         <div class="place first">1<span>st</span></div>
         <!-- #/end place-->
         <div class="details">
@@ -143,7 +143,7 @@
         <div class="clear"></div>
     </div>
     <!--#/end winnerrow-->
-    <div ng-if="CD.secondPlaceSubmission && CD.challenge.prize[1]" class="winnerRow">
+    <div ng-if="CD.challenge.challengeType != 'Code' && CD.secondPlaceSubmission && CD.challenge.prize[1]" class="winnerRow">
         <div class="place second">2<span>nd</span></div>
         <!-- #/end place-->
         <div class="details">
@@ -162,6 +162,30 @@
         <!-- #/end price-->
         <div class="actions">
             <a href="{{CD.secondPlaceSubmission.submissionDownloadLink}}" class="download">Download</a>
+        </div>
+        <!-- #/end actions-->
+        <div class="clear"></div>
+    </div>
+    <!--#/end winnerrow-->
+    <div ng-if="CD.challenge.challengeType == 'Code' && CD.firstPlaceSubmission" ng-repeat="submission in CD.winningSubmissions" class="winnerRow">
+        <div class="place {{['first', 'second', 'third', 'other'][$index]}}">{{$index + 1}}<span>{{(placeSuffix = ['st', 'nd', 'rd'][$index]) ? placeSuffix : 'th'}}</span></div>
+        <!-- #/end place-->
+        <div class="details">
+            <a href="<?php bloginfo('wpurl'); ?>/member-profile/{{submission.handle}}" class="coderTextYellow">{{submission.handle}}</a>
+        </div>
+        <!-- #/end details-->
+        <div class="price">
+            <span class="price">${{CD.challenge.prize[$index]}}</span>
+            <span>PRIZE</span>
+        </div>
+        <!-- #/end price-->
+        <div class="point" ng-show={{submission.points}}>
+            <span class="point">{{submission.points}}</span>
+            <span>DR POINTS</span>
+        </div>
+        <!-- #/end point-->
+        <div class="actions">
+            <a href="{{submission.submissionDownloadLink}}" class="download">Download</a>
         </div>
         <!-- #/end actions-->
         <div class="clear"></div>

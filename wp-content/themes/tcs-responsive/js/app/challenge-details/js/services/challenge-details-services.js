@@ -46,8 +46,11 @@
         var submissionMap = {};
         var leftovers = []; // for those that got a score of 0
         results.results.map(function(x) {
-          if (x.placement == 'n/a' || !x.placement) leftovers.push(x);
-          submissionMap[x.placement] = x;
+          if (x.placement == 'n/a' || !x.placement || x.submissionStatus == 'Failed Review') {
+            leftovers.push(x);
+          } else {
+            submissionMap[x.placement] = x;
+          }
         });
         results.firstPlaceSubmission = submissionMap[1];
         results.secondPlaceSubmission = submissionMap[2];
