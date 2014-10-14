@@ -1,4 +1,5 @@
-<article ng-if="CD.isDesign && CD.submissions.length > 0">
+<div ng-controller="SubmissionCtrl as subCtrl">
+<article ng-if="CD.isDesign && CD.submissions.length > 0" ng-hide="subCtrl.singleViewMode">
     <div ng-if="CD.firstPlaceSubmission" ng-repeat="submission in CD.winningSubmissions" class="winnerRow {{$index > 1 ? 'hideOnMobi' : ''}}">
         <div class="place {{['first', 'second', 'third', 'other'][$index]}}">{{$index + 1}}<span>{{(placeSuffix = ['st', 'nd', 'rd'][$index]) ? placeSuffix : 'th'}}</span></div>
         <!-- #/end place-->
@@ -24,8 +25,8 @@
         </div>
         <!-- #/end details-->
         <div class="actions">
-            <a href="{{submission.previewDownloadLink}}" class="view">View</a>
-            <a href="{{submission.submissionDownloadLink}}" class="download">Download</a>
+            <a href="javascript:;" ng-click="subCtrl.viewSubmission(submission, true)" class="view {{subCtrl.submissionsViewable ? '' : 'disabled'}}">View</a>
+            <a href="{{submission.submissionDownloadLink}}" ng-click="" class="download {{subCtrl.submissionsViewable ? '' : 'disabled'}}">Download</a>
         </div>
         <!-- #/end actions-->
         <div class="clear"></div>
@@ -136,7 +137,7 @@
             <span>DR POINTS</span>
         </div>
         <!-- #/end price-->
-        <div class="actions">
+        <div class="actions" ng-show="{{subCtrl.submissionsViewable || CD.firstPlaceSubmission.handle == CD.handle}}">
             <a href="{{CD.firstPlaceSubmission.submissionDownloadLink}}" class="download">Download</a>
         </div>
         <!-- #/end actions-->
@@ -160,7 +161,7 @@
             <span>DR POINTS</span>
         </div>
         <!-- #/end price-->
-        <div class="actions">
+        <div class="actions" ng-show="{{subCtrl.submissionsViewable || CD.secondPlaceSubmission.handle == CD.handle}}">
             <a href="{{CD.secondPlaceSubmission.submissionDownloadLink}}" class="download">Download</a>
         </div>
         <!-- #/end actions-->
@@ -196,7 +197,7 @@
             <td>{{submission.submissionDate | formatDate}}</td>
             <td><span class="pass">{{submission.screeningScore}}</span></td>
             <td><span class="initialScore">{{submission.initialScore}}</span>/<a href="javascript:" class="finalScore">{{submission.finalScore}}</a> </td>
-            <td><a href="{{submission.submissionDownloadLink}}">Download</a></td>
+            <td><a href="{{submission.submissionDownloadLink}}" ng-show="{{subCtrl.submissionsViewable || submission.handle == CD.handle}}">Download</a></td>
         </tr>
         </tbody>
     </table>
@@ -296,4 +297,8 @@
             <strong>Submissions are available after the review phase.</strong>
         </p>
     </div>
+</div>
+
+<?php include( locate_template('ng-content-submission-single-view.php') ); ?>
+
 </div>
