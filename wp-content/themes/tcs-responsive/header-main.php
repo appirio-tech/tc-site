@@ -37,6 +37,7 @@ if (basename(get_permalink()) == "challenges") {
 <html lang="en" data-ng-app="tc">
 <head>
   <meta charset="utf-8">
+  <meta name="fragment" content="!">
   <title ng-bind="pageTitle"></title>
 <?php
 } else {
@@ -45,6 +46,7 @@ if (basename(get_permalink()) == "challenges") {
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="fragment" content="!">
   <title><?php wp_title(' - ', TRUE, 'right'); ?></title>
 <?php
 }
