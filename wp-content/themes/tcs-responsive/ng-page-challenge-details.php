@@ -517,8 +517,8 @@ include locate_template('header-challenge-landing.php');
 
       <div class="inner">
         <p><a href="https://github.com/topcoderinc/topcoder-UML-Tool">Github source code repository</a></p>
-        <p><a href="https://github.com/topcoderinc/topcoder-UML-Tool/blob/master/TopCoder%20UML%20Tool.dmg">Mac disk image </a></p>
-        <p><a href="https://github.com/topcoderinc/topcoder-UML-Tool/blob/master/TopCoder_UML_Tool_Installer-1.2.6.jar">Java installer</a></p>
+        <p><a href="https://github.com/topcoderinc/topcoder-UML-Tool/blob/master/build/dist/TopCoder%20UML%20Tool%20OS%20X%201.2.7.zip?raw=true">Mac disk image </a></p>
+        <p><a href="https://github.com/topcoderinc/topcoder-UML-Tool/blob/master/build/dist/TopCoder_UML_Tool_Installer-1.2.7.jar?raw=true">Java installer</a></p>
       </div>
 
     </div>
