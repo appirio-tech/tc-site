@@ -24,9 +24,9 @@
             </div>
         </div>
         <!-- #/end details-->
-        <div class="actions">
-            <a href="javascript:;" ng-click="subCtrl.viewSubmission(submission, true)" class="view {{subCtrl.submissionsViewable ? '' : 'disabled'}}">View</a>
-            <a href="{{submission.submissionDownloadLink}}" ng-click="" class="download {{subCtrl.submissionsViewable ? '' : 'disabled'}}">Download</a>
+        <div class="actions" ng-show="{{subCtrl.submissionsViewable || submission.handle == CD.handle}}">
+            <a href="javascript:;" ng-click="subCtrl.viewSubmission(submission, true)" class="view">View</a>
+            <a href="{{submission.submissionDownloadLink}}" ng-click="" class="download">Download</a>
         </div>
         <!-- #/end actions-->
         <div class="clear"></div>

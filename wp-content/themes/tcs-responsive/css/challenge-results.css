@@ -178,12 +178,6 @@
             opacity: .6;
             color: #FF8A00;
         }
-        #winner .winnerRow .actions a.disabled,
-        #winner .winnerRow .actions a.disabled:hover{
-            opacity: .6;
-            color: #FF8A00;
-            cursor: not-allowed;
-        }
         #winner .winnerRow .actions a.view{
             background-position: 0 0;
         }
