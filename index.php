@@ -1,5 +1,12 @@
 <?php
 
+if (isset($_GET['_escaped_fragment_'])) {
+	$renderer = 'http://service.prerender.io/http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+	$rendered = file_get_contents($renderer);
+	echo $rendered;
+	return;
+}
+
 foreach ($_GET as $key => $value) {
 	$_GET[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_STRING);
 }
