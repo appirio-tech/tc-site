@@ -33,7 +33,10 @@ if ($contestType == 'all') {
     $contests = get_contests_rss($listType, $contestType, $technologies, $platforms);
     $contests = isset($contests->data) && is_array($contests->data) ? $contests->data : array();
 }
-
+  // sort contests on registration start date
+  uasort($contests, function($a, $b) {
+    return strtotime($b->registrationStartDate) - strtotime($a->registrationStartDate);
+  });
 ?>
 <rss version="2.0"
      xmlns:content="http://purl.org/rss/1.0/modules/content/"
@@ -63,7 +66,7 @@ if ($contestType == 'all') {
         ?>
         <item>
           <title><?php echo $name ?></title>
-          <link><?php echo "{$base_url}/{$contest->challengeId}?type={$contest->challengeType}" ?></link>;
+          <link><?php echo "{$base_url}/{$contest->challengeId}?type={$contest->challengeCommunity}" ?></link>;
           <pubDate><?php echo date('d M Y H:i T', strtotime($contest->registrationStartDate)) ?></pubDate>
           <description><![CDATA[<?php echo $content ?>]]></description>
           <content:encoded><![CDATA[<?php echo $content ?>]]></content:encoded>
