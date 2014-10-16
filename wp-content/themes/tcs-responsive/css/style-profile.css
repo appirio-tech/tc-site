@@ -358,7 +358,7 @@ a{
     .algoLayout .ratingViews{
         border: 1px solid #E7E7E7;
         border-top: none;
-        min-height: 472px;
+        min-height: 445px;
     
         position: relative;
     }
