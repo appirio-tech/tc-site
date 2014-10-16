@@ -263,7 +263,6 @@ $(function () {
 
   $("#registerSuccess .closeModalReg").click(function () {
     closeModal();
-    window.location.href = siteURL + "/challenge-details/" + challengeId + "?type=" + challengeType + "&nocache=true";
   });
 
 });
