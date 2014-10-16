@@ -970,6 +970,22 @@ function _kms(u){
 }
 _kms('//i.kissmetrics.com/i.js');
 _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
+
+var tcjwt = $.cookie('tcjwt');
+if (tcjwt) {
+  $.ajax({
+    type: "GET",
+    url: tcApiRUL + '/user/identity',
+    dataType: 'json',
+    headers: {
+      'Authorization': 'Bearer ' + tcjwt
+    },
+    success: function(data) {
+      _kmq.push(['identify', data.email]);
+    }
+  });
+}
+
 </script>
 <!-- END KISSmetrics --> 
 

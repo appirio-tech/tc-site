@@ -64,7 +64,6 @@ function initMemberDetails(pagePersisted){
         $('.headerTopRightMenuLink.logIn a').unbind('click');
         $('.headerTopRightMenuLink.logIn a').text("Log Out").removeClass("actionLogin").addClass("actionLogout");
         app.getHandle(function(handle) {
-          _kmq.push(['identify', handle]);
           $('.userDetails .coder').text(handle);
           $.get(ajaxUrl, {
             "action": "get_member_profile",

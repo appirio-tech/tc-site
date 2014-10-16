@@ -627,7 +627,7 @@ $(function () {
           }
 
           if (_kmq) 
-            _kmq.push(['record', 'Form Submitted']);
+            _kmq.push(['identify', fields.email]);
           
           $.post(ajaxUrl + '?action=post_register', fields, function (data) {
             if (data.code == "200") {
