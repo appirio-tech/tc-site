@@ -1,6 +1,8 @@
 <?php
 
-if (isset($_GET['_escaped_fragment_'])) {
+header('X-Prerender-Token: fC07JMTM06w1k8RIdLDs');
+
+if (isset($_GET['_escaped_fragment_']) || strpos($_SERVER['HTTP_USER_AGENT'], 'facebookexternalhit') !== false) {
 	$renderer = 'http://service.prerender.io/http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 	$rendered = file_get_contents($renderer);
 	echo $rendered;
