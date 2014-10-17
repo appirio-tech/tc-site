@@ -254,6 +254,10 @@ function tc_setup_angular() {
   wp_register_script('ng-grid', '//cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.10/ng-grid.min.js', array('angularjs'), null, true);
   wp_enqueue_script('ng-grid');
 
+  //ng-grid-flexible-height
+  wp_register_script('ng-grid-flexible-height', '//cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.10/ng-grid-flexible-height.js', array('angularjs'), null, true);
+  wp_enqueue_script('ng-grid-flexible-height');
+
   wp_register_style('ng-grid', '//cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.10/ng-grid.css');
   wp_enqueue_style('ng-grid');
 
