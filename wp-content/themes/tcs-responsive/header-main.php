@@ -48,7 +48,7 @@ if (basename(get_permalink()) == "challenges") {
 <head>
   <meta charset="utf-8">
   <meta name="fragment" content="!">
-  <title><?php wp_title(' - ', TRUE, 'right'); ?></title>
+  <title>{{CD.challenge.challengeName}}</title>
   <meta name="description" content="{{CD.challenge.detailedRequirements | htmlToText | limitTo: 155}}">
 <?php
 } else {
