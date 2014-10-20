@@ -39,6 +39,17 @@ if (basename(get_permalink()) == "challenges") {
   <meta charset="utf-8">
   <meta name="fragment" content="!">
   <title ng-bind="pageTitle"></title>
+  <meta name="description" content="">
+<?php
+} else if (basename(get_permalink()) == "angular-challenge-details") {
+?>
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/Article" ng-app="challengeDetails"  ng-controller="CDCtrl as CD">
+<head>
+  <meta charset="utf-8">
+  <meta name="fragment" content="!">
+  <title><?php wp_title(' - ', TRUE, 'right'); ?></title>
+  <meta name="description" content="{{CD.challenge.detailedRequirements | htmlToText | limitTo: 155}}">
 <?php
 } else {
 ?>
@@ -48,11 +59,11 @@ if (basename(get_permalink()) == "challenges") {
   <meta charset="utf-8">
   <meta name="fragment" content="!">
   <title><?php wp_title(' - ', TRUE, 'right'); ?></title>
+  <meta name="description" content="">
 <?php
 }
 ?>
-  <meta name="description" content="">
-  <meta name="author" content="" >
+  <meta name="author" content="@topcoder" >
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
