@@ -618,7 +618,7 @@ $blog_posts = get_posts($blog_posts_args);
         </p>
 
         <p class="row lSpace">
-          <label><input type="checkbox"/>Remember me</label>
+          <label><input id="rememberMe" type="checkbox"/>Remember me</label>
         </p>
 
         <p class="row lSpace btns">
@@ -928,6 +928,10 @@ $blog_posts = get_posts($blog_posts_args);
         $('#password').addClass('invalid');
       }
       if (empty) return;
+      if ($('#rememberMe').prop('checked')) {
+        // Set a session cookie to mark that user selected "Remember Me"
+        $.cookie('rememberMe', true, {path: '/', domain: '.topcoder.com'});
+      }
       auth0Login.login({
           connection: '<?php echo auth0_LDAP(); ?>',
           state: loginState,
@@ -941,6 +945,7 @@ $blog_posts = get_posts($blog_posts_args);
           $('#loginForm .err1').show().html('Incorrect Username or Password.')
             .addClass('invalid');
           $('#password').val('');
+          $.removeCookie('rememberMe');
         });
     });
   });
