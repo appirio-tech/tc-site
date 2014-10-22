@@ -69,6 +69,7 @@ if (basename(get_permalink()) == "challenges") {
   <link rel = "stylesheet" href = "<?php THEME_URL ?>/css/ie.css<?php if ($ver) { echo " ? v = $v"; } ?>" / >
   <![endif]-->
   <script type="text/javascript">
+    var isLC = '<?php echo get_query_var('lc'); ?>';
     var sslAjax = <?php echo ( force_ssl_admin() || force_ssl_login() ) ? "true" : "false"; ?>;
     var wpUrl = "<?php bloginfo('wpurl')?>";
     var ajaxUrl;
@@ -79,6 +80,10 @@ if (basename(get_permalink()) == "challenges") {
     }
 
     var tcApiRUL = '<?php echo TC_API_URL; ?>';
+    if (isLC) {
+      tcApiRUL = 'http://lc1-external-challenge-service.herokuapp.com';
+    }
+
     var siteURL = '<?php bloginfo('siteurl');?>';
     var communityURL = '<?php echo community_URL(); ?>';
     var base_url = '<?php bloginfo( 'stylesheet_directory' ); ?>';

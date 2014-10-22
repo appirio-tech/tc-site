@@ -139,6 +139,7 @@ function tcapi_query_vars($query_vars) {
   $query_vars [] = 'challenge-type';
   $query_vars [] = 'technologies';
   $query_vars [] = 'platforms';
+  $query_vars [] = 'lc';
   return $query_vars;
 }
 
