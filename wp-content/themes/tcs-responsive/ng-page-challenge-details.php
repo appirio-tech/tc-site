@@ -391,7 +391,9 @@ include locate_template('header-challenge-landing.php');
         <th class="subDateColumn">
           <div>Submission Date</div>
         </th>
-        <th class="successIconColumn"/>
+        <th class="successIconColumn">
+          <div>Result</div>
+        </th>
       </tr>
       </thead>
       <tbody>
