@@ -946,10 +946,10 @@ function get_contests_rss($listType, $challengeType, $technologies = "", $platfo
     $url = TC_API_URL . "/challenges/rss?listType={$listType}&challengeType={$challengeType}";
 
     if ($technologies != "")
-        $url .= "&technologies={$technologies}";
+        $url .= "&technologies=" . urlencode($technologies);
 
     if ($platforms != "")
-        $url .= "&platforms={$platforms}";
+        $url .= "&platforms=" . urlencode($platforms);
 
     $args     = array(
         'httpversion' => get_option( 'httpversion' ),
