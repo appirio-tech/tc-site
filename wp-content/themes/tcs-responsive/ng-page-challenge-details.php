@@ -47,7 +47,7 @@ function tc_challenge_details_js() {
   <!-- Open Graph data -->
   <meta property="og:title" content="{{CD.challenge.challengeName}}" />
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="{{CD.challenge.directUrl}}" />
+  <meta property="og:url" content="{{CD.challenge.url}}" />
   <meta property="og:description" content="{{CD.challenge.detailedRequirements | htmlToText}}" />
   <meta property="og:site_name" content="topcoder" />
   <meta property="article:published_time" content="{{CD.challenge.postingDate}}" />

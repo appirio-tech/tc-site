@@ -244,6 +244,8 @@
     vm.challenge.registrationDisabled = true;
     vm.challenge.submissionDisabled   = true;
 
+    vm.challenge.url = window.location.href;
+
     // If is not registered, then enable registration
     if (((moment(challenge.phases[0].scheduledStartTime)) < moment() && (moment(challenge.registrationEndDate)) > moment()) && regList.indexOf(handle) == -1) {
       vm.challenge.registrationDisabled = false;
