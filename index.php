@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_GET['_escaped_fragment_']) || strpos($_SERVER['HTTP_USER_AGENT'], 'facebookexternalhit') !== false) {
+if ((isset($_GET['_escaped_fragment_']) || strpos($_SERVER['HTTP_USER_AGENT'], 'facebookexternalhit') !== false) && basename(get_permalink()) == "angular-challenge-details") {
 	$opts = array('http'=>array('method'=>"GET", 'header'=>"X-Prerender-Token: fC07JMTM06w1k8RIdLDs\r\n"));
 	$context = stream_context_create($opts);
 
