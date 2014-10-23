@@ -18,7 +18,6 @@ function tc_challenge_details_js() {
 
   $regEnd = strtotime("$contest->registrationEndDate") || 1;
   $submissionEnd = strtotime("$contest->submissionEndDate") || 1
-
   ?>
   <script type="text/javascript">
     var activeTab = "<?php echo $activeTab;?>";
@@ -34,6 +33,24 @@ function tc_challenge_details_js() {
     var challengeName; //prevent undefined error, value is set in angular script
     var THEME_URL = "<?php echo THEME_URL;?>";
   </script>
+
+  <!-- Schema.org markup for Google+ -->
+  <meta itemprop="name" content="{{CD.challenge.challengeName}}">
+  <meta itemprop="description" content="{{CD.challenge.detailedRequirements | htmlToText }}">
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:site" content="@topcoder">
+  <meta name="twitter:title" content="{{CD.challenge.challengeName}}">
+  <meta name="twitter:description" content="{{CD.challenge.detailedRequirements | htmlToText | limitTo: 200}}">
+  <meta name="twitter:creator" content="@topcoder">
+
+  <!-- Open Graph data -->
+  <meta property="og:title" content="{{CD.challenge.challengeName}}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="{{CD.challenge.url}}" />
+  <meta property="og:description" content="{{CD.challenge.detailedRequirements | htmlToText}}" />
+  <meta property="og:site_name" content="topcoder" />
+  <meta property="article:published_time" content="{{CD.challenge.postingDate}}" />
 <?php
 }
 
@@ -54,7 +71,7 @@ include locate_template('header-challenge-landing.php');
 
 ?>
 
-<div id="cdNgMain" ng-init="CD.callComplete=false" ng-show="CD.callComplete" ng-app="challengeDetails" ng-controller="CDCtrl as CD" class="hide content challenge-detail view-challenge-result {{CD.challengeType != 'design' ? 'develop' : ''}}">
+<div id="cdNgMain" ng-init="CD.callComplete=false" ng-show="CD.callComplete" class="hide content challenge-detail view-challenge-result {{CD.challengeType != 'design' ? 'develop' : ''}}">
 <div id="main">
 
 <?php include( locate_template('ng-content-basic-challenge-details.php') ); ?>
