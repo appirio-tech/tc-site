@@ -672,6 +672,7 @@ $blog_posts = get_posts($blog_posts_args);
 </div><!-- /.tooltip -->
 <?php wp_footer(); ?>
 <script>
+  window.prerenderReady = false;
   function getParameterByName(name, source) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
