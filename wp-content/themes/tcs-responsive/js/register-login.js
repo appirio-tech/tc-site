@@ -629,7 +629,7 @@ $(function () {
           if (_kmq) 
             _kmq.push(['identify', fields.email]);
           
-          $.post(ajaxUrlSSL + '?action=post_register', fields, function (data) {
+          $.post(ajaxUrl + '?action=post_register', fields, function (data) {
             if (data.code == "200") {
               var tcAction = getCookie('tcDelayChallengeAction');
               $('.modal').hide();

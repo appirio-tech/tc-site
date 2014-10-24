@@ -88,7 +88,6 @@ if (basename(get_permalink()) == "challenges") {
     } else {
       ajaxUrl = "<?php bloginfo('wpurl')?>" + "/wp-admin/admin-ajax.php";
     }
-    var ajaxUrlSSL = "<?php bloginfo('wpurl')?>".replace('http://', 'https://') + "/wp-admin/admin-ajax.php";
 
     var tcApiRUL = '<?php echo TC_API_URL; ?>';
     var siteURL = '<?php bloginfo('siteurl');?>';
