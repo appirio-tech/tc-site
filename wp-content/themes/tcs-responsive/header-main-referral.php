@@ -71,8 +71,6 @@ if (isset($_GET['auth']) && $_GET['auth'] == 'logout') {
     } else {
       ajaxUrl = "<?php bloginfo('wpurl')?>" + "/wp-admin/admin-ajax.php";
     }
-    var ajaxUrlSSL = "<?php bloginfo('wpurl')?>".replace('http://', 'https://') + "/wp-admin/admin-ajax.php";
-
     var tcApiRUL = '<?php echo TC_API_URL; ?>';
     var communityURL = '<?php echo community_URL(); ?>';
     var siteURL = '<?php bloginfo('siteurl');?>';
