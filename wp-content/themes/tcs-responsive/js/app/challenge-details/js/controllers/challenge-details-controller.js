@@ -23,7 +23,7 @@
    * Inject dependencies
    * @type {string[]}
    */
-  ChallengeDetailCtrl.$inject = ['$scope', 'ChallengeService', '$q', '$cookies', '$interval'];
+  ChallengeDetailCtrl.$inject = ['$scope', 'ChallengeService', '$q', '$cookies', '$interval', '$timeout'];
 
   /**
    * Controller implementation
@@ -32,7 +32,7 @@
    * @param ChallengeService
    * @constructor
    */
-  function ChallengeDetailCtrl($scope, ChallengeService, $q, $cookies, $interval) {
+  function ChallengeDetailCtrl($scope, ChallengeService, $q, $cookies, $interval, $timeout) {
 
     var vm = this;
 
@@ -129,6 +129,7 @@
         .then(function (challenge) {
           processChallenge(challenge, handle, vm, ChallengeService);
           vm.callComplete = true;
+          $timeout(function() { window.prerenderReady = true; }, 100);
           $('#cdNgMain').show();
         });
 
@@ -243,6 +244,8 @@
     // this are the buttons for registration and submission
     vm.challenge.registrationDisabled = true;
     vm.challenge.submissionDisabled   = true;
+
+    vm.challenge.url = window.location.href;
 
     // If is not registered, then enable registration
     if (((moment(challenge.phases[0].scheduledStartTime)) < moment() && (moment(challenge.registrationEndDate)) > moment()) && regList.indexOf(handle) == -1) {
