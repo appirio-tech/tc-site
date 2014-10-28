@@ -77,7 +77,7 @@ $siteURL = site_url ();
 													var tcssoValues = tcsso.split("|");
 													var handle = '';
 																		
-													$.getJSON("http://community.topcoder.com/tc?module=BasicData&c=get_handle_by_id&dsid=30&uid=" + tcssoValues[0] + "&json=true", function(data) {
+													$.getJSON("https://community.topcoder.com/tc?module=BasicData&c=get_handle_by_id&dsid=30&uid=" + tcssoValues[0] + "&json=true", function(data) {
 															handle = data['data'][0]['handle'];
 														
 															if ( handle!='' ) {
