@@ -202,8 +202,8 @@
 #winner .competitionDetails{
     padding: 20px 0 30px;
     border-bottom: 1px solid #e7e7e7;
-    margin-left: auto;
-    margin-right: auto;
+    margin : 0 auto;
+    white-space: nowrap;
 }
     #winner .competitionDetails > div{
         float: left;
@@ -269,7 +269,8 @@
     /*Bugfix refactored-challenge-details-80: fixed inconsistent spacing in results between design and develop*/
     #winner .competitionDetails div.registrant,
     .develop #winner .competitionDetails div.registrant{
-        width: 23%;
+        min-width: 23%;
+        display: inline-block;
     }
     .TC #winner .competitionDetails div.registrant{
         width: 100px;
@@ -278,10 +279,12 @@
         width: 90px;
     }
     /*Bugfix refactored-challenge-details-80: fixed inconsistent spacing in results between design and develop*/
+    /* Bugfix  Result Tab alignment bug fix */
     #winner .competitionDetails div.round,
     .develop #winner .competitionDetails div.round,
     .develop #winner .competitionDetails div.average{
-        width: 23%;
+        min-width: 23%;
+        display: inline-block;
     }
     .TC #winner .competitionDetails div.round{
         width: 300px;
