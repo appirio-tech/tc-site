@@ -931,7 +931,7 @@ $blog_posts = get_posts($blog_posts_args);
       if (empty) return;
       if ($('#rememberMe').prop('checked')) {
         // Set a session cookie to mark that user selected "Remember Me"
-        $.cookie('rememberMe', true, {path: '/', domain: '.topcoder.com'});
+        $.cookie('rememberMe', true, {expires: 365, path: '/', domain: '.topcoder.com'});
       }
       auth0Login.login({
           connection: '<?php echo auth0_LDAP(); ?>',

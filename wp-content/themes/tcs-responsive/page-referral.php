@@ -72,13 +72,13 @@ $siteURL = site_url ();
 
 									// URL Referral Generator
 									if ( $('#referralText').length>0 ) {
-											var tcsso = getCookie('tcsso');
-											if (tcsso) {
+											var tcjwt = $.cookie('tcjwt');
+											if (tcjwt) {
 													var tcssoValues = tcsso.split("|");
 													var handle = '';
-																		
-													$.getJSON("http://community.topcoder.com/tc?module=BasicData&c=get_handle_by_id&dsid=30&uid=" + tcssoValues[0] + "&json=true", function(data) {
-															handle = data['data'][0]['handle'];
+
+													$.ajax({type: "GET", url: tcApiRUL + '/user/identity', dataType: 'json', headers: {'Authorization': 'Bearer ' + tcjwt}, function(data) {
+															handle = data.handle;
 														
 															if ( handle!='' ) {
 																	$base_url = '<?php echo get_post_meta( $post->ID, "_tc_base_url", true ); ?>';
