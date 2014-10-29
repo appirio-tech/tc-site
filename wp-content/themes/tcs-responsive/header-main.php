@@ -103,9 +103,6 @@ if (basename(get_permalink()) == "challenges") {
     }
 
     var tcApiRUL = '<?php echo TC_API_URL; ?>';
-    if (isLC) {
-      tcApiRUL = 'http://lc1-external-challenge-service.herokuapp.com';
-    }
 
     var siteURL = '<?php bloginfo('siteurl');?>';
     var communityURL = '<?php echo community_URL(); ?>';
@@ -114,6 +111,12 @@ if (basename(get_permalink()) == "challenges") {
     var autoRegister = '<?php echo get_query_var('autoRegister'); ?>';
     var timezone_string = "<?php echo get_option('timezone_string');?>";
     var challengeType;
+
+    if (isLC) {
+      tcLCApiURL = 'http://localhost:3000';
+    } else {
+      tcLCApiURL = tcApiRUL;
+    }
   </script>
 
 <?php

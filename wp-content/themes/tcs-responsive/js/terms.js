@@ -39,7 +39,7 @@ appChallengeTerms = {
             $('.agree-label').hide();
             $('#termSubmit').text('Go Back');
             $('.agreement').removeClass('notAgreed');
-            var finalDest = escape(siteURL + "/challenge-details/terms/" + challengeId + "?challenge-type=" + challengeType + "&termId=" + termsOfUseID + "&cb=" + Math.random());
+            var finalDest = escape(siteURL + "/challenge-details/terms/" + challengeId + "?challenge-type=" + challengeType + "&termId=" + termsOfUseID + "lc=" + isLC + "&cb=" + Math.random());
             $.ajax({
               url: tcApiRUL + '/terms/docusign/viewURL',
               type: 'POST',
@@ -95,7 +95,7 @@ appChallengeTerms = {
               "termId": termsOfUseID,
               "jwtToken": tcjwt.replace(/["]/g, "")
             }, function (data) {
-              window.location = siteURL + "/challenge-details/terms/" + challengeId + "?challenge-type=" + challengeType;
+              window.location = siteURL + "/challenge-details/terms/" + challengeId + "?challenge-type=" + challengeType + "&lc=" + isLC;
               $('.loading').hide();
             });
           }
@@ -127,7 +127,7 @@ appChallengeTerms = {
                 allAgreed = false;
               }
               var $tr = $("<tr>", {class: i % 2 == 1 ? "alt" : ""});
-              var $td1 = $("<td>").text(terms[i]["title"]).append(" (").append($("<a>", {href: siteURL + "/challenge-details/terms/detail/" + terms[i]["termsOfUseId"] + "?contestID=" + challengeId + "&challenge-type=" + challengeType}).text(agreed ? "view" : "view and agree")).append(")");
+              var $td1 = $("<td>").text(terms[i]["title"]).append(" (").append($("<a>", {href: siteURL + "/challenge-details/terms/detail/" + terms[i]["termsOfUseId"] + "?contestID=" + challengeId + "&challenge-type=" + challengeType + "&lc=" + isLC}).text(agreed ? "view" : "view and agree")).append(")");
               var $td2 = $("<td>").append($("<span>", {class: "status " + (agreed === true ? "complete" : "required")}).text(agreed === true ? "Completed" : "Required"));
               $tr.append($td1).append($td2);
               $(".termTable tbody").append($tr);
@@ -145,7 +145,7 @@ appChallengeTerms = {
           $('.loading').hide();
 
           $(".termsBtnRegister").click(function () {
-            window.location = siteURL + "/challenge-details/register/" + challengeId  + "?type=" + challengeType + "&nocache=true";
+            window.location = siteURL + "/challenge-details/register/" + challengeId  + "?type=" + challengeType + "&nocache=true&lc=" + isLC;
           });
         });
       };

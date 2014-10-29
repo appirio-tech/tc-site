@@ -17,7 +17,9 @@
     'challengeDetails.services'
     ])
 
-    .constant("API_URL", tcApiRUL)
+    .constant("API_URL", tcLCApiURL)
+
+    .constant("isLC", isLC)
 
     .constant("TEMPLATE_URL", "/js/app/challenge-details/partials/")
 
