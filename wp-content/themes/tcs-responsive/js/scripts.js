@@ -36,6 +36,24 @@ var app = {
       $('body').addClass('ie7');
       ie7 = true;
     }
+    // expiry date for tcjwt and tcsso cookies extended 1 year if rememberme true
+    if ($.cookie('rememberMe')) {
+      $.cookie.raw = true;
+      var tcjwt = $.cookie('tcjwt');
+      var tcsso = $.cookie('tcsso');
+      if ((typeof tcjwt != 'undefined') && (typeof tcsso != 'undefined')) {
+        var cookieConfig = {
+          expires: 365,
+          path: '/',
+          domain: '.topcoder.com'
+        };
+        $.cookie('tcjwt', tcjwt, cookieConfig);
+        $.cookie('tcsso', tcsso, cookieConfig);
+      } else {
+        // if tcjwt and tcsso not present remove rememberme
+        $.removeCookie('rememberMe');
+      }
+    }
 
     createBannerSlider();
 
@@ -1702,19 +1720,24 @@ var app = {
   // Get loggedin user handle, and remember it.
   getHandle: function(callback) {
     var self = this;
-    var tcsso = $.cookie('tcsso');
+    var tcjwt = $.cookie('tcjwt');
 
-    if (self.handle !== "" || typeof tcsso === 'undefined') {
+    if (self.handle !== "" || typeof tcjwt === 'undefined') {
       callback(self.handle);
     }
-    else if (typeof tcsso !== 'undefined') {
-      var uid = tcsso.split('|')[0];
-      if (uid) {
-        $.getJSON(communityURL + "/tc?module=BasicData&c=get_handle_by_id&dsid=30&uid=" + uid + "&json=true", function(data) {
-          self.handle = data['data'][0]['handle'];
+    else if (typeof tcjwt !== 'undefined') {
+      $.ajax({
+        type: "GET",
+        url: tcApiRUL + '/user/identity',
+        dataType: 'json',
+        headers: {
+          'Authorization': 'Bearer ' + tcjwt
+        },
+        success: function(data) {
+          self.handle = data.handle;
           callback(self.handle);
-        });
-      }
+        }
+      })
     }
   },
   getParameterByName: function(name) {
