@@ -12,10 +12,6 @@
 tc_setup_angular();
 
 // Get the default header
-if (!isset($handle) ) {
-  wp_redirect(site_url('404.php'));
-  exit;
-}
 get_header();
 
 ?>
@@ -24,6 +20,15 @@ get_header();
 
 <div class="content" ng-app="tc" ng-controller="MemberProfileCtrl">
 	<div id="main" class="coderProfile">
+		
+		<div class="loadingPlaceholder2" ng-class="{hidden : userDataRetrieved}"></div>
+
+		<div class="user-not-exist hidden" ng-class="{visible : !userExisted && userDataRetrieved}">
+			<h2>Member not<br class="display"> existing!</h2>
+			<h3>The profile you are<br class="display"> looking for was not found.</h3>
+		</div>
+
+		<div class="hidden" ng-class="{visible : userExisted && userDataRetrieved}">
     <ng-include src="templateUrl"></ng-include>
 
 		<article id="mainContent" class="noShadow">
@@ -56,7 +61,7 @@ get_header();
 			<!-- /.coderRatings -->
 		</article>
 		<!-- /#mainContent -->
-
+		</div>
 <?php
 wp_register_script('raphael-mp', '/wp-content/themes/tcs-responsive/js/raphael-min.js', array('angularjs'), null, true);
 wp_enqueue_script('raphael-mp');	
