@@ -56,11 +56,11 @@
     vm.numCheckpointSubmissions = -1;
     vm.checkpointData = false;
     vm.checkpointResults = false;
-    vm.numberOfPassedScreeningSubmissions = false;
-    vm.numberOfPassedScreeningUniqueSubmitters = false;
-    vm.numberOfUniqueSubmitters = false;
-    vm.checkpointPassedScreeningSubmitterPercentage = false;
-    vm.checkpointPassedScreeningSubmissionPercentage = false;
+    vm.numberOfPassedScreeningSubmissions = 0;
+    vm.numberOfPassedScreeningUniqueSubmitters = 0;
+    vm.numberOfUniqueSubmitters = 0;
+    vm.checkpointPassedScreeningSubmitterPercentage = 0;
+    vm.checkpointPassedScreeningSubmissionPercentage = 0;
 
     $interval(function() {
       if (vm.challenge && vm.challenge.currentPhaseRemainingTime) {

@@ -31,16 +31,34 @@ BadgeCtrl.prototype.dealWithBadgeData = function(userId, $scope, MemberProfileSe
     So we don't need another more service method here.
   */
   
-  var excluded_badgesID = [1,6, 11, 16, 21, 52]; // few data is not available, so lets exclude them.
+  var excluded_badgesID = [1,6, 11, 16, 21, 52, 1000, 1001, 1002, 1003, 1004, 1005, 1006]; // few data is not available, so lets exclude them.
   
   $scope.$watch('coder', function () {
     if($scope.coder && $scope.coder.Achievements){
       $($scope.coder.Achievements).each(function(){
-        var value = badgeCtrl.map[this.description];
+        var desc = this.description;
+        /* Fix Studio Badges */
+        if(badgeCtrl.map[this.description] === undefined && desc.indexOf('Studio ') === 0) {
+          desc = desc.substring(7);
+        }
+        /* Fix Studio bad badge name */
+        if(desc === 'Fifty Milestone Prize' || desc === 'One Hundred Milestone Prize' || desc === 'Two Hundred And Fifty Milestone Prize') {
+         desc = desc + 's';
+        }
+        if(desc.indexOf('Designer of the Month') !== -1) {
+          desc = 'Designer of the Month';
+        }
+        if(desc.indexOf('Member of the Month') !== -1) {
+          desc = 'Member of the Month';
+        }
+        var value = badgeCtrl.map[desc];
         //activate all active badges.
         if(value){
           value.date = badgeCtrl.formatDate(this.date);
           value.active = true;
+          if(this.description.indexOf('Studio ') === 0) {
+            value.isStudio = true;
+          }
           //get active badge's count if available.
           if(userId && $.inArray(value.id, excluded_badgesID) <= -1 ){
             MemberProfileService.getAchievementCurrent(userId, value.id).then(function (data){
@@ -598,6 +616,60 @@ BadgeCtrl.prototype.init = function($scope){
       id : 0,
       name : 'TopCoder Reviewer',
       groupClass : 'TopCoder-Reviewer',
+      active : false
+    },
+    {
+      id : 1000,
+      name : 'Studio Reviewer',
+      groupClass : 'Studio-Reviewer',
+      active : false
+    },
+    {
+      id : 1000,
+      name : 'Studio Cup Top Five',
+      groupClass : 'Studio-Cup-Top-5',
+      active : false
+    },
+    {
+      id : 1001,
+      name : 'Studio Cup Winner',
+      groupClass : 'Studio-Cup-Winner',
+      active : false
+    },
+    {
+      id : 1002,
+      name : 'Studio Spec Reviewer',
+      groupClass : 'Studio-Spec-Reviewer',
+      active : false
+    },
+    {
+      id : 1003,
+      name : 'Studio Screener',
+      groupClass : 'Studio-Screener',
+      active : false
+    },
+    {
+      id : 1003,
+      name : 'Studio Spirit',
+      groupClass : 'Studio-Spirit',
+      active : false
+    },
+    {
+      id : 1004,
+      name : 'Studio Mentor',
+      groupClass : 'Studio-Mentor',
+      active : false
+    },
+    {
+      id : 1005,
+      name : 'Member of the Month',
+      groupClass : 'Member-of-the-Month',
+      active : false
+    },
+    {
+      id : 1006,
+      name : 'Designer of the Month',
+      groupClass : 'Member-of-the-Month',
       active : false
     }
   ];
