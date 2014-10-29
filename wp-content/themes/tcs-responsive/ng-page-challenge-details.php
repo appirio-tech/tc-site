@@ -411,6 +411,9 @@ include locate_template('header-challenge-landing.php');
         <th class="successIconColumn">
           <div>Result</div>
         </th>
+        <th ng-show="CD.isLC">
+          <div>Scorecard</div>
+        </th>
       </tr>
       </thead>
       <tbody>
@@ -432,6 +435,9 @@ include locate_template('header-challenge-landing.php');
         <td class="successIconColumn">
           <i class="{{registrant.winner ? 'successIcon' : registrant.submissionStatus.match('Failed') ? 'failureIcon' : ''}}"
              title="{{registrant.winner ? 'Pass' : registrant.submissionStatus.match('Failed') ? 'Fail' : ''}}"></i>
+        </td>
+        <td ng-show="CD.isLC">
+          <a href="<?php echo TC_LC_URL . '/challenges/' . $contestID . '/scorecards/' . $id; ?>">View</a>
         </td>
       </tr>
       </tbody>
