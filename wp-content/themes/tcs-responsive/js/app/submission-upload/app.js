@@ -20,7 +20,7 @@
     'tc.shared.directives.tcNumberOnly'
   ])
 
-  .constant("API_URL", tcApiRUL)
+  .constant("API_URL", tcLCApiURL)
 
   .config(DataPreProcessing);
 

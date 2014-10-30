@@ -101,8 +101,9 @@ if (basename(get_permalink()) == "challenges") {
     var timezone_string = "<?php echo get_option('timezone_string');?>";
     var challengeType;
 
+    var tcLCApiURL;
     if (isLC) {
-      tcLCApiURL = <?php echo TC_LC_URL; ?>'';
+      tcLCApiURL = '<?php echo TC_LC_URL; ?>';
     } else {
       tcLCApiURL = tcApiRUL;
     }

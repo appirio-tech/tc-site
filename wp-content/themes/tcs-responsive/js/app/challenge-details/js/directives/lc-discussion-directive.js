@@ -6,9 +6,9 @@
 
 /*jslint nomen: true*/
 /*global angular: true, _: true */
-(function() {
+(function(angular) {
   angular
-    .module('lc.directives')
+    .module('lc.directives', [])
 
   /**
    * The directive to display discussion and messages.
@@ -35,7 +35,7 @@
           ];
 
           // get the discussin URL
-          $http.get('/discussionUrl').success(function(result) {
+          /*$http.get('/discussionUrl').success(function(result) {
             var discussionUrl = result.discussionUrl;
 
             // hardcoded discussionId for now as stated in the challenge requirement
@@ -60,13 +60,13 @@
           })
             .error(function(err) {
               console.log('tc-discussion: error to get discussionUrl: ', err);
-            });
+            });*/
 
           $scope.addComment = function() {
             console.log('addComment is clicked, comment: ', $scope.comment);
           };
         },
-        templateUrl: 'js/app/challenge-details/partials/discussion-template.html'
+        templateUrl: 'lc-discussion.html'
       };
     });
-})();
+})(angular);

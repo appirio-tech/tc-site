@@ -11,12 +11,12 @@
     'restangular',
     'ngCookies',
     'angular-loading-bar',
+    'lc.services',
+    'lc.directives',
     'tc.SubmissionDirectives',
     'tc.SubmissionServices',
     'challengeDetails.filters',
-    'challengeDetails.services',
-    'lc.services',
-    'lc.directives'
+    'challengeDetails.services'
     ])
 
     .constant("API_URL", tcLCApiURL)

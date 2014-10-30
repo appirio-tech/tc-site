@@ -23,7 +23,7 @@
    * Inject dependencies
    * @type {string[]}
    */
-  ChallengeDetailCtrl.$inject = ['$scope', 'ChallengeService', '$q', '$cookies', '$interval', '$timeout', 'isLC', 'disucssionUrl', 'DiscussionService'];
+  ChallengeDetailCtrl.$inject = ['$scope', 'ChallengeService', '$q', '$cookies', '$interval', '$timeout', 'isLC', 'lcDiscussionURL', 'DiscussionService'];
 
   /**
    * Controller implementation
