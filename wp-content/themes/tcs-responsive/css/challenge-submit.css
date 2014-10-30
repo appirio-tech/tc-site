@@ -197,6 +197,14 @@
                 .formSection .leftCol dd.empty span.error{
                     visibility: visible;
                 }
+                .formSection .leftCol .inputCnt span.error{
+                    font-size: 14px;
+                    color: #9c2323;
+                    display: none;
+                }
+                .formSection .leftCol .inputCnt.empty span.error{
+                     display: block;
+                }
                 .formSection .leftCol dd input[type=file]{
                     height: 1px;
                     position: absolute;
@@ -274,6 +282,9 @@
             }
             .formSection .leftCol .inputCnt input[type=text].name{
                 width: 236px;
+            }
+            .formSection .leftCol .inputCnt input[type=text].fontUrl:disabled{
+                background: #ddd;
             }
             .formSection .leftCol .inputCnt input[type=text].fontUrl,
             .formSection .leftCol .inputCnt input[type=text].fileNo{
@@ -465,7 +476,8 @@
     .uploadSuccess p{
         font-size: 14px;
         line-height: 24px;
-    }
+        text-align: left;
+}
 
 /*viewSubmission*/
 .develop .viewSubmission{
@@ -495,7 +507,8 @@
 .submissionTable{
     width: 100%;
     overflow: auto;
-    padding-top: 30px;
+    margin-top: 30px;
+    position: relative;
 }
     .develop .submissionTable{
         margin-bottom: 50px;
@@ -544,6 +557,7 @@
             .submissionTable table td span{
                 white-space:nowrap;
             }
+            .viewSubmission span.subId,
             .submissionTable table td span.subId{
                 background: url("../i/submission-icons.png") no-repeat -2px -108px;
                 padding-left: 30px;
@@ -578,6 +592,73 @@
             .submissionTable table td a:hover{
                 opacity: .7;
             }
+/*ng-grid css settings start */
+
+/*submissionTable*/
+.submissionGrid{
+    margin-top: 30px;
+}
+    .submissionGrid .ngViewport {
+        overflow: hidden;
+    }
+
+    .submissionGrid .ngVerticalBarVisible {
+        width: 0px;
+    }
+
+    .submissionGrid .ngRow.even {
+        background-color: inherit;
+    }
+
+    .submissionGrid .ngCellText{
+        text-align: center;
+        vertical-align: middle;
+        display: table-cell;
+        border-bottom: 1px solid #e7e7e7;
+    }
+
+    .submissionGrid .ngHeaderText{
+        padding: 0;
+        line-height: 42px;
+        text-align: center;
+    }
+        .submissionGrid span.subId{
+            background: url("../i/submission-icons.png") no-repeat -2px -108px;
+            padding-left: 30px;
+            display: inline-block;
+            height: 27px;
+            line-height: 27px;
+        }
+        .submissionGrid a{
+            display: inline-block;
+            width: 27px;
+            height: 27px;
+            background: url("../i/submission-icons.png") no-repeat;
+            margin: 0 2px;
+        }
+        .submissionGrid a.up{
+            background-position: 0 0;
+        }
+        .submissionGrid a.down{
+            background-position: 0 -27px;
+        }
+        .submissionGrid a.up.disable,
+        .submissionGrid a.down.disable,
+        .submissionGrid a.delete.disable{
+            opacity: .7;
+            cursor: default;
+        }
+        .submissionGrid a.delete{
+            background-position: 0 -54px;
+        }
+        .submissionGrid a.download{
+            background-position: 0 -81px;
+        }
+        .submissionGrid a:hover{
+            opacity: .7;
+        }
+/*ng-grid css settings end */
+
 
     .buttonHolder .buttonBar{
         text-align: center;
@@ -589,7 +670,81 @@
             margin-top: 25px;
             width: 255px;
         }
-        
+
+/*competitionType icon*/
+.competitionType{
+    position: absolute;
+    background: url("../i/competition-type-icon.png") no-repeat;
+    width: 40px;
+    height: 44px;
+    top: -40px;
+    right: 0;
+}
+.competitionType.design{
+    background-position: 0 0;
+}
+.competitionType.develop{
+    background-position: 0 -50px;
+}
+
+.terms .content .container{
+    min-height: 500px;
+}
+#iframe{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.terms #mainContent{
+    padding-top: 0;
+}
+    .terms #mainContent h2.pageTitle{
+        height: 72px;
+        line-height: 72px;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        background: #eeeeee;
+        text-align: center;
+        position: relative;
+        z-index: 10;
+    }
+        .terms #mainContent h2.pageTitle span.container{
+            text-align: left;
+            display: inline-block;
+            height: 72px;
+            min-height: 72px;
+            line-height: 72px;
+            padding-left: 80px;
+            position: relative;
+            width: 930px;
+        }
+            .terms #mainContent h2.pageTitle span.container i{
+                position: absolute;
+                background: url("../i/terms-icon.png") no-repeat;
+                width: 66px;
+                height: 94px;
+                left: 0;
+                top: 0;
+            }
+
+.submitAnotherEntry{
+    margin-bottom: 280px;
+}
+.challenge-detail .pageHeading h1{
+    margin-top: 0;
+}
+#main > .container{
+    padding-top: 10px;
+}
+
+.inputCnt .jqTransformSelectWrapper div span{
+    font-size: 12px;
+    color: #444;
+}
+
+
  @media (max-width: 1019px) {       
         
     .submitForChallenge #mainContent .pageTitle{

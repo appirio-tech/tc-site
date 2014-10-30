@@ -99,21 +99,16 @@ function tsc_build_asset_path($asset_name, $type, $min = false, $useCDN = false)
     $base_path = tsc_get_script_base_url();
   }
 
-  if (!isset($ext)) {
-    $ext = tsc_get_script_ext();
-  }
+  $ext = tsc_get_script_preext() . $type;
+
   // if min and cdn use /ver/type/file
   if ($min && $useCDN) {
-    $path =  "{$base_path}/{$type}/{$asset_name}.min.{$type}";
+    $path =  "{$base_path}/{$type}/{$asset_name}.min.{$ext}";
   } elseif ($min) {
     // min and not cdn then use add do not sort by type
-    $path = "{$base_path}/{$asset_name}.min.{$type}";
+    $path = "{$base_path}/{$asset_name}.min.{$ext}";
   } else {
     $path = "{$base_path}/{$type}/{$asset_name}";
-  }
-
-  if ($ext) {
-    $path .=  ".{$ext}";
   }
 
   return $path;
@@ -180,13 +175,13 @@ function tsc_get_script_base_url() {
  *
  * @return string
  */
-function tsc_get_script_ext() {
+function tsc_get_script_preext() {
   $jsCssUseCDN = TC_USE_CDN;
 
   // check if the browser supports gzip so we can specify the gzip version of resources
   $ext = '';
   if (TC_CDN_GZ && $jsCssUseCDN && strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== false) {
-    $ext = 'gz';
+    $ext = 'gz.';
   }
 
   return $ext;
@@ -259,11 +254,15 @@ function tc_setup_angular() {
   wp_register_script('ng-grid', '//cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.10/ng-grid.min.js', array('angularjs'), null, true);
   wp_enqueue_script('ng-grid');
 
+  //ng-grid-flexible-height
+  wp_register_script('ng-grid-flexible-height', '//cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.10/ng-grid-flexible-height.js', array('angularjs'), null, true);
+  wp_enqueue_script('ng-grid-flexible-height');
+
   wp_register_style('ng-grid', '//cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.10/ng-grid.css');
   wp_enqueue_style('ng-grid');
 
   // ng-cookies
-  wp_register_script('ng-cookies', '//code.angularjs.org/1.2.15/angular-cookies.min.js', array('angularjs'), null, true);
+  wp_register_script('ng-cookies', '//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular-cookies.min.js', array('angularjs'), null, true);
   wp_enqueue_script('ng-cookies');
 
   //angular-ui-router

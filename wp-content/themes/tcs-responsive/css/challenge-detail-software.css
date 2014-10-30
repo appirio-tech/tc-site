@@ -205,7 +205,7 @@ font-size: 18px;
     color: #FFFFFE;
     font-size: 30px;
     line-height: 30px;
-    margin-left: 20px;
+    margin-left: 2px;
 }
 
 #stepBox .rightColumn .nextBox .timeLeft small {
@@ -304,6 +304,11 @@ font-size: 18px;
     padding-bottom: 8px;
 }
 
+h1.center {
+  margin-top: 10px;
+  text-align: center;
+}
+
 .challenge-detail.develop .tableWrap h1 {
     color: #228400;
 }
@@ -391,7 +396,8 @@ font-size: 18px;
 }
 
 .challenge-detail .currentTab-checkpoints .tableWrap,
-.challenge-detail .currentTab-submissions .tableWrap {
+.challenge-detail .currentTab-submissions .tableWrap,
+.challenge-detail .currentTab-winner .tableWrap {
     padding-right: 0;
 }
 
@@ -456,14 +462,14 @@ font-size: 18px;
 
 
 .challenge-detail .columnSideBar .inner {
-    padding: 10px 10px 0 10px;
+    padding: 10px 10px;
+    border-bottom: 1px solid #e7e7e7;
 }
 
 .challenge-detail .columnSideBar h3 {
     color: #00aeff;
     font-size: 16px;
     font-weight: bold;
-    border-bottom: 1px solid #e7e7e7;
     padding: 11px 10px;
     text-transform: uppercase;
 }
@@ -596,9 +602,6 @@ font-size: 18px;
 
 .reviewStyle h3 {
     color: #B30000;
-    font-family: "Lucida Sans Unicode", Arial, Helvetica, sans-serif;
-    font-size: 16px;
-    font-weight: normal;
     padding: 0 0 6px;
 }
 
@@ -817,9 +820,8 @@ font-size: 18px;
 }
 
 #viewRegistrant table tr td {
-    height: 30px;
+    height: 40px;
     padding-left: 10px;
-    padding-top: 12px;
     font-size: 12px;
 }
 
@@ -833,12 +835,16 @@ font-size: 18px;
     width: 25%;
 }
 
+#viewRegistrant table tr .handleColumnDesign {
+    width: 30%;
+}
+
 #viewRegistrant table tr td.handleColumn {
     font-size: 14px;
 }
 
 #viewRegistrant table tr .ratingColumn {
-    width: 13%;
+    width: 10%;
     text-align: center;
 }
 
@@ -848,12 +854,32 @@ font-size: 18px;
 }
 
 #viewRegistrant table tr .regDateColumn {
-    width: 25%;
+    width: 20%;
+    text-align: center;
+}
+
+#viewRegistrant table tr .regDateColumnDesign {
+    width: 30%;
     text-align: center;
 }
 
 #viewRegistrant table tr .subDateColumn {
-    width: 25%;
+    width: 20%;
+    text-align: center;
+}
+
+#viewRegistrant table tr .successColumn {
+    width: 12%;
+    text-align: center;
+}
+
+#viewRegistrant table tr .subDateColumnDesign {
+    width: 30%;
+    text-align: center;
+}
+
+#viewRegistrant table tr .successIconColumn {
+    width: 10%;
     text-align: center;
 }
 
@@ -1325,6 +1351,8 @@ font-size: 18px;
     color: #333;
 }
 
+#winner .informationView .meataAction .download,
+#winner .informationView .meataAction .download:visited,
 #submissions .informationView .meataAction .download,
 #submissions .informationView .meataAction .download:visited {
     background: url(../i/winner-actions.png) no-repeat 0 bottom;
@@ -1336,8 +1364,23 @@ font-size: 18px;
     line-height: 23px;
 }
 
-#submissions .informationView .meataAction .back{
+#winner .informationView .meataAction .back,
+#submissions .informationView .meataAction .back {
     margin-left: 29px;
+}
+
+#winner .informationView .meataAction .viewSubmission,
+#winner .informationView .meataAction .viewSubmission:visited,
+#submissions .informationView .meataAction .viewSubmission,
+#submissions .informationView .meataAction .viewSubmission:visited {
+    background: url(../i/winner-actions.png) no-repeat 0 0;
+    padding-left: 29px;
+    height: 23px;
+    font-size: 14px;
+    margin-right: 8px;
+    position: relative;
+    display: inline-block;
+    line-height: 23px;
 }
 
 .informationView .meataAction .download:hover {
@@ -1350,6 +1393,7 @@ font-size: 18px;
     font-size: 13px;
 }
 
+.challenge-detail #winner .furtherInfo p,
 .challenge-detail #submissions .furtherInfo p {
     padding-bottom: 0;
     margin-bottom: 0;
@@ -1480,20 +1524,25 @@ font-size: 18px;
     top: 9px;
 }
 
+.challenge-detail #winner .submissionSingleView,
 .challenge-detail #submissions .submissionSingleView {
     margin-top:-10px;
 }
 
+.challenge-detail #winner .submissionShowcaseList,
 .challenge-detail #submissions .submissionShowcaseList {
     padding-left: 19px;
 }
 
+.challenge-detail #winner .submissionShowcaseList li,
 .challenge-detail #submissions .submissionShowcaseList li {
     padding: 0;
     margin: 0;
     margin: 5px 0;
 }
 
+.challenge-detail #winner .submissionShowcaseList li a,
+.challenge-detail #winner .submissionShowcaseList li a:visited,
 .challenge-detail #submissions .submissionShowcaseList li a,
 .challenge-detail #submissions .submissionShowcaseList li a:visited {
     width: 201px;
@@ -1504,10 +1553,14 @@ font-size: 18px;
     height: 157px;
 }
 
+.challenge-detail #winner .submissionShowcaseList li a:hover,
 .challenge-detail #submissions .submissionShowcaseList li a:hover {
     background: url(../i/thumb-hover.png) no-repeat 0 0;
 }
 
+.challenge-detail #winner .submissionShowcaseList li a.active,
+.challenge-detail #winner .submissionShowcaseList li a.active:visited,
+.challenge-detail #winner .submissionShowcaseList li a.active:hover
 .challenge-detail #submissions .submissionShowcaseList li a.active,
 .challenge-detail #submissions .submissionShowcaseList li a.active:visited,
 .challenge-detail #submissions .submissionShowcaseList li a.active:hover {
@@ -1527,6 +1580,7 @@ font-size: 18px;
     width: 435px;
 }
 
+.challenge-detail #winner .fullScreenBtn,
 .challenge-detail #submissions .fullScreenBtn {
     width: auto;
     background-image: url(../i/fullViewIcon.png);

@@ -33,9 +33,13 @@ $(function () {
     showModal('#login');
   });
 
-  $('.closeModal,#bgModal').on('click', function () {
+  $('.closeModal,#bgModal').not('.redirectOnConfirm').on('click', function () {
     //window.location.replace('/');
     closeModal();
+  });
+
+  $('.redirectOnConfirm').on('click', function () {
+    redirectToNext();
   });
 
 
@@ -341,7 +345,8 @@ $(function () {
     var pwd = $('#register form.register input.pwd:password');
     var confirm = $('#register form.register input.confirm:password');
     //bugfix empty value checking without using trim
-    if (pwd.val() == confirm.val() && pwd.val() != '') {
+    var strength = pwdStrength(pwd.val());
+    if (pwd.val() == confirm.val() && pwd.val() != '' && strength>0 ) {
       confirm.parents(".row").find("span.valid").css("display", "inline-block");
       confirm.removeClass('invalid');
       confirm.parents(".row").find('span.err1').hide();
@@ -375,22 +380,23 @@ $(function () {
     emailValidationAttempted = true;
     var email = $('#register form.register input.email:text').val();
     email = email.replace('+', '%2B');
+
+    var showInvalid = function() {
+      emailIsFree = false;
+      var node = $('#register form.register input.email:text');
+      $('input.email').closest('p.row').find('.err3').show();
+      $('input.email').closest('p.row').find('input:text').addClass('invalid');
+      $('input.email').closest('p.row').find('span.valid').hide();
+      emailDeferred.resolve();
+    }
+
     $.ajax({
       type: 'GET',
-      data: {
-        email: email,
-        action: 'get_email_validity'
-      },
       dataType: 'json',
-      url: ajaxUrl,
+      url: tcApiRUL + '/users/validateEmail?email=' + email + '&cb='+ Math.random(),
       success: function(data) {
         if (data.error || !data.available) {
-          emailIsFree = false;
-          var node = $('#register form.register input.email:text');
-          $('input.email').closest('p.row').find('.err3').show();
-          $('input.email').closest('p.row').find('input:text').addClass('invalid');
-          $('input.email').closest('p.row').find('span.valid').hide();
-          emailDeferred.resolve();
+          showInvalid();
         } else {
           emailIsFree = true;
           var node = $('#register form.register input.email:text');
@@ -402,9 +408,7 @@ $(function () {
           emailDeferred.resolve();
         }
       }
-    }).fail(function() {
-      console.log('fail with '+ email);
-    });
+    }).fail(function() { showInvalid(); });
   }
   $('#register form.register input.email:text').blur(function() {
     validateEmail();
@@ -419,23 +423,24 @@ $(function () {
     handleChanged = false;
     handleValidationAttempted = true;
     var handle = $('#register form.register input.name.handle:text').val();
+
+    var showInvalid = function() {
+      handleIsFree = false;
+      var node = $('#register form.register input.name.handle:text');
+      $('input.handle').closest('.row').find('.err2').show();
+      $('input.handle').closest('.row').find('input:text').addClass('invalid');
+      $('input.handle').closest('.row').find('span.valid').hide();
+      handleDeferred.resolve(); 
+    }
+
     $.ajax({
       type: 'GET',
-      data: {
-        handle: handle,
-        action: 'get_handle_validity'
-      },
       dataType: 'json',
-      url: ajaxUrl,
+      url: tcApiRUL + '/users/validate/' + handle + '?cb='+ Math.random(),
       success: function(data) {
         if (handleChanged) return;
-        if (data.error) {
-          handleIsFree = false;
-          var node = $('#register form.register input.name.handle:text');
-          $('input.handle').closest('.row').find('.err2').show();
-          $('input.handle').closest('.row').find('input:text').addClass('invalid');
-          $('input.handle').closest('.row').find('span.valid').hide();
-          handleDeferred.resolve();
+        if (data.error || !data.valid) {
+          showInvalid();
         } else {
           handleIsFree = true;
           var node = $('#register form.register input.name.handle:text');
@@ -447,7 +452,8 @@ $(function () {
         }
       }
     }).fail(function() {
-      console.log('fail with '+handleState.handle);
+        if (handleChanged) return;
+        showInvalid();
     });
   }
   $('#register form.register input.name.handle:text').blur(function() {
@@ -620,28 +626,28 @@ $(function () {
             fields.password = $('#registerForm  input.pwd').val();
           }
 
+          if (_kmq) 
+            _kmq.push(['identify', fields.email]);
+          
           $.post(ajaxUrl + '?action=post_register', fields, function (data) {
             if (data.code == "200") {
-              if (data.data && data.data.body.next) {
-                window.location.href = data.data.body.next;
-              } else {
-                $('.modal').hide();
-                $("#thanks h2").html('Thanks for Registering');
-                $("#thanks p").html('We have sent you an email with activation instructions.<br>If you do not receive that email within 1 hour, please email <a href="mailto:support@topcoder.com">support@topcoder.com</a>');
-                if (tcAction) {
-                  var tcDoAction = tcAction.split('|');
-                  if (tcDoAction[0] === 'register') {
-                    //append challenge registration message
-                    $("#thanks p").after("<div style='padding-bottom: 30px'>In order to register for the selected challenge, you must return to the <a href='/challenge-details/" + tcDoAction[1] + "/?type=" + challengeType + "'>challenge details page</a> after you have activated your account.</div>");
-                    $('#thanks p').css({'padding-bottom': '10px'});
-                  }
+              var tcAction = getCookie('tcDelayChallengeAction');
+              $('.modal').hide();
+              $("#thanks h2").html('Thanks for Registering');
+              $("#thanks p").html('We have sent you an email with activation instructions.<br>If you do not receive that email within 1 hour, please email <a href="mailto:support@topcoder.com">support@topcoder.com</a>');
+              if (tcAction) {
+                var tcDoAction = tcAction.split('|');
+                if (tcDoAction[0] === 'register') {
+                  //append challenge registration message
+                  $("#thanks p").after("<div style='padding-bottom: 30px'>In order to register for the selected challenge, you must return to the <a href='/challenge-details/" + tcDoAction[1] + "/?type=" + challengeType + "'>challenge details page</a> after you have activated your account.</div>");
+                  $('#thanks p').css({'padding-bottom': '10px'});
                 }
-                showModal('#thanks');
-                $('#registerForm .invalid').removeClass('invalid');
-                $('#registerForm .valid').removeClass('valid');
-                $('.err1,.err2', frm).hide();
-                resetRegisterFields();
               }
+              showModal('#thanks');
+              $('#registerForm .invalid').removeClass('invalid');
+              $('#registerForm .valid').removeClass('valid');
+              $('.err1,.err2', frm).hide();
+              resetRegisterFields();
             }
             else {
               //$('.modal').hide();
@@ -755,13 +761,18 @@ $(function () {
       var tcActionValues = tcAction.split('|');
       if (typeof tcActionValues[2] !== 'undefined' && tcActionValues[0] === 'register' && tcActionValues[2] !== '') {
           //add link to challenge-details page for challenge new user tried to register for before making topcoder account
-          $('.thank-you').append("<h4>Are you still interested in participating in the <br>&quot;" + decodeURIComponent(tcActionValues[2]) + "&quot; challenge? <br>If so, <a href='/challenge-details/" + tcActionValues[1] + "/register/'>go there now!</a></h4>");
+          $('.thank-you').append("<h4>Are you still interested in participating in the <br>&quot;" + decodeURIComponent(tcActionValues[2]) + "&quot; challenge? <br>If so, <a href='/challenge-details/register/" + tcActionValues[1] + "/'>go there now!</a></h4>");
         }
     }
   }
 });
 
 // modal
+function showError(message) {
+  $("#registerFailed .failedMessage").text(message);
+  showModal("#registerFailed");
+}
+
 /**
  * show modal
  * selector - the jQuery selector of the popup
@@ -794,6 +805,20 @@ function closeModal() {
   
   loginState = window.location.href;
   $('#registerForm span.socialUnavailableErrorMessage').hide();
+}
+
+function redirectToNext() {
+  // go to next param if it exists
+  var nextLoc = getParameterByName('next') || getHashParameterByName('state');
+  if (nextLoc) {
+    window.location.href = nextLoc;
+  }
+  else if (window.location.pathname == '/register/') {
+    window.location.href = "/";
+  }
+  else {
+    closeModal()
+  }
 }
 
 // Resets the registration popup fields

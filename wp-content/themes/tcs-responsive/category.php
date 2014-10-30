@@ -80,7 +80,7 @@ $blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the TopCoder-
 								$catName = $activeMenuObj->cat_name;
 								$feedUrl = get_bloginfo("wpurl")."/feed/?cat=$catId&post_type=blog";
 							?>
-							<a class="currentCatLink rssCat">Browsing '<?php echo $catName;?>'</a>
+							<span class="currentCatLink rssCat">Browsing '<?php echo $catName;?>'</span>
 							<a class="feedBtn" href="<?php echo $feedUrl;?>">Subscribe to <?php echo $catName;?></a>
 						</div>
 						<div class="blogsWrapper">

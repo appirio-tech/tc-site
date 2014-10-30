@@ -269,7 +269,7 @@
     /*Bugfix refactored-challenge-details-80: fixed inconsistent spacing in results between design and develop*/
     #winner .competitionDetails div.registrant,
     .develop #winner .competitionDetails div.registrant{
-        width: 150px;
+        width: 23%;
     }
     .TC #winner .competitionDetails div.registrant{
         width: 100px;
@@ -281,7 +281,7 @@
     #winner .competitionDetails div.round,
     .develop #winner .competitionDetails div.round,
     .develop #winner .competitionDetails div.average{
-        width: 415px;
+        width: 23%;
     }
     .TC #winner .competitionDetails div.round{
         width: 300px;
@@ -327,7 +327,6 @@ table.registrantsTable{
             color: #666;
             font-size: 12px;
             padding-bottom: 10px;
-            background: url("../i/sort-arrows.png") no-repeat 50% 15px;
         }
     table.registrantsTable td{
         height: 42px;

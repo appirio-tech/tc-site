@@ -3,7 +3,8 @@ a{
 }
 .nocontestStatus{
     height: 550px;
-    line-height: 300px;
+    line-height: 30px;
+    margin-top: 120px;
     text-align: center;
     color: #FF8A00;    
 }
@@ -61,14 +62,11 @@ a{
         font-size: 18px;
         margin-bottom: 10px;
     }
-    .aboutCoder .handle a{
+    .aboutCoder .handle{
         font-size: 24px;
         line-height: 32px;
         font-family: Arial, Helvetica, sans-serif;
         color: #fff;
-    }
-    .aboutCoder .handle a:hover{
-        color: #FF8A00;
     }
     .aboutCoder .info .val{
         font-size: 24px;
@@ -302,8 +300,8 @@ a{
     .algoLayout .detailedRating{
         margin-left: 258px;
         overflow: hidden;
-        min-height: 124px;
-        padding-top: 16px;
+        min-height: 132px;
+        padding-top: 8px;
     }
     .algoLayout .detailedRating .row {
         line-height: 22px;
@@ -330,6 +328,7 @@ a{
         float: left;
         max-width: 96px;
         height: 22px;
+        text-transform: capitalize;
         /*
 		Issue ID: I-108002 - don't cut the overflow
 		
@@ -359,7 +358,7 @@ a{
     .algoLayout .ratingViews{
         border: 1px solid #E7E7E7;
         border-top: none;
-        min-height: 492px;
+        min-height: 445px;
     
         position: relative;
     }
@@ -396,7 +395,7 @@ a{
         
     }
     .algoLayout .ratingViews .subTrackTab{
-        min-height: 493px;
+        min-height: 472px;
     }
     /* tabNav */
     .algoLayout .subTrackTabs .tabNav{

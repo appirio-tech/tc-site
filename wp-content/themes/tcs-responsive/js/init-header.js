@@ -57,7 +57,9 @@ function initMemberDetails(pagePersisted){
       var regCookie = app.isLoggedIn();
         if (regCookie && pagePersisted === false) {
         $('.actionLogout').attr('href', 'javascript:;');
-        $('.loginLink, .linkLogin, .btnRegister').addClass('hide').hide();
+        $('.loginLink, .linkLogin, .btnRegister, .signUp a.btn').addClass('hide').hide();
+        $('.btnRegister').parent('.sign-up').hide();
+        $('*[data-signup-only]').hide();
         $('.logoutLink, .linkLogout, .userDetailsWrapper').removeClass('hide').show();
         $('.headerTopRightMenuLink.logIn a').unbind('click');
         $('.headerTopRightMenuLink.logIn a').text("Log Out").removeClass("actionLogin").addClass("actionLogout");
@@ -142,7 +144,9 @@ function initMemberDetails(pagePersisted){
           $("#register a.btnSubmit").removeClass("socialRegister");
           showModal('#login');
         });
-        $('.loginLink, .linkLogin, .btnRegister').addClass('show').show();
+        $('.loginLink, .linkLogin, .btnRegister, .signUp a.btn').addClass('show').show();
+        $('.btnRegister').parent('.sign-up').show();
+        $('*[data-signup-only]').show();
         $('.logoutLink, .linkLogout, .userDetailsWrapper').removeClass('show').hide();
 
       } else {

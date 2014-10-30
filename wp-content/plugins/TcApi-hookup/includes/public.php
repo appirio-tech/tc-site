@@ -363,7 +363,7 @@ class TCHOOK_Public extends TCHOOK_Plugin {
   function tcapi_get_coder($atts, $handle = "") {
     $handle        = clean_pre($handle);
     $coder_profile = get_member_profile($handle);
-    $coder_ratings = $coder_profile->ratingsSummary;
+    $coder_ratings = $coder_profile->ratingSummary;
     $coder_handle  = $coder_profile->handle;
 
     if ($coder_handle != "") {
@@ -402,7 +402,7 @@ class TCHOOK_Public extends TCHOOK_Plugin {
     $response = wp_remote_get($url, $args);
 
     if (is_wp_error($response) || !isset ( $response ['body'] )) {
-      return "Error in processing";
+      return $key == "memberCount" ? "675,000+" : "Error in processing";
     }
     if ($response ['response'] ['code'] == 200) {
       $activity = json_decode($response ['body']);
@@ -412,7 +412,7 @@ class TCHOOK_Public extends TCHOOK_Plugin {
       }
       return $activity;
     }
-    return "Error in processing request";
+    return $key == "memberCount" ? "675,000+" : "Error in processing request";
   }
 
 
@@ -519,8 +519,8 @@ class TCHOOK_Public extends TCHOOK_Plugin {
 
 
   /* search users  */
-  function tcapi_search_users($handle = '') {
-    $url      = TC_API_URL . "/users/search/?handle=" . $handle;
+  function tcapi_search_users($handle = '', $pageIndex = 1, $pageSize = 20) {
+    $url      = TC_API_URL . "/users/search/?handle=" . $handle . "&pageIndex=" . $pageIndex . "&pageSize=" . $pageSize;
     $args     = array(
       'httpversion' => get_option('httpversion'),
       'timeout'     => 30

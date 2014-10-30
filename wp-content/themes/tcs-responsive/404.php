@@ -11,7 +11,7 @@
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 
 	<!-- Favicons -->
-	<link rel="shortcut icon" href="http://local.topcoder.com/wp-content/themes/tcs-responsive/favicon.ico" />
+	<link rel="shortcut icon" href="<?php bloginfo('template_url'); ?>/favicon.ico" />
 
 
 	<?php
@@ -43,7 +43,7 @@
 	    <div class="container">
 		<div class="clear"></div>
 			<h1 class="logo">
-				<a href="http://local.topcoder.com" title="topcoder"></a>
+				<a href="<?php bloginfo('wpurl'); ?>" title="topcoder"></a>
 			</h1>
 			</div>
 		</header>

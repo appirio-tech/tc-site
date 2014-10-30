@@ -84,14 +84,14 @@ array_push ( $challengetypes, 'UI Prototypes' );
 					$dev = $tracks->{$currentChallengetype};
 					$devHistory = $competitionHistory->{$currentChallengetype};
 				} else {
-					echo "<h3>Develop</h3>";
+					echo "<h3>Development</h3>";
 				}
 				?>
 				</ul>
 			</nav>
 			<?php  if(empty($tracks->{$currentChallengetype})):?>
 			<header class="head">
-				<h3 class="nocontestStatus text">Member rating unavailable or member didn't participated in any Develop contest.</h3>
+				<h3 class="nocontestStatus text">Member rating unavailable or member didn't participate in any Development challenges.</h3>
 			</header>
 			<?php else:?>
 
@@ -101,10 +101,8 @@ array_push ( $challengetypes, 'UI Prototypes' );
 								$underscoredCurrentChallengeType = str_replace ( ' ', '_', $currentChallengetype );
 								$underscoredCurrentChallengeType = strtolower ( $underscoredCurrentChallengeType );?>
 					</h4>
-					<div class="rating <?php echo do_shortcode("[tc_rating_color score='".$dev->rating."' ]") ?>"><?php echo $dev->rating;?></div>
 					<div class="lbl">Rating</div>
-					<div class="lbl">
-					</div>
+					<div class="rating <?php echo do_shortcode("[tc_rating_color score='".$dev->rating."' ]") ?>"><?php echo $dev->rating;?></div>
 				</div>
 
 

@@ -69,11 +69,11 @@ if( $updatePassword=="true" ) {
 								<form id="formChangePassword" name="formResetPassword" action="" method="POST">
 									<input type="hidden" class="updatePassword" name="updatePassword" value="true" />
 									<div class="row">
-										<input class="handle" type="text" maxlength="40" name="handle" placeholder="Username:" size="50" />
+										<input class="handle" type="text" maxlength="40" name="handle" placeholder="Username" size="50" />
 										<span class="err1 error" style="display: none;">Required field</span>
 									</div>
 									<div class="row">
-										<input class="password" type="password" maxlength="40" name="password" placeholder="New Password:" size="50" />
+										<input class="password" type="password" maxlength="40" name="password" placeholder="New Password" size="50" />
 										<span class="err1 error" style="display: none;">Required field</span>
 										<span class="err2 error" style="display: none;">Password strength is weak</span>
 										<span class="err3 error" style="display: none;">Password cannot contain an apostrophe</span>
@@ -91,12 +91,12 @@ if( $updatePassword=="true" ) {
 										7 characters with letters, numbers, &amp; symbols
 									</p>
 									<div class="row">
-										<input class="confirm" type="password" maxlength="40" name="confirm" placeholder="Confirm password:" size="50" />
+										<input class="confirm" type="password" maxlength="40" name="confirm" placeholder="Confirm password" size="50" />
 										<span class="err1 error" style="display: none;">Required field</span>
 										<span class="err2 error" style="display: none;">Password confirmation different from above field</span>
 									</div>
 									<div class="row">
-										<input class="unlockCode" type="text" maxlength="40" name="unlockCode" placeholder="Unlock Code:" size="50" />
+										<input class="unlockCode" type="text" maxlength="40" name="unlockCode" placeholder="Unlock Code" size="50" />
 										<span class="err1 error" style="display: none;">Required field</span>
 									</div>
 									<div class="row">

@@ -8,6 +8,14 @@ appChallengeSubmit = {
     $('#submitForm').jqTransform();
     $('body').delegate('.fileBrowser', 'click', function() {
       var fileUploaderWrapper = $(this).parent().removeClass('empty');
+      /* Issue #653 - hide last selected file name when browsing another file
+       Because only change text in .fileNameDisplay to blank will cause issue when selecting a same file twice in a row,
+       so we must reset value of input[type=file]. To provide maximum browser compatibility, reset the whole form first
+       and then set #agree prop back */
+      var agreed = $('#agree').prop('checked');
+      $('#submitForm')[0].reset();
+      $('#agree').prop('checked', agreed);
+      $('.fileNameDisplay', fileUploaderWrapper).html('Select file to upload...').addClass("fileNameDisplayNoFile");
       $('.fileInput', fileUploaderWrapper).trigger('click');
     });
     $('#agree').change(function(){
@@ -48,10 +56,11 @@ appChallengeSubmit = {
                 //bugfix: if wrong file type, show correct error message
                 if (type.length > 1) {
                   //display error if multiple file formats available
-                  $('.formSection .leftCol dd span.error').text('Uploaded submissions must be in one of the following file formats: .' + type.join(', .'));
+                  $('.formSection .leftCol dd span.error').text('Submissions must be in one of the following file formats: .' + type.join(', .'));
                 } else {
                   //display error if only one file format is available
-                  $('.formSection .leftCol dd span.error').text('Uploaded submissions must be in .' + type[0] + ' format only');
+                  $('.formSection .leftCol dd span.error').text('Submissions must be in .' + type[0] + ' format only');
+                  $('.fileNameDisplay').html("Select file to upload...").addClass("fileNameDisplayNoFile");
                 }
                 $("#submission").closest('dd').addClass('empty');
                 empty = true;
@@ -90,6 +99,12 @@ appChallengeSubmit = {
                   xhr.abort();
                   $( ".uploadBar .loader" ).stop();
                   $('.container').removeClass('uploading');
+                  /* Issue #664 - reset input[type=file]
+                    To provide maximum browser compatibility, reset the whole form first and then set #agree prop back */
+                  var agreed = $('#agree').prop('checked');
+                  $('#submitForm')[0].reset();
+                  $('#submission').closest('dd').find('.fileNameDisplay').html('Select file to upload...').addClass("fileNameDisplayNoFile");
+                  $('#agree').prop('checked', agreed);
                 });
               };
               fileReader.readAsDataURL(submission);

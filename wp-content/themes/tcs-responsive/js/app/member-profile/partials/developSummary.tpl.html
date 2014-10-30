@@ -1,5 +1,5 @@
 <header class="head" ng-if="dataCtrl.emptyFlag">
-	<h3 class="nocontestStatus text">Member rating unavailable or member didn't participated in any Develop contest.</h3>
+	<h3 class="nocontestStatus text">Member rating unavailable or member didn't participate in any Development challenges.</h3>
 </header>
 
 <header class="head" ng-if="!dataCtrl.emptyFlag">
@@ -33,7 +33,7 @@
 		<div class="row fieldCompetitions">
 			<label>Competitions:</label>
 			<div class="val">
-				<a href="#" ng-bind="stats.CompetitionHistory[subTrack].competitions|| 'loading...'">loading...</a>
+				<span href="#" ng-bind="stats.CompetitionHistory[subTrack].competitions|| 'loading...'">loading...</span>
 			</div>
 		</div>
 		<div class="row fieldMaxRating">
@@ -48,14 +48,14 @@
 			<label>Reviewer Rating: </label>
 			<div class="val">
 				<a href="#" ng-if="stats.Tracks[subTrack].reviewerRating" ng-bind="stats.Tracks[subTrack].reviewerRating | number : 2 ">loading...</a>
-				<a href="#" ng-if="!stats.Tracks[subTrack].reviewerRating" ng-bind="!stats.Tracks[subTrack] | iif : 'loading...' : 'Not rated' "></a>
+				<span ng-if="!stats.Tracks[subTrack].reviewerRating" ng-bind="!stats.Tracks[subTrack] | iif : 'loading...' : 'Not rated' ">loading...</span>
 			</div>
 		</div>
 		<div class="row fieldRevRating">
 			<label>Reliability: </label>
 			<div class="val">
 				<a href="#" ng-if="stats.Tracks[subTrack].reliability && stats.Tracks[subTrack].reliability !=='n/a' " ng-bind="(stats.Tracks[subTrack].reliability*100.0 | number : 0 ) + '%'">loading...</a>
-				<a href="#" ng-if="!stats.Tracks[subTrack].reliability || stats.Tracks[subTrack].reliability === 'n/a'" ng-bind="!stats.Tracks[subTrack] | iif : 'loading...' : 'N/A' "></a>
+				<span ng-if="!stats.Tracks[subTrack].reliability || stats.Tracks[subTrack].reliability === 'n/a'" ng-bind="!stats.Tracks[subTrack] | iif : 'loading...' : 'N/A' ">loading...</span>
 			</div>
 		</div>
 		<div class="clear"></div>

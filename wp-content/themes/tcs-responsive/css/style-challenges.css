@@ -197,7 +197,6 @@ select {
     top: 4px;
     background: url(../i/tco/tco-arrow.png) no-repeat;
     background-position: 0 10px;
-    padding-bottom: 8px;
 
     -moz-transition-duration: .2s;
     -webkit-transition-duration: .2s;
@@ -758,6 +757,10 @@ caption.reviewDetail {
     color: #FFB800
 }
 
+.contestGrid .technologyTags a:hover {
+    color: #FFB800
+}
+
 .contestGrid .cgCh a img {
     position: absolute;
     top: 0;
@@ -1108,6 +1111,13 @@ select:disabled {
     z-index: 10;
 }
 
+.ui-datepicker-prev.ui-state-disabled,
+.ui-datepicker-next.ui-state-disabled {
+    background: url(../i/arrows-rl-gray.png) no-repeat;
+    background-position: 3px -25px;
+    cursor: default;
+}
+
 .ui-datepicker-prev {
     width: 20px;
     height: 20px;
@@ -1129,6 +1139,10 @@ select:disabled {
     top: 9px;
     right: 11px;
     position: absolute;
+}
+
+.ui-datepicker-next.ui-state-disabled {
+    background-position: 3px 4px;
 }
 
 .ui-datepicker-year {

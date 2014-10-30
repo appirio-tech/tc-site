@@ -184,10 +184,10 @@ var app = {
     });
 
     $('#mainNav .root > li').mouseenter(function() {
-      $('.child', $(this)).stop().slideDown('fast');
+      $('.child', $(this)).stop(true, true).slideDown('fast');
     });
     $('#mainNav .root > li').mouseleave(function() {
-      $('.child', $(this)).stop().slideUp('fast');
+      $('.child', $(this)).stop(true, true).slideUp('fast');
     });
 
     // footer navigation
@@ -209,8 +209,47 @@ var app = {
       $(this).addClass('active');
       return false;
     });
-  },
 
+    //search widget
+    $('#searchButton').on(ev,function(){
+      $('#searchKeyword').removeClass('required');
+      $('#requiredText').addClass('hide');
+      $("#searchWidget").toggleClass('hide');
+      $(".headerTopRightMenuLink.search").toggleClass('active');
+    });
+
+    $('#btnSearchType').on(ev,function(){
+      $('#btnSearchType').toggleClass('isActive');
+      $('#searchTypeList').toggleClass('hide');
+    });
+
+    $('.searchType').on(ev,function(){
+      $('#searchTypeName').text($(this).text());
+      $('#btnSearchType').toggleClass('isActive');
+      $('#searchTypeList').toggleClass('hide');
+    });
+    $('#searchButtonGo').on(ev,app.submitSearch);
+    $("#searchKeyword").keyup(function(event){
+      $('#searchKeyword').removeClass('required');
+      $('#requiredText').addClass('hide');
+      if(event.keyCode == 13){
+          app.submitSearch();
+      }
+    });
+  },
+  submitSearch: function(){
+      var keyword = $('#searchKeyword').val();
+      if (keyword==""){
+        $('#searchKeyword').addClass('required');
+        $('#requiredText').removeClass('hide');
+        return;
+      }
+      if ($('#searchTypeName').text()=='Site'){
+        window.location.replace("/search?s="+keyword);
+      }else if ($('#searchTypeName').text()=='Members'){
+        window.location.replace("/search?s="+keyword+"&scope=member");
+      }
+  },
   setLoading: function() {
     if ($('.loading').length <= 0) {
       $('body').append('<div class="loading">Loading...</div>');
@@ -1658,17 +1697,22 @@ var app = {
     return decoded;
   },
 
+  handle: "",
+
+  // Get loggedin user handle, and remember it.
   getHandle: function(callback) {
+    var self = this;
     var tcsso = $.cookie('tcsso');
 
-    var handle = '';
-    if (typeof tcsso === 'undefined') {
-      callback(handle);
-    } else {
+    if (self.handle !== "" || typeof tcsso === 'undefined') {
+      callback(self.handle);
+    }
+    else if (typeof tcsso !== 'undefined') {
       var uid = tcsso.split('|')[0];
       if (uid) {
         $.getJSON(communityURL + "/tc?module=BasicData&c=get_handle_by_id&dsid=30&uid=" + uid + "&json=true", function(data) {
-          callback(data['data'][0]['handle']);
+          self.handle = data['data'][0]['handle'];
+          callback(self.handle);
         });
       }
     }
@@ -1686,6 +1730,7 @@ var app = {
     return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
   }
 };
+
 var blueprints = {
   challengeRow: '<tr> \
 						<td class="colCh"><div>\

@@ -98,16 +98,16 @@
           result = "",
           style = "";
         if (seconds < 0) {
-          return $sce.trustAsHtml('<span style="font-size:14px;">0' + sep + '<span style="font-size:10px;">Days</span> 0' + sep + '<span style="font-size:10px;">Hr</span>');
+          return $sce.trustAsHtml('<span style="font-size:13px;">0' + sep + '<span style="font-size:10px;">Days</span> 0' + sep + '<span style="font-size:10px;">Hrs</span>');
         }
 
         if (numdays === 0 && numhours <= 2) {
           style = "color:red";
         }
         if (isNaN(numhours)) {
-          result = "<em style='font-size:14px;'>N/A</em>";
+          result = "<em style='font-size:13px;'>N/A</em>";
         } else {
-          result = "<span style='font-size:14px;" + style + "'>" + (numdays > 0 ? numdays + sep + "<span style='font-size:10px;'> Day" + ((numdays > 1) ? "s" : "") + "</span> " : "") + numhours + sep + "<span style='font-size:10px;'> Hr" + ((numhours > 1) ? "s" : "") + "</span> " + (numdays === 0 ? numminutes + sep + "<span style='font-size:10px;'>Min</span> " : "") + "</span>";
+          result = "<span style='font-size:13px;" + style + "'>" + (numdays > 0 ? numdays + sep + "<span style='font-size:10px;'>Day" + ((numdays > 1) ? "s" : "") + "</span> " : "") + "" + (numdays < 100 ? numhours + sep + "<span style='font-size:10px;'> Hr" + ((numhours > 1) ? "s" : "") + "</span> " : "") + (numdays == 0 ? numminutes + sep + "<span style='font-size:10px;'> Min" + ((numminutes > 1) ? "s" : "") + "</span> " : "") + "</span>";
         }
         return $sce.trustAsHtml(result);
       }

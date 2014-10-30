@@ -74,7 +74,7 @@ $categories = $activeMenuObj!=null ? $activeMenuObj->cat_name : "Categories";
               $catName = $activeMenuObj->cat_name;
               $feedUrl = get_bloginfo("wpurl")."/feed/?tag=$tag_id&post_type=blog";
               ?>
-              <a class="currentCatLink rssCat">Browsing '<?php echo single_tag_title( '', false );?>'</a>
+              <span class="currentCatLink rssCat">Browsing '<?php echo single_tag_title( '', false );?>'</span>
             </div>
             <div class="blogsWrapper">
               <input type="hidden" class="pageNo" value="<?php echo $currPage; ?>" />
@@ -199,7 +199,7 @@ $categories = $activeMenuObj!=null ? $activeMenuObj->cat_name : "Categories";
             //wp_reset_query();
             wp_reset_postdata(); // reset post global var since it was updated above
             $args = "post_type=".BLOG;
-            $args .= "&posts_per_page=-1&cat=$catId";
+            $args .= "&posts_per_page=-1&tag_id=$tag_id";
             //$wpQueryAll = query_posts($args);
             $allPostsQuery = new WP_Query($args);
             $allPostsQuery->get_posts();
