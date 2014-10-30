@@ -165,7 +165,7 @@ get_header(); ?>
             </a>
           </div>
         </div>
-        <div style="font-size:20px;display: none;" ng-show="!challenges.length && !loading">There are no challenges under this category. Please check back later.</div>
+        <div style="font-size:20px;" ng-show="!challenges.length && loading == false">There are no challenges under this category. Please check back later.</div>
       </div>
     </article>
   </div>
