@@ -15,8 +15,8 @@
     /**
      * Service to request challenges data rom TC API
      */
-    .factory('ChallengesService', ['Restangular', '$filter', '$q', 'ChallengeDataService', 'UserChallengesService',
-      function (Restangular, $filter, $q, ChallengeDataService, UserChallengesService) {
+    .factory('ChallengesService', ['Restangular', '$filter', '$q', 'ChallengeDataService', 'UserChallengesService', 'ChallengeDataCalendarService',
+      function (Restangular, $filter, $q, ChallengeDataService, UserChallengesService, ChallengeDataCalendarService) {
         var mockPaging = ['active', 'upcoming', 'user-active', 'user-past'],
           datas = {},
           defPageSize = 10;
@@ -182,13 +182,126 @@
             return Restangular.one('challenges').getList(listType, params);
           }
         }
-        
+
+        /**
+         * Gets data science challenges for calendar from cache or backend
+         * @param {Object} patams - submissionEndFrom and submissionEndTo
+         */
+        function getDataCalendarChallenges(params) {
+          var deferred = $q.defer(),
+            moment = window.moment,
+            key,
+            prevKey,
+            nextKey,
+            startMonth,
+            endMonth,
+            medianMonth,
+            monthIterator,
+            minQueryMonth,
+            maxQueryMonth,
+            queryParams,
+            endDate,
+            results = [],
+            tempResults = [],
+            queryRadius = 2,
+            promises = [];
+          if (params.submissionEndMonth) {
+            medianMonth = moment(params.submissionEndMonth).startOf('month');
+          } else {
+            medianMonth = moment().startOf('month');
+          }
+          key = 'data-calendar_' + medianMonth.format('YYYYMM');
+          prevKey = 'data-calendar_' + medianMonth.clone().subtract('month', 1).format('YYYYMM');
+          nextKey = 'data-calendar_' + medianMonth.clone().add('month', 1).format('YYYYMM');
+          if ((key in datas) && (prevKey in datas) && (nextKey in datas)) {
+            deferred.resolve(_.union(datas[prevKey], datas[key], datas[nextKey]));
+            return deferred.promise;
+          }
+          if (key in datas) {
+            if (!(prevKey in datas)) {
+              if (nextKey in datas) {
+                // Fetch other months' challenges, should first add current month's
+                results = datas[key];
+                medianMonth.subtract('month', 1 + queryRadius).startOf('month');
+              }
+            } else {
+              // Fetch other months' challenges, should first add current month's
+              results = datas[key];
+              medianMonth.add('month', 1 + queryRadius).startOf('month');
+            }
+          }
+          startMonth = medianMonth.clone().subtract('months', queryRadius).startOf('month');
+          endMonth = medianMonth.clone().add('months', queryRadius).endOf('month');
+          monthIterator = startMonth.clone();
+          // Initially set minQueryMonth to max possible month and maxQueryMonth to min possible month
+          minQueryMonth = endMonth.clone().add('month', 1).startOf('month');
+          maxQueryMonth = startMonth.clone().subtract('month', 1).endOf('month');
+          while (monthIterator.isBefore(endMonth)) {
+            key = 'data-calendar_' + monthIterator.format('YYYYMM');
+            if (!(key in datas)) {
+              if (monthIterator.isBefore(minQueryMonth)) {
+                minQueryMonth = monthIterator.clone().startOf('month');
+              }
+              if (monthIterator.isAfter(maxQueryMonth)) {
+                maxQueryMonth = monthIterator.clone().endOf('month');
+              }
+            }
+            monthIterator.add('month', 1);
+          }
+          // Iterator all months again to construct the result array
+          monthIterator = startMonth.clone();
+          while (monthIterator.isBefore(endMonth)) {
+            if (monthIterator.isBefore(minQueryMonth) || monthIterator.isAfter(maxQueryMonth)) {
+              key = 'data-calendar_' + monthIterator.format('YYYYMM');
+              results = results.concat(datas[key]);
+            }
+            monthIterator.add('month', 1);
+          }
+          if (minQueryMonth.isBefore(maxQueryMonth)) {
+            queryParams = {
+              submissionEndFrom: minQueryMonth.format('YYYY-MM-DD'),
+              submissionEndTo: maxQueryMonth.format('YYYY-MM-DD')
+            }
+            promises.push(ChallengeDataCalendarService.all('active').getList(queryParams));
+            promises.push(ChallengeDataCalendarService.all('past').getList(queryParams));
+            if (moment().isBefore(maxQueryMonth)) {
+              promises.push(ChallengeDataCalendarService.all('upcoming').getList(queryParams));
+            }
+            $q.all(promises).then(function (challenges) {
+              tempResults = _.flatten(challenges);
+              // Iterator and cache query results
+              monthIterator = minQueryMonth.clone();
+              while (monthIterator.isBefore(maxQueryMonth)) {
+                key = 'data-calendar_' + monthIterator.format('YYYYMM');
+                datas[key] = _.filter(tempResults, function (challenge) {
+                  endDate = moment.tz(challenge.submissionEndDate, 'YYYY-MM-DD HH:mm', 'America/New_York');
+                  if (monthIterator.clone().subtract('day', 1).isBefore(endDate) && monthIterator.clone().endOf('month').add('day', 1).isAfter(endDate)) {
+                    return true;
+                  } else {
+                    return false;
+                  }
+                });
+                results = results.concat(datas[key]);
+                monthIterator.add('month', 1);
+              }
+              deferred.resolve(results);
+            });
+          } else {
+            deferred.resolve(results);
+          }
+          return deferred.promise;
+        }
+
         return {
           'getChallenges': function (listType, params) {
             var key = (params.type || 'all') + '_' + (listType || 'active'), // cache key
               deferred,
               result,
               cacheParams = {type: params.type};
+            // For Data Science Challenges calendar view, we need to perform a different request
+            if (listType === 'data-calendar') {
+              return getDataCalendarChallenges(params);
+            }
             // For user challenges, as we need to perform a different request in function of challenge types
             // We include the types as part of the cache key
             if (listType === 'user-active' || listType === 'user-past') {
@@ -230,6 +343,13 @@
       function (Restangular, API_URL) {
         return Restangular.withConfig(function (RestangularConfigurer) {
           RestangularConfigurer.setBaseUrl(API_URL + '/data/marathon/challenges');
+        });
+      }])
+
+    .factory('ChallengeDataCalendarService', ['Restangular', 'API_URL',
+      function (Restangular, API_URL) {
+        return Restangular.withConfig(function (RestangularConfigurer) {
+          RestangularConfigurer.setBaseUrl(API_URL + '/dataScience/challenges');
         });
       }]);
 }(angular));

@@ -1401,3 +1401,25 @@ span.subscribeTopWrapper .feedBtn {
 .contestGrid .gdUpcoming > p{
     width: 49.8%;
 }
+
+/* Data Calendar CSS */
+.dataCalendar {
+    margin-top: 15px;
+}
+
+.dataCalendar .fc-toolbar .fc-left h2 {
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 31px;
+}
+
+.dataCalendar .fc-event,
+.dataCalendar .fc-event:hover,
+.dataCalendar .ui-widget .fc-event {
+    color: #ffffff;
+}
+
+.dataCalendar .fc-day-grid-event > .fc-content {
+    white-space: inherit;
+    overflow: auto;
+}
