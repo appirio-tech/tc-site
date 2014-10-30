@@ -248,7 +248,7 @@
     vm.challenge.url = window.location.href;
 
     // If is not registered, then enable registration
-    if (((moment(challenge.phases[0].scheduledStartTime)) < moment() && (moment(challenge.registrationEndDate)) > moment()) && regList.indexOf(handle) == -1) {
+    if (((moment(challenge.phases[0].scheduledStartTime)) < moment() && (moment(challenge.registrationEndDate)) > moment()) && regList.indexOf(handle) == -1 && challenge.currentStatus == 'Active') {
       vm.challenge.registrationDisabled = false;
     }
     //check autoRegister (terms link register) and DelayAction cookie status
