@@ -383,6 +383,11 @@ include locate_template('header-challenge-landing.php');
 
   </article>
 
+  <article ng-show="CD.isLC" id="lc-discussion">
+    <h1>Challenge Discussion</h1>
+    <lc-discussion remote-object-name="Challenge" remote-object-id="CD.challenge.id" discussion-service="CD.lcDiscussionService"></lc-discussion>
+  </article>
+
 </article>
 </div>
 

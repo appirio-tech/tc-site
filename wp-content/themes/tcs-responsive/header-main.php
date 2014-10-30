@@ -91,6 +91,7 @@ if (basename(get_permalink()) == "challenges") {
     }
 
     var tcApiRUL = '<?php echo TC_API_URL; ?>';
+    var lcDiscussionURL = '<?php echo LC_DISCUSSION_URL; ?>';
 
     var siteURL = '<?php bloginfo('siteurl');?>';
     var communityURL = '<?php echo community_URL(); ?>';
@@ -101,7 +102,7 @@ if (basename(get_permalink()) == "challenges") {
     var challengeType;
 
     if (isLC) {
-      tcLCApiURL = 'http://localhost:3000';
+      tcLCApiURL = <?php echo TC_LC_URL; ?>'';
     } else {
       tcLCApiURL = tcApiRUL;
     }

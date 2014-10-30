@@ -14,12 +14,16 @@
     'tc.SubmissionDirectives',
     'tc.SubmissionServices',
     'challengeDetails.filters',
-    'challengeDetails.services'
+    'challengeDetails.services',
+    'lc.services',
+    'lc.directives'
     ])
 
     .constant("API_URL", tcLCApiURL)
 
     .constant("isLC", isLC)
+
+    .constant("lcDiscussionURL", lcDiscussionURL)
 
     .constant("TEMPLATE_URL", "/js/app/challenge-details/partials/")
 
