@@ -271,6 +271,10 @@
       vm.challenge.submissionDisabled = false;
     }
 
+    var currentDate = new Date();
+    var endPhaseDate = new Date(challenge.currentPhaseEndDate);
+    vm.challenge.currentPhaseRemainingTime = Math.max((endPhaseDate.getTime()-currentDate.getTime())/1000, 0);
+
     vm.challenge.registrants.map(function(x) {
       if (submissionMap[x.handle]) x.submissionStatus = submissionMap[x.handle].submissionStatus;
     });
