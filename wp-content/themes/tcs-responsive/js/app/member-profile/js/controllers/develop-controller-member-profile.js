@@ -48,9 +48,16 @@ DevelopCtrl.prototype.dealWithDevelopStatistics = function($scope, stats, ChartS
   dataCtrl.dataLoaded = true;
 
   if (!dataCtrl.emptyFlag) {
+    var maxRating = -1, subTrackName;
+    $.each($scope.stats.Tracks, function(key, value) {
+      if(value.rating > maxRating) {
+        maxRating = value.rating;
+        subTrackName = key;
+      }
+    });
     //This will trigger the 'subTrack' watch, and thus will send a requestRatingAndDistribution request.
     //Thus no need the second line of code.
-    $scope.setSubTrack(Object.keys($scope.stats.Tracks)[0]);
+    $scope.setSubTrack(subTrackName);
     //dataCtrl.requestRatingAndDistribution($scope, ChartService, MemberProfileService);
   }
 }

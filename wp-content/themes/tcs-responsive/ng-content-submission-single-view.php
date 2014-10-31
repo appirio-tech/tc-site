@@ -72,7 +72,7 @@
         <div class="basicInfo">
             <span class="meataAction">
                 <span class="metaDate" ng-bind="subCtrl.singleViewSubmission.formattedDate"></span>
-                <a href="javascript:;" class="viewSubmission" ng-bind="'Views ' + subCtrl.singleViewSubmission.viewCounter"></a>
+                <span ng-bind="'Views ' + subCtrl.singleViewSubmission.viewCounter"></span>&nbsp;&nbsp;
                 <a ng-href="{{subCtrl.singleViewSubmission.downloadUrl}}" class="download" ng-bind="'Downloads ' + subCtrl.singleViewSubmission.downloadCounter"></a>
                 <a href="javascript:;" class="back btn btnAlt" ng-click="subCtrl.singleViewMode = false" >Back</a>
             </span>

@@ -1341,10 +1341,6 @@ h1.center {
     display: inline-block;
 }
 
-.informationView .meataAction .viewSubmission {
-    color: #333333;
-}
-
 .informationView .meataAction .download {
     color: #333333;
 }
@@ -1388,11 +1384,6 @@ h1.center {
 }
 
 .informationView .meataAction .download:hover {
-    opacity: .6;
-    color: #FF8A00;
-}
-
-.informationView .meataAction .viewSubmission:hover {
     opacity: .6;
     color: #FF8A00;
 }

@@ -14,6 +14,7 @@ window.tc = angular.module('tc', [
   'ui.router',
   'angular-loading-bar',
   'tc.memberProfileDirectives',
+  'tc.developMemberProfileDirectives',
   'tc.badgeMemberProfileDirectives'
 ])
 

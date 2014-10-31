@@ -43,6 +43,10 @@
     .module('challengeDetails.filters')
     .filter('trust', trust);
 
+  angular
+    .module('challengeDetails.filters')
+    .filter('htmlToText', htmlToText);
+
   /**
    * Implementation details
    */
@@ -82,6 +86,12 @@
       }
       return moment(date).tz(timezone_string).format(formatString);
     };
+  }
+
+  function htmlToText () {
+    return function (text) {
+      return String(text).replace(/<[^>]+>/gm, '').trim();
+    }
   }
 
   trust.$inject = ['$sce'];

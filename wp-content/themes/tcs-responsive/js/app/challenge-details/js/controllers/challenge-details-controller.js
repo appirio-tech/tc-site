@@ -23,7 +23,7 @@
    * Inject dependencies
    * @type {string[]}
    */
-  ChallengeDetailCtrl.$inject = ['$scope', 'ChallengeService', '$q', '$cookies', '$interval'];
+  ChallengeDetailCtrl.$inject = ['$scope', 'ChallengeService', '$q', '$cookies', '$interval', '$timeout'];
 
   /**
    * Controller implementation
@@ -32,7 +32,7 @@
    * @param ChallengeService
    * @constructor
    */
-  function ChallengeDetailCtrl($scope, ChallengeService, $q, $cookies, $interval) {
+  function ChallengeDetailCtrl($scope, ChallengeService, $q, $cookies, $interval, $timeout) {
 
     var vm = this;
 
@@ -56,11 +56,11 @@
     vm.numCheckpointSubmissions = -1;
     vm.checkpointData = false;
     vm.checkpointResults = false;
-    vm.numberOfPassedScreeningSubmissions = false;
-    vm.numberOfPassedScreeningUniqueSubmitters = false;
-    vm.numberOfUniqueSubmitters = false;
-    vm.checkpointPassedScreeningSubmitterPercentage = false;
-    vm.checkpointPassedScreeningSubmissionPercentage = false;
+    vm.numberOfPassedScreeningSubmissions = 0;
+    vm.numberOfPassedScreeningUniqueSubmitters = 0;
+    vm.numberOfUniqueSubmitters = 0;
+    vm.checkpointPassedScreeningSubmitterPercentage = 0;
+    vm.checkpointPassedScreeningSubmissionPercentage = 0;
 
     $interval(function() {
       if (vm.challenge && vm.challenge.currentPhaseRemainingTime) {
@@ -129,6 +129,7 @@
         .then(function (challenge) {
           processChallenge(challenge, handle, vm, ChallengeService);
           vm.callComplete = true;
+          $timeout(function() { window.prerenderReady = true; }, 100);
           $('#cdNgMain').show();
         });
 
@@ -244,8 +245,10 @@
     vm.challenge.registrationDisabled = true;
     vm.challenge.submissionDisabled   = true;
 
+    vm.challenge.url = window.location.href;
+
     // If is not registered, then enable registration
-    if (((moment(challenge.phases[0].scheduledStartTime)) < moment() && (moment(challenge.registrationEndDate)) > moment()) && regList.indexOf(handle) == -1) {
+    if (((moment(challenge.phases[0].scheduledStartTime)) < moment() && (moment(challenge.registrationEndDate)) > moment()) && regList.indexOf(handle) == -1 && challenge.currentStatus == 'Active') {
       vm.challenge.registrationDisabled = false;
     }
     //check autoRegister (terms link register) and DelayAction cookie status
