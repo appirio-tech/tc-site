@@ -1,12 +1,12 @@
-#wrapper #navigation {
+#wrapper404 #navigation {
 	height: 94px;
 	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
 	behavior: url(./wp-content/themes/tcs-responsive/css/PIE.htc);
 }
-#wrapper #navigation .container {
+#wrapper404 #navigation .container {
 	height: 94px;
 }
-#wrapper #navigation .container h1.logo {
+#wrapper404 #navigation .container h1.logo {
 	background: url(../i/logo.png) 0 0 no-repeat;
 	top: 27px;
 	width: 330px;
@@ -14,57 +14,57 @@
 	position: absolute;
 	left: 0;
 }
-#wrapper .logo {
+#wrapper404 .logo {
 	margin-left: 20px;
 }
-#wrapper .page404 {
+#wrapper404 .page404 {
 	background-image: none;
 	padding-top: 20px;
 	padding-bottom: 20px;
 	background-color: #fcfcfc;
 	
 }	
-	#wrapper .page404 .container {
+	#wrapper404 .page404 .container {
 		width: auto;
 	}
-	#wrapper .page404 h1 {
+	#wrapper404 .page404 h1 {
 		color: #ff0000;
 		text-align: center;
 		font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
 	}
 
-	#wrapper .page404 .text404 {
+	#wrapper404 .page404 .text404 {
 		margin: 10px auto;
 		font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
 		text-align: center;
 		color: #636363;
 	}
 	@media (min-width:800px){
-		#wrapper .page404 h1 {
+		#wrapper404 .page404 h1 {
 			font-size: 37px;
 		}
-		#wrapper .page404 .text404 {
+		#wrapper404 .page404 .text404 {
 			width: 700px;
 			font-size: 16px;
 		}
 	}
 	@media (max-width:800px){
-		#wrapper .page404 h1 {
+		#wrapper404 .page404 h1 {
 			font-size: 28px;
 		}
-		#wrapper .page404 .text404 {
+		#wrapper404 .page404 .text404 {
 			width: 320px;
 			font-size: 14px;
 		}
 	}
 
-#wrapper .step404 {
+#wrapper404 .step404 {
 	background-color: #ffffff;
 	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
 	behavior: url(./wp-content/themes/tcs-responsive/css/PIE.htc);
 }
 	@media (min-width:800px){
-	    #wrapper .step404 #step-img {
+	    #wrapper404 .step404 #step-img {
 			width: 792px;
 			height: 982px;
 			margin: 10px auto;
@@ -72,7 +72,7 @@
 		}
 	}
 	@media (max-width: 800px){
-	    #wrapper .step404 #step-img {
+	    #wrapper404 .step404 #step-img {
 			width: 320px;
 			height: 1229px;
 			margin: 10px auto;
@@ -80,13 +80,13 @@
 		}
 	}
 	
-	#wrapper .step404 #print_btn{
+	#wrapper404 .step404 #print_btn{
 		margin: 0 auto;
 		padding-top: 20px;
 		padding-bottom: 30px;
 		width: 130px;
 	}
-#wrapper .copyright {
+#wrapper404 .copyright {
 	color: #959595;
 	width: 250px;
 	margin: 0 auto;
@@ -94,7 +94,7 @@
 	padding-bottom: 20px;
 	margin-bottom: 20px;
 }
-	#wrapper .copyright a {
+	#wrapper404 .copyright a {
 		color: #959595;
 		text-decoration: underline;
 	}
@@ -118,7 +118,7 @@
 	height: 792px;
 }
 @media screen {
-	#wrapper {
+	#wrapper404 {
 		display: block;
 	}
 	#print_area {
@@ -126,7 +126,7 @@
 	}
 }
 @media print {
-	#wrapper {
+	#wrapper404 {
 		display: none;
 	}
 	#print_area {
