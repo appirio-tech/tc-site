@@ -71,7 +71,7 @@ if($tokenObj!=null) {
 		<article id="mainContent" class="splitLayout overviewPage">
 			<div class="container">
 				<div class="rightSplit  grid-3-3">
-					<div class="mainStream grid-2-3">
+					<div class="mainStream grid-3-3">
 						<section class="passwordRecovery" class="pageContent">
 							<?php the_content();?>
 							<?php 
@@ -89,7 +89,14 @@ if($tokenObj!=null) {
                 <br />
                 <p>Or <a href="/password-reset">click here</a> if you already have a confirmation code.</p>
 							<?php else : ?>
-								<h3><?php echo $msg;?></h3>
+								<div class="msg">
+									<div class="row">
+										<h2><?php echo $msg;?></h2>
+									</div>
+									<div class="row">
+										<a href="#" onclick="window.history.back();return false;" class="btn btnSubmit">Back</a>
+									</div>
+								</div>
 							<?php endif; ?>							
 
 						</section>

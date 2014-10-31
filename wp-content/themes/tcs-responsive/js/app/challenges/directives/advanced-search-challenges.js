@@ -359,6 +359,15 @@
           $dropdown.css(css);
         };
 
+        var TODAY_OFFSET = 0;
+        if (scope.challengeStatus === 'upcoming') {
+          from.datepicker('option', 'minDate', TODAY_OFFSET);
+          to.datepicker('option', 'minDate', TODAY_OFFSET);
+        } else if (scope.challengeStatus === 'past') {
+          from.datepicker('option', 'maxDate', TODAY_OFFSET);
+          to.datepicker('option', 'maxDate', TODAY_OFFSET);
+        }
+
         var pickers = element.find('.pickers');
         advancedSearchCtrl.datePicker = pickers[0];
         element.hover(function (event) {
@@ -387,7 +396,11 @@
         scope.$watch('filterOptions.startDate ? filterOptions.startDate.getTime() : undefined', function(value) {
           var date = value ? (new Date(value)) : undefined;
           from.datepicker('setDate', date);
-          to.datepicker('option', 'minDate', date);
+          if (typeof value === 'undefined' && scope.challengeStatus === 'upcoming') {
+            to.datepicker('option', 'minDate', TODAY_OFFSET);
+          } else {
+            to.datepicker('option', 'minDate', date);
+          }
           if (!from.datepicker('getDate')) {
             from.find('.ui-datepicker-current-day').removeClass('ui-datepicker-current-day');
           }
@@ -399,7 +412,11 @@
         scope.$watch('filterOptions.endDate ? filterOptions.endDate.getTime() : undefined', function(value) {
           var date = value ? (new Date(value)) : undefined;
           to.datepicker('setDate', date);
-          from.datepicker('option', 'maxDate', date);
+          if (typeof value === 'undefined' && scope.challengeStatus === 'past') {
+            from.datepicker('option', 'maxDate', TODAY_OFFSET);
+          } else {
+            from.datepicker('option', 'maxDate', date);
+          }
           if (!from.datepicker('getDate')) {
             from.find('.ui-datepicker-current-day').removeClass('ui-datepicker-current-day');
           }

@@ -35,11 +35,11 @@ get_header(); ?>
         <div id="hero">
           <div class="container grid grid-float">
             <div class="grid-3-1 track trackUX" ng-class="{isActive: contest.contestType == 'design'}">
-              <a href="/challenges/design/{{contest.listType}}/"><i></i>Graphic Design Challenges
+              <a href="/challenges/design/{{contest.listType != 'calendar' ? contest.listType : 'active'}}/"><i></i>Graphic Design Challenges
               </a><span class="arrow"></span>
             </div>
             <div class="grid-3-1 track trackSD" ng-class="{isActive: contest.contestType == 'develop'}">
-              <a href="/challenges/develop/{{contest.listType}}/"><i></i>Software Development Challenges
+              <a href="/challenges/develop/{{contest.listType != 'calendar' ? contest.listType : 'active'}}/"><i></i>Software Development Challenges
               </a><span class="arrow"></span>
             </div>
             <div class="grid-3-1 track trackAn" ng-class="{isActive: contest.contestType == 'data'}">
@@ -57,11 +57,11 @@ get_header(); ?>
     <div id="hero">
       <div class="container grid grid-float">
         <div class="grid-3-1 track trackUX" ng-class="{isActive: contest.contestType == 'design'}">
-          <a href="/challenges/design/{{contest.listType}}/"><i></i>Graphic Design Challenges
+          <a href="/challenges/design/{{contest.listType != 'calendar' ? contest.listType : 'active'}}/"><i></i>Graphic Design Challenges
           </a><span class="arrow"></span>
         </div>
         <div class="grid-3-1 track trackSD" ng-class="{isActive: contest.contestType == 'develop'}">
-          <a href="/challenges/develop/{{contest.listType}}/"><i></i>Software Development Challenges
+          <a href="/challenges/develop/{{contest.listType != 'calendar' ? contest.listType : 'active'}}/"><i></i>Software Development Challenges
           </a><span class="arrow"></span>
         </div>
         <div class="grid-3-1 track trackAn" ng-class="{isActive: contest.contestType == 'data'}">
@@ -175,6 +175,7 @@ get_header(); ?>
         <div ng-show="view === 'calendar'">
           <div class="dataCalendar" ng-model="calendarEventSources" calendar="dataCalendar" ui-calendar="calendarConfig.calendar"></div>
         </div>
+        <div style="font-size:20px;" ng-show="!challenges.length && loading == false">There are no challenges under this category. Please check back later.</div>
       </div>
     </article>
   </div>

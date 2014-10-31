@@ -42,6 +42,7 @@
         var params = {};
         var listType = $routeParams.challengeStatus ? $routeParams.challengeStatus.toLowerCase() : 'active';
         $scope.challenges = [];
+        startLoading();
         if (community) {
           params.type = community;
         }
@@ -98,6 +99,7 @@
               if (type !== 'calendar') {
                 $location.search('pageIndex', data.pagination.pageIndex);
               }
+              stopLoading();
               $scope.pagination.last = Math.min($scope.pagination.total,$scope.pagination.pageIndex*$scope.pagination.pageSize);
             }, function () {
               $scope.challenges = [];
@@ -183,8 +185,6 @@
       }
     
       $scope.showFilters = false;
-
-      startLoading();
 
       $scope.filter = {
         challengeTypes: [],

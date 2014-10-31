@@ -49,6 +49,8 @@ appChallengeSubmit = {
       }
     }
 
+    app.prevSubmissionWarning();
+
   },
 
   initDevelopSubmit: function(tcjwt) {
@@ -129,6 +131,24 @@ appChallengeSubmit = {
 
   initDesignSubmit: function (tcjwt) {
 
+  },
+
+  prevSubmissionWarning: function () {
+    if (app.isLoggedIn()) {
+      app.getHandle(function (handle) {
+        url = tcApiRUL + '/' + challengeType + '/challenges/' + challengeId;
+        $.getJSON(url, function (data) {
+          currRegistrant = $.grep(data.registrants, function (registrant) {
+            return registrant.handle === handle;
+          })[0];
+          if (currRegistrant && currRegistrant.submissionDate != '') {
+              $('.formSection .leftCol dd span.error')
+                .text('Warning: You have already submitted for this challenge. If you re-upload, your previous submission will be deleted and will not be reviewed.')
+                .css('visibility', 'visible');
+          };
+        });
+      });
+    };
   }
 };
 
