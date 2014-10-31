@@ -131,12 +131,7 @@
           if (!ch || ch === '') {
             return;
           }
-          //Past api does not handle multiple challenge types
-          if ($scope.challengeStatus === 'past') {
-            $scope.filterOptions.challengeTypes = [ch];
-          } else {
-            $scope.filterOptions.challengeTypes.push(ch);
-          }
+          $scope.filterOptions.challengeTypes.push(ch);
           $timeout(function () {
             $scope.tempOptions.challengeType = undefined;
             $scope.applyFilter();
