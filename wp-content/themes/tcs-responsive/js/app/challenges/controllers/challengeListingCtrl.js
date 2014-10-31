@@ -333,6 +333,7 @@
         ChallengesService.getChallenges('data-calendar', queryParams)
           .then(function (challenges) {
             events = [];
+            challenges = _.filter(challenges, function(x) { return x.challengeType != 'SRM'; });
             _.each(challenges, function (challengeItem) {
               if (challengeItem.challengeType === 'SRM') {
                 eventColor = '#0163BE';

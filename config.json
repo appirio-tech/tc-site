@@ -4,7 +4,7 @@
   "auth0LDAP": "QA-LDAP",
   "communityURL": "http://community.topcoder.com",
   "mainURL": "http://local.topcoder.com",
-  "apiURL": "https://api.topcoder.com/v2",
+  "apiURL": "https://qa.topcoder.com/v2",
   "cdnURL": "/wp-content/themes/tcs-responsive",
   "useCND": false,
   "useMin": false,
