@@ -440,6 +440,21 @@
           }
         });
       });
+
+      /*
+       * Unbind mousewheel and DOMMouseScroll handler of ngGrid. This fixed page scrolling flicker issue #644.
+       * This caused by ngGridDirectives.directive 'ngViewport' in the ngGrid js.
+       * When the ngGrid is scrolling, it tries to focus on 'top' element, and this causes flickering/jumping.
+       * So each time grid data source is changed, try to unbind mousewheel and DOMMouseScroll handler.
+       * On the other hand, scroll handler triggered many unnecessary scroll events which slowing down scrolling, unbind it too.
+       */
+      var ngGridUnbindMouseHandler = false;
+      $scope.$on('ngGridEventData', function (event, gridId) {
+        if (!ngGridUnbindMouseHandler) {
+          $(".ngViewport.ng-scope").unbind('mousewheel DOMMouseScroll scroll');
+          ngGridUnbindMouseHandler = true;
+        }
+      });
       
       getChallengeTypes($scope.contest.contestType).then(function() {
         if ($scope.view !== 'calendar') {
