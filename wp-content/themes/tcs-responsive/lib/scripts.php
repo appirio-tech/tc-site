@@ -27,11 +27,14 @@ function tcs_responsive_scripts() {
 
   $jsCssUseMin = TC_USE_MIN;
   $template_map = tsc_get_asset_map();
-  $page_template = get_page_template_slug(get_queried_object_id());
+  $queried_object_id = get_queried_object_id();
+  if ($queried_object_id !== 0) {
+    $page_template = get_page_template_slug($queried_object_id);
+  }
   $ver = TC_CDN_VER == 1 ? TC_CDN_VER : '1';
   $jsCssUseCDN = TC_USE_CDN;
 
-  if (isset($template_map[$page_template])) {
+  if (isset($page_template) && isset($template_map[$page_template])) {
     $asset_map = $template_map[$page_template];
   } else {
     $asset_map = $template_map['default'];
