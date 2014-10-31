@@ -22,6 +22,9 @@
 
   .constant("API_URL", tcLCApiURL)
 
+  .constant("isLC", isLC)
+
+
   .config(DataPreProcessing);
 
   DataPreProcessing.$inject = ['$httpProvider', 'RestangularProvider', 'API_URL'];

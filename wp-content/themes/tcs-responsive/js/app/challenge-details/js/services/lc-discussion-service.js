@@ -1,5 +1,7 @@
 /*jshint -W069 */
 /*global angular:false */
+
+(function () {
 angular.module('lc.services', [])
   .factory('DiscussionService', ['$q', '$http', '$rootScope', function($q, $http, $rootScope) {
     'use strict';
@@ -742,3 +744,4 @@ angular.module('lc.services', [])
       };
     };
   }]);
+})();
