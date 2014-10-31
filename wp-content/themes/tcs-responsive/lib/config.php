@@ -24,6 +24,8 @@ function tc_load_config() {
 
     // API
     _tc_local_config_define('TC_API_URL', $config_map['apiURL']);
+    _tc_local_config_define('TC_LC_URL', $config_map['lcURL']);
+    _tc_local_config_define('LC_DISCUSSION_URL', $config_map['lcDiscussionURL']);
 
     // AUTH0 STUFF
     _tc_local_config_define('CONFIG_AUTH0_CLIENTID', $config_map['auth0ClientID']);
@@ -59,6 +61,7 @@ function tc_config_defaults() {
         'useMin' => false,
         'useVer' => false,
         'version' => time(),
-        'useGz' => false
+        'useGz' => false,
+        'lcURL' => ''
     );
 }

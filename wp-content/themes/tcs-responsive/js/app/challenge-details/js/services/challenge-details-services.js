@@ -10,7 +10,7 @@
     .module('challengeDetails.services', [])
     .factory('ChallengeService', ChallengeService);
 
-  ChallengeService.$inject = ['Restangular', 'API_URL', '$q']
+  ChallengeService.$inject = ['Restangular', 'API_URL', '$q', 'isLC']
 
   /**
    * Geting challenge information
@@ -21,7 +21,7 @@
    * @returns {*}
    * @constructor
    */
-  function ChallengeService(Restangular, API_URL, $q) {
+  function ChallengeService(Restangular, API_URL, $q, isLC) {
 
     var service = Restangular.withConfig(function(RestangularConfigurer) {
       RestangularConfigurer.setBaseUrl(API_URL);
@@ -188,14 +188,15 @@
         .get({
           "action": "register_to_challenge",
           "challengeId": id,
-          "jwtToken": jwtToken
+          "jwtToken": jwtToken,
+          "isLC": isLC
         })
         .then(function(response) {
           defer.resolve(response);
         });
 
       return defer.promise;
-    }
+    };
 
     /**
      *
@@ -219,14 +220,15 @@
           "challengeId": id,
           "challengeType": challengeType,
           "nocache": true,
-          "jwtToken": jwtToken
+          "jwtToken": jwtToken,
+          "isLC": isLC
         })
         .then(function(response) {
           defer.resolve(response);
         });
 
       return defer.promise;
-    }
+    };
 
     return service;
   }

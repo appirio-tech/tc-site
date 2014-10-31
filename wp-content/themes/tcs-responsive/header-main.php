@@ -80,6 +80,7 @@ if (basename(get_permalink()) == "challenges") {
   <link rel = "stylesheet" href = "<?php THEME_URL ?>/css/ie.css<?php if ($ver) { echo " ? v = $v"; } ?>" / >
   <![endif]-->
   <script type="text/javascript">
+    var isLC = '<?php echo get_query_var('lc'); ?>';
     var sslAjax = <?php echo ( force_ssl_admin() || force_ssl_login() ) ? "true" : "false"; ?>;
     var wpUrl = "<?php bloginfo('wpurl')?>";
     var ajaxUrl;
@@ -90,6 +91,8 @@ if (basename(get_permalink()) == "challenges") {
     }
 
     var tcApiRUL = '<?php echo TC_API_URL; ?>';
+    var lcDiscussionURL = '<?php echo LC_DISCUSSION_URL; ?>';
+
     var siteURL = '<?php bloginfo('siteurl');?>';
     var communityURL = '<?php echo community_URL(); ?>';
     var base_url = '<?php bloginfo( 'stylesheet_directory' ); ?>';
@@ -97,6 +100,13 @@ if (basename(get_permalink()) == "challenges") {
     var autoRegister = '<?php echo get_query_var('autoRegister'); ?>';
     var timezone_string = "<?php echo get_option('timezone_string');?>";
     var challengeType;
+
+    var tcLCApiURL;
+    if (isLC) {
+      tcLCApiURL = '<?php echo TC_LC_URL; ?>';
+    } else {
+      tcLCApiURL = tcApiRUL;
+    }
   </script>
 
 <?php

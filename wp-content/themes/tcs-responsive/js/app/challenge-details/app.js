@@ -11,13 +11,19 @@
     'restangular',
     'ngCookies',
     'angular-loading-bar',
+    'lc.services',
+    'lc.directives',
     'tc.SubmissionDirectives',
     'tc.SubmissionServices',
     'challengeDetails.filters',
     'challengeDetails.services'
     ])
 
-    .constant("API_URL", tcApiRUL)
+    .constant("API_URL", tcLCApiURL)
+
+    .constant("isLC", isLC)
+
+    .constant("lcDiscussionURL", lcDiscussionURL)
 
     .constant("TEMPLATE_URL", "/js/app/challenge-details/partials/")
 

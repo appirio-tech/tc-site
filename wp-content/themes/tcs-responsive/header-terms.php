@@ -10,6 +10,7 @@ function tc_header_terms_js() {
     var termType = "<?php echo $termType; ?>";
     var termsOfUseID = "<?php echo get_query_var('termsOfUseID');?>";
     var challengeType = "<?php echo get_query_var('challenge-type'); ?>";
+    var isLC = '<?php echo get_query_var('lc'); ?>';
   </script>
 <?php
 }

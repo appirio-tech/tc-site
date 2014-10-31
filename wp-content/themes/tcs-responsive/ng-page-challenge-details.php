@@ -217,7 +217,10 @@ include locate_template('header-challenge-landing.php');
       </ul>
 
     </article>
-
+    <article ng-show="CD.isLC" id="lc-discussion">
+      <h1>Challenge Discussion</h1>
+      <lc-discussion remote-object-name="Challenge" remote-object-id="CD.challenge.id" discussion-service="CD.lcDiscussionService"></lc-discussion>
+    </article>
 
   </article>
 
@@ -411,6 +414,9 @@ include locate_template('header-challenge-landing.php');
         <th class="successIconColumn">
           <div>Result</div>
         </th>
+        <th ng-show="CD.isLC">
+          <div>Scorecard</div>
+        </th>
       </tr>
       </thead>
       <tbody>
@@ -432,6 +438,9 @@ include locate_template('header-challenge-landing.php');
         <td class="successIconColumn">
           <i class="{{registrant.winner ? 'successIcon' : registrant.submissionStatus.match('Failed') ? 'failureIcon' : ''}}"
              title="{{registrant.winner ? 'Pass' : registrant.submissionStatus.match('Failed') ? 'Fail' : ''}}"></i>
+        </td>
+        <td ng-show="CD.isLC">
+          <a href="<?php echo TC_LC_URL . '/challenges/' . $contestID . '/scorecards/' . $id; ?>">View</a>
         </td>
       </tr>
       </tbody>
@@ -681,4 +690,83 @@ include locate_template('header-challenge-landing.php');
   </div>
   <div class="shadow"></div>
 </div>
+
+<script type="text/ng-template" id="lc-discussion.html">
+
+  <!-- template for tc-discussion directive -->
+  <style>
+    .comment-box {
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+    .comment-header {
+      background: none repeat scroll 0 0 #f7f7f7;
+      border-radius: 3px 3px 0 0;
+      padding: 6px 10px 0;
+    }
+    .message-box, .panel-title, .comment-box {
+      font-size: 12px;
+    }
+    .created-at {
+      font-weight: 400;
+      color: #555;
+    }
+    .message-pane {
+      padding: 10px 10px;
+      display:block;
+    }
+    .message-textarea {
+      background-color: #fafafa;
+      padding: 7px 8px;
+      overflow: auto;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      width: 100%;
+      height: 100px;
+      margin: 0;
+      max-width: 100%;
+      min-height: 100px;
+    }
+    .comment-button {
+      margin: 6px 0;
+    }
+  </style>
+
+  <div class="discussion">
+    <div class="row message-box" data-ng-repeat="message in messages">
+      <div class="col-sm-1 col-md-1">
+        <a href="#" ><img class="message-avatar" data-ng-src="{{images[$index % 3]}}" width="50" height="50"></a>
+      </div>
+      <div class="col-sm-7 col-md-7">
+        <div class="row">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <p class="panel-title"><strong>{{message.createdBy}}</strong> <span class="created-at">commented at {{message.createdAt | date: "MMMM d, yyyy h:ma"}}</span></p>
+            </div>
+            <div class="panel-body">
+              {{message.content}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-offset-1 col-sm-7 col-md-offset-1 col-md-7">
+        <div class="row comment-box">
+          <div class="comment-header">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="active"><a href="#">Comment</a></li>
+            </ul>
+          </div>
+          <div class="tab-content">
+            <div class="tab-pane active message-pane" id="home">
+              <textarea class="message-textarea" name="comment" data-ng-model="comment" rows="3" placeholder="Leave a comment"></textarea>
+              <button type="button" class="btn btn-success pull-right comment-button" data-ng-click="addComment()">Comment</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
 <?php get_footer('challenge-detail-tooltipx'); ?>

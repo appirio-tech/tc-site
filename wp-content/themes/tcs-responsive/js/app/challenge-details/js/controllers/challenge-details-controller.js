@@ -23,7 +23,7 @@
    * Inject dependencies
    * @type {string[]}
    */
-  ChallengeDetailCtrl.$inject = ['$scope', 'ChallengeService', '$q', '$cookies', '$interval', '$timeout'];
+  ChallengeDetailCtrl.$inject = ['$scope', 'ChallengeService', '$q', '$cookies', '$interval', '$timeout', 'isLC', 'lcDiscussionURL', 'DiscussionService'];
 
   /**
    * Controller implementation
@@ -32,12 +32,15 @@
    * @param ChallengeService
    * @constructor
    */
-  function ChallengeDetailCtrl($scope, ChallengeService, $q, $cookies, $interval, $timeout) {
+  function ChallengeDetailCtrl($scope, ChallengeService, $q, $cookies, $interval, $timeout, isLC, lcDiscussionURL, DiscussionService) {
 
     var vm = this;
 
     vm.callComplete = false;
     vm.scope = $scope;
+
+    vm.isLC = isLC;
+    vm.lcDiscussionService = new DiscussionService(lcDiscussionURL);
 
     // Global variable available from ng-page-challenge-details.php
     vm.challengeType = challengeType;
