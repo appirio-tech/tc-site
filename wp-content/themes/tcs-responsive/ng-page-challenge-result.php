@@ -72,7 +72,7 @@
         <div class="registrant">
             <h2>Registrants</h2>
             <div class="values">
-                <span class="count">{{CD.challenge.numberOfRegistrants}}</span>
+                <span class="count"><a ng-click="showRegistrants();" class="link">{{CD.challenge.numberOfRegistrants}}</a></span>
             </div>
         </div>
         <!--#/end registrant-->
@@ -259,7 +259,7 @@
         <div class="registrant">
             <h2>Registrants</h2>
             <div class="values">
-                <span class="count">{{CD.challenge.numberOfRegistrants}}</span>
+                <span class="count"><a ng-click="showRegistrants();" class="link">{{CD.challenge.numberOfRegistrants}}</a></span>
             </div>
         </div>
         <!--#/end registrant-->
