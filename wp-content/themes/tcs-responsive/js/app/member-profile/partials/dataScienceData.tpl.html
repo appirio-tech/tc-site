@@ -1,8 +1,9 @@
 <div class="subTrackTabs">
 	<nav class="tabNav alt">
-		<ul>
-			<li><a ng-class="{isActive : subTrack === 'algorithm'}" ng-click="setSubTrack('algorithm')" tc-change-url="algorithm">Algorithm</a></li>
-			<li><a ng-class="{isActive : subTrack === 'marathon'}" ng-click="setSubTrack('marathon')" tc-change-url="marathon">Marathon</a></li>
+		<h3 ng-if="!dataCtrl.dataLoaded || (!dataCtrl.algorithmFlag && !dataCtrl.marathonFlag)">Data Science</h3>
+		<ul ng-if="dataCtrl.dataLoaded">
+			<li ng-show="dataCtrl.algorithmFlag"><a ng-class="{isActive : subTrack === 'algorithm'}" ng-click="setSubTrack('algorithm')" tc-change-url="algorithm">Algorithm</a></li>
+			<li ng-show="dataCtrl.marathonFlag"><a ng-class="{isActive : subTrack === 'marathon'}" ng-click="setSubTrack('marathon')" tc-change-url="marathon">Marathon</a></li>
 		</ul>
 	</nav>
 </div>

@@ -13,6 +13,19 @@ var DataScienceCtrl = function ($scope, MemberProfileService, ChartService) {
 
   dataCtrl.init($scope);
 
+  //using user details api to determine his ratings in the contests
+  $scope.$watch('coder', function () {
+    if($scope.coder !== undefined){
+      jQuery.map($scope.coder.ratingSummary, function (obj) {
+        if (obj.name == 'Marathon Match') {
+          dataCtrl.marathonFlag = obj.rating;
+        } else if (obj.name == 'Algorithm') {
+          dataCtrl.algorithmFlag = obj.rating;
+        };
+      });
+    };
+  });
+
   $scope.$watch('subTrack', function () {
 
     //only serve for data science tab.
