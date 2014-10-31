@@ -96,8 +96,10 @@
             .then(function (data) {
               $scope.challenges = data;
               $scope.pagination = data.pagination;
+              if (type !== 'calendar') {
+                $location.search('pageIndex', data.pagination.pageIndex);
+              }
               stopLoading();
-              $location.search('pageIndex', data.pagination.pageIndex);
               $scope.pagination.last = Math.min($scope.pagination.total,$scope.pagination.pageIndex*$scope.pagination.pageSize);
             }, function () {
               $scope.challenges = [];
@@ -231,18 +233,20 @@
 
       //set page title
       var pageTitle = $scope.titles[$scope.contest.contestType] + " - Topcoder";
-      if ($scope.contest.contestType !== '') {
+      if ($scope.contest.contestType !== '' && $scope.contest.listType in $scope.titleType) {
         pageTitle = $scope.titleType[$scope.contest.listType] + pageTitle;
       }
       $rootScope.pageTitle = pageTitle;
-      
-      if ($scope.contest.listType !== 'past' && $scope.contest.contestType !== 'data') {
-        if ($routeParams.view) {
-          $scope.view = $routeParams.view;
-        } else if ($cookies.tcChallengesView) {
-          $scope.view = $cookies.tcChallengesView;
-        } else {
+
+      if ($scope.contest.listType === 'calendar' && $scope.contest.contestType === 'data') {
+        $scope.view = 'calendar';
+      } else if ($routeParams.view) {
+        $scope.view = $routeParams.view;
+      } else if ($cookies.tcChallengesView) {
+        if ($cookies.tcChallengesView === 'calendar' && $scope.contest.contestType !== 'data') {
           $scope.view = 'table';
+        } else {
+          $scope.view = $cookies.tcChallengesView;
         }
       } else {
         $scope.view = 'table';
@@ -317,6 +321,62 @@
         
       };
 
+      /* event source that calls a function on every calender view switch */
+      var calendarEventsUpdate = function (start, end, timezone, callback) {
+        var queryParams = {
+            submissionEndMonth: start.clone().subtract('day', 1).add('month', 1).startOf('month').format()
+          },
+          events,
+          event,
+          eventColor,
+          eventUrl;
+        ChallengesService.getChallenges('data-calendar', queryParams)
+          .then(function (challenges) {
+            events = [];
+            challenges = _.filter(challenges, function(x) { return x.challengeType != 'SRM'; });
+            _.each(challenges, function (challengeItem) {
+              if (challengeItem.challengeType === 'SRM') {
+                eventColor = '#0163BE';
+                eventUrl = 'http://community.topcoder.com/tc?module=MatchDetails&rd=' + challengeItem.challengeId;
+              } else if (challengeItem.challengeType === 'Marathon') {
+                eventColor = '#FF7400';
+                eventUrl = 'http://community.topcoder.com/tc?module=MatchDetails&rd=' + challengeItem.challengeId;
+              } else {
+                eventColor = '#228400';
+                eventUrl = 'http://www.topcoder.com/challenge-details/' + challengeItem.challengeId + '/?type=develop';
+              }
+              event = {
+                "id": challengeItem.challengeId,
+                "title": challengeItem.challengeName,
+                "start": moment.tz(challengeItem.registrationStartDate, 'YYYY-MM-DD HH:mm', 'America/New_York').format(),
+                "end": moment.tz(challengeItem.submissionEndDate, 'YYYY-MM-DD HH:mm', 'America/New_York').format(),
+                "color": eventColor,
+                "url": eventUrl
+              }
+              events.push(event);
+            });
+            callback(events);
+          }, function () {
+            callback([]);
+          }
+        );
+      };
+      $scope.calendarEventSources = [calendarEventsUpdate];
+      $scope.calendarConfig = {
+        calendar:{
+          timeFormat: 'HH:mm',
+          editable: false,
+          eventLimit: true // allow "more" link when too many events
+        }
+      };
+      $scope.renderCalender = function(calendar) {
+        if(calendar){
+          $timeout(function () {
+            calendar.fullCalendar('render');
+          });
+        }
+      };
+
       if ($scope.contest.contestType === 'develop') {
         DataService.one('technologies').get().then(function (data) {
           if (data) {
@@ -335,6 +395,15 @@
         if (view !== oldView) {
           //$location.search('view', view);
           $cookies.tcChallengesView = view;
+          if (oldView === 'calendar') {
+            $location.path('/' + $scope.contest.contestType + '/active/');
+          }
+          if (view === 'calendar') {
+            $location.path('/data/calendar/').search('pageIndex', null);
+            // Must render calendar after knowing it is visible.
+            // Reference: https://code.google.com/p/fullcalendar/issues/detail?id=737
+            $scope.renderCalender($scope.dataCalendar);
+          }
         }
       });
       
@@ -365,14 +434,18 @@
             $scope.contest.isUserChallenges = false;
             $scope.definitions = GridService.definitions($scope.contest);
           }
-          getData($scope.contest.contestType, $scope.contest.listType || 'active',
+          if ($scope.view !== 'calendar') {
+            getData($scope.contest.contestType, $scope.contest.listType || 'active',
               $scope.orderBy[$scope.contest.listType || 'active'], $scope.filter, $scope.pagination.pageIndex, $scope.pagination.pageSize);
+          }
         });
       });
       
       getChallengeTypes($scope.contest.contestType).then(function() {
-        getData($scope.contest.contestType, $scope.contest.listType || 'active',
-              $scope.orderBy[$scope.contest.listType || 'active'], $scope.filter, $scope.pagination.pageIndex, $scope.pagination.pageSize);
+        if ($scope.view !== 'calendar') {
+          getData($scope.contest.contestType, $scope.contest.listType || 'active',
+            $scope.orderBy[$scope.contest.listType || 'active'], $scope.filter, $scope.pagination.pageIndex, $scope.pagination.pageSize);
+        }
       }); 
     }]);
 }(angular));

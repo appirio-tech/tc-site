@@ -398,7 +398,9 @@
         "app/challenges/services/user-challenges-service.js",
         "app/challenges/lib/angular-loading-bar-0.3.0/loading-bar.js",
         "app/challenges/lib/select2/select2-3.4.8/select2.min.js",
-        "app/challenges/lib/select2/ng-select2.js"
+        "app/challenges/lib/select2/ng-select2.js",
+        "app/challenges/lib/fullcalendar/fullcalendar-2.1.1/fullcalendar.min.js",
+        "app/challenges/lib/fullcalendar/calendar.js"
       ],
       "css": [
         "blog.css",
@@ -424,7 +426,8 @@
         "advanced-search.css",
         "../js/app/challenges/css/ngchallenges.css",
         "../js/app/challenges/lib/angular-loading-bar-0.3.0/loading-bar.css",
-        "../js/app/challenges/lib/select2/select2-3.4.8/select2.css"
+        "../js/app/challenges/lib/select2/select2-3.4.8/select2.css",
+        "../js/app/challenges/lib/fullcalendar/fullcalendar-2.1.1/fullcalendar.min.css"
       ]
    }
   },

@@ -438,7 +438,7 @@ sub, sup {
     background: #333;
     min-height: 244px;
     color: #959595;
-    z-index: 100000;
+    z-index: 0;
     position: relative;
 }
 #footer .container{

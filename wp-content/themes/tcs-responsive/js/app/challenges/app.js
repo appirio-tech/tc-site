@@ -9,7 +9,8 @@ window.tc = angular.module('tc', [
   'angular-loading-bar',
   'ngGrid',
   'ui.select2',
-  'ngCookies'
+  'ngCookies',
+  'ui.calendar'
 ])
 
   .constant("API_URL", tcApiRUL)

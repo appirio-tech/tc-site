@@ -15,6 +15,9 @@ function add_base_url() {
 
 add_action('wp_head', 'add_base_url');
 
+// Register FullCalendar Print Stylesheet to get a more printer-friendly calendar. Note that we need to set media='print' so we have to do it here.
+wp_enqueue_style('fullcalendar-print', '//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.1.1/fullcalendar.print.css', array(), null, 'print');
+
 // Add the angluar libraries to WP
 tc_setup_angular(); //tcs_responsive_scripts();
 // Get the default header
@@ -32,11 +35,11 @@ get_header(); ?>
         <div id="hero">
           <div class="container grid grid-float">
             <div class="grid-3-1 track trackUX" ng-class="{isActive: contest.contestType == 'design'}">
-              <a href="/challenges/design/{{contest.listType}}/"><i></i>Graphic Design Challenges
+              <a href="/challenges/design/{{contest.listType != 'calendar' ? contest.listType : 'active'}}/"><i></i>Graphic Design Challenges
               </a><span class="arrow"></span>
             </div>
             <div class="grid-3-1 track trackSD" ng-class="{isActive: contest.contestType == 'develop'}">
-              <a href="/challenges/develop/{{contest.listType}}/"><i></i>Software Development Challenges
+              <a href="/challenges/develop/{{contest.listType != 'calendar' ? contest.listType : 'active'}}/"><i></i>Software Development Challenges
               </a><span class="arrow"></span>
             </div>
             <div class="grid-3-1 track trackAn" ng-class="{isActive: contest.contestType == 'data'}">
@@ -54,11 +57,11 @@ get_header(); ?>
     <div id="hero">
       <div class="container grid grid-float">
         <div class="grid-3-1 track trackUX" ng-class="{isActive: contest.contestType == 'design'}">
-          <a href="/challenges/design/{{contest.listType}}/"><i></i>Graphic Design Challenges
+          <a href="/challenges/design/{{contest.listType != 'calendar' ? contest.listType : 'active'}}/"><i></i>Graphic Design Challenges
           </a><span class="arrow"></span>
         </div>
         <div class="grid-3-1 track trackSD" ng-class="{isActive: contest.contestType == 'develop'}">
-          <a href="/challenges/develop/{{contest.listType}}/"><i></i>Software Development Challenges
+          <a href="/challenges/develop/{{contest.listType != 'calendar' ? contest.listType : 'active'}}/"><i></i>Software Development Challenges
           </a><span class="arrow"></span>
         </div>
         <div class="grid-3-1 track trackAn" ng-class="{isActive: contest.contestType == 'data'}">
@@ -82,88 +85,95 @@ get_header(); ?>
             <span class="views">
               <a href="" ng-click="view = 'grid'" class="gridView" ng-class="{isActive: view == 'grid'}" qtip title="Layout" text="Grid View" community="design"></a>
               <a href="" ng-click="view = 'table'" class="listView" ng-class="{isActive: view == 'table'}" qtip title="Layout" text="List View" community="design"></a>
+              <a href="" ng-show="contest.contestType === 'data'" ng-click="view = 'calendar'" class="gridView" ng-class="{isActive: view == 'calendar'}" qtip title="Layout" text="Calendar View" community="design"></a>
             </span>
           </aside>
         </header>
 
-        <div data-tc-challenges-actions contest="contest" show-filters="showFilters" ng-show="contest.contestType && contest.contestType != ''"></div>
+        <div ng-hide="view === 'calendar'">
+          <div data-tc-challenges-actions contest="contest" show-filters="showFilters" ng-show="contest.contestType && contest.contestType != ''"></div>
 
-        <div  advanced-search
-              apply-filter="searchSubmit"
-              technologies="technologies"
-              platforms="platforms"
-              challenge-community="contest.contestType"
-              challenge-status="contest.listType"
-              show-on="showFilters"
-              filter="filter"
-              authenticated="authenticated"></div>
+          <div  advanced-search
+                apply-filter="searchSubmit"
+                technologies="technologies"
+                platforms="platforms"
+                challenge-community="contest.contestType"
+                challenge-status="contest.listType"
+                show-on="showFilters"
+                filter="filter"
+                authenticated="authenticated"></div>
 
-        <div class="upcomingCaption" ng-show="contest.listType === 'upcoming' && challenges.length != 0">All upcoming challenges may change</div>
-        <div class="pastCaption" ng-show="contest.listType === 'past' && challenges.length != 0">Displaying all challenges from the past year. View longer time ranges at your own risk!</div>
-          <div ng-show="dataDisplayed && challenges.length == 0 && contest.listType !== 'upcoming'">
-          <br />
-          <h3>
-            There are no challenges at this time. Please check back later.
-          </h3>
+          <div class="upcomingCaption" ng-show="contest.listType === 'upcoming' && challenges.length != 0">All upcoming challenges may change</div>
+          <div class="pastCaption" ng-show="contest.listType === 'past' && challenges.length != 0">Displaying all challenges from the past year. View longer time ranges at your own risk!</div>
+            <div ng-show="dataDisplayed && challenges.length == 0 && contest.listType !== 'upcoming'">
+            <br />
+            <h3>
+              There are no challenges at this time. Please check back later.
+            </h3>
+          </div>
+          <div ng-show="dataDisplayed && challenges.length == 0 && contest.listType === 'upcoming'">
+            <br />
+            <h3>
+              There are no upcoming challenges at this time. Please check back later.
+            </h3>
+          </div>
+          <div class="dataChanges"  ng-show="challenges && challenges.length > 0">
+            <div class="lt">
+              <span ng-show="pagination.last">{{(pagination.pageIndex-1)*pagination.pageSize+1}}-{{pagination.last}} of {{pagination.total}}</span><span ng-show="challenges.length < pagination.total && contest.listType != 'past'"> | </span><a class="viewAll" ng-show="challenges.length < pagination.total && contest.listType != 'past'" ng-click="all()">View All</a>
+            </div>
+            <div id="challengeNav" class="rt">
+              <a class="prevLink" ng-show="pagination.pageIndex > 1 && challenges.length > 0" ng-click="prev()">
+                <i></i> Prev
+              </a>
+              <a class="nextLink" ng-show="pagination.total > pagination.pageIndex * pagination.pageSize" ng-click="next()">
+                Next <i></i>
+              </a>
+            </div>
+            <div class="mid onMobi">
+              <a ng-hide="contest.listType === 'active'" href="/challenges/develop/active/" class="viewActiveCh">
+                View Active Challenges<i></i>
+              </a>
+              <a ng-hide="contest.listType === 'past'" href="/challenges/develop/past/" class="viewPastCh">
+                View Past Challenges<i></i>
+              </a>
+            </div>
+          </div>
+          <div ng-show="challenges.length > 0">
+            <div id="tableView" class="viewTab" ng-show="view == 'table'">
+              <div class="tableWrap tcoTableWRap dataTable tcoTable challengesGrid" ng-grid="gridOptions"></div>
+            </div>
+          </div>
+          <div id="gridView2" class="viewTab hide" style="display: block;" ng-show="view == 'grid'" ng-class="{contestAll: contest.contestType == ''}">
+            <div class="alt" id="gridAll" ng-class="{contestGrid: true}">
+              <!-- React Implementation -->
+              <div tc-contest-grid-react></div>
+            </div>
+          </div>
+          <div class="dataChanges" ng-show="challenges && challenges.length > 0">
+            <div class="lt">
+              <span ng-show="pagination.last">{{(pagination.pageIndex-1)*pagination.pageSize+1}}-{{pagination.last}} of {{pagination.total}}</span><span ng-show="challenges.length < pagination.total && contest.listType != 'past'"> | </span><a class="viewAll" ng-show="challenges.length < pagination.total && contest.listType != 'past'" ng-click="all()">View All</a>
+            </div>
+            <div id="challengeNav" class="rt">
+              <a class="prevLink" ng-show="pagination.pageIndex > 1 && challenges.length > 0" ng-click="prev()">
+                <i></i> Prev
+              </a>
+              <a class="nextLink" ng-show="pagination.total > pagination.pageIndex * pagination.pageSize" ng-click="next()">
+                Next <i></i>
+              </a>
+            </div>
+            <div class="mid onMobi">
+              <a ng-hide="contest.listType === 'active'" href="/challenges/develop/active/" class="viewActiveCh">
+                View Active Challenges<i></i>
+              </a>
+              <a ng-hide="contest.listType === 'past'" href="/challenges/develop/past/" class="viewPastCh">
+                View Past Challenges<i></i>
+              </a>
+            </div>
+          </div>
+          <div style="font-size:20px;display: none;" ng-show="!challenges.length && !loading">There are no challenges under this category. Please check back later.</div>
         </div>
-        <div ng-show="dataDisplayed && challenges.length == 0 && contest.listType === 'upcoming'">
-          <br />
-          <h3>
-            There are no upcoming challenges at this time. Please check back later.
-          </h3>
-        </div>
-        <div class="dataChanges"  ng-show="challenges && challenges.length > 0">
-          <div class="lt">
-            <span ng-show="pagination.last">{{(pagination.pageIndex-1)*pagination.pageSize+1}}-{{pagination.last}} of {{pagination.total}}</span><span ng-show="challenges.length < pagination.total && contest.listType != 'past'"> | </span><a class="viewAll" ng-show="challenges.length < pagination.total && contest.listType != 'past'" ng-click="all()">View All</a>
-          </div>
-          <div id="challengeNav" class="rt">
-            <a class="prevLink" ng-show="pagination.pageIndex > 1 && challenges.length > 0" ng-click="prev()">
-              <i></i> Prev
-            </a>
-            <a class="nextLink" ng-show="pagination.total > pagination.pageIndex * pagination.pageSize" ng-click="next()">
-              Next <i></i>
-            </a>
-          </div>
-          <div class="mid onMobi">
-            <a ng-hide="contest.listType === 'active'" href="/challenges/develop/active/" class="viewActiveCh">
-              View Active Challenges<i></i>
-            </a>
-            <a ng-hide="contest.listType === 'past'" href="/challenges/develop/past/" class="viewPastCh">
-              View Past Challenges<i></i>
-            </a>
-          </div>
-        </div>
-        <div ng-show="challenges.length > 0">
-          <div id="tableView" class="viewTab" ng-show="view == 'table'">
-            <div class="tableWrap tcoTableWRap dataTable tcoTable challengesGrid" ng-grid="gridOptions"></div>
-          </div>
-        </div>
-        <div id="gridView2" class="viewTab hide" style="display: block;" ng-show="view == 'grid'" ng-class="{contestAll: contest.contestType == ''}">
-          <div class="alt" id="gridAll" ng-class="{contestGrid: true}">
-            <!-- React Implementation -->
-            <div tc-contest-grid-react></div>
-          </div>
-        </div>
-        <div class="dataChanges" ng-show="challenges && challenges.length > 0">
-          <div class="lt">
-            <span ng-show="pagination.last">{{(pagination.pageIndex-1)*pagination.pageSize+1}}-{{pagination.last}} of {{pagination.total}}</span><span ng-show="challenges.length < pagination.total && contest.listType != 'past'"> | </span><a class="viewAll" ng-show="challenges.length < pagination.total && contest.listType != 'past'" ng-click="all()">View All</a>
-          </div>
-          <div id="challengeNav" class="rt">
-            <a class="prevLink" ng-show="pagination.pageIndex > 1 && challenges.length > 0" ng-click="prev()">
-              <i></i> Prev
-            </a>
-            <a class="nextLink" ng-show="pagination.total > pagination.pageIndex * pagination.pageSize" ng-click="next()">
-              Next <i></i>
-            </a>
-          </div>
-          <div class="mid onMobi">
-            <a ng-hide="contest.listType === 'active'" href="/challenges/develop/active/" class="viewActiveCh">
-              View Active Challenges<i></i>
-            </a>
-            <a ng-hide="contest.listType === 'past'" href="/challenges/develop/past/" class="viewPastCh">
-              View Past Challenges<i></i>
-            </a>
-          </div>
+        <div ng-show="view === 'calendar'">
+          <div class="dataCalendar" ng-model="calendarEventSources" calendar="dataCalendar" ui-calendar="calendarConfig.calendar"></div>
         </div>
         <div style="font-size:20px;" ng-show="!challenges.length && loading == false">There are no challenges under this category. Please check back later.</div>
       </div>
