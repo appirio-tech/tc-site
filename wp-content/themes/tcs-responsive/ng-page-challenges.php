@@ -170,12 +170,12 @@ get_header(); ?>
               </a>
             </div>
           </div>
-          <div style="font-size:20px;display: none;" ng-show="!challenges.length && !loading">There are no challenges under this category. Please check back later.</div>
+          <div style="font-size:17px;display: none;margin: 50px auto; width:500px" ng-show="!challenges.length && !loading">There are no challenges under this category. Please check back later.</div>
         </div>
         <div ng-show="view === 'calendar'">
           <div class="dataCalendar" ng-model="calendarEventSources" calendar="dataCalendar" ui-calendar="calendarConfig.calendar"></div>
         </div>
-        <div style="font-size:20px;" ng-show="!challenges.length && loading == false">There are no challenges under this category. Please check back later.</div>
+        <div style="font-size:17px;margin: 50px auto; width:500px" ng-show="!challenges.length && loading == false">There are no challenges under this category. Please check back later.</div>
       </div>
     </article>
   </div>
