@@ -762,6 +762,16 @@ $blog_posts = get_posts($blog_posts_args);
         loginState = window.location.href;
       }
 
+      if ( /action=logout/i.test( location.href ) ) {
+        document.cookie = 'tcsso=; path=/; domain=.topcoder.com; expires=' + new Date(0).toUTCString();
+        document.cookie = 'tcjwt=; path=/; domain=.topcoder.com; expires=' + new Date(0).toUTCString();
+
+        var match;
+        if ( match = /next=([\w\.\:\/]+)/i.exec( location.href ) ) {
+          location.href = match[1];
+        }
+      }
+
       // Override call back with next param if it exist
       var nextLoc = getParameterByName('next');
       if (nextLoc) {
