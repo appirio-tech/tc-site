@@ -768,7 +768,7 @@ $blog_posts = get_posts($blog_posts_args);
 
         var match;
         if ( match = /next=([\w\.\:\/]+)/i.exec( location.href ) ) {
-          location.href = match[1];
+          location.href = 'http://topcoder.com/?action=showlogin&next=' + match[1];
         }
       }
 
