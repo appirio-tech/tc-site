@@ -24,7 +24,7 @@ get_header();
 		<div class="loadingPlaceholder2" ng-class="{hidden : userDataRetrieved}"></div>
 
 		<div class="user-not-exist hidden" ng-class="{visible : !userExisted && userDataRetrieved}">
-			<h2>Member does not<br class="display"> exist.!</h2>
+			<h2>Member does not<br class="display"> exist.</h2>
 			<h3>The profile you are<br class="display"> looking for was not found.</h3>
 		</div>
 
