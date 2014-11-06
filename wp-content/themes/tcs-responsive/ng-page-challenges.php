@@ -85,7 +85,9 @@ get_header(); ?>
             <span class="views">
               <a href="" ng-click="view = 'grid'" class="gridView" ng-class="{isActive: view == 'grid'}" qtip title="Layout" text="Grid View" community="design"></a>
               <a href="" ng-click="view = 'table'" class="listView" ng-class="{isActive: view == 'table'}" qtip title="Layout" text="List View" community="design"></a>
+              <!-- temporarily hiding calendar view
               <a href="" ng-show="contest.contestType === 'data'" ng-click="view = 'calendar'" class="gridView" ng-class="{isActive: view == 'calendar'}" qtip title="Layout" text="Calendar View" community="design"></a>
+              -->
             </span>
           </aside>
         </header>
@@ -170,12 +172,12 @@ get_header(); ?>
               </a>
             </div>
           </div>
-          <div style="font-size:20px;display: none;" ng-show="!challenges.length && !loading">There are no challenges under this category. Please check back later.</div>
+          <div style="font-size:17px;display: none;margin: 50px auto; width:500px" ng-show="!challenges.length && !loading">There are no challenges under this category. Please check back later.</div>
         </div>
         <div ng-show="view === 'calendar'">
           <div class="dataCalendar" ng-model="calendarEventSources" calendar="dataCalendar" ui-calendar="calendarConfig.calendar"></div>
         </div>
-        <div style="font-size:20px;" ng-show="!challenges.length && loading == false">There are no challenges under this category. Please check back later.</div>
+        <div style="font-size:17px;margin: 50px auto; width:500px" ng-show="!challenges.length && loading == false">There are no challenges under this category. Please check back later.</div>
       </div>
     </article>
   </div>
