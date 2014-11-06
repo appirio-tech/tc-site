@@ -380,13 +380,13 @@
       if ($scope.contest.contestType === 'develop') {
         DataService.one('technologies').get().then(function (data) {
           if (data) {
-            $scope.technologies = data.technologies;
+            $scope.technologies = data[1];
           }
         });
 
         DataService.one('platforms').get().then(function (data) {
           if (data) {
-            $scope.platforms = data.platforms;
+            $scope.platforms = data[1];
           }
         });
       }
