@@ -6,6 +6,7 @@
     challengesService.factory('DataService', ['Restangular', 'API_URL',
         function (Restangular, API_URL) {
           Restangular.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
+            if (!Array.isArray(data)) return data;
             return _.map(data, function(challengeItem){
               if (challengeItem.currentPhaseEndDate) {
                 var currentDate = new Date();
