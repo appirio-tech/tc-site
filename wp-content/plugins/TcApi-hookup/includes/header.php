@@ -55,7 +55,7 @@ $tc_token = $cookie_parts[1];
 #$user_id = "22760600";
 
 // PEMULA - update this to correctly parts the "handle" from the json and set it to $handle
-		$url = "http://community.topcoder.com/tc?module=BasicData&c=get_handle_by_id&dsid=30&uid=".$user_id."&json=true";
+		$url = "https://community.topcoder.com/tc?module=BasicData&c=get_handle_by_id&dsid=30&uid=".$user_id."&json=true";
 		$response = get_json_from_url ( $url );
 		#print_r($response);
 	//	print_r( json_decode ( $response )->data[0]->handle );
