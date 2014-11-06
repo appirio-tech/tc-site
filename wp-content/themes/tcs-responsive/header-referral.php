@@ -53,7 +53,7 @@ $nav = array(
         </div>
         <div class="separator"></div>
         <div class="headerTopRightMenuLink help">
-          <div class="text"><a href="//help.topcoder.com">Help Center</a></div>
+          <div class="text"><a href="http://help.topcoder.com">Help Center</a></div>
           <div class="clear"></div>
         </div>
         <div class="separator beforeSearch"></div>
