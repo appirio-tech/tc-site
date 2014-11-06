@@ -239,14 +239,16 @@
       $rootScope.pageTitle = pageTitle;
 
       if ($scope.contest.listType === 'calendar' && $scope.contest.contestType === 'data') {
-        $scope.view = 'calendar';
+        //$scope.view = 'calendar';
+        $scope.view = 'table';
       } else if ($routeParams.view) {
         $scope.view = $routeParams.view;
       } else if ($cookies.tcChallengesView) {
         if ($cookies.tcChallengesView === 'calendar' && $scope.contest.contestType !== 'data') {
           $scope.view = 'table';
         } else {
-          $scope.view = $cookies.tcChallengesView;
+          //$scope.view = $cookies.tcChallengesView;
+          $scope.view = 'table';
         }
       } else {
         $scope.view = 'table';
