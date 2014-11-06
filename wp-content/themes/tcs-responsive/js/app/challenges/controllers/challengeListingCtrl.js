@@ -1,6 +1,5 @@
 /*jslint nomen: true*/
 /*global angular: true, _: true */
-var global;
 (function (angular) {
   'use strict';
   var challengesModule = angular.module('tc.challenges');
