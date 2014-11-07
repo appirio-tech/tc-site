@@ -780,7 +780,7 @@ $blog_posts = get_posts($blog_posts_args);
     }
 
     var auth0Login = new Auth0({
-      domain: 'topcoder.auth0.com',
+      domain: '<?php echo auth0_URL(); ?>',
       clientID: '<?php echo auth0_clientID(); ?>',
       callbackURL: '<?php echo auth0_callbackURL(); ?>',
       state: loginState,
@@ -788,7 +788,7 @@ $blog_posts = get_posts($blog_posts_args);
     });
 
     var auth0Register = new Auth0({
-      domain: 'topcoder.auth0.com',
+      domain: '<?php echo auth0_URL(); ?>',
       clientID: '<?php echo auth0_clientID(); ?>',
       callbackURL: '<?php echo tc_reg_callback(); ?>',
       state: loginState,
