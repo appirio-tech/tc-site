@@ -298,6 +298,11 @@ function auth0_callbackURL() {
   return defined('CONFIG_AUTH0_CALLBACKURL') ? CONFIG_AUTH0_CALLBACKURL : 'https://www.topcoder.com/reg2/callback.action';
 }
 
+/* function to get main auth0 url */
+function auth0_URL() {
+  return defined('CONFIG_AUTH0_URL') ? CONFIG_AUTH0_URL : 'topcoder.auth0.com';
+}
+
 /**
  * Function to get the registartion callback
  */

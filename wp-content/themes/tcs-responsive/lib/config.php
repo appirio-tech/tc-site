@@ -31,6 +31,7 @@ function tc_load_config() {
     _tc_local_config_define('CONFIG_AUTH0_CLIENTID', $config_map['auth0ClientID']);
     _tc_local_config_define('CONFIG_AUTH0_CALLBACKURL', $config_map['auth0CallbackURL']);
     _tc_local_config_define('CONFIG_AUTH0_LDAP', $config_map['auth0LDAP']);
+    _tc_local_config_define('CONFIG_AUTH0_URL', $config_map['auth0URL']);
     _tc_local_config_define('CONFIG_COMMUNITY_URL', $config_map['communityURL']);
 
     // js/css stuff

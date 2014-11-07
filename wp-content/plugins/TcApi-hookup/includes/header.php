@@ -109,7 +109,7 @@ $photoLink = 'http://community.topcoder.com/i/m/nophoto_login.gif';
 						<p class="country"><?php echo $coder->country; ?></p>
 						<a href="#" class="link">My Profile</a>
 						<a href="#" class="link">My Dashboard </a>
-						<a href="https://topcoder.auth0.com/logout?returnTo=http://beta.topcoder.com" class="link actionLogout">Log Out </a>
+            <a href="https://<?php echo auth0_URL();?>/logout?returnTo=http://beta.topcoder.com" class="link actionLogout">Log Out </a>
 					</div>
 				</div>
 			</li>
@@ -125,7 +125,7 @@ $photoLink = 'http://community.topcoder.com/i/m/nophoto_login.gif';
 
 					<ul class="root">
 						<?php wp_nav_menu ( $nav );	?>
-						<li class="noReg"><a href="https://topcoder.auth0.com/logout?returnTo=http://somewhere" class="actionLogout">Log Out</a></li>
+						<li class="noReg"><a href="https://<?php echo auth0_URL();?>/logout?returnTo=http://somewhere" class="actionLogout">Log Out</a></li>
 						<li class="onReg"><a href="javascript:;" class="actionLogin">Log In</a></li>
 					</ul>
 				</nav>
@@ -152,7 +152,7 @@ $photoLink = 'http://community.topcoder.com/i/m/nophoto_login.gif';
 					<div class="action">
 						<a href="#">My Profile</a>
 						<a href="#">My Dashboard </a>
-						<a href="https://topcoder.auth0.com/logout?returnTo=http://somewhere" class="linkAlt actionLogout">Log Out</a>
+						<a href="https://<?php echo auth0_URL();?>/logout?returnTo=http://somewhere" class="linkAlt actionLogout">Log Out</a>
 					</div>
 				</div>
 				<!-- /.userWidget -->

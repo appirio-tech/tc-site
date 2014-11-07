@@ -2,6 +2,7 @@
   "auth0ClientID": "c4PVvC1z50DOlOLjLqHb5iw2fGM8teTW",
   "auth0CallbackURL": "https://qa.topcoder.com/reg2/callback.action",
   "auth0LDAP": "QA-LDAP",
+  "auth0URL": "topcoder.auth0.com",
   "communityURL": "http://community.topcoder.com",
   "mainURL": "http://local.topcoder.com",
   "apiURL": "https://qa.topcoder.com/v2",
