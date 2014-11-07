@@ -419,7 +419,7 @@ class TCHOOK_Public extends TCHOOK_Plugin {
   // Test Member Count
   function tcapi_get_memberCount($atts, $key = "") {
 
-    return get_activity_summary("memberCount");
+    return "706,649";
   }
 
   /* member stastics  */
