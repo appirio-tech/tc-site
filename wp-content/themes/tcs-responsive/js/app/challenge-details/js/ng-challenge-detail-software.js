@@ -3,6 +3,12 @@
  * - Get rid of jQuery! Move DOM logic into directives, etc.
  */
 
+//prevent undefined errors, values are set in challenge-details-controller
+var activeTab;
+var challengeId;
+var handle = "";
+var challengeName;
+
 var sliderActive = false;
 var prizeSliderActive = false;
 var slider;
@@ -217,6 +223,8 @@ function updateDeadlineBox() {
     $('.allDeadlinedeadlineBoxContent').removeClass("hide");
   } else {
     $('.nextDeadlinedeadlineBoxContent').removeClass("hide");
+    $('.allDeadlineNextBoxContent').removeClass("hide");
+    $('.allDeadlinedeadlineBoxContent').removeClass('hide');
   }
 }
 

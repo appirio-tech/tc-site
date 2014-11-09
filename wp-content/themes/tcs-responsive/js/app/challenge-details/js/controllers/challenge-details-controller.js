@@ -23,7 +23,7 @@
    * Inject dependencies
    * @type {string[]}
    */
-  ChallengeDetailCtrl.$inject = ['$scope', 'ChallengeService', '$q', '$cookies', '$interval', '$timeout', 'isLC', 'lcDiscussionURL', 'DiscussionService'];
+  ChallengeDetailCtrl.$inject = ['$scope', 'ChallengeService', '$q', '$cookies', '$location', '$interval', '$timeout', 'isLC', 'lcDiscussionURL', 'DiscussionService'];
 
   /**
    * Controller implementation
@@ -32,7 +32,11 @@
    * @param ChallengeService
    * @constructor
    */
-  function ChallengeDetailCtrl($scope, ChallengeService, $q, $cookies, $interval, $timeout, isLC, lcDiscussionURL, DiscussionService) {
+  function ChallengeDetailCtrl($scope, ChallengeService, $q, $cookies, $location, $interval, $timeout, isLC, lcDiscussionURL, DiscussionService) {
+
+    // set challengeId and challengeType from the url
+    challengeId = $location.path().split("/")[2];
+    challengeType = $location.search().type;
 
     var vm = this;
 
@@ -55,7 +59,8 @@
     if (window.location.hash == '#viewRegistrant' || window.location.hash == '#/viewRegistrant') vm.activeTab = 'registrants';
     else if (window.location.hash == '#winner' || window.location.hash == '#/winner') vm.activeTab = 'results';
     else if (window.location.hash == '#submissions' || window.location.hash == '#/submissions') vm.activeTab = 'submissions';
-
+    // update global var activeTab
+    activeTab = vm.activeTab;
     vm.numCheckpointSubmissions = -1;
     vm.checkpointData = false;
     vm.checkpointResults = false;
@@ -228,9 +233,9 @@
         if (data && !data.error) {
           vm.checkpointData = data;
           vm.checkpointResults = data.checkpointResults;
-          vm.numCheckpointSubmissions = data.numberOfPassedScreeningSubmissions;
           //set variables for design challenge checkpoint results
           if (vm.isDesign) {
+            vm.numCheckpointSubmissions = data.numberOfPassedScreeningSubmissions;
             vm.numberOfPassedScreeningSubmissions = data.numberOfPassedScreeningSubmissions;
             vm.numberOfPassedScreeningUniqueSubmitters = data.numberOfPassedScreeningUniqueSubmitters;
             vm.numberOfUniqueSubmitters = data.numberOfUniqueSubmitters;
