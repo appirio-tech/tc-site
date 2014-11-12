@@ -440,7 +440,8 @@ include locate_template('header-challenge-landing.php');
              title="{{registrant.winner ? 'Pass' : registrant.submissionStatus.match('Failed') ? 'Fail' : ''}}"></i>
         </td>
         <td ng-show="CD.isLC">
-          <a href="<?php echo TC_LC_URL . '/challenges/' . $contestID . '/scorecards/' . $id; ?>">View</a>
+          <!-- manage/#/challenges/{challengeId}/submissions/{submissionId}/scorecard -->
+          <a ng-href="lcSubmissionUrl(CD.challengeId, registrant)>View</a>
         </td>
       </tr>
       </tbody>

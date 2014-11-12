@@ -15,8 +15,8 @@
     /**
      * Service to request challenges data rom TC API
      */
-    .factory('ChallengesService', ['Restangular', '$filter', '$q', 'ChallengeDataService', 'UserChallengesService', 'ChallengeDataCalendarService',
-      function (Restangular, $filter, $q, ChallengeDataService, UserChallengesService, ChallengeDataCalendarService) {
+    .factory('ChallengesService', ['Restangular', '$filter', '$q', 'ChallengeDataService', 'UserChallengesService', 'ChallengeDataCalendarService', 'ExternalChallengeDataService',
+      function (Restangular, $filter, $q, ChallengeDataService, UserChallengesService, ChallengeDataCalendarService, ExternalChallengeDataService) {
         var mockPaging = ['active', 'upcoming', 'user-active', 'user-past'],
           datas = {},
           defPageSize = 10;
@@ -292,12 +292,54 @@
           return deferred.promise;
         }
 
+        /**
+         * Format date string to standard format
+         * @param date - date need to be formatted
+         * @returns {string} formatted date
+         */
+        function formatDate(date) {
+          return moment(date).tz('America/New_York').format('YYYY-MM-DDTHH:mm:ss.SSSZZ');
+        }
+
+        /**
+         * Get external data from new endpoint for active challenges on the design and develop tracks only.
+         * @returns {Object} promise - promise of the deferred object
+         */
+        function getExternalData() {
+          var deferred = $q.defer();
+          ExternalChallengeDataService.all('getActiveChallenges').getList().then(function (challenges) {
+            var developChallenges = [],
+              designChallenges = [];
+            _.each(challenges, function (challengeItem) {
+              challengeItem.eventId = challengeItem.event.id;
+              challengeItem.currentStatus = 'Active';
+              challengeItem.postingDate = formatDate(challengeItem.postingDate);
+              challengeItem.registrationEndDate = formatDate(challengeItem.registrationEndDate);
+              challengeItem.checkpointSubmissionEndDate = formatDate(challengeItem.checkpointSubmissionEndDate);
+              challengeItem.submissionEndDate = formatDate(challengeItem.submissionEndDate);
+              challengeItem.appealsEndDate = formatDate(challengeItem.appealsEndDate);
+              challengeItem.currentPhaseEndDate = formatDate(challengeItem.currentPhaseEndDate);
+              challengeItem.registrationStartDate = formatDate(challengeItem.registrationStartDate);
+              if (challengeItem.challengeCommunity === 'develop') {
+                developChallenges.push(challengeItem);
+              } else if (challengeItem.challengeCommunity === 'design') {
+                designChallenges.push(challengeItem);
+              }
+            });
+            deferred.resolve({
+              'develop': developChallenges,
+              'design': designChallenges
+            });
+          });
+          return deferred.promise;
+        }
+
         return {
           'getChallenges': function (listType, params) {
             var key = (params.type || 'all') + '_' + (listType || 'active'), // cache key
               deferred,
-              result,
-              cacheParams = {type: params.type};
+              cacheParams = {type: params.type},
+              promises;
             // For Data Science Challenges calendar view, we need to perform a different request
             if (listType === 'data-calendar') {
               return getDataCalendarChallenges(params);
@@ -317,10 +359,26 @@
               if (datas[key]) {
                 thenHandleParams(datas[key], params, deferred);
               } else {
-                getData(listType, cacheParams).then(function (data) {
-                  datas[key] = data;
-                  thenHandleParams(data, params, deferred);
-                });
+                if (listType === 'active' && (params.type === 'develop' || params.type === 'design')) {
+                  promises = [];
+                  promises.push(getData(listType, cacheParams));
+                  if (!(datas['develop_active_external'] && datas['design_active_external'])) {
+                    promises.push(getExternalData());
+                  }
+                  $q.all(promises).then(function (data) {
+                    if (data.length === 2) {
+                      datas['develop_active_external'] = data[1]['develop'];
+                      datas['design_active_external'] = data[1]['design'];
+                    }
+                    datas[key] = data[0].concat(datas[key + '_external']);
+                    thenHandleParams(datas[key], params, deferred);
+                  });
+                } else {
+                  getData(listType, cacheParams).then(function (data) {
+                    datas[key] = data;
+                    thenHandleParams(data, params, deferred);
+                  });
+                }
               }
               return deferred.promise;
             }
@@ -350,6 +408,13 @@
       function (Restangular, API_URL) {
         return Restangular.withConfig(function (RestangularConfigurer) {
           RestangularConfigurer.setBaseUrl(API_URL + '/dataScience/challenges');
+        });
+      }])
+
+    .factory('ExternalChallengeDataService', ['Restangular',
+      function (Restangular) {
+        return Restangular.withConfig(function (RestangularConfigurer) {
+          RestangularConfigurer.setBaseUrl('http://lc1-external-challenge-service.herokuapp.com');
         });
       }]);
 }(angular));

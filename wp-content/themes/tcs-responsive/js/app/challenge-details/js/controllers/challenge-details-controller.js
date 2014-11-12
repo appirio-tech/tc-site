@@ -7,7 +7,7 @@
  *   - etc
  * - Eliminate jQuery / move DOM logic to directives
  * - Split into different controllers where applicable
- * - Rename file (all files should be named after the units they contain - 
+ * - Rename file (all files should be named after the units they contain -
  *   'controllers.js' is too generic)
  */
 (function () {
@@ -44,7 +44,7 @@
 
     // Global variable available from ng-page-challenge-details.php
     vm.challengeType = challengeType;
-    vm.siteURL       = siteURL;
+    vm.siteURL = siteURL;
 
     vm.isLoggedIn = typeof $cookies.tcjwt !== 'undefined' && typeof $cookies.tcsso !== 'undefined';
     vm.delayAction = typeof $cookies.tcDelayChallengeAction !== 'undefined';
@@ -65,7 +65,7 @@
     vm.checkpointPassedScreeningSubmitterPercentage = 0;
     vm.checkpointPassedScreeningSubmissionPercentage = 0;
 
-    $interval(function() {
+    $interval(function () {
       if (vm.challenge && vm.challenge.currentPhaseRemainingTime) {
         vm.challenge.currentPhaseRemainingTime -= 5;
       }
@@ -77,9 +77,9 @@
     // functions
     $scope.round = Math.round;
     $scope.range = rangeFunction;
-    $scope.max   = maxFunction;
+    $scope.max = maxFunction;
 
-    $scope.showRegistrants = function() {
+    $scope.showRegistrants = function () {
       var current = $('a.active').attr('href');
       $(current).hide();
       $("#viewRegistrant").fadeIn();
@@ -89,23 +89,31 @@
       $('#mainContent').attr('class', '').addClass('splitLayout').addClass('currentTab-viewRegistrant');
 
       updateTabForNonResults();
-    }
+    };
 
     var handlePromise = $q.defer();
     //The handle is needed to enable the buttons
     app
-      .getHandle(function(handle) {
-        handlePromise.resolve(handle);
-      }
-      );
+        .getHandle(function (handle) {
+          handlePromise.resolve(handle);
+        }
+    );
+
+    $scope.lcSubmissionUrl = function(challengeId, submission) {
+      // From config
+      return lcSiteUrl +
+        'manage/#/challenges' +
+        challengeId +  '/submissions/' +
+        submission.lcId +  '/scorcard';
+    };
 
     handlePromise
-      .promise
-      .then(function(handle) {
-        vm.handle = handle;
-        initChallengeDetail(handle, vm, ChallengeService);
-      }
-      );
+        .promise
+        .then(function (handle) {
+          vm.handle = handle;
+          initChallengeDetail(handle, vm, ChallengeService);
+        }
+    );
 
     /**
      *
@@ -139,22 +147,24 @@
      */
     function initChallengeDetail(handle, vm, ChallengeService) {
       ChallengeService
-        .getChallenge(challengeId)
-        .then(function (challenge) {
-          processChallenge(challenge, handle, vm, ChallengeService);
-          vm.callComplete = true;
-          $timeout(function() { window.prerenderReady = true; }, 100);
-          $('#cdNgMain').show();
-        });
+          .getChallenge(challengeId)
+          .then(function (challenge) {
+            processChallenge(challenge, handle, vm, ChallengeService);
+            vm.callComplete = true;
+            $timeout(function () {
+              window.prerenderReady = true;
+            }, 100);
+            $('#cdNgMain').show();
+          });
 
     }
 
     function updateChallengeDetail() {
       ChallengeService
-        .getChallenge(challengeId)
-        .then(function (challenge) {
-          processChallenge(challenge, vm.handle, vm, ChallengeService);
-        });
+          .getChallenge(challengeId)
+          .then(function (challenge) {
+            processChallenge(challenge, vm.handle, vm, ChallengeService);
+          });
     }
 
     /**
@@ -164,8 +174,8 @@
 
       if (app.isLoggedIn()) {
         ChallengeService
-          .registerToChallenge(challengeId)
-          .then(
+            .registerToChallenge(challengeId)
+            .then(
             function (data) {
               if (data["message"] === "ok") {
                 showModal("#registerSuccess");
@@ -184,16 +194,20 @@
                 showError(data["error"]["details"]);
               }
             }
-          );
+        );
       } else {
         //set register Delay cookie for auto register when user returns to page
         //angularjs $cookies is too basic and does not support setting any cookie options such as expires, so must use jQuery method here
         $.cookie.raw = true;
-        $.cookie('tcDelayChallengeAction', 'register|' + vm.challenge.challengeId + '|' + encodeURIComponent(vm.challenge.challengeName), {expires: 31, path:'/', domain: '.topcoder.com'});
+        $.cookie('tcDelayChallengeAction', 'register|' + vm.challenge.challengeId + '|' + encodeURIComponent(vm.challenge.challengeName), {
+          expires: 31,
+          path: '/',
+          domain: '.topcoder.com'
+        });
         $('.actionLogin').click();
       }
 
-      
+
     };
 
   }
@@ -206,7 +220,7 @@
    * @param ChallengeService
    */
   function processChallenge(challenge, handle, vm, ChallengeService) {
-    
+
     // Global variable available from ng-page-challenge-details.php
     challengeName = challenge.challengeName;
     vm.isDesign = (challengeType === 'design');
@@ -279,7 +293,7 @@
         }
       }
     }
-    
+
     // If is not submited, then enable submission
     if (((moment(challenge.submissionEndDate)) > moment()) && regList.indexOf(handle) > -1) {
       vm.challenge.submissionDisabled = false;
