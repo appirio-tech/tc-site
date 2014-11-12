@@ -8,7 +8,7 @@
   "apiURL": "https://qa.topcoder.com/v2",
   "cdnURL": "/wp-content/themes/tcs-responsive",
   "lcURL": "http://lc1-external-challenge-service.herokuapp.com",
-  "lcDiscussionURL": "http://lc1-discussion-service.herokuapp.com/discussions",
+  "lcDiscussionURL": "http://lc1-discussion-service.herokuapp.com",
   "lcSiteUrl": "http://beta.topcoer.com",
   "useCND": false,
   "useMin": false,

@@ -32,7 +32,7 @@
    * @param ChallengeService
    * @constructor
    */
-  function ChallengeDetailCtrl($scope, ChallengeService, $q, $cookies, $interval, $timeout, isLC, lcDiscussionURL, DiscussionService) {
+  function ChallengeDetailCtrl($scope, ChallengeService, $q, $cookies, $interval, $timeout, isLC, lcDiscussionURL) {
 
     var vm = this;
 
@@ -40,7 +40,7 @@
     vm.scope = $scope;
 
     vm.isLC = isLC;
-    vm.lcDiscussionService = new DiscussionService(lcDiscussionURL);
+    vm.lcDiscussionURL = lcDiscussionURL;
 
     // Global variable available from ng-page-challenge-details.php
     vm.challengeType = challengeType;

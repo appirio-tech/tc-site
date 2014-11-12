@@ -46,6 +46,7 @@
             // create a Swagger client for discussion service
             var client = new DiscussionService($scope.discussionUrl);
 
+            console.log($scope.remoteObjectId);
             // check a discussion exists for remoteObjectKey and remoteObjectId
             getDiscussionByRemoteObject($scope.remoteObjectKey, $scope.remoteObjectId)
                 .then(function(discussion) {
@@ -169,7 +170,7 @@
                   });
             }
           },
-          templateUrl: 'lc-discussion-directive/lc-discussion.tpl.html'
+          templateUrl: 'lc-discussion.html'
         };
       }]);
 })(angular);

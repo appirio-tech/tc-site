@@ -219,7 +219,7 @@ include locate_template('header-challenge-landing.php');
     </article>
     <article ng-show="CD.isLC" id="lc-discussion">
       <h1>Challenge Discussion</h1>
-      <lc-discussion remote-object-name="Challenge" remote-object-id="CD.challenge.id" discussion-service="CD.lcDiscussionService"></lc-discussion>
+      <lc-discussion remote-object-key="challenge" remote-object-id="{{CD}}" discussion-url="CD.lcDiscussionURL"></lc-discussion>
     </article>
 
   </article>
@@ -733,16 +733,16 @@ include locate_template('header-challenge-landing.php');
     }
   </style>
 
-  <div class="discussion">
+  <div class="discussion" data-ng-show="booted">
     <div class="row message-box" data-ng-repeat="message in messages">
       <div class="col-sm-1 col-md-1">
-        <a href="#" ><img class="message-avatar" data-ng-src="{{images[$index % 3]}}" width="50" height="50"></a>
+        <a href="#" ><img class="message-avatar" data-ng-src="{{images[$index % 3]}}" width="45" height="45"></a>
       </div>
-      <div class="col-sm-7 col-md-7">
+      <div class="col-sm-8 col-md-8">
         <div class="row">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <p class="panel-title"><strong>{{message.createdBy}}</strong> <span class="created-at">commented at {{message.createdAt | date: "MMMM d, yyyy h:ma"}}</span></p>
+              <p class="panel-title"><strong>{{message.createdBy}}</strong> <span class="created-at">commented at {{message.createdAt | date: "MMMM d, yyyy h:mm a"}}</span></p>
             </div>
             <div class="panel-body">
               {{message.content}}
@@ -752,7 +752,7 @@ include locate_template('header-challenge-landing.php');
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-offset-1 col-sm-7 col-md-offset-1 col-md-7">
+      <div class="col-sm-offset-1 col-sm-8 col-md-offset-1 col-md-8">
         <div class="row comment-box">
           <div class="comment-header">
             <ul class="nav nav-tabs" role="tablist">
