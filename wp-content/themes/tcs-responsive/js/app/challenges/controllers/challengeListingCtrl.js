@@ -16,8 +16,7 @@
         cfpLoadingBar.complete();
         $scope.loading = false;
       }
-      
-      
+
       /*
        * Gets the available challenge types for a community
        */
@@ -27,7 +26,7 @@
           deferred.resolve([]);
           return deferred.promise;
         }
-        
+
         ChallengesService.getChallengeTypes(community).then(function (data) {
           _.each(data, function (type) {
             $scope.challengeTypes[type.description] = type.name;
@@ -37,7 +36,7 @@
         });
         return deferred.promise;
       }
-      
+
       function getData(community, listType, order, filter, pageIndex, pageSize) {
         var params = {};
         var listType = $routeParams.challengeStatus ? $routeParams.challengeStatus.toLowerCase() : 'active';
@@ -84,14 +83,14 @@
           if (pageSize && pageSize > 0) {
             params.pageSize = pageSize;
           }
-          
+
           var type = listType;
           if(filter.userChallenges) {
             type = 'user-' + listType;
             if (!filter.challengeTypes || filter.challengeTypes.length === 0) {
               params.challengeType = $scope.allChallengeTypes.join(',');
             }
-          }  
+          }
           ChallengesService.getChallenges(type || 'active', params)
             .then(function (data) {
               $scope.challenges = data;
@@ -163,7 +162,7 @@
         } else {
           $scope.filter.platforms = [];
         }
-        
+
         if (Array.isArray($routeParams.keywords)) {
           $scope.filter.keywords = $routeParams.keywords;
         } else if (typeof $routeParams.keywords === 'string' && !$routeParams.keywords.match(/^\s*$/)) {
@@ -171,7 +170,7 @@
         } else {
           $scope.filter.keywords = [];
         }
-        
+
         if (Array.isArray($routeParams.challengeTypes)) {
           $scope.filter.challengeTypes = $routeParams.challengeTypes;
         } else if (typeof $routeParams.challengeTypes === 'string' && !$routeParams.challengeTypes.match(/^\s*$/)) {
@@ -183,7 +182,7 @@
 
         generateFeedUrl();
       }
-    
+
       $scope.showFilters = false;
 
       $scope.filter = {
@@ -201,22 +200,22 @@
         pageSize: 12,
         pageIndex: typeof queryVars['pageIndex'] == 'undefined' ? 1 : parseInt(queryVars['pageIndex'])
       };
-      
+
       $scope.orderBy = {
         'active': {
           column: 'registrationEndDate',
           order: 'desc'
         }
       };
-      
-      
+
+
       //prevent errors from mixed-case URL parameters by converting to lowercase
       $scope.contest = {
         contestType: $routeParams.challengeArea ? $routeParams.challengeArea.toLowerCase() : '',
         listType: $routeParams.challengeStatus ? $routeParams.challengeStatus.toLowerCase() : 'active',
         isUserChallenges: !!$routeParams.userChallenges
       };
-            
+
       parseFilters();
 
       $scope.titles = {
@@ -225,6 +224,7 @@
         develop: 'Software Development Challenges',
         data: 'Data Science Challenges'
       };
+
       $scope.titleType = {
         active: 'Open ',
         past: 'Past ',
@@ -270,12 +270,12 @@
         getData($routeParams.challengeArea, $routeParams.challengeStatus || 'active',
               $scope.orderBy, $scope.filter, 1, $scope.pagination.total);
       };
-      
+
       $scope.prev = function () {
         getData($routeParams.challengeArea, $routeParams.challengeStatus || 'active',
               $scope.orderBy, $scope.filter, $scope.pagination.pageIndex - 1, $scope.pagination.pageSize);
       };
-      
+
       $scope.next = function () {
         getData($routeParams.challengeArea, $routeParams.challengeStatus || 'active',
               $scope.orderBy, $scope.filter, $scope.pagination.pageIndex + 1, $scope.pagination.pageSize);
@@ -318,7 +318,7 @@
           search.userChallenges = true;
         }
         $location.search(search);
-        
+
       };
 
       /* event source that calls a function on every calender view switch */
@@ -406,10 +406,10 @@
           }
         }
       });
-      
+
       $scope.$watch('gridOptions.ngGrid.config.sortInfo', function (sortInfo) {
         if (!sortInfo) {
-          return; 
+          return;
         }
         if (sortInfo.fields.length > 0) {
           $scope.orderBy[$scope.contest.listType || 'active'] = {
@@ -422,9 +422,9 @@
               $scope.orderBy[$scope.contest.listType || 'active'], $scope.filter, $scope.pagination.pageIndex, $scope.pagination.pageSize);
         }
       }, true);
-      
+
       $scope.$on('$locationChangeSuccess', function (event) {
-        
+
         $timeout(function () {
           parseFilters();
           if($scope.filter.userChallenges) {
@@ -455,12 +455,12 @@
           ngGridUnbindMouseHandler = true;
         }
       });
-      
+
       getChallengeTypes($scope.contest.contestType).then(function() {
         if ($scope.view !== 'calendar') {
           getData($scope.contest.contestType, $scope.contest.listType || 'active',
             $scope.orderBy[$scope.contest.listType || 'active'], $scope.filter, $scope.pagination.pageIndex, $scope.pagination.pageSize);
         }
-      }); 
+      });
     }]);
 }(angular));

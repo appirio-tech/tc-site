@@ -10,14 +10,14 @@
   angular
       .module('lc.directives', [])
 
-  /**
-   * The directive to display discussion and messages.
-   *   Input parameters:
-   *     - remoteObjectName: the name of remote object, provided from remote-object-name attribute value.
-   *     - remoteObjectId: the id of remote object, provided from remote-object-id attribute value.
-   *     - discussionUrl: the url of discussions service endpoint, ex) http://lc1-discussion-service.herokuapp.com/discussions,
-   *            provided from the parent scope.
-   */
+      /**
+       * The directive to display discussion and messages.
+       *   Input parameters:
+       *     - remoteObjectName: the name of remote object, provided from remote-object-name attribute value.
+       *     - remoteObjectId: the id of remote object, provided from remote-object-id attribute value.
+       *     - discussionUrl: the url of discussions service endpoint, ex) http://lc1-discussion-service.herokuapp.com/discussions,
+       *            provided from the parent scope.
+       */
       .directive('lcDiscussion', [ 'DiscussionService', function(DiscussionService) {
         return {
           restrict: 'E',

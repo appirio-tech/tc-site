@@ -8,7 +8,7 @@
 */
 (function (angular) {
   'use strict';
- 
+
   angular.module('tc.challenges.services', [
     'restangular'
   ])
@@ -119,7 +119,7 @@
           };
           defered.resolve(result);
         }
-        
+
         /**
          * Gets challenges from backend
          * @param {string} listType - type of challenges (active, pas, upcoming)
@@ -131,7 +131,7 @@
               p = angular.extend({}, params);
             delete params.type;
             params.listType = listType;
-            
+
             if (params.sortColumn === 'registrationStartDate') {
               params.sortColumn = 'startdate';
             } else if (params.sortColumn === 'challengeName') {
@@ -141,7 +141,7 @@
             } else if (params.sortColumn) {
               delete params.sortColumn;
             }
-            
+
             ChallengeDataService.all('').getList(params).then(function (challenges) {
               _.each(challenges, function (challengeItem) {
                 challengeItem.challengeCommunity = 'data';
@@ -173,7 +173,7 @@
                 deferred.resolve(challenges);
               }
             });
-           
+
             return deferred.promise;
           } else if (listType === 'user-active' || listType === 'user-past') {
             // Add My Challenges Filter and Improve Filters challenge -- different api endpoint
@@ -261,7 +261,7 @@
             queryParams = {
               submissionEndFrom: minQueryMonth.format('YYYY-MM-DD'),
               submissionEndTo: maxQueryMonth.format('YYYY-MM-DD')
-            }
+            };
             promises.push(ChallengeDataCalendarService.all('active').getList(queryParams));
             promises.push(ChallengeDataCalendarService.all('past').getList(queryParams));
             if (moment().isBefore(maxQueryMonth)) {
@@ -411,10 +411,10 @@
         });
       }])
 
-    .factory('ExternalChallengeDataService', ['Restangular',
-      function (Restangular) {
+    .factory('ExternalChallengeDataService', ['Restangular', 'LC_URL',
+      function (Restangular, LC_URL) {
         return Restangular.withConfig(function (RestangularConfigurer) {
-          RestangularConfigurer.setBaseUrl('http://lc1-external-challenge-service.herokuapp.com');
+          RestangularConfigurer.setBaseUrl(LC_URL);
         });
       }]);
 }(angular));
