@@ -1734,10 +1734,15 @@ var app = {
           'Authorization': 'Bearer ' + tcjwt
         },
         success: function(data) {
+          if (_kmq) _kmq.push(['identify', data.email]);
           self.handle = data.handle;
           callback(self.handle);
         }
-      })
+      }).fail(function() {
+        document.cookie = 'tcsso=; path=/; domain=.topcoder.com; expires=' + new Date(0).toUTCString();
+        document.cookie = 'tcjwt=; path=/; domain=.topcoder.com; expires=' + new Date(0).toUTCString();
+        location.reload();
+      });
     }
   },
   getParameterByName: function(name) {
