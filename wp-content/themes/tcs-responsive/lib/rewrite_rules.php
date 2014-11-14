@@ -53,8 +53,8 @@ function tc_add_custom_rewrite_rules() {
 
   // register to challenge
   add_rewrite_rule(
-    '^challenge-details/register/([^/]*)/?$',
-    'index.php?pagename=challenge-details&contestID=$matches[1]&autoRegister=true',
+    '^' . CONTEST_DETAILS_PERMALINK . '/register/([^/]*)/?$',
+    'index.php?pagename=angular-challenge-details&contestID=$matches[1]&autoRegister=true',
     'top'
   );
 

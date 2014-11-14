@@ -169,9 +169,6 @@
             function (data) {
               if (data["message"] === "ok") {
                 showModal("#registerSuccess");
-                //change state of register & submit button
-                vm.challenge.registrationDisabled = true;
-                vm.challenge.submissionDisabled = false;
                 //check if auto registered through delayAction cookie
                 if (vm.delayAction && vm.tcDoAction[0] == 'register' && vm.tcDoAction[1] == vm.challenge.challengeId) {
                   //delete cookie
@@ -267,6 +264,7 @@
     }
     //check autoRegister (terms link register) and DelayAction cookie status
     if (autoRegister) {
+      autoRegister = false;
       vm.registerToChallenge();
     } else if (vm.delayAction) {
       if (typeof challengeId !== 'undefined' && vm.tcDoAction[0] === 'register' && vm.tcDoAction[1] === challengeId) {
