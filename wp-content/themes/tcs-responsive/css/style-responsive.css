@@ -447,6 +447,7 @@
     background: url(../i/ico-views.png) no-repeat;
     background-position: 0 0;
 }
+    .layChallenges .views .calendarView,
     .layChallenges .views .gridView{
         background-position: 0 -50px;
     }
@@ -454,6 +455,7 @@
         background-position: 0 -150px;
     }
     
+    .layChallenges .views .calendarView.isActive,
     .layChallenges .views .gridView.isActive{
         background-position: 0 0px;
         cursor: default;
