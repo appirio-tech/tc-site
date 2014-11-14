@@ -767,8 +767,8 @@ $blog_posts = get_posts($blog_posts_args);
         document.cookie = 'tcjwt=; path=/; domain=.topcoder.com; expires=' + new Date(0).toUTCString();
 
         var match;
-        if ( match = /next=([\w\.\:\/]+)/i.exec( location.href ) ) {
-          location.href = 'http://topcoder.com/?action=showlogin&next=' + match[1];
+        if ( match = /next=([\w\.\:\/\-]+)/i.exec( location.href ) ) {
+          location.href = siteURL + '/?action=showlogin&next=' + match[1];
         }
       }
 
