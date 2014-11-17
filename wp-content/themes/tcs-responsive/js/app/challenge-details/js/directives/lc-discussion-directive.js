@@ -23,7 +23,7 @@
         restrict: 'E',
         scope: {
           remoteObjectKey: '@',
-          remoteObjectId: '@',
+          remoteObjectId: '=',
           discussionUrl: '='
         },
         resolve: {
@@ -129,7 +129,7 @@
             var params = {
               discussionId: discussionId,
               orderBy: 'createdAt'
-            }
+            };
             return client.getDiscussionsByDiscussionIdMessages(params)
               .then(function (data) {
                 return data.content;  // messages are in content property

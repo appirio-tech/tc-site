@@ -41,6 +41,7 @@
 
     vm.isLC = isLC;
     vm.lcDiscussionURL = lcDiscussionURL;
+    vm.lcSiteUrl = lcSiteUrl;
 
     // Global variable available from ng-page-challenge-details.php
     vm.challengeType = challengeType;
@@ -98,14 +99,6 @@
           handlePromise.resolve(handle);
         }
     );
-
-    $scope.lcSubmissionUrl = function(challengeId, submission) {
-      // From config
-      return lcSiteUrl +
-        'manage/#/challenges' +
-        challengeId +  '/submissions/' +
-        submission.lcId +  '/scorcard';
-    };
 
     handlePromise
         .promise

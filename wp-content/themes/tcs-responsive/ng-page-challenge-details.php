@@ -219,7 +219,7 @@ include locate_template('header-challenge-landing.php');
     </article>
     <article ng-show="CD.isLC" id="lc-discussion">
       <h1>Challenge Discussion</h1>
-      <lc-discussion remote-object-key="challenge" remote-object-id="{{CD}}" discussion-url="CD.lcDiscussionURL"></lc-discussion>
+      <!--<lc-discussion remote-object-key="challenge" remote-object-id="CD.challenge.id" discussion-url="CD.lcDiscussionURL"></lc-discussion>-->
     </article>
 
   </article>
@@ -441,7 +441,7 @@ include locate_template('header-challenge-landing.php');
         </td>
         <td ng-show="CD.isLC">
           <!-- manage/#/challenges/{challengeId}/submissions/{submissionId}/scorecard -->
-          <a ng-href="lcSubmissionUrl(CD.challengeId, registrant)>View</a>
+          <a ng-if="registrant.lcSubmissionId" ng-href="{{CD.siteURL + '/manage/#/challenges/' + CD.challenge.challengeId + '/submissions/' + registrant.lcSubmissionId + '/scorecard'}}">View</a>
         </td>
       </tr>
       </tbody>
