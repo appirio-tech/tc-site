@@ -24,6 +24,7 @@ module.exports = function(grunt) {
       auth0ClientID: grunt.option('auth-client-id') || '6ZwZEUo2ZK4c50aLPpgupeg5v2Ffxp9P',
       auth0CallbackURL: grunt.option('auth-callback-url') || 'https://www.topcoder.com/reg2/callback.action',
       auth0LDAP: grunt.option('auth-ldap') || 'LDAP',
+      auth0URL: grunt.option('auth-main-url') || 'topcoder.auth0.com',
       communityURL: grunt.option('community-url') || 'http://community.topcoder.com',
       mainURL: grunt.option('main-url') || 'http://local.topcoder.com',
       apiURL: grunt.option('api-url') || 'https://api.topcoder.com/v2',

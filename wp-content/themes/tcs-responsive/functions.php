@@ -300,7 +300,7 @@ function auth0_callbackURL() {
 
 /* function to get main auth0 url */
 function auth0_URL() {
-  return defined('CONFIG_AUTH0_URL') ? CONFIG_AUTH0_URL : 'topcoder.auth0.com';
+  return defined('CONFIG_AUTH0_URL') && strlen(CONFIG_AUTH0_URL) > 0 ? CONFIG_AUTH0_URL : 'topcoder.auth0.com';
 }
 
 /**
