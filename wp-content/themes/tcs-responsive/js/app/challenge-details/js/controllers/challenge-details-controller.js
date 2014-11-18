@@ -42,6 +42,7 @@
     vm.isLC = isLC;
     vm.lcDiscussionURL = lcDiscussionURL;
     vm.lcSiteUrl = lcSiteUrl;
+    vm.lcChallengeId = challengeId;
 
     // Global variable available from ng-page-challenge-details.php
     vm.challengeType = challengeType;

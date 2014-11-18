@@ -219,7 +219,7 @@ include locate_template('header-challenge-landing.php');
     </article>
     <article ng-show="CD.isLC" id="lc-discussion">
       <h1>Challenge Discussion</h1>
-      <!--<lc-discussion remote-object-key="challenge" remote-object-id="CD.challenge.id" discussion-url="CD.lcDiscussionURL"></lc-discussion>-->
+      <lc-discussion remote-object-key="challenge" remote-object-id="CD.lcChallengeId" discussion-url="CD.lcDiscussionURL"></lc-discussion>
     </article>
 
   </article>
@@ -446,8 +446,6 @@ include locate_template('header-challenge-landing.php');
       </tr>
       </tbody>
     </table>
-
-
   </article>
 
 
@@ -482,7 +480,8 @@ include locate_template('header-challenge-landing.php');
 <aside class="sideStream grid-1-3" style="float: left;">
 
 <div class="topRightTitle">
-    <a ng-href="{{CD.challenge.forumLink}}" class="contestForumIcon" target="_blank">Challenge Discussion</a>
+    <a ng-show="!CD.isLC" ng-href="{{CD.challenge.forumLink}}" class="contestForumIcon" target="_blank">Challenge Discussion</a>
+    <a ng-show="CD.isLC" ng-href="{{CD.challenge.forumLink}}" class="contestForumIcon">Challenge Discussion</a>
 </div>
 
 <div class="columnSideBar">
