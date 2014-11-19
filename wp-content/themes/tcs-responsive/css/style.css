@@ -550,6 +550,7 @@
         -moz-transition-duration: 0s; -webkit-transition-duration: 0s; transition-duration: 0s;
         border-top: 3px solid transparent;
 }   
+    .layChallenges  header .rt .calendarView:hover,
     .layChallenges  header .rt .gridView:hover,
     .layChallenges  header .rt .listView:hover{
         border-top: 3px solid #FF8A00;
@@ -569,6 +570,9 @@
     .layChallenges .views .listView{
         background-position: 0 -147px;
     }
+    .layChallenges .views .calendarView{
+        background-position: 0 -247px;
+    }
     
     .layChallenges .views .gridView.isActive{
         background-position: 0 3px;
@@ -583,6 +587,14 @@
         cursor: default;
     }
     .layChallenges .views .listView.isActive:hover{
+        border-top: 3px solid transparent;
+    }
+
+    .layChallenges .views .calendarView.isActive{
+        background-position: 0 -197px;
+        cursor: default;
+    }
+    .layChallenges .views .calendarView.isActive:hover{
         border-top: 3px solid transparent;
     }
     
