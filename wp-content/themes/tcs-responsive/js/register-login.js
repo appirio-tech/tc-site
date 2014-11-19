@@ -152,6 +152,7 @@ $(function () {
     $(this).closest('.row').find('span.err1').hide();
     $(this).closest('.row').find('span.err2').hide();
     $(this).closest('.row').find('span.err3').hide();
+    $(this).closest('.row').find('span.err4').hide();
     $(this).closest('.row').find('input:text').removeClass('invalid');
     $(this).closest(".row").find("span.valid").hide();
     if ($(this).val().length == 0) {
@@ -162,6 +163,9 @@ $(function () {
       $(this).closest('.row').find('input:text').addClass('invalid');
     } else if (parseInt($(this).val()) < 13) {
       $(this).closest('.row').find('span.err3').show();
+      $(this).closest('.row').find('input:text').addClass('invalid');
+    } else if (parseInt($(this).val()) > 13800000000) {
+      $(this).closest('.row').find('span.err4').show();
       $(this).closest('.row').find('input:text').addClass('invalid');
     } else {
       $(this).closest(".row").find("span.valid").show();
@@ -512,6 +516,7 @@ $(function () {
       $(this).closest('.row').find('span.err1').hide();
       $(this).closest('.row').find('span.err2').hide();
       $(this).closest('.row').find('span.err3').hide();
+      $(this).closest('.row').find('span.err4').hide();
       $(this).closest(".row").find("span.valid").hide();
       $(this).closest('.row').find('input:text').removeClass('invalid');
       if ($(this).val().length == 0) {
@@ -524,6 +529,10 @@ $(function () {
         isValid = false;
       } else if (parseInt($(this).val()) < 13) {
         $(this).closest('.row').find('span.err3').show();
+        $(this).closest('.row').find('input:text').addClass('invalid');
+        isValid = false;
+      } else if (parseInt($(this).val()) > 13800000000) {
+        $(this).closest('.row').find('span.err4').show();
         $(this).closest('.row').find('input:text').addClass('invalid');
         isValid = false;
       } else {
@@ -686,6 +695,7 @@ $(function () {
                 }
               }
               showModal('#thanks');
+              $('input.pwd:password').closest('.row').find('.valid').hide();
               $('#registerForm .invalid').removeClass('invalid');
               $('#registerForm .valid').removeClass('valid');
               $('.err1,.err2', frm).hide();
