@@ -10,7 +10,6 @@
  * - Rename file (all files should be named after the units they contain - 
  *   'controllers.js' is too generic)
  */
-var glob;
 (function () {
 
   /**
@@ -35,7 +34,7 @@ var glob;
    */
   function ChallengeDetailCtrl($scope, ChallengeService, $q, $cookies, $interval, $timeout, isLC, lcDiscussionURL, DiscussionService) {
 
-    var vm = glob = this;
+    var vm = this;
 
     vm.callComplete = false;
     vm.scope = $scope;
