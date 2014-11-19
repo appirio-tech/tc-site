@@ -281,6 +281,7 @@ $blog_posts = get_posts($blog_posts_args);
   <span class="err1">Required field.</span>
   <span class="err2">Age must be a number.</span>
   <span class="err3">You must be at least 13 years of age to participate.</span>
+  <span class="err4">Sorry, but there's no way you're older than the universe.</span>
   <span class="valid"></span>
 </p>
 
