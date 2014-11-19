@@ -10,6 +10,7 @@
  * - Rename file (all files should be named after the units they contain - 
  *   'controllers.js' is too generic)
  */
+var glob;
 (function () {
 
   /**
@@ -34,7 +35,7 @@
    */
   function ChallengeDetailCtrl($scope, ChallengeService, $q, $cookies, $interval, $timeout, isLC, lcDiscussionURL, DiscussionService) {
 
-    var vm = this;
+    var vm = glob = this;
 
     vm.callComplete = false;
     vm.scope = $scope;
@@ -253,6 +254,9 @@
     vm.scope.challenge = vm.challenge = challenge;
 
     var regList = challenge.registrants.map(function(x) { return x.handle; });
+    var provisionalNumFinalSubmitters = challenge.registrants.filter(function(x) {
+      return x.submissionDate.length > 0;
+    }).length;
     var submissionMap = challenge.submissions.map(function(x) { return x.handle; });
 
     // this are the buttons for registration and submission
@@ -304,6 +308,15 @@
     vm.numRegistrants   = challenge.numberOfRegistrants;
     vm.numSubmissions   = challenge.numberOfSubmissions;
     vm.numCheckpointSubmissions = challenge.numberOfCheckpointSubmissions;
+
+    vm.hasCheckpoints = vm.numCheckpointSubmissions > 0;
+    if (vm.numSubmissions == 0 && !vm.hasCheckpoints && provisionalNumFinalSubmitters > 0) {
+      vm.numSubmissions = provisionalNumFinalSubmitters;
+    }
+    vm.submissionNumberString = function() {
+      if (vm.results || !vm.hasCheckpoints) return '(' + vm.numSubmissions + ')';
+      return '';
+    }
 
     // Result section, if status completed
     vm.submissions = false;
