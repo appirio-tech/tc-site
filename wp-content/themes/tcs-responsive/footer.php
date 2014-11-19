@@ -276,6 +276,15 @@ $blog_posts = get_posts($blog_posts_args);
 </p>
 
 <p class="row">
+  <label>Age</label>
+  <input type="text" class="userAge"/>
+  <span class="err1">Required field.</span>
+  <span class="err2">Age must be a number.</span>
+  <span class="err3">You must be at least 13 years of age to participate.</span>
+  <span class="valid"></span>
+</p>
+
+<p class="row">
 <label>Country</label>
 <select class="applyCustomSelect" id="selCountry" name="user.country">
   <option value="">Please Select</option>
