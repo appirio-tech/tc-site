@@ -148,6 +148,26 @@ $(function () {
     }
   });
 
+  $('#register form.register input.userAge:text').on('keyup', function () {
+    $(this).closest('.row').find('span.err1').hide();
+    $(this).closest('.row').find('span.err2').hide();
+    $(this).closest('.row').find('span.err3').hide();
+    $(this).closest('.row').find('input:text').removeClass('invalid');
+    $(this).closest(".row").find("span.valid").hide();
+    if ($(this).val().length == 0) {
+      $(this).closest('.row').find('span.err1').show();
+      $(this).closest('.row').find('input:text').addClass('invalid');
+    } else if (!$(this).val().match(/^\d+$/)) {
+      $(this).closest('.row').find('span.err2').show();
+      $(this).closest('.row').find('input:text').addClass('invalid');
+    } else if (parseInt($(this).val()) < 13) {
+      $(this).closest('.row').find('span.err3').show();
+      $(this).closest('.row').find('input:text').addClass('invalid');
+    } else {
+      $(this).closest(".row").find("span.valid").show();
+    }
+  });
+
   $('#register form.register input.name.lastName:text').on('keyup', function () {
     var text = $(this).val();
     //clear all error messages
@@ -486,6 +506,28 @@ $(function () {
         isValid = false;
         $(this).addClass('invalid');
         $(this).closest('.row').find('.err2').show();
+      }
+    });
+    $('input.userAge').each(function() {
+      $(this).closest('.row').find('span.err1').hide();
+      $(this).closest('.row').find('span.err2').hide();
+      $(this).closest('.row').find('span.err3').hide();
+      $(this).closest(".row").find("span.valid").hide();
+      $(this).closest('.row').find('input:text').removeClass('invalid');
+      if ($(this).val().length == 0) {
+        $(this).closest('.row').find('span.err1').show();
+        $(this).closest('.row').find('input:text').addClass('invalid');
+        isValid = false;
+      } else if (!$(this).val().match(/^\d+$/)) {
+        $(this).closest('.row').find('span.err2').show();
+        $(this).closest('.row').find('input:text').addClass('invalid');
+        isValid = false;
+      } else if (parseInt($(this).val()) < 13) {
+        $(this).closest('.row').find('span.err3').show();
+        $(this).closest('.row').find('input:text').addClass('invalid');
+        isValid = false;
+      } else {
+        $(this).closest(".row").find("span.valid").show();
       }
     });
     //stop submit if errors shown on first name/last name
