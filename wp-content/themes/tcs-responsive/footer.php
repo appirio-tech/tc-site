@@ -186,7 +186,7 @@ $blog_posts = get_posts($blog_posts_args);
 <div id="showSubmission" class="modal">
     <a href="javascript:;" class="btnClose closePopupModal"></a>
     <div class="content">
-       <img alt="" style="width:910px; height:850px"> 
+       <img alt="" style="width:910px; height:850px">
     </div>
 </div><!-- END #show submission -->
 
@@ -689,11 +689,11 @@ $blog_posts = get_posts($blog_posts_args);
   var utmSource = '', utmMedium = '', utmCampaign = '';
   var loginState = '';
   $(function () {
-    utmSource = getParameterByName('utmSource') || getHashParameterByName('utmSource') 
-      || getParameterByName('utm_source') || getHashParameterByName('utm_source') 
+    utmSource = getParameterByName('utmSource') || getHashParameterByName('utmSource')
+      || getParameterByName('utm_source') || getHashParameterByName('utm_source')
       || $.cookie('utmSource');
-    utmMedium = getParameterByName('utmMedium') || getHashParameterByName('utmMedium') 
-      || getParameterByName('utm_medium') || getHashParameterByName('utm_medium') 
+    utmMedium = getParameterByName('utmMedium') || getHashParameterByName('utmMedium')
+      || getParameterByName('utm_medium') || getHashParameterByName('utm_medium')
       || $.cookie('utmMedium');
     utmCampaign = getParameterByName('utmCampaign') || getHashParameterByName('utmCampaign')
       || getParameterByName('utm_campaign') || getHashParameterByName('utm_campaign')
@@ -993,7 +993,7 @@ twttr.conversion.trackPid('l4r4k');
 </noscript>
 <!-- END Twitter Marketing Code -->
 
-<!-- START KISSmetrics --> 
+<!-- START KISSmetrics -->
 <script type="text/javascript">var _kmq = _kmq || [];
 var _kmk = _kmk || 'aa23cd43c455ef33b6a0df3de81a79af9ea30f75';
 function _kms(u){
@@ -1007,7 +1007,7 @@ function _kms(u){
 _kms('//i.kissmetrics.com/i.js');
 _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
 </script>
-<!-- END KISSmetrics --> 
+<!-- END KISSmetrics -->
 
 </div>
 

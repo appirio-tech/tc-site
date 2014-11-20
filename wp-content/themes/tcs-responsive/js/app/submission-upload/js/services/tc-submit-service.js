@@ -9,7 +9,7 @@
 /*jslint nomen: true*/
 /*global angular: true, _: true */
 (function() {
- 
+
   angular
     .module('tc.submissionUpload')
     .factory('SubmitService', SubmitService);
@@ -37,7 +37,7 @@
     /*
      * private field
      */
-	
+
     service._abortSubmit = undefined;
 
     /*

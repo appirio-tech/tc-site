@@ -26,11 +26,6 @@
           remoteObjectId: '=',
           discussionUrl: '='
         },
-        resolve: {
-          discussion: function () {
-            console.log('remoteObjectKey: ', remoteObjectKey);
-          }
-        },
         controller: function ($scope) {
 
           // user avatar images are hardcoded for now
