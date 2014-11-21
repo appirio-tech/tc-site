@@ -342,7 +342,7 @@ function get_top_rank( $userKey = '', $contestType = 'Algorithm' )
             break;
 		case "design":
             $url = TC_API_URL . "/users/tops/design?pageSize=10";
-            break;	
+            break;
 
     }
 
@@ -437,7 +437,7 @@ function register_to_lc($challengeId, $jwtToken) {
   //if (is_wp_error( $response ) || ! isset ( $response ['body'] )) {
     //return "Error in processing request";
   //}
-  return  $response;
+  return json_decode( $response ['body'] );
 }
 
 /* submit to development challenge */
