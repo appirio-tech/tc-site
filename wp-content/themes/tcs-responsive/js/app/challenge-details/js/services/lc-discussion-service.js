@@ -69,6 +69,10 @@
                   });
             }
 
+            if ($cookies.tcjwt) {
+              headers.Athorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
+            }
+
             var url = domain + path;
             $http({
               timeout: parameters.$timeout,
@@ -141,6 +145,10 @@
                   });
             }
 
+            if ($cookies.tcjwt) {
+              headers.Athorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
+            }
+
             var url = domain + path;
             var cached = parameters.$cache && parameters.$cache.get(url);
             if (cached !== undefined && parameters.$refresh !== true) {
@@ -204,6 +212,10 @@
                     var parameter = parameters.$queryParameters[parameterName];
                     queryParameters[parameterName] = parameter;
                   });
+            }
+
+            if ($cookies.tcjwt) {
+              headers.Athorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
             }
 
             var url = domain + path;
@@ -273,6 +285,10 @@
               return deferred.promise;
             }
 
+            if ($cookies.tcjwt) {
+              headers.Athorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
+            }
+
             if (parameters.$queryParameters) {
               Object.keys(parameters.$queryParameters)
                   .forEach(function(parameterName) {
@@ -339,6 +355,10 @@
                     var parameter = parameters.$queryParameters[parameterName];
                     queryParameters[parameterName] = parameter;
                   });
+            }
+
+            if ($cookies.tcjwt) {
+              headers.Athorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
             }
 
             var url = domain + path;
@@ -412,6 +432,10 @@
                     var parameter = parameters.$queryParameters[parameterName];
                     queryParameters[parameterName] = parameter;
                   });
+            }
+
+            if ($cookies.tcjwt) {
+              headers.Athorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
             }
 
             var url = domain + path;
@@ -497,6 +521,10 @@
                   });
             }
 
+            if ($cookies.tcjwt) {
+              headers.Athorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
+            }
+
             var url = domain + path;
             $http({
               timeout: parameters.$timeout,
@@ -563,6 +591,10 @@
                     var parameter = parameters.$queryParameters[parameterName];
                     queryParameters[parameterName] = parameter;
                   });
+            }
+
+            if ($cookies.tcjwt) {
+              headers.Athorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
             }
 
             var url = domain + path;
@@ -643,6 +675,10 @@
                   });
             }
 
+            if ($cookies.tcjwt) {
+              headers.Athorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
+            }
+
             var url = domain + path;
             $http({
               timeout: parameters.$timeout,
@@ -709,6 +745,10 @@
                     var parameter = parameters.$queryParameters[parameterName];
                     queryParameters[parameterName] = parameter;
                   });
+            }
+
+            if ($cookies.tcjwt) {
+              headers.Athorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
             }
 
             var url = domain + path;
