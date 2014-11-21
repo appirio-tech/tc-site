@@ -70,7 +70,7 @@
             }
 
             if ($cookies.tcjwt) {
-              headers.Athorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
+              headers.Authorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
             }
 
             var url = domain + path;
@@ -146,7 +146,7 @@
             }
 
             if ($cookies.tcjwt) {
-              headers.Athorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
+              headers.Authorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
             }
 
             var url = domain + path;
@@ -215,7 +215,7 @@
             }
 
             if ($cookies.tcjwt) {
-              headers.Athorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
+              headers.Authorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
             }
 
             var url = domain + path;
@@ -286,7 +286,7 @@
             }
 
             if ($cookies.tcjwt) {
-              headers.Athorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
+              headers.Authorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
             }
 
             if (parameters.$queryParameters) {
@@ -358,7 +358,7 @@
             }
 
             if ($cookies.tcjwt) {
-              headers.Athorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
+              headers.Authorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
             }
 
             var url = domain + path;
@@ -435,7 +435,7 @@
             }
 
             if ($cookies.tcjwt) {
-              headers.Athorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
+              headers.Authorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
             }
 
             var url = domain + path;
@@ -522,7 +522,7 @@
             }
 
             if ($cookies.tcjwt) {
-              headers.Athorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
+              headers.Authorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
             }
 
             var url = domain + path;
@@ -594,7 +594,7 @@
             }
 
             if ($cookies.tcjwt) {
-              headers.Athorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
+              headers.Authorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
             }
 
             var url = domain + path;
@@ -676,7 +676,7 @@
             }
 
             if ($cookies.tcjwt) {
-              headers.Athorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
+              headers.Authorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
             }
 
             var url = domain + path;
@@ -748,7 +748,7 @@
             }
 
             if ($cookies.tcjwt) {
-              headers.Athorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
+              headers.Authorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
             }
 
             var url = domain + path;
