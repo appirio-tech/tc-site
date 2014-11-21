@@ -124,7 +124,7 @@ add_action('wp_footer', 'tc_registration_footer_js', 10000);
 
                 <p class="row">
                   <label>Age</label>
-                  <input type="text" class="userAge"/>
+                  <input type="text" class="userAge" placeholder="Age"/>
                   <span class="err1">Required field.</span>
                   <span class="err2">Age must be a number.</span>
                   <span class="err3">You must be at least 13 years of age to participate.</span>
