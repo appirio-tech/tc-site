@@ -2,8 +2,8 @@
 /*global angular:false */
 
 (function () {
-  angular.module('lc.services', [])
-      .factory('DiscussionService', ['$q', '$http', '$rootScope', function($q, $http, $rootScope) {
+  angular.module('lc.services', ['ngCookies'])
+      .factory('DiscussionService', ['$q', '$http', '$rootScope', '$cookies', function($q, $http, $rootScope, $cookies) {
         'use strict';
 
         /**
