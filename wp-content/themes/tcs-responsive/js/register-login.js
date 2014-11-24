@@ -162,13 +162,14 @@ $(function () {
       $(this).closest('.row').find('span.err2').show();
       $(this).closest('.row').find('input:text').addClass('invalid');
     } else if (parseInt($(this).val()) < 13) {
-      $(this).closest('.row').find('span.err3').show();
-      $(this).closest('.row').find('input:text').addClass('invalid');
+      //$(this).closest('.row').find('span.err3').show();
+      //$(this).closest('.row').find('input:text').addClass('invalid');
+      $(this).closest(".row").find("span.valid").css("display", "inline-block");
     } else if (parseInt($(this).val()) > 13800000000) {
       $(this).closest('.row').find('span.err4').show();
       $(this).closest('.row').find('input:text').addClass('invalid');
     } else {
-      $(this).closest(".row").find("span.valid").show();
+      $(this).closest(".row").find("span.valid").css("display", "inline-block");
     }
   });
 
@@ -528,15 +529,16 @@ $(function () {
         $(this).closest('.row').find('input:text').addClass('invalid');
         isValid = false;
       } else if (parseInt($(this).val()) < 13) {
-        $(this).closest('.row').find('span.err3').show();
-        $(this).closest('.row').find('input:text').addClass('invalid');
+        //$(this).closest('.row').find('span.err3').show();
+        //$(this).closest('.row').find('input:text').addClass('invalid');
+        $(this).closest(".row").find("span.valid").css("display", "inline-block");
         isValid = false;
       } else if (parseInt($(this).val()) > 13800000000) {
         $(this).closest('.row').find('span.err4').show();
         $(this).closest('.row').find('input:text').addClass('invalid');
         isValid = false;
       } else {
-        $(this).closest(".row").find("span.valid").show();
+        $(this).closest(".row").find("span.valid").css("display", "inline-block");
       }
     });
     //stop submit if errors shown on first name/last name
