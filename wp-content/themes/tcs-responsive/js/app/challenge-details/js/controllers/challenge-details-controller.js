@@ -283,8 +283,19 @@
       vm.challenge.submissionDisabled = false;
     }
 
+    var currentDate = new Date();
+    if(challenge.challengeCommunity == 'design' && challenge.checkpointSubmissionEndDate && vm.isLoggedIn && new Date(challenge.currentPhaseEndDate) > new Date(challenge.checkpointSubmissionEndDate)){
+      //checkpoint phase
+      if(currentDate.getTime() < new Date(challenge.checkpointSubmissionEndDate)) {
+        challenge.currentPhaseEndDate = challenge.checkpointSubmissionEndDate;
+        challenge.currentPhaseName = 'Checkpoint';
+      } else if( currentDate.getTime() < new Date(challenge.submissionEndDate)){ //past checkpoint - submission phase
+        challenge.currentPhaseEndDate = challenge.submissionEndDate;
+        challenge.currentPhaseName = 'Submission';
+      }
+    }
+
     if (challenge.currentPhaseEndDate) {
-      var currentDate = new Date();
       var endPhaseDate = new Date(challenge.currentPhaseEndDate);
       vm.challenge.currentPhaseRemainingTime = Math.max((endPhaseDate.getTime()-currentDate.getTime())/1000, 0) || -1;
     }
