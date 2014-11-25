@@ -70,7 +70,7 @@
             }
 
             if ($cookies.tcjwt) {
-              headers.Authorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
+              headers.Authorization = 'Bearer ' + $cookies.tcjwt;
             }
 
             var url = domain + path;
@@ -146,7 +146,7 @@
             }
 
             if ($cookies.tcjwt) {
-              headers.Authorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
+              headers.Authorization = 'Bearer ' + $cookies.tcjwt;
             }
 
             var url = domain + path;
@@ -215,7 +215,7 @@
             }
 
             if ($cookies.tcjwt) {
-              headers.Authorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
+              headers.Authorization = 'Bearer ' + $cookies.tcjwt;
             }
 
             var url = domain + path;
@@ -286,7 +286,7 @@
             }
 
             if ($cookies.tcjwt) {
-              headers.Authorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
+              headers.Authorization = 'Bearer ' + $cookies.tcjwt;
             }
 
             if (parameters.$queryParameters) {
@@ -358,7 +358,7 @@
             }
 
             if ($cookies.tcjwt) {
-              headers.Authorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
+              headers.Authorization = 'Bearer ' + $cookies.tcjwt;
             }
 
             var url = domain + path;
@@ -435,7 +435,7 @@
             }
 
             if ($cookies.tcjwt) {
-              headers.Authorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
+              headers.Authorization = 'Bearer ' + $cookies.tcjwt;
             }
 
             var url = domain + path;
@@ -522,7 +522,7 @@
             }
 
             if ($cookies.tcjwt) {
-              headers.Authorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
+              headers.Authorization = 'Bearer ' + $cookies.tcjwt;
             }
 
             var url = domain + path;
@@ -594,7 +594,7 @@
             }
 
             if ($cookies.tcjwt) {
-              headers.Authorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
+              headers.Authorization = 'Bearer ' + $cookies.tcjwt;
             }
 
             var url = domain + path;
@@ -676,7 +676,7 @@
             }
 
             if ($cookies.tcjwt) {
-              headers.Authorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
+              headers.Authorization = 'Bearer ' + $cookies.tcjwt;
             }
 
             var url = domain + path;
@@ -688,20 +688,20 @@
               data: body,
               headers: headers
             })
-                .success(function(data, status, headers, config) {
-                  deferred.resolve(data);
-                  if (parameters.$cache !== undefined) {
-                    parameters.$cache.put(url, data, parameters.$cacheItemOpts ? parameters.$cacheItemOpts : {});
-                  }
-                })
-                .error(function(data, status, headers, config) {
-                  deferred.reject({
-                    status: status,
-                    headers: headers,
-                    config: config,
-                    body: data
-                  });
-                });
+            .success(function(data, status, headers, config) {
+              deferred.resolve(data);
+              if (parameters.$cache !== undefined) {
+                parameters.$cache.put(url, data, parameters.$cacheItemOpts ? parameters.$cacheItemOpts : {});
+              }
+            })
+            .error(function(data, status, headers, config) {
+              deferred.reject({
+                status: status,
+                headers: headers,
+                config: config,
+                body: data
+              });
+            });
 
             return deferred.promise;
           };
@@ -748,7 +748,7 @@
             }
 
             if ($cookies.tcjwt) {
-              headers.Authorization = 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "");
+              headers.Authorization = 'Bearer ' + $cookies.tcjwt;
             }
 
             var url = domain + path;
