@@ -284,7 +284,7 @@
     }
 
     var currentDate = new Date();
-    if(challenge.challengeCommunity == 'design' && challenge.checkpointSubmissionEndDate && vm.isLoggedIn && new Date(challenge.currentPhaseEndDate) > new Date(challenge.checkpointSubmissionEndDate)){
+    if(challenge.challengeCommunity == 'design' && challenge.checkpointSubmissionEndDate && vm.isLoggedIn && regList.indexOf(handle) > -1 && new Date(challenge.currentPhaseEndDate) > new Date(challenge.checkpointSubmissionEndDate)){
       //checkpoint phase
       if(currentDate.getTime() < new Date(challenge.checkpointSubmissionEndDate)) {
         challenge.currentPhaseEndDate = challenge.checkpointSubmissionEndDate;
