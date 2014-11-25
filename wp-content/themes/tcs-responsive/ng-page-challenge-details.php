@@ -217,7 +217,7 @@ include locate_template('header-challenge-landing.php');
       </ul>
 
     </article>
-    <article ng-show="CD.isLC" id="lc-discussion">
+    <article ng-show="CD.isLC && CD.isRegistered" id="lc-discussion">
       <h1>Challenge Discussion</h1>
       <lc-discussion remote-object-key="challenge" remote-object-id="CD.lcChallengeId" discussion-url="CD.lcDiscussionURL"></lc-discussion>
     </article>

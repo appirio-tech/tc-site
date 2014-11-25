@@ -270,6 +270,12 @@
     if (((moment(challenge.phases[0].scheduledStartTime)) < moment() && (moment(challenge.registrationEndDate)) > moment()) && regList.indexOf(handle) == -1 && challenge.currentStatus == 'Active') {
       vm.challenge.registrationDisabled = false;
     }
+
+    vm.isRegistered = true;
+    if (regList.indexOf(handle) == -1) {
+      vm.isRegistered = false;
+    }
+
     //check autoRegister (terms link register) and DelayAction cookie status
     if (autoRegister) {
       autoRegister = false;
