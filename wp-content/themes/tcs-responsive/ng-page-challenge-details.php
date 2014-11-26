@@ -441,7 +441,7 @@ include locate_template('header-challenge-landing.php');
         </td>
         <td ng-show="CD.isLC">
           <!-- manage/#/challenges/{challengeId}/submissions/{submissionId}/scorecard -->
-          <a ng-if="registrant.lcSubmissionId" ng-href="{{CD.lcSiteUrl + '/manage/#/challenges/' + CD.challenge.challengeId + '/submissions/' + registrant.lcSubmissionId + '/scorecard'}}">View</a>
+          <a ng-if="registrant.lcSubmissionId" ng-href="{{CD.lcSiteUrl + '/manage/#/challenges/' + CD.challenge.challengeId + '/submissions/' + registrant.lcSubmissionId + '/scorecard/' + registrant.lcScorecardId}}">View</a>
         </td>
       </tr>
       </tbody>
