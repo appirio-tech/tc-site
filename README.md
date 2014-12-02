@@ -2,35 +2,82 @@
 
 ## Overview
 
-The [topcoder] site is has several crucial components. The first is Wordpress.
-Not only is all content managed through Wordpress, but all new pages are created
-through Wordpress and our PHP templates utilize the Wordpress platform in many
-ways. The second is the [Topcoder API](http://github.com/topcoderinc/tc-api). Much of our front-end development happens
-independent of the API, but we are ultimately dependent on the API as our access
-point to our data model. Some of this access happens on the backend, in PHP, but
-we are increasingly moving to the frontend. This brings me to the last piece,
-and the one that will increasingly be the most important one for development in
-this repo. Our legacy code is mostly jQuery, but we are in the process of
-rewriting many of our core pages in Angular. In the process, we are moving
-templating and routing from the PHP/Wordpress side to the frontend (and
-Angular).
+The [topcoder] site is an AngularJS app backed by multiple REST APIs. The site 
+stands as the primary entry point for a member into www.topcoder.com, and serves
+the majority of functions on the www.topcoder.com domain.
+
+Functions on the site are handled by a variety of REST APIs/services:
+* [Topcoder API](http://docs.tcapi.apiary.io/)
+* LowderCroud API
+* Coderbits API
+
+All APIs are authorized by a JWT (internally called tcjwt) issued by auth0. Site
+login takes place by a coordination of authentication by auth0 and our legacy 
+site. All data in the views, as well as actions that take place on the site,
+should be coordinated by its respective API, no session state can be relied upon
+from the legacy backend (wordpress).
+
+The site has some legacy components that are being refactored:
+
+* A wordpress backend - The impact here is that our pages need to be written as
+wordpress template files rather than simple .html files. The wordpress admin 
+interface is used by our marketing team to write blog entries and certain pages
+on the site, but should only share a header and footer with the angular code.
+* jQuery style code - As with most apps transitioning to angular.
 
 Below, we explain some of the nuts and bolts to help new developers get
 up-and-running.
 
-## File Organization ##
+## Local Env Setup ##
 
-Try to keep php functions in a purposeful location inside the lib/ directory.
+### The easiest way to get running fast is by running our [vagrant development
+environment](https://github.com/appirio-tech/tc1-mf-vagrant). 
 
-All php templates should call get_header();  If using a custom header be sure that header includes main herder at the to
-of the template file using the following code.  See header-challenge.php for an example.
+To install the site locally there are a few setup steps.
 
-    <?php
-    get_template_part('header-main');
+* Install a web server (Apapche or Nginx)
+* Install PHP (mod_php for Apaache or PHP-FPM for Nginx)
+* Install MySQL
+* Clone this repo
+* Make sure web server and php are capable of uploading a 20MB file.
+* Modify /etc/hosts to have local.topcoder.com point to 127.0.0.1
+* Your local webserver must be using port 80.
+* Visit local.topcoder.com
+* Install WordPress
+* Import Prod Data
+    * The data export is kept at https://github.com/topcoderinc/tc-site-data.
+    * The XML file is imported at http://local.topcoder.com/wp-admin/admin.php?import=wordpress
+* Enable plugins: TC API Hookup, Custom field Tempalte, Page-list, Per Page Widgets
+* Activate TC Theme
+* Import cft file from https://github.com/topcoderinc/tc-site-data at http://local.topcoder.com/wp-admin/options-general.php?page=custom-field-template.php
+* Change Permlink to "postname" as http://local.topcoder.com/wp-admin/options-permalink.php
+* Change the Home page to a static page and the front page to "New Home for QA and Profling" at http://www.topcoder.com/wp-admin/options-reading.php
+* Add a env.php file to the `wp-content/themes/tcs-responsive/config` directory - the file should contain:
+  <?php
+    force_ssl_admin(false);
+    force_ssl_login(false);
     ?>
 
-Please be aware of duplicate code.  The use of templates is a key aspect of Wordpress.  Please see
-(http://codex.wordpress.org/Function_Reference/get_template_part) for more information.
+## Environmental Variables ##
+
+### After any change to your config.json, be sure to [update the CSS/JS registry](http://local.topcoder.com/wp-admin/themes.php?page=options.php) 
+
+Environment variables are loaded form config.json. The config.json file is built during
+grunt process, so be aware, when you run grunt, it will overwrite changes you have made.
+
+The following command line options can be used ot customize the build:
+
+* auth-client-id: The Auth0 ClientID to use
+* auth-callback-url: The Auth0 callback 
+* auth-ldap:  The Auth0 LDAP connection to use
+* community-url: THe community URL to redirect to after login
+* main-url: The main site URL.  This replaces WP_SITEURL and WP_HOME in env.php
+* api-url: The API URL:  This replaces the TC_API_URL in env.php.
+* cdn-url: This replaces the WP option on the theme settings page.
+* use-cdn: This replaces the WP option on the theme settings page.
+* use-min: This replaces the WP option on the theme settings page.
+* use-ver: This replaces the WP option on the theme settings page.
+
 
 ## Javascript and CSS ##
 
@@ -98,55 +145,7 @@ The options can be found at `/wp-admin/themes.php?page=options.php`.
   responsible for minifying and sending to CloudFront when the CDN is used.
 
 
-## Local Env Setup ##
 
-When working on the site locally there are a few setup steps.
-
-* Install a web server (Apapche or Nginx)
-* Install PHP (mod_php for Apaache or PHP-FPM for Nginx)
-* Install MySQL
-* Checkout Code
-* Setup a vhost to point to Checkout Code
-* Make sure web server and php are capable of uploading a 20MB file.
-* The domain must be `*.topcoder.com`.
-* Your local webserver must be using port 80.
-* Visit local.topcoder.com
-* Install WordPress
-* Import Prod Data
-    * The data export is kept at https://github.com/topcoderinc/tc-site-data.
-    * The XML file is imported at http://local.topcoder.com/wp-admin/admin.php?import=wordpress
-* Enable plugins: TC API Hookup, Custom field Tempalte, Page-list, Per Page Widgets
-* Activate TC Theme
-* Import cft file from https://github.com/topcoderinc/tc-site-data at http://local.topcoder.com/wp-admin/options-general.php?page=custom-field-template.php
-* Change Permlink to "postname" as http://local.topcoder.com/wp-admin/options-permalink.php
-* Change the Home page to a static page and the front page to "New Home for QA and Profling" at http://www.topcoder.com/wp-admin/options-reading.php
-* Add a env.php file to the `wp-content/themes/tcs-responsive/config` directory.
-  See below for what to put in this file.
-
-## Environmental Variables ##
-
-If you would like to set environment-specific variables or settings, add a file
-called `env.php` in the `wp-content/themes/tcs-responsive/config` directory.
-We recommend the following lines for purposes of local development.
-
-    <?php
-    force_ssl_admin(false);
-    force_ssl_login(false);
-    ?>
-    
-Environment variables are loaded form config.json.  The config.json file is built during
-grunt process.  The following command line options can be used ot customize the build:
-
-* auth-client-id: The Auth0 ClientID to use
-* auth-callback-url: The Auth0 callback 
-* auth-ldap:  The Auth0 LDAP connection to use
-* community-url: THe community URL to redirect to after login
-* main-url: The main site URL.  This replaces WP_SITEURL and WP_HOME in env.php
-* api-url: The API URL:  This replaces the TC_API_URL in env.php.
-* cdn-url: This replaces the WP option on the theme settings page.
-* use-cdn: This replaces the WP option on the theme settings page.
-* use-min: This replaces the WP option on the theme settings page.
-* use-ver: This replaces the WP option on the theme settings page.
 
 ## Development Guidelines ##
 
