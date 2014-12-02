@@ -32,7 +32,8 @@ up-and-running.
 
 ### The easiest way to get running fast is by running our [vagrant development environment](https://github.com/appirio-tech/tc1-mf-vagrant). 
 
-To install the site locally there are a few setup steps.
+
+#### Otherwise, to install the site locally there are a few setup steps.
 
 * Install a web server (Apapche or Nginx)
 * Install PHP (mod_php for Apaache or PHP-FPM for Nginx)
