@@ -1,0 +1,28 @@
+<div id="bitbucketPermission" class="modal">
+  <a href="javascript:;" class="btnClose closeModal" onclick="closeModal()"></a>
+  <div class="content">
+    <div class="opportunity post opportunity-details-header">
+      <h2>Bitbucket Permission</h2>
+    </div>
+    <div class="opportunity opportunity-details-body markdown-like">
+      <div class="row">
+        <div class="span5">
+          <h2>Public</h2>
+          <p>Access your public information.</p>
+          <a ng-href="{{PB.cbUrl}}/auth/bitbucketpermission?scope=public&tcjwt={{PB.tcjwt}}" class="btn btn-primary">Authorize</a>
+          <p>Bitbucket's current OAuth implementation does not support permission scope.</p>
+          <p>When you authorize, Bitbucket will provide access to both public and private information.</p>
+          <p>By selecting public, we will not store nor use any private information for profile creation.</p>
+        </div>
+        <div class="span5">
+          <h2>Public &amp; Private</h2>
+          <p>Access your public and private information.</p>
+          <a ng-href="{{PB.cbUrl}}/auth/bitbucketpermission?scope=private&tcjwt={{PB.tcjwt}}" class="btn btn-primary">Authorize</a>
+          <p>For private repositories we only use information for skills, badges, and activity (event type only).</p>
+          <p>We will not store nor show any private information on your profile.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END #bitbucketPermission -->

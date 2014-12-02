@@ -1,0 +1,25 @@
+<div id="githubPermission" class="modal">
+  <a href="javascript:;" class="btnClose closeModal" onclick="closeModal()"></a>
+  <div class="content">
+    <div class="opportunity post opportunity-details-header">
+      <h2>Github Permission</h2>
+    </div>
+    <div class="opportunity opportunity-details-body markdown-like">
+      <div class="row">
+        <div class="span5">
+          <h2>Public</h2>
+          <p>Access your public information.</p>
+          <a ng-href="{{PB.cbUrl}}/auth/githubpermission?scope=&tcjwt={{PB.tcjwt}}" class="btn btn-primary">Authorize</a>
+        </div>
+        <div class="span5">
+          <h2>Public &amp; Private</h2>
+          <p>Access your public and private information.</p>
+          <a ng-href="{{PB.cbUrl}}/auth/githubpermission?scope=repo&tcjwt={{PB.tcjwt}}" class="btn btn-primary">Authorize</a>
+          <p>For private repositories and gists we only use information for skills, badges, and activity (event type only).</p>
+          <p>We will not store nor show any private information on your profile.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END #githubPermission -->

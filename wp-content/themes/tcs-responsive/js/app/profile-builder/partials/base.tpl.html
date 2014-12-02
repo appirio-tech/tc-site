@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="opportunity new">
+    <div id="" class="active">
+      <div ng-repeat="account in PB.accounts">
+        <div class="new-opp-section new-opp-section-builder clearfix" id="{{account.name}}">
+          <img alt="{{account.friendly_name}}" ng-src="{{PB.cbUrl}}{{account.image_link_48}}" class="rounded-image left">
+          <h3>
+                <a popover="{{account.popoverContent | trust}}" popover-title="{{account.friendly_name}}" popover-placement="right" popover-trigger="mouseenter" target="_blank" href="{{account.site_link}}">
+                  {{ account.friendly_name }} <i class="icon-question-sign"></i>
+                </a>
+              </h3>
+          <span ng-if="account.last_updated">
+                  Updated
+                  <time class="timeago" datetime="{{account.last_updated}}">{{account.last_updated | fromNow}}</time>
+              </span>
+          <div data-target-id="{{account.id}}">
+            <div>
+              <input type="text" value="{{account.username}}" placeholder="{{ account.username || (account.oAuthAllowed ? 'OAuth will be used for linking' : (account.link | replaceHandle | placeholderInfo)) }}" class="usernameInput" ng-init="account.username" ng-model="account.usernameInput" ng-keyup="PB.checkLink(account, account.usernameInput)" ng-disabled="account.username || account.oAuthAllowed">
+              <button ng-show="account.oAuthAllowed && !account.username" ng-click="PB.authAccount(account)" data-target-name="{{account.friendly_name}}" data-id="{{account.id}}" class="btn btn-primary modLink">Authorize</button>
+              <button class="btn btn-primary modLink" ng-hide="account.username || account.oAuthAllowed" ng-class="{disabled: !account.linkable || account.loading}" ng-click="PB.linkAccount(account)">{{ account.linking ? 'Aggregating' : account.linkable ? 'Link' : account.loading ? 'Searching' : 'Not found' }}</button>
+              <button data-id="{{account.id}}" class="btn btn-danger modUnlink" ng-class="{disabled: account.loading}" ng-show="account.username" ng-click="PB.unLink(account)">Unlink</button>
+              <img id="loading{{account.id}}" ng-show="account.loading" src="/wp-content/themes/tcs-responsive/i/ajax-loader-black.gif" class="loader">
+            </div>
+            <div>
+              <p>{{account.integratedLink || account.link | replaceHandle}}</p>
+              <p class="instructions" ng-bind-html="account.instructions | linky:'_blank'"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-include="PB.getTemplateUrl('githubAuth.tpl.html')"></div>
+    <div ng-include="PB.getTemplateUrl('bitbucketAuth.tpl.html')"></div>
+  </div>
+</div>
