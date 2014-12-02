@@ -30,8 +30,7 @@ up-and-running.
 
 ## Local Env Setup ##
 
-### The easiest way to get running fast is by running our [vagrant development
-environment](https://github.com/appirio-tech/tc1-mf-vagrant). 
+### The easiest way to get running fast is by running our [vagrant development environment](https://github.com/appirio-tech/tc1-mf-vagrant). 
 
 To install the site locally there are a few setup steps.
 
