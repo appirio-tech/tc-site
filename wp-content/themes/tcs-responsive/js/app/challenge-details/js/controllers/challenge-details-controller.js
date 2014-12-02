@@ -180,7 +180,7 @@
                 }
                 updateChallengeDetail();
               } else if (data["error"]["details"] === "You should agree with all terms of use.") {
-                window.location = siteURL + "/challenge-details/terms/" + vm.challenge.challengeId + "?challenge-type=" + challengeType;
+                window.location = siteURL + "/challenge-details/terms/" + vm.challenge.challengeId + "?challenge-type=" + challengeType + '&lc=' + isLC;
               } else if (data["error"]["details"]) {
                 showError(data["error"]["details"]);
               }
