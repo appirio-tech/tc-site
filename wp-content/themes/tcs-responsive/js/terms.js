@@ -25,6 +25,7 @@ appChallengeTerms = {
       $.getJSON(ajaxUrl, {
         "action": "get_challenge_term_details",
         "termId": termsOfUseID,
+        "isLc": isLC,
         "jwtToken": tcjwt.replace(/["]/g, "")
       }, function (data) {
         $(".formContent").addClass("pageContent");
@@ -93,6 +94,7 @@ appChallengeTerms = {
             $.getJSON(ajaxUrl, {
               "action": "agree_challenge_terms",
               "termId": termsOfUseID,
+              "isLc": isLC,
               "jwtToken": tcjwt.replace(/["]/g, "")
             }, function (data) {
               window.location = siteURL + "/challenge-details/terms/" + challengeId + "?challenge-type=" + challengeType + "&lc=" + isLC;
@@ -114,6 +116,7 @@ appChallengeTerms = {
           "action": "get_challenge_terms",
           "challengeId": challengeId,
           "role": "Submitter",
+          "isLc": isLC,
           "jwtToken": tcjwt.replace(/["]/g, "")
         }, function (data) {
           if (data["terms"]) {

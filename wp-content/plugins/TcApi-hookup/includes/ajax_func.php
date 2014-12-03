@@ -166,8 +166,10 @@ function get_challenge_terms_ajax_controller()
     $challengeId = $_GET ["challengeId"];
     $role        = $_GET ["role"];
     $jwtToken    = $_GET ["jwtToken"];
+    $isLc = $_GET["isLc"];
 
-    $challengeTerms = get_challenge_terms( $challengeId, $role, $jwtToken );
+    $challengeTerms = get_challenge_terms( $challengeId, $role, $jwtToken, $isLc );
+
     if (isset( $challengeTerms )) {
         wp_send_json( $challengeTerms );
     } else {
@@ -363,9 +365,14 @@ function get_top_rank( $userKey = '', $contestType = 'Algorithm' )
 }
 
 /* challenge terms  */
-function get_challenge_terms( $challengeId, $role, $jwtToken )
+function get_challenge_terms( $challengeId, $role, $jwtToken, $isLc )
 {
-    $url      = TC_API_URL . "/terms/$challengeId?role=" . $role;
+    if ($isLc) {
+      $url = TC_LC_URL . "/terms/$challengeId";
+    } else {
+      $url = TC_API_URL . "/terms/$challengeId?role=" . $role;
+    }
+
     $args     = array(
         'headers'     => array(
             'Authorization' => 'Bearer ' . $jwtToken
