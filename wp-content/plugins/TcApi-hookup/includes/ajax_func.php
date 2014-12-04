@@ -991,7 +991,14 @@ function get_contests_rss($listType, $challengeType = "", $technologies = "", $p
     );
 
     $context  = stream_context_create($options);
-    $response = file_get_contents($url, false, $context);
+
+    $headers = get_headers($url, 1);
+    $content_length = $headers["Content-Length"];
+
+    $response = '';
+    while (strlen($response) < $content_length) {
+        $response = file_get_contents($url, NULL, NULL, NULL, $content_length);
+    }
 
     $active_contest_list = json_decode( $response );
     return $active_contest_list;
