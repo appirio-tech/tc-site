@@ -981,24 +981,22 @@ function get_contests_rss($listType, $challengeType = "", $technologies = "", $p
     if ($platforms != "")
         $url .= "&platforms=" . urlencode($platforms);
 
-    $args     = array(
-        'httpversion' => get_option( 'httpversion' ),
-        'timeout'     => get_option( 'request_timeout' )
+    $options = array(
+        'http'=>array(
+            'protocol_version'=>'1.0',
+            'header'=>array(
+                'Connection: close'
+            ),
+         )
     );
 
-    $response = wp_remote_get( $url, $args );
+    $context  = stream_context_create($options);
+    $response = file_get_contents($url, false, $context);
 
-    if (is_wp_error( $response ) || ! isset ( $response ['body'] )) {
-        return "Error in processing request";
-    }
-
-    if ($response ['response'] ['code'] == 200) {
-        $active_contest_list = json_decode( $response['body'] );
-        return $active_contest_list;
-    }
-
-    return "Error in processing request";
+    $active_contest_list = json_decode( $response );
+    return $active_contest_list;
 }
+
 // Forgot Password
 function generateResetToken($handle = '') {
     $url = TC_API_URL . "/users/resetToken/";
