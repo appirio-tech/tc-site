@@ -48,7 +48,7 @@ uasort($contests, function($a, $b) {
         ?>
         <item>
           <title><?php echo $name ?></title>
-          <link><?php echo "{$base_url}/{$contest->challengeId}?type={$contest->challengeCommunity}" ?></link>;
+          <link><?php echo "{$base_url}/{$contest->challengeId}?type={$contest->challengeCommunity}" ?></link>
           <pubDate><?php echo date('d M Y H:i T', strtotime($contest->registrationStartDate)) ?></pubDate>
           <?php rss_enclosure(); ?>
           <?php do_action('rss2_item'); ?>
