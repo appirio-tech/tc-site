@@ -13,30 +13,16 @@ $platforms = get_query_var('platforms');
 $contests = array();
 
 if ($contestType == 'all') {
-    $contestDesign = get_contests_rss($listType, 'design', $technologies, $platforms);
-    $contestDevelop = get_contests_rss($listType, 'develop', $technologies, $platforms);
-    $contestData = get_contests_rss($listType, 'data', $technologies, $platforms);
-
-    if (isset($contestDesign->data) && is_array($contestDesign->data) && !empty($contestDesign->data)) {
-        $contests += $contestDesign->data;
-    }
-
-    if (isset($contestDevelop->data) && is_array($contestDevelop->data) && !empty($contestDevelop->data)) {
-        $contests += $contestDevelop->data;
-    }
-
-    if (isset($contestData->data) && is_array($contestData->data) && !empty($contestData->data)) {
-      $contests += $contestData->data;
-    }
-
-} else {
-    $contests = get_contests_rss($listType, $contestType, $technologies, $platforms);
-    $contests = isset($contests->data) && is_array($contests->data) ? $contests->data : array();
+  $contestType = '';
 }
-  // sort contests on registration start date
-  uasort($contests, function($a, $b) {
-    return strtotime($b->registrationStartDate) - strtotime($a->registrationStartDate);
-  });
+
+$contests = get_contests_rss($listType, $contestType, $technologies, $platforms);
+$contests = isset($contests->data) && is_array($contests->data) ? $contests->data : array();
+
+// sort contests on registration start date
+uasort($contests, function($a, $b) {
+  return strtotime($b->registrationStartDate) - strtotime($a->registrationStartDate);
+});
 ?>
 <rss version="2.0"
      xmlns:content="http://purl.org/rss/1.0/modules/content/"
@@ -58,18 +44,12 @@ if ($contestType == 'all') {
 
       $base_url = get_bloginfo('siteurl') . '/challenge-details';
       foreach ($contests as $contest) {
-        $content = force_balance_tags($contest->detailedRequirements);
-        //$content = apply_filters('the_content', $content);
-        $content = str_replace(']]>', ']]&gt;', $content);
-        //$content = apply_filters('the_content_feed', $content, 'rss2');
         $name = trim($contest->challengeName)
         ?>
         <item>
           <title><?php echo $name ?></title>
           <link><?php echo "{$base_url}/{$contest->challengeId}?type={$contest->challengeCommunity}" ?></link>;
           <pubDate><?php echo date('d M Y H:i T', strtotime($contest->registrationStartDate)) ?></pubDate>
-          <description><![CDATA[<?php echo $content ?>]]></description>
-          <content:encoded><![CDATA[<?php echo $content ?>]]></content:encoded>
           <?php rss_enclosure(); ?>
           <?php do_action('rss2_item'); ?>
         </item>
