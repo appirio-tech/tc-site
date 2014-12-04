@@ -315,7 +315,6 @@
               challengeItem.currentStatus = 'Active';
               challengeItem.postingDate = formatDate(challengeItem.postingDate);
               challengeItem.registrationEndDate = formatDate(challengeItem.registrationEndDate);
-              challengeItem.checkpointSubmissionEndDate = formatDate(challengeItem.checkpointSubmissionEndDate);
               challengeItem.submissionEndDate = formatDate(challengeItem.submissionEndDate);
               challengeItem.appealsEndDate = formatDate(challengeItem.appealsEndDate);
               challengeItem.currentPhaseEndDate = formatDate(challengeItem.currentPhaseEndDate);
