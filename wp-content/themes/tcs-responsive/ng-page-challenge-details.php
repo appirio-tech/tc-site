@@ -192,31 +192,6 @@ include locate_template('header-challenge-landing.php');
         <a href="http://help.topcoder.com/development/understanding-reliability-and-ratings/">Read more.</a></p>
     </article>
 
-
-    <article id="eligibility">
-      <h1>Eligibility</h1>
-
-      <p>You must be a TopCoder member, at least 18 years of age, meeting all of the membership requirements. In
-        addition, you must fit into one of the following categories.</p>
-
-      <p>If you reside in the United States, you must be either:</p>
-
-      <p>
-      <ul>A US Citizen
-        <li>A Lawful Permanent Resident of the US</li>
-        <li>A temporary resident, asylee, refugee of the U.S., or have a lawfully issued work authorization card
-          permitting unrestricted employment in the U.S.
-        </li>
-      </ul>
-      </p>
-      <p>If you do not reside in the United States:</p>
-      <ul>
-        <li>You must be authorized to perform services as an independent contractor.
-          (Note: In most cases you will not need to do anything to become authorized)
-        </li>
-      </ul>
-
-    </article>
     <article ng-show="CD.isLC" id="lc-discussion">
       <h1>Challenge Discussion</h1>
       <lc-discussion remote-object-name="Challenge" remote-object-id="CD.challenge.id" discussion-service="CD.lcDiscussionService"></lc-discussion>
@@ -358,32 +333,6 @@ include locate_template('header-challenge-landing.php');
       Reliability bonus does not apply to Digital Run winnings. Since reliability rating is
       based on the past 15 projects, it can only have 15 discrete values.<br>
       <a href="http://help.topcoder.com/development/understanding-reliability-and-ratings/">Read more.</a></p>
-  </article>
-
-
-  <article id="eligibility">
-    <h1>ELIGIBILITY</h1>
-
-    <p>You must be a TopCoder member, at least 18 years of age, meeting all of the membership requirements. In addition,
-      you must fit into one of the following categories.</p>
-
-    <p>If you reside in the United States, you must be either:</p>
-
-    <p>
-    <ul>A US Citizen
-      <li>A Lawful Permanent Resident of the US</li>
-      <li>A temporary resident, asylee, refugee of the U.S., or have a lawfully issued work authorization card
-        permitting unrestricted employment in the U.S.
-      </li>
-    </ul>
-    </p>
-    <p>If you do not reside in the United States:</p>
-    <ul>
-      <li>You must be authorized to perform services as an independent contractor.
-        (Note: In most cases you will not need to do anything to become authorized)
-      </li>
-    </ul>
-
   </article>
 
 </article>
