@@ -975,9 +975,12 @@ function get_social_validity_ajax(
  *
  * @return array|mixed|string
  */
-function get_contests_rss($listType, $challengeType, $technologies = "", $platforms = "")
+function get_contests_rss($listType, $challengeType = "", $technologies = "", $platforms = "")
 {
-    $url = TC_API_URL . "/challenges/rss?listType={$listType}&challengeType={$challengeType}";
+    $url = TC_API_URL . "/challenges/rss?listType={$listType}";
+
+    if ($challengeType != "")
+        $url .= "&challengeType={$challengeType}";
 
     if ($technologies != "")
         $url .= "&technologies=" . urlencode($technologies);
@@ -985,24 +988,29 @@ function get_contests_rss($listType, $challengeType, $technologies = "", $platfo
     if ($platforms != "")
         $url .= "&platforms=" . urlencode($platforms);
 
-    $args     = array(
-        'httpversion' => get_option( 'httpversion' ),
-        'timeout'     => get_option( 'request_timeout' )
+    $options = array(
+        'http'=>array(
+            'protocol_version'=>'1.0',
+            'header'=>array(
+                'Connection: close'
+            ),
+         )
     );
 
-    $response = wp_remote_get( $url, $args );
+    $context  = stream_context_create($options);
 
-    if (is_wp_error( $response ) || ! isset ( $response ['body'] )) {
-        return "Error in processing request";
+    $headers = get_headers($url, 1);
+    $content_length = $headers["Content-Length"];
+
+    $response = '';
+    while (strlen($response) < $content_length) {
+        $response = file_get_contents($url, NULL, NULL, NULL, $content_length);
     }
 
-    if ($response ['response'] ['code'] == 200) {
-        $active_contest_list = json_decode( $response['body'] );
-        return $active_contest_list;
-    }
-
-    return "Error in processing request";
+    $active_contest_list = json_decode( $response );
+    return $active_contest_list;
 }
+
 // Forgot Password
 function generateResetToken($handle = '') {
     $url = TC_API_URL . "/users/resetToken/";
