@@ -122,6 +122,16 @@ add_action('wp_footer', 'tc_registration_footer_js', 10000);
 									<span class="valid"></span>
 								</p>
 
+                <p class="row">
+                  <label>Age</label>
+                  <input type="text" class="userAge" placeholder="Age"/>
+                  <span class="err1">Required field.</span>
+                  <span class="err2">Age must be a number.</span>
+                  <span class="err3">You must be at least 13 years of age to participate.</span>
+                  <span class="err4">Sorry, but there's no way you're older than the universe.</span>
+                  <span class="valid"></span>
+                </p>
+
 								<p class="row">
 								<label>Country</label>
 								<select id="selCountry" class="applyCustomSelect" name="user.country">

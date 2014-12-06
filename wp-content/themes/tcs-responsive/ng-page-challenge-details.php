@@ -108,7 +108,7 @@ include locate_template('header-challenge-landing.php');
     < ?php endif; ?>
     -->
     <!--<li ng-if="CD.isDesign && CD.inSubmission"><span class="inactive">Submissions</span></li>-->
-    <li ng-show="CD.isDesign && !CD.inSubmission"><a href="#submissions" class="link">Submissions ({{CD.numSubmissions}})</a></li>
+    <li ng-show="CD.isDesign && !CD.inSubmission"><a href="#submissions" class="link">Submissions {{CD.submissionNumberString()}}</a></li>
     <li ng-show="CD.isDesign && (CD.inSubmission || CD.inScreening || CD.inReview)"><span class="inactive">Results</span></li>
     <li ng-show="CD.isDesign && !(CD.inSubmission || CD.inScreening || CD.inReview)"><a href="#winner" class="link">Results</a></li>
   </ul>
@@ -128,7 +128,7 @@ include locate_template('header-challenge-landing.php');
       <li ng-if="!CD.inSubmission"><a href="<?php echo CURRENT_FULL_URL; ?>&tab=checkpoints" class="link">Checkpoints</a></li>
     -->
     <li ng-show="CD.inSubmission"><span class="inactive">Submissions</span></li>
-    <li ng-show="!CD.inSubmission"><a href="#submissions" class="link">Submissions ({{CD.numSubmissions}})</a></li>
+    <li ng-show="!CD.inSubmission"><a href="#submissions" class="link">Submissions {{CD.submissionNumberString()}}</a></li>
     </li>
     <li>
       <li ng-show="CD.inSubmission || CD.inScreening || CD.inReview"><span class="inactive">Results</span></li>

@@ -276,6 +276,16 @@ $blog_posts = get_posts($blog_posts_args);
 </p>
 
 <p class="row">
+  <label>Age</label>
+  <input type="text" class="userAge"/>
+  <span class="err1">Required field.</span>
+  <span class="err2">Age must be a number.</span>
+  <span class="err3">You must be at least 13 years of age to participate.</span>
+  <span class="err4">Sorry, but there's no way you're older than the universe.</span>
+  <span class="valid"></span>
+</p>
+
+<p class="row">
 <label>Country</label>
 <select class="applyCustomSelect" id="selCountry" name="user.country">
   <option value="">Please Select</option>
@@ -539,7 +549,7 @@ $blog_posts = get_posts($blog_posts_args);
   <label>Password</label>
   <input type="password" class="pwd" maxlength="30" placeholder="Password"/>
   <span class="err1">Required field.</span>
-  <span class="err2">Password strength is weak.</span>
+  <span class="err2">3/4 needed: capital, lowercase, number, symbol</span>
   <span class="err3">Password cannot contain an apostrophe.</span>
   <span class="err4">Password must be between 7 and 30 characters.</span>
   <span class="err5">Password must not contain only spaces.</span>
