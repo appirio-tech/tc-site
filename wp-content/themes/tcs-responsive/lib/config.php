@@ -26,6 +26,7 @@ function tc_load_config() {
     _tc_local_config_define('TC_API_URL', $config_map['apiURL']);
     _tc_local_config_define('TC_LC_URL', $config_map['lcURL']);
     _tc_local_config_define('LC_DISCUSSION_URL', $config_map['lcDiscussionURL']);
+    _tc_local_config_define('CB_URL', $config_map['cbURL']);
 
     // AUTH0 STUFF
     _tc_local_config_define('CONFIG_AUTH0_CLIENTID', $config_map['auth0ClientID']);

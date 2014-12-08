@@ -51,6 +51,16 @@ if (basename(get_permalink()) == "challenges") {
   <title>{{CD.challenge.challengeName}}</title>
   <meta name="description" content="{{CD.challenge.detailedRequirements | htmlToText | limitTo: 155}}">
 <?php
+} else if (basename(get_permalink()) == "account") {
+?>
+<!DOCTYPE html>
+<html lang="en" ng-app="tc.profileBuilder" ng-controller="profileBuilderCtrl as PB">
+<head>
+  <meta charset="utf-8">
+  <meta name="fragment" content="!">
+  <title ng-bind="PB.pageTitle"></title>
+  <meta name="description" content="TopCoder Profile Builder">
+<?php
 } else {
 ?>
 <!DOCTYPE html>
@@ -107,6 +117,7 @@ if (basename(get_permalink()) == "challenges") {
     } else {
       tcLCApiURL = tcApiRUL;
     }
+    var cbApiURL = '<?php echo CB_URL; ?>';
   </script>
 
 <?php
