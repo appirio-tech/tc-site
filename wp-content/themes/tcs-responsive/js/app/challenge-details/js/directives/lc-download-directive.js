@@ -17,7 +17,8 @@
           scope: {
             challengeId: '=',
             fileId: '=',
-            documentName: '='
+            documentName: '=',
+            submissionId: '='
           },
           controller: function($scope) {
             console.log($scope);
@@ -26,7 +27,14 @@
                 .then(function(result) {
                   $window.location.href= result.url;
                 });
-            }
+            };
+
+            $scope.downloadSubmission = function($scope) {
+              DownloadService.getSubmissionFileUrl($scope.challengeId, $scope.submissionId, $scope.fileId)
+                .then(function(result) {
+                  $window.location.href= result.url;
+                });
+            };
           },
           template: '<a href="javascript:;" data-ng-click="download()">{{documentName}}</a>'
         }
