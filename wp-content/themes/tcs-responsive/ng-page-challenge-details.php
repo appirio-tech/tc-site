@@ -108,7 +108,7 @@ include locate_template('header-challenge-landing.php');
     < ?php endif; ?>
     -->
     <!--<li ng-if="CD.isDesign && CD.inSubmission"><span class="inactive">Submissions</span></li>-->
-    <li ng-show="CD.isDesign && !CD.inSubmission"><a href="#submissions" class="link">Submissions ({{CD.numSubmissions}})</a></li>
+    <li ng-show="CD.isDesign && !CD.inSubmission"><a href="#submissions" class="link">Submissions {{CD.submissionNumberString()}}</a></li>
     <li ng-show="CD.isDesign && (CD.inSubmission || CD.inScreening || CD.inReview)"><span class="inactive">Results</span></li>
     <li ng-show="CD.isDesign && !(CD.inSubmission || CD.inScreening || CD.inReview)"><a href="#winner" class="link">Results</a></li>
   </ul>
@@ -128,7 +128,7 @@ include locate_template('header-challenge-landing.php');
       <li ng-if="!CD.inSubmission"><a href="<?php echo CURRENT_FULL_URL; ?>&tab=checkpoints" class="link">Checkpoints</a></li>
     -->
     <li ng-show="CD.inSubmission"><span class="inactive">Submissions</span></li>
-    <li ng-show="!CD.inSubmission"><a href="#submissions" class="link">Submissions ({{CD.numSubmissions}})</a></li>
+    <li ng-show="!CD.inSubmission"><a href="#submissions" class="link">Submissions {{CD.submissionNumberString()}}</a></li>
     </li>
     <li>
       <li ng-show="CD.inSubmission || CD.inScreening || CD.inReview"><span class="inactive">Results</span></li>
@@ -192,31 +192,6 @@ include locate_template('header-challenge-landing.php');
         <a href="http://help.topcoder.com/development/understanding-reliability-and-ratings/">Read more.</a></p>
     </article>
 
-
-    <article id="eligibility">
-      <h1>Eligibility</h1>
-
-      <p>You must be a TopCoder member, at least 18 years of age, meeting all of the membership requirements. In
-        addition, you must fit into one of the following categories.</p>
-
-      <p>If you reside in the United States, you must be either:</p>
-
-      <p>
-      <ul>A US Citizen
-        <li>A Lawful Permanent Resident of the US</li>
-        <li>A temporary resident, asylee, refugee of the U.S., or have a lawfully issued work authorization card
-          permitting unrestricted employment in the U.S.
-        </li>
-      </ul>
-      </p>
-      <p>If you do not reside in the United States:</p>
-      <ul>
-        <li>You must be authorized to perform services as an independent contractor.
-          (Note: In most cases you will not need to do anything to become authorized)
-        </li>
-      </ul>
-
-    </article>
     <article ng-show="CD.isLC && CD.isRegistered" id="lc-discussion">
       <h1>Challenge Discussion</h1>
       <lc-discussion remote-object-key="challenge" remote-object-id="CD.lcChallengeId" discussion-url="CD.lcDiscussionURL"></lc-discussion>
@@ -358,32 +333,6 @@ include locate_template('header-challenge-landing.php');
       Reliability bonus does not apply to Digital Run winnings. Since reliability rating is
       based on the past 15 projects, it can only have 15 discrete values.<br>
       <a href="http://help.topcoder.com/development/understanding-reliability-and-ratings/">Read more.</a></p>
-  </article>
-
-
-  <article id="eligibility">
-    <h1>ELIGIBILITY</h1>
-
-    <p>You must be a TopCoder member, at least 18 years of age, meeting all of the membership requirements. In addition,
-      you must fit into one of the following categories.</p>
-
-    <p>If you reside in the United States, you must be either:</p>
-
-    <p>
-    <ul>A US Citizen
-      <li>A Lawful Permanent Resident of the US</li>
-      <li>A temporary resident, asylee, refugee of the U.S., or have a lawfully issued work authorization card
-        permitting unrestricted employment in the U.S.
-      </li>
-    </ul>
-    </p>
-    <p>If you do not reside in the United States:</p>
-    <ul>
-      <li>You must be authorized to perform services as an independent contractor.
-        (Note: In most cases you will not need to do anything to become authorized)
-      </li>
-    </ul>
-
   </article>
 
 </article>

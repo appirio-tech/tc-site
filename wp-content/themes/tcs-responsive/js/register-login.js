@@ -148,6 +148,31 @@ $(function () {
     }
   });
 
+  $('#register form.register input.userAge:text').on('keyup', function () {
+    $(this).closest('.row').find('span.err1').hide();
+    $(this).closest('.row').find('span.err2').hide();
+    $(this).closest('.row').find('span.err3').hide();
+    $(this).closest('.row').find('span.err4').hide();
+    $(this).closest('.row').find('input:text').removeClass('invalid');
+    $(this).closest(".row").find("span.valid").hide();
+    if ($(this).val().length == 0) {
+      $(this).closest('.row').find('span.err1').show();
+      $(this).closest('.row').find('input:text').addClass('invalid');
+    } else if (!$(this).val().match(/^\d+$/)) {
+      $(this).closest('.row').find('span.err2').show();
+      $(this).closest('.row').find('input:text').addClass('invalid');
+    } else if (parseInt($(this).val()) < 13) {
+      //$(this).closest('.row').find('span.err3').show();
+      //$(this).closest('.row').find('input:text').addClass('invalid');
+      $(this).closest(".row").find("span.valid").css("display", "inline-block");
+    } else if (parseInt($(this).val()) > 13800000000) {
+      $(this).closest('.row').find('span.err4').show();
+      $(this).closest('.row').find('input:text').addClass('invalid');
+    } else {
+      $(this).closest(".row").find("span.valid").css("display", "inline-block");
+    }
+  });
+
   $('#register form.register input.name.lastName:text').on('keyup', function () {
     var text = $(this).val();
     //clear all error messages
@@ -488,6 +513,34 @@ $(function () {
         $(this).closest('.row').find('.err2').show();
       }
     });
+    $('input.userAge').each(function() {
+      $(this).closest('.row').find('span.err1').hide();
+      $(this).closest('.row').find('span.err2').hide();
+      $(this).closest('.row').find('span.err3').hide();
+      $(this).closest('.row').find('span.err4').hide();
+      $(this).closest(".row").find("span.valid").hide();
+      $(this).closest('.row').find('input:text').removeClass('invalid');
+      if ($(this).val().length == 0) {
+        $(this).closest('.row').find('span.err1').show();
+        $(this).closest('.row').find('input:text').addClass('invalid');
+        isValid = false;
+      } else if (!$(this).val().match(/^\d+$/)) {
+        $(this).closest('.row').find('span.err2').show();
+        $(this).closest('.row').find('input:text').addClass('invalid');
+        isValid = false;
+      } else if (parseInt($(this).val()) < 13) {
+        //$(this).closest('.row').find('span.err3').show();
+        //$(this).closest('.row').find('input:text').addClass('invalid');
+        $(this).closest(".row").find("span.valid").css("display", "inline-block");
+        isValid = false;
+      } else if (parseInt($(this).val()) > 13800000000) {
+        $(this).closest('.row').find('span.err4').show();
+        $(this).closest('.row').find('input:text').addClass('invalid');
+        isValid = false;
+      } else {
+        $(this).closest(".row").find("span.valid").css("display", "inline-block");
+      }
+    });
     //stop submit if errors shown on first name/last name
     if ($('input.firstName').closest('.row').find('.err1,.err2,.err3,.err4,.err5,.err6').is(':visible')) {
         isValid = false;
@@ -644,6 +697,7 @@ $(function () {
                 }
               }
               showModal('#thanks');
+              $('input.pwd:password').closest('.row').find('.valid').hide();
               $('#registerForm .invalid').removeClass('invalid');
               $('#registerForm .valid').removeClass('valid');
               $('.err1,.err2', frm).hide();
