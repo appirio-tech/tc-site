@@ -441,9 +441,9 @@ function register_to_lc($challengeId, $jwtToken) {
 
   $response = wp_remote_post( $url, $args );
 
-  //if (is_wp_error( $response ) || ! isset ( $response ['body'] )) {
-    //return "Error in processing request";
-  //}
+  if (is_wp_error( $response ) || ! isset ( $response ['body'] )) {
+    return "Error in processing request";
+  }
   return json_decode( $response ['body'] );
 }
 

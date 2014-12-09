@@ -331,6 +331,8 @@
         "app/challenge-details/js/filters/filters-challenge-details.js",
         "app/challenge-details/js/services/lc-discussion-service.js",
         "app/challenge-details/js/directives/lc-discussion-directive.js",
+        "app/challenge-details/js/services/lc-download-service.js",
+        "app/challenge-details/js/directives/lc-download-directive.js",
         "app/challenge-details/app.js",
         "app/challenge-details/js/controllers/challenge-details-controller.js",
         "app/challenge-details/js/controllers/submission-controller.js",
