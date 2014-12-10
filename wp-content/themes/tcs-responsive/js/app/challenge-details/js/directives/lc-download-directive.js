@@ -6,9 +6,9 @@
 
 /*jslint nomen: true*/
 /*global angular: true, _: true */
-(function (angular) {
+(function () {
   angular
-    .module('lc.directives', [])
+    .module('lc.directives.download', ['lc.services.download'])
 
     .directive('lcDownload', ['DownloadService', '$window',
       function (DownloadService, $window) {
@@ -41,4 +41,4 @@
       }
     ])
 
-})(angular);
+})();

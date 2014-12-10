@@ -192,7 +192,7 @@ include locate_template('header-challenge-landing.php');
         <a href="http://help.topcoder.com/development/understanding-reliability-and-ratings/">Read more.</a></p>
     </article>
 
-    <article ng-show="CD.isLC && CD.isRegistered" id="lc-discussion">
+    <article ng-if="CD.isLC && CD.isRegistered" id="lc-discussion">
       <h1>Challenge Discussion</h1>
       <lc-discussion remote-object-key="challenge" remote-object-id="CD.lcChallengeId" discussion-url="CD.lcDiscussionURL"></lc-discussion>
     </article>

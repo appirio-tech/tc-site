@@ -5,7 +5,7 @@
 (function() {
 
   angular
-    .module('lc.services')
+    .module('lc.services.download', [])
     .factory('DownloadService', DownloadService);
 
   DownloadService.$inject = ['Restangular', 'API_URL', '$cookies', '$http', '$q'];

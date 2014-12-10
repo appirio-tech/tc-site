@@ -6,9 +6,9 @@
 
 /*jslint nomen: true*/
 /*global angular: true, _: true */
-(function (angular) {
+(function () {
   angular
-    .module('lc.directives', [])
+    .module('lc.directives.discussion', ['lc.services.discussion'])
 
   /**
    * The directive to display discussion and messages.
@@ -171,4 +171,4 @@
         templateUrl: 'lc-discussion.html'
       };
     }]);
-})(angular);
+})();
