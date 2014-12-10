@@ -20,7 +20,7 @@
         <span>1</span> <strong>Register For This Challenge</strong>
     </a>
     <a ng-show="CD.isDesign" ng-class="{disabled:CD.challenge.submissionDisabled || !CD.callComplete, disabledNOT:!CD.challenge.submissionDisabled}" class="btn btnAction" target="_blank"
-       ng-href="http://studio.topcoder.com/?module=ViewRegistration&ct={{CD.challenge.challengeId}}">
+       ng-href="/challenge-details/{{CD.challenge.challengeId}}/submit/?type=design">
         <span>2</span> <strong>Submit Your Entries</strong>
     </a>
     <a ng-show="CD.isDesign" ng-class="{disabled:CD.challenge.submissionDisabled || !CD.callComplete, disabledNOT:!CD.challenge.submissionDisabled}" class="btn btnAction" target="_blank"
