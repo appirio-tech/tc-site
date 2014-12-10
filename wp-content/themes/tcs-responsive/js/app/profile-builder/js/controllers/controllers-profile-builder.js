@@ -9,8 +9,8 @@
 (function(angular) {
 
   var profileBuilder = angular.module('tc.profileBuilder');
-  profileBuilder.controller('profileBuilderCtrl', ['ProfileBuilderService', '$scope', '$state', '$timeout', '$cookies',
-    function (ProfileBuilderService, $scope, $state, $timeout, $cookies) {
+  profileBuilder.controller('profileBuilderCtrl', ['ProfileBuilderService', '$scope', '$state', '$timeout', '$cookies', '$location',
+    function (ProfileBuilderService, $scope, $state, $timeout, $cookies, $location) {
 
       var vm = this;
       vm.scope = $scope;
@@ -53,7 +53,23 @@
             _.map(vm.accounts, function (account) {
               var integratedAccount = _.find(vm.integratedAccounts, function(tempAccount) { return tempAccount.id == account.id});
               if (integratedAccount) {
-                account.username = integratedAccount.username;
+                if (integratedAccount.username) {
+                  account.username = integratedAccount.username;
+                  account.linking = false;
+                }
+                else {
+                  account.linking = true;
+
+                  ProfileBuilderService.updateOAuth(account.id).then(function (response) {
+                    ProfileBuilderService.checkIntegration(account.id).then(function (response) {
+                      account.username = response.username;
+                      account.integratedLink = response.link;
+                      account.last_updated = response.last_updated;
+                      account.linking = false;
+                    })
+                  })
+                }
+
                 account.last_updated = integratedAccount.last_updated;
                 account.integratedLink = integratedAccount.link;
               };
@@ -153,13 +169,14 @@
        */
       function authAccount(account) {
         vm.tcjwt = $cookies.tcjwt.replace(/["]/g, "");
+        vm.callback = '//' + $location.host() + '/account/integrations';
         if (account.oAuthAllowed) {
           if (account.name == 'github') {
             showModal('#githubPermission');
           } else if (account.name == 'bitbucket') {
             showModal('#bitbucketPermission');
           } else {
-            window.location = cbApiURL + '/auth?provider=' + account.oAuthAction + '&tcjwt=' + vm.tcjwt;
+            window.location = cbApiURL + '/auth?provider=' + account.oAuthAction + '&tcjwt=' + vm.tcjwt + '&cb=' + vm.callback;
           }
         };
       }

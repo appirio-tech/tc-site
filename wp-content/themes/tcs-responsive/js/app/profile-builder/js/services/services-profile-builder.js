@@ -151,6 +151,24 @@
       return defer.promise;
     }
 
+    service.updateOAuth = updateOAuth;
+
+    function updateOAuth() {
+      var defer = $q.defer();
+
+      service
+        .one('integrations')
+        .put()
+        .then(function (response) {
+          defer.resolve(response);
+        }, function error(reason) {
+          console.log('error', reason);
+          defer.reject(reason);
+        });
+
+      return defer.promise;      
+    }
+
     service.removeIntegration = removeIntegration;
     /**
      * Removes an integrated account..
