@@ -14,6 +14,7 @@ window.tc = angular.module('tc', [
 ])
 
   .constant("API_URL", tcApiRUL)
+  .constant('MY_FILTER_API_URL', 'https://lc1-user-settings-service.herokuapp.com')
 
   .config(['$httpProvider', 'RestangularProvider', 'API_URL', function($httpProvider, RestangularProvider, API_URL) {
     /*

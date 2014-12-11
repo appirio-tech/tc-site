@@ -398,6 +398,7 @@
         "app/challenges/services/gridService.js",
         "app/challenges/services/services-challenges-data.js",
         "app/challenges/services/user-challenges-service.js",
+        "app/challenges/services/my-filters-service.js",
         "app/challenges/lib/angular-loading-bar-0.3.0/loading-bar.js",
         "app/challenges/lib/select2/select2-3.4.8/select2.min.js",
         "app/challenges/lib/select2/ng-select2.js",
