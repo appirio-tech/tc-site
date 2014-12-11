@@ -1,6 +1,7 @@
 /*global angular*/
 /**
- * This service provide CRUD operations for myFilter feature.
+ * This service provide CRUD operations for myFilter feature, and transform the filter back and forth 
+ * between  javascript object and the url query param string.
  */
 (function() {
   'use strict';
@@ -28,7 +29,9 @@
       readFilterByName: readFilterByName,
       readFilterById: readFilterById,
       updateFilter: updateFilter,
-      deleteFilter: deleteFilter
+      deleteFilter: deleteFilter,
+      encode : encode,
+      decode : decode
     };
 
     return myFiltersService;
@@ -75,6 +78,26 @@
         defer.reject(error);
       });
       return defer.promise;
+    }
+
+    function encode(object){
+      return $.param(object);
+    }
+
+    function decode(param){
+      var object =  $.deparam(param);
+      
+      object.challengeTypes = toArray(object.challengeTypes);
+      object.technologies = toArray(object.technologies);
+      object.platforms = toArray(object.platforms);
+      object.keywords = toArray(object.keywords);
+      console.log(param);
+      console.log(object);
+      return object;
+    }
+
+    function toArray(field){
+      return field ? [].concat(field) : [];
     }
   }
   MyFiltersService.$inject = ['Restangular', '$cookies', '$q', 'MY_FILTER_API_URL'];

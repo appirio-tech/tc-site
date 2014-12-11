@@ -69,6 +69,16 @@
           }
         };
 
+        $scope.getFilterOptions = getFilterOptions;
+        $scope.setFilterOptions = setFilterOptions;
+
+        function getFilterOptions(){
+          return $scope.filterOptions;
+        }
+
+        function setFilterOptions(filterOptions){
+          $scope.filterOptions = filterOptions;
+        }
 
         $scope.resetFilterOptions = function () {
           $scope.filterOptions = angular.extend({}, initOptions);

@@ -17,8 +17,8 @@
 }
 .challenge-type-selector {
     width: 25%;
-    max-width: 247px;
-    margin-right: 2%;
+    max-width: 157px;
+    margin-right: 1.1%;
 }
 
 .challenge-type-selector .select2-container {
@@ -28,7 +28,7 @@
 .platform-selector {
     width: 15%;
     max-width: 150px;
-    margin-right: 2%;
+    margin-right: 1.1%;
 }
 .platform-selector .select2-container {
     margin-right: 10px;
@@ -36,8 +36,8 @@
 }
 .technology-selector {
     width: 15%;
-    max-width: 150px;
-    margin-right: 2%;
+    max-width: 116px;
+    margin-right: 1.1%;
 }
 .technology-selector .select2-container {
     border: 1px solid #e7e7e7;
@@ -169,6 +169,7 @@ input.search-text::-webkit-input-placeholder {
     font-family:"Source Sans Pro", Arial, Helvetica, sans-serif;
     color: #a0a0a0;
     font-style:italic;
+    display: inline-block;
 }
     input.search-text::-moz-placeholder {
         font-weight: 400;
@@ -247,7 +248,7 @@ input.search-text::-webkit-input-placeholder {
         padding-bottom: 10px;
     }
         .selected-tags ul.tags {
-            width: 89%;
+            width: 79%;
         }
 
         .selected-tags ul.tags li {
@@ -295,6 +296,11 @@ input.search-text::-webkit-input-placeholder {
     color:#a0a0a0;
     font-size: 14px;
 }
+
+.closetag .btn{
+    color: #fff;
+}
+
     .closetag span {
         color: #000;
         font-size: 14px;
@@ -333,8 +339,8 @@ input.search-text::-webkit-input-placeholder {
 /*begin date picker */
 .date-picker-wrapper {
     width: 25%;
-    max-width: 218px;
-    margin-right: 2%;
+    max-width: 229px;
+    margin-right: 1.1%;
     position: relative;
 }
     .date-picker-wrapper .date-text {
@@ -489,4 +495,299 @@ input.search-text::-webkit-input-placeholder {
     float: right;
     margin-top: 13px;
     margin-left: 5px;
+}
+
+.new-search-box .btnSave{
+    width: 86px;
+    color: #fff;
+    margin-left: 16px;
+}
+/* myFilterWrap */ 
+.new-search-box .filtersSectn{
+    background: #f9f9f9;
+    padding-left: 15px;
+    width: 153px;
+    box-sizing: border-box;
+    margin: -6px -7px -6px 0;
+    height: 50px;
+}
+.filtersSectn .myFilterWrap{
+    float: right;
+    margin-right: 10px;
+    position: relative;
+}
+
+.myFilterWrap .btnFilter{
+    display: inline-block;
+    width: 114px;
+    height: 37px;
+    box-sizing: border-box;
+    border: 1px solid #e7e7e7;
+    background: #fff;
+    border-radius: 4px;
+    line-height: 36px;
+    padding-left: 8px;
+    color: #666;
+    position: relative;
+    margin-top: 7px;
+} 
+.myFilterWrap .btnFilter .arrow{
+    display: block;  
+    width: 12px;  
+    height: 10px;  
+    
+    background: url("../i/icon-filter.png") no-repeat 0 0;
+    position: absolute;
+    right: 10px;
+    top: 15px;
+}
+.myFilterWrap .filterPop{
+    background: #fff;
+    position: absolute;
+    right: -1px;
+    top: 41px;
+    width: 336px;
+    border: 1px solid #e7e7e7;
+    z-index: 10;
+    padding: 24px 0 26px;
+    display: none;
+}
+.myFilterWrap:hover .filterPop{ display: block; }
+.myFilterWrap h3{
+    color: #ff9900;
+    font-size: 22px;
+    font-weight: normal;
+    padding: 0 15px;
+} 
+.myFilterWrap .caption{
+    color: #666;
+    font-size: 13px;
+    font-weight: 300;
+    padding: 0 15px 12px;
+    border-bottom: 1px solid #E7E7E7;
+} 
+.myFilterWrap .savedSearchList{
+    padding: 4px 12px;
+    max-height: 290px;
+    overflow: auto;
+} 
+.myFilterWrap .filterPop .hr{
+    height: 1px; 
+    background: #e7e7e7;
+}
+.myFilterWrap .savedSearchList h6{
+    color: #666;
+    padding-top: 10px;
+}
+.myFilterWrap .savedSearch{
+    margin-top: 6px;
+    border: 1px solid #e7e7e7;
+    border-radius: 3px;
+    color: #666;
+    position: relative;
+    font-size: 12px;
+    padding: 11px 11px 13px;
+    min-height: 78px;
+    box-sizing: border-box;
+} 
+.myFilterWrap .savedSearch:hover{
+    border: 1px solid #f90;
+    cursor: pointer;
+}
+.myFilterWrap .savedSearch .name{
+    font-size: 15px;
+    width: 192px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    height: 18px;
+} 
+.myFilterWrap .savedSearch:hover .name{
+    color: #f90;
+}
+.myFilterWrap .savedSearch .opts{
+    margin-top: -18px;
+    
+    box-sizing: border-box;
+    height: 18px;
+    padding-top: 3px;
+}
+.myFilterWrap .savedSearch .lbl{
+    line-height: 13px;
+} 
+.myFilterWrap .savedSearch .chk{
+    vertical-align: top;
+} 
+.myFilterWrap .savedSearch .chkWrap .chk + .chkLbl{
+    padding-left: 15px;
+}
+.myFilterWrap .savedSearch .chkWrap .chk + .chkLbl:before{
+    background-image: url(../i/chk2.png);
+}
+.myFilterWrap .savedSearch label{
+    vertical-align: top;
+    display: inline-block;
+    margin-left: 2px;
+    line-height: 13px;
+    cursor: pointer;
+}
+.myFilterWrap .btnRemove{
+    display: inline-block;
+    background: url(../i/ico-remove.png) 50% 50% no-repeat;
+    height: 12px;
+    width: 12px;
+    margin-left: 11px;
+} 
+.myFilterWrap .savedSearch .tags{
+    margin-top: 16px;
+    overflow: hidden;
+} 
+.myFilterWrap .savedSearch .tags .tag{
+    display: inline-block;
+    float: left;
+    background: #e7e7e7;
+    height: 17px;
+    line-height: 16px;
+    margin-right: 4px;
+    margin-bottom: 6px;
+    padding: 0 5px;
+} 
+
+.btnSecondary{
+    background: #c2c2c2;
+    border-bottom: 4px solid #b0b0b0;
+}
+.btnSecondary:hover{
+    background: #b0b0b0;
+}
+#mainContent.layChallenges{
+    min-height: 640px;
+}
+/* filterWiget */
+.new-search-box .closetag {
+    position: relative;
+}
+ .new-search-box .filterWiget {
+    position: absolute;
+    right: 1px;
+    top: 32px;
+    border-top: 4px solid #0096ff;
+    width: 331px;
+    min-height: 213px;
+    box-sizing: border-box;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    z-index: 10;
+    background: #fff;
+    border-radius: 0 0 5px 5px;
+    padding: 0 1px;
+    font-size: 13px;
+    color: #999;
+    display: none;
+}
+.new-search-box .filterWiget.open{
+    display: block;
+}
+ .filterWiget .details{
+    padding-top: 19px;
+} 
+ .filterWiget .rw{
+    padding: 0 12px;
+} 
+ .filterWiget .lbl{
+    margin-bottom: 10px;
+    display: block;
+} 
+ .filterWiget #searchSaveTxt{
+    background: #fff;
+    border: 1px solid #e7e7e7;
+    height: 37px;
+    box-sizing: border-box;
+    width: 100%;
+    color: #444;
+    font-size: 14px;
+}
+.filterWiget #searchSaveTxt.error{
+    border: 1px solid #f00;
+    background: #FFF9F9;
+}
+ .filterWiget .alertMe{
+    margin: 23px 26px 12px;
+} 
+ .chkWrap{
+    position: relative;
+}
+ .chkWrap .chk{
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+} 
+ .chkWrap .chk + .chkLbl{
+    padding-left: 30px;
+    max-width: 215px;
+    display: inline-block;
+    -webkit-user-select: none;
+    line-height: 16px;
+} 
+ .chkWrap .chk + .chkLbl:before{
+     content: '';
+     position: absolute;
+     width: 16px;
+     height: 16px;
+     background-image: url(../i/chk.png);
+     background-repeat: no-repeat;
+     background-position: 0 -30px;
+     left: 0;
+     top: 0px;
+ }
+ .chkWrap .chk:checked + .chkLbl:before{
+     background-position: 0 0;
+ }
+ .chkWrap .myChallengesLabel  .chk + .chkLbl{
+    padding-left: 20px;
+     
+    }
+ .chkWrap .myChallengesLabel  .chk + .chkLbl:before{
+     background-image: url(../i/chk3.png);
+     top: 20px;
+    }
+ .filterWiget .actn{
+    border-top: 1px solid #e7e7e7;
+    padding: 10px 5px 10px 0;
+    text-align: right;
+} 
+ .filterWiget .actn .btnCancel{
+    width: 86px;
+    margin: 0 4px;
+} 
+ .filterWiget .actn .btnSaveSearch{
+    margin: 0 4px;
+    width: 145px;
+}
+#filterSavedModal{
+    width: 534px;
+}
+#filterSavedModal .btnClose{
+    right: 20px;
+}
+#filterSavedModal .content{
+    padding: 10px 20px 20px;
+}
+#filterSavedModal .content h2{
+    font-size: 36px;
+}
+#filterSavedModal .content p.success{
+    padding: 32px 20px 32px 80px;
+    font-size: 14px;
+    color: #666;
+    line-height: 24px;
+    background: url("../i/success-icon.png") no-repeat 0 34px;
+}
+#filterSavedModal .content p.submitBtn{
+    border-top: 1px solid #e7e7e7;
+    padding-top: 20px;
+    text-align: center;
+}
+#filterSavedModal .content p.submitBtn .btn{
+    width: 60px
 }

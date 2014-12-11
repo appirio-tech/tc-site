@@ -317,7 +317,13 @@
         if (options.userChallenges && $scope.authenticated) {
           search.userChallenges = true;
         }
-        $location.search(search);
+        var path = $location.path();
+        //this option is used within "My Filter" feature.
+        if (options.contestType) {
+          // the path looks like /design/active, replace the first part.
+          path = path.replace(/\/[A-z]+\//, '/' + options.contestType + '/');
+        }
+        $location.path(path).search(search);
         
       };
 
@@ -424,7 +430,7 @@
       }, true);
       
       $scope.$on('$locationChangeSuccess', function (event) {
-        
+        console.log(event);
         $timeout(function () {
           parseFilters();
           if($scope.filter.userChallenges) {
