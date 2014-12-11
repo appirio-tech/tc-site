@@ -644,10 +644,6 @@ include locate_template('header-challenge-landing.php');
 
   <!-- template for tc-discussion directive -->
   <style>
-    .comment-box {
-      border: 1px solid #ccc;
-      border-radius: 3px;
-    }
     .comment-header {
       background: none repeat scroll 0 0 #f7f7f7;
       border-radius: 3px 3px 0 0;
@@ -661,7 +657,7 @@ include locate_template('header-challenge-landing.php');
       color: #555;
     }
     .message-pane {
-      padding: 10px 10px;
+      padding: 10pxx;
       display:block;
     }
     .message-textarea {
@@ -702,15 +698,10 @@ include locate_template('header-challenge-landing.php');
     <div class="row">
       <div class="col-sm-offset-1 col-sm-8 col-md-offset-1 col-md-8">
         <div class="row comment-box">
-          <div class="comment-header">
-            <ul class="nav nav-tabs" role="tablist">
-              <li class="active"><a href="#">Comment</a></li>
-            </ul>
-          </div>
           <div class="tab-content">
             <div class="tab-pane active message-pane" id="home">
               <textarea class="message-textarea" name="comment" data-ng-model="comment" rows="3" placeholder="Leave a comment"></textarea>
-              <button type="button" class="btn btn-success pull-right comment-button" data-ng-click="addComment()">Comment</button>
+              <a href="#" class="btn btn-success pull-right comment-button" data-ng-click="addComment()">Comment</a>
             </div>
           </div>
         </div>
