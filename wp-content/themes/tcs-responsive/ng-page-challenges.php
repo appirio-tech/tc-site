@@ -372,8 +372,8 @@ get_header(); ?>
 </script>
 
 <script type="text/ng-template" id="save-filter.html">
-  <a class="btn btnAlt btnSave">Save</a>
-  <div class="filterWiget">
+  <a class="btn btnAlt btnSave" ng-click="saveFilterCtrl.dialog = !saveFilterCtrl.dialog">Save</a>
+  <div class="filterWiget" click-anywhere-but-here="saveFilterCtrl.dialog = false" is-active="saveFilterCtrl.dialog" ng-show="saveFilterCtrl.dialog">
     <div class="details">
       <div class="rw">
           <label class="lbl" for="searchSaveTxt">Name Saved Search</label>

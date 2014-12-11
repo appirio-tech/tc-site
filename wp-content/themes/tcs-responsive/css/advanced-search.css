@@ -682,10 +682,6 @@ input.search-text::-webkit-input-placeholder {
     padding: 0 1px;
     font-size: 13px;
     color: #999;
-    display: none;
-}
-.new-search-box .filterWiget.open{
-    display: block;
 }
  .filterWiget .details{
     padding-top: 19px;

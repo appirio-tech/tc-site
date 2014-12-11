@@ -23,7 +23,8 @@
 
     function SaveFiltersCtrl($scope, MyFiltersService){
       var ctrl = this;
-     
+      //hide the dialog at first.
+      ctrl.dialog = false;
     }
   }
 }(angular));

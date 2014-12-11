@@ -395,6 +395,7 @@
         "app/challenges/directives/advanced-search-challenges.js",
         "app/challenges/directives/my-filters-diretive.js",
         "app/challenges/directives/save-filter-diretive.js",
+        "app/shared/directives/click-anywhere-but-here-directive.js",
         "app/challenges/filters/filters-challenges.js",
         "app/challenges/services/challengeService.js",
         "app/challenges/services/templateService.js",

@@ -10,7 +10,8 @@ window.tc = angular.module('tc', [
   'ngGrid',
   'ui.select2',
   'ngCookies',
-  'ui.calendar'
+  'ui.calendar',
+  'tc.shared.directives.clickAnywhereButHere'
 ])
 
   .constant("API_URL", tcApiRUL)
