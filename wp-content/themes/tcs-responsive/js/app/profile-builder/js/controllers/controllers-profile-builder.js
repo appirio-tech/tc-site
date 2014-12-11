@@ -40,10 +40,7 @@
         ProfileBuilderService.getAccounts(params).then(function (accounts) {
 
           vm.callComplete = true;
-
-          // remove first 3 items (topcoder, bitly, twitter social)
-          // no need for topcoder and bitly, twitter social api is not complete
-          vm.accounts = accounts.items.splice(3, accounts.items.length);
+          vm.accounts = accounts.items;
           delete params.page_size;
 
           // get integrated accounts for the user
