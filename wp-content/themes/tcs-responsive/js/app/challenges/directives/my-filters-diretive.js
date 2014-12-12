@@ -30,9 +30,12 @@
       ctrl.populateList = populateList;
 
       ctrl.updateFilterOptions = updateFilterOptions;
-
-      ctrl.populateList();
-
+      
+      //only populate data if the user logged in.
+      if($scope.authenticated){
+        ctrl.populateList();  
+      }
+      
       $scope.$watch('myFiltersListDirty', function(newValue, oldvalue){
         if(oldvalue != newValue && newValue == true){
           $scope.setMyFiltersListDirty(false);

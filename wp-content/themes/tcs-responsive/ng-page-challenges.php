@@ -268,7 +268,7 @@ get_header(); ?>
                 <a href="javascript:;" ng-click="reset()" >
                      <span>x</span><i>Clear All Tags</i>
                  </a>
-                <save-filter></save-filter>           
+                <save-filter ng-show="authenticated"></save-filter>           
              </div>
             <div class="clear"></div>
         </div>

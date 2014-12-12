@@ -32,7 +32,7 @@
 
       function saveFilter(){
         var filter = makeFilterObject();
-
+        
         MyFiltersService.readFilterByName(ctrl.name).then(function(data){
           if(data.length === 0){
             MyFiltersService.createFilter(filter).then(function(){
@@ -52,6 +52,9 @@
         },function(error){
           MyFiltersService.showError('Error occurs when retrieving filters from server.', error);
         });
+
+        ctrl.dialog = false;
+        ctrl.name = '';
       }
 
       function makeFilterObject(){
