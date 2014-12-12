@@ -199,7 +199,7 @@ $blog_posts = get_posts($blog_posts_args);
       <a class="btn closeModal" href="javascript:;">OK</a>
     </p>
   </div>
-</div><!-- END #filterSavedModal -->
+</div><!-- END #filterSavedSuccess -->
 
 <div id="filterSavedFailed" class="modal">
   <a href="javascript:;" class="btnClose closeModal"></a>

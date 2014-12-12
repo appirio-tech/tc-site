@@ -91,14 +91,14 @@
 
     function showError(text, error){
       console.log(error);
-      $("#filterSavedFailed .failedMessage").text(text);
+      $("#filterSavedFailed .failedMessage").html(text + '<br>' + 'Status code: '+ error.status);
       showModal("#filterSavedFailed");
     }
 
     function showConfirm(text){
       //Use the default message when text is undefined, which is already embedded in the modal html code. 
       if(text){
-        $("#filterSavedSuccess .success").text(text);
+        $("#filterSavedSuccess .success").html(text);
       }
       showModal("#filterSavedSuccess");
     }

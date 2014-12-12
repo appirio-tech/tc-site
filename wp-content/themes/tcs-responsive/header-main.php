@@ -92,6 +92,7 @@ if (basename(get_permalink()) == "challenges") {
 
     var tcApiRUL = '<?php echo TC_API_URL; ?>';
     var lcDiscussionURL = '<?php echo LC_DISCUSSION_URL; ?>';
+    var myFiltersURL = '<?php echo MY_FILERS_URL ?>';
 
     var siteURL = '<?php bloginfo('siteurl');?>';
     var communityURL = '<?php echo community_URL(); ?>';

@@ -39,18 +39,18 @@
               MyFiltersService.showConfirm();
               $scope.setMyFiltersListDirty(true);
             }, function(error){
-              MyFiltersService.showError('Error occurs when creating new filter on server.', error);
+              MyFiltersService.showError('An error occurs when creating new filter on server.', error);
             });
           }else{
             MyFiltersService.updateFilter(data[0]._id, filter).then(function(){
               MyFiltersService.showConfirm();
               $scope.setMyFiltersListDirty(true);
             }, function(error){
-              MyFiltersService.showError('Error occurs when updating filters on server.', error);
+              MyFiltersService.showError('An error occurs when updating filters on server.', error);
             });
           }
         },function(error){
-          MyFiltersService.showError('Error occurs when retrieving filters from server.', error);
+          MyFiltersService.showError('An error occurs when retrieving filters from server.', error);
         });
 
         ctrl.dialog = false;

@@ -94,7 +94,7 @@
           });
         }, function(error){
           ctrl.filters = [];
-          MyFiltersService.showError('Error occurs when retrieving filters from server.', error);
+          MyFiltersService.showError('An error occurs when retrieving filters from server.', error);
         });
       }
 
@@ -111,7 +111,7 @@
         },function(error){
           //Failed to delete, push back the target.
           ctrl.filters.push(target);
-          MyFiltersService.showError('Error occurs when deleting filters on server.', error);
+          MyFiltersService.showError('An error occurs when deleting filters on server.', error);
           
         });
       }
