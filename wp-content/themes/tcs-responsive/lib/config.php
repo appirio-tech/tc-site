@@ -58,7 +58,6 @@ function tc_config_defaults() {
         'auth0CallbackURL' => 'https://www.topcoder.com/reg2/callback.action',
         'auth0LDAP' => 'LDAP',
         'communityURL' => 'http://community.topcoder.com',
-        'myFiltersURL' => 'https://lc1-user-settings-service.herokuapp.com',
         'cdnURL' => '',
         'useCND' => false,
         'useMin' => false,
