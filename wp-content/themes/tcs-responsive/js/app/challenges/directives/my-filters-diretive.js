@@ -19,7 +19,44 @@
     };
 
     function postLink(scope, element, attrs, advancedSearchCtrl) {
+        var pop = element.find('.filterPop');
+        element.hover(function () {
+          positionDropdown(pop, element.find('.btnFilter'));
+          pop.show();
+        });
+        element.mouseleave(function () {
+          pop.hide();
+        });
+        scope.$on('$destroy', function() {
+          element.off('hover');
+          element.off('mouseleave')
+        });
+        // The strategy to place above or below is copied from select2.js source code.
+        var positionDropdown = function(dropdown, container) {
+          var offset = container.offset(),
+              height = container.outerHeight(false),
+              dropHeight = dropdown.outerHeight(false),
+              $window = $(window),
+              windowHeight = $window.height(),
+              viewportBottom = $window.scrollTop() + windowHeight,
+              dropTop = offset.top + height,
+              enoughRoomBelow = dropTop + dropHeight <= viewportBottom,
+              enoughRoomAbove = offset.top - dropHeight >= $window.scrollTop(),
+              above,
+              css;
 
+          // Default is below, if below is not enough, then show above.
+          above = !enoughRoomBelow && enoughRoomAbove;
+
+          css = {bottom : 'auto'};
+          if (above) {
+              css.top = -dropHeight;
+          } else {
+              css.top = 'auto';
+          }
+
+          dropdown.css(css);
+        };
     }
 
     function MyFiltersCtrl($scope, MyFiltersService){
