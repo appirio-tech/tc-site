@@ -691,6 +691,12 @@ include locate_template('header-challenge-landing.php');
       font-weight: 600;
     }
 
+    .message-box {
+      font-size: 12px;
+      display: block;
+      min-height: 50px;
+    }
+
   </style>
 
   <div class="discussion" data-ng-show="booted">
