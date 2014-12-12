@@ -30,6 +30,15 @@
 
       ctrl.saveFilter = saveFilter;
 
+      ctrl.openDialog = openDialog;
+
+      function openDialog($event){
+        if(!ctrl.dialog){
+          ctrl.dialog = true;
+          $event.stopPropagation();
+        }
+      }
+
       function saveFilter(){
         var filter = makeFilterObject();
         

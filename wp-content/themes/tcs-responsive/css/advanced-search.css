@@ -665,11 +665,11 @@ input.search-text::-webkit-input-placeholder {
 #mainContent.layChallenges{
     min-height: 640px;
 }
-/* filterWiget */
+/* filterWidget */
 .new-search-box .closetag {
     position: relative;
 }
- .new-search-box .filterWiget {
+ .new-search-box .filterWidget {
     position: absolute;
     right: 1px;
     top: 32px;
@@ -685,17 +685,17 @@ input.search-text::-webkit-input-placeholder {
     font-size: 13px;
     color: #999;
 }
- .filterWiget .details{
+ .filterWidget .details{
     padding-top: 19px;
 } 
- .filterWiget .rw{
+ .filterWidget .rw{
     padding: 0 12px;
 } 
- .filterWiget .lbl{
+ .filterWidget .lbl{
     margin-bottom: 10px;
     display: block;
 } 
- .filterWiget #searchSaveTxt{
+ .filterWidget #searchSaveTxt{
     background: #fff;
     border: 1px solid #e7e7e7;
     height: 37px;
@@ -704,11 +704,11 @@ input.search-text::-webkit-input-placeholder {
     color: #444;
     font-size: 14px;
 }
-.filterWiget #searchSaveTxt.error{
+.filterWidget #searchSaveTxt.error{
     border: 1px solid #f00;
     background: #FFF9F9;
 }
- .filterWiget .alertMe{
+ .filterWidget .alertMe{
     margin: 23px 26px 12px;
 } 
  .chkWrap{
@@ -749,16 +749,16 @@ input.search-text::-webkit-input-placeholder {
      background-image: url(../i/chk3.png);
      top: 20px;
     }
- .filterWiget .actn{
+ .filterWidget .actn{
     border-top: 1px solid #e7e7e7;
     padding: 10px 5px 10px 0;
     text-align: right;
 } 
- .filterWiget .actn .btnCancel{
+ .filterWidget .actn .btnCancel{
     width: 86px;
     margin: 0 4px;
 } 
- .filterWiget .actn .btnSaveSearch{
+ .filterWidget .actn .btnSaveSearch{
     margin: 0 4px;
     width: 145px;
 }

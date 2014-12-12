@@ -25,10 +25,9 @@
      * <any click-anywhere-but-here="close()" is-active="valid()" ></any> 
      *
      * @param $document the root place to judge the click/tap events.
-     * @param $timeout to defer the activation of this directive so we can ignore the first bootstrap click.
      * @return the directive definition object.
      */
-    function clickAnywhereButHere($document, $timeout) {
+    function clickAnywhereButHere($document) {
       var directive = {
         link : link
       };
@@ -46,17 +45,10 @@
             scope.$apply(attrs.clickAnywhereButHere)
           }
         }
-        scope.$watch(attrs.isActive, function(newValue, oldValue) {
-          if (newValue !== oldValue && newValue == true) {
-            /*
-             * The situation is that there is an external button when clicking it this modal will show, To defer the 
-             * activation of this directive so that we can ignore the first bootstrap click. Otherwise the first click
-             * will be treated as an outside-click and thus close the modal immediately.
-             */
-            $timeout(function(){
-              $document.bind('click', onClick);
-            });
-          } else if (newValue !== oldValue && newValue == false) {
+        scope.$watch(attrs.isActive, function(value) {
+          if (value) {
+            $document.bind('click', onClick);
+          } else {
             $document.unbind('click', onClick);
           }
         });
