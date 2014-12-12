@@ -73,8 +73,8 @@
         ctrl.populateList();  
       }
       
-      $scope.$watch('myFiltersListDirty', function(newValue, oldvalue){
-        if(oldvalue != newValue && newValue == true){
+      $scope.$watch('myFiltersListDirty', function(value){
+        if(value){
           $scope.setMyFiltersListDirty(false);
           ctrl.populateList();
         }
