@@ -2,7 +2,8 @@
 <div class="inner">
   <ul class="downloadDocumentList">
     <li ng-if="CD.challenge.Documents && CD.challenge.Documents.length > 0 && CD.allowDownloads" ng-repeat="document in CD.challenge.Documents">
-      <a href="{{document.url}}">{{document.documentName}}</a>
+      <a ng-if="!CD.isLC" href="{{document.url}}">{{document.documentName}}</a>
+      <lc-download ng-if="CD.isLC" challenge-id="CD.lcChallengeId" file-id="document.id" document-name="document.documentName"></lc-download>
     </li>
     <li ng-if="CD.challenge.Documents && CD.challenge.Documents.length === 0 && CD.allowDownloads">
       <strong>None</strong>

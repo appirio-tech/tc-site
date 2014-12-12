@@ -21,6 +21,7 @@
       vm.challenge = {};
       vm.challengeId = challengeId;
       vm.challengeType = challengeType;
+      vm.isLC = isLC;
 
       var CHALLENGE_SUBMIT_PARTIALS_DIR = '/js/app/submission-upload/partials/';
       vm.baseTemplateUrl = THEME_URL + CHALLENGE_SUBMIT_PARTIALS_DIR + 'base.tpl.html';

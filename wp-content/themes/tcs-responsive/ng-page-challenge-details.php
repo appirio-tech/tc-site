@@ -192,9 +192,9 @@ include locate_template('header-challenge-landing.php');
         <a href="http://help.topcoder.com/development/understanding-reliability-and-ratings/">Read more.</a></p>
     </article>
 
-    <article ng-show="CD.isLC" id="lc-discussion">
+    <article ng-if="CD.isLC && CD.isRegistered" id="lc-discussion">
       <h1>Challenge Discussion</h1>
-      <lc-discussion remote-object-name="Challenge" remote-object-id="CD.challenge.id" discussion-service="CD.lcDiscussionService"></lc-discussion>
+      <lc-discussion remote-object-key="challenge" remote-object-id="CD.lcChallengeId" discussion-url="CD.lcDiscussionURL"></lc-discussion>
     </article>
 
   </article>
@@ -389,13 +389,12 @@ include locate_template('header-challenge-landing.php');
              title="{{registrant.winner ? 'Pass' : registrant.submissionStatus.match('Failed') ? 'Fail' : ''}}"></i>
         </td>
         <td ng-show="CD.isLC">
-          <a href="<?php echo TC_LC_URL . '/challenges/' . $contestID . '/scorecards/' . $id; ?>">View</a>
+          <!-- manage/#/challenges/{challengeId}/submissions/{submissionId}/scorecard -->
+          <a ng-if="registrant.lcSubmissionId" ng-href="{{CD.lcSiteUrl + '/manage/#/challenges/' + CD.challenge.challengeId + '/submissions/' + registrant.lcSubmissionId + '/scorecard/' + registrant.lcScorecardId}}">View</a>
         </td>
       </tr>
       </tbody>
     </table>
-
-
   </article>
 
 
@@ -430,7 +429,8 @@ include locate_template('header-challenge-landing.php');
 <aside class="sideStream grid-1-3" style="float: left;">
 
 <div class="topRightTitle">
-    <a ng-href="{{CD.challenge.forumLink}}" class="contestForumIcon" target="_blank">Challenge Discussion</a>
+    <a ng-show="!CD.isLC" ng-href="{{CD.challenge.forumLink}}" class="contestForumIcon" target="_blank">Challenge Discussion</a>
+    <a ng-show="CD.isLC" ng-href="{{CD.challenge.forumLink}}" class="contestForumIcon">Challenge Discussion</a>
 </div>
 
 <div class="columnSideBar">
@@ -644,15 +644,6 @@ include locate_template('header-challenge-landing.php');
 
   <!-- template for tc-discussion directive -->
   <style>
-    .comment-box {
-      border: 1px solid #ccc;
-      border-radius: 3px;
-    }
-    .comment-header {
-      background: none repeat scroll 0 0 #f7f7f7;
-      border-radius: 3px 3px 0 0;
-      padding: 6px 10px 0;
-    }
     .message-box, .panel-title, .comment-box {
       font-size: 12px;
     }
@@ -661,7 +652,7 @@ include locate_template('header-challenge-landing.php');
       color: #555;
     }
     .message-pane {
-      padding: 10px 10px;
+      padding: 10pxx;
       display:block;
     }
     .message-textarea {
@@ -679,38 +670,43 @@ include locate_template('header-challenge-landing.php');
     .comment-button {
       margin: 6px 0;
     }
+
+    img.message-avatar {
+      float: left;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    p.message-text {
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .created-at {
+      font-weight: 400;
+      color: #228400;
+    }
+
+    .message-author {
+      font-weight: 600;
+    }
+
   </style>
 
-  <div class="discussion">
-    <div class="row message-box" data-ng-repeat="message in messages">
-      <div class="col-sm-1 col-md-1">
-        <a href="#" ><img class="message-avatar" data-ng-src="{{images[$index % 3]}}" width="50" height="50"></a>
-      </div>
-      <div class="col-sm-7 col-md-7">
-        <div class="row">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <p class="panel-title"><strong>{{message.createdBy}}</strong> <span class="created-at">commented at {{message.createdAt | date: "MMMM d, yyyy h:ma"}}</span></p>
-            </div>
-            <div class="panel-body">
-              {{message.content}}
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="discussion" data-ng-show="booted">
+    <div class="message-box ng-scope" data-ng-repeat="message in messages">
+      <a href="#"><img class="message-avatar" data-ng-src="{{users[message.authorId].avatarUrl}}" width="45" height="45"></a>
+      <span class="created-at ng-binding"><em class="ng-binding message-author">{{users[message.authorId].handle}}</em> commented at {{message.createdAt | date: "MMMM d, yyyy h:mm a"}}</span>
+      <p class="message-text">{{message.content}}</p>
     </div>
+
     <div class="row">
-      <div class="col-sm-offset-1 col-sm-7 col-md-offset-1 col-md-7">
+      <div class="col-sm-offset-1 col-sm-8 col-md-offset-1 col-md-8">
         <div class="row comment-box">
-          <div class="comment-header">
-            <ul class="nav nav-tabs" role="tablist">
-              <li class="active"><a href="#">Comment</a></li>
-            </ul>
-          </div>
           <div class="tab-content">
             <div class="tab-pane active message-pane" id="home">
               <textarea class="message-textarea" name="comment" data-ng-model="comment" rows="3" placeholder="Leave a comment"></textarea>
-              <button type="button" class="btn btn-success pull-right comment-button" data-ng-click="addComment()">Comment</button>
+              <a href="#" class="btn btn-success pull-right comment-button" data-ng-click="addComment()">Comment</a>
             </div>
           </div>
         </div>

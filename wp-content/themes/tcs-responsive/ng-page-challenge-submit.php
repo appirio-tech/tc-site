@@ -17,6 +17,7 @@ function tc_header_challenge_submit_js() {
     var challengeId = "<?php echo get_query_var('contestID');?>";
     var challengeType = "<?php echo get_query_var('type');?>";
     var THEME_URL="<?php echo THEME_URL;?>";
+    var isLC = '<?php echo get_query_var('lc'); ?>';
   </script>
 <?php
 }

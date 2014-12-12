@@ -193,7 +193,7 @@ get_header(); ?>
         <!-- Coming soon!  <li><a href="//www.topcoder.com/review-opportunities/develop/" class="link">Review Opportunities</a></li> -->
       </ul>
     </div>
-    
+
   </div>
 </script>
 
@@ -359,7 +359,7 @@ get_header(); ?>
                     <option ng-repeat="tech in technologies track by $index" ng-disabled="filterOptions.technologies.indexOf(tech) !== -1">{{tech}}</option>
                 </select>
             </div>
-            
+
             <div class="right checkbox myChallenges" ng-show="authenticated && challengeStatus === 'active' && challengeCommunity !== 'data'">
               <label class="myChallengesLabel"><span>My Challenges Only</span><input type="checkbox" ng-model="filterOptions.userChallenges" ng-change="applyFilter()"></label>
             </div>
@@ -394,7 +394,7 @@ get_header(); ?>
 <script type="text/ng-template" id="tableView/challengeName.html">
   <div class="colCh" ng-if="row.getProperty('challengeCommunity') !== 'data'">
     <div>
-      <a ng-href="/challenge-details/{{row.getProperty('challengeId')}}/?type={{row.getProperty('challengeCommunity')}}" class="contestName">
+      <a ng-href="/challenge-details/{{row.getProperty('challengeId')}}/?type={{row.getProperty('challengeCommunity')}}&lc={{row.getProperty('isLC')}}" class="contestName">
         <img alt="allContestIco" class="allContestIco" ng-src="{{images}}/ico-track-{{row.getProperty('challengeCommunity')}}.png">
         <span ng-cell-text>{{row.getProperty(col.field)}}</span>
         <img alt="allContestTCOIco" class="allContestTCOIco" ng-src="{{images}}/tco-flag-{{row.getProperty('challengeCommunity')}}.png">
@@ -465,7 +465,7 @@ get_header(); ?>
 <script type="text/ng-template" id="tableView/prizes.html">
   <span ng-cell-text>{{row.getProperty(col.field) | currency}}</span>
 </script>
-    
+
 <script type="text/ng-template" id="tableView/roles.html">
     <div ng-cell-text class="colRoles">
       <span class="role" title="{{role}}"  ng-repeat="role in row.getProperty(col.field)">{{role}}</span>
