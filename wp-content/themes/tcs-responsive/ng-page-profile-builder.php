@@ -19,11 +19,12 @@ get_header();
   <div class="row opportunity-header opportunity-header-new hidden" ng-class="{visible : PB.callComplete}">
     <div class="title">
 
-      <h2>Build your profile</h2>
+      <h2 class="builder-left">Account Integrations</h2>
 
-      <a ui-sref="hide" ng-show="PB.currentView == 'base'">Skills Found</a>
-      <a ui-sref="base" ng-show="PB.currentView == 'hide'">External Accounts</a>
+      <a ui-sref="hide" ng-show="PB.currentView == 'base'" class="builder-right">Skills Found</a>
+      <a ui-sref="base" ng-show="PB.currentView == 'hide'" class="builder-right">External Accounts</a>
 
+      <div class="builder-clear"></div>
     </div>
   </div>
   <div ui-view class="hidden" ng-class="{visible : PB.callComplete}"></div>

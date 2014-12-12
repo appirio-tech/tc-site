@@ -19,7 +19,7 @@
 
               <button ng-show="account.oAuthAllowed && !account.username && !account.linking" ng-click="PB.authAccount(account)" data-target-name="{{account.friendly_name}}" data-id="{{account.id}}" class="btn btn-primary modLink">Authorize</button>
 
-              <button class="btn btn-primary modLink" ng-hide="account.username || (account.oAuthAllowed && !account.linking)" ng-class="{disabled: !account.linkable || account.loading}" ng-click="PB.linkAccount(account)">{{ account.linking ? 'Aggregating' : account.linkable ? 'Link' : account.loading ? 'Searching' : 'Not found' }}</button>
+              <button class="btn btn-primary modLink" ng-hide="account.username || (account.oAuthAllowed && !account.linking)" ng-class="{disabled: !account.linkable || account.loading}" ng-click="PB.linkAccount(account)">{{ account.linking ? 'Aggregating' : account.linkable ? 'Link' : account.loading ? 'Searching' : 'Not Found' }}</button>
 
               <button data-id="{{account.id}}" class="btn btn-danger modUnlink" ng-class="{disabled: account.loading}" ng-show="account.username" ng-click="PB.unLink(account)">Unlink</button>
 

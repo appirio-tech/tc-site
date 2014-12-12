@@ -1,3 +1,14 @@
+.builder-left {
+    margin: 6px 0 6px 6px;
+    float: left;
+}
+.builder-right {
+    margin: 26px 6px 0 0;
+    float: right;
+}
+.builder-clear {
+    clear: both;
+}
 .opportunity.new {
     background-color: #f0f0f0;
     color: #333;
@@ -26,7 +37,7 @@
     color: #fff;
 }
 .opportunity-header h2 {
-    font-size: 46px;
+    font-size: 30px;
 }
 .opportunity-header .title {
     padding-top: 10px;
@@ -94,8 +105,10 @@
     margin-bottom: 5px;
 }
 .opportunity.new .new-opp-section input[type=text], .opportunity.new .new-opp-section input[type=url], .opportunity.new .new-opp-section input[type=password] {
-    width: 700px;
+    width: 720px;
     margin-bottom: 10px;
+    margin-right: 4px;
+    padding: 8px;
     border-radius: 4px;
     background: #fff;
 }
@@ -154,7 +167,7 @@
 }
 .opportunity.new .new-opp-section p {
     color: #555;
-    margin: 0 0 20px 0;
+    margin: 0px 50px 20px 4px;
 }
 .opportunity p {
     margin: 8px 0 0 0;
@@ -205,6 +218,7 @@
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px 5px;
     border-radius: 5px 5px 5px 5px;
+    margin: 4px -6px 0 10px;
 }
 .opportunity.new .row:before, .row:after {
     display: table;
@@ -249,7 +263,9 @@
 }
 .opportunity.new .btn, .opportunity.new a.btn {
     border: none;
-    height: 35px;
+    height: 38px;
+    font-size: 14px;
+    font-variant: small-caps;
 }
 .tooltip {
     position: absolute;
