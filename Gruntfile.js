@@ -35,7 +35,7 @@ module.exports = function(grunt) {
       version: grunt.option('cdn-version') || Date.now(),
       useGz: grunt.option('use-gz') || false,
       lcURL: grunt.option('lc-url') || 'http://dev-lc1-ext-challenge-service.herokuapp.com',
-      lcDiscussionURL: grunt.option('lc-discussion-url') || 'http://dev-lc1-user-discussion.herokuapp.com',
+      lcDiscussionURL: grunt.option('lc-discussion-url') || 'http://dev-lc1-discussion-service.herokuapp.com',
       lcUserURL: grunt.option('lc-user-url') || 'http://dev-lc1-user-service.herokuapp.com',
       lcSiteUrl: grunt.option('lc-site-url') || 'http://dev-lc1-challenge-app.herokuapp.com'
     };
