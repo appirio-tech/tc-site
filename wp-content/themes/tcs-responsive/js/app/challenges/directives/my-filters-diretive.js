@@ -90,6 +90,8 @@
             value.filterOptions = MyFiltersService.decode(value.filter);
             //Sometimes the saved filter's track is different with the current one's.(e.g. develop and design)
             value.filterOptions['contestType'] = value.type;
+            //To prevent operations after a deleting filter. If it's set to true, then all operations are ignored.
+            value.deleted = false;
             console.log(value);
           });
         }, function(error){
@@ -99,17 +101,21 @@
       }
 
       function deleteFilter(target){
-        
-        //removing the filter on client side can prevent pressing operations on a deleting filter, e.g. searching or
-        //deleting again.
+        if(target.deleted){
+          //There is a DELETE operation on this filter not long ago.
+          return ;
+        }
+        //remove it on client side first.
+        target.deleted = true;
         ctrl.filters = $.grep(ctrl.filters, function(filter){
           return filter.id !== target.id;
         });
-        
+        //remove it on server side.
         MyFiltersService.deleteFilter(target.id).then(function(){
           //silent.
         },function(error){
           //Failed to delete, push back the target.
+          target.deleted = false;
           ctrl.filters.push(target);
           MyFiltersService.showError('An error occurs when deleting filters on server.', error);
           
@@ -117,6 +123,10 @@
       }
 
       function updateFilterOptions(filter){
+        if(filter.deleted){
+          //There is a DELETE operation on this filter not long ago.
+          return ;
+        }
         $scope.setFilterOptions(filter.filterOptions);
         $scope.applyFilter();
       }
