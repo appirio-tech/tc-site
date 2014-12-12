@@ -7,7 +7,7 @@
 
   function saveFilter() {
 
-    SaveFiltersCtrl.$inject = ['$scope', 'MyFiltersService'];
+    SaveFiltersCtrl.$inject = ['$scope', 'MyFiltersService', '$location'];
  
     return {
       restrict: 'EA',
@@ -21,10 +21,46 @@
     function postLink(scope, element, attrs, advancedSearchCtrl) {
     }
 
-    function SaveFiltersCtrl($scope, MyFiltersService){
+    function SaveFiltersCtrl($scope, MyFiltersService, $location){
       var ctrl = this;
       //hide the dialog at first.
       ctrl.dialog = false;
+
+      ctrl.name = '';
+
+      ctrl.saveFilter = saveFilter;
+
+      function saveFilter(){
+        var filter = makeFilterObject();
+
+        MyFiltersService.readFilterByName(ctrl.name).then(function(data){
+          if(data.length === 0){
+            MyFiltersService.createFilter(filter).then(function(){
+              MyFiltersService.showConfirm();
+              $scope.setMyFiltersListDirty(true);
+            }, function(error){
+              MyFiltersService.showError('Error occurs when creating new filter on server.', error);
+            });
+          }else{
+            MyFiltersService.updateFilter(data[0]._id, filter).then(function(){
+              MyFiltersService.showConfirm();
+              $scope.setMyFiltersListDirty(true);
+            }, function(error){
+              MyFiltersService.showError('Error occurs when updating filters on server.', error);
+            });
+          }
+        },function(error){
+          MyFiltersService.showError('Error occurs when retrieving filters from server.', error);
+        });
+      }
+
+      function makeFilterObject(){
+        return {
+          name : ctrl.name,
+          filter : MyFiltersService.encode($location.search()),
+          type : $location.path().match(/\/([A-z]+)\//)[1]
+        }
+      }
     }
   }
 }(angular));

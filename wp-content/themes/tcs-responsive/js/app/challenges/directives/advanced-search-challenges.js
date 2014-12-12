@@ -72,6 +72,17 @@
         $scope.getFilterOptions = getFilterOptions;
         $scope.setFilterOptions = setFilterOptions;
 
+        $scope.myFiltersListDirty = false;
+        $scope.setMyFiltersListDirty = setMyFiltersListDirty;
+        $scope.isMyFiltersListDirty = isMyFiltersListDirty;
+
+        function setMyFiltersListDirty(dirty){
+          $scope.myFiltersListDirty = dirty;
+        }
+
+        function isMyFiltersListDirty(){
+          return  $scope.myFiltersListDirty;
+        }
         function getFilterOptions(){
           return $scope.filterOptions;
         }

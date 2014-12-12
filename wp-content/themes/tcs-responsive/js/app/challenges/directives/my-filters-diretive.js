@@ -19,6 +19,7 @@
     };
 
     function postLink(scope, element, attrs, advancedSearchCtrl) {
+
     }
 
     function MyFiltersCtrl($scope, MyFiltersService){
@@ -26,28 +27,52 @@
       
       ctrl.deleteFilter = deleteFilter;
 
+      ctrl.populateList = populateList;
+
       ctrl.updateFilterOptions = updateFilterOptions;
 
-      //retrieve my filters from 0 to 1000.
-      MyFiltersService.readFilters(0, 1000).then(function(data){
-        ctrl.filters = data;
+      ctrl.populateList();
 
-        $.each(ctrl.filters, function(index, value){
-          //transform the url param to javascript object.
-          value.filterOptions = MyFiltersService.decode(value.filter);
-          //Sometimes the saved filter's track is different with the current one's.(e.g. develop and design)
-          value.filterOptions['contestType'] = value.type;
-        });
-      }, function(error){
-        ctrl.filters = [];
+      $scope.$watch('myFiltersListDirty', function(newValue, oldvalue){
+        if(oldvalue != newValue && newValue == true){
+          $scope.setMyFiltersListDirty(false);
+          ctrl.populateList();
+        }
       });
 
-      function deleteFilter(id){
-        MyFiltersService.deleteFilter(id).then(function(){
-          //keep consistent, remove the filter in client-side model.
-          ctrl.filters = $.grep(ctrl.filters, function(filter){
-            return filter.id !== id;
+      function populateList(){
+        //retrieve my filters from 0 to 1000.
+        MyFiltersService.readFilters(0, 1000).then(function(data){
+          ctrl.filters = data;
+
+          $.each(ctrl.filters, function(index, value){
+            //transform the url param to javascript object.
+            value.filterOptions = MyFiltersService.decode(value.filter);
+            //Sometimes the saved filter's track is different with the current one's.(e.g. develop and design)
+            value.filterOptions['contestType'] = value.type;
+            console.log(value);
           });
+        }, function(error){
+          ctrl.filters = [];
+          MyFiltersService.showError('Error occurs when retrieving filters from server.', error);
+        });
+      }
+
+      function deleteFilter(target){
+        
+        //removing the filter on client side can prevent pressing operations on a deleting filter, e.g. searching or
+        //deleting again.
+        ctrl.filters = $.grep(ctrl.filters, function(filter){
+          return filter.id !== target.id;
+        });
+        
+        MyFiltersService.deleteFilter(target.id).then(function(){
+          //silent.
+        },function(error){
+          //Failed to delete, push back the target.
+          ctrl.filters.push(target);
+          MyFiltersService.showError('Error occurs when deleting filters on server.', error);
+          
         });
       }
 

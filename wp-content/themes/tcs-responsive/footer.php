@@ -190,6 +190,28 @@ $blog_posts = get_posts($blog_posts_args);
     </div>
 </div><!-- END #show submission -->
 
+<div id="filterSavedSuccess" class="modal">
+  <a href="javascript:;" class="btnClose closeModal"></a>
+  <div class="content">
+    <h2>Success</h2>
+    <p class="success">Your filters have been saved and stored in My Filters dropdown list. Now you can browse the challenge more quick and easy to find.</p>
+    <p class="submitBtn">
+      <a class="btn closeModal" href="javascript:;">OK</a>
+    </p>
+  </div>
+</div><!-- END #filterSavedModal -->
+
+<div id="filterSavedFailed" class="modal">
+  <a href="javascript:;" class="btnClose closeModal"></a>
+  <div class="content">
+    <h2>Info</h2>
+    <p class="failedMessage"></p>
+    <p class="submitBtn">
+      <a class="btn closeModal" href="javascript:;">OK</a>
+    </p>
+  </div>
+</div><!-- END #filterSavedFailed -->
+
 <div id="designSubmissionCommentExample" class="modal">
   <a href="javascript:;" class="btnClose closeModal"></a>
   <div class="content">

@@ -6,10 +6,10 @@
 (function() {
   'use strict';
 
-  function MyFiltersService(Restangular, $cookies, $q, MY_FILTER_API_URL) {
+  function MyFiltersService(Restangular, $cookies, $q, MY_FILTER_API_URL, $cacheFactory) {
 
     var header = {
-      'Content-Type': 'application/json'
+      'Content-Type' : 'application/json'
     };
 
     var restangular = Restangular.withConfig(function(RestangularConfigurer) {
@@ -19,19 +19,23 @@
           'Authorization': 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "")
         });
       }
+      //no cache, the page is required to refresh on any data changes.
+      RestangularConfigurer.setDefaultHttpFields({cache: false});
     });
 
     var savedSearches = restangular.all('saved-searches');
 
     var myFiltersService = {
-      createFilter: createFilter,
-      readFilters: readFilters,
-      readFilterByName: readFilterByName,
-      readFilterById: readFilterById,
-      updateFilter: updateFilter,
-      deleteFilter: deleteFilter,
+      createFilter : createFilter,
+      readFilters : readFilters,
+      readFilterByName : readFilterByName,
+      readFilterById : readFilterById,
+      updateFilter : updateFilter,
+      deleteFilter : deleteFilter,
       encode : encode,
-      decode : decode
+      decode : decode,
+      showError : showError,
+      showConfirm : showConfirm
     };
 
     return myFiltersService;
@@ -53,31 +57,11 @@
     }
 
     function updateFilter(id, filter){
-      var defer = $q.defer();
-      readFilterById(id).then(function(element){
-        element.put(filter, header).then(function(data){
-          defer.resolve(data);
-        },function(error){
-          defer.reject(error);
-        });
-      }, function(error){
-        defer.reject(error);
-      });
-      return defer.promise;
+      return savedSearches.one(id).customPUT(filter);
     }
 
     function deleteFilter(id){
-      var defer = $q.defer();
-      readFilterById(id).then(function(element){
-        element.remove(undefined, header).then(function(data){
-          defer.resolve(data);
-        },function(error){
-          defer.reject(error);
-        });
-      }, function(error){
-        defer.reject(error);
-      });
-      return defer.promise;
+      return savedSearches.one(id).remove(undefined, header);
     }
 
     function encode(object){
@@ -91,16 +75,35 @@
       object.technologies = toArray(object.technologies);
       object.platforms = toArray(object.platforms);
       object.keywords = toArray(object.keywords);
-      console.log(param);
-      console.log(object);
+
+      //normalize userChallenges
+      object['userChallenges'] = normalize(object['userChallenges']);
       return object;
+    }
+
+    function normalize(userChallenges){
+      return userChallenges === '' || userChallenges === 'true' || userChallenges === true;
     }
 
     function toArray(field){
       return field ? [].concat(field) : [];
     }
+
+    function showError(text, error){
+      console.log(error);
+      $("#filterSavedFailed .failedMessage").text(text);
+      showModal("#filterSavedFailed");
+    }
+
+    function showConfirm(text){
+      //Use the default message when text is undefined, which is already embedded in the modal html code. 
+      if(text){
+        $("#filterSavedSuccess .success").text(text);
+      }
+      showModal("#filterSavedSuccess");
+    }
   }
-  MyFiltersService.$inject = ['Restangular', '$cookies', '$q', 'MY_FILTER_API_URL'];
+  MyFiltersService.$inject = ['Restangular', '$cookies', '$q', 'MY_FILTER_API_URL', '$cacheFactory'];
 
   angular.module('tc.challenges.services').factory('MyFiltersService', MyFiltersService);
 }());

@@ -378,7 +378,7 @@ get_header(); ?>
       <div class="rw">
           <label class="lbl" for="searchSaveTxt">Name Saved Search</label>
           <div class="val">
-            <input type="text" placeholder="Enter name for saving search" data-ng-model="searchSaveTxt" id="searchSaveTxt" />
+            <input type="text" placeholder="Enter name for saving search" data-ng-model="saveFilterCtrl.name" id="searchSaveTxt" />
           </div>
       </div>
       <!-- This feature isn't supported for now.
@@ -387,7 +387,7 @@ get_header(); ?>
       </div>
       -->
       <div class="actn">
-      <a class="btn btnCancel btnSecondary">Cancel</a><a class="btn btnSaveSearch" data-ng-click="saveSearch();">Save My Search</a>
+      <a class="btn btnCancel btnSecondary" ng-click="saveFilterCtrl.dialog = false; saveFilterCtrl.name='' ">Cancel</a><a class="btn btnSaveSearch" data-ng-click="saveFilterCtrl.saveFilter();">Save My Search</a>
       </div>
     </div>
   </div>     
@@ -412,7 +412,7 @@ get_header(); ?>
                       </span>
                     </span>
                     -->
-                    <a data-ng-click="myFiltersCtrl.deleteFilter(filter.id); $event.stopPropagation();" class="btnRemove"></a>
+                    <a data-ng-click="myFiltersCtrl.deleteFilter(filter); $event.stopPropagation();" class="btnRemove"></a>
                 </div>
                 <div class="tags">
                     <div class="tag" data-ng-if="filter.filterOptions.startDate || filter.filterOptions.endDate">From {{formatDate(filter.filterOptions.startDate)}} {{filter.filterOptions.endDate ? ('to ' + formatDate(filter.filterOptions.endDate)) : ''}}</div>
@@ -420,7 +420,7 @@ get_header(); ?>
                     <div class="tag" data-ng-repeat="tech in filter.filterOptions.technologies">{{tech}}</div>
                     <div class="tag" data-ng-repeat="plat in filter.filterOptions.platforms">{{plat}}</div>
                     <div class="tag" data-ng-repeat="token in filter.filterOptions.keywords">Text: {{token}}</div>
-                    <div class="tag" data-ng-if="filter.filterOptions.userChallenges !== undefined">My Challenge Only</div>
+                    <div class="tag" data-ng-if="filter.filterOptions.userChallenges">My Challenge Only</div>
                 </div>
             </div>
         </div>
