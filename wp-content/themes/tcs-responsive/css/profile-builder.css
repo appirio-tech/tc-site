@@ -1,5 +1,5 @@
 .builder-left {
-    margin: 6px 0 6px 6px;
+    margin: 10px 0 10px 6px;
     float: left;
 }
 .builder-right {
@@ -177,7 +177,10 @@
 }
 .opportunity.new .new-opp-section-builder span {
     float: right;
-    padding-right: 42px;
+    padding-right: 20px;
+}
+.opportunity.new .active {
+    margin-top: 24px;
 }
 .opportunity.new .skill-row-header {
     padding: 0 0 10px 0;
