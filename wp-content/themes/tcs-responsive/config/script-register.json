@@ -330,6 +330,7 @@
         "app/challenge-details/js/ng-challenge-result.js",
         "app/challenge-details/js/filters/filters-challenge-details.js",
         "app/challenge-details/js/services/lc-discussion-service.js",
+        "app/challenge-details/js/services/lc-user-service.js",
         "app/challenge-details/js/directives/lc-discussion-directive.js",
         "app/challenge-details/js/services/lc-download-service.js",
         "app/challenge-details/js/directives/lc-download-directive.js",

@@ -644,11 +644,6 @@ include locate_template('header-challenge-landing.php');
 
   <!-- template for tc-discussion directive -->
   <style>
-    .comment-header {
-      background: none repeat scroll 0 0 #f7f7f7;
-      border-radius: 3px 3px 0 0;
-      padding: 6px 10px 0;
-    }
     .message-box, .panel-title, .comment-box {
       font-size: 12px;
     }
@@ -675,26 +670,36 @@ include locate_template('header-challenge-landing.php');
     .comment-button {
       margin: 6px 0;
     }
+
+    img.message-avatar {
+      float: left;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    p.message-text {
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .created-at {
+      font-weight: 400;
+      color: #228400;
+    }
+
+    .message-author {
+      font-weight: 600;
+    }
+
   </style>
 
   <div class="discussion" data-ng-show="booted">
-    <div class="row message-box" data-ng-repeat="message in messages">
-      <div class="col-sm-1 col-md-1">
-        <a href="#" ><img class="message-avatar" data-ng-src="{{images[$index % 3]}}" width="45" height="45"></a>
-      </div>
-      <div class="col-sm-8 col-md-8">
-        <div class="row">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <p class="panel-title"><strong>{{message.createdBy}}</strong> <span class="created-at">commented at {{message.createdAt | date: "MMMM d, yyyy h:mm a"}}</span></p>
-            </div>
-            <div class="panel-body">
-              {{message.content}}
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="message-box ng-scope" data-ng-repeat="message in messages">
+      <a href="#"><img class="message-avatar" data-ng-src="{{users[message.authorId].avatarUrl}}" width="45" height="45"></a>
+      <span class="created-at ng-binding"><em class="ng-binding message-author">{{users[message.authorId].handle}}</em> commented at {{message.createdAt | date: "MMMM d, yyyy h:mm a"}}</span>
+      <p class="message-text">{{message.content}}</p>
     </div>
+
     <div class="row">
       <div class="col-sm-offset-1 col-sm-8 col-md-offset-1 col-md-8">
         <div class="row comment-box">

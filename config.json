@@ -9,6 +9,7 @@
   "cdnURL": "/wp-content/themes/tcs-responsive",
   "lcURL": "http://localhost:3000",
   "lcDiscussionURL": "http://localhost:10001",
+  "lcUserURL": "http://dev-lc1-user-service.herokuapp.com",
   "lcSiteUrl": "http://beta.topcoer.com",
   "useCND": false,
   "useMin": false,

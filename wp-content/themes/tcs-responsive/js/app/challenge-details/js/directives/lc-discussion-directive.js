@@ -8,7 +8,7 @@
 /*global angular: true, _: true */
 (function () {
   angular
-    .module('lc.directives.discussion', ['lc.services.discussion'])
+    .module('lc.directives.discussion', ['lc.services.discussion', 'lc.services.user'])
 
   /**
    * The directive to display discussion and messages.
@@ -18,7 +18,7 @@
    *     - discussionUrl: the url of discussions service endpoint, ex) http://lc1-discussion-service.herokuapp.com/discussions,
    *            provided from the parent scope.
    */
-    .directive('lcDiscussion', ['DiscussionService', function (DiscussionService) {
+    .directive('lcDiscussion', ['DiscussionService', 'UserService', function (DiscussionService, UserService) {
       return {
         restrict: 'E',
         scope: {
@@ -28,18 +28,13 @@
         },
         controller: function ($scope) {
 
-          // user avatar images are hardcoded for now
-          $scope.images = [
-            'http://res.cloudinary.com/peakpado/image/upload/v1413254950/user1_p0czzr.png',
-            'http://res.cloudinary.com/peakpado/image/upload/v1413254957/user2_lviuqk.png',
-            'http://res.cloudinary.com/peakpado/image/upload/v1383031335/bee_a7su6g.png'
-          ];
-
           $scope.discussion = null;
+          $scope.users = {};
           // $scope.messages = [];
 
           // create a Swagger client for discussion service
           var client = new DiscussionService($scope.discussionUrl);
+          var userClient = new UserService(lcUserUrl);
 
           console.log($scope.remoteObjectId);
           // check a discussion exists for remoteObjectKey and remoteObjectId
@@ -55,7 +50,17 @@
             .then(function (messages) {
               if (messages) {
                 $scope.messages = messages;
+
+                var userIds = _.pluck(messages, 'authorId');
+                return getUsers(userIds);
+              } else {
+                return [];
               }
+            })
+            .then(function(users) {
+              _.forEach(users, function(user) {
+                $scope.users[user.id] = user;
+              });
             })
             .catch(function (err) {
               console.log('get discussion messages error: ', err);
@@ -136,7 +141,7 @@
             var params = {
               body: {
                 remoteObjectKey: remoteObjectKey,
-                remoteObjectId: +remoteObjectId
+                remoteObjectId: parseInt(remoteObjectId)
               }
             };
             return client.postDiscussions(params)
@@ -153,7 +158,8 @@
             var params = {
               discussionId: discussionId,
               body: {
-                content: message
+                content: message,
+                useCurrentUserAsAuthor: true
               }
             };
             return client.postDiscussionsByDiscussionIdMessages(params)
@@ -165,6 +171,17 @@
               })
               .then(function (data) {
                 return data.content;  // message is in content property
+              });
+          }
+
+          function getUsers(users) {
+            var params = {
+              filter: 'id=in(' + users.join(',') + ')'
+            };
+
+            return userClient.getUsers(params)
+              .then(function(data) {
+                return data.users;
               });
           }
         },

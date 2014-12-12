@@ -8,17 +8,18 @@
 
   angular
     .module('challengeDetails', [
-    'restangular',
-    'ngCookies',
-    'angular-loading-bar',
-    'lc.services.discussion',
-    'lc.directives.discussion',
-    'lc.services.download',
-    'lc.directives.download',
-    'tc.SubmissionDirectives',
-    'tc.SubmissionServices',
-    'challengeDetails.filters',
-    'challengeDetails.services'
+      'restangular',
+      'ngCookies',
+      'angular-loading-bar',
+      'lc.services.discussion',
+      'lc.directives.discussion',
+      'lc.services.download',
+      'lc.directives.download',
+      'lc.services.user',
+      'tc.SubmissionDirectives',
+      'tc.SubmissionServices',
+      'challengeDetails.filters',
+      'challengeDetails.services'
     ])
 
     .constant("API_URL", tcLCApiURL)

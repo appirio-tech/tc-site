@@ -94,6 +94,7 @@ if (basename(get_permalink()) == "challenges") {
     var lcDiscussionURL = '<?php echo LC_DISCUSSION_URL; ?>';
     var lcSiteUrl = '<?php echo LC_SITE_URL; ?>';
     var lcExternalUrl = '<?php echo TC_LC_URL; ?>';
+    var lcUserUrl = '<?php echo LC_USER_URL; ?>';
 
     var siteURL = '<?php bloginfo('siteurl');?>';
     var communityURL = '<?php echo community_URL(); ?>';
