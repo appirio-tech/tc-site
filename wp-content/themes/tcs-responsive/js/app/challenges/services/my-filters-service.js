@@ -6,7 +6,7 @@
 (function() {
   'use strict';
 
-  function MyFiltersService(Restangular, $cookies, $q, MY_FILTER_API_URL, $cacheFactory) {
+  function MyFiltersService(Restangular, $cookies, $q, MY_FILTER_API_URL) {
 
     var header = {
       'Content-Type' : 'application/json'
@@ -19,7 +19,7 @@
           'Authorization': 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "")
         });
       }
-      //no cache, the page is required to refresh on any data changes.
+      //no cache, my filters list is required to refresh on any data changes.
       RestangularConfigurer.setDefaultHttpFields({cache: false});
     });
 
@@ -91,6 +91,8 @@
 
     function showError(text, error){
       console.log(error);
+      //This DOM manipulation is necessary just as other modals' manipulation in this project,
+      //for the modal is in footer.php.
       $("#filterSavedFailed .failedMessage").html(text + '<br>' + 'Status code: '+ error.status);
       showModal("#filterSavedFailed");
     }
@@ -98,12 +100,14 @@
     function showConfirm(text){
       //Use the default message when text is undefined, which is already embedded in the modal html code. 
       if(text){
+        //This DOM manipulation is necessary just as other modals' manipulation in this project,
+        //for the modal is in footer.php.
         $("#filterSavedSuccess .success").html(text);
       }
       showModal("#filterSavedSuccess");
     }
   }
-  MyFiltersService.$inject = ['Restangular', '$cookies', '$q', 'MY_FILTER_API_URL', '$cacheFactory'];
+  MyFiltersService.$inject = ['Restangular', '$cookies', '$q', 'MY_FILTER_API_URL'];
 
   angular.module('tc.challenges.services').factory('MyFiltersService', MyFiltersService);
 }());
