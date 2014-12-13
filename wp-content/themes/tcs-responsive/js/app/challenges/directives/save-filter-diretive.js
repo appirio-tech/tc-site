@@ -14,12 +14,8 @@
       require: '^advancedSearch',
       templateUrl: 'save-filter.html',
       controller: SaveFiltersCtrl,
-      controllerAs: 'saveFilterCtrl',
-      link: postLink
+      controllerAs: 'saveFilterCtrl'
     };
-
-    function postLink(scope, element, attrs, advancedSearchCtrl) {
-    }
 
     function SaveFiltersCtrl($scope, MyFiltersService, $location){
       var ctrl = this;
