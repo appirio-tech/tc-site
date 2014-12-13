@@ -401,7 +401,7 @@ get_header(); ?>
         <div class="caption">Your complete saved search list</div>
         <div class="savedSearchList">
             <h6 ng-if="myFiltersCtrl.filters.length<=0">No saved searches found.</h6>
-            <div ng-repeat="filter in myFiltersCtrl.filters |orderBy:'name'" ng-click="myFiltersCtrl.updateFilterOptions(filter)" class="savedSearch">
+            <div ng-repeat="filter in myFiltersCtrl.filters |orderBy:'name'" ng-click="myFiltersCtrl.updateFilterOptions(filter)" class="repeated-item savedSearch">
                 <div class="name">{{filter.name}}</div>
                 <div class="right opts">
                     <!-- This feature isn't supported for now.

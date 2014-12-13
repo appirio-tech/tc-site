@@ -12,7 +12,8 @@ window.tc = angular.module('tc', [
   'ngCookies',
   'ui.calendar',
   'tc.shared.directives.clickAnywhereButHere',
-  'tc.shared.directives.upwardsDownwardsAdaptive'
+  'tc.shared.directives.upwardsDownwardsAdaptive',
+  'ngAnimate'
 ])
 
   .constant("API_URL", tcApiRUL)

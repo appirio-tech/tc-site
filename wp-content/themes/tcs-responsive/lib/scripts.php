@@ -241,6 +241,10 @@ function tc_setup_angular() {
   wp_register_script('angularjs', '//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular.min.js', array('jquery'), null, true);
   wp_enqueue_script('angularjs');
 
+  //Angular animate
+  wp_register_script('angularjs-animate', '//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular-animate.min.js', array('angularjs'), null, true);
+  wp_enqueue_script('angularjs-animate');
+
   // Angular Route
   wp_register_script('angularjs-route', '//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular-route.min.js', array('angularjs'), null, true);
   wp_enqueue_script('angularjs-route');
