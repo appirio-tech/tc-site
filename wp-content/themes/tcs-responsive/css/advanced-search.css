@@ -762,31 +762,59 @@ input.search-text::-webkit-input-placeholder {
     margin: 0 4px;
     width: 145px;
 }
-#filterSavedModal{
+#filterSavedSuccess{
     width: 534px;
 }
-#filterSavedModal .btnClose{
+#filterSavedSuccess .btnClose{
     right: 20px;
 }
-#filterSavedModal .content{
+#filterSavedSuccess .content{
     padding: 10px 20px 20px;
 }
-#filterSavedModal .content h2{
+#filterSavedSuccess .content h2{
     font-size: 36px;
 }
-#filterSavedModal .content p.success{
+#filterSavedSuccess .content p.success{
     padding: 32px 20px 32px 80px;
     font-size: 14px;
     color: #666;
     line-height: 24px;
     background: url("../i/success-icon.png") no-repeat 0 34px;
 }
-#filterSavedModal .content p.submitBtn{
+#filterSavedSuccess .content p.submitBtn{
     border-top: 1px solid #e7e7e7;
     padding-top: 20px;
     text-align: center;
 }
-#filterSavedModal .content p.submitBtn .btn{
+#filterSavedSuccess .content p.submitBtn .btn{
+    width: 60px
+}
+
+/*filterSavedFailed modal*/
+#filterSavedFailed{
+    width: 534px;
+}
+#filterSavedFailed .btnClose{
+    right: 20px;
+}
+#filterSavedFailed .content{
+    padding: 10px 20px 20px;
+}
+#filterSavedFailed .content h2{
+    font-size: 36px;
+}
+#filterSavedFailed .content p.failedMessage{
+    padding: 32px 30px 32px 80px;
+    font-size: 14px;
+    color: #666;
+    line-height: 24px;
+}
+#filterSavedFailed .content p.submitBtn{
+    border-top: 1px solid #e7e7e7;
+    padding-top: 20px;
+    text-align: center;
+}
+#filterSavedFailed .content p.submitBtn .btn{
     width: 60px
 }
 
