@@ -11,7 +11,8 @@ window.tc = angular.module('tc', [
   'ui.select2',
   'ngCookies',
   'ui.calendar',
-  'tc.shared.directives.clickAnywhereButHere'
+  'tc.shared.directives.clickAnywhereButHere',
+  'tc.shared.directives.upwardsDownwardsAdaptive'
 ])
 
   .constant("API_URL", tcApiRUL)

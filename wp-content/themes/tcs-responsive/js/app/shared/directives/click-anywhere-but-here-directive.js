@@ -14,7 +14,7 @@
      * Inject dependencies
      * @type {string[]}
      */
-    clickAnywhereButHere.$inject=['$document', '$timeout'];
+    clickAnywhereButHere.$inject=['$document'];
 
     /**
      * This directive is applied on those pop-up modal. If the user click outside of such an modal, the 'expression'

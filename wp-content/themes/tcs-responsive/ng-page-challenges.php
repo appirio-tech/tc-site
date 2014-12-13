@@ -394,9 +394,9 @@ get_header(); ?>
 </script>
 
 <script type="text/ng-template" id="my-filters.html">
-  <div class="myFilterWrap">
+  <div class="myFilterWrap" upwards-downwards-adaptive >
     <a class="btnDD btnFilter">My Filters <span class="arrow"></span></a>
-    <div class="filterPop">
+    <div class="filterPop dropdown">
         <h3>Saved search</h3>
         <div class="caption">Your complete saved search list</div>
         <div class="savedSearchList">
