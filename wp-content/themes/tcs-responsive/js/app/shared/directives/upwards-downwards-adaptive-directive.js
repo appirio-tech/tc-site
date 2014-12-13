@@ -9,12 +9,6 @@
   angular
     .module('tc.shared.directives.upwardsDownwardsAdaptive', [])
     .directive('upwardsDownwardsAdaptive', upwardsDownwardsAdaptive);
-    
-    /**
-     * Inject dependencies
-     * @type {string[]}
-     */
-    upwardsDownwardsAdaptive.$inject=[];
 
     /**
      * This directive is applied on those pop-up modal. If the user click outside of such an modal, the 'expression'
