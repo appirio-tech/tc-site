@@ -10,17 +10,6 @@
     .module('tc.shared.directives.upwardsDownwardsAdaptive', [])
     .directive('upwardsDownwardsAdaptive', upwardsDownwardsAdaptive);
 
-    /**
-     * This directive is applied on those pop-up modal. If the user click outside of such an modal, the 'expression'
-     * will be executed. Specifically here it will dispose the modal.
-     * There is also an attribute 'is-active' to indicate when this directive takes effect.
-     *
-     * The usage:
-     * <any click-anywhere-but-here="close()" is-active="valid()" ></any> 
-     *
-     * @param $document the root place to judge the click/tap events.
-     * @return the directive definition object.
-     */
     function upwardsDownwardsAdaptive() {
       var directive = {
         link : link
@@ -33,9 +22,9 @@
       function link (scope, element, attrs) {
         var dropdown = element.find('.dropdown');
 
-        setupEventListener(dropdown, element);
+        setupEventListeners(dropdown, element);
 
-        function setupEventListener(dropdown, container){
+        function setupEventListeners(dropdown, container){
           container.hover(function () {
             position(dropdown, container);
             dropdown.show();

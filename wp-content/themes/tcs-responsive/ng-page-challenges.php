@@ -378,16 +378,16 @@ get_header(); ?>
       <div class="rw">
           <label class="lbl" for="searchSaveTxt">Name Saved Search</label>
           <div class="val">
-            <input type="text" placeholder="Enter name for saving search" data-ng-model="saveFilterCtrl.name" id="searchSaveTxt" />
+            <input type="text" placeholder="Enter name for saving search" ng-model="saveFilterCtrl.name" id="searchSaveTxt" />
           </div>
       </div>
       <!-- This feature isn't supported for now.
       <div class="alertMe chkWrap">
-         <input type="checkbox" data-ng-model="alertMeChk" id="alertMeChk" class="chk" /><label class="chkLbl" for="alertMeChk">Alerts me when there’s New challenge available for me</label>
+         <input type="checkbox" ng-model="alertMeChk" id="alertMeChk" class="chk" /><label class="chkLbl" for="alertMeChk">Alerts me when there’s New challenge available for me</label>
       </div>
       -->
       <div class="actn">
-      <a class="btn btnCancel btnSecondary" ng-click="saveFilterCtrl.closeDialogAndClear()">Cancel</a><a class="btn btnSaveSearch" data-ng-click="saveFilterCtrl.saveFilter();">Save My Search</a>
+      <a class="btn btnCancel btnSecondary" ng-click="saveFilterCtrl.closeDialogAndClear()">Cancel</a><a class="btn btnSaveSearch" ng-click="saveFilterCtrl.saveFilter();">Save My Search</a>
       </div>
     </div>
   </div>     
@@ -400,27 +400,27 @@ get_header(); ?>
         <h3>Saved search</h3>
         <div class="caption">Your complete saved search list</div>
         <div class="savedSearchList">
-            <h6 data-ng-if="myFiltersCtrl.filters.length<=0">No saved searches found.</h6>
-            <div data-ng-repeat="filter in myFiltersCtrl.filters |orderBy:'name'" data-ng-click="myFiltersCtrl.updateFilterOptions(filter)" class="savedSearch">
+            <h6 ng-if="myFiltersCtrl.filters.length<=0">No saved searches found.</h6>
+            <div ng-repeat="filter in myFiltersCtrl.filters |orderBy:'name'" ng-click="myFiltersCtrl.updateFilterOptions(filter)" class="savedSearch">
                 <div class="name">{{filter.name}}</div>
                 <div class="right opts">
                     <!-- This feature isn't supported for now.
                     <span class="lbl">
                       <span class="chkWrap">
-                        <input type="checkbox" class="chk" id="altertChk-{{$index}}" data-ng-model="filter.isAlertsEnabled" />
+                        <input type="checkbox" class="chk" id="altertChk-{{$index}}" ng-model="filter.isAlertsEnabled" />
                         <label class="chkLbl" for="altertChk-{{$index}}">Alerts?</label>
                       </span>
                     </span>
                     -->
-                    <a data-ng-click="myFiltersCtrl.deleteFilter(filter); $event.stopPropagation();" class="btnRemove"></a>
+                    <a ng-click="myFiltersCtrl.deleteFilter(filter); $event.stopPropagation();" class="btnRemove"></a>
                 </div>
                 <div class="tags">
-                    <div class="tag" data-ng-if="filter.filterOptions.startDate || filter.filterOptions.endDate">From {{formatDate(filter.filterOptions.startDate)}} {{filter.filterOptions.endDate ? ('to ' + formatDate(filter.filterOptions.endDate)) : ''}}</div>
-                    <div class="tag" data-ng-repeat="types in filter.filterOptions.challengeTypes">{{types}}</div>
-                    <div class="tag" data-ng-repeat="tech in filter.filterOptions.technologies">{{tech}}</div>
-                    <div class="tag" data-ng-repeat="plat in filter.filterOptions.platforms">{{plat}}</div>
-                    <div class="tag" data-ng-repeat="token in filter.filterOptions.keywords">Text: {{token}}</div>
-                    <div class="tag" data-ng-if="filter.filterOptions.userChallenges">My Challenge Only</div>
+                    <div class="tag" ng-if="filter.filterOptions.startDate || filter.filterOptions.endDate">From {{formatDate(filter.filterOptions.startDate)}} {{filter.filterOptions.endDate ? ('to ' + formatDate(filter.filterOptions.endDate)) : ''}}</div>
+                    <div class="tag" ng-repeat="types in filter.filterOptions.challengeTypes">{{types}}</div>
+                    <div class="tag" ng-repeat="tech in filter.filterOptions.technologies">{{tech}}</div>
+                    <div class="tag" ng-repeat="plat in filter.filterOptions.platforms">{{plat}}</div>
+                    <div class="tag" ng-repeat="token in filter.filterOptions.keywords">Text: {{token}}</div>
+                    <div class="tag" ng-if="filter.filterOptions.userChallenges">My Challenge Only</div>
                 </div>
             </div>
         </div>
