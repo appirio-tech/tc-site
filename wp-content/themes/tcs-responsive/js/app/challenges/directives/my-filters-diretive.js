@@ -20,6 +20,8 @@
     function MyFiltersCtrl($scope, MyFiltersService){
       var ctrl = this;
       
+      ctrl.dateRange = dateRange;
+
       ctrl.deleteFilter = deleteFilter;
 
       ctrl.populateList = populateList;
@@ -56,6 +58,21 @@
           ctrl.filters = [];
           MyFiltersService.showError('An error occurs when retrieving filters from server.', error);
         });
+      }
+
+      function dateRange(filter){
+        var ret = '';
+        if(filter.filterOptions.startDate){
+          ret += 'From ' + $scope.formatDate(filter.filterOptions.startDate);
+          if(filter.filterOptions.endDate){
+            ret += 'to ' + $scope.formatDate(filter.filterOptions.endDate);
+          }
+        } else {
+          if(filter.filterOptions.endDate){
+            ret += 'To ' + $scope.formatDate(filter.filterOptions.endDate);
+          }
+        }
+        return ret;
       }
 
       function deleteFilter(target){

@@ -373,7 +373,7 @@ get_header(); ?>
 
 <script type="text/ng-template" id="save-filter.html">
   <a class="btn btnAlt btnSave" ng-click="saveFilterCtrl.openDialog($event)">Save</a>
-  <div class="filterWidget" click-anywhere-but-here="saveFilterCtrl.dialog = false" is-active="saveFilterCtrl.dialog" ng-show="saveFilterCtrl.dialog">
+  <div class="filterWidget" click-anywhere-but-here="saveFilterCtrl.closeDialogAndClear()" is-active="saveFilterCtrl.dialog" ng-show="saveFilterCtrl.dialog">
     <div class="details">
       <div class="rw">
           <label class="lbl" for="searchSaveTxt">Name Saved Search</label>
@@ -415,7 +415,7 @@ get_header(); ?>
                     <a ng-click="myFiltersCtrl.deleteFilter(filter); $event.stopPropagation();" class="btnRemove"></a>
                 </div>
                 <div class="tags">
-                    <div class="tag" ng-if="filter.filterOptions.startDate || filter.filterOptions.endDate">From {{formatDate(filter.filterOptions.startDate)}} {{filter.filterOptions.endDate ? ('to ' + formatDate(filter.filterOptions.endDate)) : ''}}</div>
+                    <div class="tag" ng-if="filter.filterOptions.startDate || filter.filterOptions.endDate">{{myFiltersCtrl.dateRange(filter)}}</div>
                     <div class="tag" ng-repeat="types in filter.filterOptions.challengeTypes">{{types}}</div>
                     <div class="tag" ng-repeat="tech in filter.filterOptions.technologies">{{tech}}</div>
                     <div class="tag" ng-repeat="plat in filter.filterOptions.platforms">{{plat}}</div>
