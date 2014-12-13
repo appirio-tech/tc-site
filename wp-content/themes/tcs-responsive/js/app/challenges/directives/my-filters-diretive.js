@@ -1,10 +1,19 @@
+/**
+ * This code is copyright (c) 2014 Topcoder Corporation
+ * @author: TCS_ASSEMBLER
+ * @version 1.0
+ */
+
 /*jslint nomen: true*/
 /*global angular: true, _: true */
-
 (function (angular) {
   'use strict';
   angular.module('tc.AdvancedSearch').directive('myFilters', myFilters);
 
+  /**
+   * This function defines "my-filters" directive. This directive render a list on page to show users' saved filters.
+   * @return the directive definition object.
+   */
   function myFilters() {
 
     MyFiltersCtrl.$inject = ['$scope', 'MyFiltersService'];
