@@ -387,7 +387,7 @@ get_header(); ?>
       </div>
       -->
       <div class="actn">
-      <a class="btn btnCancel btnSecondary" ng-click="saveFilterCtrl.dialog = false; saveFilterCtrl.name='' ">Cancel</a><a class="btn btnSaveSearch" data-ng-click="saveFilterCtrl.saveFilter();">Save My Search</a>
+      <a class="btn btnCancel btnSecondary" ng-click="saveFilterCtrl.closeDialogAndClear()">Cancel</a><a class="btn btnSaveSearch" data-ng-click="saveFilterCtrl.saveFilter();">Save My Search</a>
       </div>
     </div>
   </div>     

@@ -21,12 +21,20 @@
       var ctrl = this;
       //hide the dialog at first.
       ctrl.dialog = false;
-
+      //the saved filter's name
       ctrl.name = '';
+
+      ctrl.closeDialogAndClear = closeDialogAndClear;
+      
+      ctrl.openDialog = openDialog;
 
       ctrl.saveFilter = saveFilter;
 
-      ctrl.openDialog = openDialog;
+
+      function closeDialogAndClear(){
+        ctrl.dialog = false;
+        ctrl.name = '';
+      }
 
       function openDialog($event){
         if(!ctrl.dialog){
@@ -58,8 +66,7 @@
           MyFiltersService.showError('An error occurs when retrieving filters from server.', error);
         });
 
-        ctrl.dialog = false;
-        ctrl.name = '';
+        ctrl.closeDialogAndClear();
       }
 
       function makeFilterObject(){
