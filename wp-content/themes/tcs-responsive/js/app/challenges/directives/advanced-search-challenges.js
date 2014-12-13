@@ -69,24 +69,40 @@
           }
         };
 
+        //"My filters" list need to update when $scope.myFiltersListDirty is true.
+        $scope.myFiltersListDirty = false;
+        $scope.isMyFiltersListDirty = isMyFiltersListDirty;
+        $scope.setMyFiltersListDirty = setMyFiltersListDirty;
         $scope.getFilterOptions = getFilterOptions;
         $scope.setFilterOptions = setFilterOptions;
 
-        $scope.myFiltersListDirty = false;
-        $scope.setMyFiltersListDirty = setMyFiltersListDirty;
-        $scope.isMyFiltersListDirty = isMyFiltersListDirty;
+        /**
+         * The getter for $scope.myFiltersListDirty.
+         * @return $scope.myFiltersListDirty.
+         */
+        function isMyFiltersListDirty(){
+          return  $scope.myFiltersListDirty;
+        }
 
+        /**
+         * The setter for $scope.myFiltersListDirty.
+         * @param dirty the value to be set.
+         */
         function setMyFiltersListDirty(dirty){
           $scope.myFiltersListDirty = dirty;
         }
 
-        function isMyFiltersListDirty(){
-          return  $scope.myFiltersListDirty;
-        }
+        /**
+         * The getter for $scope.filterOptions.
+         * @return $scope.filterOptions.
+         */
         function getFilterOptions(){
           return $scope.filterOptions;
         }
-
+        /**
+         * The setter for $scope.filterOptions.
+         * @param filterOptions the value to be set.
+         */
         function setFilterOptions(filterOptions){
           $scope.filterOptions = filterOptions;
         }
