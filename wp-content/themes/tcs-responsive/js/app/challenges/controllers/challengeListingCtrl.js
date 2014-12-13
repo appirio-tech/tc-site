@@ -431,7 +431,6 @@
       }, true);
       
       $scope.$on('$locationChangeSuccess', function (event) {
-        console.log(event);
         $timeout(function () {
           parseFilters();
           if($scope.filter.userChallenges) {

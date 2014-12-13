@@ -52,7 +52,7 @@
             value.filterOptions['contestType'] = value.type;
             //To prevent operations after a deleting filter. If it's set to true, then all operations are ignored.
             value.deleted = false;
-            console.log(value);
+            //console.log(value);
           });
         }, function(error){
           ctrl.filters = [];

@@ -90,7 +90,7 @@
     }
 
     function showError(text, error){
-      console.log(error);
+      //console.log(error);
       //This DOM manipulation is necessary just as other modals' manipulation in this project,
       //for the modal is in footer.php.
       $("#filterSavedFailed .failedMessage").html(text + '<br>' + 'Status code: '+ error.status);
