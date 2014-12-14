@@ -363,6 +363,7 @@
     "ngChallenges": {
       "name": "ngChallenges",
       "js": [
+        "jquery-migrate-1.2.1.min.js",
         "jquery.cookie.js",
         "jwt-auth0.js",
         "jquery.bxslider.js",
