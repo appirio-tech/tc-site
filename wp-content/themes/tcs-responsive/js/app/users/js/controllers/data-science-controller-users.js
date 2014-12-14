@@ -50,6 +50,10 @@ var DataScienceCtrl = function ($scope, UsersService, ChartService) {
 DataScienceCtrl.prototype.dealWithDataScienceStatistic = function($scope, stats, ChartService){
   var dataCtrl = this;
 
+  if (stats.rank == 'not ranked') stats.rank = 'N/A';
+  if (stats.countryRank == 'not ranked') stats.countryRank = 'N/A';
+  if (stats.schoolRank == 'not ranked') stats.schoolRank = 'N/A';
+
   //cache the data science statistics.
   $scope.baseCtrl.cache['dataScience'][dataCtrl.subTrack] = stats;
 
