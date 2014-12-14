@@ -1,0 +1,76 @@
+<div class="chartTypeSwitcher">
+	<a class="btn btnHistory" ng-click="showHist()" ng-class="{ isActive : showAsHist && !showAsTable }">Rating History</a>
+	<a class="btn btnDist" ng-click="showDist()" ng-class="{ isActive : showAsDist && !showAsTable }">Rating Distribution</a>
+	<a class="btn btnSub" ng-click="isTable=true;history=false;showTable(true);"  ng-class="{ isActive : showAsTable }">Submissions</a>
+</div>
+<div id="tabularView" class="show" ng-if="showAsTable">
+	<div class="subTrackTabs">
+		<div class="srm subTrackTab" ng-if="subTrack==='algorithm'">
+			<div class="tableView leftTabSplit">
+				<aside class="leftTabStream">
+					<div class="chartGroup">
+						<div class="chartWrap">
+							<div id="srmD1Chart" class="chart" data-option='0' tc-draw-pie="{{dataCtrl[dataCtrl.subTrack].Divisions['Division I']['Level Total']['success%']}}"></div>
+							<div class="chartLbl">
+								<em ng-bind="dataCtrl[dataCtrl.subTrack].Divisions['Division I']['Level Total']['success%']|| 'loading...'">loading...</em>Division 1
+							</div>
+						</div>
+						<div class="chartWrap">
+							<div id="srmD2Chart" class="chart" data-option='1' tc-draw-pie="{{dataCtrl[dataCtrl.subTrack].Divisions['Division II']['Level Total']['success%']}}"></div>
+							<div class="chartLbl">
+								<em ng-bind="dataCtrl[dataCtrl.subTrack].Divisions['Division II']['Level Total']['success%']|| 'loading...'">loading...</em>Division 2
+							</div>
+						</div>
+						<div class="chartWrap chartYellow">
+							<div id="srmChallenge" class="chart" data-option="2" tc-draw-pie="{{dataCtrl[dataCtrl.subTrack].Challenges.Levels.Total['success%']}}"></div>
+							<div class="chartLbl">
+								<em ng-bind="dataCtrl[dataCtrl.subTrack].Challenges.Levels.Total['success%']|| 'loading...'">loading...</em>Challenges
+							</div>
+						</div>
+					</div>
+				</aside>
+				<article class="mainTabStream">
+					<div class="tableWrap">
+						<div class="ngRatingTableCaption">Division I Submission</div>
+						<div class="ngRatingTable algo" ng-grid="div1GridOptions"></div>
+
+						<div class="ngRatingTableCaption">Division II Submission</div>
+						<div class="ngRatingTable algo" ng-grid="div2GridOptions"></div>
+
+						<div class="ngRatingTableCaption">Challenges</div>
+						<div class="ngRatingTable algo" ng-grid="chaGridOptions"></div>
+					</div>
+				</article>
+				<!-- /.mainTabStream -->
+			</div>
+			<!-- /.tableView -->
+		</div>
+		<div class="srm subTrackTab" ng-if="subTrack==='marathon'">
+			<div class="tableView">
+				<article class="mainTabStream">
+					<div class="tableWrap">
+						<div class="ngRatingTable dev" ng-grid="marGridOptions"></div>
+					</div>
+				</article>
+				<!-- /.mainTabStream -->
+			</div>
+			<!-- /.tableView -->
+		</div>
+	</div>
+	<!-- /.subTrackTabs -->
+	</div>
+	<!-- /.subTrackTabs -->
+</div>
+<!-- /#tabularView -->
+<div id="graphView" ng-if="!showAsTable">
+	<div class="subTrackTabs">
+		<div class="srm subTrackTab">
+			<div class="chartWrap" ng-init="history = true;">
+				<div class="ratingChart" id="history_chart" ng-show="showAsHist"  tc-draw-history></div>
+				<div class="ratingChart" id="distribution_chart" ng-show="showAsDist" tc-draw-distribution></div>
+			</div>
+		</div>
+	</div>
+	<!-- /.subTrackTabs -->
+</div>
+<!-- /#graphView -->

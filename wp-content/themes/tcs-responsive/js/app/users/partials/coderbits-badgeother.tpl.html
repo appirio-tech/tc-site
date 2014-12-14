@@ -1,0 +1,18 @@
+<style>
+.coderbits-badge img {
+	width: 100px;
+	height: 100px;
+}
+</style>
+<div class='coderbits-badge'>
+<a ng-href={{tcCoderbitsItem.link}}><h4 class='cb-social-heading'  ng-style="{'background-image': 'url(https://'+apiHost+'/'+tcCoderbitsItem.external_account.image_link+')'}">{{tcCoderbitsItem.name}}</h4></a>
+{{tcCoderbitsItem.description}}<br ng-if='tcCoderbitsItem.description'/>
+Earned {{tcCoderbitsItem.updated | timeSince :'a while ago'}} from <a ng-href='{{tcCoderbitsItem.external_account.link}}'>{{tcCoderbitsItem.external_account.friendly_name}}</a><br/>
+<img  align='left' ng-src="https://{{apiHost}}/{{tcCoderbitsItem.image_link}}" ng-if="tcCoderbitsItem.image_link.indexOf('http') === -1"/>
+<img align='left' ng-src="{{tcCoderbitsItem.image_link}}" ng-if="tcCoderbitsItem.image_link.indexOf('http') > -1"/>
+ <div class='cb-badge-info'>
+  <b>{{tcCoderbitsItem.name}}</b><br/>
+  Label
+ </div>
+</div>
+ <div style='clear: both'></div>

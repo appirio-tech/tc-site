@@ -1,0 +1,63 @@
+<div class="submissonInfo" ng-if="designCtrl.dataLoaded && !designCtrl.isEmptySubmission() " ng-hide="coderbits">
+	<div class="submissionThumb">
+		<figure class="figure">
+			<img alt="" ng-src="{{submission.fullImage}}" ng-repeat="submission in designCtrl.recentWins.recentWinningSubmissions" ng-show="$index === designCtrl.currentIndex"/>
+		</figure>
+	</div>
+	<div class="rwsDetails">
+		<header class="head">
+			<h4>Recent Winning Submission</h4>
+		</header>
+		<div class="winInfo">
+			<a ng-href="/challenge-details/{{designCtrl.recentWins.recentWinningSubmissions[designCtrl.currentIndex].challengeId}}/?type=design" class="contestTitle"><i></i>{{designCtrl.recentWins.recentWinningSubmissions[designCtrl.currentIndex].contestName}}</a>
+			<div id="badgeImg" class="badgeImg" ng-class=" 'rank' + designCtrl.recentWins.recentWinningSubmissions[designCtrl.currentIndex].rank"></div>
+			<div class="prizeAmount">
+				<span class="val"><i></i>{{designCtrl.recentWins.recentWinningSubmissions[designCtrl.currentIndex].prize | currency}}</span>
+			</div>
+			<div class="submittedOn">
+				Submitted on: <span class="time" ng-bind="designCtrl.recentWins.recentWinningSubmissions[designCtrl.currentIndex].submissionDate"></span>
+			</div>
+		</div>
+	</div>
+	<!-- /.rwsDetails -->
+	<div class="submissionCarousel">
+		<div class="carouselWrap" ng-show="designCtrl.carouselRendered">
+			<div class="slider" >
+				<div class="slide" ng-repeat="submission in designCtrl.recentWins.recentWinningSubmissions" tc-render-carousel>
+					<figure>
+						<img alt="" ng-src="{{submission.preview}}" />
+					</figure>
+				</div>
+			</div>
+			<div class='slider-ctrl'>
+				<ul class='slider-pager'>
+					<li class="slider-pager-item" ng-repeat="submission in designCtrl.recentWins.recentWinningSubmissions">
+						<a class="navDot" tc-go-slide ng-class="{ isActive : $index === designCtrl.currentIndex }"></a>
+					</li>
+				</ul>
+			</div>
+			<!-- /.slider-ctrl -->
+		</div>
+		<div class="loadingPlaceholder2" ng-hide="designCtrl.carouselRendered"></div>
+	</div>
+	<!-- /.submissionCarousel -->
+</div>
+<!-- /.submissonInfo -->
+
+<div class="subTrackTabs" ng-if="designCtrl.dataLoaded && designCtrl.isEmptySubmission()">
+	<nav class="tabNav">
+		<ul>
+			<h3>Design</h3>
+		</ul>
+	</nav>
+	<h3 class="nocontestStatus text">User does not have any recent wins.</h3>
+</div>
+
+<div class="subTrackTabs" ng-if="!designCtrl.dataLoaded">
+	<nav class="tabNav">
+		<ul>
+			<h3>Design</h3>
+		</ul>
+	</nav>
+	<div class="loadingPlaceholder2" ng-if="!dataCtrl.dataLoaded"></div>
+</div>

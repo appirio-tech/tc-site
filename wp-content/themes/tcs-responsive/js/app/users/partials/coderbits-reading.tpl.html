@@ -1,0 +1,17 @@
+<a ng-href={{tcCoderbitsItem.link}}><h4 class='cb-social-heading' ng-style="{'background-image': 'url(https://'+apiHost+'/'+tcCoderbitsItem.external_account.image_link+')'}">{{tcCoderbitsItem.name}}</h4></a>
+<div ng-if="tcCoderbitsItem.excerpt">{{tcCoderbitsItem.excerpt}}</div>
+Read {{tcCoderbitsItem.read | timeSince}} on <a ng-href='{{tcCoderbitsItem.external_account.link}}'>{{tcCoderbitsItem.external_account.friendly_name}}</a><br/>
+<ul>
+	<li class="animate-repeat" ng-repeat="(k,v) in tcCoderbitsItem | with:'word_count|words,domain'" style='display: inline'>
+		<span ng-switch on="k">
+			<span ng-switch-default style='display: block; float: left; margin-right: 10px'>
+				<div class='tc-attr'>
+					<a ng-href="v" ng-if="k==='domain'"><b>{{v}}</b></a>
+					<b ng-if="k!=='domain'">{{v}}</b>
+					<span>{{k | capitalize}}</span>
+				</div>
+			</span>
+		</span>
+	</li>
+</ul>
+<div style='clear: both;margin-bottom: 10px'></div>
