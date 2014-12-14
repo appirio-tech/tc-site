@@ -1,6 +1,6 @@
 /**
  * This code is copyright (c) 2014 Topcoder Corporation
- * @author: TCS_ASSEMBLER
+ * @author: TCSASSEMBLER
  * @version 1.0
  *
  * This directive set up a list of user saved filters on page. This directive allows the user to read those filters, to

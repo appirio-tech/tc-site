@@ -1,6 +1,6 @@
 /**
  * This code is copyright (c) 2014 Topcoder Corporation
- * @author: TCS_ASSEMBLER
+ * @author: TCSASSEMBLER
  * @version 1.2
  *
  * Changelog 1.1

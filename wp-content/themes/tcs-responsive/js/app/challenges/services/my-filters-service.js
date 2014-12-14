@@ -1,6 +1,6 @@
 /**
  * This code is copyright (c) 2014 Topcoder Corporation
- * @author: TCS_ASSEMBLER
+ * @author: TCSASSEMBLER
  * @version 1.0
  *
  * This service provides CRUD operations for "my filters" feature. It also provides some utilities which are useful for
