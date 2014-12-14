@@ -9,7 +9,7 @@
 /*jslint nomen: true*/
 /*global angular: true, _: true */
 
-(function (angular) {
+(function(angular) {
   'use strict';
   angular.module('tc.AdvancedSearch').directive('saveFilter', saveFilter);
   /**
@@ -19,7 +19,7 @@
   function saveFilter() {
 
     SaveFiltersCtrl.$inject = ['$scope', 'MyFiltersService', '$location'];
- 
+
     return {
       restrict: 'EA',
       require: '^advancedSearch',
@@ -38,7 +38,7 @@
      * @param MyFiltersService the service for "my filters" feature.
      * @param $location the injected location service used to get current filter.
      */
-    function SaveFiltersCtrl($scope, MyFiltersService, $location){
+    function SaveFiltersCtrl($scope, MyFiltersService, $location) {
       var ctrl = this;
       //Hide the dialog at first.
       ctrl.dialog = false;
@@ -46,7 +46,7 @@
       ctrl.name = '';
 
       ctrl.closeDialogAndClear = closeDialogAndClear;
-      
+
       ctrl.openDialog = openDialog;
 
       ctrl.saveFilter = saveFilter;
@@ -54,68 +54,68 @@
       /**
        * Close the save-filter-dialog and clear the candidate filter's name.
        */
-      function closeDialogAndClear(){
+      function closeDialogAndClear() {
         ctrl.dialog = false;
         ctrl.name = '';
         $scope.saveForm.searchSaveTxt.$setPristine();
-      }
+      };
       /**
        * Open the save-filter-dialog.
        */
-      function openDialog($event){
-        if(!ctrl.dialog){
+      function openDialog($event) {
+        if (!ctrl.dialog) {
           ctrl.dialog = true;
           $event.stopPropagation();
         }
-      }
+      };
       /**
        * Save the filter which the user currently use on server. A modal will pop up to notify the operation succeeded
        * or failed.
-       * If the filter's name is the same as one of the existing filters, the filter will be updated. Otherwise, the 
+       * If the filter's name is the same as one of the existing filters, the filter will be updated. Otherwise, the
        * filter will be concerned as a new filter and added into the server.
        */
-      function saveFilter(){
+      function saveFilter() {
         //console.log($scope.saveForm.searchSaveTxt);
-        if(!$scope.saveForm.searchSaveTxt.$error.required){
+        if (!$scope.saveForm.searchSaveTxt.$error.required) {
           var filter = makeFilterObject();
-          
-          MyFiltersService.readFilterByName(ctrl.name).then(function(data){
-            if(data.length === 0){
-              MyFiltersService.createFilter(filter).then(function(){
+
+          MyFiltersService.readFilterByName(ctrl.name).then(function(data) {
+            if (data.length === 0) {
+              MyFiltersService.createFilter(filter).then(function() {
                 MyFiltersService.showConfirm();
                 $scope.setMyFiltersListDirty(true);
-              }, function(error){
+              }, function(error) {
                 MyFiltersService.showError('An error occurs when creating new filter on server.', error);
               });
-            }else{
-              MyFiltersService.updateFilter(data[0]._id, filter).then(function(){
+            } else {
+              MyFiltersService.updateFilter(data[0]._id, filter).then(function() {
                 MyFiltersService.showConfirm();
                 $scope.setMyFiltersListDirty(true);
-              }, function(error){
+              }, function(error) {
                 MyFiltersService.showError('An error occurs when updating filters on server.', error);
               });
             }
-          },function(error){
+          }, function(error) {
             MyFiltersService.showError('An error occurs when retrieving filters from server.', error);
           });
           ctrl.closeDialogAndClear();
-        }else{
-            //This will set its value as an empty string, and thus the data is both modified(dirty) and invalid.
-            //Then the red warning will be triggered. 
-            $scope.saveForm.searchSaveTxt.$setViewValue('');
+        } else {
+          //This will set its value as an empty string, and thus the data is both modified(dirty) and invalid.
+          //Then the red warning will be triggered. 
+          $scope.saveForm.searchSaveTxt.$setViewValue('');
         }
-      }
+      };
       /**
        * Construct a filter object which conform with the API.
        * @return the filter object which conform with the API.
        */
-      function makeFilterObject(){
+      function makeFilterObject() {
         return {
-          name : ctrl.name,
-          filter : MyFiltersService.encode($location.search()),
-          type : MyFiltersService.getCurrentTrack()
+          name: ctrl.name,
+          filter: MyFiltersService.encode($location.search()),
+          type: MyFiltersService.getCurrentTrack()
         }
-      }
+      };
     }
   }
 }(angular));

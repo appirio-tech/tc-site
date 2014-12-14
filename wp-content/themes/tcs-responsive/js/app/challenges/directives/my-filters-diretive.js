@@ -6,10 +6,9 @@
  * This directive set up a list of user saved filters on page. This directive allows the user to read those filters, to
  * search on them, and to remove them.
  */
-
 /*jslint nomen: true*/
 /*global angular: true, _: true */
-(function (angular) {
+(function(angular) {
   'use strict';
   angular.module('tc.AdvancedSearch').directive('myFilters', myFilters);
 
@@ -20,7 +19,7 @@
   function myFilters() {
 
     MyFiltersCtrl.$inject = ['$scope', 'MyFiltersService'];
- 
+
     return {
       restrict: 'EA',
       require: '^advancedSearch',
@@ -39,9 +38,9 @@
      * @param $scope the injected scope.
      * @param MyFiltersService the service for "my filters" feature.
      */
-    function MyFiltersCtrl($scope, MyFiltersService){
+    function MyFiltersCtrl($scope, MyFiltersService) {
       var ctrl = this;
-      
+
       ctrl.dateRange = dateRange;
 
       ctrl.deleteFilter = deleteFilter;
@@ -49,14 +48,14 @@
       ctrl.populateList = populateList;
 
       ctrl.updateFilterOptions = updateFilterOptions;
-      
+
       //Only populate data if the user logged in.
-      if($scope.authenticated){
-        ctrl.populateList();  
+      if ($scope.authenticated) {
+        ctrl.populateList();
       }
       //Watch if the list of "my filters" needs to update. 
-      $scope.$watch('myFiltersListDirty', function(value){
-        if(value){
+      $scope.$watch('myFiltersListDirty', function(value) {
+        if (value) {
           $scope.setMyFiltersListDirty(false);
           ctrl.populateList();
         }
@@ -66,84 +65,84 @@
        * @param filter the filter whose date information needs to format.
        * @return the formatted date range string.
        */
-      function dateRange(filter){
+      function dateRange(filter) {
         var ret = '';
-        if(filter.filterOptions.startDate){
+        if (filter.filterOptions.startDate) {
           ret += 'From ' + $scope.formatDate(filter.filterOptions.startDate);
-          if(filter.filterOptions.endDate){
+          if (filter.filterOptions.endDate) {
             ret += 'to ' + $scope.formatDate(filter.filterOptions.endDate);
           }
         } else {
-          if(filter.filterOptions.endDate){
+          if (filter.filterOptions.endDate) {
             ret += 'To ' + $scope.formatDate(filter.filterOptions.endDate);
           }
         }
         return ret;
-      }
+      };
       /**
-       * This function delete the filter. It will delete it on both client and server side. If the server side is not 
+       * This function delete the filter. It will delete it on both client and server side. If the server side is not
        * able to delete, the client side will be reverted to the state before deletion.
        * @param filter the filter to delete.
        */
-      function deleteFilter(target){
+      function deleteFilter(target) {
         //Simply ignore the filter if there is a DELETE operation on this filter not long ago.
-        if(!target.deleted){
+        if (!target.deleted) {
           //Remove it on client side first.
           target.deleted = true;
-          ctrl.filters = $.grep(ctrl.filters, function(filter){
+          ctrl.filters = $.grep(ctrl.filters, function(filter) {
             return filter.id !== target.id;
           });
           //Remove it on server side.
-          MyFiltersService.deleteFilter(target.id).then(function(){
+          MyFiltersService.deleteFilter(target.id).then(function() {
             //Silent.
-          },function(error){
+          }, function(error) {
             //Failed to delete, push back the target.
             target.deleted = false;
             ctrl.filters.push(target);
             MyFiltersService.showError('An error occurs when deleting filters on server.', error);
-            
+
           });
         }
-      }
+      };
       /**
        * Retrieve the user saved filters for remote api server. The returned data is stored in ctrl.filters(ctrl is the
        * controller of directive 'my-filters').
        * Only the filters under current track are shown.
        */
-      function populateList(){
+      function populateList() {
         //Retrieve my filters from 0 to 1000.
-        MyFiltersService.readFilters(0, 1000).then(function(data){
+        MyFiltersService.readFilters(0, 1000).then(function(data) {
           ctrl.filters = data;
 
           //Don't show filters not under current track.
           var track = MyFiltersService.getCurrentTrack();
-          ctrl.filters = $.grep(ctrl.filters, function(filter){
+          ctrl.filters = $.grep(ctrl.filters, function(filter) {
             return filter.type === track;
           });
 
-          $.each(ctrl.filters, function(index, value){
+          $.each(ctrl.filters, function(index, value) {
             //Transform the url param to javascript object.
             value.filterOptions = MyFiltersService.decode(value.filter);
             //To prevent operations after a deleting filter. If it's set to true, then all operations are ignored.
             value.deleted = false;
             //console.log(value);
           });
-        }, function(error){
+        }, function(error) {
           ctrl.filters = [];
           MyFiltersService.showError('An error occurs when retrieving filters from server.', error);
         });
-      }
+      };
       /**
        * This function search according to the filter.
        * @param filter the filter to search.
        */
-      function updateFilterOptions(filter){
+      function updateFilterOptions(filter) {
         //Simply ignore the filter if there is a DELETE operation on this filter not long ago.
-        if(!filter.deleted){
+        if (!filter.deleted) {
           $scope.setFilterOptions(filter.filterOptions);
           $scope.applyFilter();
         }
-      }
+      };
     }
   }
 }(angular));
