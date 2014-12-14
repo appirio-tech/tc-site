@@ -1,7 +1,7 @@
 <div class="chartTypeSwitcher">
 	<a class="btn btnHistory" ng-click="showHist()" ng-class="{ isActive : showAsHist && !showAsTable }">Rating History</a>
 	<a class="btn btnDist" ng-click="showDist()" ng-class="{ isActive : showAsDist && !showAsTable }">Rating Distribution</a>
-	<a class="btn btnSub" ng-click="isTable=true;history=false;showTable(true);"  ng-class="{ isActive : showAsTable }">Submissions</a>
+	<a class="btn btnSub" ng-click="isTable=true;history=false;showTable(true);"  ng-class="{ isActive : showAsTable }">Statistics</a>
 </div>
 <div id="tabularView" class="show" ng-if="showAsTable">
 	<div class="subTrackTabs">
@@ -12,19 +12,19 @@
 						<div class="chartWrap">
 							<div id="srmD1Chart" class="chart" data-option='0' tc-draw-pie="{{dataCtrl[dataCtrl.subTrack].Divisions['Division I']['Level Total']['success%']}}"></div>
 							<div class="chartLbl">
-								<em ng-bind="dataCtrl[dataCtrl.subTrack].Divisions['Division I']['Level Total']['success%']|| 'loading...'">loading...</em>Division 1
+								<em ng-bind="dataCtrl[dataCtrl.subTrack].Divisions['Division I']['Level Total']['success%']|| ''"></em>Division 1
 							</div>
 						</div>
 						<div class="chartWrap">
 							<div id="srmD2Chart" class="chart" data-option='1' tc-draw-pie="{{dataCtrl[dataCtrl.subTrack].Divisions['Division II']['Level Total']['success%']}}"></div>
 							<div class="chartLbl">
-								<em ng-bind="dataCtrl[dataCtrl.subTrack].Divisions['Division II']['Level Total']['success%']|| 'loading...'">loading...</em>Division 2
+								<em ng-bind="dataCtrl[dataCtrl.subTrack].Divisions['Division II']['Level Total']['success%']|| ''"></em>Division 2
 							</div>
 						</div>
 						<div class="chartWrap chartYellow">
 							<div id="srmChallenge" class="chart" data-option="2" tc-draw-pie="{{dataCtrl[dataCtrl.subTrack].Challenges.Levels.Total['success%']}}"></div>
 							<div class="chartLbl">
-								<em ng-bind="dataCtrl[dataCtrl.subTrack].Challenges.Levels.Total['success%']|| 'loading...'">loading...</em>Challenges
+								<em ng-bind="dataCtrl[dataCtrl.subTrack].Challenges.Levels.Total['success%']|| ''"></em>Challenges
 							</div>
 						</div>
 					</div>

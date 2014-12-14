@@ -3,7 +3,7 @@
 		<h3 ng-if=" !dataCtrl.dataLoaded || dataCtrl.emptyFlag">Develop</h3>
 		<ul  ng-if="dataCtrl.dataLoaded">
 			<li ng-repeat="(name, value) in stats.Tracks" tc-adjust-header>
-				<a ng-click="setSubTrack(name)" ng-class="{isActive : subTrack === name}" ng-bind="name|| 'loading...'">loading...</a><span class="chevron right"></span><span class="chevron bottom"></span>
+				<a ng-click="setSubTrack(name)" ng-class="{isActive : subTrack === name}" ng-bind="name|| ''"></a><span class="chevron right"></span><span class="chevron bottom"></span>
 			</li>
 		</ul>
 	</nav>
