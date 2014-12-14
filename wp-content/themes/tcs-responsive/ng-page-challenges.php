@@ -381,11 +381,11 @@ get_header(); ?>
 <script type="text/ng-template" id="save-filter.html">
   <a class="btn btnAlt btnSave" ng-click="saveFilterCtrl.openDialog($event)">Save</a>
   <div class="filterWidget" click-anywhere-but-here="saveFilterCtrl.closeDialogAndClear()" is-active="saveFilterCtrl.dialog" ng-show="saveFilterCtrl.dialog">
-    <div class="details">
+    <form name="saveForm" class="details">
       <div class="rw">
           <label class="lbl" for="searchSaveTxt">Name Saved Search</label>
           <div class="val">
-            <input type="text" placeholder="Enter name for saving search" ng-model="saveFilterCtrl.name" id="searchSaveTxt" />
+            <input type="text" placeholder="Enter name for saving search" ng-model="saveFilterCtrl.name" name="searchSaveTxt" id="searchSaveTxt" required />
           </div>
       </div>
       <!-- This feature isn't supported for now.
@@ -396,7 +396,7 @@ get_header(); ?>
       <div class="actn">
       <a class="btn btnCancel btnSecondary" ng-click="saveFilterCtrl.closeDialogAndClear()">Cancel</a><a class="btn btnSaveSearch" ng-click="saveFilterCtrl.saveFilter();">Save My Search</a>
       </div>
-    </div>
+    </form>
   </div>     
 </script>
 

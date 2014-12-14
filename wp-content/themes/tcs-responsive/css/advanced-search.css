@@ -704,7 +704,7 @@ input.search-text::-webkit-input-placeholder {
     color: #444;
     font-size: 14px;
 }
-.filterWidget #searchSaveTxt.error{
+.filterWidget #searchSaveTxt.ng-invalid.ng-dirty{
     border: 1px solid #f00;
     background: #FFF9F9;
 }

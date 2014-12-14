@@ -57,6 +57,7 @@
       function closeDialogAndClear(){
         ctrl.dialog = false;
         ctrl.name = '';
+        $scope.saveForm.searchSaveTxt.$setPristine();
       }
       /**
        * Open the save-filter-dialog.
@@ -74,29 +75,35 @@
        * filter will be concerned as a new filter and added into the server.
        */
       function saveFilter(){
-        var filter = makeFilterObject();
-        
-        MyFiltersService.readFilterByName(ctrl.name).then(function(data){
-          if(data.length === 0){
-            MyFiltersService.createFilter(filter).then(function(){
-              MyFiltersService.showConfirm();
-              $scope.setMyFiltersListDirty(true);
-            }, function(error){
-              MyFiltersService.showError('An error occurs when creating new filter on server.', error);
-            });
-          }else{
-            MyFiltersService.updateFilter(data[0]._id, filter).then(function(){
-              MyFiltersService.showConfirm();
-              $scope.setMyFiltersListDirty(true);
-            }, function(error){
-              MyFiltersService.showError('An error occurs when updating filters on server.', error);
-            });
-          }
-        },function(error){
-          MyFiltersService.showError('An error occurs when retrieving filters from server.', error);
-        });
-
-        ctrl.closeDialogAndClear();
+        //console.log($scope.saveForm.searchSaveTxt);
+        if(!$scope.saveForm.searchSaveTxt.$error.required){
+          var filter = makeFilterObject();
+          
+          MyFiltersService.readFilterByName(ctrl.name).then(function(data){
+            if(data.length === 0){
+              MyFiltersService.createFilter(filter).then(function(){
+                MyFiltersService.showConfirm();
+                $scope.setMyFiltersListDirty(true);
+              }, function(error){
+                MyFiltersService.showError('An error occurs when creating new filter on server.', error);
+              });
+            }else{
+              MyFiltersService.updateFilter(data[0]._id, filter).then(function(){
+                MyFiltersService.showConfirm();
+                $scope.setMyFiltersListDirty(true);
+              }, function(error){
+                MyFiltersService.showError('An error occurs when updating filters on server.', error);
+              });
+            }
+          },function(error){
+            MyFiltersService.showError('An error occurs when retrieving filters from server.', error);
+          });
+          ctrl.closeDialogAndClear();
+        }else{
+            //This will set its value as an empty string, and thus the data is both modified(dirty) and invalid.
+            //Then the red warning will be triggered. 
+            $scope.saveForm.searchSaveTxt.$setViewValue('');
+        }
       }
       /**
        * Construct a filter object which conform with the API.
