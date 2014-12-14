@@ -9,7 +9,7 @@ Has earned {{tcCoderbitsItem.count}} points from
 </div>
 <ul class="animate-repeat" ng-repeat="account in tcCoderbitsItem.external_accounts">
 	<li style='float: right; margin-right: 3px;'>
-		<a ng-href='{{account.link}}'><div class='img-container'><img ng-src="https://{{apiHost}}/{{account.image_link}}" style='width: 32px; height: 32px;' /></div></a>
+		<a ng-href='{{account.link}}'><div class='img-container'><img ng-src="{{apiHost}}/{{account.image_link}}" style='width: 32px; height: 32px;' /></div></a>
 	</li>
 </ul>
 <div style='clear: both'></div>

@@ -1,3 +1,3 @@
-<a ng-href='{{tcCoderbitsItem.link}}'><h4 class='cb-social-heading'  ng-style="{'background-image': 'url(https://'+apiHost+'/'+tcCoderbitsItem.external_account.image_link+')'}">{{tcCoderbitsItem.name}}</h4></a>
+<a ng-href='{{tcCoderbitsItem.link}}'><h4 class='cb-social-heading'  ng-style="{'background-image': 'url('+apiHost+'/'+tcCoderbitsItem.external_account.image_link+')'}">{{tcCoderbitsItem.name}}</h4></a>
 Created {{tcCoderbitsItem.created | timeSince: 'sometime in the past'}} on <a ng-href='{{tcCoderbitsItem.external_account.link}}'>{{tcCoderbitsItem.external_account.friendly_name}}</a>, <a ng-href='{{tcCoderbitsItem.link}}'>{{tcCoderbitsItem.name}}</a> currently has {{tcCoderbitsItem.subtitle}}<br/>
 <a ng-href='{{tcCoderbitsItem.link}}'><img ng-src='{{tcCoderbitsItem.image_link}}' /></a>

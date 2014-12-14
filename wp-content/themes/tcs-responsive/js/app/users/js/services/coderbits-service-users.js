@@ -16,7 +16,7 @@ angular.module('tc.coderbitsService', [
 .factory('CoderbitsRestangular', ['CODERBITS_API_HOST', 'Restangular',
     function(host, Restangular) {
         return Restangular.withConfig(function(RestangularConfigurer) {
-            RestangularConfigurer.setBaseUrl('https://' + host);
+            RestangularConfigurer.setBaseUrl(host);
         });
     }
 ])

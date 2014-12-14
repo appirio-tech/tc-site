@@ -23,7 +23,7 @@ window.tc = angular.module('tc', [
   .constant("API_URL", tcApiRUL)
   .constant("PHOTO_LINK_LOCATION", "http://community.topcoder.com")
   .constant("USERS_TEMPLATE_URL", "/js/app/users/partials/users.tpl.html")
-  .constant("CODERBITS_API_HOST", "ec2-54-164-107-36.compute-1.amazonaws.com")
+  .constant("CODERBITS_API_HOST", cbApiURL)
   .constant("CODERBITS_TEMPLATE_URL", "/js/app/users/partials")
 
 .config(['$httpProvider', 'RestangularProvider', 'API_URL',

@@ -1,4 +1,4 @@
-<a ng-href={{tcCoderbitsItem.link}}><h4 class='cb-social-heading' ng-style="{'background-image': 'url(https://'+apiHost+'/'+tcCoderbitsItem.external_account.image_link+')'}">{{tcCoderbitsItem.name}}</h4></a>
+<a ng-href={{tcCoderbitsItem.link}}><h4 class='cb-social-heading' ng-style="{'background-image': 'url('+apiHost+'/'+tcCoderbitsItem.external_account.image_link+')'}">{{tcCoderbitsItem.name}}</h4></a>
 <div ng-if="tcCoderbitsItem.excerpt">{{tcCoderbitsItem.excerpt}}</div>
 Read {{tcCoderbitsItem.read | timeSince}} on <a ng-href='{{tcCoderbitsItem.external_account.link}}'>{{tcCoderbitsItem.external_account.friendly_name}}</a><br/>
 <ul>
