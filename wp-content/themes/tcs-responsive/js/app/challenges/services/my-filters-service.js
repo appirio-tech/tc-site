@@ -6,7 +6,7 @@
 (function() {
   'use strict';
 
-  function MyFiltersService(Restangular, $cookies, $q, MY_FILTER_API_URL) {
+  function MyFiltersService(Restangular, $cookies, $q, MY_FILTER_API_URL, $location) {
 
     var header = {
       'Content-Type' : 'application/json'
@@ -35,7 +35,8 @@
       encode : encode,
       decode : decode,
       showError : showError,
-      showConfirm : showConfirm
+      showConfirm : showConfirm,
+      getCurrentTrack : getCurrentTrack
     };
 
     return myFiltersService;
@@ -106,8 +107,12 @@
       }
       showModal("#filterSavedSuccess");
     }
+
+    function getCurrentTrack(){
+      return $location.path().match(/\/([A-z]+)\//)[1];
+    }
   }
-  MyFiltersService.$inject = ['Restangular', '$cookies', '$q', 'MY_FILTER_API_URL'];
+  MyFiltersService.$inject = ['Restangular', '$cookies', '$q', 'MY_FILTER_API_URL', '$location'];
 
   angular.module('tc.challenges.services').factory('MyFiltersService', MyFiltersService);
 }());

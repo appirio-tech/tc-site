@@ -50,15 +50,19 @@
       });
 
       function populateList(){
-        //retrieve my filters from 0 to 1000.
+        //Retrieve my filters from 0 to 1000.
         MyFiltersService.readFilters(0, 1000).then(function(data){
           ctrl.filters = data;
 
+          //Don't show filters not under current track.
+          var track = MyFiltersService.getCurrentTrack();
+          ctrl.filters = $.grep(ctrl.filters, function(filter){
+            return filter.type === track;
+          });
+
           $.each(ctrl.filters, function(index, value){
-            //transform the url param to javascript object.
+            //Transform the url param to javascript object.
             value.filterOptions = MyFiltersService.decode(value.filter);
-            //Sometimes the saved filter's track is different with the current one's.(e.g. develop and design)
-            value.filterOptions['contestType'] = value.type;
             //To prevent operations after a deleting filter. If it's set to true, then all operations are ignored.
             value.deleted = false;
             //console.log(value);

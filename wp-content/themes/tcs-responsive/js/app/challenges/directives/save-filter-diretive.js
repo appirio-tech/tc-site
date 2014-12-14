@@ -73,7 +73,7 @@
         return {
           name : ctrl.name,
           filter : MyFiltersService.encode($location.search()),
-          type : $location.path().match(/\/([A-z]+)\//)[1]
+          type : MyFiltersService.getCurrentTrack()
         }
       }
     }
