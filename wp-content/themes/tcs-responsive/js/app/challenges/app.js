@@ -1,3 +1,14 @@
+/**
+ * This code is copyright (c) 2014 Topcoder Corporation
+ * @author: TCS_ASSEMBLER
+ * @version 1.1
+ *
+ * Changed in 1.1
+ * <ul>
+ * <li>Add ngAnimate module and two shared directives for "My filters" feature.</li>
+ * <li>Add the configuration of "My filters" feature's API server. It's set in global variable "myFiltersURL".</li>
+ * </ul>
+ */
 'use strict';
 
 window.tc = angular.module('tc', [

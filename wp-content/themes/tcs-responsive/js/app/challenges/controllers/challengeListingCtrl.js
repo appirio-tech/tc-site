@@ -318,6 +318,7 @@
           search.userChallenges = true;
         }
         $location.search(search);
+        
       };
 
       /* event source that calls a function on every calender view switch */
@@ -423,6 +424,7 @@
       }, true);
       
       $scope.$on('$locationChangeSuccess', function (event) {
+        
         $timeout(function () {
           parseFilters();
           if($scope.filter.userChallenges) {
