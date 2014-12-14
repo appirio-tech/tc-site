@@ -148,7 +148,7 @@ array_push ( $challengetypes, 'UI Prototypes' );
 					<div class="row fieldRevRating">
 						<label>Reviewer Rating: </label>
 						<div class="val">
-							<a href="#"><?php echo ($dev->reviewerRating) ? number_format( $dev->reviewerRating, 2, '.', '') : "Not rated";?></a>
+							<a href="#"><?php echo ($dev->reviewerRating) ? number_format( $dev->reviewerRating, 2, '.', '') : "N/A";?></a>
 						</div>
 						<input type="hidden" class="fieldId" value="reviewerRating">
 					</div>
