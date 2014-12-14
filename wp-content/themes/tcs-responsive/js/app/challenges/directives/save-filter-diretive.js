@@ -1,10 +1,21 @@
+/**
+ * This code is copyright (c) 2014 Topcoder Corporation
+ * @author: TCS_ASSEMBLER
+ * @version 1.0
+ *
+ * This directive save filters on server.
+ */
+
 /*jslint nomen: true*/
 /*global angular: true, _: true */
 
 (function (angular) {
   'use strict';
   angular.module('tc.AdvancedSearch').directive('saveFilter', saveFilter);
-
+  /**
+   * This function defines "save-filters" directive.
+   * @return the directive definition object.
+   */
   function saveFilter() {
 
     SaveFiltersCtrl.$inject = ['$scope', 'MyFiltersService', '$location'];
@@ -16,12 +27,22 @@
       controller: SaveFiltersCtrl,
       controllerAs: 'saveFilterCtrl'
     };
-
+    /**
+     * The controller of "save-filters" directive. It proivides the following methods.
+     * <ul>
+     * <li>closeDialogAndClear() to close the save-filter-dialog and clear the candidate filter's name.</li>
+     * <li>openDialog() to open the save-filter-dialog.</li>
+     * <li>saveFilter() to save the filter which is currently used.</li>
+     * </ul>
+     * @param $scope the injected scope.
+     * @param MyFiltersService the service for "my filters" feature.
+     * @param $location the injected location service used to get current filter.
+     */
     function SaveFiltersCtrl($scope, MyFiltersService, $location){
       var ctrl = this;
-      //hide the dialog at first.
+      //Hide the dialog at first.
       ctrl.dialog = false;
-      //the saved filter's name
+      //The name of the filter to save.
       ctrl.name = '';
 
       ctrl.closeDialogAndClear = closeDialogAndClear;
@@ -30,19 +51,28 @@
 
       ctrl.saveFilter = saveFilter;
 
-
+      /**
+       * Close the save-filter-dialog and clear the candidate filter's name.
+       */
       function closeDialogAndClear(){
         ctrl.dialog = false;
         ctrl.name = '';
       }
-
+      /**
+       * Open the save-filter-dialog.
+       */
       function openDialog($event){
         if(!ctrl.dialog){
           ctrl.dialog = true;
           $event.stopPropagation();
         }
       }
-
+      /**
+       * Save the filter which the user currently use on server. A modal will pop up to notify the operation succeeded
+       * or failed.
+       * If the filter's name is the same as one of the existing filters, the filter will be updated. Otherwise, the 
+       * filter will be concerned as a new filter and added into the server.
+       */
       function saveFilter(){
         var filter = makeFilterObject();
         
@@ -68,7 +98,10 @@
 
         ctrl.closeDialogAndClear();
       }
-
+      /**
+       * Construct a filter object which conform with the API.
+       * @return the filter object which conform with the API.
+       */
       function makeFilterObject(){
         return {
           name : ctrl.name,

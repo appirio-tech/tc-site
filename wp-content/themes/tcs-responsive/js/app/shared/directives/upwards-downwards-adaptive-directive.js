@@ -1,15 +1,32 @@
-'use strict';
-
 /**
  * This code is copyright (c) 2014 Topcoder Corporation
- * author: TCS_ASSEMBLER
- * version 1.0
+ * @author: TCS_ASSEMBLER
+ * @version 1.0
+ *
+ * This directive can adaptively put the pop-up modal upwards or downwards. When put downwards, the pop-up is right
+ * below the container, when put upwards, the pop-up is right above the container.
+ *
+ * The usage:
+ * <any class="container" upwards-downwards-adaptive>
+ *    <any class="pop-up-modal dropdown"></any>
+ * </any> 
+ *
+ * The css class 'dropdown' is required, other css classes are optional.
  */
-(function(angular) {
+
+/*jslint nomen: true*/
+/*global angular: true, _: true */
+
+(function (angular) {
+  'use strict';
   angular
     .module('tc.shared.directives.upwardsDownwardsAdaptive', [])
     .directive('upwardsDownwardsAdaptive', upwardsDownwardsAdaptive);
-
+    
+    /**
+     * This function defines the directive upwardsDownwardsAdaptive.
+     * @return the directive definition object.
+     */
     function upwardsDownwardsAdaptive() {
       var directive = {
         link : link
@@ -23,7 +40,12 @@
         var dropdown = element.find('.dropdown');
 
         setupEventListeners(dropdown, element);
-
+        /*
+         * Show the pop-up modal when mouse hovers on the reference DOM, hide it when mouse leaves.
+         * @param dropdown the pop-up modal
+         * @param container the reference DOM. i.e., when put downwards, the pop-up is right below this DOM, when put
+         * upwards, the pop-up is right above this DOM.
+         */
         function setupEventListeners(dropdown, container){
           container.hover(function () {
             position(dropdown, container);
@@ -40,7 +62,12 @@
           });
         }
 
-
+        /*
+         * This function can adaptively put the pop-up modal upwards or downwards.
+         * @param dropdown the pop-up modal
+         * @param container the reference DOM. i.e., when put downwards, the pop-up is right below this DOM, when put
+         * upwards, the pop-up is right above this DOM.
+         */
         function position(dropdown, container){
           container.css({'position' : 'relative'});
           dropdown.css({'position' : 'absolute'});
@@ -54,8 +81,14 @@
           dropdown.css(css);
         }
 
-
-        // The strategy to place above or below is copied from select2.js source code.
+        /*
+         * This function decides to show to pop-up modal upwards or downwards. The strategy to place above or below is
+         * copied from select2.js source code.
+         * @param dropdown the pop-up modal
+         * @param container the reference DOM. i.e., when put downwards, the pop-up is right below this DOM, when put
+         * upwards, the pop-up is right above this DOM.
+         * @return true if upwards, false otherwise.
+         */
         function openUpwards(dropdown, container) {
           var offset = container.offset(),
               height = container.outerHeight(false),
@@ -71,8 +104,6 @@
           return !enoughRoomBelow && enoughRoomAbove;
         };
       }
-
-
     };
 
 

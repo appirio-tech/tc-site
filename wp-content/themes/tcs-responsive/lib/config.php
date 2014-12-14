@@ -2,7 +2,15 @@
 
 /**
  * @file
+ * This code is copyright (c) 2014 Topcoder Corporation
+ * @author: TCS_ASSEMBLER
+ * @version 1.1
+ *
  * Read from config.json and load into WP
+ *
+ * Changed in 1.1
+ *  Add config variable myFiltersURL. and set a defualt value for it. It can also be configured from external
+ *  config.json.
  */
 
 function tc_load_config() {
@@ -64,6 +72,7 @@ function tc_config_defaults() {
         'useVer' => false,
         'version' => time(),
         'useGz' => false,
-        'lcURL' => ''
+        'lcURL' => '',
+        'myFiltersURL' => 'https://lc1-user-settings-service.herokuapp.com'
     );
 }

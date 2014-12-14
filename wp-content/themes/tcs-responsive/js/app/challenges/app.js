@@ -5,8 +5,9 @@
  *
  * Changed in 1.1
  * <ul>
- * <li>Add ngAnimate module and two shared directives for "My filters" feature.</li>
- * <li>Add the configuration of "My filters" feature's API server. It's set in global variable "myFiltersURL".</li>
+ * <li>Add ngAnimate module and two shared directives(clickAnywhereButHere, upwardsDownwardsAdaptive) for "My filters"
+ * feature.</li>
+ * <li>Add the configuration of "My filters" feature's API server URL. It's set in global variable "myFiltersURL".</li>
  * </ul>
  */
 'use strict';

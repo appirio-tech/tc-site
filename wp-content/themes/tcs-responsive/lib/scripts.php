@@ -2,6 +2,10 @@
 
 /**
  * @file
+ * This code is copyright (c) 2014 Topcoder Corporation
+ * @author: TCS_ASSEMBLER
+ * @version 1.1
+ *
  * Enqueue scripts and stylesheets
  *
  * CDN will also be used for jquery.  We will have a local fallback
@@ -9,6 +13,9 @@
  *  Grunt script is what pushes the script.
  * Theme option jsCssUseMin will be used to only enqueue the min version.
  *  Grunt will create a style.css and script.js file that will contain all of the local code
+ *
+ * Changed in 1.1
+ *  Add angular-animation.js.
  */
 
 function tcs_responsive_scripts() {

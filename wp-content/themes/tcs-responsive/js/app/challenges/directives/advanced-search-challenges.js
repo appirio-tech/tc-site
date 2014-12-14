@@ -1,9 +1,23 @@
+/**
+ * This code is copyright (c) 2014 Topcoder Corporation
+ * @author: TCS_ASSEMBLER
+ * @version 1.2
+ *
+ * Changelog 1.1
+ * 09/17/2014 Add My Challenges Filter and Improve Filters
+ * - Added dates presets for active/upcoming challenges
+ *
+ * Changed in 1.2
+ * <ul>
+ * <li>Provide getter and setter for $scope.filterOptions to expose it to "My Filters" feature.</li>
+ * <li>The variable $scope.myFiltersListDirty is a flag to indicate if the list of "My Filters" needs to update.</li>
+ * </ul>
+ */
+
 /*jslint nomen: true*/
 /*global angular: true, _: true */
 /**
- * Changelog
- * 09/17/2014 Add My Challenges Filter and Improve Filters
- * - Added dates presets for active/upcoming challenges
+
 */
 (function (angular) {
   'use strict';

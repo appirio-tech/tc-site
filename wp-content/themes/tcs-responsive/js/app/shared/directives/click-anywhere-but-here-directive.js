@@ -1,11 +1,16 @@
-'use strict';
-
 /**
  * This code is copyright (c) 2014 Topcoder Corporation
- * author: TCS_ASSEMBLER
- * version 1.0
+ * @author: TCS_ASSEMBLER
+ * @version 1.0
+ *
+ * This directive execute some logic when there is any click outside the DOM which this directive decorates.
  */
-(function(angular) {
+
+/*jslint nomen: true*/
+/*global angular: true, _: true */
+
+(function (angular) {
+  'use strict';
   angular
     .module('tc.shared.directives.clickAnywhereButHere', [])
     .directive('clickAnywhereButHere', clickAnywhereButHere);
@@ -17,8 +22,9 @@
     clickAnywhereButHere.$inject=['$document'];
 
     /**
-     * This directive is applied on those pop-up modal. If the user click outside of such an modal, the 'expression'
-     * will be executed. Specifically here it will dispose the modal.
+     * This directive is typically applied on those pop-up modals. If the user click outside of such an modal, the 
+     * 'expression'(attrs.clickAnywhereButHere) will be executed. Specifically here it will dispose the modal.
+     *
      * There is also an attribute 'is-active' to indicate when this directive takes effect.
      *
      * The usage:
@@ -37,6 +43,10 @@
        * The link function.
        */
       function link (scope, element, attrs) {
+        /*
+         * This event handler executes some logic if clicking outside the <code>element</code>.
+         * @param event the event object.
+         */
         var onClick = function (event) {
           var isChild = element.has(event.target).length > 0;
           var isSelf = element[0] == event.target;
