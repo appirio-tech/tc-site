@@ -1,0 +1,45 @@
+<div id="hero">
+ 
+  <div class="inner">
+    <div class="container">
+      <article class="aboutCoder">
+        <div class="details">
+          <figure class="coderPicWrap">
+            <img ng-if="userExisted" alt="{{coder.handle}}" ng-src="{{getPhotoLink(coder)}}">
+          </figure>
+          <div class="info">
+            <div class="handle">
+              {{coder.handle}}
+            </div>
+            <div class="country">{{coder.country}}</div>
+            <div>
+            <div class="memberSince">
+              <label>Member since</label>
+              <div class="val">{{coder.memberSince | date: 'MMMM yyyy'}}</div>
+            </div>
+            <div class='profileExternal'>
+              <a class='profileWebsite' ng-href='{{coderbits.website_link}}' ng-if='coderbits.website_link'>{{coderbits.website_link.replace('http://', '').replace('https://').replace('www.', '')}}</a> <a class='profileSocial' ng-href='https://coderbits.com/{{coderbits.username}}' ng-if='coderbits.username'>{{coderbits.username}}</a>
+            </div>
+          </div>
+        </div>
+        <blockquote class="coderQuote" ng-if="coder.quote !== ''">“{{coder.quote}}”</blockquote>
+        <blockquote class="coderQuote" ng-if="coder.quote === ''">“Member of the world's largest global competitive community.”</blockquote>
+        <div id='profile-ratings-container' ng-if="showBadge">
+          <div id='profile-ratings'>
+              <ul>
+                <li ng-repeat="trackFact in mastery">
+                  <div class='badge-label'>{{trackFact.label}}</div>
+                  <div class='badge-value'>{{trackFact.value}}</div>
+                  <div class='badge-sub1'>{{trackFact.category}}</div>
+                  <div class='badge-sub2'>{{trackFact.track}}</div>
+                </li>
+              </ul>
+          </div>
+          <span ng-if="coder.overallEarning"><div class='earnings-dollar-icon'><span></span></div><span class='total-earnings'>Total Earnings: ${{(coder.overallEarning || 0).toFixed(2)}}</span></span>
+        </div>
+      </article>
+      <!-- /.aboutCoder -->
+    </div>
+  </div>
+
+</div>  

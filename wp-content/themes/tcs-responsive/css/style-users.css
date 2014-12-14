@@ -37,7 +37,7 @@ a{
         height: auto;
         width: 200px;
         max-width: 200px;
-        min-height: 210px;
+		min-height: 210px;
 }
     .aboutCoder .coderPicWrap{
         float: left;
@@ -97,15 +97,15 @@ a{
     }
     .aboutCoder .social a{
         height: 54px;
-                     width: 45px;
+					 width: 45px;
         background: url(../i/ico-social-alt.png) no-repeat;
         background-position: 0 0;
         display: inline-block;
         behavior: url(./wp-content/themes/tcs-responsive/css/PIE.htc);
     }
     .aboutCoder .social a{
-                -webkit-transition: none;
-                    transition: none;
+    			-webkit-transition: none;
+					transition: none;
     }
     .aboutCoder .social .fb{
         background-position: 0 0px;
@@ -174,12 +174,12 @@ a{
         color: #fff;
     }
 
-    .trackdesign .switchBtns a.disabled:hover{
-        background-color: transparent;
+	.trackdesign .switchBtns a.disabled:hover{
+		background-color: transparent;
         color: #FFAE00;
         cursor: default;
-    }
-    .trackdesign  .switchBtns a.isActive.disabled:hover{
+	}
+	.trackdesign  .switchBtns a.isActive.disabled:hover{
         background-color: #00aeff;
         color: #fff;
     }
@@ -309,12 +309,12 @@ a{
         float: left;
     
         /*
-        Issue ID: I-108002 - don't cut the overflow
-        
+		Issue ID: I-108002 - don't cut the overflow
+		
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        */
+		*/
 }
     .algoLayout .row label{
         font-weight: bold;
@@ -330,12 +330,12 @@ a{
         height: 22px;
         text-transform: capitalize;
         /*
-        Issue ID: I-108002 - don't cut the overflow
-        
+		Issue ID: I-108002 - don't cut the overflow
+		
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        */
+		*/
 }
     .algoLayout .badges .head{
         text-align: center;
@@ -718,7 +718,7 @@ a{
         float: left;    
         height: 402px;
         overflow: hidden;
-        background:#000;
+		background:#000;
 }
     .designLayout .submissionThumb img{
         width: 412px;
@@ -777,17 +777,17 @@ a{
         background-position: 50% 0;
     }
 
-    .designLayout .winInfo .badgeImg.rank2{
-        background-position:110px -150px;
-    }
+	.designLayout .winInfo .badgeImg.rank2{
+		background-position:110px -150px;
+	}
 
-    .designLayout .winInfo .badgeImg.rank3{
-        background-position:110px -300px;
-    }
+	.designLayout .winInfo .badgeImg.rank3{
+		background-position:110px -300px;
+	}
 
-    .designLayout .winInfo .badgeImg.rankM{
-        background-position:110px -450px;
-    }
+	.designLayout .winInfo .badgeImg.rankM{
+		background-position:110px -450px;
+	}
 
     .designLayout .winInfo .badgeImg.rank4{
         background-position:110px -600px;
@@ -796,7 +796,7 @@ a{
     .designLayout .winInfo .badgeImg.rank5{
         background-position:110px -750px;
     }
-    
+	
     .designLayout .winInfo .prizeAmount{
         text-align: center;    
         margin-top: 12px;
@@ -888,7 +888,7 @@ a{
         border: 1px solid #e8e8e8;        
          width: 205px;
         height: 205px;
-        background:#000;
+		background:#000;
         cursor: pointer;
 } 
     .submissionCarousel .slider .slide figure{
@@ -1001,3 +1001,615 @@ a{
         display: block;
     }
 }
+
+#message-user  {
+    overflow: hidden;
+    width: 700px; 
+}
+
+#message-user .content{
+  height: 640px; background-color: #FFF; overflow:hidden!important; 
+
+}
+
+#message-user iframe {
+    width: 1000px; height:765px; position: absolute; top: -115px; left: -260px
+}
+
+.coderProfile .inner{
+    background:  #f4f4f4 !important;
+    border-bottom: 1px solid #ccc;
+}
+
+.coderProfile #hero .container{
+    min-height: 279px !important;        
+}
+
+.aboutCoder .coderQuote{
+    color: #666 !important;
+    font-size: 17px !important;
+    max-width: 350px;
+    font-family: "Source Sans Pro",Arial,Helvetica,sans-serif;
+    font-style: italic;
+    top: 176px !important;
+    left: 214px !important;
+    line-height: 21px;
+    font-kerning: none;
+    letter-spacing: 0.4px;
+}
+
+.details blockquote::before {
+    position: absolute;
+    top: 4px;
+    left: -55px;
+    content: "“";
+    font-size: 82px;
+    font-family: "Arial Black", Gadget, sans-serif;
+    color: #c9c9c9;
+    width:60px;
+    font-style: normal;
+}
+
+.aboutCoder {
+    position: relative;
+    padding-top: 30px;
+}
+
+.aboutCoder .info, .aboutCoder .handle  {
+    color: #666 !important;
+    text-shadow: none;
+}
+
+.aboutCoder .handle  {
+    margin-bottom: 10px;
+    font-size: 26px;
+}
+
+.aboutCoder .info {
+    margin-left: 32px;
+    float: left;
+    margin-top: 4px;
+}
+.algoLayout h4.trackName {
+    color: #555;
+    font-family: "Source Sans Pro",Arial,Helvetica,sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 14px;
+}
+.aboutCoder .memberSince label, .aboutCoder .memberSince div.val {
+    display: inline;
+    font-size: 14px;
+    font-family: "Source Sans Pro",Arial,Helvetica,sans-serif;
+    color: #888888;
+    line-height: 14px;
+    font-weight: light;
+}
+
+.aboutCoder .memberSince {
+    margin-bottom: 2px;
+}
+
+.profileExternal a, .profileExternal a:visited, .profileExternal a:active{
+    color: #666;
+    font-size: 14px;
+}
+
+.message-user-btn {
+    position: absolute;
+    top: 186px;
+    left:  9px;
+    cursor: pointer;
+    width:108px;
+}
+
+.profileWebsite::after {
+    content: " | ";
+}
+
+.profileSocial::before {
+    content: "@";
+}
+.aboutCoder .coderPicWrap {
+    border: 3px solid #d2d2d2;
+    box-shadow: none;
+    width: 118px;
+    height: 118px;
+    border-radius: 62px;
+    margin-top: 2px;
+}
+
+.aboutCoder .coderPicWrap img {
+    height: auto;
+    width: 118px;
+    max-width: 118px;
+    min-height: 124px;
+}
+
+.aboutCoder .country {
+    margin-bottom: 4px;
+    line-height: 14px;
+    font-size:18px;
+    font-family: "Source Sans Pro",Arial,Helvetica,sans-serif;
+    text-transform: uppercase;
+    font-weight: light;
+}
+
+#mainContent.noShadow {
+    background-image: none;
+}
+
+#profile-ratings-container {
+    position: absolute;
+    top: 50px;
+    left: 584px;
+    text-align: center;
+}
+
+#profile-ratings {
+    height: 145px;
+    padding-left:30px;
+    padding-right: 30px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 11px;
+    color: #000;
+    text-align:  center;
+}
+
+#profile-ratings ul {
+    display: inline-block;
+    margin-top: 27px;
+}
+
+#profile-ratings li {
+    float: left;
+    margin-right: 10px;
+}
+
+.earnings-dollar-icon  {
+    color: #FFF;
+    background-color: #39b54a;
+    width: 16px;
+    height: 16px;
+    font-size: 11px;
+    border-radius: 8px;
+    font-weight: bold;
+    position: relative;
+    display: inline-block;
+}
+
+.earnings-dollar-icon span::before {
+    content: '\0024';
+    position: absolute;
+    font-family: "Source Sans Pro",Arial,Helvetica,sans-serif;
+    top: -2px;
+    left: 5px;
+}
+
+.total-earnings {
+    color: #555555;
+    font-size: 11px;
+    font-weight: bold;
+    font-family: "Source Sans Pro",Arial,Helvetica,sans-serif;
+    text-transform: uppercase;
+    vertical-align: top;
+    margin-left: 4px;
+}
+
+.coderRatings .actions .trackSwitch {
+    margin-right: 0px;
+}
+
+.trackSwitch a {
+    height: 50px;
+    line-height: 50px;
+    margin-left: 0px;
+}
+
+.trackSwitch li {
+    
+    height: 50px;
+    background-color: #aaa;
+    border-right: 1px solid #FFF;
+    border-bottom: 1px solid #FFF;
+
+}
+
+.trackSwitch  a, .trackSwitch  a{
+    padding-left: 10px;
+    padding-right: 10px;
+    border: none;
+    background-color:  #aaa;
+    height: 50px;
+    color: #FFF;
+}
+
+.algoLayout {
+    min-height:  0px;
+}
+
+
+
+.algoLayout .ratingInfo {
+margin-right: 0;
+}
+
+
+
+.algoLayout .head {
+    border: none;
+}
+
+.algoLayout .detailedRating {
+    margin-left: 0px;
+}
+
+.algoLayout .row label {
+    display: block;
+    float: none;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #555555;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.algoLayout .detailedRating  {
+    background-color: #fafafa;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    min-height: 90px;
+    max-width: 790px;
+}
+
+.algoLayout .detailedRating .row {
+    height: 90px;
+    text-align: center;
+    display: inline-block;
+    width: 20%;
+    margin-bottom: 10px;
+}
+
+.algoLayout .detailedLower .row {
+    width: 16%;
+    margin-bottom: 10px;
+}
+
+.algoLayout .row .val {
+    float: none;
+    height: 100%;
+    display: inline-block;
+    font-size: 27px;
+    color: #9a9a9a;
+    line-height: 26px;
+    white-space: nowrap;
+     width: 100%;                   
+     overflow: hidden;              /* "overflow" value must be different from "visible" */ 
+
+     text-overflow:    ellipsis;
+    }
+
+.rating-chart {
+    display: none;
+}
+
+#graphView.history-true #history_chart {
+    display: block;
+}
+
+#graphView.history-true #distribution_chart {
+    display: block;
+}
+
+.algoLayout .tabNav   {
+    position: absolute;
+    top: 0px;
+    margin-bottom: 20px;
+}
+
+.algoLayout .tabNav ul {
+    width: 200px;
+    height: auto;
+}
+
+.algoLayout .tabNav li, .algoLayout .tabNav li:first-child{
+    width: 200px;
+}
+.algoLayout .tabNav li a {
+    background-image: none;
+}
+
+
+.doughnut-legend {
+    text-align: left;
+}
+
+.doughnut-legend li {
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #555;
+}
+
+.doughnut-legend span {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    margin-right: 7px;
+}
+
+#overview-top-traits-container {
+    max-width: 905px;
+    overflow: hidden;
+    text-align: center;
+    float: left;
+}
+
+#overview-top-traits {
+    width: 2100px;
+    margin-right: 200px;
+}
+
+#overview-top-traits li.trait-container {
+    float: left;
+    margin: 0 60px;
+}
+
+.chartTypeSwitcher {
+    margin-left: 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+@media (min-width: 640px) {
+    .trackSwitch li {
+        width: 153px;
+        
+    }
+ }
+
+ .algoLayout .ratingViews {
+    border: none;
+ }
+
+ .algoLayout .ratingViews .tableContainer {
+    border: 1px solid #E7E7E7;
+}
+
+.overview-top-traits-container {
+    margin-left: 0px;
+}
+
+h4.trait-label {
+    font-family: "Source Sans Pro",Arial,Helvetica,sans-serif;
+    color: #888;
+    font-weight: 300;
+    margin-top: 6px;
+    margin-bottom: 30px;
+}
+
+.chevron::before {
+    border-style: solid;
+    border-width: 0.10em 0.10em 0 0;
+    content: '';
+    display: inline-block;
+    height: 0.45em;
+    left: 0.15em;
+    position: relative;
+    top: 0.15em;
+    transform: rotate(-45deg);
+    vertical-align: top;
+    width: 0.45em;
+}
+
+.chevron.right:before {
+    left: 0;
+    transform: rotate(45deg);
+}
+
+.chevron.bottom:before {
+    top: 0;
+    transform: rotate(135deg);
+}
+
+.chevron.left:before {
+    left: 0.10em;
+    transform: rotate(-135deg);
+}
+
+.overview-nav {
+    float: left;
+    padding-top: 120px;
+    padding-bottom: 120px;
+    width: 45px;
+    font-size: 40px;
+}
+
+.overview-nav span::before {
+    border-color: #e5e5e5;
+}
+
+.overview-nav:hover {
+    cursor: pointer;
+}
+.overview-nav:hover span::before {
+    border-color: #555;
+}
+.algoLayout .tabNav li:last-child {
+    border-right: 1px solid #fff;
+
+}
+
+.algoLayout .tabNav li:first-child {
+    border-left: 1px solid #fff;
+    
+}
+
+
+.algoLayout .tabNav li {
+    text-align: left;
+    position: relative;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.algoLayout .tabNav li, .algoLayout .tabNav li a.small, .algoLayout .subTrackTabs .tabNav, .algoLayout .tabNav ul,.algoLayout .tabNav li a {
+    background-color: #fff;
+}
+
+.algoLayout .tabNav li a {
+    color: #555;
+    padding-left: 20px;
+    font-family: "Source Sans Pro",Arial,Helvetica,sans-serif;
+    font-weight: 300;
+
+}
+
+.algoLayout .tabNav li .bottom {
+    display: none;
+}
+.algoLayout .tabNav li .chevron {
+    position: absolute;
+    right: 15px;
+    top: 20px;
+}
+.algoLayout .tabNav li .chevron::before {
+    border-color: #FFF;
+
+}
+
+
+.algoLayout .tabNav li a.isActive , .algoLayout .tabNav li a:hover{
+    color: #FFF;
+}
+
+#loading-bar, #loading-bar .bar, #loading-bar-spinner {
+z-index: 1000000 !important;
+}
+
+#profile-ratings li {
+    padding-right: 15px;
+    padding-left: 15px;
+
+}
+#profile-ratings div {
+    font-family: "Source Sans Pro",Arial,Helvetica,sans-serif;
+    text-transform: uppercase;
+}
+
+.badge-label {
+    color: #ccc;
+    font-weight: bold;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.badge-value {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.badge-sub1 {
+    font-size: 10px;
+    font-weight: bold;
+    color: #3e4c51;
+    margin-bottom: 0px;
+    line-height: 10px;
+}
+
+.badge-sub2 {
+    color: #ff8a00;
+    font-size: 10px;
+    font-weight: 400;
+}
+
+@media (min-width: 875px) {
+    .detailedRating {
+        margin-left: 220px !important;
+    }
+    .ratingViews {
+        margin-left: 220px !important;
+    }
+    .algoLayout .subTrackTabs .tabNav {
+        width: 200px  !important;
+        height: auto  !important;
+        float: left  !important;
+        display: inline-block  !important;
+    }
+    .algoLayout h4.trackName {
+        margin-left:  220px !important;
+    }
+}
+
+@media (max-width: 874px) {
+    .algoLayout .tabNav   {
+        width: auto !important;
+        position: relative !important;
+    }
+
+    .algoLayout .tabNav ul  {
+        width: auto !important;
+        list-style:none !important;
+            white-space: nowrap !important;
+    }
+
+    .algoLayout .tabNav ul li {
+        display: inline-block !important;
+        float: none !important;
+        height: 54px !important;
+        width: auto !important;
+    }
+    .algoLayout .tabNav li .bottom {
+        display: block;
+    }
+    .algoLayout .tabNav li .right {
+        display: none;
+    }
+    .algoLayout .tabNav li .chevron {
+    right: 50%;
+    top: 37px;
+    margin-right:-3px; 
+    }
+
+}
+
+@media (max-width: 1020px) {
+
+    #profile-ratings-container {
+        position: relative;
+        top: 0px;
+        left: 50%;
+        margin-left: -175px;
+        margin-top: 200px;
+        margin-bottom:  10px;
+        width: 350px;
+    }
+
+}
+
+
+@media (min-width: 700px) and (max-width: 1020px) {
+
+    #profile-ratings-container {
+        position: relative;
+        top: 0px;
+        left: 0px;
+        margin-left: 170px;
+        margin-top: 200px;
+        width: 350px;
+    }
+
+}
+@media (max-width: 1000px) {
+
+    #message-user {
+        top: 0px;
+        left: 0px;
+        width: 80%;
+        margin: 10% !important;
+    }
+}
+
+

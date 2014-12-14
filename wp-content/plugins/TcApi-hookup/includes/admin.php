@@ -32,6 +32,9 @@ class TCHOOK_Admin extends TCHOOK_Plugin {
 			
 			// Member Profile
 			add_rewrite_rule ( '^member-profile/([^/]*)/?$', 'index.php?pagename=member-profile&handle=$matches[1]', 'top' );
+
+			// Users
+			add_rewrite_rule ( '^users/([^/]*)/?$', 'index.php?pagename=users&handle=$matches[1]', 'top' );
 		}
 		tcapi_rewrite_rules ();
 		/* flush */
