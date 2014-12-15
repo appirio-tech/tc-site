@@ -75,56 +75,7 @@ angular.module('tc').controller('UsersCtrl', ['$location', '$state', '$scope', '
     var found = $location.absUrl().match(regex);
     var tab = found[2];
 
-    
-    $scope.userExisted = true;
-    $scope.tcUserDataRetrieved = false;
-    $scope.cbUserDataRetrieved = false;
-    // Get the user's profile. 'user' is defined in ng-page-users.php 
-    UsersService.getMastery(user).then(function(resp){
-      var mastery = resp.mastery;
-      $scope.showDesign = resp.showDesignSection;
-      $scope.showDevelop = resp.showDevelopSection;
-      $scope.showData = resp.showDataSection;
-
-      $scope.mastery = [];
-
-      if(mastery.category === 'Data') {
-        $scope.mastery.push({
-          label: 'Rating',
-          value: mastery.rating,
-          category: 'Default Language',
-          track: mastery.defaultLanguage
-        });
-      } else if(mastery.rating) {
-        $scope.mastery.push({
-          label: 'Rating',
-          value: mastery.rating,
-          category: mastery.category,
-          track: mastery.ratingName
-        });
-        if(mastery.wins > 0){
-          $scope.mastery.push({
-            label: 'Wins',
-            value: mastery.wins,
-            category: mastery.category,
-            track: mastery.name
-          });
-        }
-      } else {
-        $scope.mastery.push({
-          label: 'Wins',
-          value: mastery.wins,
-          category: mastery.category,
-          track: mastery.name
-        });
-        $scope.mastery.push({
-          label: 'Submissions',
-          value: mastery.submissions,
-          category: mastery.category,
-          track: mastery.name
-        });
-      }
-
+    var getTCUser = function() {
       UsersService.getUser(user).then(function (user) {
         $scope.coder = user;
         //var cat =  _.max(user.ratingSummary, function(category){ return category.rating; });
@@ -136,7 +87,9 @@ angular.module('tc').controller('UsersCtrl', ['$location', '$state', '$scope', '
         $scope.tcUserDataRetrieved = true;
         $scope.cbUserDataRetrieved = true;
       });
+    }
 
+    var getCBUser = function() {
       CoderbitsService.getUser(user).then(function (coderbits){
         $scope.coderbitsUserExisted = (typeof coderbits.name !== 'undefined');
         $scope.showBadge = ($scope.showDesign + $scope.showDevelop + $scope.showData) > 0;
@@ -187,11 +140,62 @@ angular.module('tc').controller('UsersCtrl', ['$location', '$state', '$scope', '
         $scope.coderbitsUserExisted = false;
         $scope.coderbits = {};
       });
+    }
+    
+    $scope.userExisted = true;
+    $scope.tcUserDataRetrieved = false;
+    $scope.cbUserDataRetrieved = false;
+    var mastery = false;
+    $scope.mastery = [];
+    // Get the user's profile. 'user' is defined in ng-page-users.php 
+    UsersService.getMastery(user).then(function(resp){
+      mastery = resp.mastery;
+      $scope.showDesign = resp.showDesignSection;
+      $scope.showDevelop = resp.showDevelopSection;
+      $scope.showData = resp.showDataSection;
+
+      if(mastery.category === 'Data') {
+        $scope.mastery.push({
+          label: 'Rating',
+          value: mastery.rating,
+          category: 'Default Language',
+          track: mastery.defaultLanguage
+        });
+      } else if(mastery.rating) {
+        $scope.mastery.push({
+          label: 'Rating',
+          value: mastery.rating,
+          category: mastery.category,
+          track: mastery.ratingName
+        });
+        if(mastery.wins > 0){
+          $scope.mastery.push({
+            label: 'Wins',
+            value: mastery.wins,
+            category: mastery.category,
+            track: mastery.name
+          });
+        }
+      } else {
+        $scope.mastery.push({
+          label: 'Wins',
+          value: mastery.wins,
+          category: mastery.category,
+          track: mastery.name
+        });
+        $scope.mastery.push({
+          label: 'Submissions',
+          value: mastery.submissions,
+          category: mastery.category,
+          track: mastery.name
+        });
+      }
+
+      getTCUser();
+      getCBUser();      
     }, function(e){
-      $scope.coder = {};
-      $scope.userExisted = false;
-      $scope.tcUserDataRetrieved = true;
-      $scope.cbUserDataRetrieved = true;
+      getTCUser();
+      getCBUser();
     });
   }
 ]);
