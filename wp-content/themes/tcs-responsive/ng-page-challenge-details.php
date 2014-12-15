@@ -702,7 +702,7 @@ include locate_template('header-challenge-landing.php');
   <div class="discussion" data-ng-show="booted">
     <div class="message-box ng-scope" data-ng-repeat="message in messages">
       <a href="#"><img class="message-avatar" data-ng-src="{{users[message.authorId].avatarUrl}}" width="45" height="45"></a>
-      <span class="created-at ng-binding"><em class="ng-binding message-author">{{users[message.authorId].handle}}</em> commented at {{message.createdAt | date: "MMMM d, yyyy h:mm a"}}</span>
+      <span class="created-at ng-binding"><a data-ng-href="/member-profile/{{users[message.authorId].handle}}"><em class="ng-binding message-author">{{users[message.authorId].handle}}</em></a> commented at {{message.createdAt | date: "MMMM d, yyyy h:mm a"}}</span>
       <p class="message-text">{{message.content}}</p>
     </div>
 
