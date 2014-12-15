@@ -86,9 +86,9 @@ angular.module('tc.coderbitsDirectives', [])
         })
       })
       _.each(data, function(d,i){
-        if(d.value/ct < 0.01) data.splice(i,1);
-        d.label =  (d.value/ct).toFixed(2).replace('0.','')+'% - ' + d.label;
-
+        var val = ((d.value/ct)*100).toFixed(1);
+        if(val < 0.1) val = 0.1;
+        d.label = val  + '% - ' + d.label;
       });
 
       var options = {
