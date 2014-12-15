@@ -182,9 +182,9 @@ include locate_template('header-challenge-landing.php');
         will be made at the closure of the approval phase. The second payment will be made at the
         completion of the support period.</p>
 
-      <h2>Reliability Rating and Bonus</h2>
+      <h2 ng-if="!CD.isLC">Reliability Rating and Bonus</h2>
 
-      <p>For challenges that have a reliability bonus, the bonus depends on the reliability rating at
+      <p ng-if="!CD.isLC">For challenges that have a reliability bonus, the bonus depends on the reliability rating at
         the moment of registration for that project. A participant with no previous projects is
         considered to have no reliability rating, and therefore gets no bonus.
         Reliability bonus does not apply to Digital Run winnings. Since reliability rating is
