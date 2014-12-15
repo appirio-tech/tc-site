@@ -1,0 +1,11 @@
+<div class='overview-nav' ng-click="prevPage()"><span class="chevron left" ng-show="page" ></span></div>
+<div id='overview-top-traits-container'>
+	<ul id='overview-top-traits'>
+		<li class='trait-container' ng-repeat="item in traitPages[page]">
+			<h4 class='trait-label'>{{item.name}}</h4>
+			<canvas class="tc-chart" width="150" height="150" tc-chart items="item.data"></canvas>
+		</li>
+	</ul>
+</div>
+<div class='overview-nav' style='text-align: right; float:right' ng-click="nextPage()"><span class="chevron right ngHide" ng-hide="page" ></span></div>
+<div style='clear: both'></div>

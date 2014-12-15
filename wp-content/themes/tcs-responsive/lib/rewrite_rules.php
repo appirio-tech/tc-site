@@ -36,6 +36,19 @@ function tc_add_custom_rewrite_rules() {
     'top'
   );
 
+  // Account Builder
+  add_rewrite_rule(
+    '^account/([^/]*)/?([^/]*)$',
+    'index.php?pagename=account',
+    'top'
+  );
+
+  add_rewrite_rule(
+    '^' . USERS_PERMALINK . '/([^/]*)/?([^/]*)$',
+    'index.php?pagename=users&handle=$matches[1]&tab=$matches[2]',
+    'top'
+  );
+
   // Case studies Category
   //add_rewrite_rule ( '^'.CASE_STUDIES_PERMALINK.'/([^/]*)/?$', 'index.php?pagename=case-studies&slug=$matches[1]', 'top' );
   //add_rewrite_rule ( '^'.CASE_STUDIES_PERMALINK.'/([^/]*)/?$', 'index.php?pagename=case-studies&page=$matches[1]', 'top' );

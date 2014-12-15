@@ -1,0 +1,26 @@
+<div class="subTrackTabs">
+	<nav class="tabNav alt">
+		<h3 ng-if="!dataCtrl.dataLoaded || (!dataCtrl.algorithmFlag && !dataCtrl.marathonFlag)">Data Science</h3>
+		<ul ng-if="dataCtrl.dataLoaded">
+			<li ng-show="dataCtrl.algorithmFlag"><a ng-class="{isActive : subTrack === 'algorithm'}" ng-click="setSubTrack('algorithm')" tc-change-url="algorithm">Algorithm</a></li>
+			<li ng-show="dataCtrl.marathonFlag"><a ng-class="{isActive : subTrack === 'marathon'}" ng-click="setSubTrack('marathon')" tc-change-url="marathon">Marathon</a></li>
+		</ul>
+	</nav>
+</div>
+
+<div ng-if="dataCtrl.dataLoaded">
+	<div ui-view="summary" ng-if="dataCtrl[dataCtrl.subTrack].rating"></div>
+
+	<div class="ratingViews" ng-if="dataCtrl[dataCtrl.subTrack].rating">
+			<div ui-view="details"></div>
+	</div>
+	<!-- /.ratingViews -->
+
+	<div class="noParticipation" ng-if="!dataCtrl[dataCtrl.subTrack].rating">
+		<h2>Member rating unavailable or member didn't participate in any {{subTrack === 'algorithm' ? 'Algorithm' : 'Marathon'}} competitions.</h2>
+	</div>
+</div>
+
+<div class="noParticipation" ng-if="!dataCtrl.dataLoaded">
+	<div class="loadingPlaceholder2"></div>
+</div>

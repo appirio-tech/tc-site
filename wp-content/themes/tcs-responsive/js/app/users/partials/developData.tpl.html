@@ -1,0 +1,21 @@
+<div class="subTrackTabs" ng-if="showDevelop">
+	<nav class="tabNav">
+		<h3 ng-if=" !dataCtrl.dataLoaded || dataCtrl.emptyFlag">Develop</h3>
+		<ul  ng-if="dataCtrl.dataLoaded">
+			<li ng-repeat="(name, value) in stats.Tracks" tc-adjust-header>
+				<a ng-click="setSubTrack(name)" ng-class="{isActive : subTrack === name}" ng-bind="name|| ''"></a><span class="chevron right"></span><span class="chevron bottom"></span>
+			</li>
+		</ul>
+	</nav>
+	<div ui-view="summary"  ng-if="dataCtrl.dataLoaded"></div>
+
+	<div class="ratingViews" ng-if="dataCtrl.dataLoaded && !dataCtrl.emptyFlag">
+		<div ui-view="details"></div>
+	</div>
+	<!-- /.ratingViews -->
+
+	<div class="noParticipation" ng-if="!dataCtrl.dataLoaded">
+		<div class="loadingPlaceholder2"></div>
+	</div>
+</div>
+	

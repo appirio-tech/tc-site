@@ -1,0 +1,372 @@
+#navigation, .twitter, .recentBlogPosts, .connected {
+	display: none;
+}
+
+#footer .footerContentSection {
+	width: 100%;
+}
+
+#footer .copyright {
+	margin-top: 0px;
+	background: url('https://coderbits.com/images/TopcoderPowered-by[tc]-logo.png') no-repeat right;
+	background-size: 250px 75px;
+    width: 100%;
+    text-align: left;
+}
+
+#coderbits {
+	margin-top: 15px;
+	min-height: 310px;
+}
+
+.cb-sum-col #coderbits h2, #coderbits h4, #coderbits li{
+	font-family: "Source Sans Pro",Arial,Helvetica,sans-serif;
+	color: #666666;
+	font-size: 12px;
+}
+
+#coderbits li b {
+	font-size: 12px;
+	color: #666666;
+}
+
+#coderbits li b.bigger {
+	font-size: 14px;
+}
+
+#coderbits li h2 {
+	font-size: 36px;
+	font-weight: 300;
+	color: #666666;
+	margin-bottom: 0px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+
+}
+
+#coderbits li h4.border-bottom {
+	padding-bottom: 10px;
+	border-bottom: 1px solid #e8e8e8;
+	margin-bottom: 10px;
+}
+
+#coderbits li h4 {
+	font-size: 22px;
+	font-weight: 600;
+	color: #666666;
+}
+
+#coderbits li div.cb-sum-col{
+ width: 462px;
+ float: left;
+
+}
+
+#coderbits li .cb-sum-right{
+}
+
+#coderbits li .cb-sum-left{
+margin-right: 40px;
+
+}
+
+#coderbits .cb-sum-activity li {
+padding-right: 40px;
+margin-bottom: 4px;
+}
+
+
+#coderbits .cb-sum-activity li span {
+	float: right;
+}
+
+#coderbits li ul {
+	margin-bottom: 20px;
+}
+
+#coderbits li.cb-section-seperator:hover {
+	color: #f0efef;
+	text-align: center;
+}
+
+#coderbits .img-container {
+	width: 32px;
+	height: 32px;
+	border-radius: 4px;
+	background-color: #f4f4f4;
+	float: left;
+}
+
+#coderbits .img-container img{
+	border-radius: 4px;
+}
+
+#coderbits .cb-section {
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 10px;
+	text-align: left;
+	color: #666666;
+}
+
+#coderbits .cb-section-seperator {
+	clear: both;
+	color: #f4f4f4;
+	background-color: #f4f4f4;
+	border-top: 1px solid #d5d4d4;
+	border-bottom: 1px solid #d5d4d4;
+	height: 20px;
+
+}
+
+.cb-section-seperator:nth-child(5n+2)::before {
+	content:'\0066\0033'
+}
+
+#coderbits .cb-social-heading {
+	min-height: 32px;
+	background-repeat: no-repeat;
+	padding-left: 42px;
+	background-size: 32px 32px; 
+}
+
+#coderbits .cb-item-design {
+	margin-bottom: 14px;
+}
+
+#coderbits .cb-list-item {
+	border-bottom: 1px dashed #d5d4d4;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 5px;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes more-hover {
+	0%   {
+	    	background: #ff9900;
+		text-shadow: 1px 1px #ff7a00;
+	}
+	50% {
+		background: #ff4900;
+	}
+	100% {
+		background: #ff7a00;
+		text-shadow: 1px 1px #ff6200;
+	}
+}
+
+/* Standard syntax */
+@keyframes more-hover {
+	0%   {
+	    	background: #ff9900;
+		text-shadow: 1px 1px #ff7a00;
+	}
+	50% {
+		background: #ff4900;
+	}
+	100% {
+		background: #ff7a00;
+		text-shadow: 1px 1px #ff6200;
+	}
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes more-hover-out {
+    	0% {
+    		background: #ff7a00;
+    		text-shadow: 1px 1px #ff4900;
+    	}
+     	50% {background: #ff4900;}
+     	100%   {
+     		background: #ff9900;
+     		text-shadow: 1px 1px #ff7a00;
+	}
+}
+
+/* Standard syntax */
+@keyframes more-hover-out {
+	0% {
+		background: #ff7a00;
+		text-shadow: 1px 1px #ff6200;
+	}
+ 	50% {background: #ff4900;}
+ 	100%   {
+ 		background: #ff9900;
+ 		text-shadow: 1px 1px #ff7a00;
+ 	}
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes more-hover-behind {
+	0% {
+		background: #ff7a00;
+		text-shadow: 1px 1px #ff6200;
+	}
+
+ 	50% {
+ 		background: #ff4900;
+ 	}
+
+	100%   {
+		background: #ff9900;
+		text-shadow: 1px 1px #ff7a00;
+	}
+}
+
+/* Standard syntax */
+@keyframes more-hover-behind {
+	0% {
+		background: #ff7a00;
+		text-shadow: 1px 1px #ff6200;
+	}
+
+ 	50% {
+ 		background: #ff4900;
+ 	}
+
+	100%   {
+		background: #ff9900;
+		text-shadow: 1px 1px #ff7a00;
+	}
+
+}
+
+#coderbits .cb-more div {
+	background-color: #ff9900;
+	height: 22px;
+	width: 100px;
+	border-radius: 6px;
+	color: #FFF;
+	text-align: center;
+	font-size: 14px;
+	padding-top: 5px;
+
+	-webkit-animation: more-hover-behind 0.25s linear 0s; /* Chrome, Safari, Opera */
+	 animation: more-hover-behind 0.25s linear 0s; /* Standard syntax */
+	 -webkit-animation-fill-mode: both; /* Chrome, Safari, Opera */
+	 animation-fill-mode: both;
+
+}
+
+#coderbits .cb-more:hover div {
+	-webkit-animation: more-hover 0.25s linear 0s; /* Chrome, Safari, Opera */
+	 animation: more-hover 0.25s linear 0s; /* Standard syntax */
+	 -webkit-animation-fill-mode: both; /* Chrome, Safari, Opera */
+	 animation-fill-mode: both;
+}
+
+#coderbits .cb-more {
+	cursor: pointer;
+	background-color: #ff7a00;
+	height: 30px;
+	width: 100px;
+	border-radius: 6px;
+	float: right;
+	margin-right: 10px;
+	border: 1px solid #ff7a00;
+
+	-webkit-animation: more-hover 0.25s linear 0s; /* Chrome, Safari, Opera */
+	 animation: more-hover 0.25s linear 0s; /* Standard syntax */
+	 -webkit-animation-fill-mode: both; /* Chrome, Safari, Opera */
+	 animation-fill-mode: both;
+
+}
+
+#coderbits .cb-more:hover {
+	-webkit-animation: more-hover-behind 0.25s linear 0s; /* Chrome, Safari, Opera */
+	 animation: more-hover-behind 0.25s linear 0s; /* Standard syntax */
+	 -webkit-animation-fill-mode: both; /* Chrome, Safari, Opera */
+	 animation-fill-mode: both;
+}
+
+.cb-section-seperator:nth-child(4n+3)::after {
+	content:'\007A\0030'
+}
+
+#coderbits .tc-attr {
+	text-align: center;
+	background-color: #f4f4f4;
+	border-radius: 6px;
+	display: inline-block;
+	padding: 12px;
+	padding-left: 16px;
+	padding-right: 16px;
+	margin-top: 8px;
+	min-width: 120px;
+}
+
+#coderbits .tc-attr b {
+	display: block;
+	font-size: 22px;
+	margin-bottom: 3px;
+	font-weight: 600;
+}
+
+#coderbits .tc-attr span {
+	display: block;
+	font-size: 12px;
+}
+
+#coderbits .cb-badge-info {
+	padding-top: 30px;
+	font-size: 14px;
+	padding-left: 8px;
+	float: left;
+}
+
+#coderbits .cb-badge-info b {
+	font-size: 20px;
+	margin-bottom: 8px;
+}
+
+#coderbits li h2 {
+
+}
+
+#coderbits li .section-title {
+	font-size: 16px; font-weight: bold; border-bottom: 1px solid #ccc
+}
+
+#coderbits li .subsection-title {
+	font-weight: bold;
+}
+
+#coderbits-section li .subsection-info {
+	margin-right: 24px
+}
+
+.cb-tc-badge-area {
+	float: right;
+}
+
+@media (min-width: 1024px) {
+	.cb-section-heading {
+		float: left;
+		width: 354px;
+		margin-right: 100px;
+	}
+
+	.cb-section-content {
+		float: left;
+		width: 515px;
+	}
+
+	.cb-tc-badge-area {
+		width: 515px;
+	}
+
+}
+
+@media (max-width: 450px) {
+	.chartTypeSwitcher {
+		margin-left: 0px;
+	}
+
+	.chartTypeSwitcher .btn {
+		display: block !important;
+		width: 100%;
+		margin-bottom: 3px;
+	}
+
+}

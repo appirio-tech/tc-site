@@ -1,0 +1,19 @@
+<style type='text/css'>
+
+	
+</style>
+<div id='coderbits-section'>
+	<div class='cb-section-heading' >
+<h3>{{section.title}}</h3>
+{{section.desc}}<br/>
+{{section.total_count}} {{section.type}}s
+	</div>
+	<div class='cb-section-content' >
+		<ul>
+			<li class="cb-list-item animate-repeat" ng-repeat="item in section.items">
+				<div tc-coderbits-item="item" section="section"></div>
+			</li>
+		</ul>
+		<div class="loadingPlaceholder2" class='ng-hide' style='float:left;width: 220px; height:26px' ng-show='section.isLoading'></div><div class='cb-more' ng-show='section.has_more' class="ng-hide" ng-click='section.more(section)'><div>View More</div></div>
+	</div>
+</div>

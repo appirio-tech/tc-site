@@ -189,7 +189,6 @@ $blog_posts = get_posts($blog_posts_args);
        <img alt="" style="width:910px; height:850px">
     </div>
 </div><!-- END #show submission -->
-
 <div id="designSubmissionCommentExample" class="modal">
   <a href="javascript:;" class="btnClose closeModal"></a>
   <div class="content">

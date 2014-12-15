@@ -1,0 +1,200 @@
+<style type='text/css'>
+	#coderbits li h2 {
+
+	}
+
+	#coderbits li .section-title {
+		font-size: 16px; font-weight: bold; border-bottom: 1px solid #ccc
+	}
+
+	#coderbits li .subsection-title {
+		font-weight: bold;
+	}
+
+	#coderbits li .subsection-info {
+		margin-right: 24px
+	}
+
+</style>
+<ul id='coderbits'>
+	<li class='cb-section-seperator' ng-if="coderbits.showSummary"></li>
+	<li ng-if="coderbits.showSummary" class='cb-section'>
+		<h2>Summary</h2>
+		<div class='cb-sum-col cb-sum-left'>
+			<h4 ng-if="coderbits.pages.summary.Jobs" class='border-bottom'>Work History</h4>
+			<ul ng-if="coderbits.pages.summary.Jobs" >
+				<li ng-repeat="job in coderbits.pages.summary.Jobs" style='margin-bottom: 5px;'>
+					<b class='bigger'>{{job.title}}</b><br/>
+					<b>{{job.company}}</b><br/>
+					<b>{{job.date_range}}</b><br/>
+					{{job.description}}
+				</li>
+			</ul>
+			<h4 ng-if="coderbits.pages.summary.Schools.length || coderbits.pages.summary.Courses.length" class='border-bottom'>Education</h4>
+			<ul ng-if="coderbits.pages.summary.Schools.length || coderbits.pages.summary.Courses.length" >
+				<li ng-repeat="school in coderbits.pages.summary.Schools" style='margin-bottom: 5px;'>
+					<b class='bigger'>{{school.name}}</b><br/>
+					<b>{{school.degree_with_field}}</b><br/>
+					<b>{{school.date_range}}</b>
+				</li>
+				<li ng-repeat="school in coderbits.pages.summary.Courses" style='margin-bottom: 5px;'>
+					<b class='bigger'>{{school.name}}</b><br/>
+					<b>{{school.count}} courses completed</b><br/>
+					<div ng-if='school.date_range'><b>{{school.date_range}}</b></div>
+					<div ng-if='school.skills'><b>{{school.skills}}</b></div>
+				</li>
+			</ul>
+		</div>
+		<div class='cb-sum-col cb-sum-right'>
+			<h4 ng-if="coderbits.pages.summary.Accounts" class='border-bottom'>On the web</h4>
+			<ul style='width: 320px'>
+				<li ng-repeat="account in coderbits.pages.summary.Accounts" style='float: left; width: 32px; height: 32px; margin-right: 8px; margin-bottom: 8px'>
+					<a ng-href="{{account.link.replace('%handle%',coder.handle)}}"><div class='img-container'><img ng-src="{{apiHost}}/{{account.image_link_32}}" /></div></a>
+				</li>
+			</ul>
+			<div style='clear: both'></div>
+			<h4 class='border-bottom'>Badges</h4>
+			<ul class='cb-sum-activity'>
+				<li>
+					1-bit badges <span><b>x {{coderbits.one_bit_badges}}</b></span>
+				</li>
+				<li>
+					8-bit badges <span><b>x {{coderbits.eight_bit_badges}}</b></span>
+				</li>
+				<li>
+					16-bit badges <span><b>x {{coderbits.sixteen_bit_badges}}</b></span>
+				</li>
+				<li>
+					32-bit badges <span><b>x {{coderbits.thirty_two_bit_badges}}</b></span>
+				</li>
+			</ul>
+
+			<h4 class='border-bottom' ng-if="coderbits.pages.recentactivities.items.length">Recent Activity</h4>
+			<ul class='cb-sum-activity'>
+				<li ng-repeat="item in coderbits.pages.recentactivities.items" >
+					<div class='img-container' style='margin-right: 12px;'><img ng-src="{{apiHost}}/{{item.image_link}}" /></div>{{item.name}}<span><b>x {{item.count}}</b></span>
+					<div style='clear: both'></div>
+				</li>
+			</ul>
+		</div>
+	</li>
+	<li class='cb-section-seperator' ng-if="coderbits.showSkills"></li>
+	<li ng-if="coderbits.showSkills" class='cb-section'>
+		<h2>Skills</h2>
+		<tc-coderbits-section page='coderbits.pages.skills'></tc-coderbits-section>
+		<div style='clear: both; margin-bottom: 20px'></div>
+		<tc-coderbits-section page='coderbits.pages.languages'></tc-coderbits-section>
+		<div style='clear: both; margin-bottom: 20px'></div>
+		<tc-coderbits-section page='coderbits.pages.environments'></tc-coderbits-section>
+		<div style='clear: both; margin-bottom: 20px'></div>
+		<tc-coderbits-section page='coderbits.pages.frameworks'></tc-coderbits-section>
+		<div style='clear: both; margin-bottom: 20px'></div>
+		<tc-coderbits-section page='coderbits.pages.tools'></tc-coderbits-section>
+		<div style='clear: both; margin-bottom: 20px'></div>
+		<tc-coderbits-section page='coderbits.pages.interests'></tc-coderbits-section>
+		<div style='clear: both; margin-bottom: 20px'></div>
+		<tc-coderbits-section page='coderbits.pages.traits'></tc-coderbits-section>
+		<div style='clear: both; margin-bottom: 20px'></div>
+	</li>
+	<li class='cb-section-seperator' ng-if="coderbits.showCode"></li>
+	<li ng-if="coderbits.showCode" class='cb-section'>
+		<h2>Source Code</h2>
+		<tc-coderbits-section page='coderbits.pages.repositoriesown' ng-if='coderbits.pages.repositoriesown.items'></tc-coderbits-section>
+		<div style='clear: both; margin-bottom: 20px'></div>
+		<tc-coderbits-section page='coderbits.pages.repositoriescollaborate' ng-if='coderbits.pages.repositoriescollaborate.items'></tc-coderbits-section>
+		<div style='clear: both; margin-bottom: 20px'></div>
+		<tc-coderbits-section page='coderbits.pages.repositoriessupport' ng-if='coderbits.pages.repositoriessupport.items'></tc-coderbits-section>
+		<div style='clear: both; margin-bottom: 20px'></div>
+		<tc-coderbits-section page='coderbits.pages.repositorieswatch' ng-if='coderbits.pages.repositorieswatch.items'></tc-coderbits-section>
+		<div style='clear: both; margin-bottom: 20px'></div>
+		<tc-coderbits-section page='coderbits.pages.snippets' ng-if='coderbits.pages.snippets.items'></tc-coderbits-section>
+		<div style='clear: both; margin-bottom: 20px'></div>
+	</li>
+	<li class='cb-section-seperator' ng-if="coderbits.showBinaries"></li>
+	<li ng-if="coderbits.showBinaries" class='cb-section'>
+		<h2>Binaries and Packages</h2>
+		<tc-coderbits-section page='coderbits.pages.apps' ng-if='coderbits.pages.apps.items'></tc-coderbits-section>
+		<div style='clear: both; margin-bottom: 20px'></div>
+		<tc-coderbits-section page='coderbits.pages.packages' ng-if='coderbits.pages.packages.items'></tc-coderbits-section>
+		<div style='clear: both; margin-bottom: 20px'></div>
+	</li>
+	<li class='cb-section-seperator' ng-if="coderbits.showDesigns"></li>
+	<li ng-if="coderbits.showDesigns" class='cb-section'>
+		<h2>Designs</h2>
+		<tc-coderbits-section page='coderbits.pages.designs' ng-if='coderbits.pages.designs.items'></tc-coderbits-section>
+		<div style='clear: both; margin-bottom: 20px'></div>
+	</li>
+	<li class='cb-section-seperator' ng-if="coderbits.showEducation"></li>
+	<li ng-if="coderbits.showEducation" class='cb-section'>
+		<h2>Education</h2>
+		<tc-coderbits-section page='coderbits.pages.courses' ng-if='coderbits.pages.courses.items'></tc-coderbits-section>
+		<div style='clear: both; margin-bottom: 20px'></div>
+		<tc-coderbits-section page='coderbits.pages.readings' ng-if='coderbits.pages.readings.items'></tc-coderbits-section>
+		<div style='clear: both; margin-bottom: 20px'></div>
+		<tc-coderbits-section page='coderbits.pages.writings' ng-if='coderbits.pages.writings.items'></tc-coderbits-section>
+		<div style='clear: both; margin-bottom: 20px'></div>
+		<tc-coderbits-section page='coderbits.pages.answers' ng-if='coderbits.pages.answers.items'></tc-coderbits-section>
+		<div style='clear: both; margin-bottom: 20px'></div>
+		<tc-coderbits-section page='coderbits.pages.presentations' ng-if='coderbits.pages.presentations.items'></tc-coderbits-section>
+		<div style='clear: both; margin-bottom: 20px'></div>
+	</li>
+	<li class='cb-section-seperator' ng-if="coderbits.showCompetition"></li>
+	<li ng-if="coderbits.showCompetition" class='cb-section'>
+		<h2>Competitions</h2>
+		<tc-coderbits-section page='coderbits.pages.challenges' ng-if='coderbits.pages.challenges.items'></tc-coderbits-section>
+		<div style='clear: both; margin-bottom: 20px'></div>
+	</li>
+	<li class='cb-section-seperator' ng-if="tcUserDataRetrieved && cbUserDataRetrieved && (coderbits.showAwards || coder.Achievements.length)"></li>
+	<li ng-if="tcUserDataRetrieved && cbUserDataRetrieved && (coderbits.showAwards || coder.Achievements.length)" class='cb-section'>
+		<h2>Awards and Badges</h2>
+		<tc-coderbits-section page='coderbits.pages.recommendations' ng-if='coderbits.pages.recommendations.items'></tc-coderbits-section>
+		<div style='clear: both; margin-bottom: 20px'></div>
+		<div id='coderbits-section'>
+			<div style='float: left; width: 354px'>
+				<h3>Topcoder Badges</h3>
+				All the badges earned on Topcoder.<br/>
+				{{coder.Achievements.length}} badges
+			</div>
+			<div class='cb-tc-badge-area'>
+				<div ng-controller='BadgeCtrl'>
+					<aside class="badges">
+					  <div class="badgeGroups">
+					    <div class="groupBadge" ng-repeat="achievementGroup in badgeCtrl.achievementGroups" ng-class="achievementGroup.groupClass" ng-show="achievementGroup.specificAchievements[0].active">
+					      <span class="subBadge hpLogo " ng-if="achievementGroup.groupClass.substring(0 , 9) === 'HP-Badges'"></span>
+					      <span class="subBadge" ng-repeat="achievement in achievementGroup.specificAchievements" ng-class="(achievement.isStudio ? 'Studio-' : '') + achievement.specificClass + ' ' + ( achievement.active | iif : 'selected' : '' )" tc-badge-tooltip="achievement.currentlyEarned achievement.date achievement.name"></span>
+					    </div>
+					  </div>
+					  <!-- /.badge-badges -->
+
+					  <div class="footer-badges">
+					      <div class="singleBadge"  ng-class=" achievement.groupClass  + ' ' + (achievement.active | iif : 'selected' : '' ) " ng-repeat="achievement in badgeCtrl.singleAchievements" ng-show="achievement.active" tc-badge-tooltip="achievement.currentlyEarned achievement.date achievement.name"></div>
+					    <div class="clear-float"></div>
+					  </div>
+					  <!-- /.footer-badges -->
+
+					</aside>
+				</div>
+			</div>
+		</div>
+
+		<div style='clear: both; margin-bottom: 20px'></div>
+
+
+		<tc-coderbits-section page='coderbits.pages.badges' ng-if='coderbits.pages.badges.items'></tc-coderbits-section>
+		<div style='clear: both; margin-bottom: 20px'></div>
+		<!--tc-coderbits-section page='coderbits.pages.badgesother' ng-if='coderbits.pages.badgesother.items'></tc-coderbits-section>
+		<div style='clear: both; margin-bottom: 20px'></div-->
+	</li>
+	<li class='cb-section-seperator' ng-if="coderbits.showMemberships"></li>
+	<li ng-if="coderbits.showMemberships" class='cb-section'>
+		<h2>Memberships</h2>
+		<tc-coderbits-section page='coderbits.pages.memberships' ng-if='coderbits.pages.memberships.items'></tc-coderbits-section>
+		<div style='clear: both; margin-bottom: 20px'></div>
+	</li>
+	<li class='cb-section-seperator' ng-if="coderbits.showActivityStream"></li>
+	<li ng-if="coderbits.showActivityStream" class='cb-section'>
+		<h2>Activity Stream</h2>
+		<tc-coderbits-section page='coderbits.pages.activities' ng-if='coderbits.pages.activities.items'></tc-coderbits-section>
+		<div style='clear: both; margin-bottom: 20px'></div>
+	</li>
+</ul>
