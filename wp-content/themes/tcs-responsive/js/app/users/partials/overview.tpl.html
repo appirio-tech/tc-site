@@ -1,9 +1,9 @@
 <div class='overview-nav' ng-click="prevPage()"><span class="chevron left" ng-show="page" ></span></div>
 <div id='overview-top-traits-container'>
 	<ul id='overview-top-traits'>
-		<li class='trait-container' ng-repeat="item in topTraits">
+		<li class='trait-container' ng-repeat="item in traitPages[page]">
 			<h4 class='trait-label'>{{item.name}}</h4>
-			<canvas class="tc-chart" width="110" height="110" tc-chart items="item.data"></canvas>
+			<canvas class="tc-chart" width="150" height="150" tc-chart items="item.data"></canvas>
 		</li>
 	</ul>
 </div>

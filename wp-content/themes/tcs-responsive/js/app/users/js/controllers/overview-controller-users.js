@@ -13,19 +13,22 @@
 var OverviewCtrl = function (UsersService, ImageService, $scope, CoderbitsService) {
 
   CoderbitsService.getOverview(user).then(function(overview){
-    $scope.topTraits = overview;
-    $scope.page = 0;
+    var allTraits = overview
+      .filter(function(p) { return p.data.length > 0 })
+      .sort(function(a,b) { return b.data.length - a.data.length });
+    
+    $scope.traitPages = [];
+    while (allTraits.length > 0)
+      $scope.traitPages.push(allTraits.splice(0, 4));
 
+    $scope.page = 0;
+    
     $scope.nextPage = function(){
-      if($scope.page === 1) return;
-      $scope.page++;
-      $('#overview-top-traits-container').scrollLeft($scope.page*1000);
+      if ($scope.page < $scope.traitPages.length) $scope.page++;
     }
 
     $scope.prevPage = function(){
-      if($scope.page === 0) return;
-      $scope.page--;
-      $('#overview-top-traits-container').scrollLeft($scope.page*1000);
+      if ($scope.page > 0) $scope.page--;
     }
 
   });
