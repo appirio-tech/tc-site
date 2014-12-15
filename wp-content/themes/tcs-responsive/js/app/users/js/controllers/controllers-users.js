@@ -77,7 +77,8 @@ angular.module('tc').controller('UsersCtrl', ['$location', '$state', '$scope', '
 
     
     $scope.userExisted = true;
-    $scope.userDataRetrieved = false;
+    $scope.tcUserDataRetrieved = false;
+    $scope.cbUserDataRetrieved = false;
     // Get the user's profile. 'user' is defined in ng-page-users.php 
     UsersService.getMastery(user).then(function(resp){
       var mastery = resp.mastery;
@@ -123,74 +124,74 @@ angular.module('tc').controller('UsersCtrl', ['$location', '$state', '$scope', '
           track: mastery.name
         });
       }
-      
+
+      UsersService.getUser(user).then(function (user) {
+        $scope.coder = user;
+        //var cat =  _.max(user.ratingSummary, function(category){ return category.rating; });
+        $scope.userExisted = true;
+        $scope.tcUserDataRetrieved = true;
+      }, function errorCallback(){
+        $scope.coder = {};
+        $scope.userExisted = false;
+        $scope.tcUserDataRetrieved = true;
+        $scope.cbUserDataRetrieved = true;
+      });
 
       CoderbitsService.getUser(user).then(function (coderbits){
-            $scope.coderbitsUserExisted = (typeof coderbits.name !== 'undefined');
-            $scope.showBadge = ($scope.showDesign + $scope.showDevelop + $scope.showData) > 0;
-            
-            //Uncomment to activate design tab for hybrid coderbits design portfolio.
-            //$scope.showDesign = ($scope.coderbitsUserExisted && coderbits.showDesigns);
-            if((!tab || ['algorithm', 'marathon', 'design', 'overview', 'develop'].indexOf(tab) === -1) && mastery) {
-              tab = mastery.category.toLowerCase();
-              if(tab === 'data') {
-                tab = mastery.name.toLowerCase();
-                if(tab === 'srm') tab = 'algorithm';
-              }
-            }
+        $scope.coderbitsUserExisted = (typeof coderbits.name !== 'undefined');
+        $scope.showBadge = ($scope.showDesign + $scope.showDevelop + $scope.showData) > 0;
+        
+        //Uncomment to activate design tab for hybrid coderbits design portfolio.
+        //$scope.showDesign = ($scope.coderbitsUserExisted && coderbits.showDesigns);
+        if((!tab || ['algorithm', 'marathon', 'design', 'overview', 'develop'].indexOf(tab) === -1) && mastery) {
+          tab = mastery.category.toLowerCase();
+          if(tab === 'data') {
+            tab = mastery.name.toLowerCase();
+            if(tab === 'srm') tab = 'algorithm';
+          }
+        }
 
-            switch (tab) {
-            case 'algorithm':
-            case 'marathon':
-              $scope.switchTab('base.common.dataScience.special', 'dataScience', tab);
+        switch (tab) {
+        case 'algorithm':
+        case 'marathon':
+          $scope.switchTab('base.common.dataScience.special', 'dataScience', tab);
 
-              break;
-            case 'design':
-              $scope.switchTab('base.common.design', 'design', undefined);
+          break;
+        case 'design':
+          $scope.switchTab('base.common.design', 'design', undefined);
 
-              break;
-            case 'overview':
-              $scope.switchTab('base.common.overview', 'overview', undefined);
+          break;
+        case 'overview':
+          $scope.switchTab('base.common.overview', 'overview', undefined);
 
-              break;
-           case 'develop':
-              $scope.switchTab('base.common.develop.special', 'develop', undefined);
+          break;
+       case 'develop':
+          $scope.switchTab('base.common.develop.special', 'develop', undefined);
 
-              break;
-            default:
-              if(!$scope.showDevelop && $scope.coderbitsUserExisted) {
-                $scope.switchTab('base.common.overview', 'overview', undefined);
-              } else {
-                $scope.switchTab('base.common.develop.special', 'develop', undefined);
-              }
-              break;
-            }
+          break;
+        default:
+          if(!$scope.showDevelop || $scope.coderbitsUserExisted) {
+            $scope.switchTab('base.common.overview', 'overview', undefined);
+          } else {
+            $scope.switchTab('base.common.develop.special', 'develop', undefined);
+            $scope.cbUserDataRetrieved = true;
+          }
+          break;
+        }
 
-            $scope.showTrackNav = ($scope.coderbitsUserExisted + $scope.showDesign + $scope.showDevelop + $scope.showData) > 1;
-            $scope.coderbits = coderbits;
-            return UsersService.getUser(user);
-          }, function errorCallback(e){
-            $scope.coderbitsUserExisted = false;
-            $scope.coderbits = {};
-            return UsersService.getUser(user);
-          }).then(function (user) {
-          //  console.log(user)
-             $scope.coder = user;
-             var cat =  _.max(user.ratingSummary, function(category){ return category.rating; });
-             $scope.userExisted = true;
-             $scope.userDataRetrieved = true;
-           }, function errorCallback(){
-             $scope.coder = {};
-             $scope.userExisted = false;
-             $scope.userDataRetrieved = true;
-           });
-        }, function(e){
-          $scope.coder = {};
-          $scope.userExisted = false;
-          $scope.userDataRetrieved = true;
-        })
-    
-
-
+        $scope.showTrackNav = ($scope.coderbitsUserExisted + $scope.showDesign + $scope.showDevelop + $scope.showData) > 1;
+        $scope.coderbits = coderbits;
+        $scope.cbUserDataRetrieved = true;
+      }, function errorCallback(e){
+        $scope.cbUserDataRetrieved = true;
+        $scope.coderbitsUserExisted = false;
+        $scope.coderbits = {};
+      });
+    }, function(e){
+      $scope.coder = {};
+      $scope.userExisted = false;
+      $scope.tcUserDataRetrieved = true;
+      $scope.cbUserDataRetrieved = true;
+    });
   }
 ]);

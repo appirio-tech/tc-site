@@ -144,8 +144,8 @@
 		<tc-coderbits-section page='coderbits.pages.challenges' ng-if='coderbits.pages.challenges.items'></tc-coderbits-section>
 		<div style='clear: both; margin-bottom: 20px'></div>
 	</li>
-	<li class='cb-section-seperator' ng-if="coderbits.showAwards || coder.Achievements.length"></li>
-	<li ng-if="coderbits.showAwards || coder.Achievements.length" class='cb-section'>
+	<li class='cb-section-seperator' ng-if="tcUserDataRetrieved && cbUserDataRetrieved && (coderbits.showAwards || coder.Achievements.length)"></li>
+	<li ng-if="tcUserDataRetrieved && cbUserDataRetrieved && (coderbits.showAwards || coder.Achievements.length)" class='cb-section'>
 		<h2>Awards and Badges</h2>
 		<tc-coderbits-section page='coderbits.pages.recommendations' ng-if='coderbits.pages.recommendations.items'></tc-coderbits-section>
 		<div style='clear: both; margin-bottom: 20px'></div>

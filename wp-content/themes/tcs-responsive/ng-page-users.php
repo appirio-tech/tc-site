@@ -22,16 +22,17 @@ get_header();
 	
 	<div id="main" class="coderProfile">
 		
-		<div class="loadingPlaceholder2" ng-class="{hidden : userDataRetrieved}"></div>
+		<div class="loadingPlaceholder2" ng-class="{hidden : tcUserDataRetrieved}"></div>
 
-		<div class="user-not-exist hidden" ng-class="{visible : !userExisted && userDataRetrieved}">
+		<div class="user-not-exist hidden" ng-class="{visible : !userExisted && tcUserDataRetrieved}">
 			<h2>Member does not<br class="display"> exist.</h2>
 			<h3>The profile you are<br class="display"> looking for was not found.</h3>
 		</div>
 
-		<div class="hidden" ng-class="{visible : userExisted && userDataRetrieved}">
-    <ng-include src="templateUrl"></ng-include>
-		<article id="mainContent" class="noShadow">
+		<div class="hidden" ng-class="{visible : userExisted && tcUserDataRetrieved}">
+    	<ng-include src="templateUrl"></ng-include>
+    	<div class="loadingPlaceholder2" ng-class="{hidden : cbUserDataRetrieved}"></div>
+		<article id="mainContent" ng-class="{visible : userExisted && tcUserDataRetrieved && cbUserDataRetrieved}" class="noShadow">
 			<article class="coderRatings">
 				<div class="container">
 					<div class="actions" ng-class="{'trackdesign' : track === 'design'}">
@@ -49,7 +50,6 @@ get_header();
 					</div>
 					<!-- /.actions -->
 					<div ui-view class="dataTabs">
-						<div class="loadingPlaceholder2"></div>
 					</div>
 					<!-- /.dataTabs -->
 					<tc-coderbits></tc-coderbits>

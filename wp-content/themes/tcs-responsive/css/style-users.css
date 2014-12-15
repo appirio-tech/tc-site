@@ -957,7 +957,7 @@ a{
 
 .loadingPlaceholder2{
     background: url(../i/ajax-loader.gif) 50% 50% no-repeat;
-    height: 250px;
+    height: 180px;
     border-radius: 5px;
 }
 
