@@ -36,7 +36,6 @@
           var client = new DiscussionService($scope.discussionUrl);
           var userClient = new UserService(lcUserUrl);
 
-          console.log($scope.remoteObjectId);
           // check a discussion exists for remoteObjectKey and remoteObjectId
           getDiscussionByRemoteObject($scope.remoteObjectKey, $scope.remoteObjectId)
             .then(function (discussion) {
@@ -76,11 +75,8 @@
             console.log('addComment is clicked, comment: ', $scope.comment);
             if ($scope.discussion) {
               // post the message to the existing discussion
-              createMessageInDiscussion($scope.discussion.id, $scope.comment).then(function (message) {
-                if (message) {
-                  $scope.messages.push(message);
-                }
-              })
+              createMessageInDiscussion($scope.discussion.id, $scope.comment)
+                .then(addMessage)
                 .catch(function (err) {
                   console.log('create new message-1 error: ', err);
                 })
@@ -110,6 +106,18 @@
             }
 
           };
+
+          function addMessage(message) {
+            $scope.messages.push(message);
+            // Add user to scope also
+            var userIds = _.pluck(messages, 'authorId');
+            return getUsers(userIds)
+              .then(function(users) {
+                _.forEach(users, function(user) {
+                  $scope.users[user.id] = user;
+                });
+              })
+          }
 
           // get a discussion by remote object key/id
           function getDiscussionByRemoteObject(remoteObjectKey, remoteObjectId) {
