@@ -46,7 +46,7 @@
           'Authorization': 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "")
         }
       };
-      $http.get(req)
+      $http(req)
         .success(function(data, status, headers, config) {
           defer.resolve(data);
         }).
