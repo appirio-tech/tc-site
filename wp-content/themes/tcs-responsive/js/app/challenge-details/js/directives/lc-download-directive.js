@@ -26,8 +26,9 @@
                 .then(function(result) {
                   if (result.content.url) {
                     $window.location.href= result.content.url;
+                  } else {
+                    $window.alert("error while attempting to download the file");
                   }
-                  $window.alert("error while attempting to download the file");
                 });
             };
 
