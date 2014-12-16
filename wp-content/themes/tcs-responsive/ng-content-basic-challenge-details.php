@@ -40,7 +40,7 @@
         <small>$</small><span ng-bind="CD.challenge.prize ? (CD.challenge.prize[0] ? CD.challenge.prize[0] : '') : ''"></span>
       </h3>
     </td>
-    <td ng-if="!CD.isDesign && CD.challenge.challengeType != 'Code'" class="fifty">
+    <td ng-if="!CD.isDesign && CD.challenge.challengeType != 'Code' && !CD.isLC" class="fifty">
       <h2>2nd PLACE</h2>
       <h3>
         <small>$</small><span ng-bind="CD.challenge.prize ? (CD.challenge.prize[1] ? CD.challenge.prize[1] : '0') : ''"></span>
