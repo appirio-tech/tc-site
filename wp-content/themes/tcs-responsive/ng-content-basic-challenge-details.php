@@ -33,7 +33,7 @@
 <tbody>
 
 <tr>
-    <td ng-if="!CD.isDesign && CD.challenge.challengeType != 'Code'" class="fifty">
+    <td ng-if="!CD.isDesign && CD.challenge.challengeType != 'Code' && !CD.isLC" class="fifty">
       <h2>1st PLACE</h2>
 
       <h3>
