@@ -37,7 +37,8 @@ module.exports = function(grunt) {
       lcURL: grunt.option('lc-url') || 'http://dev-lc1-ext-challenge-service.herokuapp.com',
       lcDiscussionURL: grunt.option('lc-discussion-url') || 'http://dev-lc1-discussion-service.herokuapp.com',
       lcUserURL: grunt.option('lc-user-url') || 'http://dev-lc1-user-service.herokuapp.com',
-      lcSiteUrl: grunt.option('lc-site-url') || 'http://dev-lc1-challenge-app.herokuapp.com'
+      lcSiteUrl: grunt.option('lc-site-url') || 'http://dev-lc1-challenge-app.herokuapp.com',
+      cbURL: grunt.option('cb-url') || 'https://coderbits.com'
     };
 
     // Write config to file
@@ -76,7 +77,8 @@ module.exports = function(grunt) {
           '<%= build.themeDist %>/tc.ng-details.concat.css': addBaseFilePath(pkg_config.packages['ng-details'].css, themeCSS),
           '<%= build.themeDist %>/tc.ngChallenges.concat.css': addBaseFilePath(pkg_config.packages.ngChallenges.css, themeCSS),
           '<%= build.themeDist %>/tc.ng-member-profile.concat.css': addBaseFilePath(pkg_config.packages['ng-member-profile'].css, themeCSS),
-          '<%= build.themeDist %>/tc.ng-users.concat.css': addBaseFilePath(pkg_config.packages['ng-users'].css, themeCSS)
+          '<%= build.themeDist %>/tc.ng-users.concat.css': addBaseFilePath(pkg_config.packages['ng-users'].css, themeCSS),
+          '<%= build.themeDist %>/tc.profile-builder.concat.css': addBaseFilePath(pkg_config.packages['profile-builder'].css, themeCSS)
         }
       }
     },
@@ -93,7 +95,8 @@ module.exports = function(grunt) {
           '<%= build.themeDist %>/css/ng-details.min.css': ['<%= build.themeDist %>/tc.ng-details.concat.css'],
           '<%= build.themeDist %>/css/ngChallenges.min.css': ['<%= build.themeDist %>/tc.ngChallenges.concat.css'],
           '<%= build.themeDist %>/css/ng-member-profile.min.css': ['<%= build.themeDist %>/tc.ng-member-profile.concat.css'],
-          '<%= build.themeDist %>/css/ng-users.min.css': ['<%= build.themeDist %>/tc.ng-users.concat.css']
+          '<%= build.themeDist %>/css/ng-users.min.css': ['<%= build.themeDist %>/tc.ng-users.concat.css'],
+          '<%= build.themeDist %>/css/profile-builder.min.css': ['<%= build.themeDist %>/tc.profile-builder.concat.css']
 
         }
       }
@@ -113,8 +116,8 @@ module.exports = function(grunt) {
           '<%= build.themeDist %>/js/ng-details.min.js': addBaseFilePath(pkg_config.packages['ng-details'].js, themeJS),
           '<%= build.themeDist %>/js/ngChallenges.min.js': addBaseFilePath(pkg_config.packages.ngChallenges.js, themeJS),
           '<%= build.themeDist %>/js/ng-member-profile.min.js': addBaseFilePath(pkg_config.packages['ng-member-profile'].js, themeJS),
-          '<%= build.themeDist %>/js/ng-users.min.js': addBaseFilePath(pkg_config.packages['ng-users'].js, themeJS)
-
+          '<%= build.themeDist %>/js/ng-users.min.js': addBaseFilePath(pkg_config.packages['ng-users'].js, themeJS),
+          '<%= build.themeDist %>/js/profile-builder.min.js': addBaseFilePath(pkg_config.packages['profile-builder'].js, themeJS)
         }
       }
     },
