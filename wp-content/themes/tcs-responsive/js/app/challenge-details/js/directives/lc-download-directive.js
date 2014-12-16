@@ -24,8 +24,8 @@
             $scope.download = function() {
               DownloadService.getDownloadUrl($scope.challengeId, $scope.fileId)
                 .then(function(result) {
-                  if (result.url) {
-                    $window.location.href= result.url;
+                  if (result.content.url) {
+                    $window.location.href= result.content.url;
                   }
                   $window.alert("error while attempting to download the file");
                 });
