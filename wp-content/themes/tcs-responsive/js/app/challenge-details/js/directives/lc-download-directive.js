@@ -21,7 +21,6 @@
             submissionId: '='
           },
           controller: function($scope) {
-            console.log($scope);
             $scope.download = function() {
               DownloadService.getDownloadUrl($scope.challengeId, $scope.fileId)
                 .then(function(result) {
