@@ -46,8 +46,8 @@
         <small>$</small><span ng-bind="CD.challenge.prize ? (CD.challenge.prize[1] ? CD.challenge.prize[1] : '0') : ''"></span>
       </h3>
     </td>
-      <td ng-if="(designOrCode = CD.isDesign || CD.challenge.challengeType == 'Code')" class="twenty {{!(CD.challenge.prize && CD.challenge.prize[0]) ? 'noPrize' : ''}}">
-        <h2>1st PLACE</h2>
+    <td ng-if="(designOrCode = CD.isDesign || CD.challenge.challengeType == 'Code' || CD.isLC)" class="twenty {{!(CD.challenge.prize && CD.challenge.prize[0]) ? 'noPrize' : ''}}">
+      <h2>1st PLACE</h2>
 
         <h3>
           <small>$</small><span ng-bind="(CD.challenge.prize && CD.challenge.prize[0]) || 0"></span></h3>
