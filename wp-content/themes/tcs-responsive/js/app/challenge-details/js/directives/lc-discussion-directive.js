@@ -57,6 +57,7 @@
               }
             })
             .then(function(users) {
+                console.log(users);
               _.forEach(users, function(user) {
                 $scope.users[user.id] = user;
               });
@@ -189,7 +190,7 @@
 
             return userClient.getUsers(params)
               .then(function(data) {
-                return data.users;
+                return data;
               });
           }
         },
