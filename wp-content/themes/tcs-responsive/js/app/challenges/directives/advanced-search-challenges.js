@@ -83,9 +83,9 @@
           }
         };
 
-        //"My filters" list need to update when $scope.myFiltersListDirty is true.
-        $scope.myFiltersListDirty = false;
-        $scope.isMyFiltersListDirty = isMyFiltersListDirty;
+        //"My filters" list need to update when $scope.myFiltersListDirty is undefined.
+        $scope.myFiltersListDirty = undefined;
+        $scope.getMyFiltersListDirty = getMyFiltersListDirty;
         $scope.setMyFiltersListDirty = setMyFiltersListDirty;
         $scope.getFilterOptions = getFilterOptions;
         $scope.setFilterOptions = setFilterOptions;
@@ -94,7 +94,7 @@
          * The getter for $scope.myFiltersListDirty.
          * @return $scope.myFiltersListDirty.
          */
-        function isMyFiltersListDirty(){
+        function getMyFiltersListDirty(){
           return  $scope.myFiltersListDirty;
         }
 

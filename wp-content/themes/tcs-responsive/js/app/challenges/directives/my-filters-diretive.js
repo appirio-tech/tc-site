@@ -56,8 +56,21 @@
       //Watch if the list of "my filters" needs to update. 
       $scope.$watch('myFiltersListDirty', function(value) {
         if (value) {
-          $scope.setMyFiltersListDirty(false);
-          ctrl.populateList();
+          //console.log(value);
+          var filter = $scope.getMyFiltersListDirty();
+          $scope.setMyFiltersListDirty(undefined);
+          initFilterObject(filter);
+          for(var i = ctrl.filters.length - 1; i >= 0; i--){
+            if(ctrl.filters[i].name === filter.name){
+              //This is an update.
+              ctrl.filters[i] = filter;
+              break;
+            }
+          }
+          if(i < 0) {
+            //This is a create.
+            ctrl.filters.push(filter);
+          }
         }
       });
       /**
@@ -105,6 +118,17 @@
         }
       };
       /**
+       * Wrap the filter object from the server with some information.
+       * @param filterObject the raw filter object recieved from the server.
+       */
+      function initFilterObject(filterObject) {
+        //Transform the url param to javascript object.
+        filterObject.filterOptions = MyFiltersService.decode(filterObject.filter);
+        //To prevent operations after a deleting filter. If it's set to true, then all operations are ignored.
+        filterObject.deleted = false;
+        //console.log(value);
+      }
+      /**
        * Retrieve the user saved filters for remote api server. The returned data is stored in ctrl.filters(ctrl is the
        * controller of directive 'my-filters').
        * Only the filters under current track are shown.
@@ -121,11 +145,7 @@
           });
 
           $.each(ctrl.filters, function(index, value) {
-            //Transform the url param to javascript object.
-            value.filterOptions = MyFiltersService.decode(value.filter);
-            //To prevent operations after a deleting filter. If it's set to true, then all operations are ignored.
-            value.deleted = false;
-            //console.log(value);
+            initFilterObject(value);
           });
         }, function(error) {
           ctrl.filters = [];

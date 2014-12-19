@@ -81,16 +81,16 @@
 
           MyFiltersService.readFilterByName(ctrl.name).then(function(data) {
             if (data.length === 0) {
-              MyFiltersService.createFilter(filter).then(function() {
+              MyFiltersService.createFilter(filter).then(function(data) {
                 MyFiltersService.showConfirm();
-                $scope.setMyFiltersListDirty(true);
+                $scope.setMyFiltersListDirty(data);
               }, function(error) {
                 MyFiltersService.showError('An error occurs when creating new filter on server.', error);
               });
             } else {
-              MyFiltersService.updateFilter(data[0]._id, filter).then(function() {
+              MyFiltersService.updateFilter(data[0]._id, filter).then(function(data) {
                 MyFiltersService.showConfirm();
-                $scope.setMyFiltersListDirty(true);
+                $scope.setMyFiltersListDirty(data);
               }, function(error) {
                 MyFiltersService.showError('An error occurs when updating filters on server.', error);
               });
