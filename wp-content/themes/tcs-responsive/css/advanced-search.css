@@ -506,8 +506,9 @@ input.search-text::-webkit-input-placeholder {
 /* myFilterWrap */ 
 .new-search-box .filtersSectn{
     background: #f9f9f9;
+    
     padding-left: 15px;
-    width: 153px;
+    width: 304px;
     box-sizing: border-box;
     margin: -6px -7px -6px 0;
     height: 50px;
@@ -516,8 +517,13 @@ input.search-text::-webkit-input-placeholder {
     float: right;
     margin-right: 10px;
     margin-top: 6px;
-    margin-left: 6px;
     position: relative;
+}
+.filtersSectn .myChallenges{
+    float: left;
+    color: #666;
+    box-sizing: border-box;
+    padding-top: 19px;
 }
 
 .myFilterWrap .btnFilter{

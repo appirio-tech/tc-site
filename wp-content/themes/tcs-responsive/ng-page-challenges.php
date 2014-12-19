@@ -367,10 +367,11 @@ get_header(); ?>
                     <option ng-repeat="tech in technologies track by $index" ng-disabled="filterOptions.technologies.indexOf(tech) !== -1">{{tech}}</option>
                 </select>
             </div>
-            <div class="left checkbox myChallenges" ng-show="authenticated && challengeStatus === 'active' && challengeCommunity !== 'data'">
-              <label class="myChallengesLabel"><span>My Challenges Only</span><input type="checkbox" ng-model="filterOptions.userChallenges" ng-change="applyFilter()"></label>
-            </div>
+
             <div class="right filtersSectn" ng-show="authenticated">
+              <div class="checkbox myChallenges chkWrap" ng-show="challengeStatus === 'active' && challengeCommunity !== 'data'">
+                <label class="myChallengesLabel"><input type="checkbox" class="chk" ng-model="filterOptions.userChallenges" ng-change="applyFilter()"><span class="chkLbl">My Challenges Only</span></label>
+              </div>
               <my-filters></my-filters>
             </div>
     </div>
