@@ -1,4 +1,16 @@
 <?php
+
+/**
+ * @file
+ * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
+ * @author TCSASSEMBLER, ecnu_haozi
+ * @version 1.1
+ *
+ * This footer page.
+ *
+ * Changed in 1.1
+ * Add two modals 'filterSavedSuccess' and 'filterSavedFailed' to support "My filters" feature.
+ */
 require_once 'TwitterAPIExchange.php';
 
 $settings = array(

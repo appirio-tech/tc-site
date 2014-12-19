@@ -1,9 +1,9 @@
 /**
- * This code is copyright (c) 2014 Topcoder Corporation
- * @author: TCSASSEMBLER
+ * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
+ * @author TCSASSEMBLER, ecnu_haozi
  * @version 1.2
  *
- * Changelog 1.1
+ * Changed in 1.1
  * 09/17/2014 Add My Challenges Filter and Improve Filters
  * - Added dates presets for active/upcoming challenges
  *

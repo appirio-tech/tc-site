@@ -1,4 +1,15 @@
 <?php
+/**
+ * @file
+ * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
+ * @author TCSASSEMBLER, ecnu_haozi
+ * @version 1.1
+ *
+ * This header-main page.
+ *
+ * Changed in 1.1
+ * Add a configurable variable 'myFiltersURL' to support "My filters" feature.
+ */
 
 session_start();
 /***

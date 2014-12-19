@@ -1,6 +1,6 @@
 /**
- * This code is copyright (c) 2014 Topcoder Corporation
- * @author: TCSASSEMBLER
+ * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
+ * @author TCSASSEMBLER, ecnu_haozi
  * @version 1.1
  *
  * Changed in 1.1

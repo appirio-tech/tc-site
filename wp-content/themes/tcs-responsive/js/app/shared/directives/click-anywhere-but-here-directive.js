@@ -1,6 +1,6 @@
 /**
- * This code is copyright (c) 2014 Topcoder Corporation
- * @author: TCSASSEMBLER
+ * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
+ * @author ecnu_haozi
  * @version 1.0
  *
  * This directive execute some logic when there is any click outside the DOM which this directive decorates.
