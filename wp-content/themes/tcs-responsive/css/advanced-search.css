@@ -551,7 +551,7 @@ input.search-text::-webkit-input-placeholder {
     top: 44px;
     width: 336px;
     border: 1px solid #e7e7e7;
-    z-index: 10;
+    z-index: 100011;
     padding: 24px 0 26px;
     display: none;
 }
@@ -645,6 +645,10 @@ input.search-text::-webkit-input-placeholder {
     overflow: hidden;
 } 
 .myFilterWrap .savedSearch .tags .tag{
+    max-width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
     display: inline-block;
     float: left;
     background: #e7e7e7;

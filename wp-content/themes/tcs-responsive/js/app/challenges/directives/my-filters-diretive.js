@@ -70,7 +70,7 @@
         if (filter.filterOptions.startDate) {
           ret += 'From ' + $scope.formatDate(filter.filterOptions.startDate);
           if (filter.filterOptions.endDate) {
-            ret += 'to ' + $scope.formatDate(filter.filterOptions.endDate);
+            ret += ' to ' + $scope.formatDate(filter.filterOptions.endDate);
           }
         } else {
           if (filter.filterOptions.endDate) {

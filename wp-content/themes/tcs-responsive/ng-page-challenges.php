@@ -424,8 +424,8 @@ get_header(); ?>
                 <div class="tags">
                     <div class="tag" ng-if="filter.filterOptions.startDate || filter.filterOptions.endDate">{{myFiltersCtrl.dateRange(filter)}}</div>
                     <div class="tag" ng-repeat="types in filter.filterOptions.challengeTypes">{{types}}</div>
-                    <div class="tag" ng-repeat="tech in filter.filterOptions.technologies">{{tech}}</div>
                     <div class="tag" ng-repeat="plat in filter.filterOptions.platforms">{{plat}}</div>
+                    <div class="tag" ng-repeat="tech in filter.filterOptions.technologies">{{tech}}</div>
                     <div class="tag" ng-repeat="token in filter.filterOptions.keywords">Text: {{token}}</div>
                     <div class="tag" ng-if="filter.filterOptions.userChallenges">My Challenge Only</div>
                 </div>
