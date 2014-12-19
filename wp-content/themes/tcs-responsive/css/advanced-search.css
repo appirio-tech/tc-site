@@ -699,7 +699,7 @@ input.search-text::-webkit-input-placeholder {
     padding-top: 19px;
 } 
  .filterWidget .rw{
-    padding: 0 12px;
+    padding: 0 12px 12px;
 } 
  .filterWidget .lbl{
     margin-bottom: 10px;
