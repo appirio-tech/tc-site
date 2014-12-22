@@ -11,6 +11,7 @@
   "lcDiscussionURL": "http://dev-lc1-discussion-service.herokuapp.com",
   "lcUserURL": "http://dev-lc1-user-service.herokuapp.com",
   "lcSiteUrl": "http://dev-lc1-challenge-app.herokuapp.com",
+  "cbURL": "https://coderbits.com",
   "useCND": false,
   "useMin": false,
   "useVer": false,

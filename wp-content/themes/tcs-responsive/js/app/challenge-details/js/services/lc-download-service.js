@@ -39,53 +39,24 @@
       }
 
       // challenges/:challengeId/files/:fileId/download
-
-      service
-        .one('challenges', challengeId)
-        .one('files', fileId)
-        .get('download')
-        .then(function(response) {
-          console.log('success: the response: ');
-          console.log(response);
-          defer.resolve(response);
-        }, function error(reason) {
-          console.log('fail: the reason: ');
-          console.log(reason);
-          defer.resolve(reason);
+      var req = {
+        method: 'GET',
+        url: API_URL + '/challenges/' + challengeId + '/files/' + fileId + '/download',
+        headers: {
+          'Authorization': 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "")
+        }
+      };
+      $http(req)
+        .success(function(data, status, headers, config) {
+          defer.resolve(data);
+        }).
+        error(function(data, status, headers, config) {
+          defer.resolve({});
         });
+
       return defer.promise;
     }
 
-    function getSubmissionUrl(challengeId, submissionId, fileId) {
-      var defer = $q.defer();
-
-      if (!$cookies.tcjwt) {
-        defer.resolve({
-          'error': {
-            'details': 'Internal error. Try to login again.'
-          }
-        });
-        return defer.promise;
-      }
-
-      // challenges/:challengeId/files/:fileId/download
-
-      service
-        .one('challenges', challengeId)
-        .one('submissions', submissionId)
-        .one('files', fileId)
-        .get('download')
-        .then(function(response) {
-          console.log('success: the response: ');
-          console.log(response);
-          defer.resolve(response);
-        }, function error(reason) {
-          console.log('fail: the reason: ');
-          console.log(reason);
-          defer.resolve(reason);
-        });
-      return defer.promise;
-    }
 
     return service;
   }

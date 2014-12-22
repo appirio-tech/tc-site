@@ -1,0 +1,38 @@
+<a ng-href='{{tcCoderbitsItem.link}}'><h4 class='cb-social-heading'  ng-style="{'background-image': 'url('+apiHost+'/'+tcCoderbitsItem.external_account.image_link+')'}">{{tcCoderbitsItem.name}}</h4></a>
+
+<span ng-switch on="tcCoderbitsItem.clone">
+	<span ng-switch-when="true">Cloned</span>
+	<span ng-switch-default>Created</span>
+
+</span>
+ {{tcCoderbitsItem.created | timeSince: 'sometime in the past'}} on <a ng-href='{{tcCoderbitsItem.external_account.link}}'>{{tcCoderbitsItem.external_account.friendly_name}}</a>, <a ng-href='{{tcCoderbitsItem.link}}'>{{tcCoderbitsItem.name}}</a> was last updated {{tcCoderbitsItem.updated | timeSince: 'a while ago'}} <br/>
+<span>
+{{tcCoderbitsItem.description}} <br ng-if='tcCoderbitsItem.description'/>
+</span>
+<ul>
+	<li class="animate-repeat" ng-repeat="(k,v) in tcCoderbitsItem | with:'files,followers,language,vcs|VCS,clone,size,downloads,dependency_status'" style='display: inline'>
+		<span ng-switch on="k">
+
+
+			<span ng-switch-when="files" >
+				<span ng-repeat="file in v" >
+				<span ng-repeat="(fileK,fileV) in file | with:'filename,language,size,vcs|VCS'" style="display: block; float: left; margin-right: 10px" >
+					<div class='tc-attr'>
+						<a ng-href="fileV" ng-if="fileK==='domain'"><b>{{fileV}}</b></a>
+						<b ng-if="fileK!=='domain'">{{fileV}}</b>
+						<span>{{fileK | capitalize}}</span>
+					</div>
+				</span>
+			</span>
+			</span>
+			<span ng-switch-default style='display: block; float: left; margin-right: 10px'>
+				<div class='tc-attr'>
+					<a ng-href="v" ng-if="k==='domain'"><b>{{v}}</b></a>
+					<b ng-if="k!=='domain'">{{v}}</b>
+					<span>{{k | capitalize }}</span>
+				</div>
+			</span>
+		</span>
+	</li>
+</ul>
+<div style='clear: both;margin-bottom: 10px'></div>

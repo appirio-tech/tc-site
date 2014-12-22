@@ -21,11 +21,14 @@
             submissionId: '='
           },
           controller: function($scope) {
-            console.log($scope);
             $scope.download = function() {
               DownloadService.getDownloadUrl($scope.challengeId, $scope.fileId)
                 .then(function(result) {
-                  $window.location.href= result.url;
+                  if (result.content.url) {
+                    $window.location.href= result.content.url;
+                  } else {
+                    $window.alert("error while attempting to download the file");
+                  }
                 });
             };
 
