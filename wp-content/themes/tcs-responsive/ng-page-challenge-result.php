@@ -138,7 +138,8 @@
         </div>
         <!-- #/end price-->
         <div class="actions" ng-show="{{subCtrl.submissionsViewable || CD.firstPlaceSubmission.handle == CD.handle}}">
-            <a href="{{CD.firstPlaceSubmission.submissionDownloadLink}}" class="download">Download</a>
+            <a ng-if="!CD.isLC" href="{{CD.firstPlaceSubmission.submissionDownloadLink}}" class="download">Download</a>
+            <lc-download ng-if="CD.isLC" challenge-id="CD.lcChallengeId" submission-id="CD.firstPlaceSubmission.lcSubmissionId" file-id="CD.firstPlaceSubmission.lcSubmissionFileId" document-name="Download"></lc-download>
         </div>
         <!-- #/end actions-->
         <div class="clear"></div>
@@ -162,7 +163,8 @@
         </div>
         <!-- #/end price-->
         <div class="actions" ng-show="{{subCtrl.submissionsViewable || CD.secondPlaceSubmission.handle == CD.handle}}">
-            <a href="{{CD.secondPlaceSubmission.submissionDownloadLink}}" class="download">Download</a>
+            <a ng-if="!CD.isLC" href="{{CD.secondPlaceSubmission.submissionDownloadLink}}" class="download">Download</a>
+            <lc-download ng-if="CD.isLC" challenge-id="CD.lcChallengeId" submission-id="CD.secondPlaceSubmission.lcSubmissionId" file-id="CD.secondPlaceSubmission.lcSubmissionFileId" document-name="Download"></lc-download>
         </div>
         <!-- #/end actions-->
         <div class="clear"></div>
@@ -187,7 +189,7 @@
         <!-- #/end point-->
         <div class="actions">
             <a ng-if="!CD.isLC" href="{{submission.submissionDownloadLink}}" class="download">Download</a>
-            <lc-download ng-if="CD.isLC" challenge-id="CD.lcChallengeId" submission-id="submission.lcSubmissionId" file-id="document.id" document-name="document.documentName"></lc-download>
+            <lc-download ng-if="CD.isLC" challenge-id="CD.lcChallengeId" submission-id="submission.lcSubmissionId" file-id="submission.lcSubmissionFileId" document-name="Download"></lc-download>
         </div>
         <!-- #/end actions-->
         <div class="clear"></div>
@@ -222,7 +224,8 @@
             <td>{{submission.submissionDate | formatDate}}</td>
             <td><span class="pass">{{submission.screeningScore}}</span></td>
             <td><span class="initialScore">{{submission.initialScore}}</span>/<a href="javascript:" class="finalScore">{{submission.finalScore}}</a> </td>
-            <td><a href="{{submission.submissionDownloadLink}}" ng-show="{{subCtrl.submissionsViewable || submission.handle == CD.handle}}">Download</a></td>
+            <td ng-if="!CD.isLC"><a href="{{submission.submissionDownloadLink}}" ng-show="{{subCtrl.submissionsViewable || submission.handle == CD.handle}}">Download</a></td>
+            <td ng-if="CD.isLC"><lc-download challenge-id="CD.lcChallengeId" submission-id="submission.lcSubmissionId" file-id="submission.lcSubmissionFileId" document-name="Download"></lc-download></td>
         </tr>
         </tbody>
     </table>
