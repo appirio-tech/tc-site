@@ -25,6 +25,7 @@
 
 
     service.getDownloadUrl = getDownloadUrl;
+    service.getSubmissionUrl = getSubmissionUrl;
 
     function getDownloadUrl(challengeId, fileId) {
       var defer = $q.defer();
@@ -42,6 +43,38 @@
       var req = {
         method: 'GET',
         url: API_URL + '/challenges/' + challengeId + '/files/' + fileId + '/download',
+        headers: {
+          'Authorization': 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "")
+        }
+      };
+      $http(req)
+        .success(function(data, status, headers, config) {
+          defer.resolve(data);
+        }).
+        error(function(data, status, headers, config) {
+          defer.resolve({});
+        });
+
+      return defer.promise;
+    }
+
+
+    function getSubmissionUrl(challengeId, submissionId, fileId) {
+      var defer = $q.defer();
+
+      if (!$cookies.tcjwt) {
+        defer.resolve({
+          'error': {
+            'details': 'Internal error. Try to login again.'
+          }
+        });
+        return defer.promise;
+      }
+
+      // challenges/:challengeId/files/:fileId/download
+      var req = {
+        method: 'GET',
+        url: API_URL + '/challenges/' + challengeId + 'submissions/' + submissionId + '/files/' + fileId + '/download',
         headers: {
           'Authorization': 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "")
         }

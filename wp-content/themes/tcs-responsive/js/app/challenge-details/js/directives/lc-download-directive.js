@@ -35,7 +35,11 @@
             $scope.downloadSubmission = function($scope) {
               DownloadService.getSubmissionFileUrl($scope.challengeId, $scope.submissionId, $scope.fileId)
                 .then(function(result) {
-                  $window.location.href= result.url;
+                  if (result.content.url) {
+                    $window.location.href= result.content.url;
+                  } else {
+                    $window.alert("error while attempting to download the file");
+                  }
                 });
             };
           },

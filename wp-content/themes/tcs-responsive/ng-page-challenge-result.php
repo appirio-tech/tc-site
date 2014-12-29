@@ -6,7 +6,7 @@
         <div class="image">
             <img ng-src="{{submission.previewDownloadLink ? submission.previewDownloadLink : '/wp-content/themes/tcs-responsive/i/img-locked.png'}}" alt="winner"/>
         </div>
-        
+
         <!-- #/end image-->
         <div class="details">
             <a href="<?php bloginfo('wpurl'); ?>/member-profile/{{submission.handle}}" class="coderTextOrange">{{submission.handle}}</a>
@@ -186,7 +186,8 @@
         </div>
         <!-- #/end point-->
         <div class="actions">
-            <a href="{{submission.submissionDownloadLink}}" class="download">Download</a>
+            <a ng-if="!CD.isLC" href="{{submission.submissionDownloadLink}}" class="download">Download</a>
+            <lc-download ng-if="CD.isLC" challenge-id="CD.lcChallengeId" submission-id="submission.lcSubmissionId" file-id="document.id" document-name="document.documentName"></lc-download>
         </div>
         <!-- #/end actions-->
         <div class="clear"></div>
