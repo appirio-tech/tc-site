@@ -7,7 +7,7 @@
   "mainURL": "http://local.topcoder.com",
   "apiURL": "https://qa.topcoder.com/v2",
   "cdnURL": "/wp-content/themes/tcs-responsive",
-  "lcURL": "http://dev-lc1-ext-challenge-service.herokuapp.com",   
+  "lcURL": "http://dev-lc1-ext-challenge-service.herokuapp.com",
   "lcDiscussionURL": "http://dev-lc1-discussion-service.herokuapp.com",
   "myFiltersURL": "https://lc1-user-settings-service.herokuapp.com", 
   "lcUserURL": "http://dev-lc1-user-service.herokuapp.com",
