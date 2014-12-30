@@ -977,6 +977,10 @@ function get_social_validity_ajax(
  */
 function get_contests_rss($listType, $challengeType = "", $technologies = "", $platforms = "")
 {
+    if (!ctype_alpha($listType)) {
+        return;
+    }
+
     $url = TC_API_URL . "/challenges/rss?listType={$listType}";
 
     if ($challengeType != "")
@@ -1002,10 +1006,10 @@ function get_contests_rss($listType, $challengeType = "", $technologies = "", $p
     $headers = get_headers($url, 1);
     $content_length = $headers["Content-Length"];
 
-    $response = '';
-    while (strlen($response) < $content_length) {
+    //$response = '';
+    //while (strlen($response) < $content_length) {
         $response = file_get_contents($url, NULL, NULL, NULL, $content_length);
-    }
+    //}
 
     $active_contest_list = json_decode( $response );
     return $active_contest_list;
