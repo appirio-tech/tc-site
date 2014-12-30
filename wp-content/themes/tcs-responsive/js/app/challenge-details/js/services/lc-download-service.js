@@ -74,7 +74,7 @@
       // challenges/:challengeId/files/:fileId/download
       var req = {
         method: 'GET',
-        url: API_URL + '/challenges/' + challengeId + 'submissions/' + submissionId + '/files/' + fileId + '/download',
+        url: API_URL + '/challenges/' + challengeId + '/submissions/' + submissionId + '/files/' + fileId + '/download',
         headers: {
           'Authorization': 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "")
         }

@@ -137,9 +137,9 @@
             <span>DR POINTS</span>
         </div>
         <!-- #/end price-->
-        <div class="actions" ng-show="{{subCtrl.submissionsViewable || CD.firstPlaceSubmission.handle == CD.handle}}">
+        <div class="actions">
             <a ng-if="!CD.isLC" href="{{CD.firstPlaceSubmission.submissionDownloadLink}}" class="download">Download</a>
-            <lc-download ng-if="CD.isLC" challenge-id="CD.lcChallengeId" submission-id="CD.firstPlaceSubmission.lcSubmissionId" file-id="CD.firstPlaceSubmission.lcSubmissionFileId" document-name="Download"></lc-download>
+            <lc-download ng-if="CD.isLC" challenge-id="CD.lcChallengeId" submission-id="CD.firstPlaceSubmission.lcSubmissionId" file-id="CD.firstPlaceSubmission.lcSubmissionFileId"></lc-download>
         </div>
         <!-- #/end actions-->
         <div class="clear"></div>
@@ -162,7 +162,7 @@
             <span>DR POINTS</span>
         </div>
         <!-- #/end price-->
-        <div class="actions" ng-show="{{subCtrl.submissionsViewable || CD.secondPlaceSubmission.handle == CD.handle}}">
+        <div class="actions">
             <a ng-if="!CD.isLC" href="{{CD.secondPlaceSubmission.submissionDownloadLink}}" class="download">Download</a>
             <lc-download ng-if="CD.isLC" challenge-id="CD.lcChallengeId" submission-id="CD.secondPlaceSubmission.lcSubmissionId" file-id="CD.secondPlaceSubmission.lcSubmissionFileId" document-name="Download"></lc-download>
         </div>

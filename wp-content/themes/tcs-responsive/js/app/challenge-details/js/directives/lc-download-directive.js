@@ -10,8 +10,8 @@
   angular
     .module('lc.directives.download', ['lc.services.download'])
 
-    .directive('lcDownload', ['DownloadService', '$window',
-      function (DownloadService, $window) {
+    .directive('lcDownload', ['DownloadService', '$window', '$log',
+      function (DownloadService, $window, $log) {
         return {
           restrict: 'E',
           scope: {
@@ -21,26 +21,28 @@
             submissionId: '='
           },
           controller: function($scope) {
-            $scope.download = function() {
-              DownloadService.getDownloadUrl($scope.challengeId, $scope.fileId)
-                .then(function(result) {
-                  if (result.content.url) {
-                    $window.location.href= result.content.url;
-                  } else {
-                    $window.alert("error while attempting to download the file");
-                  }
-                });
-            };
-
-            $scope.downloadSubmission = function($scope) {
-              DownloadService.getSubmissionFileUrl($scope.challengeId, $scope.submissionId, $scope.fileId)
-                .then(function(result) {
-                  if (result.content.url) {
-                    $window.location.href= result.content.url;
-                  } else {
-                    $window.alert("error while attempting to download the file");
-                  }
-                });
+            $scope.download = function () {
+              if ($scope.submissionId) {
+                DownloadService.getSubmissionUrl($scope.challengeId, $scope.submissionId, $scope.fileId)
+                  .then(function (result) {
+                    if (result.content && result.content.url) {
+                      $window.location.href = result.content.url;
+                    } else {
+                      $log.error(result);
+                      $window.alert("error while attempting to download the file");
+                    }
+                  });
+              } else {
+                DownloadService.getDownloadUrl($scope.challengeId, $scope.fileId)
+                  .then(function (result) {
+                    if (result.content && result.content.url) {
+                      $window.location.href = result.content.url;
+                    } else {
+                      $log.error(result);
+                      $window.alert("error while attempting to download the file");
+                    }
+                  });
+              }
             };
           },
           template: '<a href="javascript:;" data-ng-click="download()">{{documentName}}</a>'
