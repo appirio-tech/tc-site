@@ -20,15 +20,15 @@
 		</div>
 		<div class="row fieldRank">
 			<label>Rank:</label>
-			<div class="val" ng-bind=" !stats.Tracks[subTrack] | iif : 'loading...' : (stats.Tracks[subTrack].activeRank != 0 | iif : stats.Tracks[subTrack].activeRank : 'Not ranked' )">loading...</div>
+			<div class="val" ng-bind=" !stats.Tracks[subTrack] | iif : 'loading...' : (stats.Tracks[subTrack].activeRank != 0 | iif : stats.Tracks[subTrack].activeRank : 'N/A' )">loading...</div>
 		</div>
 		<div class="row fieldCtryRank">
 			<label>Country Rank:</label>
-			<div class="val" ng-bind="!stats.Tracks[subTrack] | iif : 'loading...' : (stats.Tracks[subTrack].overallCountryRank == 0 | iif : 'Not ranked' : stats.Tracks[subTrack].overallCountryRank )">loading...</div>
+			<div class="val" ng-bind="!stats.Tracks[subTrack] | iif : 'loading...' : (stats.Tracks[subTrack].overallCountryRank == 0 | iif : 'N/A' : stats.Tracks[subTrack].overallCountryRank )">loading...</div>
 		</div>
 		<div class="row fieldScRank">
 			<label>School Rank:</label>
-			<div class="val" ng-bind="!stats.Tracks[subTrack] | iif : 'loading...' : (stats.Tracks[subTrack].activeSchoolRank != 0 | iif : stats.Tracks[subTrack].activeSchoolRank : 'Not ranked')">loading...</div>
+			<div class="val" ng-bind="!stats.Tracks[subTrack] | iif : 'loading...' : (stats.Tracks[subTrack].activeSchoolRank != 0 | iif : stats.Tracks[subTrack].activeSchoolRank : 'N/A')">loading...</div>
 		</div>
 		<div class="row fieldCompetitions">
 			<label>Competitions:</label>
@@ -48,7 +48,7 @@
 			<label>Reviewer Rating: </label>
 			<div class="val">
 				<a href="#" ng-if="stats.Tracks[subTrack].reviewerRating" ng-bind="stats.Tracks[subTrack].reviewerRating | number : 2 ">loading...</a>
-				<span ng-if="!stats.Tracks[subTrack].reviewerRating" ng-bind="!stats.Tracks[subTrack] | iif : 'loading...' : 'Not rated' ">loading...</span>
+				<span ng-if="!stats.Tracks[subTrack].reviewerRating" ng-bind="!stats.Tracks[subTrack] | iif : '' : 'N/A' ">loading...</span>
 			</div>
 		</div>
 		<div class="row fieldRevRating">

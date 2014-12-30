@@ -30,6 +30,7 @@ window.tc = angular.module('tc', [
 
   .constant("API_URL", tcApiRUL)
   .constant('MY_FILTER_API_URL', myFiltersURL)
+  .constant("LC_URL", lcExternalUrl)
 
   .config(['$httpProvider', 'RestangularProvider', 'API_URL', function($httpProvider, RestangularProvider, API_URL) {
     /*
@@ -42,7 +43,7 @@ window.tc = angular.module('tc', [
     // Base API url
     RestangularProvider.setBaseUrl(API_URL);
     RestangularProvider.setDefaultHttpFields({cache: true});
-    
+
     // add a response intereceptor
     RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
       var extractedData;

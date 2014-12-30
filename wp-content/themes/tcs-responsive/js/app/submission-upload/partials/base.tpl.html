@@ -1,13 +1,15 @@
 <div class="container" ng-class="{uploading : uCtrl.uploadState === 'uploading'}">
     <span class="competitionType" ng-class="{ develop : uCtrl.challengeType === 'develop' }"></span>
     <!-- /#end competition type-->
-    <a ng-href="/challenge-details/{{uCtrl.challengeId}}/?type={{uCtrl.challengeType}}" class="back" href>Back to Active Challenge</a>
+    <a ng-href="/challenge-details/{{uCtrl.challengeId}}/?type={{uCtrl.challengeType}}&lc={{uCtrl.isLC}}" class="back" href>Back to Active Challenge</a>
     <h2 class="pageTitle" ng-bind="uCtrl.challenge.challengeName"></h2>
     <!-- /#end page title-->
 
     <ul class="tabs" ng-show="uCtrl.challengeType === 'design'">
         <li><a  href ng-click="uCtrl.viewSubmission = false" ng-class="{ 'active' : !uCtrl.viewSubmission}">Submit Your Entries</a></li>
-        <li><a  href ng-click="uCtrl.viewSubmission = true" ng-class="{ 'active' : uCtrl.viewSubmission}">View Submissions</a></li>
+        <!--
+          <li><a  href ng-click="uCtrl.viewSubmission = true" ng-class="{ 'active' : uCtrl.viewSubmission}">View Submissions</a></li>
+        -->
     </ul>
     <!-- /#end tabs-->
 

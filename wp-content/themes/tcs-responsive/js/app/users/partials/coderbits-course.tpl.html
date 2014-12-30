@@ -1,0 +1,7 @@
+<div><a ng-href={{tcCoderbitsItem.link}}><h4 class='cb-social-heading'  ng-style="{'background-image': 'url('+apiHost+'/'+tcCoderbitsItem.external_account.image_link+')'}">{{tcCoderbitsItem.name}}</h4></a>
+Completed {{tcCoderbitsItem.created | timeSince: 'sometime in the past'}} on <a ng-href='{{tcCoderbitsItem.external_account.link}}'>{{tcCoderbitsItem.external_account.friendly_name}}</a>
+</div>
+<div ng-if="tcCoderbitsItem.skill" class='tc-attr'>
+	<b>{{tcCoderbitsItem.skill}}</b>
+	<span>learned skill</span>
+</div>

@@ -37,7 +37,7 @@ a{
         height: auto;
         width: 200px;
         max-width: 200px;
-		min-height: 210px;
+        min-height: 210px;
 }
     .aboutCoder .coderPicWrap{
         float: left;
@@ -97,15 +97,15 @@ a{
     }
     .aboutCoder .social a{
         height: 54px;
-					 width: 45px;
+                     width: 45px;
         background: url(../i/ico-social-alt.png) no-repeat;
         background-position: 0 0;
         display: inline-block;
         behavior: url(./wp-content/themes/tcs-responsive/css/PIE.htc);
     }
     .aboutCoder .social a{
-    			-webkit-transition: none;
-					transition: none;
+                -webkit-transition: none;
+                    transition: none;
     }
     .aboutCoder .social .fb{
         background-position: 0 0px;
@@ -174,12 +174,12 @@ a{
         color: #fff;
     }
 
-	.trackdesign .switchBtns a.disabled:hover{
-		background-color: transparent;
+    .trackdesign .switchBtns a.disabled:hover{
+        background-color: transparent;
         color: #FFAE00;
         cursor: default;
-	}
-	.trackdesign  .switchBtns a.isActive.disabled:hover{
+    }
+    .trackdesign  .switchBtns a.isActive.disabled:hover{
         background-color: #00aeff;
         color: #fff;
     }
@@ -309,12 +309,12 @@ a{
         float: left;
     
         /*
-		Issue ID: I-108002 - don't cut the overflow
-		
+        Issue ID: I-108002 - don't cut the overflow
+        
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-		*/
+        */
 }
     .algoLayout .row label{
         font-weight: bold;
@@ -330,12 +330,12 @@ a{
         height: 22px;
         text-transform: capitalize;
         /*
-		Issue ID: I-108002 - don't cut the overflow
-		
+        Issue ID: I-108002 - don't cut the overflow
+        
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-		*/
+        */
 }
     .algoLayout .badges .head{
         text-align: center;
@@ -718,7 +718,7 @@ a{
         float: left;    
         height: 402px;
         overflow: hidden;
-		background:#000;
+        background:#000;
 }
     .designLayout .submissionThumb img{
         width: 412px;
@@ -777,17 +777,17 @@ a{
         background-position: 50% 0;
     }
 
-	.designLayout .winInfo .badgeImg.rank2{
-		background-position:110px -150px;
-	}
+    .designLayout .winInfo .badgeImg.rank2{
+        background-position:110px -150px;
+    }
 
-	.designLayout .winInfo .badgeImg.rank3{
-		background-position:110px -300px;
-	}
+    .designLayout .winInfo .badgeImg.rank3{
+        background-position:110px -300px;
+    }
 
-	.designLayout .winInfo .badgeImg.rankM{
-		background-position:110px -450px;
-	}
+    .designLayout .winInfo .badgeImg.rankM{
+        background-position:110px -450px;
+    }
 
     .designLayout .winInfo .badgeImg.rank4{
         background-position:110px -600px;
@@ -796,7 +796,7 @@ a{
     .designLayout .winInfo .badgeImg.rank5{
         background-position:110px -750px;
     }
-	
+    
     .designLayout .winInfo .prizeAmount{
         text-align: center;    
         margin-top: 12px;
@@ -888,7 +888,7 @@ a{
         border: 1px solid #e8e8e8;        
          width: 205px;
         height: 205px;
-		background:#000;
+        background:#000;
         cursor: pointer;
 } 
     .submissionCarousel .slider .slide figure{

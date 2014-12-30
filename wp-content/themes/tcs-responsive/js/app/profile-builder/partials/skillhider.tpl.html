@@ -1,0 +1,64 @@
+<div class="opportunity new">
+  <div class="row" id="known">
+    <div class="row">
+      <h3>Skills found on your linked accounts</h3>
+      <br />
+      <div ng-show="PB.userSkills.length">
+        <p>Here you can view all your skills and selectively choose which to hide on your profile, dashboard, and elsewhere. Changes made here will take effect immediately.</p>
+      </div>
+      <div ng-show="!PB.userSkills.length">
+        <p>You do not appear to have any known skills yet. Either try linking more accounts in the "On the web" section or refresh this page if you recently linked accounts.</p>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div ng-if="PB.userSkills.length">
+    <div class="row skill-row-header">
+      <div class="span3">
+        <strong>Skill tag</strong>
+      </div>
+      <div class="span3">
+        <strong>Accounts</strong>
+      </div>
+      <div class="span1 number">
+        <strong>Verified</strong>
+      </div>
+      <div class="span1 number">
+        <strong>Unverified</strong>
+      </div>
+      <div class="span2 center">
+        <strong>Hide</strong>
+      </div>
+      <div class="span2">
+        <strong>Status</strong>
+      </div>
+    </div>
+    <div ng-repeat="skill in PB.userSkills">
+      <div class="row skill-row">
+        <div class="span8 table-header"></div>
+      </div>
+      <div class="row skill-row">
+        <div class="span3">
+          {{skill.SkillTag.name}}
+        </div>
+        <div class="span3">
+          <div ng-repeat="(image, name) in skill.Accounts" class="skillImages">
+            <img ng-src="{{PB.cbUrl}}{{image}}" class="rounded-image" tooltip="{{name}}" />
+          </div>
+        </div>
+        <div class="span1 number">
+          {{skill.VerifiedCount}}
+        </div>
+        <div class="span1 number">
+          {{skill.UnverifiedCount}}
+        </div>
+        <div class="span2 center">
+          <input type="checkbox" ng-model="skill.Hidden" ng-change="PB.changeSkillVisibility(skill)" class="skill-hide" id="skill-hide-{{skill.SkillTagId}}">
+        </div>
+        <div class="span2">
+          <span data-hide-id="{{skill.SkillTagId}}" class="label label-important" ng-show="skill.Hidden">HIDDEN</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

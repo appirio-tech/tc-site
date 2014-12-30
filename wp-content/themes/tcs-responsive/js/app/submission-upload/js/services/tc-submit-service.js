@@ -9,7 +9,7 @@
 /*jslint nomen: true*/
 /*global angular: true, _: true */
 (function() {
- 
+
   angular
     .module('tc.submissionUpload')
     .factory('SubmitService', SubmitService);
@@ -37,7 +37,7 @@
     /*
      * private field
      */
-	
+
     service._abortSubmit = undefined;
 
     /*
@@ -63,7 +63,11 @@
 
     function submitDevelop(challengeId, file) {
       var fd = new FormData();
-      fd.append("submissionFile", file);
+      if (isLC) {
+        fd.append("file", file);
+      } else {
+        fd.append("submissionFile", file);
+      }
 
       return post('develop', challengeId, fd);
     }

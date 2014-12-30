@@ -1,5 +1,4 @@
 'use strict';
-'use strict';
 
 /**
  * This code is copyright (c) 2014 Topcoder Corporation

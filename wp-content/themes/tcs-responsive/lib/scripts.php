@@ -23,7 +23,7 @@ function tcs_responsive_scripts() {
   $assets = array(
     'jquery' => '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
     'jquery_ui' => '//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js',
-    'fonts' => '//fonts.googleapis.com/css?family=Source+Sans+Pro:700,400',
+    'fonts' => '//fonts.googleapis.com/css?family=Source+Sans+Pro:700,600,400,400italic,300',
     'respond'   =>  '/js/vendor/respond.min.js',
     'modernizr' => '/js/vendor/modernizr.js',
     'html5shiv' => '/js/vendor/html5shiv.js',
