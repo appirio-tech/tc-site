@@ -5,9 +5,9 @@
 }
 </style>
 <div class='coderbits-badge'>
-<a ng-href={{tcCoderbitsItem.link}}><h4 class='cb-social-heading'  ng-style="{'background-image': 'url('+apiHost+'/'+tcCoderbitsItem.external_account.image_link+')'}">{{tcCoderbitsItem.name}}</h4></a>
+<a target="_blank" ng-href={{tcCoderbitsItem.link}}><h4 class='cb-social-heading'  ng-style="{'background-image': 'url('+apiHost+'/'+tcCoderbitsItem.external_account.image_link+')'}">{{tcCoderbitsItem.name}}</h4></a>
 {{tcCoderbitsItem.description}}<br ng-if='tcCoderbitsItem.description'/>
-Earned {{tcCoderbitsItem.updated | timeSince :'a while ago'}} from <a ng-href='{{tcCoderbitsItem.external_account.link}}'>{{tcCoderbitsItem.external_account.friendly_name}}</a><br/>
+Earned {{tcCoderbitsItem.updated | timeSince :'a while ago'}} from <a target="_blank" ng-href='{{tcCoderbitsItem.external_account.link}}'>{{tcCoderbitsItem.external_account.friendly_name}}</a><br/>
 <img  align='left' ng-src="{{apiHost}}/{{tcCoderbitsItem.image_link}}" ng-if="tcCoderbitsItem.image_link.indexOf('http') === -1"/>
 <img align='left' ng-src="{{tcCoderbitsItem.image_link}}" ng-if="tcCoderbitsItem.image_link.indexOf('http') > -1"/>
  <div class='cb-badge-info'>

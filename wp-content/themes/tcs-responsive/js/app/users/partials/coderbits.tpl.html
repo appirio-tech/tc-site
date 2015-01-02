@@ -49,7 +49,7 @@
 			<h4 ng-if="coderbits.pages.summary.Accounts" class='border-bottom'>On the web</h4>
 			<ul style='width: 320px'>
 				<li ng-repeat="account in coderbits.pages.summary.Accounts" style='float: left; width: 32px; height: 32px; margin-right: 8px; margin-bottom: 8px'>
-					<a ng-href="{{account.link}}"><div class='img-container'><img ng-src="{{apiHost}}/{{account.image_link_32}}" /></div></a>
+					<a target="_blank" ng-href="{{account.link}}"><div class='img-container'><img ng-src="{{apiHost}}/{{account.image_link_32}}" /></div></a>
 				</li>
 			</ul>
 			<div style='clear: both'></div>
