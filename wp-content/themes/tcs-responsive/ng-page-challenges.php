@@ -385,7 +385,7 @@ get_header(); ?>
       <div class="rw">
           <label class="lbl" for="searchSaveTxt">Name Saved Search</label>
           <div class="val">
-            <input type="text" placeholder="Enter name for saving search" ng-model="saveFilterCtrl.name" name="searchSaveTxt" id="searchSaveTxt" required />
+            <input type="text" placeholder="Enter name for saved search" ng-model="saveFilterCtrl.name" name="searchSaveTxt" id="searchSaveTxt" required />
           </div>
       </div>
       <!-- This feature isn't supported for now.
