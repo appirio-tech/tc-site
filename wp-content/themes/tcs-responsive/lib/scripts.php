@@ -2,6 +2,10 @@
 
 /**
  * @file
+ * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
+ * @author TCSASSEMBLER, ecnu_haozi
+ * @version 1.1
+ *
  * Enqueue scripts and stylesheets
  *
  * CDN will also be used for jquery.  We will have a local fallback
@@ -9,6 +13,9 @@
  *  Grunt script is what pushes the script.
  * Theme option jsCssUseMin will be used to only enqueue the min version.
  *  Grunt will create a style.css and script.js file that will contain all of the local code
+ *
+ * Changed in 1.1
+ *  Add angular-animation.js.
  */
 
 function tcs_responsive_scripts() {
@@ -240,6 +247,10 @@ function tc_setup_angular() {
   // Core Angular
   wp_register_script('angularjs', '//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular.min.js', array('jquery'), null, true);
   wp_enqueue_script('angularjs');
+
+  //Angular animate
+  wp_register_script('angularjs-animate', '//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular-animate.min.js', array('angularjs'), null, true);
+  wp_enqueue_script('angularjs-animate');
 
   // Angular Route
   wp_register_script('angularjs-route', '//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular-route.min.js', array('angularjs'), null, true);

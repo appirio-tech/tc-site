@@ -1,9 +1,23 @@
+/**
+ * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
+ * @author TCSASSEMBLER, ecnu_haozi
+ * @version 1.2
+ *
+ * Changed in 1.1
+ * 09/17/2014 Add My Challenges Filter and Improve Filters
+ * - Added dates presets for active/upcoming challenges
+ *
+ * Changed in 1.2
+ * <ul>
+ * <li>Provide getter and setter for $scope.filterOptions to expose it to "My Filters" feature.</li>
+ * <li>The variable $scope.myFiltersListDirty is a flag to indicate if the list of "My Filters" needs to update.</li>
+ * </ul>
+ */
+
 /*jslint nomen: true*/
 /*global angular: true, _: true */
 /**
- * Changelog
- * 09/17/2014 Add My Challenges Filter and Improve Filters
- * - Added dates presets for active/upcoming challenges
+
 */
 (function (angular) {
   'use strict';
@@ -69,6 +83,43 @@
           }
         };
 
+        //"My filters" list need to update when $scope.myFiltersListDirty is undefined.
+        $scope.myFiltersListDirty = undefined;
+        $scope.getMyFiltersListDirty = getMyFiltersListDirty;
+        $scope.setMyFiltersListDirty = setMyFiltersListDirty;
+        $scope.getFilterOptions = getFilterOptions;
+        $scope.setFilterOptions = setFilterOptions;
+
+        /**
+         * The getter for $scope.myFiltersListDirty.
+         * @return $scope.myFiltersListDirty.
+         */
+        function getMyFiltersListDirty(){
+          return  $scope.myFiltersListDirty;
+        }
+
+        /**
+         * The setter for $scope.myFiltersListDirty.
+         * @param dirty the value to be set.
+         */
+        function setMyFiltersListDirty(dirty){
+          $scope.myFiltersListDirty = dirty;
+        }
+
+        /**
+         * The getter for $scope.filterOptions.
+         * @return $scope.filterOptions.
+         */
+        function getFilterOptions(){
+          return $scope.filterOptions;
+        }
+        /**
+         * The setter for $scope.filterOptions.
+         * @param filterOptions the value to be set.
+         */
+        function setFilterOptions(filterOptions){
+          $scope.filterOptions = filterOptions;
+        }
 
         $scope.resetFilterOptions = function () {
           $scope.filterOptions = angular.extend({}, initOptions);

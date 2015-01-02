@@ -1,3 +1,15 @@
+/**
+ * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
+ * @author TCSASSEMBLER, ecnu_haozi
+ * @version 1.1
+ *
+ * Changed in 1.1
+ * <ul>
+ * <li>Add ngAnimate module and two shared directives(clickAnywhereButHere, upwardsDownwardsAdaptive) for "My filters"
+ * feature.</li>
+ * <li>Add the configuration of "My filters" feature's API server URL. It's set in global variable "myFiltersURL".</li>
+ * </ul>
+ */
 'use strict';
 
 window.tc = angular.module('tc', [
@@ -10,10 +22,14 @@ window.tc = angular.module('tc', [
   'ngGrid',
   'ui.select2',
   'ngCookies',
-  'ui.calendar'
+  'ui.calendar',
+  'tc.shared.directives.clickAnywhereButHere',
+  'tc.shared.directives.upwardsDownwardsAdaptive',
+  'ngAnimate'
 ])
 
   .constant("API_URL", tcApiRUL)
+  .constant('MY_FILTER_API_URL', myFiltersURL)
   .constant("LC_URL", lcExternalUrl)
 
   .config(['$httpProvider', 'RestangularProvider', 'API_URL', function($httpProvider, RestangularProvider, API_URL) {

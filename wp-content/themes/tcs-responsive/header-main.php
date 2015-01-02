@@ -1,4 +1,15 @@
 <?php
+/**
+ * @file
+ * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
+ * @author TCSASSEMBLER, ecnu_haozi
+ * @version 1.1
+ *
+ * This header-main page.
+ *
+ * Changed in 1.1
+ * Add a configurable variable 'myFiltersURL' to support "My filters" feature.
+ */
 
 session_start();
 /***
@@ -102,6 +113,7 @@ if (basename(get_permalink()) == "challenges") {
 
     var tcApiRUL = '<?php echo TC_API_URL; ?>';
     var lcDiscussionURL = '<?php echo LC_DISCUSSION_URL; ?>';
+    var myFiltersURL = '<?php echo MY_FILERS_URL ?>';
     var lcSiteUrl = '<?php echo LC_SITE_URL; ?>';
     var lcExternalUrl = '<?php echo TC_LC_URL; ?>';
     var lcUserUrl = '<?php echo LC_USER_URL; ?>';

@@ -1,4 +1,16 @@
 <?php
+
+/**
+ * @file
+ * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
+ * @author TCSASSEMBLER, ecnu_haozi
+ * @version 1.1
+ *
+ * This footer page.
+ *
+ * Changed in 1.1
+ * Add two modals 'filterSavedSuccess' and 'filterSavedFailed' to support "My filters" feature.
+ */
 require_once 'TwitterAPIExchange.php';
 
 $settings = array(
@@ -189,6 +201,29 @@ $blog_posts = get_posts($blog_posts_args);
        <img alt="" style="width:910px; height:850px">
     </div>
 </div><!-- END #show submission -->
+
+<div id="filterSavedSuccess" class="modal">
+  <a href="javascript:;" class="btnClose closeModal"></a>
+  <div class="content">
+    <h2>Success</h2>
+    <p class="success">Your filters have been saved and stored in My Filters dropdown list. Now you can browse the challenge more quick and easy to find.</p>
+    <p class="submitBtn">
+      <a class="btn closeModal" href="javascript:;">OK</a>
+    </p>
+  </div>
+</div><!-- END #filterSavedSuccess -->
+
+<div id="filterSavedFailed" class="modal">
+  <a href="javascript:;" class="btnClose closeModal"></a>
+  <div class="content">
+    <h2>Info</h2>
+    <p class="failedMessage"></p>
+    <p class="submitBtn">
+      <a class="btn closeModal" href="javascript:;">OK</a>
+    </p>
+  </div>
+</div><!-- END #filterSavedFailed -->
+
 <div id="designSubmissionCommentExample" class="modal">
   <a href="javascript:;" class="btnClose closeModal"></a>
   <div class="content">

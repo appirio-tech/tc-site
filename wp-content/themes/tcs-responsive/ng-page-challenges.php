@@ -5,7 +5,14 @@
 
 /**
  * @file
+ * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
+ * @author TCSASSEMBLER, ecnu_haozi
+ * @version 1.1
+ *
  * This template shows a list of challenges
+ *
+ * Changed in 1.1
+ * Add two templates my-filters and save-filters to support "My filters" feature.
  */
 
 function add_base_url() {
@@ -264,11 +271,12 @@ get_header(); ?>
                   </div>
                 </li>
             </ul>
-            <div class="closetag right">
-                <a href="javascript:;" ng-click="reset()" ng-show="hasFilters()">
-                    <span>x</span><i>Clear All Tags</i>
-                </a>
-            </div>
+            <div class="closetag right"  ng-show="hasFilters()">
+                <a href="javascript:;" ng-click="reset()" >
+                     <span>x</span><i>Clear All Tags</i>
+                 </a>
+                <save-filter ng-show="authenticated"></save-filter>           
+             </div>
             <div class="clear"></div>
         </div>
     </div>
@@ -359,14 +367,72 @@ get_header(); ?>
                     <option ng-repeat="tech in technologies track by $index" ng-disabled="filterOptions.technologies.indexOf(tech) !== -1">{{tech}}</option>
                 </select>
             </div>
-
-            <div class="right checkbox myChallenges" ng-show="authenticated && challengeStatus === 'active' && challengeCommunity !== 'data'">
-              <label class="myChallengesLabel"><span>My Challenges Only</span><input type="checkbox" ng-model="filterOptions.userChallenges" ng-change="applyFilter()"></label>
+            <div class="right filtersSectn" ng-show="authenticated">
+              <div class="checkbox myChallenges chkWrap" ng-show="challengeStatus === 'active' && challengeCommunity !== 'data'">
+                <label class="myChallengesLabel"><input type="checkbox" class="chk" ng-model="filterOptions.userChallenges" ng-change="applyFilter()"><span class="chkLbl">My Challenges Only</span></label>
+              </div>
+              <my-filters></my-filters>
             </div>
-
-        </div>
     </div>
     <!-- End Dropdown filter -->
+  </div>
+</script>
+
+<script type="text/ng-template" id="save-filter.html">
+  <a class="btn btnAlt btnSave" ng-click="saveFilterCtrl.openDialog($event)">Save</a>
+  <div class="filterWidget" click-anywhere-but-here="saveFilterCtrl.closeDialogAndClear()" is-active="saveFilterCtrl.dialog" ng-show="saveFilterCtrl.dialog">
+    <form name="saveForm" class="details">
+      <div class="rw">
+          <label class="lbl" for="searchSaveTxt">Name Saved Search</label>
+          <div class="val">
+            <input type="text" placeholder="Enter name for saving search" ng-model="saveFilterCtrl.name" name="searchSaveTxt" id="searchSaveTxt" required />
+          </div>
+      </div>
+      <!-- This feature isn't supported for now.
+      <div class="alertMe chkWrap">
+         <input type="checkbox" ng-model="alertMeChk" id="alertMeChk" class="chk" /><label class="chkLbl" for="alertMeChk">Alerts me when there’s New challenge available for me</label>
+      </div>
+      -->
+      <div class="actn">
+      <a class="btn btnCancel btnSecondary" ng-click="saveFilterCtrl.closeDialogAndClear()">Cancel</a><a class="btn btnSaveSearch" ng-click="saveFilterCtrl.saveFilter();">Save My Search</a>
+      </div>
+    </form>
+  </div>     
+</script>
+
+<script type="text/ng-template" id="my-filters.html">
+  <div class="myFilterWrap" upwards-downwards-adaptive >
+    <a class="btnDD btnFilter">My Filters <span class="arrow"></span></a>
+    <div class="filterPop dropdown">
+        <h3>Saved search</h3>
+        <div class="caption">Your complete saved search list</div>
+        <div class="savedSearchList">
+            <h6 ng-if="myFiltersCtrl.filters.length<=0">No saved searches found.</h6>
+            <div ng-repeat="filter in myFiltersCtrl.filters |orderBy:'name'" ng-click="myFiltersCtrl.updateFilterOptions(filter)" class="repeated-item savedSearch">
+                <div class="name">{{filter.name}}</div>
+                <div class="right opts">
+                    <!-- This feature isn't supported for now.
+                    <span class="lbl">
+                      <span class="chkWrap">
+                        <input type="checkbox" class="chk" id="altertChk-{{$index}}" ng-model="filter.isAlertsEnabled" />
+                        <label class="chkLbl" for="altertChk-{{$index}}">Alerts?</label>
+                      </span>
+                    </span>
+                    -->
+                    <a ng-click="myFiltersCtrl.deleteFilter(filter); $event.stopPropagation();" class="btnRemove"></a>
+                </div>
+                <div class="tags">
+                    <div class="tag" ng-if="filter.filterOptions.startDate || filter.filterOptions.endDate">{{myFiltersCtrl.dateRange(filter)}}</div>
+                    <div class="tag" ng-repeat="types in filter.filterOptions.challengeTypes">{{types}}</div>
+                    <div class="tag" ng-repeat="plat in filter.filterOptions.platforms">{{plat}}</div>
+                    <div class="tag" ng-repeat="tech in filter.filterOptions.technologies">{{tech}}</div>
+                    <div class="tag" ng-repeat="token in filter.filterOptions.keywords">Text: {{token}}</div>
+                    <div class="tag" ng-if="filter.filterOptions.userChallenges">My Challenge Only</div>
+                </div>
+            </div>
+        </div>
+        <div class="hr"></div>
+    </div>
   </div>
 </script>
 
