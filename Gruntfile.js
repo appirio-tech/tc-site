@@ -102,6 +102,14 @@ module.exports = function(grunt) {
         }
       }
     },
+    copy: {
+      files: {
+        cwd: '<%= build.themeCss %>/fonts',
+        src: '**/*',
+        dest: '<%= build.themeDist %>/css/fonts',
+        expand: true
+      }
+    },
     uglify: {
       options: {
         banner: '<%= banner %>',
@@ -170,6 +178,6 @@ module.exports = function(grunt) {
   });
 
   // Default task.
-  grunt.registerTask('default', ['clean', 'concat', 'cssmin', 'uglify', 'compress', 'updateJsonConfig']);
+  grunt.registerTask('default', ['clean', 'concat', 'cssmin', 'copy', 'uglify', 'compress', 'updateJsonConfig']);
 
 };
