@@ -206,7 +206,7 @@ $blog_posts = get_posts($blog_posts_args);
   <a href="javascript:;" class="btnClose closeModal"></a>
   <div class="content">
     <h2>Success</h2>
-    <p class="success">Your filters have been saved and stored in My Filters dropdown list. Now you can browse the challenge more quick and easy to find.</p>
+    <p class="success">Your filters have been saved and stored in the "My Filters" dropdown list.</p>
     <p class="submitBtn">
       <a class="btn closeModal" href="javascript:;">OK</a>
     </p>
