@@ -150,9 +150,7 @@ a{
         background: #fff;
     }
     .trackdesign .switchBtns a{
-        border: 1px solid #00aeff;        
-        color: #ffae00;    
-        margin-left: -1px;
+        border: 1px solid #aaa;
 }
     .switchBtns a:hover,
     .switchBtns a.isActive{
@@ -172,6 +170,7 @@ a{
     .trackdesign  .switchBtns a.isActive{
         background-color: #00aeff;
         color: #fff;
+        border: 1px solid #00aeff;
     }
 
 	.trackdesign .switchBtns a.disabled:hover{

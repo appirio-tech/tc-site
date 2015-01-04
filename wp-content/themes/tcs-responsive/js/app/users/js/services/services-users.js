@@ -1,8 +1,12 @@
 /**
  * This code is copyright (c) 2014 Topcoder Corporation
  *
- * author: TCSASSEMBLER
- * version 1.0
+ * Changes in version 1.1 (Enhanced Member Profile Bugs Fixing):
+ * - Updated to use custom $q.allSettled method instead of $q.all
+ * - Determine top track based on num of wins, if not then on num of submissions
+ *
+ * author: shubhendus, TCSASSEMBLER
+ * version 1.1
  */
 'use strict';
 
@@ -37,39 +41,49 @@ angular.module('tc.usersService', [
      */
     'getMastery': function(handle) {
       var deferred = $q.defer();
-      $q.all({
+      $q.allSettled({
         'data': Restangular.one('users', handle).one('statistics', 'data').one('marathon').get(),
         'dataSRM': Restangular.one('users', handle).one('statistics', 'data').one('srm').get(),
         'develop': Restangular.one('users', handle).one('statistics', 'develop').get(),
         'design': Restangular.one('users', handle).one('statistics', 'design').get()
       }).then(function(cats){
         var topTracks = [];
-        var developTopTrack = _.max(cats.develop.CompetitionHistory, function(track, k){ track.name = k; return track.wins; });
-        if(developTopTrack.wins === 0 ) developTopTrack = _.max(cats.develop.CompetitionHistory, function(track, k){ track.name = k; return track.submissions; });
-        
-        var developTopTrackRating = _.max(cats.develop.Tracks, function(track, k){ track.name = k; return track.rating; });
-        if(developTopTrackRating instanceof Object) {
-          developTopTrack.rating = developTopTrackRating.rating;
-          developTopTrack.ratingName = developTopTrackRating.name;
-        }
 
-        if(developTopTrack instanceof Object) {
-          developTopTrack.category = 'Development';
-          topTracks.push(developTopTrack);
-        }
-        var showDevelopSection = !jQuery.isEmptyObject(cats.develop.Tracks);
+        if (cats.develop.state == 'fulfilled') {
+          var developTopTrack = _.max(cats.develop.value.CompetitionHistory, function(track, k){ track.name = k; return track.wins; });
+          if(developTopTrack.wins === 0 ) developTopTrack = _.max(cats.develop.value.CompetitionHistory, function(track, k){ track.name = k; return track.submissions; });
 
-        var designTopTrack =  _.max(cats.design.Tracks, function(track, k){ track.name = k; track.wins = track.numberOfWinningSubmissions; track.submissions = track.numberOfSubmissions;  return track.numberOfWinningSubmissions; });
-        if(designTopTrack.wins === 0 ) developTopTrack = _.max(cats.design.Tracks, function(track, k){ track.name = k; track.wins = 0; track.submissions = track.numberOfSubmissions; return track.numberOfSubmissions; });
-        if(designTopTrack instanceof Object) {
-          designTopTrack.category = 'Design';
-          topTracks.push(designTopTrack);
-        }
-        var showDesignSection = designTopTrack.submissions >= 1;
+          if (cats.develop.value.Tracks[developTopTrack.name] != undefined) {
+            developTopTrack.rating = cats.develop.value.Tracks[developTopTrack.name].rating;
+          } else {
+            var developTopTrackRating = _.max(cats.develop.value.Tracks, function(track, k){ track.name = k; return track.rating; });
+            if(developTopTrackRating instanceof Object) {
+              developTopTrack.rating = developTopTrackRating.rating;
+              developTopTrack.ratingName = developTopTrackRating.name;
+            }
+          }
+
+          if(developTopTrack instanceof Object) {
+            developTopTrack.category = 'Development';
+            topTracks.push(developTopTrack);
+          }
+          var showDevelopSection = !jQuery.isEmptyObject(cats.develop.value.Tracks);
+        };
+
+        if (cats.design.state == 'fulfilled') {
+          var designTopTrack =  _.max(cats.design.value.Tracks, function(track, k){ track.name = k; track.wins = track.numberOfWinningSubmissions; track.submissions = track.numberOfSubmissions;  return track.numberOfWinningSubmissions; });
+          if(designTopTrack.wins === 0 ) developTopTrack = _.max(cats.design.value.Tracks, function(track, k){ track.name = k; track.wins = 0; track.submissions = track.numberOfSubmissions; return track.numberOfSubmissions; });
+          if(designTopTrack instanceof Object) {
+            designTopTrack.category = 'Design';
+            topTracks.push(designTopTrack);
+          }
+          var showDesignSection = designTopTrack.submissions >= 1;
+        };
+
 
         var dataCats = [];
-        if(cats.data.competitions) dataCats.push(cats.data);
-        if(cats.dataSRM.competitions) dataCats.push(cats.dataSRM);
+        if(cats.data.state == 'fulfilled' && cats.data.value.competitions) dataCats.push(cats.data.value);
+        if(cats.dataSRM.state == 'fulfilled' && cats.dataSRM.value.competitions) dataCats.push(cats.dataSRM.value);
 
         if(dataCats.length){
           var dataTopTrack = _.max(dataCats, function(track){ track.name = track.route; track.submissions = track.competitions; return track.rating});
@@ -79,10 +93,8 @@ angular.module('tc.usersService', [
         } else {
           showDataSection = false;
         }
-        
 
-        if(true) deferred.resolve({mastery: _.sortBy(topTracks, 'wins').reverse()[0], showDevelopSection: showDevelopSection, showDesignSection: showDesignSection, showDataSection: showDataSection });
-        else deferred.resolve({mastery: _.sortBy(topTracks, 'submissions').reverse()[0], showDevelopSection: showDevelopSection, showDesignSection: showDesignSection, showDataSection: showDataSection});
+        deferred.resolve({mastery: _.max(topTracks, function(track) { return track.wins || track.submissions }), showDevelopSection: showDevelopSection, showDesignSection: showDesignSection, showDataSection: showDataSection });
       }, deferred.reject);
       return deferred.promise;
     },

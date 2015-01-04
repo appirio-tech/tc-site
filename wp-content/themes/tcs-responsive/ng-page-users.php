@@ -37,7 +37,7 @@ get_header();
 				<div class="container">
 					<div class="actions" ng-class="{'trackdesign' : track === 'design'}">
 						<ul class="trackSwitch switchBtns" ng-if="showTrackNav">
-							<li ng-if="coderbitsUserExisted"><a ng-click="switchTab('base.common.overview', 'overview', undefined);" ng-class="{ isActive : $state.includes('**.overview.**') }" tc-change-url="overview">Member Overview >{{coderbitsUserExisted}}</a></li>
+							<li ng-if="(coderbitsUserExisted && coderbits.accounts.length > 0)"><a ng-click="switchTab('base.common.overview', 'overview', undefined);" ng-class="{ isActive : $state.includes('**.overview.**') }" tc-change-url="overview">Member Overview >{{coderbitsUserExisted}}</a></li>
 							<li ng-if="showDesign"><a ng-click="switchTab('base.common.design', 'design', undefined);" ng-class="{ isActive : $state.includes('**.design.**') }" tc-change-url="design">Design</a></li>
 							<li ng-if="showDevelop"><a ng-click="switchTab('base.common.develop.special', 'develop', undefined);" ng-class="{ isActive : $state.includes('**.develop.**') }" tc-change-url="develop">Development</a></li>
 							<li ng-if="showData"><a ng-click="switchTab('base.common.dataScience.special', 'dataScience', 'algorithm');" ng-class="{ isActive : $state.includes('**.dataScience.**') }" tc-change-url="algorithm">Data Science</a></li>

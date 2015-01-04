@@ -1,8 +1,11 @@
 /**
  * This code is copyright (c) 2014 Topcoder Corporation
  *
- * author: f3z0
- * version 1.0
+ * Changes in version 1.1 (Enhanced Member Profile Bugs Fixing):
+ * - Updated getOverview to enable caching.
+ *
+ * author: f3z0, shubhendus, TCSASSEMBLER
+ * version 1.1
  */
 'use strict';
 
@@ -27,9 +30,13 @@ angular.module('tc.coderbitsService', [
 .factory('CoderbitsService', ['CoderbitsRestangular', '$q',
     function(CoderbitsRestangular, $q) {
         return {
-            'getOverview': function(handle){
+            'getOverview': function(handle, track, cache){
               var deferred = $q.defer();
-              CoderbitsRestangular.one('', handle + '.json').get().then(function(coderbits){
+              if (cache[track]) {
+                deferred.resolve(cache[track]);
+                return deferred.promise;
+              };
+              CoderbitsRestangular.one(handle + '.json').get().then(function(coderbits){
                 deferred.resolve([
                   {name: "Top Areas", data: coderbits.top_areas},
                   {name: "Top Environments", data: coderbits.top_environments},
@@ -51,7 +58,7 @@ angular.module('tc.coderbitsService', [
               var CoderbitsService = this;
               // Returns fetched restangular object of the fetched user
               var coderbits;
-              CoderbitsRestangular.one('', handle + '.json').get().then(function(fetchedResult) {
+              CoderbitsRestangular.one(handle + '.json').get().then(function(fetchedResult) {
                   coderbits = fetchedResult;
                   var p = {};
 

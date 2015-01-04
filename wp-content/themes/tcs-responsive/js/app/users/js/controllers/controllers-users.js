@@ -1,7 +1,12 @@
 /**
  * This code is copyright (c) 2014 Topcoder Corporation
- * author: TCSASSEMBLER
- * version 1.0
+ *
+ * Changes in version 1.1 (Enhanced Member Profile Bugs Fixing):
+ * - Updated to show overview tab on default.
+ * - Showing mastery only if values are greater than 0.
+ *
+ * author: shubhendus, TCSASSEMBLER
+ * version 1.1
  */
 'use strict';
 /**
@@ -91,13 +96,21 @@ angular.module('tc').controller('UsersCtrl', ['$location', '$state', '$scope', '
 
     var getCBUser = function() {
       CoderbitsService.getUser(user).then(function (coderbits){
+
         $scope.coderbitsUserExisted = (typeof coderbits.name !== 'undefined');
         $scope.showBadge = ($scope.showDesign + $scope.showDevelop + $scope.showData) > 0;
-        
+        $scope.showMastery = $scope.mastery.length > 0;
+
         //Uncomment to activate design tab for hybrid coderbits design portfolio.
         //$scope.showDesign = ($scope.coderbitsUserExisted && coderbits.showDesigns);
         if((!tab || ['algorithm', 'marathon', 'design', 'overview', 'develop'].indexOf(tab) === -1) && mastery) {
-          tab = mastery.category.toLowerCase();
+          // If Coderbits account linked and data exists show default tab
+          if ($scope.coderbitsUserExisted && coderbits.accounts.length > 0) {
+            tab = 'overview';
+          } else {
+            tab = mastery.category.toLowerCase();
+          };
+
           if(tab === 'data') {
             tab = mastery.name.toLowerCase();
             if(tab === 'srm') tab = 'algorithm';
@@ -105,31 +118,32 @@ angular.module('tc').controller('UsersCtrl', ['$location', '$state', '$scope', '
         }
 
         switch (tab) {
-        case 'algorithm':
-        case 'marathon':
-          $scope.switchTab('base.common.dataScience.special', 'dataScience', tab);
+          case 'algorithm':
+          case 'marathon':
+            $scope.switchTab('base.common.dataScience.special', 'dataScience', tab);
 
-          break;
-        case 'design':
-          $scope.switchTab('base.common.design', 'design', undefined);
+            break;
+          case 'design':
+            $scope.switchTab('base.common.design', 'design', undefined);
 
-          break;
-        case 'overview':
-          $scope.switchTab('base.common.overview', 'overview', undefined);
-
-          break;
-       case 'develop':
-          $scope.switchTab('base.common.develop.special', 'develop', undefined);
-
-          break;
-        default:
-          if(!$scope.showDevelop || $scope.coderbitsUserExisted) {
+            break;
+          case 'overview':
             $scope.switchTab('base.common.overview', 'overview', undefined);
-          } else {
+
+            break;
+          case 'develop':
+          case 'development':
             $scope.switchTab('base.common.develop.special', 'develop', undefined);
-            $scope.cbUserDataRetrieved = true;
-          }
-          break;
+
+            break;
+          default:
+            if(!$scope.showDevelop || $scope.coderbitsUserExisted) {
+              $scope.switchTab('base.common.overview', 'overview', undefined);
+            } else {
+              $scope.switchTab('base.common.develop.special', 'develop', undefined);
+              $scope.cbUserDataRetrieved = true;
+            }
+            break;
         }
 
         $scope.showTrackNav = ($scope.coderbitsUserExisted + $scope.showDesign + $scope.showDevelop + $scope.showData) > 1;
@@ -154,19 +168,12 @@ angular.module('tc').controller('UsersCtrl', ['$location', '$state', '$scope', '
       $scope.showDevelop = resp.showDevelopSection;
       $scope.showData = resp.showDataSection;
 
-      if(mastery.category === 'Data') {
-        $scope.mastery.push({
-          label: 'Rating',
-          value: mastery.rating,
-          category: 'Default Language',
-          track: mastery.defaultLanguage
-        });
-      } else if(mastery.rating) {
+      if(mastery.rating) {
         $scope.mastery.push({
           label: 'Rating',
           value: mastery.rating,
           category: mastery.category,
-          track: mastery.ratingName
+          track: mastery.ratingName || mastery.name
         });
         if(mastery.wins > 0){
           $scope.mastery.push({
@@ -177,18 +184,22 @@ angular.module('tc').controller('UsersCtrl', ['$location', '$state', '$scope', '
           });
         }
       } else {
-        $scope.mastery.push({
-          label: 'Wins',
-          value: mastery.wins,
-          category: mastery.category,
-          track: mastery.name
-        });
-        $scope.mastery.push({
-          label: 'Submissions',
-          value: mastery.submissions,
-          category: mastery.category,
-          track: mastery.name
-        });
+        if(mastery.wins > 0) {
+          $scope.mastery.push({
+            label: 'Wins',
+            value: mastery.wins,
+            category: mastery.category,
+            track: mastery.name
+          });
+        }
+        if (mastery.submissions > 0) {
+          $scope.mastery.push({
+            label: 'Submissions',
+            value: mastery.submissions,
+            category: mastery.category,
+            track: mastery.name
+          });
+        };
       }
 
       getTCUser();

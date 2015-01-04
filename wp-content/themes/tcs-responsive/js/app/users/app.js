@@ -1,7 +1,11 @@
 /**
  * This code is copyright (c) 2014 Topcoder Corporation
- * author: TCS-ASSEMBLER
- * version 1.0
+ *
+ * Changes in version 1.1 (Enhanced Member Profile Bugs Fixing):
+ * - Added allSettled method for angular promises provider.
+ *
+ * author: shubhendus, TCSASSEMBLER
+ * version 1.1
  */
 'use strict';
 
@@ -25,6 +29,39 @@ window.tc = angular.module('tc', [
   .constant("USERS_TEMPLATE_URL", "/js/app/users/partials/users.tpl.html")
   .constant("CODERBITS_API_HOST", cbApiURL)
   .constant("CODERBITS_TEMPLATE_URL", "/js/app/users/partials")
+
+// Implementation of allSettled function from Kris Kowal's Q:
+// https://github.com/kriskowal/q/wiki/API-Reference#promiseallsettled
+.config(['$provide', function ($provide) {
+  $provide.decorator('$q', ['$delegate', function ($delegate) {
+    var $q = $delegate;
+
+    $q.allSettled = $q.allSettled || function allSettled(promises) {
+
+      var wrapped = angular.isArray(promises) ? [] : {};
+
+      angular.forEach(promises, function(promise, key) {
+        if (!wrapped.hasOwnProperty(key)) {
+          wrapped[key] = wrap(promise);
+        }
+      });
+
+      return $q.all(wrapped);
+
+      function wrap(promise) {
+        return $q.when(promise)
+          .then(function (value) {
+            return { state: 'fulfilled', value: value };
+          }, function (reason) {
+            return { state: 'rejected', reason: reason };
+          });
+      }
+    };
+
+    return $q;
+  }]);
+}])
+
 
 .config(['$httpProvider', 'RestangularProvider', 'API_URL',
   function ($httpProvider, RestangularProvider, API_URL) {

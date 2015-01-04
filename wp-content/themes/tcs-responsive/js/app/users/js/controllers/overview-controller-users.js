@@ -1,7 +1,11 @@
 /**
  * This code is copyright (c) 2014 Topcoder Corporation
- * author: TCSASSEMBLER
- * version 1.0
+ *
+ * Changes in version 1.1 (Enhanced Member Profile Bugs Fixing):
+ * - Updated getOverview to enable caching.
+ *
+ * author: shubhendus, TCSASSEMBLER
+ * version 1.1
  */
 'use strict';
 
@@ -12,9 +16,12 @@
  */
 var OverviewCtrl = function (UsersService, ImageService, $scope, CoderbitsService) {
 
-  CoderbitsService.getOverview(user).then(function(overview){
+  CoderbitsService.getOverview(user, $scope.track, $scope.baseCtrl.cache).then(function(overview){
+
+    $scope.baseCtrl.cache[$scope.track] = overview;
+
     var allTraits = overview
-      .filter(function(p) { return p.data.length > 0 })
+      .filter(function(p) { return p.data !== undefined && p.data.length > 0 })
       .sort(function(a,b) { return b.data.length - a.data.length });
     
     $scope.traitPages = [];

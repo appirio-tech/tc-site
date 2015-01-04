@@ -1,7 +1,11 @@
 /**
  * This code is copyright (c) 2014 Topcoder Corporation
- * author: TCSASSEMBLER
- * version 1.0
+ *
+ * Changes in version 1.1 (Enhanced Member Profile Bugs Fixing):
+ * - Updated to enable caching for Coderbits overview data.
+ *
+ * author: shubhendus, TCSASSEMBLER
+ * version 1.1
  */
 'use strict';
 
@@ -23,6 +27,7 @@ var BaseCtrl = function ($scope) {
       baseCtrl.cache['design'] = {};
       baseCtrl.cache['dataScience']['algorithm'] = {};
       baseCtrl.cache['dataScience']['marathon'] = {};
+      baseCtrl.cache['overview'] = {};
     }	
   });
 };
