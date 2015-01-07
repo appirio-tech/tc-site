@@ -431,7 +431,7 @@ get_header(); ?>
                 </div>
             </div>
         </div>
-        <div class="hr"></div>
+        <div ng-hide="myFiltersCtrl.filters.length<=0" class="hr"></div>
     </div>
   </div>
 </script>
