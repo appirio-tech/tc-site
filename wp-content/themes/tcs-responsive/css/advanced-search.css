@@ -646,7 +646,7 @@ input.search-text::-webkit-input-placeholder {
     width: 12px;
     margin-left: 11px;
 } 
-.myFilterWrap .btnRemove{
+.myFilterWrap .btnRemove:hover{
     background: url(../i/ico-failed-x.png) 50% 50% no-repeat;
 }
 .myFilterWrap .savedSearch .tags{
