@@ -404,7 +404,7 @@ get_header(); ?>
   <div class="myFilterWrap" upwards-downwards-adaptive >
     <a class="btnDD btnFilter">My Filters <span class="arrow"></span></a>
     <div class="filterPop dropdown">
-        <div class="caption">Your saved searchs</div>
+        <div class="caption">Your saved searches</div>
         <div class="savedSearchList">
             <h6 ng-if="myFiltersCtrl.filters.length<=0">No saved searches found.</h6>
             <div ng-repeat="filter in myFiltersCtrl.filters |orderBy:'name'" ng-click="myFiltersCtrl.updateFilterOptions(filter)" class="repeated-item savedSearch">
