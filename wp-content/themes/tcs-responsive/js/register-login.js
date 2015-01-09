@@ -666,6 +666,7 @@ $(function () {
             handle: $('#registerForm input.handle').val(),
             country: $('#registerForm select#selCountry').val(),
             email: $('#registerForm input.email').val(),
+            regSource: regSource || 'http://topcoder.com',
             curUrl: window.location.href
           };
           if ((typeof socialProviderId != 'undefined') && socialProviderId !== "") {

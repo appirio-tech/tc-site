@@ -20,7 +20,7 @@ function post_register_controller() {
       'lastName' => filter_input(INPUT_POST, 'lastName', FILTER_SANITIZE_STRING),
       'handle' => filter_input(INPUT_POST, 'handle', FILTER_SANITIZE_STRING),
       'country' => filter_input(INPUT_POST, 'country', FILTER_SANITIZE_STRING),
-      'regSource' => 'http://www.topcoder.com/',
+      'regSource' => filter_input(INPUT_POST, 'regSource', FILTER_SANITIZE_STRING),
       'email' => filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL)
     ),
     'cookies' => array()
