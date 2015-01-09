@@ -732,7 +732,11 @@ $blog_posts = get_posts($blog_posts_args);
   var socialProviderId = "", socialUserName = "", socialEmail = "", socialProvider = "";
   var utmSource = '', utmMedium = '', utmCampaign = '';
   var loginState = '';
+  var regSource = '';
   $(function () {
+    regSource = getParameterByName('regSource') || getHashParameterByName('regSource')
+      || getParameterByName('reg_source') || getHashParameterByName('reg_source')
+      || $.cookie('regSource');
     utmSource = getParameterByName('utmSource') || getHashParameterByName('utmSource')
       || getParameterByName('utm_source') || getHashParameterByName('utm_source')
       || $.cookie('utmSource');
