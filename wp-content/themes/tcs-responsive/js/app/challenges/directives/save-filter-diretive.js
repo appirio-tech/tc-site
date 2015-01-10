@@ -75,6 +75,16 @@
        * filter will be concerned as a new filter and added into the server.
        */
       function saveFilter() {
+        if ($routeParams.challengeStatus == 'past' && !$location.search().startDate) {
+          var ob = $location.search();
+          var month = moment().month() + 1 + '';
+          month = month.length < 2 ? '0' + month : month;
+          var year = moment().year() - 1;
+          var startDate = year + '-' + month + '-01';
+          ob.startDate = startDate;
+          $location.search(ob);
+        }
+         
         //console.log($scope.saveForm.searchSaveTxt);
         if (!$scope.saveForm.searchSaveTxt.$error.required) {
           var filter = makeFilterObject();
