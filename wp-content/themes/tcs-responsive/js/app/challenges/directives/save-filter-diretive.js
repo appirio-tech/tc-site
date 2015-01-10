@@ -18,7 +18,7 @@
    */
   function saveFilter() {
 
-    SaveFiltersCtrl.$inject = ['$scope', 'MyFiltersService', '$location'];
+    SaveFiltersCtrl.$inject = ['$scope', 'MyFiltersService', '$location', '$routeParams'];
 
     return {
       restrict: 'EA',
@@ -38,7 +38,7 @@
      * @param MyFiltersService the service for "my filters" feature.
      * @param $location the injected location service used to get current filter.
      */
-    function SaveFiltersCtrl($scope, MyFiltersService, $location) {
+    function SaveFiltersCtrl($scope, MyFiltersService, $location, $routeParams) {
       var ctrl = this;
       //Hide the dialog at first.
       ctrl.dialog = false;
