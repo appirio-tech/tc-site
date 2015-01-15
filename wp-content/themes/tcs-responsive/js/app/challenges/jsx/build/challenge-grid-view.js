@@ -26,19 +26,19 @@
         var clickHandler = scope.$apply.bind (scope,
                            scope.findByTechnology.bind (null, tech));
         return (
-            React.DOM.li( {key:'tech.' + tech}, React.DOM.span( {className:"techTag"}, React.DOM.a( {href:"javascript:;", onClick:clickHandler}, tech)))
+            React.createElement("li", {key: 'tech.' + tech}, React.createElement("span", {className: "techTag"}, React.createElement("a", {href: "javascript:;", onClick: clickHandler}, tech)))
           )
       });
       var platRows = _.map(challenge.platforms, function(plat){
         var clickHandler = scope.$apply.bind (scope,
                            scope.findByPlatform.bind (null, plat));
         return (
-            React.DOM.li( {key:'plat.' + plat}, React.DOM.span( {className:"techTag"}, React.DOM.a( {href:"javascript:;", onClick:clickHandler}, plat)))
+            React.createElement("li", {key: 'plat.' + plat}, React.createElement("span", {className: "techTag"}, React.createElement("a", {href: "javascript:;", onClick: clickHandler}, plat)))
           )
       });
       return (
-          React.DOM.ul(null, 
-            techRows,
+          React.createElement("ul", null, 
+            techRows, 
             platRows
           )
         );
@@ -112,83 +112,83 @@
         var track = getTrackSymbol(challenge.challengeType);
         var trackTag = 'track-' + track;
         return (
-        React.DOM.div( {className:"contest "+ trackTag +" trackSD type-" + challenge.challengeCommunity, key:challenge.challengeId}, 
-          React.DOM.div( {className:"cgCh"}, 
-            React.DOM.a( {href:"/challenge-details/" +challenge.challengeId+"/?type="+challenge.challengeCommunity, className:"contestName"}, 
-              React.DOM.img( {alt:"", className:"allContestIco", src:images + '/ico-track-' + challenge.challengeCommunity + '.png'} ),
-              React.DOM.span( {className:"gridChallengName"}, challenge.challengeName),
-              React.DOM.img( {alt:"", className:challenge.challengeCommunity != 'data' ? "allContestTCOIco" : "allContestTCOIco ng-hide", src:images + '/tco-flag-' + challenge.challengeCommunity + '.png'} ),
-              Qtip( {text:challenge.challengeType, title:"Challenge Type", community:challenge.challengeCommunity}, 
-                React.DOM.span( {className:"track-symbol"}, track.toUpperCase())
+        React.createElement("div", {className: "contest "+ trackTag +" trackSD type-" + challenge.challengeCommunity, key: challenge.challengeId}, 
+          React.createElement("div", {className: "cgCh"}, 
+            React.createElement("a", {href: challenge.challengeCommunity != 'data' ? "/challenge-details/" +challenge.challengeId+"/?type="+challenge.challengeCommunity : '//community.topcoder.com/longcontest/?module=ViewProblemStatement&rd=' + challenge.roundId + '&pm=' + challenge.problemId, className: "contestName"}, 
+              React.createElement("img", {alt: "", className: "allContestIco", src: images + '/ico-track-' + challenge.challengeCommunity + '.png'}), 
+              React.createElement("span", {className: "gridChallengName"}, challenge.challengeName), 
+              React.createElement("img", {alt: "", className: challenge.challengeCommunity != 'data' ? "allContestTCOIco" : "allContestTCOIco ng-hide", src: images + '/tco-flag-' + challenge.challengeCommunity + '.png'}), 
+              React.createElement(Qtip, {text: challenge.challengeType, title: "Challenge Type", community: challenge.challengeCommunity}, 
+                React.createElement("span", {className: "track-symbol"}, track.toUpperCase())
               )
             )
-          ),
-          React.DOM.div( {className:"cgTime"}, 
-            React.DOM.div(null, 
-              React.DOM.div( {className:"row"}, 
-                React.DOM.label( {className:"lbl"}, "Start Date"),
-                React.DOM.div( {className:"val vStartDate"}, scope.dateFormatFilter(challenge.registrationStartDate, scope.dateFormat))
-              ),
-              React.DOM.div( {className:classNames[challengeCombo].registerBy !== undefined ? 'row':'row ng-hide'}, 
-                React.DOM.label( {className:"lbl"}, "Register By"),
-                React.DOM.div( {className:"val vStartDate"}, scope.dateFormatFilter(challenge.registrationEndDate, scope.dateFormat))
-              ),
-              React.DOM.div( {className:classNames[challengeCombo].roundEnd !== undefined && challenge.checkpointSubmissionEndDate !== '' ? 'row' : 'row ng-hide'}, 
-                React.DOM.label( {className:"lbl"}, "Round 1 End"),
-                React.DOM.div( {className:"val vEndRound"}, scope.dateFormatFilter(challenge.checkpointSubmissionEndDate, scope.dateFormat))
-              ),
-              React.DOM.div( {className:classNames[challengeCombo].endDate !== undefined ? 'row':'row ng-hide'}, 
-                React.DOM.label( {className:"lbl"}, "End Date"),
-                React.DOM.div( {className:"val vEndDate"}, scope.dateFormatFilter(challenge.submissionEndDate, scope.dateFormat))
-              ),
-              React.DOM.div( {className:classNames[challengeCombo].submitBy !== undefined ? 'row':'row ng-hide'}, 
-                React.DOM.label( {className:"lbl"}, "Submit By"),
-                  React.DOM.div( {className:"val vStartDate"}, scope.dateFormatFilter(challenge.submissionEndDate, scope.dateFormat))
-                ),
-              React.DOM.div( {className:classNames[challengeCombo].currentPhase !== undefined ? 'row':'row ng-hide'},
-                React.DOM.label( {className:"lbl"}, "Current Phase"),
-                React.DOM.div( {className:"val vPhase"}, challenge.currentPhaseName),
-                React.DOM.div( {className:"clear"} )
-              ),
-              React.DOM.div( {className:classNames[challengeCombo].currentStatus !== undefined ? 'row':'row ng-hide'}, 
-                 React.DOM.label( {className:"lbl"}, "Current Status"),
-                 React.DOM.div( {className:"val vStatus"}, challenge.status)
+          ), 
+          React.createElement("div", {className: "cgTime"}, 
+            React.createElement("div", null, 
+              React.createElement("div", {className: "row"}, 
+                React.createElement("label", {className: "lbl"}, "Start Date"), 
+                React.createElement("div", {className: "val vStartDate"}, scope.dateFormatFilter(challenge.registrationStartDate, scope.dateFormat))
+              ), 
+              React.createElement("div", {className: classNames[challengeCombo].registerBy !== undefined ? 'row':'row ng-hide'}, 
+                React.createElement("label", {className: "lbl"}, "Register By"), 
+                React.createElement("div", {className: "val vStartDate"}, scope.dateFormatFilter(challenge.registrationEndDate, scope.dateFormat))
+              ), 
+              React.createElement("div", {className: classNames[challengeCombo].roundEnd !== undefined && challenge.checkpointSubmissionEndDate !== '' ? 'row' : 'row ng-hide'}, 
+                React.createElement("label", {className: "lbl"}, "Round 1 End"), 
+                React.createElement("div", {className: "val vEndRound"}, scope.dateFormatFilter(challenge.checkpointSubmissionEndDate, scope.dateFormat))
+              ), 
+              React.createElement("div", {className: classNames[challengeCombo].endDate !== undefined ? 'row':'row ng-hide'}, 
+                React.createElement("label", {className: "lbl"}, "End Date"), 
+                React.createElement("div", {className: "val vEndDate"}, scope.dateFormatFilter(challenge.submissionEndDate, scope.dateFormat))
+              ), 
+              React.createElement("div", {className: classNames[challengeCombo].submitBy !== undefined ? 'row':'row ng-hide'}, 
+                React.createElement("label", {className: "lbl"}, "Submit By"), 
+                  React.createElement("div", {className: "val vStartDate"}, scope.dateFormatFilter(challenge.submissionEndDate, scope.dateFormat))
+                ), 
+              /*<div className={classNames[challengeCombo].currentPhase !== undefined ? 'row':'row ng-hide'}>
+                <label className="lbl">Current Phase</label>
+                <div className="val vPhase">{challenge.currentPhaseName}</div>
+                <div className="clear" />
+              </div>*/
+              React.createElement("div", {className: classNames[challengeCombo].currentStatus !== undefined ? 'row':'row ng-hide'}, 
+                 React.createElement("label", {className: "lbl"}, "Current Status"), 
+                 React.createElement("div", {className: "val vStatus"}, challenge.status)
               )
             )
-          ),
-          React.DOM.div( {id:challenge.challengeId, className:classNames[challengeCombo].tech !== undefined ? 'technologyTags':'technologyTags ng-hide'}, 
-              ChallengeTechsList( {challenge:challenge, scope:scope}),
-            React.DOM.div( {className:"clear"} )
-          ),
-          React.DOM.div( {className:classNames[challengeCombo].genInfo !== undefined ? 'genInfo':'genInfo ng-hide'}, 
-            Qtip( {text:scope.formatTimeLeft(challenge.currentPhaseRemainingTime, true, challenge.currentPhaseName).$$unwrapTrustedValue(), title:"Time Left", community:challenge.challengeCommunity}, 
-              React.DOM.p( {className:"cgTLeft", 'data-hasqtip':"0", 'aria-describedby':"qtip-0"}, React.DOM.i(null ),React.DOM.span( {dangerouslySetInnerHTML:{__html: scope.formatTimeLeft(challenge.currentPhaseRemainingTime, true, challenge.currentPhaseName)}})
+          ), 
+          React.createElement("div", {id: challenge.challengeId, className: classNames[challengeCombo].tech !== undefined ? 'technologyTags':'technologyTags ng-hide'}, 
+              React.createElement(ChallengeTechsList, {challenge: challenge, scope: scope}), 
+            React.createElement("div", {className: "clear"})
+          ), 
+          React.createElement("div", {className: classNames[challengeCombo].genInfo !== undefined ? 'genInfo':'genInfo ng-hide'}, 
+            React.createElement(Qtip, {text: scope.formatTimeLeft(challenge.currentPhaseRemainingTime, true, challenge.currentPhaseName).$$unwrapTrustedValue(), title: "Time Left", community: challenge.challengeCommunity}, 
+              React.createElement("p", {className: "cgTLeft", 'data-hasqtip': "0", 'aria-describedby': "qtip-0"}, React.createElement("i", null), React.createElement("span", {dangerouslySetInnerHTML: {__html: scope.formatTimeLeft(challenge.currentPhaseRemainingTime, true, challenge.currentPhaseName)}})
               )
-            ),
-            Qtip( {text:scope.currencyFilter(challenge.totalPrize), title:"Total Prize", community:challenge.challengeCommunity}, 
-              React.DOM.p( {className:"cgPur", 'data-hasqtip':"1", 'aria-describedby':"qtip-1"}, React.DOM.i(null ), " ", scope.currencyFilter(challenge.totalPrize))
-            ),
-            Qtip( {text: ((challenge.numRegistrants==0)?"0":challenge.numRegistrants), title:"Registrants", community:challenge.challengeCommunity},
-              React.DOM.p( {className:"cgReg", 'data-hasqtip':"2", 'aria-describedby':"qtip-2"}, React.DOM.i(null ),React.DOM.a( {href:"/challenge-details/" +challenge.challengeId + "/?type=" + challenge.challengeCommunity + "#viewRegistrant"}, ((challenge.numRegistrants==0)?"0":challenge.numRegistrants))
-              )
-            ),
-            Qtip( {text: ((challenge.numSubmissions==0)?"0":challenge.numSubmissions), title:"Submissions", community:challenge.challengeCommunity},
-              React.DOM.p( {className:"cgSub", 'data-hasqtip':"3", 'aria-describedby':"qtip-3"}, React.DOM.i(null ), ((challenge.numSubmissions==0)?"0":challenge.numSubmissions))
-            )
-          ),
-          React.DOM.div( {className: classNames[challengeCombo].gdUpcoming !== undefined ? 'genInfo gdUpcoming':'genInfo gdUpcoming ng-hide'}, 
-            Qtip( {text:scope.getContestDuration(challenge.registrationStartDate, challenge.submissionEndDate), title:"Duration (days)", community: challenge.challengeCommunity}, 
-              React.DOM.p( {className:"cgTLeft", 'data-hasqtip':0, 'aria-describedby':"qtip-0"}, React.DOM.i(null), scope.getContestDuration(challenge.registrationStartDate, challenge.submissionEndDate)+(scope.getContestDuration(challenge.registrationStartDate, challenge.submissionEndDate)<2?" Day":" Days"))
             ), 
-            Qtip( {text:scope.currencyFilter(challenge.totalPrize), title:"Total Prize", community:challenge.challengeCommunity}, 
-              React.DOM.p( {className:"cgPur",'data-hasqtip':1, 'aria-describedby':"qtip-1"}, React.DOM.i(null), " ", scope.currencyFilter(challenge.totalPrize))
+            React.createElement(Qtip, {text: scope.currencyFilter(challenge.totalPrize), title: "Total Prize", community: challenge.challengeCommunity}, 
+              React.createElement("p", {className: "cgPur", 'data-hasqtip': "1", 'aria-describedby': "qtip-1"}, React.createElement("i", null), " ", scope.currencyFilter(challenge.totalPrize))
+            ), 
+            React.createElement(Qtip, {text: challenge.numRegistrants, title: "Registrants", community: challenge.challengeCommunity}, 
+              React.createElement("p", {className: "cgReg", 'data-hasqtip': "2", 'aria-describedby': "qtip-2"}, React.createElement("i", null), React.createElement("a", {href: "/challenge-details/" +challenge.challengeId + "/?type=" + challenge.challengeCommunity + "#viewRegistrant"}, challenge.numRegistrants)
+              )
+            ), 
+            React.createElement(Qtip, {text: challenge.numSubmissions, title: "Submissions", community: challenge.challengeCommunity}, 
+              React.createElement("p", {className: "cgSub", 'data-hasqtip': "3", 'aria-describedby': "qtip-3"}, React.createElement("i", null), challenge.numSubmissions)
+            )
+          ), 
+          React.createElement("div", {className: classNames[challengeCombo].gdUpcoming !== undefined ? 'genInfo gdUpcoming':'genInfo gdUpcoming ng-hide'}, 
+            React.createElement(Qtip, {text: scope.getContestDuration(challenge.registrationStartDate, challenge.submissionEndDate), title: "Duration (days)", community: challenge.challengeCommunity}, 
+              React.createElement("p", {className: "cgTLeft", 'data-hasqtip': 0, 'aria-describedby': "qtip-0"}, React.createElement("i", null), scope.getContestDuration(challenge.registrationStartDate, challenge.submissionEndDate)+(scope.getContestDuration(challenge.registrationStartDate, challenge.submissionEndDate)<2?" Day":" Days"))
+            ), 
+            React.createElement(Qtip, {text: scope.currencyFilter(challenge.totalPrize), title: "Total Prize", community: challenge.challengeCommunity}, 
+              React.createElement("p", {className: "cgPur", 'data-hasqtip': 1, 'aria-describedby': "qtip-1"}, React.createElement("i", null), " ", scope.currencyFilter(challenge.totalPrize))
             )
           )
         )
       );
     });
     return (
-      React.DOM.div(null, 
+      React.createElement("div", null, 
         rows
       )
       );
