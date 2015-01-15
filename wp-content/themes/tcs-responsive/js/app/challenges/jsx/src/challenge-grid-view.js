@@ -114,7 +114,7 @@
         return (
         <div className={"contest "+ trackTag +" trackSD type-" + challenge.challengeCommunity} key={challenge.challengeId}>
           <div className="cgCh">
-            <a href={"/challenge-details/" +challenge.challengeId+"/?type="+challenge.challengeCommunity} className="contestName">
+            <a href={challenge.challengeCommunity != 'data' ? "/challenge-details/" +challenge.challengeId+"/?type="+challenge.challengeCommunity : '//community.topcoder.com/longcontest/?module=ViewProblemStatement&rd=' + challenge.roundId + '&pm=' + challenge.problemId} className="contestName">
               <img alt="" className="allContestIco" src={images + '/ico-track-' + challenge.challengeCommunity + '.png'} />
               <span className="gridChallengName">{challenge.challengeName}</span>
               <img alt="" className={challenge.challengeCommunity != 'data' ? "allContestTCOIco" : "allContestTCOIco ng-hide"} src={images + '/tco-flag-' + challenge.challengeCommunity + '.png'} />

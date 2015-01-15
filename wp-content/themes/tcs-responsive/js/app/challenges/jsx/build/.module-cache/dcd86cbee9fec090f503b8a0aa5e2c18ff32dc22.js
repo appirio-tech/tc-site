@@ -18,6 +18,52 @@
  * 2. $ jsx --watch src build
  */
   window.ChallengeTechsList = React.createClass({displayName: 'ChallengeTechsList',
+    componentDidMount: function() {
+      var scope = this.props.scope;
+      var baseList = $(this.getDOMNode());
+      var tags = baseList.find("li");
+      var wrapped = false;
+
+      function wrapTags(li) {
+        wrapped = true;
+        if (li.length == 0) {
+          return;
+        }
+        var firstElements = [0];
+        var lines = 0;
+        for (var i = 1; i < li.length; i++) {
+          if ($(li[i]).offset().left <= $(li[i-1]).offset().left) {
+            // wrap happens
+            if (++lines % 2 == 0) {
+              //a new two lines section, add first element's index of this section into array firstElements.
+              firstElements.push(i);
+            }
+          }
+        }
+        if (firstElements.length > 1) {
+          //There are two or more pages and we need to paginate.
+          for (var i = 0; i < firstElements.length - 1; i++) {
+            li.slice(firstElements[i], firstElements[i+1]).wrapAll("<li class='slide'></li>");
+          }
+          li.slice(firstElements[firstElements.length-1]).wrapAll("<li class='slide'></li>");
+          
+          baseList.bxSlider({
+            minSlides: 1,
+            maxSlides: 1,
+            controls: false
+          });
+        }
+      }
+
+      scope.$watch('view', function (view) {
+        //The first time enter grid view mode.
+        if (view === 'grid' && !wrapped) {
+          wrapTags(tags);
+        }
+      });
+
+    },
+
     render: function() {
       var challenge = this.props.challenge;
       var scope = this.props.scope;
@@ -114,7 +160,7 @@
         return (
         React.createElement("div", {className: "contest "+ trackTag +" trackSD type-" + challenge.challengeCommunity, key: challenge.challengeId}, 
           React.createElement("div", {className: "cgCh"}, 
-            React.createElement("a", {href: challenge.challengeCommunity != 'data' ? "/challenge-details/" +challenge.challengeId+"/?type="+challenge.challengeCommunity : '//community.topcoder.com/longcontest/?module=ViewProblemStatement&rd=' + challenge.roundId + '&pm=' + challenge.problemId, className: "contestName"}, 
+            React.createElement("a", {href: "/challenge-details/" +challenge.challengeId+"/?type="+challenge.challengeCommunity, className: "contestName"}, 
               React.createElement("img", {alt: "", className: "allContestIco", src: images + '/ico-track-' + challenge.challengeCommunity + '.png'}), 
               React.createElement("span", {className: "gridChallengName"}, challenge.challengeName), 
               React.createElement("img", {alt: "", className: challenge.challengeCommunity != 'data' ? "allContestTCOIco" : "allContestTCOIco ng-hide", src: images + '/tco-flag-' + challenge.challengeCommunity + '.png'}), 
