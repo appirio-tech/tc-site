@@ -144,8 +144,8 @@ common
 	so the modal dialog won't cut off when the page contains only small content */
     z-index: 100002;
     width: 950px;
-    border: rgba(0,0,0,0.2) solid 10px;
-    border-radius: 10px;
+    /*border: rgba(0,0,0,0.2) solid 10px;*/
+    /*border-radius: 10px;*/
     font-size: 14px;
 }
 .modal .btnClose {

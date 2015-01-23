@@ -841,7 +841,7 @@ function showModal(selector) {
 
 function centerModal(selector) {
   var modal = $('.modal:visible');
-  if ($(window).width() >= 1003 || $('html').is('.ie6, .ie7, .ie8'))
+  if ($(window).width() >= 1003 || $('html').is('.ie6, .ie7, .ie8') || modal.is($('#thanks.modal')))
     modal.css('margin', -modal.height() / 2 + 'px 0 0 ' + (-modal.width() / 2) + 'px');
   else {
     modal.css('margin', '0');
