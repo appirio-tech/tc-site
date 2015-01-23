@@ -2490,7 +2490,10 @@ h1.center {
     -webkit-padding-start: 20px;
 }
 .challenge-detail .tableWrap .markdownPreview ul li{
-    list-style-type: disc;
+    list-style-type: decimal;
+    list-style-position: inside;
+    margin-left: 15px;
+    -webkit-padding-start: 20px;
     background: url("../i/bullet.png") no-repeat 0 7px;
 }
 
