@@ -2489,13 +2489,14 @@ h1.center {
     margin-left: 15px;
     -webkit-padding-start: 20px;
 }
-.challenge-detail .tableWrap .markdownPreview .markdownPreview ul li{
+.challenge-detail .tableWrap .markdownPreview ul li{
     list-style-type: disc;
+    background: url("../i/bullet.png") no-repeat 0 7px;
 }
 
 /* start markdown tables */
 
-.challenge-detail .tableWrap .markdownPreview .markdownPreview table {
+.challenge-detail .tableWrap .markdownPreview table {
     padding: 0;
     border-collapse: collapse;
     border-spacing: 0;
@@ -2504,14 +2505,14 @@ h1.center {
     border: 0;
 }
 
-.challenge-detail .tableWrap .markdownPreview .markdownPreview tbody {
+.challenge-detail .tableWrap .markdownPreview tbody {
     background-color: blue;
     margin: 0;
     padding: 0;
     border: 0;
 }
 
-.challenge-detail .tableWrap .markdownPreview .markdownPreview table tr {
+.challenge-detail .tableWrap .markdownPreview table tr {
     border: 0;
     border-top: 1px solid #CCC;
     background-color: white;
@@ -2519,18 +2520,18 @@ h1.center {
     padding: 0;
 }
 
-.challenge-detail .tableWrap .markdownPreview .markdownPreview table tr:nth-child(2n) {
+.challenge-detail .tableWrap .markdownPreview table tr:nth-child(2n) {
     background-color: #F8F8F8;
 }
 
-.challenge-detail .tableWrap .markdownPreview .markdownPreview table tr th, .markdownPreview table tr td {
+.challenge-detail .tableWrap .markdownPreview table tr th, .markdownPreview table tr td {
     font-size: 1em;
     border: 1px solid #CCC;
     margin: 0;
     padding: 0.5em 1em;
 }
 
-.challenge-detail .tableWrap .markdownPreview .markdownPreview table tr th {
+.challenge-detail .tableWrap .markdownPreview table tr th {
     font-weight: bold;
     background-color: #F0F0F0;
 }
