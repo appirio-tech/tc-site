@@ -429,8 +429,8 @@ include locate_template('header-challenge-landing.php');
 <aside class="sideStream grid-1-3" style="float: left;">
 
 <div class="topRightTitle">
-    <a ng-show="!CD.isLC" ng-href="{{CD.challenge.forumLink}}" class="contestForumIcon" target="_blank">Challenge Discussion</a>
-    <a ng-show="CD.isLC" ng-href="{{CD.challenge.forumLink}}" class="contestForumIcon">Challenge Discussion</a>
+    <a ng-show="!CD.isLC && CD.isRegistered" ng-href="{{CD.challenge.forumLink}}" class="contestForumIcon" target="_blank">Challenge Discussion</a>
+    <a ng-show="CD.isLC && CD.isRegistered" ng-href="{{CD.challenge.forumLink}}" class="contestForumIcon">Challenge Discussion</a>
 </div>
 
 <div class="columnSideBar">
