@@ -2481,22 +2481,29 @@ h1.center {
   padding-left: 30px;
 }
 
-/* markdown stuff for lc (loudercrowd) */
+.challenge-detail .tableWrap .markdownPreview em {
+    font-style: italic;
+}
 
-.markdownPreview li {
+/* markdown stuff for lc (loudercrowd) */
+.challenge-detail .tableWrap .markdownPreview ul li li {
 
     list-style-type: decimal;
     list-style-position: inside;
     margin-left: 15px;
     -webkit-padding-start: 20px;
 }
-.markdownPreview ul li{
-    list-style-type: disc;
+.challenge-detail .tableWrap .markdownPreview ul li{
+    list-style-type: decimal;
+    list-style-position: inside;
+    margin-left: 15px;
+    -webkit-padding-start: 20px;
+    background: url("../i/bullet.png") no-repeat 0 7px;
 }
 
 /* start markdown tables */
 
-.markdownPreview table {
+.challenge-detail .tableWrap .markdownPreview table {
     padding: 0;
     border-collapse: collapse;
     border-spacing: 0;
@@ -2505,14 +2512,14 @@ h1.center {
     border: 0;
 }
 
-.markdownPreview tbody {
+.challenge-detail .tableWrap .markdownPreview tbody {
     background-color: blue;
     margin: 0;
     padding: 0;
     border: 0;
 }
 
-.markdownPreview table tr {
+.challenge-detail .tableWrap .markdownPreview table tr {
     border: 0;
     border-top: 1px solid #CCC;
     background-color: white;
@@ -2520,18 +2527,18 @@ h1.center {
     padding: 0;
 }
 
-.markdownPreview table tr:nth-child(2n) {
+.challenge-detail .tableWrap .markdownPreview table tr:nth-child(2n) {
     background-color: #F8F8F8;
 }
 
-.markdownPreview table tr th, .markdownPreview table tr td {
+.challenge-detail .tableWrap .markdownPreview table tr th, .markdownPreview table tr td {
     font-size: 1em;
     border: 1px solid #CCC;
     margin: 0;
     padding: 0.5em 1em;
 }
 
-.markdownPreview table tr th {
+.challenge-detail .tableWrap .markdownPreview table tr th {
     font-weight: bold;
     background-color: #F0F0F0;
 }
