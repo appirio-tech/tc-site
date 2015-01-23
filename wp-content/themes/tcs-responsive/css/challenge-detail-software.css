@@ -2481,6 +2481,10 @@ h1.center {
   padding-left: 30px;
 }
 
+.challenge-detail .tableWrap .markdownPreview em {
+    font-style: italic;
+}
+
 /* markdown stuff for lc (loudercrowd) */
 .challenge-detail .tableWrap .markdownPreview ul li li {
 
