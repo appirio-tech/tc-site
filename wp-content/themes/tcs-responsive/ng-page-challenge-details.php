@@ -84,7 +84,7 @@ include locate_template('header-challenge-landing.php');
 <section class="tabsWrap">
 <nav class="tabNav">
   <div class="topRightTitle topRightTitleAlt" style="position: relative;">
-    <a ng-href="{{CD.challenge.forumLink}}" class="contestForumIcon" target="_blank">Challenge Discussion</a>
+    <a ng-show="CD.isRegistered" ng-href="{{CD.challenge.forumLink}}" class="contestForumIcon" target="_blank">Challenge Discussion</a>
   </div>
   <ul>
     <li><a href="#contest-overview" class="active link">Details</a></li>
