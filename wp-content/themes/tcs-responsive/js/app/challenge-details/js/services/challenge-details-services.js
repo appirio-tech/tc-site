@@ -10,7 +10,7 @@
     .module('challengeDetails.services', [])
     .factory('ChallengeService', ChallengeService);
 
-  ChallengeService.$inject = ['Restangular', 'API_URL', '$q', 'isLC']
+  ChallengeService.$inject = ['Restangular', 'API_URL', '$q', 'isLC', '$cookies']
 
   /**
    * Geting challenge information
@@ -21,10 +21,15 @@
    * @returns {*}
    * @constructor
    */
-  function ChallengeService(Restangular, API_URL, $q, isLC) {
+  function ChallengeService(Restangular, API_URL, $q, isLC, $cookies) {
 
     var service = Restangular.withConfig(function(RestangularConfigurer) {
       RestangularConfigurer.setBaseUrl(API_URL);
+      if ($cookies.tcjwt) {
+        RestangularConfigurer.setDefaultHeaders({
+          'Authorization': 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "")
+        });
+      }
     });
 
     /**

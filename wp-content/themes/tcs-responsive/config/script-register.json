@@ -588,6 +588,7 @@
     "page-terms-details.php": "challengeterms",
     "ng-page-challenge-submit.php": "challengesubmit",
     "ng-page-challenge-details.php": "ng-details",
+    "migration-details.php": "ng-details",
     "ng-page-member-profile.php": "ng-member-profile",
     "ng-page-users.php": "ng-users",
     "ng-page-challenges.php": "ngChallenges",

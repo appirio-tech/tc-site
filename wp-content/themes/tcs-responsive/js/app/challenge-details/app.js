@@ -10,6 +10,7 @@
     .module('challengeDetails', [
       'restangular',
       'ngCookies',
+      'ngRoute',
       'angular-loading-bar',
       'lc.services.discussion',
       'lc.directives.discussion',
@@ -33,7 +34,10 @@
     .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
       cfpLoadingBarProvider.includeSpinner = false;
     }])
-
+    .config(['$locationProvider',
+      function ($locationProvider) {
+        $locationProvider.html5Mode(true);
+    }])
   .config(DataPreProcessing);
 
   DataPreProcessing.$inject = ['$httpProvider', 'RestangularProvider', 'API_URL'];
