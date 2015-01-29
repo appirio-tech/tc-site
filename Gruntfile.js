@@ -16,6 +16,7 @@ module.exports = function(grunt) {
 
   var src = 'src';
   var dist = 'dist';
+  var tmp = 'tmp';
   var srcCSS = src + '/css/';
   var srcJS = src + '/js/';
 
@@ -55,6 +56,7 @@ module.exports = function(grunt) {
     build: {
       src: src,
       dist: dist,
+      tmp: tmp,
       srcJs: srcJS,
       srcCss: srcCSS,
     },
@@ -71,16 +73,16 @@ module.exports = function(grunt) {
       },
       css: {
         files: {
-          '<%= build.dist %>/tc.default.concat.css': addBaseFilePath(pkg_config.packages.default.css, srcCSS),
-          '<%= build.dist %>/tc.challengelanding.concat.css': addBaseFilePath(pkg_config.packages.challengelanding.css, srcCSS),
-          '<%= build.dist %>/tc.challenges.concat.css': addBaseFilePath(pkg_config.packages.challenges.css, srcCSS),
-          '<%= build.dist %>/tc.challengeterms.concat.css': addBaseFilePath(pkg_config.packages.challengeterms.css, srcCSS),
-          '<%= build.dist %>/tc.challengesubmit.concat.css': addBaseFilePath(pkg_config.packages.challengesubmit.css, srcCSS),
-          '<%= build.dist %>/tc.ng-details.concat.css': addBaseFilePath(pkg_config.packages['ng-details'].css, srcCSS),
-          '<%= build.dist %>/tc.ngChallenges.concat.css': addBaseFilePath(pkg_config.packages.ngChallenges.css, srcCSS),
-          '<%= build.dist %>/tc.ng-member-profile.concat.css': addBaseFilePath(pkg_config.packages['ng-member-profile'].css, srcCSS),
-          '<%= build.dist %>/tc.ng-users.concat.css': addBaseFilePath(pkg_config.packages['ng-users'].css, srcCSS),
-          '<%= build.dist %>/tc.profile-builder.concat.css': addBaseFilePath(pkg_config.packages['profile-builder'].css, srcCSS)
+          '<%= build.tmp %>/tc.default.concat.css': addBaseFilePath(pkg_config.packages.default.css, srcCSS),
+          '<%= build.tmp %>/tc.challengelanding.concat.css': addBaseFilePath(pkg_config.packages.challengelanding.css, srcCSS),
+          '<%= build.tmp %>/tc.challenges.concat.css': addBaseFilePath(pkg_config.packages.challenges.css, srcCSS),
+          '<%= build.tmp %>/tc.challengeterms.concat.css': addBaseFilePath(pkg_config.packages.challengeterms.css, srcCSS),
+          '<%= build.tmp %>/tc.challengesubmit.concat.css': addBaseFilePath(pkg_config.packages.challengesubmit.css, srcCSS),
+          '<%= build.tmp %>/tc.ng-details.concat.css': addBaseFilePath(pkg_config.packages['ng-details'].css, srcCSS),
+          '<%= build.tmp %>/tc.ngChallenges.concat.css': addBaseFilePath(pkg_config.packages.ngChallenges.css, srcCSS),
+          '<%= build.tmp %>/tc.ng-member-profile.concat.css': addBaseFilePath(pkg_config.packages['ng-member-profile'].css, srcCSS),
+          '<%= build.tmp %>/tc.ng-users.concat.css': addBaseFilePath(pkg_config.packages['ng-users'].css, srcCSS),
+          '<%= build.tmp %>/tc.profile-builder.concat.css': addBaseFilePath(pkg_config.packages['profile-builder'].css, srcCSS)
         }
       }
     },
@@ -89,28 +91,34 @@ module.exports = function(grunt) {
         cwd: '<%= build.srcCss %>',
         ext: '.min.css',
         files: {
-          '<%= build.dist %>/css/default.min.css': ['<%= build.dist %>/tc.default.concat.css'],
-          '<%= build.dist %>/css/challengelanding.min.css': ['<%= build.dist %>/tc.challengelanding.concat.css'],
-          '<%= build.dist %>/css/challenges.min.css': ['<%= build.dist %>/tc.challenges.concat.css'],
-          '<%= build.dist %>/css/challengeterms.min.css': ['<%= build.dist %>/tc.challengeterms.concat.css'],
-          '<%= build.dist %>/css/challengesubmit.min.css': ['<%= build.dist %>/tc.challengesubmit.concat.css'],
-          '<%= build.dist %>/css/ng-details.min.css': ['<%= build.dist %>/tc.ng-details.concat.css'],
-          '<%= build.dist %>/css/ngChallenges.min.css': ['<%= build.dist %>/tc.ngChallenges.concat.css'],
-          '<%= build.dist %>/css/ng-member-profile.min.css': ['<%= build.dist %>/tc.ng-member-profile.concat.css'],
-          '<%= build.dist %>/css/ng-users.min.css': ['<%= build.dist %>/tc.ng-users.concat.css'],
-          '<%= build.dist %>/css/profile-builder.min.css': ['<%= build.dist %>/tc.profile-builder.concat.css']
+          '<%= build.dist %>/css/default.min.css': ['<%= build.tmp %>/tc.default.concat.css'],
+          '<%= build.dist %>/css/challengelanding.min.css': ['<%= build.tmp %>/tc.challengelanding.concat.css'],
+          '<%= build.dist %>/css/challenges.min.css': ['<%= build.tmp %>/tc.challenges.concat.css'],
+          '<%= build.dist %>/css/challengeterms.min.css': ['<%= build.tmp %>/tc.challengeterms.concat.css'],
+          '<%= build.dist %>/css/challengesubmit.min.css': ['<%= build.tmp %>/tc.challengesubmit.concat.css'],
+          '<%= build.dist %>/css/ng-details.min.css': ['<%= build.tmp %>/tc.ng-details.concat.css'],
+          '<%= build.dist %>/css/ngChallenges.min.css': ['<%= build.tmp %>/tc.ngChallenges.concat.css'],
+          '<%= build.dist %>/css/ng-member-profile.min.css': ['<%= build.tmp %>/tc.ng-member-profile.concat.css'],
+          '<%= build.dist %>/css/ng-users.min.css': ['<%= build.tmp %>/tc.ng-users.concat.css'],
+          '<%= build.dist %>/css/profile-builder.min.css': ['<%= build.tmp %>/tc.profile-builder.concat.css']
 
         }
       }
     },
-    copy: {
-      files: {
+    copy: { main: {
+      files: [{
         cwd: '<%= build.src %>/fonts',
         src: '**/*',
         dest: '<%= build.dist %>/fonts',
         expand: true
-      }
-    },
+      },
+      {
+        cwd: '<%= build.src %>/js/app',
+        src: '**/*',
+        dest: '<%= build.dist %>/html',
+        expand: true
+      }]
+    }},
     uglify: {
       options: {
         banner: '<%= banner %>',

@@ -45,3 +45,4 @@ config.json
 # ignore custom config files
 node_modules/
 dist/
+tmp/
