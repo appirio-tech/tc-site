@@ -20,32 +20,31 @@ module.exports = function(grunt) {
   var srcCSS = src + '/css/';
   var srcJS = src + '/js/';
 
-  grunt.registerTask('updateJsonConfig', function() {
-    // Get env config from options
-    var envConfig = {
-      auth0ClientID: grunt.option('auth-client-id') || '6ZwZEUo2ZK4c50aLPpgupeg5v2Ffxp9P',
-      auth0CallbackURL: grunt.option('auth-callback-url') || 'https://www.topcoder.com/reg2/callback.action',
-      auth0LDAP: grunt.option('auth-ldap') || 'LDAP',
-      auth0URL: grunt.option('auth-main-url') || 'topcoder.auth0.com',
-      communityURL: grunt.option('community-url') || 'http://community.topcoder.com',
-      mainURL: grunt.option('main-url') || 'http://local.topcoder.com',
-      apiURL: grunt.option('api-url') || 'https://api.topcoder.com/v2',
-      cdnURL: grunt.option('cdn-url') || '',
-      useCND: grunt.option('use-cdn') || false,
-      useMin: grunt.option('use-min') || false,
-      useVer: grunt.option('use-ver') || false,
-      version: grunt.option('cdn-version') || Date.now(),
-      useGz: grunt.option('use-gz') || false,
-      lcURL: grunt.option('lc-url') || 'http://dev-lc1-ext-challenge-service.herokuapp.com',
-      lcDiscussionURL: grunt.option('lc-discussion-url') || 'http://dev-lc1-discussion-service.herokuapp.com',
-      lcUserURL: grunt.option('lc-user-url') || 'http://dev-lc1-user-service.herokuapp.com',
-      lcSiteUrl: grunt.option('lc-site-url') || 'http://dev-lc1-challenge-app.herokuapp.com',
-      myFiltersURL: grunt.option('my-filters-url') || 'https://staging-user-settings-service.herokuapp.com',
-      cbURL: grunt.option('cb-url') || 'https://coderbits.com'
-    };
+  var tcconfig = {
+    auth0ClientID: grunt.option('auth-client-id') || '6ZwZEUo2ZK4c50aLPpgupeg5v2Ffxp9P',
+    auth0CallbackURL: grunt.option('auth-callback-url') || 'https://www.topcoder.com/reg2/callback.action',
+    auth0LDAP: grunt.option('auth-ldap') || 'LDAP',
+    auth0URL: grunt.option('auth-main-url') || 'topcoder.auth0.com',
+    communityURL: grunt.option('community-url') || 'http://community.topcoder.com',
+    mainURL: grunt.option('main-url') || 'http://local.topcoder.com',
+    apiURL: grunt.option('api-url') || 'https://api.topcoder.com/v2',
+    cdnURL: grunt.option('cdn-url') || '',
+    useCND: grunt.option('use-cdn') || true,
+    useMin: grunt.option('use-min') || true,
+    useVer: grunt.option('use-ver') || false,
+    version: grunt.option('cdn-version') || Date.now(),
+    useGz: grunt.option('use-gz') || true,
+    lcURL: grunt.option('lc-url') || 'http://dev-lc1-ext-challenge-service.herokuapp.com',
+    lcDiscussionURL: grunt.option('lc-discussion-url') || 'http://dev-lc1-discussion-service.herokuapp.com',
+    lcUserURL: grunt.option('lc-user-url') || 'http://dev-lc1-user-service.herokuapp.com',
+    lcSiteUrl: grunt.option('lc-site-url') || 'http://dev-lc1-challenge-app.herokuapp.com',
+    myFiltersURL: grunt.option('my-filters-url') || 'https://staging-user-settings-service.herokuapp.com',
+    cbURL: grunt.option('cb-url') || 'https://coderbits.com'
+  };
 
+  grunt.registerTask('writeConfig', function() {
     // Write config to file
-    grunt.file.write('config.json', JSON.stringify(envConfig, null, 2));
+    grunt.file.write('config.json', JSON.stringify(tcconfig, null, 2));
   });
 
   // Project configuration.
