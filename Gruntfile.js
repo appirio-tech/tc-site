@@ -111,13 +111,30 @@ module.exports = function(grunt) {
         dest: '<%= build.dist %>/fonts',
         expand: true
       },
-      {
-        cwd: '<%= build.src %>/js/app',
-        src: '**/*',
-        dest: '<%= build.dist %>/html',
-        expand: true
-      }]
+      // {
+      //   cwd: '<%= build.src %>/js/app',
+      //   src: '**/*',
+      //   dest: '<%= build.dist %>/html',
+      //   expand: true
+      // }
+      ]
     }},
+    replace: {
+      dist: {
+        options: {
+          patterns: [
+            {
+              match: 'tcconfig',
+              replacement: JSON.stringify(tcconfig)
+            }
+          ]
+        },
+        files: [{
+          src: ['<%= build.src %>/js/app/challenge-details/index.html'],
+          dest: '<%= build.dist %>/html/challenge-details/index.html'
+        }]
+      }
+    },
     uglify: {
       options: {
         banner: '<%= banner %>',
@@ -195,8 +212,8 @@ module.exports = function(grunt) {
   });
 
   // Default task.
-  grunt.registerTask('default', ['clean', 'concat', 'cssmin', 'copy', 'uglify', 'compress', 'writeConfig']);
+  grunt.registerTask('default', ['clean', 'concat', 'cssmin', 'copy', 'replace', 'uglify', 'compress', 'writeConfig']);
 
-  grunt.registerTask('debug', ['clean', 'concat', 'cssmin', 'copy', 'writeConfig']);
+  grunt.registerTask('debug', ['clean', 'concat', 'cssmin', 'copy', 'replace', 'writeConfig']);
 
 };
