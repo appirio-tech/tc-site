@@ -158,6 +158,15 @@ module.exports = function(grunt) {
         ]
       }
     },
+    watch: {
+      scripts: {
+        files: ['<%= build.src %>/**/*'],
+        tasks: ['debug'],
+        options: {
+          spawn: false,
+        },
+      },
+    },
     clean: ['<%= build.dist %>/'],
     compress: {
       main: {
@@ -187,6 +196,8 @@ module.exports = function(grunt) {
   });
 
   // Default task.
-  grunt.registerTask('default', ['clean', 'concat', 'cssmin', 'copy', 'uglify', 'compress', 'updateJsonConfig']);
+  grunt.registerTask('default', ['clean', 'concat', 'cssmin', 'copy', 'uglify', 'compress', 'writeConfig']);
+
+  grunt.registerTask('debug', ['clean', 'concat', 'cssmin', 'copy', 'writeConfig']);
 
 };
