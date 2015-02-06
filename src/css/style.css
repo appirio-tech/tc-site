@@ -3,15 +3,15 @@
 #banner{
     height: 226px;
     overflow: hidden;
-    background: url(../i/bg-slide-sprite.jpg) 0 0 repeat-x;
+    background: url(@@cdn/i/bg-slide-sprite.jpg) 0 0 repeat-x;
 }
     #banner .inner{
      
        height: 226px;
-       background:  url(../i/bg-slide.jpg) 50% 0 no-repeat;
+       background:  url(@@cdn/i/bg-slide.jpg) 50% 0 no-repeat;
 }
     #banner .inner .container{
-        background: url(../i/banner-1.png) 50% 0 no-repeat;
+        background: url(@@cdn/i/banner-1.png) 50% 0 no-repeat;
     
         padding-left: 0;
 }
@@ -52,7 +52,7 @@
     
 }
     #banner .slider li.welcome .con{
-    background: url(../i/tc-cs.png) -400px 0 no-repeat;
+    background: url(@@cdn/i/tc-cs.png) -400px 0 no-repeat;
         
     }
     #banner .slider li .textOnly{
@@ -85,7 +85,7 @@
                 display: block;
                 height: 12px;
                 width: 12px;
-                background: url(../i/nav-dot.png) no-repeat;
+                background: url(@@cdn/i/nav-dot.png) no-repeat;
                 background-position: 0 -12px;
             
                 -moz-transition-duration: 0s; -webkit-transition-duration: 0s; transition-duration: 0s;
@@ -136,7 +136,7 @@
     
 /* mainContent */
 #mainContent{
-    background: url(../i/shadow.png) 50% 0 no-repeat;    
+    background: url(@@cdn/i/shadow.png) 50% 0 no-repeat;    
     padding-top: 8px;
     padding-bottom: 32px;
 }
@@ -283,7 +283,7 @@
     width: 8px;
     top: 7px;
     right: 4px;
-    background: url(../i/arrow-nxt.png) no-repeat;
+    background: url(@@cdn/i/arrow-nxt.png) no-repeat;
     background-position:  0 0;
     position: absolute;
     transition-duration: 0.2s;    
@@ -299,7 +299,7 @@
     padding-left: 23px;
 }
 .prevLink i{
-    background: url(../i/arrow-prev.png) no-repeat;
+    background: url(@@cdn/i/arrow-prev.png) no-repeat;
     right: auto;
     left: 4px;
 }
@@ -475,13 +475,13 @@
 		cursor: pointer;
 }
     #hero .trackUX i{
-        background: url(../i/ico-ux.png) 50% 0 no-repeat;
+        background: url(@@cdn/i/ico-ux.png) 50% 0 no-repeat;
     }
     #hero .trackSD i{
-        background: url(../i/ico-sd.png) 50% 0 no-repeat;
+        background: url(@@cdn/i/ico-sd.png) 50% 0 no-repeat;
     }
     #hero .trackAn i{
-        background: url(../i/ico-an.png) 50% 0 no-repeat;
+        background: url(@@cdn/i/ico-an.png) 50% 0 no-repeat;
     }
 
 #hero .tracksInfo{
@@ -561,7 +561,7 @@
     display: inline-block;
     height: 30px;
     width: 30px;
-    background: url(../i/ico-views.png) no-repeat;
+    background: url(@@cdn/i/ico-views.png) no-repeat;
     background-position: 0 0;
 }
     .layChallenges .views .gridView{
@@ -652,7 +652,7 @@
         cursor: default;
     }
     .layChallenges .actions .searchLink{
-        background: url(../i/ico-zoom.png) 0 50% no-repeat;
+        background: url(@@cdn/i/ico-zoom.png) 0 50% no-repeat;
         padding-left: 27px;
     
         line-height: 22px;
@@ -673,7 +673,7 @@
         top: 2px;
         width: 13px;
         height: 24px;
-        background: url(../i/arrows-ud.png) no-repeat;
+        background: url(@@cdn/i/arrows-ud.png) no-repeat;
         background-position: 0 8px;       
     }
     .layChallenges .actions .on .upDown i{
@@ -800,7 +800,7 @@
                 position: absolute;
                 top: 4px;
                 left: 14px;
-                background: url(../i/ico-tracks.png) no-repeat;
+                background: url(@@cdn/i/ico-tracks.png) no-repeat;
                 background-position: 0 0;
                 background-color: #7ab800; 
                 width: 40px;
@@ -923,7 +923,7 @@
         position: absolute;
         top: 0;
         left: 7px;
-        background: url(../i/ico-tracks.png) no-repeat;
+        background: url(@@cdn/i/ico-tracks.png) no-repeat;
         background-position: 0 -50px;
         background-color: #00add0;
         width: 40px;
@@ -995,7 +995,7 @@
         height: 30px;
         width: 30px;        
         margin: 0 auto;
-        background-image: url(../i/ico-con.png);
+        background-image: url(@@cdn/i/ico-con.png);
         background-repeat: no-repeat;    
         margin-bottom: 9px;
 }
@@ -1081,7 +1081,7 @@
         right: 0;
         height: 17px;
         width: 100%;
-        background: url(../i/shadow-small.png) 50% 0 no-repeat;
+        background: url(@@cdn/i/shadow-small.png) 50% 0 no-repeat;
     
         margin: 0;
 }
@@ -1092,7 +1092,7 @@
         font-size: 10px;
         text-align: center;
     
-        background: url(../i/ico-flags.png) no-repeat;
+        background: url(@@cdn/i/ico-flags.png) no-repeat;
         background-position: 0 0;
         line-height: 14px;
         position: relative;
@@ -1190,7 +1190,7 @@
 }
 /* starsOfMonth */
 .starsOfMonth{
-    background: url(../i/shadow.png) 50% 0 no-repeat;
+    background: url(@@cdn/i/shadow.png) 50% 0 no-repeat;
     border-top: 1px solid #dfe1e1;
     padding-top: 19px;
     margin: 18px 0 0;
@@ -1337,7 +1337,7 @@
 }
         #whatsHappening .slider .bx-controls .bx-pager-item a{
             display: inline-block;
-            background: url(../i/orange-dots.png) no-repeat;
+            background: url(@@cdn/i/orange-dots.png) no-repeat;
             text-indent: -100px;
             background-position: 0 0;
             width: 11px;
@@ -1391,7 +1391,7 @@
 		.pageContent ul li{
 			padding: 0 0 24px 22px;
 			line-height: 24px;
-			background: url(../i/content-list-dot.png) 0 0 no-repeat;
+			background: url(@@cdn/i/content-list-dot.png) 0 0 no-repeat;
 		}
 	.pageContent ol {
 		list-style: initial;
@@ -1454,7 +1454,7 @@
 			border: 1px solid #e1e3e3;
 			border-right-width: 0;
 			background: #ffffff;
-			background-image: url(../i/ios-input-bg-fix.gif);
+			background-image: url(@@cdn/i/ios-input-bg-fix.gif);
 			box-shadow: none;
 			color: #A1A1A1;
 			float: left;
@@ -1523,7 +1523,7 @@
 	margin-bottom: 20px;
 	padding: 18px 0 16px 50px;
 	line-height: 24px;
-	background: url(../i/quote-mark.png) 0 0 no-repeat;
+	background: url(@@cdn/i/quote-mark.png) 0 0 no-repeat;
 }
 .sideQuote p.quoteTxt{
 	font-weight: 300;
@@ -1575,7 +1575,7 @@
 		width: 57px;
 		height: 57px;
 		border-radius: 28px;
-		background: url(../i/ico-challenge-type.png) 0 0 no-repeat;
+		background: url(@@cdn/i/ico-challenge-type.png) 0 0 no-repeat;
 		-moz-transition-duration: .3s; -webkit-transition-duration: .3s; transition-duration: .3s;
 	}
 	.sideMostRecentChallenges li .contestName:hover i{
@@ -1641,7 +1641,7 @@
 			position: absolute;
 			left: 101px;
 			bottom: -14px;
-			background: url(../i/case-arrow.png) -27px 0 no-repeat;
+			background: url(@@cdn/i/case-arrow.png) -27px 0 no-repeat;
 		}
 		.casesView .caseGridRowFirst a.jsShowCaseDetails > i, .casesView .caseGridRowLast a.jsShowCaseDetails > i{
 			background-position: 0 0;
@@ -1664,7 +1664,7 @@
 		display: none!important;
 	}
 	.casePage .caseDetailItem{
-		background: #02a4f0 url(../i/about-shadow.png) center 0 no-repeat;
+		background: #02a4f0 url(@@cdn/i/about-shadow.png) center 0 no-repeat;
 		margin: 0 0 36px 0;
 		overflow: hidden;
 	}
@@ -1672,7 +1672,7 @@
 		background: #ffffff;
 	}
 	.casePage .caseDetailItemInner{
-		background: url(../i/bottom-shadow.png) center bottom no-repeat;
+		background: url(@@cdn/i/bottom-shadow.png) center bottom no-repeat;
 	}
 	.casePage .container{
 		position: relative;
@@ -1683,7 +1683,7 @@
 			height: 0;
 			padding: 22px 0 0 0;
 			overflow: hidden;
-			background: url(../i/close-x.png) 0 0 no-repeat;
+			background: url(@@cdn/i/close-x.png) 0 0 no-repeat;
 			-moz-transition-duration: .2s; -webkit-transition-duration: .2s; transition-duration: .2s;
 			position: absolute;
 			top: 39px;
@@ -1719,7 +1719,7 @@
 
 	}
 		.casePage .caseBriefWrapper .quoteTxt{
-			background: url(../i/quote-mark-trans.png) 0 0 no-repeat;
+			background: url(@@cdn/i/quote-mark-trans.png) 0 0 no-repeat;
 			color: #ffffff;
 			padding: 9px 0 9px 50px 
 		}
@@ -1822,7 +1822,7 @@
 }
 	.caseQuote .quoteTxt{
 		padding: 9px 0 18px 50px;
-		background: url(../i/quote-mark-dark.png) 0 0 no-repeat;
+		background: url(@@cdn/i/quote-mark-dark.png) 0 0 no-repeat;
 		font-size: 18px;
 		line-height: 22px;
 		font-weight: 300;
@@ -1888,7 +1888,7 @@
 	
 }
 .aboutAreaWrapper{
-	background: #02a4f0 url(../i/about-shadow.png) center 0 no-repeat;
+	background: #02a4f0 url(@@cdn/i/about-shadow.png) center 0 no-repeat;
 	padding: 43px 0 36px 0;
 }
 .aboutAreaWrapper h4{
@@ -1988,7 +1988,7 @@
 		font-style: italic;
 		line-height: 18px;
 		padding: 0 0 18px 55px;
-		background: url(../i/quote-mark.png) 0 -5px no-repeat;
+		background: url(@@cdn/i/quote-mark.png) 0 -5px no-repeat;
 
 	}
 	.storiesList li.grid-3-1 .storyReadingWrapper{
@@ -2011,7 +2011,7 @@
 		width: 8px;
 		top: 3px;
 		right: 4px;
-		background: url(../i/arrows-rl.png) no-repeat;
+		background: url(@@cdn/i/arrows-rl.png) no-repeat;
 		background-position:  0 0;
 		position: absolute;
 		-moz-transition-duration: 0.2s; -webkit-transition-duration: 0.2s; transition-duration: 0.2s;
@@ -2108,7 +2108,7 @@
 			color: #A1A1A1;
 			float: left;
 			vertical-align: top;
-			background-image: url(../i/ios-input-bg-fix.gif);
+			background-image: url(@@cdn/i/ios-input-bg-fix.gif);
 			width: 210px;
 			height: 18px;
 		}
@@ -2372,7 +2372,7 @@
 			width: 11px;
 		}
 			#promo-banner .bx-pager-item a {
-				background: url(../i/slider-dot.png) no-repeat;
+				background: url(@@cdn/i/slider-dot.png) no-repeat;
 				display: block;
 				height: 11px;
 				overflow: hidden;
@@ -2439,21 +2439,21 @@ h3.title {
 	margin: 10px 0;
 }
 	h3.build {
-		background: url(../i/build.png) 50% 50% no-repeat;
+		background: url(@@cdn/i/build.png) 50% 50% no-repeat;
 		color: #666;
 		height: 47px;
 		line-height: 47px;
 		margin: 15px 0;
 	}
 	h3.strengthen {
-		background: url(../i/strengthen.png) 50% 50% no-repeat;
+		background: url(@@cdn/i/strengthen.png) 50% 50% no-repeat;
 		color: #666;
 		height: 47px;
 		line-height: 47px;
 		margin: 15px 0;
 	}
 	h3.earn {
-		background: url(../i/earn.png) 50% 50% no-repeat;
+		background: url(@@cdn/i/earn.png) 50% 50% no-repeat;
 		color: #666;
 		height: 47px;
 		line-height: 47px;
@@ -2484,18 +2484,18 @@ hr.light {
 
 .text-design { color: #01a7e9 !important; }
 	.text-design.chevron-right {
-		background: url(../i/chevron-right-design.png) 100% 50% no-repeat;
+		background: url(@@cdn/i/chevron-right-design.png) 100% 50% no-repeat;
 		padding-right: 18px;
 	}
 	
 .text-development { color: #278904 !important; }
 	.text-development.chevron-right {
-		background: url(../i/chevron-right-development.png) 100% 50% no-repeat;
+		background: url(@@cdn/i/chevron-right-development.png) 100% 50% no-repeat;
 		padding-right: 18px;
 	}
 .text-data-science { color: #ff7202 !important; }
 	.text-data-science.chevron-right {
-		background: url(../i/chevron-right-data-science.png) 100% 50% no-repeat;
+		background: url(@@cdn/i/chevron-right-data-science.png) 100% 50% no-repeat;
 		padding-right: 18px;
 	}
 
@@ -2569,7 +2569,7 @@ hr.light {
     position: absolute;
     right: 13px;
     top: 13px;
-    background: url(../i/ico-arrow.png) no-repeat;
+    background: url(@@cdn/i/ico-arrow.png) no-repeat;
     background-position: 0 0;
     transition-duration: .3s;
     cursor: pointer;

@@ -5,16 +5,16 @@
     
 #banner{
     height: 355px;
-    background: #fff  url(../i/bg-banner-sprite-m.png) repeat-x;
+    background: #fff  url(@@cdn/i/bg-banner-sprite-m.png) repeat-x;
     overflow: hidden; 
 }
 #banner .inner{    
    height: 355px;
-   background: url(../i/bg-banner-m.png) 50% 0 repeat-x;
+   background: url(@@cdn/i/bg-banner-m.png) 50% 0 repeat-x;
 }
 
 #banner .inner .container {
-    background: url(../i/banner-1-m.png) 50% 0 no-repeat;
+    background: url(@@cdn/i/banner-1-m.png) 50% 0 no-repeat;
 }
 
 #banner .inner .container .bx-wrapper{
@@ -29,7 +29,7 @@
     display: block;
 }
     #banner .slider .welcome .con{
-        background: url(../i/banner-1-m.png) 50% 100% no-repeat;
+        background: url(@@cdn/i/banner-1-m.png) 50% 100% no-repeat;
     
         height: 355px;
         text-align: center;
@@ -83,7 +83,7 @@
                 display: block;
                 height: 12px;
                 width: 12px;
-                background: url(../i/nav-dot.png) no-repeat;
+                background: url(@@cdn/i/nav-dot.png) no-repeat;
                 background-position: 0 -12px;
             
                 -moz-transition-duration: 0s; -webkit-transition-duration: 0s; transition-duration: 0s;
@@ -149,7 +149,7 @@
     
 /* mainContent */
 #mainContent{
-    background: url(../i/shadow.png) 50% 0 no-repeat;    
+    background: url(@@cdn/i/shadow.png) 50% 0 no-repeat;    
     padding-top: 8px;
     padding-bottom: 18px;
     background-size: 120% 20px;
@@ -251,7 +251,7 @@
         top: -1px;
         width: 185px;
         height: 125px;
-        background: url(../i/ico-featured.png) no-repeat;
+        background: url(@@cdn/i/ico-featured.png) no-repeat;
         background-position: 0 0;
     
         margin-left: -73px;
@@ -299,7 +299,7 @@
     width: 8px;
     top: 7px;
     right: 4px;
-    background: url(../i/arrow-nxt.png) no-repeat;
+    background: url(@@cdn/i/arrow-nxt.png) no-repeat;
     background-position:  0 0;
     position: absolute;
     -moz-transition-duration: .3s; -webkit-transition-duration: .3s; transition-duration: .3s;    
@@ -358,13 +358,13 @@
         margin: 0 auto 10px;
 }
     #hero .trackUX i{
-        background: url(../i/ico-ux.png) 50% 0 no-repeat;
+        background: url(@@cdn/i/ico-ux.png) 50% 0 no-repeat;
     }
     #hero .trackSD i{
-        background: url(../i/ico-sd.png) 50% 0 no-repeat;
+        background: url(@@cdn/i/ico-sd.png) 50% 0 no-repeat;
     }
     #hero .trackAn i{
-        background: url(../i/ico-an.png) 50% 0 no-repeat;
+        background: url(@@cdn/i/ico-an.png) 50% 0 no-repeat;
     }
     
 #hero .tracksInfo{
@@ -444,7 +444,7 @@
     display: inline-block;
     height: 30px;
     width: 30px;
-    background: url(../i/ico-views.png) no-repeat;
+    background: url(@@cdn/i/ico-views.png) no-repeat;
     background-position: 0 0;
 }
     .layChallenges .views .calendarView,
@@ -536,7 +536,7 @@
         cursor: default;
     }
     .layChallenges .actions .searchLink{
-        background: url(../i/ico-zoom.png) 0 50% no-repeat;
+        background: url(@@cdn/i/ico-zoom.png) 0 50% no-repeat;
         padding-left: 27px;
     
         line-height: 22px;
@@ -556,7 +556,7 @@
         top: 9px;
         width: 13px;
         height: 24px;
-        background: url(../i/arrows-ud.png) no-repeat;
+        background: url(@@cdn/i/arrows-ud.png) no-repeat;
         background-position: 0 9px;        
     }
     .layChallenges .actions .upDown.alt{
@@ -662,7 +662,7 @@
                 position: absolute;
                 top: 4px;
                 left: 14px;
-                background: url(../i/ico-tracks.png) no-repeat;
+                background: url(@@cdn/i/ico-tracks.png) no-repeat;
                 background-position: 0 0;
                 background-color: #7ab800; 
                 width: 40px;
@@ -774,7 +774,7 @@
         position: absolute;
         top: 0;
         left: 7px;
-        background: url(../i/ico-tracks.png) no-repeat;
+        background: url(@@cdn/i/ico-tracks.png) no-repeat;
         background-position: 0 -50px;
         background-color: #00add0;
         width: 40px;
@@ -843,7 +843,7 @@
         height: 30px;
         width: 30px;        
         margin: 0 auto;
-        background-image: url(../i/ico-con.png);
+        background-image: url(@@cdn/i/ico-con.png);
         background-color: #00add0;
         background-repeat: no-repeat;    
         margin-bottom: 9px;
@@ -949,7 +949,7 @@
         right: 0;
         height: 17px;
         width: 100%;
-        background: url(../i/shadow-small.png) 50% 0 no-repeat;
+        background: url(@@cdn/i/shadow-small.png) 50% 0 no-repeat;
     
         margin: 0;
 }
@@ -960,7 +960,7 @@
         font-size: 10px;
         text-align: center;
     
-        background: url(../i/ico-flags.png) no-repeat;
+        background: url(@@cdn/i/ico-flags.png) no-repeat;
         background-position: 0 0;
         line-height: 14px;
         position: relative;
@@ -1056,7 +1056,7 @@
     width: auto;
 }
 .starsOfMonth{
-    background: url(../i/shadow.png) 50% 0 no-repeat;
+    background: url(@@cdn/i/shadow.png) 50% 0 no-repeat;
     border-top: 1px solid #dfe1e1;
     padding-top: 26px;
     background-size: 120% 20px;
@@ -1208,7 +1208,7 @@
         #whatsHappening .slider .bx-controls .bx-pager-item a{
             display: block;
             text-indent: -100px;
-            background: url(../i/orange-dots.png) no-repeat;
+            background: url(@@cdn/i/orange-dots.png) no-repeat;
             background-position: 0 0;
             width: 11px;
             height: 11px;
@@ -1334,7 +1334,7 @@
 }
 
 .casePage .caseGrid  .caseDetailItem{
-	background: #02a4f0 url(../i/short-shadow.png) center 0 no-repeat;
+	background: #02a4f0 url(@@cdn/i/short-shadow.png) center 0 no-repeat;
 	margin-bottom: 0;
 }
 .casePage .caseGrid .caseDetailItemInner{

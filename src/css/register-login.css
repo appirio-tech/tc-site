@@ -5,7 +5,7 @@ hover style icons
     width: 48px;
     height: 48px;
     display: inline-block;
-    background: url(../i/shareButtons.png) no-repeat;
+    background: url(@@cdn/i/shareButtons.png) no-repeat;
     cursor: pointer;
 }
 .shareFacebook {
@@ -46,7 +46,7 @@ hover style icons
     display: block;
     float: left;
     margin: 0 auto;
-    background: url(../i/menButtons.png) no-repeat;
+    background: url(@@cdn/i/menButtons.png) no-repeat;
     cursor: pointer;
     margin-top: -3px;
 }
@@ -117,7 +117,7 @@ backgorund modal
     height: 100%;
     top: 0;
     left: 0;
-    background: transparent url(../i/bg-modal.png) repeat;
+    background: transparent url(@@cdn/i/bg-modal.png) repeat;
     display: none;
 	/* Issue ID: I-113951 - Set to the higher value than the footer
 	so the modal dialog won't cut off when the page contains only small content */
@@ -130,7 +130,7 @@ backgorund modal
     height: 100px;
     top:50%;
     left:50%;
-    background: transparent url(../i/ajax_loader_gray_256.gif) no-repeat;
+    background: transparent url(@@cdn/i/ajax_loader_gray_256.gif) no-repeat;
 }
 /*
 common
@@ -149,7 +149,7 @@ common
     font-size: 14px;
 }
 .modal .btnClose {
-    background: transparent url(../i/closeModal.png) no-repeat top left;
+    background: transparent url(@@cdn/i/closeModal.png) no-repeat top left;
     width: 13px;
     height: 13px;
     display: block;
@@ -318,7 +318,7 @@ Register modal
 			}
 
 			#register form p.row span.valid {
-				background: transparent url(../i/validation-tick.png) no-repeat left center;
+				background: transparent url(@@cdn/i/validation-tick.png) no-repeat left center;
 				display: none;
 				min-width: 18px;
 				height: 18px;
@@ -475,7 +475,7 @@ Register modal
 }
 
 #register form p.row span.valid {
-    background: transparent url(../i/validation-tick.png) no-repeat left center;
+    background: transparent url(@@cdn/i/validation-tick.png) no-repeat left center;
     display: none;
     min-width: 18px;
     height: 18px;
@@ -518,7 +518,7 @@ p.submitBtn .pleaseWait:hover {
 }
 
 #register .person .checkBox{
-    background: url(../i/checkBoxBg.png) repeat-x;
+    background: url(@@cdn/i/checkBoxBg.png) repeat-x;
     color: #fff;
     font-size: 15px;
     display: block;
@@ -562,7 +562,7 @@ Thanks modal
     text-align: center;
 }
 #thanks .content{
-    background: #fff url(../i/bg-modal-thanks.png) no-repeat right top;
+    background: #fff url(@@cdn/i/bg-modal-thanks.png) no-repeat right top;
 }
 #thanks p {
     font-size: 14px;
@@ -635,7 +635,7 @@ Thanks modal
     margin: 0;
     vertical-align: top;
     width: 332px;
-    background: #fafafa url(../i/selector.png) no-repeat right;
+    background: #fafafa url(@@cdn/i/selector.png) no-repeat right;
     border: 1px solid #e1e1e1;
     height: 14px;
     line-height: 14px;

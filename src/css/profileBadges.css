@@ -3,7 +3,7 @@
     top: 5px;
     height: 48px;
     width: 200px;
-    background: url(../i/badgeGroup.grid.png);
+    background: url(@@cdn/i/badgeGroup.grid.png);
     margin: 2px 20px;
 }
 
@@ -12,7 +12,7 @@
     bottom: 5px;
     height: 48px;
     width: 48px;
-    background: url(../i/badge.grid.large.png);
+    background: url(@@cdn/i/badge.grid.large.png);
     margin-bottom: 2px;
     margin-top: 2px;
     margin-left: 25px;
@@ -38,7 +38,7 @@
 .subBadge.selected {
     height: 48px;
     display: inline-block;
-    background: url(../i/badgeGroup.grid.png);
+    background: url(@@cdn/i/badgeGroup.grid.png);
 }
 
 .quoteBadgesItemTips {
@@ -669,6 +669,6 @@ span.subBadge.selected {
   margin-left: -5px;
   width: 10px;
   height: 9px;
-  background: url(../i/tt-arrow.png) no-repeat;
+  background: url(@@cdn/i/tt-arrow.png) no-repeat;
   background-position: 0 0;
 }

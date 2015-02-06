@@ -221,7 +221,7 @@ input.search-text::-webkit-input-placeholder {
 }
     .searchLink {
         padding: 4px 9px 5px 35px;
-        background: url(../i/ico-zoom.png) 8px 4px no-repeat;
+        background: url(@@cdn/i/ico-zoom.png) 8px 4px no-repeat;
         line-height: 20px;
         border: 1px solid transparent;
         border-bottom: 0;
@@ -630,7 +630,7 @@ input.search-text::-webkit-input-placeholder {
     padding-left: 15px;
 }
 .myFilterWrap .savedSearch .chkWrap .chk + .chkLbl:before{
-    background-image: url(../i/chk2.png);
+    background-image: url(@@cdn/i/chk2.png);
 }
 .myFilterWrap .savedSearch label{
     vertical-align: top;
@@ -641,13 +641,13 @@ input.search-text::-webkit-input-placeholder {
 }
 .myFilterWrap .btnRemove{
     display: inline-block;
-    background: url(../i/ico-remove.png) 50% 50% no-repeat;
+    background: url(@@cdn/i/ico-remove.png) 50% 50% no-repeat;
     height: 12px;
     width: 12px;
     margin-left: 11px;
 } 
 .myFilterWrap .btnRemove:hover{
-    background: url(../i/ico-failed-x.png) 50% 50% no-repeat;
+    background: url(@@cdn/i/ico-failed-x.png) 50% 50% no-repeat;
 }
 .myFilterWrap .savedSearch .tags{
     margin-top: 16px;
@@ -745,7 +745,7 @@ input.search-text::-webkit-input-placeholder {
      position: absolute;
      width: 16px;
      height: 16px;
-     background-image: url(../i/chk.png);
+     background-image: url(@@cdn/i/chk.png);
      background-repeat: no-repeat;
      background-position: 0 -30px;
      left: 0;
@@ -759,7 +759,7 @@ input.search-text::-webkit-input-placeholder {
      
     }
  .chkWrap .myChallengesLabel  .chk + .chkLbl:before{
-     background-image: url(../i/chk3.png);
+     background-image: url(@@cdn/i/chk3.png);
      top: 20px;
     }
  .filterWidget .actn{

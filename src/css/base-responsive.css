@@ -151,7 +151,7 @@ em{
          top: 0;
          height: 30px;
          width: 18px;
-         background: url(../i/nav-arrows.png) no-repeat;
+         background: url(@@cdn/i/nav-arrows.png) no-repeat;
          background-position: 3px -41px;
 }
     .sidebarNav .root li{
@@ -249,12 +249,12 @@ em{
     
 #banner{
     height: 355px;
-    background: #fff  url(../i/bg-banner-sprite-m.png) repeat-x;
+    background: #fff  url(@@cdn/i/bg-banner-sprite-m.png) repeat-x;
     overflow: hidden; 
 }
 #banner .inner{    
    height: 355px;
-   background: url(../i/bg-banner-m.png) 50% 0 repeat-x;
+   background: url(@@cdn/i/bg-banner-m.png) 50% 0 repeat-x;
 }
     
 
@@ -270,7 +270,7 @@ em{
         top: 27px;
         width: 150px;
         height: 41px;
-        background: url(../i/logo.png) 0 0 no-repeat;
+        background: url(@@cdn/i/logo.png) 0 0 no-repeat;
         background-size: 100%;
     }
         .logo a{
@@ -288,7 +288,7 @@ em{
         top: 36px;
         width: 30px;
         height: 24px;
-        background: url(../i/ico-lst.png) no-repeat;
+        background: url(@@cdn/i/ico-lst.png) no-repeat;
         cursor: pointer;
     }
         #mainNav .root{
@@ -399,7 +399,7 @@ em{
             position: absolute;    
             right: 13px;
             top: 13px;
-            background: url(../i/ico-arrow.png) no-repeat;
+            background: url(@@cdn/i/ico-arrow.png) no-repeat;
             background-position: 0 0;      
             transition-duration: 0.3s;        
             display: none;

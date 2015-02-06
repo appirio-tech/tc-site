@@ -105,7 +105,7 @@ img {
 			left: 1px;
 			padding: 7px 0 21px 70px;
 			line-height: 58px;
-			background-image: url(../i/ico-title.png);
+			background-image: url(@@cdn/i/ico-title.png);
 			background-repeat: no-repeat;
 			background-position: 0 0;
 			color: #666666;
@@ -157,7 +157,7 @@ img {
 		margin-bottom: 0px;
 		padding: 5px 0 0px 50px;
 		line-height: 24px;
-		background: url(../i/quote-mark.png) 0 0 no-repeat;
+		background: url(@@cdn/i/quote-mark.png) 0 0 no-repeat;
 		font-size:24px;
 		line-height:32px;
 		color:#474747;
@@ -226,7 +226,7 @@ img {
 			border: 1px solid #e1e3e3;
 			border-right-width: 0;
 			background: #ffffff;
-			background-image: url(../i/ios-input-bg-fix.gif);
+			background-image: url(@@cdn/i/ios-input-bg-fix.gif);
 			box-shadow: none;
 			color: #A1A1A1;
 			float: left;
@@ -315,7 +315,7 @@ img {
 			border: 1px solid #e1e3e3;
 			border-right-width: 0;
 			background: #ffffff;
-			background-image: url(../i/ios-input-bg-fix.gif);
+			background-image: url(@@cdn/i/ios-input-bg-fix.gif);
 			box-shadow: none;
 			color: #A1A1A1;
 			float: left;
@@ -366,7 +366,7 @@ img {
 	margin-bottom: 20px;
 	padding: 18px 0 16px 50px;
 	line-height: 24px;
-	background: url(../i/quote-mark.png) 0 0 no-repeat;
+	background: url(@@cdn/i/quote-mark.png) 0 0 no-repeat;
 }
 .sideQuote p.quoteTxt{
 	font-weight: 300;
@@ -418,7 +418,7 @@ img {
 		width: 57px;
 		height: 57px;
 		border-radius: 28px;
-		background: url(../i/ico-challenge-type.png) 0 0 no-repeat;
+		background: url(@@cdn/i/ico-challenge-type.png) 0 0 no-repeat;
 		-moz-transition-duration: .3s; -webkit-transition-duration: .3s; transition-duration: .3s;
 	}
 	.sideMostRecentChallenges li .contestName:hover i{

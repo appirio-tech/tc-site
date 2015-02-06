@@ -9,9 +9,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-
-  <link rel="shortcut icon" href="http://www.topcoder.com/wp-content/themes/tcs-responsive/favicon.ico" />
-
   <!--[if lt IE 9]>
   <script src="/js/html5shiv.js" type="text/javascript"></script>
   <script src="/js/respond.min.js" type="text/javascript"></script>
@@ -19,6 +16,7 @@
   <link rel = "stylesheet" href = "/css/ie.css ? v = 201407282" / >
   <![endif]-->
   <script type="text/javascript">
+    // UNIVERSAL
     var tcconfig = @@tcconfig
 
     var isLC = '';
@@ -26,39 +24,63 @@
     var wpUrl  = tcconfig.mainURL;
     var ajaxUrl = tcconfig.mainURL + "/wp-admin/admin-ajax.php";
 
-    var tcApiRUL = 'https://api.topcoder.com/v2';
-    var lcDiscussionURL = 'https://prod-lc1-discussion-service.herokuapp.com';
-    var myFiltersURL = 'https://lc1-user-settings-service.herokuapp.com';
+    var tcApiRUL = tcconfig.apiURL;
+    var lcDiscussionURL = tcconfig.lcDiscussionURL;
+    var myFiltersURL = tcconfig.myFiltersURL;
     var lcSiteUrl = 'https://beta.topcoder.com';
-    var lcExternalUrl = 'https://prod-lc1-ext-challenge-service.herokuapp.com';
-    var lcUserUrl = 'https://prod-lc1-user-service.herokuapp.com';
+    var lcExternalUrl = tcconfig.lcURL;
+    var lcUserUrl = tcconfig.lcUserUrl
 
-    var siteURL = 'https://www.topcoder.com';
-    var communityURL = 'https://community.topcoder.com';
-    var base_url = 'http://www.topcoder.com/wp-content/themes/tcs-responsive';
-    var stylesheet_dir = 'http://www.topcoder.com/wp-content/themes/tcs-responsive/css';
-    var autoRegister = '';
+    var siteURL = tcconfig.mainURL;
+    var communityURL = tcconfig.communityURL;
+    
+    var base_url = tcconfig.mainURL + '/wp-content/themes/tcs-responsive'; // can use '' ?
+    var stylesheet_dir = tcconfig.mainURL + '/wp-content/themes/tcs-responsive/css';
     var timezone_string = "America/New_York";
-    var challengeType;
+    var challengeType = 'develop';
 
     var tcLCApiURL;
     if (isLC) {
-      tcLCApiURL = 'https://prod-lc1-ext-challenge-service.herokuapp.com';
+      tcLCApiURL = lcURL;
     } else {
       tcLCApiURL = tcApiRUL;
     }
-    var cbApiURL = 'https://coderbits.com';
+    var cbApiURL = tcconfig.cbURL;
+
+    window.prerenderReady = false;
+    
+    function getParameterByName(name, source) {
+      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+      results = regex.exec(source || location.search);
+      return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+    function getHashParameterByName(name, source) {
+      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+      var regex = new RegExp("[\\#&]" + name + "=([^&#]*)"),
+      results = regex.exec(source || location.hash);
+      return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
+    // CHALLENGE DETAILS
+    var autoRegister = getParameterByName('autoRegister');
   </script>
 
+  <!-- HARDCODED FOR NOW -->
+  <link rel="shortcut icon" href="http://www.topcoder.com/wp-content/themes/tcs-responsive/favicon.ico" />
+
+  <link rel='stylesheet' id='fonts-css'  href='//fonts.googleapis.com/css?family=Source+Sans+Pro%3A700%2C600%2C400%2C400italic%2C300&#038;ver=3.9.1' type='text/css' media='all' />
+
+  <!--
   <link rel='stylesheet' id='ng-grid-css'  href='//cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.10/ng-grid.css?ver=3.9.1' type='text/css' media='all' />
   <link rel='stylesheet' id='tchook-style-css'  href='http://www.topcoder.com/wp-content/plugins/TcApi-hookup/includes/css/tcapi.css?ver=3.9.1' type='text/css' media='all' />
   <link rel='stylesheet' id='tchook-selectyze-style-css'  href='http://www.topcoder.com/wp-content/plugins/TcApi-hookup/includes/css/Selectyze.jquery.css?ver=3.9.1' type='text/css' media='all' />
   <link rel='stylesheet' id='wp-syntax-css-css'  href='http://www.topcoder.com/wp-content/plugins/wp-syntax/css/wp-syntax.css?ver=1.0' type='text/css' media='all' />
-  <link rel='stylesheet' id='fonts-css'  href='//fonts.googleapis.com/css?family=Source+Sans+Pro%3A700%2C600%2C400%2C400italic%2C300&#038;ver=3.9.1' type='text/css' media='all' />
   <link rel='stylesheet' id='page-list-style-css'  href='http://www.topcoder.com/wp-content/plugins/page-list/css/page-list.css?ver=4.2' type='text/css' media='all' />
+  -->
 
   <!-- TODO -->
-  <link rel='stylesheet' id='ng-details-css'  href='//d2l7b0usk48cxd.cloudfront.net/prod/66/css/ng-details.min.gz.css?ver=3.9.1' type='text/css' media='all' />
+  <link rel='stylesheet' href='@@csspath' type='text/css' media='all' />
 
   <meta name="google-site-verification" content="13nbPcn6VRWD2zdq-CEG0LbT00aOwSyhofA3OAEmbEI" />
   <meta name="google-site-verification" content="p0OVxcrMQ2HYDsGgaRLRS9bsXuXmjKVcTGZnXNphIUI" />
@@ -2694,19 +2716,6 @@ After another year of competition and a wildly successful Topcoder Open 2014 in 
 
 
 <script>
-  window.prerenderReady = false;
-  function getParameterByName(name, source) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-    results = regex.exec(source || location.search);
-    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-  }
-  function getHashParameterByName(name, source) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\#&]" + name + "=([^&#]*)"),
-    results = regex.exec(source || location.hash);
-    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-  }
   var socialProviderId = "", socialUserName = "", socialEmail = "", socialProvider = "";
   var utmSource = '', utmMedium = '', utmCampaign = '';
   var loginState = '';

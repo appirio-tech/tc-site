@@ -3,33 +3,33 @@
 }
 
 #banner.design{
-    background: url(../i/bg-slide-sprite.jpg) 0 0 repeat-x;
+    background: url(@@cdn/i/bg-slide-sprite.jpg) 0 0 repeat-x;
 }
     #banner.design .inner{
-       background:  url(../i/bg-slide.jpg) 50% 0 no-repeat;
+       background:  url(@@cdn/i/bg-slide.jpg) 50% 0 no-repeat;
 	}
     #banner.design .inner .container{
-        background: url(../i/banner-2.png) 50% 0 no-repeat;
+        background: url(@@cdn/i/banner-2.png) 50% 0 no-repeat;
 	}
 	
 #banner.develop{
-    background: url(../i/bg-banner-sprite-develop.png) 0 0 repeat-x;
+    background: url(@@cdn/i/bg-banner-sprite-develop.png) 0 0 repeat-x;
 }
     #banner.develop .inner{
-       background:  url(../i/bg-slide-develop.jpg) 50% 0 no-repeat;
+       background:  url(@@cdn/i/bg-slide-develop.jpg) 50% 0 no-repeat;
 	}
     #banner.develop .inner .container{
-        background: url(../i/banner-3.png) 50% 0 no-repeat;
+        background: url(@@cdn/i/banner-3.png) 50% 0 no-repeat;
 	}	
 
 #banner.algorithm{
-    background: url(../i/bg-banner-sprite-data.png) 0 0 repeat-x;
+    background: url(@@cdn/i/bg-banner-sprite-data.png) 0 0 repeat-x;
 }
     #banner.algorithm .inner{
-       background:  url(../i/bg-slide-data.jpg) 50% 0 no-repeat;
+       background:  url(@@cdn/i/bg-slide-data.jpg) 50% 0 no-repeat;
 	}
     #banner.algorithm .inner .container{
-        background: url(../i/banner-4.png) 50% 0 no-repeat;
+        background: url(@@cdn/i/banner-4.png) 50% 0 no-repeat;
 	}		
 	
 .pageContent h1,.pageContent h2,.pageContent h3,.pageContent h4,.pageContent h5,.pageContent h6,.pageContent h7 {
@@ -40,11 +40,11 @@
 }
 					
 .starsOfMonthWrapper {
-	background: url(../i/stars-of-month-bg.png) 0 0 repeat-x;
+	background: url(@@cdn/i/stars-of-month-bg.png) 0 0 repeat-x;
 	height:354px;
 }	
 	.starsOfMonthInner {
-		background: url(../i/bg-stars-of-month.jpg) 50% 0 no-repeat;
+		background: url(@@cdn/i/bg-stars-of-month.jpg) 50% 0 no-repeat;
 		height:354px;
 		width:1010px;
 		margin:0px auto;
@@ -182,11 +182,11 @@
 }
 #sloganSection {
 	padding:30px 0px;
-	background: url(../i/shadow-top.jpg) 50% 0 no-repeat;
+	background: url(@@cdn/i/shadow-top.jpg) 50% 0 no-repeat;
 }
 
 #communityLandingStats {
-	background: url(../i/shadow-top.jpg) 50% 100% no-repeat;
+	background: url(@@cdn/i/shadow-top.jpg) 50% 100% no-repeat;
 	padding-bottom:20px;
 }
 
@@ -211,7 +211,7 @@
 	}	
 	
 	.starsOfMonthWrapper {
-		background: url(../i/stars-of-month-bg.png) 0 0 repeat;
+		background: url(@@cdn/i/stars-of-month-bg.png) 0 0 repeat;
 		height:auto;
 		min-height:354px;
 	}	

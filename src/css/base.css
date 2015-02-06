@@ -191,7 +191,7 @@ sub, sup {
     line-height: 34px;
     padding: 5px 10px 5px 50px;
     color: #fff;
-    background: #ff8a00 url(../i/loading.gif) 10px 50% no-repeat;
+    background: #ff8a00 url(@@cdn/i/loading.gif) 10px 50% no-repeat;
     font-size: 16px;
     top: 0;
     margin-left: -65px;
@@ -283,7 +283,7 @@ sub, sup {
     top: 27px;
     width: 330px;
     height: 58px;
-    background: url(../i/logo.png) 0 0 no-repeat;
+    background: url(@@cdn/i/logo.png) 0 0 no-repeat;
 }
     .logo a{
         display: block;
@@ -380,7 +380,7 @@ sub, sup {
         position: absolute;    
         right: 13px;
         top: 13px;
-        background: url(../i/ico-arrow.png) no-repeat;
+        background: url(@@cdn/i/ico-arrow.png) no-repeat;
         background-position: 0 0;      
         transition-duration: 0.3s;        
         cursor: pointer;
@@ -405,7 +405,7 @@ sub, sup {
 			left: 1px;
 			padding: 7px 0 21px 70px;
 			line-height: 58px;
-			background-image: url(../i/ico-title.png);
+			background-image: url(@@cdn/i/ico-title.png);
 			background-repeat: no-repeat;
 			background-position: 0 0;
 			color: #666666;
@@ -524,7 +524,7 @@ sub, sup {
             overflow: hidden;
             height: 27px;
 								width: 27px;
-            background: url(../i/ico-social.png) no-repeat;
+            background: url(@@cdn/i/ico-social.png) no-repeat;
             background-position: 0 0;            
             -moz-transition-duration: 0s; -webkit-transition-duration: 0s; transition-duration: 0s;
         }
@@ -586,7 +586,7 @@ sub, sup {
 	#footer .twFollowIcon{
 			height: 13px;
 			width: 24px;
-	   background: url(../i/footer-twitter-icon.png) no-repeat;
+	   background: url(@@cdn/i/footer-twitter-icon.png) no-repeat;
 	   background-position: 0 0;
 	   display: inline-block;
 	}
@@ -672,7 +672,7 @@ sub, sup {
 				height: 13px;
 				margin-top: 7px;
 				width: 8px;
-//				background: url(../i/login-arrow.png) no-repeat;
+//				background: url(@@cdn/i/login-arrow.png) no-repeat;
 				background-position: 0 0;
 				float: left;
 				margin-left: 4px;
@@ -680,7 +680,7 @@ sub, sup {
 			.headerTopRightMenu .headerTopRightMenuLink.search .icon{
 				height: 12px;
 				width: 11px;
-		   background: url(../i/search-icon.png) no-repeat;
+		   background: url(@@cdn/i/search-icon.png) no-repeat;
 		   background-position: 0 0;
 		   float: left;
 		   margin-top: 3px;
@@ -688,7 +688,7 @@ sub, sup {
 		   margin-left: 3px;
 			}
 			.headerTopRightMenu .headerTopRightMenuLink.search.active .icon{
-		   background: url(../i/search-icon-active.png) no-repeat;
+		   background: url(@@cdn/i/search-icon-active.png) no-repeat;
 			}
 			.headerTopRightMenu .separator{
 				height: 17px;

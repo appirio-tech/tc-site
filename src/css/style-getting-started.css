@@ -58,7 +58,7 @@
         position: relative;
         }
         .landing-page .sign-up .arrow{
-            background: url(../i/sign-up-arrow.png) no-repeat;
+            background: url(@@cdn/i/sign-up-arrow.png) no-repeat;
             height: 25px;
             width: 90px;
             position: absolute;
@@ -67,7 +67,7 @@
             margin-left:  -45px;
         }
         .landing-page .sign-up .shadow{
-            background: url(../i/lp-shadow.png) no-repeat;
+            background: url(@@cdn/i/lp-shadow.png) no-repeat;
             height: 22px;
             width: 165px;
             position: absolute;
@@ -107,10 +107,10 @@
     height: 385px;
     position: relative;
     text-align: center;
-    background: #d9ebf8 url(../i/challenges-bg.png) repeat-x;
+    background: #d9ebf8 url(@@cdn/i/challenges-bg.png) repeat-x;
 }
     .challenges .arrow {
-        background: url(../i/challenges-arrow.png) no-repeat;
+        background: url(@@cdn/i/challenges-arrow.png) no-repeat;
         height: 25px;
         width: 85px;
         position: absolute;
@@ -154,7 +154,7 @@
     position: relative;
     text-align: center;
     margin-bottom: 120px;
-    background: #d9ebf8 url(../i/compete-bg.png) center no-repeat;
+    background: #d9ebf8 url(@@cdn/i/compete-bg.png) center no-repeat;
 }
     .compete-win h1 {
         font-size: 32px;

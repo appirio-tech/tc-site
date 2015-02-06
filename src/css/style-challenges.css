@@ -82,7 +82,7 @@ select {
     bottom: -15px;
     left: 50%;
     margin-left: -18px;
-    background: url(../i/point-arrow.png) 0 0 no-repeat;
+    background: url(@@cdn/i/point-arrow.png) 0 0 no-repeat;
 
     display: block;
 }
@@ -182,7 +182,7 @@ select {
     position: absolute;
     left: 1px;
     top: 4px;
-    background: url(../i/tco/tco-arrow.png) no-repeat;
+    background: url(@@cdn/i/tco/tco-arrow.png) no-repeat;
     background-position: 0 10px;
     padding-bottom: 8px;
 
@@ -195,7 +195,7 @@ select {
     position: absolute;
     left: 12px;
     top: 4px;
-    background: url(../i/tco/tco-arrow.png) no-repeat;
+    background: url(@@cdn/i/tco/tco-arrow.png) no-repeat;
     background-position: 0 10px;
 
     -moz-transition-duration: .2s;
@@ -255,7 +255,7 @@ select {
 }
 
 .dataTable .colType .ico, .contestGrid .contest .trackType {
-    background: url(../i/contest-type.png) no-repeat;
+    background: url(@@cdn/i/contest-type.png) no-repeat;
     background-position: 0 0;
 }
 
@@ -356,7 +356,7 @@ select {
 .dataTable span.colAccessLevel i {
     height: 20px;
     width: 20px;
-    background: url(../i/ico-access-lvl.png) no-repeat;
+    background: url(@@cdn/i/ico-access-lvl.png) no-repeat;
     background-position: 0 0;
     display: inline-block;
 }
@@ -364,7 +364,7 @@ select {
 .dataTable span.private i {
     height: 20px;
     width: 20px;
-    background: url(../i/ico-access-lvl.png) no-repeat;
+    background: url(@@cdn/i/ico-access-lvl.png) no-repeat;
     background-position: 0 -30px;
     display: inline-block;
 }
@@ -377,7 +377,7 @@ select {
     padding-bottom: 6px;
     cursor: pointer;
     margin-top: -30px;
-    background: url(../i/sortArrows.png) no-repeat;
+    background: url(@@cdn/i/sortArrows.png) no-repeat;
     background-position: 50% 28px;
     background-color: #f1f1f1;
     color: #666;
@@ -412,7 +412,7 @@ select {
     bottom: 4px;
     width: 10px;
     height: 10px;
-    background: url(../i/sortArrows.png) no-repeat;
+    background: url(@@cdn/i/sortArrows.png) no-repeat;
     background-position: 0 0;
 
     display: none;
@@ -498,7 +498,7 @@ select {
 }
 
 .layChallenges .tcoTable th.coleSub {
-    background: url(../i/sortArrows.png) no-repeat;
+    background: url(@@cdn/i/sortArrows.png) no-repeat;
     background-position: 95% 12px;
     background-color: #F1F1F1;
 
@@ -713,13 +713,13 @@ caption.reviewDetail {
     width: 20px;
     height: 26px;
     margin: 0 4px;
-    background: url(../i/ico-winners.png) no-repeat;
+    background: url(@@cdn/i/ico-winners.png) no-repeat;
     background-position: 0 0;
     cursor: pointer;
 }
 
 .devTable .colStandings .winner {
-    background: url(../i/ico-dev-winners.png) no-repeat;
+    background: url(@@cdn/i/ico-dev-winners.png) no-repeat;
     background-position: 0 0;
 }
 
@@ -737,7 +737,7 @@ caption.reviewDetail {
     padding-left: 9px;
     display: inline-block;
     display: inline-block;
-    background: url(../i/ico-arrows.png) 0 4px no-repeat;
+    background: url(@@cdn/i/ico-arrows.png) 0 4px no-repeat;
 }
 
 /* grid view */
@@ -765,7 +765,7 @@ caption.reviewDetail {
     position: absolute;
     top: 0;
     left: 15px;
-    background: url(../i/tco/tco-arrow.png) no-repeat;
+    background: url(@@cdn/i/tco/tco-arrow.png) no-repeat;
     background-position: 0 10px;
     padding-bottom: 8px;
 }
@@ -901,12 +901,12 @@ caption.reviewDetail {
     width: 10px;
     height: 9px;
 
-    background: url(../i/tt-arrow.png) no-repeat;
+    background: url(@@cdn/i/tt-arrow.png) no-repeat;
     background-position: 0 0;
 }
 
 .tooltip .arrow.alt {
-    background: url(../i/tt-arrow-alt.png) no-repeat;
+    background: url(@@cdn/i/tt-arrow-alt.png) no-repeat;
     background-position: 0 0;
 }
 
@@ -951,12 +951,12 @@ caption.reviewDetail {
     color: #01a8e9;
     font-size: 11px;
     font-family: Arial, Helvetica, sans-serif;
-    background: url(../i/ico-arrows.png) 0 -36px no-repeat;
+    background: url(@@cdn/i/ico-arrows.png) 0 -36px no-repeat;
 }
 
 .devTooltip .winnerInfo footer a {
     color: #ff8a00;
-    background: url(../i/ico-arrows.png) 0 4px no-repeat;
+    background: url(@@cdn/i/ico-arrows.png) 0 4px no-repeat;
 }
 
 .tooltip .winnerInfo footer a:hover {
@@ -1105,7 +1105,7 @@ select:disabled {
 
 .ui-datepicker-prev,
 .ui-datepicker-next {
-    background: url(../i/arrows-rl.png) no-repeat;
+    background: url(@@cdn/i/arrows-rl.png) no-repeat;
     background-position: 3px -25px;
     cursor: pointer;
     z-index: 10;
@@ -1113,7 +1113,7 @@ select:disabled {
 
 .ui-datepicker-prev.ui-state-disabled,
 .ui-datepicker-next.ui-state-disabled {
-    background: url(../i/arrows-rl-gray.png) no-repeat;
+    background: url(@@cdn/i/arrows-rl-gray.png) no-repeat;
     background-position: 3px -25px;
     cursor: default;
 }
@@ -1158,7 +1158,7 @@ select:disabled {
 .layChallenges .actions .searchLink {
     padding-right: 10px;
     padding: 4px 9px 5px 35px;
-    background: url(../i/ico-zoom.png) 8px 4px no-repeat;
+    background: url(@@cdn/i/ico-zoom.png) 8px 4px no-repeat;
     background-color: #fff;
     line-height: 20px;
     border: 1px solid transparent;
@@ -1381,7 +1381,7 @@ select:disabled {
 #mainContent .instructions .infoBox {
     margin-bottom: 10px;
     border: 1px solid #c9e6b3;
-    background: #e5f6d8 url(../i/ico-info.png) 19px 9px no-repeat;
+    background: #e5f6d8 url(@@cdn/i/ico-info.png) 19px 9px no-repeat;
     padding: 7px 10px 7px 82px;
 }
 #mainContent > div > div.subscribeTopWrapper{

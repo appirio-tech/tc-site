@@ -1,6 +1,6 @@
 /*Page Logo*/
 #navigation .container h1.logo{
-    background: url(../i/logo-small.png) 0 0 no-repeat;
+    background: url(@@cdn/i/logo-small.png) 0 0 no-repeat;
 }
 /*Menu Workaround for < ie9 */
 .opaque {
@@ -19,7 +19,7 @@
     position: relative;
     line-height: 24px;
     margin: 0 0 27px 0;
-    background: #17A6D6 url(../i/shadow.png) 50% 0 no-repeat;
+    background: #17A6D6 url(@@cdn/i/shadow.png) 50% 0 no-repeat;
 } 
     .pageView .pageInfo .point{
         width: 33px;
@@ -28,7 +28,7 @@
         left: 50%;
         margin-left: -16px;
         bottom: -17px;
-        background: url(../i/point.png) no-repeat;
+        background: url(@@cdn/i/point.png) no-repeat;
         z-index: 1;
 }
     .pageView .pageInfo.imgDataLayout{
@@ -62,7 +62,7 @@
         margin-bottom: 12px;
         padding-top: 99px;
         padding-left: 0;
-        background: url(../i/ico-pages.png) no-repeat scroll  50% -75px;
+        background: url(@@cdn/i/ico-pages.png) no-repeat scroll  50% -75px;
         line-height: 28px;
         min-height: 28px;
     }
@@ -144,7 +144,7 @@
     position: relative;
     line-height: 24px;
     margin: 0 0 27px 0; 
-    background: #17A6D6 url(../i/shadow.png) 50% 0 no-repeat;
+    background: #17A6D6 url(@@cdn/i/shadow.png) 50% 0 no-repeat;
 } 
     .contact .contactInfo .point{
         width: 33px;
@@ -153,7 +153,7 @@
         left: 50%;
         margin-left: -16px;
         bottom: -17px; 
-        background: url(../i/point.png) no-repeat;
+        background: url(@@cdn/i/point.png) no-repeat;
         z-index: 1;
 } 
     .contact .pageHeading h1{
@@ -165,7 +165,7 @@
         padding-left: 74px;
         min-height: 64px;
         line-height: 64px;
-        background: url(../i/ico-cs.png) 0 25px no-repeat;
+        background: url(@@cdn/i/ico-cs.png) 0 25px no-repeat;
         margin-bottom: 25px; 
     }
 
@@ -197,7 +197,7 @@
                 position: absolute;
                 left: 13px;
                 top: 13px;
-                background: url(../i/ico-contact.png) no-repeat;
+                background: url(@@cdn/i/ico-contact.png) no-repeat;
                 background-position: 0 0;
             }
             .contact #hero .tracksInfo .trackInfo.visitHelp i{
@@ -274,7 +274,7 @@
 /*Page Logo*/
 
 #navigation .container h1.logo{
-    background: url(../i/logo.png) 0 0 no-repeat
+    background: url(@@cdn/i/logo.png) 0 0 no-repeat
 }
 /* About Us Page */
     .pageView .pageHeading h1{
@@ -302,7 +302,7 @@
                 display:block;
                 height: 312px;
                 width: 555px;
-                background:url(../i/img-aus.png);
+                background:url(@@cdn/i/img-aus.png);
             }
     .pageView .pageInfo.imgDataLayout .info{
         margin-left: 582px;

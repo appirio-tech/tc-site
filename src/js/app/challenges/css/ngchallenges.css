@@ -117,7 +117,7 @@
 .challengesGrid .colAccessLevel i {
     height: 20px;
     width: 20px;
-    background: url(../../../../i/ico-access-lvl.png) no-repeat;
+    background: url(@@cdn/i/ico-access-lvl.png) no-repeat;
     background-position: 0 0;
     display: inline-block;
 }

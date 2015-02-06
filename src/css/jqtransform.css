@@ -19,7 +19,7 @@ form.jqtransformdone div.rowElem{
 	height: 34px;
 	width: 100%!important;
 	padding: 0 2px 0 0;
-	background: transparent url(../i/form/input.png) no-repeat 100% -40px;
+	background: transparent url(@@cdn/i/form/input.png) no-repeat 100% -40px;
 	text-align: left;
 }
 
@@ -30,7 +30,7 @@ form.jqtransformdone div.rowElem{
 }
 
 .jqTransformInputInner > div {
-	background: transparent url(../i/form/input.png) no-repeat 0 0;
+	background: transparent url(@@cdn/i/form/input.png) no-repeat 0 0;
 	height: 20px;
 	padding: 7px 2px 7px 8px;
 	margin: 0px;
@@ -62,7 +62,7 @@ form.jqtransformdone div.rowElem{
  * ------------- */
 .jqTransformRadioWrapper {float: left;display:block;margin:0px;	margin-top:1px;}
 .jqTransformRadio {
-	background: transparent url(../i/form/radio.png) no-repeat 0 0;
+	background: transparent url(@@cdn/i/form/radio.png) no-repeat 0 0;
 	vertical-align: middle;
 	height: 16px;
 	width: 16px;
@@ -78,7 +78,7 @@ span.jqTransformCheckboxWrapper{
 	display:block;float:left;
 }
 a.jqTransformCheckbox {
-	background: transparent url(../i/form/checkbox.png) no-repeat 0 0;
+	background: transparent url(@@cdn/i/form/checkbox.png) no-repeat 0 0;
 	vertical-align: top;
 	height: 16px;
 	width: 16px;
@@ -105,7 +105,7 @@ a.jqTransformCheckedDisabled { background-position: 0 -60px; cursor: default;}
 }
 .jqTransformSelectWrapper > div {
 	height: 34px;
-	background: url(../i/form/input.png) no-repeat 0 0;
+	background: url(@@cdn/i/form/input.png) no-repeat 0 0;
 	margin-right: 32px;
 }
 .jqTransformSelectWrapper div span {
@@ -130,7 +130,7 @@ a.jqTransformCheckedDisabled { background-position: 0 -60px; cursor: default;}
 	right: -2px;
 	width: 36px;
 	height: 34px;
-	background: url(../i/form/select-right.png) no-repeat top right;
+	background: url(@@cdn/i/form/select-right.png) no-repeat top right;
 	-moz-transition-duration: 0s; -webkit-transition-duration: 0s; transition: 0s;
 }
 .jqTransformSelectWrapper ul {
@@ -195,11 +195,11 @@ only screen and (-webkit-min-resolution: 192dpi) {
 .jqTransformInputInner > div,
 .jqTransformSelectWrapper > div,
 .panelBody .fileField .fileNameDisplay {
-	background-image:  url(../i/form/input-2x.png);
+	background-image:  url(@@cdn/i/form/input-2x.png);
 	background-size: 1000px 160px;
 }
 .jqTransformSelectWrapper  a.jqTransformSelectOpen {
-	background-image: url(../i/form/select-right-2x.png);
+	background-image: url(@@cdn/i/form/select-right-2x.png);
 	background-size: 36px 80px;
 }
 

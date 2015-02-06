@@ -7,7 +7,7 @@
 	height: 94px;
 }
 #wrapper404 #navigation .container h1.logo {
-	background: url(../i/logo.png) 0 0 no-repeat;
+	background: url(@@cdn/i/logo.png) 0 0 no-repeat;
 	top: 27px;
 	width: 330px;
 	height: 58px;

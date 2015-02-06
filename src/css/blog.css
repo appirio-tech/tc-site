@@ -85,7 +85,7 @@ a.blueLink:hover {
     left: 0px;
     width: 60px;
     height: 86px;
-    background-image: url(../i/ico-title-blog.png);
+    background-image: url(@@cdn/i/ico-title-blog.png);
     z-index: 2;
 }
 
@@ -126,7 +126,7 @@ a.blueLink:hover {
 }
 
 .blogDescBox .postDate {
-    background: url(../i/post_date.png) no-repeat center left;
+    background: url(@@cdn/i/post_date.png) no-repeat center left;
     float: left;
     line-height: 25px;
     padding-left: 25px;
@@ -138,7 +138,7 @@ a.blueLink:hover {
 }
 
 .blogDescBox .postCategory {
-    background: url(../i/post-category.png) no-repeat center left;
+    background: url(@@cdn/i/post-category.png) no-repeat center left;
     float: left;
     margin-left: 10px;
     padding-left: 25px;
@@ -162,7 +162,7 @@ a.blueLink:hover {
     border-top: 1px #dfe1e1 solid;
     padding: 10px 0px;
     padding-left: 25px;
-    background: url(../i/tag.png) no-repeat center left;
+    background: url(@@cdn/i/tag.png) no-repeat center left;
 }
 
 .postNavWrapper {
@@ -198,12 +198,12 @@ a.blueLink:hover {
 
 .next {
     float: right;
-    background: url(../i/next.png) no-repeat center right;
+    background: url(@@cdn/i/next.png) no-repeat center right;
     padding-right: 15px;
 }
 
 .prev {
-    background: url(../i/prev.png) no-repeat center left;
+    background: url(@@cdn/i/prev.png) no-repeat center left;
     padding-left: 15px;
 }
 
@@ -231,7 +231,7 @@ a.blueLink:hover {
     border: 1px solid #e1e3e3;
     border-right-width: 0;
     background: #ffffff;
-    background-image: url(../i/ios-input-bg-fix.gif);
+    background-image: url(@@cdn/i/ios-input-bg-fix.gif);
     box-shadow: none;
     color: #A1A1A1;
     float: left;
@@ -266,7 +266,7 @@ a.blueLink:hover {
     padding-right: 65px;
     padding-left: 35px;
     border-right: 10px solid transparent;
-    background: url(../i/search.png) no-repeat 5px center;
+    background: url(@@cdn/i/search.png) no-repeat 5px center;
     position: relative;
     z-index: 0;
 }
@@ -290,7 +290,7 @@ a.blueLink:hover {
 }
 
 .subscribeBox h3 {
-    background: url(../i/rss.png) no-repeat 10px center;
+    background: url(@@cdn/i/rss.png) no-repeat 10px center;
     color: #666666;
     background-color: #f1f1f1;
     line-height: 42px;
@@ -305,7 +305,7 @@ a.blueLink:hover {
     border-radius: 4px 4px 4px 4px;
     border: 1px solid #e1e3e3;
     background: #ffffff;
-    background-image: url(../i/ios-input-bg-fix.gif);
+    background-image: url(@@cdn/i/ios-input-bg-fix.gif);
     box-shadow: none;
     color: #A1A1A1;
     vertical-align: top;
@@ -356,7 +356,7 @@ a.blueLink:hover {
 }
 
 .shareVia .shareButton {
-    background-image: url(../i/ico-social-blog-detail.png);
+    background-image: url(@@cdn/i/ico-social-blog-detail.png);
     width: 40px;
     height: 40px;
 }
@@ -367,7 +367,7 @@ a.blueLink:hover {
 }
 
 .shareVia .shareButton.small {
-    background-image: url(../i/ico-social-blog-main.png);
+    background-image: url(@@cdn/i/ico-social-blog-main.png);
     width: 22px;
     height: 23px;
 }
@@ -521,7 +521,7 @@ h3.popularPostTitle {
 
 .blogItem .continueReading {
     float: right;
-    background: url(../i/next.png) no-repeat center right;
+    background: url(@@cdn/i/next.png) no-repeat center right;
     padding-right: 15px;
     margin-top: 5px;
 }
@@ -568,7 +568,7 @@ h3.popularPostTitle {
 /* search result item */
 
 .searchResultDescBox .postCategory {
-    background: url(../i/post-category.png) no-repeat center left;
+    background: url(@@cdn/i/post-category.png) no-repeat center left;
     padding-left: 25px;
     line-height: 25px;
     margin-bottom: 10px;
@@ -664,7 +664,7 @@ h3.popularPostTitle {
     display: block;
     width: 24px;
     height: 24px;
-    background: url(../i/rss-bullet.png) 0 0 no-repeat;
+    background: url(@@cdn/i/rss-bullet.png) 0 0 no-repeat;
     -moz-transition-duration: .3s;
     -webkit-transition-duration: .3s;
     transition-duration: .3s;
@@ -707,14 +707,14 @@ h3.popularPostTitle {
 
 .swipeNavWrapper a {
     display: inline-block;
-    background: url(../i/swipe-nav.png) no-repeat top left;
+    background: url(@@cdn/i/swipe-nav.png) no-repeat top left;
     margin-right: 5px;
     height: 11px;
     width: 11px;
 }
 
 .swipeNavWrapper a.on {
-    background: url(../i/swipe-nav-bottom.png) no-repeat top left;
+    background: url(@@cdn/i/swipe-nav-bottom.png) no-repeat top left;
 }
 
 /* swipe slider end*/
@@ -741,17 +741,17 @@ h3.popularPostTitle {
 }
 
 .rssCat {
-    background: url(../i/rss-bg.png) no-repeat center left;
+    background: url(@@cdn/i/rss-bg.png) no-repeat center left;
 }
 
 .searchFoundTitle {
-    background: url(../i/search-title.png) no-repeat center left;
+    background: url(@@cdn/i/search-title.png) no-repeat center left;
 }
 
 .subscribeTopWrapper .feedBtn {
     margin-top: 12px;
     color: #01a8e9;
-    background: url(../i/rss.png) no-repeat center left;
+    background: url(@@cdn/i/rss.png) no-repeat center left;
     padding-left: 25px;
     font-size: 16px;
     line-height: 38px;
@@ -762,7 +762,7 @@ h3.popularPostTitle {
 }
 
 .showMoreWrapper .morePostLoading {
-    background: url(../i/loading.gif) no-repeat top left;
+    background: url(@@cdn/i/loading.gif) no-repeat top left;
     display: inline-block;
     width: 32px;
     height: 32px;
@@ -789,7 +789,7 @@ h3.popularPostTitle {
     margin: 0px auto 20px auto;
     width: 280px;
     height: 143px;
-    background: url(../i/download-bg.png) no-repeat center center;
+    background: url(@@cdn/i/download-bg.png) no-repeat center center;
     padding: 15px 20px;
     text-align: center;
 }
@@ -886,7 +886,7 @@ h3.popularPostTitle {
 
     .blogItem .continueReading {
         float: left;
-        background: url(../i/next.png) no-repeat center right;
+        background: url(@@cdn/i/next.png) no-repeat center right;
         margin-top: 0px;
     }
 
@@ -897,7 +897,7 @@ h3.popularPostTitle {
     }
 
     .showMoreWrapperMobile .morePostLoading {
-        background: url(../i/loading.gif) no-repeat top left;
+        background: url(@@cdn/i/loading.gif) no-repeat top left;
         display: inline-block;
         width: 32px;
         height: 32px;
@@ -946,7 +946,7 @@ h3.popularPostTitle {
 
     .blogMenuMobile .arrow {
         float: right;
-        background: url(../i/next.png) no-repeat left center;
+        background: url(@@cdn/i/next.png) no-repeat left center;
         width: 90px;
         height: 30px;
     }
@@ -1012,18 +1012,18 @@ h3.popularPostTitle {
     }
 
     .rssCat {
-        background: url(../i/rss-bullet.png) no-repeat center left;
+        background: url(@@cdn/i/rss-bullet.png) no-repeat center left;
     }
 
     .searchFoundTitle {
-        background: url(../i/search-title-small.png) no-repeat center left;
+        background: url(@@cdn/i/search-title-small.png) no-repeat center left;
     }
 
     .subscribeTopWrapper .feedBtn {
         float: right;
         margin-top: 5px;
         color: #01a8e9;
-        background: url(../i/rss.png) no-repeat center left;
+        background: url(@@cdn/i/rss.png) no-repeat center left;
         padding-left: 25px;
     }
 

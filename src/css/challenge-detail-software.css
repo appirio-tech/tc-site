@@ -194,11 +194,11 @@ font-size: 18px;
     display: block;
     padding-left: 60px;
     padding-top: 10px;
-    background: url("../i/ico-time.png") no-repeat 0 0;
+    background: url("@@cdn/i/ico-time.png") no-repeat 0 0;
 }
 
 .challenge-detail.develop #stepBox .rightColumn .nextBox .icoTime {
-    background: url("../i/ico-time-develop.png") no-repeat 0 0;
+    background: url("@@cdn/i/ico-time-develop.png") no-repeat 0 0;
 }
 
 #stepBox .rightColumn .nextBox .timeLeft {
@@ -1054,14 +1054,14 @@ h1.center {
     }
 
     #stepBox .rightColumn .nextBox .icoTime {
-        background: url("../i/ico-time-phone.png") no-repeat 0 10px;
+        background: url("@@cdn/i/ico-time-phone.png") no-repeat 0 10px;
         height: 43px;
         padding-left: 35px;
         padding-top: 10px;
     }
 
     .challenge-detail.develop #stepBox .rightColumn .nextBox .icoTime {
-        background: url("../i/ico-time-develop-phone.png") no-repeat 0 10px;
+        background: url("@@cdn/i/ico-time-develop-phone.png") no-repeat 0 10px;
     }
 
     #stepBox .rightColumn .nextBox .nextDTitle {
@@ -1125,7 +1125,7 @@ h1.center {
 
     .columnSideBar .slider .bx-controls .bx-pager-item a {
         display: inline-block;
-        background: url(../i/orange-dots.png) no-repeat;
+        background: url(@@cdn/i/orange-dots.png) no-repeat;
         text-indent: -100px;
         background-position: 0 0;
         width: 11px;
@@ -1164,7 +1164,7 @@ h1.center {
 
     .prizeSlider .bx-controls .bx-pager-item a {
         display: inline-block;
-        background: url(../i/orange-dots.png) no-repeat;
+        background: url(@@cdn/i/orange-dots.png) no-repeat;
         text-indent: -100px;
         background-position: 0 0;
         width: 11px;
@@ -1355,7 +1355,7 @@ h1.center {
 #winner .informationView .meataAction .download:visited,
 #submissions .informationView .meataAction .download,
 #submissions .informationView .meataAction .download:visited {
-    background: url(../i/winner-actions.png) no-repeat 0 bottom;
+    background: url(@@cdn/i/winner-actions.png) no-repeat 0 bottom;
     padding-left: 29px;
     height: 23px;
     font-size: 14px;
@@ -1373,7 +1373,7 @@ h1.center {
 #winner .informationView .meataAction .viewSubmission:visited,
 #submissions .informationView .meataAction .viewSubmission,
 #submissions .informationView .meataAction .viewSubmission:visited {
-    background: url(../i/winner-actions.png) no-repeat 0 0;
+    background: url(@@cdn/i/winner-actions.png) no-repeat 0 0;
     padding-left: 29px;
     height: 23px;
     font-size: 14px;
@@ -1555,7 +1555,7 @@ h1.center {
 
 .challenge-detail #winner .submissionShowcaseList li a:hover,
 .challenge-detail #submissions .submissionShowcaseList li a:hover {
-    background: url(../i/thumb-hover.png) no-repeat 0 0;
+    background: url(@@cdn/i/thumb-hover.png) no-repeat 0 0;
 }
 
 .challenge-detail #winner .submissionShowcaseList li a.active,
@@ -1564,7 +1564,7 @@ h1.center {
 .challenge-detail #submissions .submissionShowcaseList li a.active,
 .challenge-detail #submissions .submissionShowcaseList li a.active:visited,
 .challenge-detail #submissions .submissionShowcaseList li a.active:hover {
-    background: url(../i/thumb-current.png) no-repeat 0 0;
+    background: url(@@cdn/i/thumb-current.png) no-repeat 0 0;
 }
 
 .submissionBig,
@@ -1583,7 +1583,7 @@ h1.center {
 .challenge-detail #winner .fullScreenBtn,
 .challenge-detail #submissions .fullScreenBtn {
     width: auto;
-    background-image: url(../i/fullViewIcon.png);
+    background-image: url(@@cdn/i/fullViewIcon.png);
     background-repeat: no-repeat;
     background-position: 10px center;
     padding-right: 20px;
@@ -1604,7 +1604,7 @@ h1.center {
     margin-bottom: 160px;
     margin-top: 160px;
     text-align: center;
-    background: url(../i/notViewIcon.png) no-repeat center 0;
+    background: url(@@cdn/i/notViewIcon.png) no-repeat center 0;
 }
 
 .challenge-detail #submissions .notView p {
@@ -1716,7 +1716,7 @@ h1.center {
 
 #submissions .viewSubmission a,
 #submissions .viewSubmission a:visited {
-    background: url(../i/winner-actions.png) no-repeat 0 0;
+    background: url(@@cdn/i/winner-actions.png) no-repeat 0 0;
     padding-left: 29px;
     height: 23px;
     margin-right: 6px;
@@ -1730,7 +1730,7 @@ h1.center {
 
 #submissions .download a,
 #submissions .download a:visited {
-    background: url(../i/winner-actions.png) no-repeat 0 bottom;
+    background: url(@@cdn/i/winner-actions.png) no-repeat 0 bottom;
     padding-left: 29px;
     height: 23px;
     display: inline-block;
@@ -1809,7 +1809,7 @@ h1.center {
 }
 
 .winnerListAlt li .boxName span {
-    background: url(../i/boxArrow.png) no-repeat 0 0;
+    background: url(@@cdn/i/boxArrow.png) no-repeat 0 0;
     width: 15px;
     height: 8px;
     display: block;
@@ -1884,7 +1884,7 @@ h1.center {
 }
 
 .winnerList li .boxName span {
-    background: url(../i/boxArrow.png) no-repeat 0 0;
+    background: url(@@cdn/i/boxArrow.png) no-repeat 0 0;
     width: 15px;
     height: 8px;
     display: block;
@@ -1948,7 +1948,7 @@ h1.center {
     width: 18px;
     height: 17px;
     background-repeat: no-repeat;
-    background-image: url(../i/ecIcon.png);
+    background-image: url(@@cdn/i/ecIcon.png);
     position: relative;
     top: 12px;
     background-position: 0 0;
@@ -2029,11 +2029,11 @@ h1.center {
 }
 
 .develop .firstPrizeIcon {
-    background-image: url(../i/firstPrizeIcon.png);
+    background-image: url(@@cdn/i/firstPrizeIcon.png);
 }
 
 .develop .secondPrizeIcon {
-    background-image: url(../i/secondPrizeIcon.png);
+    background-image: url(@@cdn/i/secondPrizeIcon.png);
 }
 
 .seeMoreLink, .seeLessLink{
@@ -2087,7 +2087,7 @@ h1.center {
     }
 
     .winnerListAlt li .boxName span {
-        background: url(../i/boxArrow-m.png) no-repeat 0 0;
+        background: url(@@cdn/i/boxArrow-m.png) no-repeat 0 0;
         width: 9px;
         height: 13px;
         top: 50%;
@@ -2144,7 +2144,7 @@ h1.center {
     }
 
     .winnerList li .boxName span {
-        background: url(../i/boxArrow-m.png) no-repeat 0 0;
+        background: url(@@cdn/i/boxArrow-m.png) no-repeat 0 0;
         width: 9px;
         height: 13px;
         top: 50%;
@@ -2222,7 +2222,7 @@ h1.center {
 
     #submissions .bx-controls .bx-pager-item a {
         display: inline-block;
-        background: url(../i/orange-dots.png) no-repeat;
+        background: url(@@cdn/i/orange-dots.png) no-repeat;
         text-indent: -100px;
         background-position: 0 0;
         width: 11px;
@@ -2364,7 +2364,7 @@ h1.center {
 
     #submissions .basicInfoAction .download,
     #submissions .basicInfoAction .download:visited {
-        background: url(../i/winner-actions.png) no-repeat 0 bottom;
+        background: url(@@cdn/i/winner-actions.png) no-repeat 0 bottom;
         padding-left: 36px;
         height: 23px;
         font-size: 15px;
@@ -2381,7 +2381,7 @@ h1.center {
 
     #submissions .basicInfoAction .viewSubmission,
     #submissions .basicInfoAction .viewSubmission:visited {
-        background: url(../i/winner-actions.png) no-repeat 0 0;
+        background: url(@@cdn/i/winner-actions.png) no-repeat 0 0;
         width: 23px;
         height: 23px;
         font-size: 15px;
@@ -2468,14 +2468,14 @@ h1.center {
 /* submission status icons */
 
 .successIcon {
-  background: url(../i/ico-okay-check.png) no-repeat;
+  background: url(@@cdn/i/ico-okay-check.png) no-repeat;
   background-position: 0 0;
   background-size: 40%;
   padding-left: 30px;
 }
 
 .failureIcon {
-  background: url(../i/ico-failed-x.png) no-repeat;
+  background: url(@@cdn/i/ico-failed-x.png) no-repeat;
   background-position: 0 0;
   background-size: 40%;
   padding-left: 30px;
