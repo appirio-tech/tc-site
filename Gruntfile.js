@@ -29,12 +29,12 @@ module.exports = function(grunt) {
     mainURL: grunt.option('main-url') || 'http://local.topcoder.com',
     apiURL: grunt.option('api-url') || 'https://api.topcoder.com/v2',
     cdnURL: grunt.option('cdn-url') || '',
-    useMin: grunt.option('use-min') || true,
     useVer: grunt.option('use-ver') || false,
     version: grunt.option('cdn-version') || '',
 
     // broken on challenge details 
     useGz: grunt.option('use-gz') || false,
+    useMin: grunt.option('use-min') || true,
     // only used on wp setup
     useCND: grunt.option('use-cdn') || false,
 
@@ -71,27 +71,6 @@ module.exports = function(grunt) {
       '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
       '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
       ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
-    // Task configuration.
-    concat: {
-      options: {
-        banner: '<%= banner %>',
-        stripBanners: true
-      },
-      css: {
-        files: {
-          '<%= build.tmp %>/default.concat.tmpl.css': addBaseFilePath(pkg_config.packages.default.css, srcCSS),
-          '<%= build.tmp %>/challengelanding.concat.tmpl.css': addBaseFilePath(pkg_config.packages.challengelanding.css, srcCSS),
-          '<%= build.tmp %>/challenges.concat.tmpl.css': addBaseFilePath(pkg_config.packages.challenges.css, srcCSS),
-          '<%= build.tmp %>/challengeterms.concat.tmpl.css': addBaseFilePath(pkg_config.packages.challengeterms.css, srcCSS),
-          '<%= build.tmp %>/challengesubmit.concat.tmpl.css': addBaseFilePath(pkg_config.packages.challengesubmit.css, srcCSS),
-          '<%= build.tmp %>/ng-details.concat.tmpl.css': addBaseFilePath(pkg_config.packages['ng-details'].css, srcCSS),
-          '<%= build.tmp %>/ngChallenges.concat.tmpl.css': addBaseFilePath(pkg_config.packages.ngChallenges.css, srcCSS),
-          '<%= build.tmp %>/ng-member-profile.concat.tmpl.css': addBaseFilePath(pkg_config.packages['ng-member-profile'].css, srcCSS),
-          '<%= build.tmp %>/ng-users.concat.tmpl.css': addBaseFilePath(pkg_config.packages['ng-users'].css, srcCSS),
-          '<%= build.tmp %>/profile-builder.concat.tmpl.css': addBaseFilePath(pkg_config.packages['profile-builder'].css, srcCSS)
-        }
-      }
-    },
     replace: {
       dist: {
         options: {
@@ -111,19 +90,42 @@ module.exports = function(grunt) {
           ]
         },
         files: [
-        { src: ['<%= build.src %>/js/app/challenge-details/index.html'], dest: '<%= build.dist %>/html/challenge-details/index.html' },
-
-        { src: ['<%= build.tmp %>/default.concat.tmpl.css'], dest: '<%= build.tmp %>/default.concat.css' },
-        { src: ['<%= build.tmp %>/challengelanding.concat.tmpl.css'], dest: '<%= build.tmp %>/challengelanding.concat.css' },
-        { src: ['<%= build.tmp %>/challenges.concat.tmpl.css'], dest: '<%= build.tmp %>/challenges.concat.css' },
-        { src: ['<%= build.tmp %>/challengeterms.concat.tmpl.css'], dest: '<%= build.tmp %>/challengeterms.concat.css' },
-        { src: ['<%= build.tmp %>/challengesubmit.concat.tmpl.css'], dest: '<%= build.tmp %>/challengesubmit.concat.css' },
-        { src: ['<%= build.tmp %>/ng-details.concat.tmpl.css'], dest: '<%= build.tmp %>/ng-details.concat.css' },
-        { src: ['<%= build.tmp %>/ngChallenges.concat.tmpl.css'], dest: '<%= build.tmp %>/ngChallenges.concat.css' },
-        { src: ['<%= build.tmp %>/ng-member-profile.concat.tmpl.css'], dest: '<%= build.tmp %>/ng-member-profile.concat.css' },
-        { src: ['<%= build.tmp %>/ng-users.concat.tmpl.css'], dest: '<%= build.tmp %>/ng-users.concat.css' },
-        { src: ['<%= build.tmp %>/profile-builder.concat.tmpl.css'], dest: '<%= build.tmp %>/profile-builder.concat.css' },
+          { src: ['<%= build.src %>/js/app/challenge-details/index.html'], dest: '<%= build.dist %>/html/challenge-details/index.html' },
+          
+          { cwd: '<%= build.src %>/css', src: '**/*.css', dest: '<%= build.dist %>/css', expand: true },
         ]
+      }
+    },
+    concat: {
+      options: {
+        banner: '<%= banner %>',
+        stripBanners: true
+      },
+      css: {
+        files: {
+          '<%= build.tmp %>/default.concat.css': addBaseFilePath(pkg_config.packages.default.css, '<%= build.dist %>/css/'),
+          '<%= build.tmp %>/challengelanding.concat.css': addBaseFilePath(pkg_config.packages.challengelanding.css, '<%= build.dist %>/css/'),
+          '<%= build.tmp %>/challenges.concat.css': addBaseFilePath(pkg_config.packages.challenges.css, '<%= build.dist %>/css/'),
+          '<%= build.tmp %>/challengeterms.concat.css': addBaseFilePath(pkg_config.packages.challengeterms.css, '<%= build.dist %>/css/'),
+          '<%= build.tmp %>/challengesubmit.concat.css': addBaseFilePath(pkg_config.packages.challengesubmit.css, '<%= build.dist %>/css/'),
+          '<%= build.tmp %>/ng-details.concat.css': addBaseFilePath(pkg_config.packages['ng-details'].css, '<%= build.dist %>/css/'),
+          '<%= build.tmp %>/ngChallenges.concat.css': addBaseFilePath(pkg_config.packages.ngChallenges.css, '<%= build.dist %>/css/'),
+          '<%= build.tmp %>/ng-member-profile.concat.css': addBaseFilePath(pkg_config.packages['ng-member-profile'].css, '<%= build.dist %>/css/'),
+          '<%= build.tmp %>/ng-users.concat.css': addBaseFilePath(pkg_config.packages['ng-users'].css, '<%= build.dist %>/css/'),
+          '<%= build.tmp %>/profile-builder.concat.css': addBaseFilePath(pkg_config.packages['profile-builder'].css, '<%= build.dist %>/css/')
+
+
+          // '<%= build.tmp %>/default.concat.css': addBaseFilePath(pkg_config.packages.default.css, '<%= build.dist %>/css'),
+          // '<%= build.tmp %>/challengelanding.concat.css': addBaseFilePath(pkg_config.packages.challengelanding.css, '<%= build.dist %>/css'),
+          // '<%= build.tmp %>/challenges.concat.css': addBaseFilePath(pkg_config.packages.challenges.css, '<%= build.dist %>/css'),
+          // '<%= build.tmp %>/challengeterms.concat.css': addBaseFilePath(pkg_config.packages.challengeterms.css, '<%= build.dist %>/css'),
+          // '<%= build.tmp %>/challengesubmit.concat.css': addBaseFilePath(pkg_config.packages.challengesubmit.css, '<%= build.dist %>/css'),
+          // '<%= build.tmp %>/ng-details.concat.css': addBaseFilePath(pkg_config.packages['ng-details'].css, '<%= build.dist %>/css'),
+          // '<%= build.tmp %>/ngChallenges.concat.css': addBaseFilePath(pkg_config.packages.ngChallenges.css, '<%= build.dist %>/css'),
+          // '<%= build.tmp %>/ng-member-profile.concat.css': addBaseFilePath(pkg_config.packages['ng-member-profile'].css, '<%= build.dist %>/css'),
+          // '<%= build.tmp %>/ng-users.concat.css': addBaseFilePath(pkg_config.packages['ng-users'].css, '<%= build.dist %>/css'),
+          // '<%= build.tmp %>/profile-builder.concat.css': addBaseFilePath(pkg_config.packages['profile-builder'].css, '<%= build.dist %>/css')
+        }
       }
     },
     cssmin: {
@@ -207,7 +209,7 @@ module.exports = function(grunt) {
         },
       },
     },
-    clean: ['<%= build.dist %>/'],
+    clean: ['<%= build.dist %>/', '<%= build.tmp %>/'],
     compress: {
       main: {
         options: {
@@ -236,8 +238,8 @@ module.exports = function(grunt) {
   });
 
   // Default task.
-  grunt.registerTask('default', ['clean', 'concat', 'replace', 'cssmin', 'copy', 'uglify', 'compress', 'writeConfig']);
+  grunt.registerTask('default', ['clean', 'replace', 'concat',  'cssmin', 'copy', 'uglify', 'compress', 'writeConfig']);
 
-  grunt.registerTask('debug', ['clean', 'concat', 'replace', 'cssmin', 'copy', 'writeConfig']);
+  grunt.registerTask('debug', ['clean', 'replace', 'concat', 'cssmin', 'copy', 'writeConfig']);
 
 };
