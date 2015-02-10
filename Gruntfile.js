@@ -153,12 +153,12 @@ module.exports = function(grunt) {
         dest: '<%= build.dist %>/fonts',
         expand: true
       },
-      // {
-      //   cwd: '<%= build.src %>/js/app',
-      //   src: '**/*',
-      //   dest: '<%= build.dist %>/html',
-      //   expand: true
-      // }
+      {
+        cwd: '<%= build.src %>/js',
+        src: '**/*',
+        dest: '<%= build.dist %>/js',
+        expand: true
+      }
       ]
     }},
     uglify: {
