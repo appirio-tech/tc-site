@@ -6,6 +6,7 @@
 *.swp
 Thumbs.db
 config.json
+wp/wp-config.php
 
 # large/disallowed file types
 # a CDN should be used for these
