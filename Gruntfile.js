@@ -49,6 +49,11 @@ module.exports = function(grunt) {
   tcconfig.cdnPrefix =  tcconfig.cdnURL + (tcconfig.useVer ? '/' + tcconfig.version : '');
   tcconfig.cssSuffix =  (tcconfig.useMin ? '.min' : '') + '.css';
 
+  pkg_config.packages['ng-details'].debugCssInclude = "";
+  pkg_config.packages['ng-details'].css.forEach(function(cssPath) {
+    pkg_config.packages['ng-details'].debugCssInclude += "<link rel='stylesheet' href='" + tcconfig.cdnPrefix + "/css/" + cssPath + "' type='text/css' media='all' />\r\n";
+  });
+
   grunt.registerTask('writeConfig', function() {
     // Write config to file
     grunt.file.write('config.json', JSON.stringify(tcconfig, null, 2));
@@ -80,18 +85,42 @@ module.exports = function(grunt) {
               replacement: JSON.stringify(tcconfig)
             },
             {
-              match: 'cdn',
-              replacement: tcconfig.cdnPrefix
-            },
-            {
-              match: 'csspath',
-              replacement: tcconfig.cdnPrefix + '/css/ng-details' + tcconfig.cssSuffix
+              match: 'css',
+              replacement: "<link rel='stylesheet' href='" + tcconfig.cdnPrefix + "/css/ng-details" + tcconfig.cssSuffix + "' type='text/css' media='all' />"
             },
           ]
         },
         files: [
           { src: ['<%= build.src %>/js/app/challenge-details/index.html'], dest: '<%= build.dist %>/html/challenge-details/index.html' },
-          
+        ]
+      },
+      debug: {
+        options: {
+          patterns: [
+            {
+              match: 'tcconfig',
+              replacement: JSON.stringify(tcconfig)
+            },
+            {
+              match: 'css',
+              replacement: pkg_config.packages['ng-details'].debugCssInclude
+            },
+          ]
+        },
+        files: [
+          { src: ['<%= build.src %>/js/app/challenge-details/index.html'], dest: '<%= build.dist %>/html/challenge-details/index.html' },
+        ]
+      },
+      css: {
+        options: {
+          patterns: [
+            {
+              match: 'cdn',
+              replacement: tcconfig.cdnPrefix
+            },
+          ]
+        },
+        files: [
           { cwd: '<%= build.src %>/css', src: '**/*.css', dest: '<%= build.dist %>/css', expand: true },
         ]
       }
@@ -113,18 +142,6 @@ module.exports = function(grunt) {
           '<%= build.tmp %>/ng-member-profile.concat.css': addBaseFilePath(pkg_config.packages['ng-member-profile'].css, '<%= build.dist %>/css/'),
           '<%= build.tmp %>/ng-users.concat.css': addBaseFilePath(pkg_config.packages['ng-users'].css, '<%= build.dist %>/css/'),
           '<%= build.tmp %>/profile-builder.concat.css': addBaseFilePath(pkg_config.packages['profile-builder'].css, '<%= build.dist %>/css/')
-
-
-          // '<%= build.tmp %>/default.concat.css': addBaseFilePath(pkg_config.packages.default.css, '<%= build.dist %>/css'),
-          // '<%= build.tmp %>/challengelanding.concat.css': addBaseFilePath(pkg_config.packages.challengelanding.css, '<%= build.dist %>/css'),
-          // '<%= build.tmp %>/challenges.concat.css': addBaseFilePath(pkg_config.packages.challenges.css, '<%= build.dist %>/css'),
-          // '<%= build.tmp %>/challengeterms.concat.css': addBaseFilePath(pkg_config.packages.challengeterms.css, '<%= build.dist %>/css'),
-          // '<%= build.tmp %>/challengesubmit.concat.css': addBaseFilePath(pkg_config.packages.challengesubmit.css, '<%= build.dist %>/css'),
-          // '<%= build.tmp %>/ng-details.concat.css': addBaseFilePath(pkg_config.packages['ng-details'].css, '<%= build.dist %>/css'),
-          // '<%= build.tmp %>/ngChallenges.concat.css': addBaseFilePath(pkg_config.packages.ngChallenges.css, '<%= build.dist %>/css'),
-          // '<%= build.tmp %>/ng-member-profile.concat.css': addBaseFilePath(pkg_config.packages['ng-member-profile'].css, '<%= build.dist %>/css'),
-          // '<%= build.tmp %>/ng-users.concat.css': addBaseFilePath(pkg_config.packages['ng-users'].css, '<%= build.dist %>/css'),
-          // '<%= build.tmp %>/profile-builder.concat.css': addBaseFilePath(pkg_config.packages['profile-builder'].css, '<%= build.dist %>/css')
         }
       }
     },
@@ -238,8 +255,8 @@ module.exports = function(grunt) {
   });
 
   // Default task.
-  grunt.registerTask('default', ['clean', 'replace', 'concat',  'cssmin', 'copy', 'uglify', 'compress', 'writeConfig']);
+  grunt.registerTask('default', ['clean', 'replace:dist', 'replace:css', 'concat',  'cssmin', 'copy', 'uglify', 'compress', 'writeConfig']);
 
-  grunt.registerTask('debug', ['clean', 'replace', 'concat', 'cssmin', 'copy', 'writeConfig']);
+  grunt.registerTask('debug', ['clean', 'replace:debug', 'replace:css', 'concat', 'cssmin', 'copy', 'writeConfig']);
 
 };
