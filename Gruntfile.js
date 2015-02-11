@@ -48,17 +48,17 @@ module.exports = function(grunt) {
     cbURL: grunt.option('cb-url') || 'https://coderbits.com'
   };
 
-  tcconfig.cdnPrefix =  tcconfig.cdnURL + (tcconfig.useVer ? '/' + tcconfig.version : '');
-  tcconfig.fileSuffix =  tcconfig.useMin ? '.min' : '';
+  var cdnPrefix =  tcconfig.cdnURL + (tcconfig.useVer ? '/' + tcconfig.version : '');
+  var fileSuffix =  tcconfig.useMin ? '.min' : '';
 
   pkg_config.packages['ng-details'].debugCssInclude = "";
   pkg_config.packages['ng-details'].css.forEach(function(cssPath) {
-    pkg_config.packages['ng-details'].debugCssInclude += "<link rel='stylesheet' href='" + tcconfig.cdnPrefix + "/css/" + cssPath + "' type='text/css' media='all' />\r\n";
+    pkg_config.packages['ng-details'].debugCssInclude += "<link rel='stylesheet' href='" + cdnPrefix + "/css/" + cssPath + "' type='text/css' media='all' />\r\n";
   });
 
   pkg_config.packages['ng-details'].debugJsInclude = "";
   pkg_config.packages['ng-details'].js.forEach(function(jsPath) {
-    pkg_config.packages['ng-details'].debugJsInclude += "<script type='text/javascript' src='" + tcconfig.cdnPrefix + "/js/" + jsPath + "'></script>\r\n";
+    pkg_config.packages['ng-details'].debugJsInclude += "<script type='text/javascript' src='" + cdnPrefix + "/js/" + jsPath + "'></script>\r\n";
   });
 
   grunt.registerTask('writeConfig', function() {
@@ -93,11 +93,11 @@ module.exports = function(grunt) {
             },
             {
               match: 'css',
-              replacement: "<link rel='stylesheet' href='" + tcconfig.cdnPrefix + "/css/ng-details" + tcconfig.fileSuffix + ".css' type='text/css' media='all' />"
+              replacement: "<link rel='stylesheet' href='" + cdnPrefix + "/css/ng-details" + fileSuffix + ".css' type='text/css' media='all' />"
             },
             {
               match: 'scripts',
-              replacement: "<script type='text/javascript' src='" + tcconfig.cdnPrefix + "/js/ng-details" + tcconfig.fileSuffix + ".js'></script>"
+              replacement: "<script type='text/javascript' src='" + cdnPrefix + "/js/ng-details" + fileSuffix + ".js'></script>"
             },
             {
               match: 'dependencies',
@@ -147,7 +147,7 @@ module.exports = function(grunt) {
           patterns: [
             {
               match: 'cdn',
-              replacement: tcconfig.cdnPrefix
+              replacement: cdnPrefix
             },
           ]
         },
