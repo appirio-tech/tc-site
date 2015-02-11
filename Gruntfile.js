@@ -4,6 +4,8 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
 
   var pkg_config = grunt.file.readJSON('wp/wp-content/themes/tcs-responsive/config/script-register.json');
+  var dependencies = grunt.file.read('dependencies.html');
+  var analytics = grunt.file.read('analytics.html');
 
   function addBaseFilePath(files, base) {
     var new_names = [];
@@ -47,11 +49,16 @@ module.exports = function(grunt) {
   };
 
   tcconfig.cdnPrefix =  tcconfig.cdnURL + (tcconfig.useVer ? '/' + tcconfig.version : '');
-  tcconfig.cssSuffix =  (tcconfig.useMin ? '.min' : '') + '.css';
+  tcconfig.fileSuffix =  tcconfig.useMin ? '.min' : '';
 
   pkg_config.packages['ng-details'].debugCssInclude = "";
   pkg_config.packages['ng-details'].css.forEach(function(cssPath) {
     pkg_config.packages['ng-details'].debugCssInclude += "<link rel='stylesheet' href='" + tcconfig.cdnPrefix + "/css/" + cssPath + "' type='text/css' media='all' />\r\n";
+  });
+
+  pkg_config.packages['ng-details'].debugJsInclude = "";
+  pkg_config.packages['ng-details'].js.forEach(function(jsPath) {
+    pkg_config.packages['ng-details'].debugJsInclude += "<script type='text/javascript' src='" + tcconfig.cdnPrefix + "/js/" + jsPath + "'></script>\r\n";
   });
 
   grunt.registerTask('writeConfig', function() {
@@ -86,7 +93,19 @@ module.exports = function(grunt) {
             },
             {
               match: 'css',
-              replacement: "<link rel='stylesheet' href='" + tcconfig.cdnPrefix + "/css/ng-details" + tcconfig.cssSuffix + "' type='text/css' media='all' />"
+              replacement: "<link rel='stylesheet' href='" + tcconfig.cdnPrefix + "/css/ng-details" + tcconfig.fileSuffix + ".css' type='text/css' media='all' />"
+            },
+            {
+              match: 'scripts',
+              replacement: "<script type='text/javascript' src='" + tcconfig.cdnPrefix + "/js/ng-details" + tcconfig.fileSuffix + ".js'></script>"
+            },
+            {
+              match: 'dependencies',
+              replacement: dependencies
+            },
+            {
+              match: 'analytics',
+              replacement: analytics
             },
           ]
         },
@@ -104,6 +123,18 @@ module.exports = function(grunt) {
             {
               match: 'css',
               replacement: pkg_config.packages['ng-details'].debugCssInclude
+            },
+            {
+              match: 'scripts',
+              replacement: pkg_config.packages['ng-details'].debugJsInclude
+            },
+            {
+              match: 'dependencies',
+              replacement: dependencies
+            },
+            {
+              match: 'analytics',
+              replacement: analytics
             },
           ]
         },
