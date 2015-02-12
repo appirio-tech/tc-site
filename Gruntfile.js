@@ -287,7 +287,7 @@ module.exports = function(grunt) {
 
   // Default task.
   grunt.registerTask('default', ['clean', 'replace:dist', 'replace:css', 'concat',  'cssmin', 'copy', 'uglify', 'compress', 'writeConfig']);
-
+  grunt.registerTask('dev', ['debug', 'watch'])
   grunt.registerTask('debug', ['clean', 'replace:debug', 'replace:css', 'concat', 'cssmin', 'copy', 'writeConfig']);
 
 };
