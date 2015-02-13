@@ -436,7 +436,7 @@ sub, sup {
 ---------------------------*/
 #footer{
     background: #333;
-    min-height: 244px;
+    min-height: 150px;
     color: #959595;
     z-index: 0;
     position: relative;
@@ -491,7 +491,6 @@ sub, sup {
 #footer .copyright{
     float: left;
     font-size: 15px;
-    margin-top: 15px;
 }
 	#footer .copyright a{
     color: #a1a1a1;
