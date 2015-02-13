@@ -7,6 +7,7 @@
 Thumbs.db
 config.json
 wp/wp-config.php
+wp/wp-content/uploads/
 
 # large/disallowed file types
 # a CDN should be used for these
