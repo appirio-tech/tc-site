@@ -30,7 +30,7 @@ module.exports = function(grunt) {
     communityURL: grunt.option('community-url') || 'http://community.topcoder.com',
     mainURL: grunt.option('main-url') || 'http://local.topcoder.com',
     apiURL: grunt.option('api-url') || 'https://api.topcoder.com/v2',
-    cdnURL: grunt.option('cdn-url') || '',
+    cdnURL: grunt.option('cdn-url') || '/mf',
     useVer: grunt.option('use-ver') || false,
     version: grunt.option('cdn-version') || '',
 
