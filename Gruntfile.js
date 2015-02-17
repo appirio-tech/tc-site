@@ -4,8 +4,8 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
 
   var pkg_config = grunt.file.readJSON('wp/wp-content/themes/tcs-responsive/config/script-register.json');
-  var dependencies = grunt.file.read('dependencies.html');
-  var analytics = grunt.file.read('analytics.html');
+  var dependencies = grunt.file.read('src/dependencies.html');
+  var analytics = grunt.file.read('src/analytics.html');
 
   function addBaseFilePath(files, base) {
     var new_names = [];
