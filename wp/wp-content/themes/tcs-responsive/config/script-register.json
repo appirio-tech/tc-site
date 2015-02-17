@@ -433,6 +433,7 @@
     },
     "ng-details": {
       "name": "ng-details",
+      "url": "challenge-details",
       "js": [
         "jquery.cookie.js",
         "jwt-auth0.js",

@@ -4,8 +4,10 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
 
   var pkg_config = grunt.file.readJSON('wp/wp-content/themes/tcs-responsive/config/script-register.json');
+  
   var dependencies = grunt.file.read('src/dependencies.html');
   var analytics = grunt.file.read('src/analytics.html');
+  var header = grunt.file.read('src/header.html');
 
   function addBaseFilePath(files, base) {
     var new_names = [];
@@ -51,16 +53,25 @@ module.exports = function(grunt) {
   var cdnPrefix =  tcconfig.cdnURL + (tcconfig.useVer ? '/' + tcconfig.version : '');
   var fileSuffix =  tcconfig.useMin ? '.min' : '';
 
-  pkg_config.packages['ng-details'].debugCssInclude = "";
-  pkg_config.packages['ng-details'].css.forEach(function(cssPath) {
-    pkg_config.packages['ng-details'].debugCssInclude += "<link rel='stylesheet' href='" + cdnPrefix + "/css/" + cssPath + "' type='text/css' media='all' />\r\n";
-  });
+  for (var name in pkg_config.packages) {
+    var pkg = pkg_config.packages[name];
+    if (pkg.url) {
+      pkg.debugCssInclude = "";
+      pkg.css.forEach(function(cssPath) {
+        pkg.debugCssInclude += "<link rel='stylesheet' href='" + cdnPrefix + "/css/" + cssPath + "' type='text/css' media='all' />\r\n";
+      });
 
-  pkg_config.packages['ng-details'].debugJsInclude = "";
-  pkg_config.packages['ng-details'].js.forEach(function(jsPath) {
-    pkg_config.packages['ng-details'].debugJsInclude += "<script type='text/javascript' src='" + cdnPrefix + "/js/" + jsPath + "'></script>\r\n";
-  });
+      pkg.debugJsInclude = "";
+      pkg.js.forEach(function(jsPath) {
+        pkg.debugJsInclude += "<script type='text/javascript' src='" + cdnPrefix + "/js/" + jsPath + "'></script>\r\n";
+      });
+    }
+  }
 
+  // new config setting
+  header = header.replace('@@tcconfig', JSON.stringify(tcconfig));
+
+  // wp config.json file based on same settings
   grunt.registerTask('writeConfig', function() {
     // Write config to file
     grunt.file.write('wp/config.json', JSON.stringify(tcconfig, null, 2));
@@ -88,10 +99,6 @@ module.exports = function(grunt) {
         options: {
           patterns: [
             {
-              match: 'tcconfig',
-              replacement: JSON.stringify(tcconfig)
-            },
-            {
               match: 'css',
               replacement: "<link rel='stylesheet' href='" + cdnPrefix + "/css/ng-details" + fileSuffix + ".css' type='text/css' media='all' />"
             },
@@ -107,6 +114,10 @@ module.exports = function(grunt) {
               match: 'analytics',
               replacement: analytics
             },
+            {
+              match: 'header',
+              replacement: header
+            },
           ]
         },
         files: [
@@ -116,10 +127,6 @@ module.exports = function(grunt) {
       debug: {
         options: {
           patterns: [
-            {
-              match: 'tcconfig',
-              replacement: JSON.stringify(tcconfig)
-            },
             {
               match: 'css',
               replacement: pkg_config.packages['ng-details'].debugCssInclude
@@ -135,6 +142,10 @@ module.exports = function(grunt) {
             {
               match: 'analytics',
               replacement: analytics
+            },
+            {
+              match: 'header',
+              replacement: header
             },
           ]
         },
@@ -290,4 +301,9 @@ module.exports = function(grunt) {
   grunt.registerTask('dev', ['debug', 'watch'])
   grunt.registerTask('debug', ['clean', 'replace:debug', 'replace:css', 'concat', 'cssmin', 'copy', 'writeConfig']);
 
+
+  // custom tasks
+  grunt.registerTask('header', 'Build header based on supplied configuration', function(environment) {
+    header = header.replace('@@tcconfig', JSON.stringify(tcconfig));
+  });
 };
