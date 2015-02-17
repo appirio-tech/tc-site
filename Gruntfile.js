@@ -36,7 +36,7 @@ module.exports = function(grunt) {
 
     // broken on challenge details 
     useGz: grunt.option('use-gz') || false,
-    useMin: grunt.option('use-min') || true,
+    useMin: grunt.option('use-min') || false,
     // only used on wp setup
     useCND: grunt.option('use-cdn') || false,
 
@@ -63,7 +63,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('writeConfig', function() {
     // Write config to file
-    grunt.file.write('config.json', JSON.stringify(tcconfig, null, 2));
+    grunt.file.write('wp/config.json', JSON.stringify(tcconfig, null, 2));
   });
 
   // Project configuration.
