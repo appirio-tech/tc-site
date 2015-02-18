@@ -92,12 +92,14 @@ module.exports = function(grunt) {
           scripts = "<script type='text/javascript' src='" + cdnPrefix + "/js/" + name + prodSuffix + ".js'></script>";
         }
 
+        var head = grunt.file.read(srcJS + 'app/' + pkg.url + '/head.html') || '<html lang="en" itemscope itemtype="http://schema.org/Article" ng-app="challengeDetails"><head>';
+
         replaces[name] = {
           options: {
             patterns: [
               {
                 match: 'header',
-                replacement: header.replace('@@css', css)
+                replacement: header.replace('@@css', css).replace('@@head', head)
               },
               {
                 match: 'footer',
