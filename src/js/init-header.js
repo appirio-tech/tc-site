@@ -50,7 +50,7 @@ if (e.keyCode == 13) {
     $('#login a.btnSubmit').click();
 }
 });
-
+if (!loginState) {
   // moved from main code
   var socialProviderId = "", socialUserName = "", socialEmail = "", socialProvider = "";
   var utmSource = '', utmMedium = '', utmCampaign = '';
@@ -97,13 +97,13 @@ if (e.keyCode == 13) {
 
       // redirect for non-modal registration
       if ( $('#mainContent #register').length>0 ) {
-          loginState = 'https://www.topcoder.com/community/registration-complete/';
+          loginState = '/community/registration-complete/';
       }
 
       // set to home page for non modal login
       if ( $('#mainContent #login').length>0 ) {
           if ( referer=='' || referer==loginState) {
-              loginState = 'https://www.topcoder.com';
+              loginState = '/';
           } else {
               loginState = referer;
           }
@@ -136,21 +136,18 @@ if (e.keyCode == 13) {
       }
     }
 
-    var auth0Login = new Auth0({
-      domain: 'topcoder.auth0.com',
-      clientID: '6ZwZEUo2ZK4c50aLPpgupeg5v2Ffxp9P',
-      callbackURL: 'https://www.topcoder.com/reg2/callback.action',
-      state: loginState,
-      redirect_uri: loginState
-    });
+    if (!tcconfig) { var tcconfig = @@tcconfig }
 
-    var auth0Register = new Auth0({
-      domain: 'topcoder.auth0.com',
-      clientID: '6ZwZEUo2ZK4c50aLPpgupeg5v2Ffxp9P',
-      callbackURL: 'https://www.topcoder.com?action=callback',
+    var auth0Conf = {
+      domain: tcconfig.auth0URL,
+      clientID: tcconfig.auth0ClientID,
+      callbackURL: tcconfig.auth0CallbackURL,
       state: loginState,
       redirect_uri: loginState
-    });
+    }
+    
+    var auth0Login = new Auth0(auth0Conf);
+    var auth0Register = new Auth0(auth0Conf);
 
     auth0Register.getProfile(window.location.hash, function (err, profile, id_token, access_token, state) {
       socialProvider = profile.identities[0].connection;
@@ -317,7 +314,7 @@ if (e.keyCode == 13) {
         });
     });
   });
-
+}
 });
 
 function initMemberDetails(pagePersisted){

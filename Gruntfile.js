@@ -66,7 +66,20 @@ module.exports = function(grunt) {
       files: [
         { cwd: '<%= build.src %>/css', src: '**/*.css', dest: '<%= build.dist %>/css', expand: true },
       ]
-    }
+    },
+    js: {
+      options: {
+        patterns: [
+          {
+            match: 'tcconfig',
+            replacement: tcconfig
+          },
+        ]
+      },
+      files: [
+        { cwd: '<%= build.src %>/js', src: '**/*', dest: '<%= build.dist %>/js', expand: true },
+      ]
+    },
   };
 
   // custom tasks
@@ -185,12 +198,12 @@ module.exports = function(grunt) {
         dest: '<%= build.dist %>/fonts',
         expand: true
       },
-      {
-        cwd: '<%= build.src %>/js',
-        src: '**/*',
-        dest: '<%= build.dist %>/js',
-        expand: true
-      }
+      // {
+      //   cwd: '<%= build.src %>/js',
+      //   src: '**/*',
+      //   dest: '<%= build.dist %>/js',
+      //   expand: true
+      // }
       ]
     }},
     uglify: {
