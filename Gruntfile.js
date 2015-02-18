@@ -8,6 +8,7 @@ module.exports = function(grunt) {
   var dependencies = grunt.file.read('src/dependencies.html');
   var analytics = grunt.file.read('src/analytics.html');
   var header = grunt.file.read('src/header.html');
+  var footer = grunt.file.read('src/footer.html');
 
   function addBaseFilePath(files, base) {
     var new_names = [];
@@ -53,23 +54,66 @@ module.exports = function(grunt) {
   var cdnPrefix =  tcconfig.cdnURL + (tcconfig.useVer ? '/' + tcconfig.version : '');
   var fileSuffix =  tcconfig.useMin ? '.min' : '';
 
-  for (var name in pkg_config.packages) {
-    var pkg = pkg_config.packages[name];
-    if (pkg.url) {
-      pkg.debugCssInclude = "";
-      pkg.css.forEach(function(cssPath) {
-        pkg.debugCssInclude += "<link rel='stylesheet' href='" + cdnPrefix + "/css/" + cssPath + "' type='text/css' media='all' />\r\n";
-      });
-
-      pkg.debugJsInclude = "";
-      pkg.js.forEach(function(jsPath) {
-        pkg.debugJsInclude += "<script type='text/javascript' src='" + cdnPrefix + "/js/" + jsPath + "'></script>\r\n";
-      });
+  var replaces = { 
+    css: {
+      options: {
+        patterns: [
+          {
+            match: 'cdn',
+            replacement: cdnPrefix
+          },
+        ]
+      },
+      files: [
+        { cwd: '<%= build.src %>/css', src: '**/*.css', dest: '<%= build.dist %>/css', expand: true },
+      ]
     }
-  }
+  };
 
-  // new config setting
-  header = header.replace('@@tcconfig', JSON.stringify(tcconfig));
+  // custom tasks
+  grunt.registerTask('buildPackages', 'Build packages based on supplied configuration', function(environment) {
+    header = header.replace('@@tcconfig', JSON.stringify(tcconfig));
+    footer = footer.replace('@@analytics', analytics);
+    footer = footer.replace('@@dependencies', dependencies);
+
+    for (var name in pkg_config.packages) {
+      var pkg = pkg_config.packages[name];
+      if (pkg.url) {
+        var css = "";
+        var scripts = "";
+        if (environment == "debug") {
+          pkg.css.forEach(function(cssPath) {
+            css += "<link rel='stylesheet' href='" + cdnPrefix + "/css/" + cssPath + "' type='text/css' media='all' />";
+          });
+          pkg.js.forEach(function(jsPath) {
+            scripts += "<script type='text/javascript' src='" + cdnPrefix + "/js/" + jsPath + "'></script>";
+          });
+        } else {
+          css = "<link rel='stylesheet' href='" + cdnPrefix + "/css/ng-details" + fileSuffix + ".css' type='text/css' media='all' />";
+          scripts = "<script type='text/javascript' src='" + cdnPrefix + "/js/ng-details" + fileSuffix + ".js'></script>";
+        }
+
+        replaces[name] = {
+          options: {
+            patterns: [
+              {
+                match: 'header',
+                replacement: header.replace('@@css', css)
+              },
+              {
+                match: 'footer',
+                replacement: footer.replace('@@scripts', scripts)
+              },
+            ]
+          },
+          files: [{ 
+            src: ['<%= build.src %>/js/app/' + pkg.url + '/index.html'], 
+            dest: '<%= build.dist %>/html/' + pkg.url + '/index.html' 
+          }]
+        };
+      }
+    }
+  });
 
   // wp config.json file based on same settings
   grunt.registerTask('writeConfig', function() {
@@ -94,79 +138,7 @@ module.exports = function(grunt) {
       '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
       '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
       ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
-    replace: {
-      dist: {
-        options: {
-          patterns: [
-            {
-              match: 'css',
-              replacement: "<link rel='stylesheet' href='" + cdnPrefix + "/css/ng-details" + fileSuffix + ".css' type='text/css' media='all' />"
-            },
-            {
-              match: 'scripts',
-              replacement: "<script type='text/javascript' src='" + cdnPrefix + "/js/ng-details" + fileSuffix + ".js'></script>"
-            },
-            {
-              match: 'dependencies',
-              replacement: dependencies
-            },
-            {
-              match: 'analytics',
-              replacement: analytics
-            },
-            {
-              match: 'header',
-              replacement: header
-            },
-          ]
-        },
-        files: [
-          { src: ['<%= build.src %>/js/app/challenge-details/index.html'], dest: '<%= build.dist %>/html/challenge-details/index.html' },
-        ]
-      },
-      debug: {
-        options: {
-          patterns: [
-            {
-              match: 'css',
-              replacement: pkg_config.packages['ng-details'].debugCssInclude
-            },
-            {
-              match: 'scripts',
-              replacement: pkg_config.packages['ng-details'].debugJsInclude
-            },
-            {
-              match: 'dependencies',
-              replacement: dependencies
-            },
-            {
-              match: 'analytics',
-              replacement: analytics
-            },
-            {
-              match: 'header',
-              replacement: header
-            },
-          ]
-        },
-        files: [
-          { src: ['<%= build.src %>/js/app/challenge-details/index.html'], dest: '<%= build.dist %>/html/challenge-details/index.html' },
-        ]
-      },
-      css: {
-        options: {
-          patterns: [
-            {
-              match: 'cdn',
-              replacement: cdnPrefix
-            },
-          ]
-        },
-        files: [
-          { cwd: '<%= build.src %>/css', src: '**/*.css', dest: '<%= build.dist %>/css', expand: true },
-        ]
-      }
-    },
+    replace: replaces,
     concat: {
       options: {
         banner: '<%= banner %>',
@@ -297,13 +269,7 @@ module.exports = function(grunt) {
   });
 
   // Default task.
-  grunt.registerTask('default', ['clean', 'replace:dist', 'replace:css', 'concat',  'cssmin', 'copy', 'uglify', 'compress', 'writeConfig']);
+  grunt.registerTask('default', ['clean', 'buildPackages:dist', 'replace', 'concat',  'cssmin', 'copy', 'uglify', 'compress', 'writeConfig']);
   grunt.registerTask('dev', ['debug', 'watch'])
-  grunt.registerTask('debug', ['clean', 'replace:debug', 'replace:css', 'concat', 'cssmin', 'copy', 'writeConfig']);
-
-
-  // custom tasks
-  grunt.registerTask('header', 'Build header based on supplied configuration', function(environment) {
-    header = header.replace('@@tcconfig', JSON.stringify(tcconfig));
-  });
+  grunt.registerTask('debug', ['clean', 'buildPackages:debug', 'replace', 'concat', 'cssmin', 'copy', 'writeConfig']);
 };
