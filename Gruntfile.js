@@ -37,10 +37,9 @@ module.exports = function(grunt) {
     useVer: grunt.option('use-ver') || false,
     version: grunt.option('cdn-version') || '',
 
-    // broken on challenge details 
+    // only used on wp setup
     useGz: grunt.option('use-gz') || false,
     useMin: grunt.option('use-min') || false,
-    // only used on wp setup
     useCND: grunt.option('use-cdn') || false,
 
     lcURL: grunt.option('lc-url') || 'http://dev-lc1-ext-challenge-service.herokuapp.com',
@@ -52,7 +51,7 @@ module.exports = function(grunt) {
   };
 
   var cdnPrefix =  tcconfig.cdnURL + (tcconfig.useVer ? '/' + tcconfig.version : '');
-  var fileSuffix =  tcconfig.useMin ? '.min' : '';
+  var prodSuffix =  '.min'; //TODO fix gzip tcconfig.useMin ? '.min' : '';
 
   var replaces = { 
     css: {
@@ -89,8 +88,8 @@ module.exports = function(grunt) {
             scripts += "<script type='text/javascript' src='" + cdnPrefix + "/js/" + jsPath + "'></script>";
           });
         } else {
-          css = "<link rel='stylesheet' href='" + cdnPrefix + "/css/ng-details" + fileSuffix + ".css' type='text/css' media='all' />";
-          scripts = "<script type='text/javascript' src='" + cdnPrefix + "/js/ng-details" + fileSuffix + ".js'></script>";
+          css = "<link rel='stylesheet' href='" + cdnPrefix + "/css/" + name + prodSuffix + ".css' type='text/css' media='all' />";
+          scripts = "<script type='text/javascript' src='" + cdnPrefix + "/js/" + name + prodSuffix + ".js'></script>";
         }
 
         replaces[name] = {
