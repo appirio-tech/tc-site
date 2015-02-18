@@ -2,30 +2,29 @@
 
 <div class="my-dashboard-container" >
   <div class="my-dashboard-column-left">
-    <div class="my-dashboard-widget welcome-back" >
-    welcome back
+    <div class="my-dashboard-widget welcome-back" ng-controller="WelcomeBackCtrl">
+      {{message}}
     </div>
-    <div class="my-dashboard-widget member-program">
-    member program
+    <div class="my-dashboard-widget member-program" ng-controller="MemberProgramCtrl">
+      {{message}}
     </div>
-    <div class="my-dashboard-widget helpful-links">
-    helpful links
+    <div class="my-dashboard-widget helpful-links" ng-controller="HelpfulLinksCtrl">
+      {{message}}
     </div>
-
-    <div class="my-dashboard-widget blog-post">
-    blog post
+    <div class="my-dashboard-widget blog-post" ng-controller="BlogPostCtrl">
+      {{message}}
     </div>
   </div>
 
   <div class="my-dashboard-column-right">
-    <div class="my-dashboard-widget marketing-message">
-    marketing message
+    <div class="my-dashboard-widget marketing-message" ng-controller="MarketingMessageCtrl">
+      {{message}}
     </div>
-    <div class="my-dashboard-widget my-challenges">
-    my challenges
+    <div class="my-dashboard-widget my-challenges" ng-controller="MyChallengesCtrl">
+      {{message}}
     </div>
-    <div class="my-dashboard-widget srm-gadget">
-    srm
+    <div class="my-dashboard-widget srm-gadget" ng-controller="SRMGadgetCtrl">
+      {{message}}
     </div>
   </div>
 </div>
