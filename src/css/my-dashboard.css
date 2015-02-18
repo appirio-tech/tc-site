@@ -1,0 +1,55 @@
+.my-dashboard-container {
+    width: 100%;
+    border: 2px solid;
+    height: 1000px
+}
+
+.my-dashboard-column-left {
+    width: 45%;
+    float: left;
+    margin-left: 50px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.my-dashboard-column-right {
+    width: 45%;
+    float: right;
+    margin-right: 50px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.my-dashboard-widget {
+    border: 2px solid;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.welcome-back {
+    height: 200px;
+}
+
+.marketing-message {
+    height: 150px;
+}
+
+.member-program {
+    height: 250px;
+}
+
+.my-challenges {
+    height: 510px;
+}
+
+.helpful-links {
+    height: 200px;
+}
+
+.blog-post {
+    height: 300px;
+}
+
+.srm-gadget {
+    height: 300px;
+}
