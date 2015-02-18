@@ -21,6 +21,10 @@
    * @constructor
    */
   function MyDashboardCtrl($scope) {
+    $scope.getTemplateURL = function (template) {
+      return base_url + '/js/app/my-dashboard/partials/' + template;
+    }
+
   }
 
 

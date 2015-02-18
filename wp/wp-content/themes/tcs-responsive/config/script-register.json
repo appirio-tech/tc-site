@@ -533,6 +533,7 @@
         "app/my-dashboard/js/controllers/helpful-links-controller.js",
         "app/my-dashboard/js/controllers/blog-post-controller.js",
         "app/my-dashboard/js/controllers/srm-gadget-controller.js",
+        "app/my-dashboard/js/services/member-profile-services.js",
         "app/my-dashboard/js/controllers/welcome-back-controller.js"
       ],
       "css": [

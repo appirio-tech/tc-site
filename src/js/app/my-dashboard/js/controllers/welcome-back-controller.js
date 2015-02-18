@@ -11,7 +11,7 @@
    * Inject dependencies
    * @type {string[]}
    */
-  WelcomeBackCtrl.$inject = ['$scope'];
+  WelcomeBackCtrl.$inject = ['$scope', 'ProfileService'];
 
   /**
    * Controller implementation
@@ -20,8 +20,25 @@
    * @param ChallengeService
    * @constructor
    */
-  function WelcomeBackCtrl($scope) {
-    $scope.message = "Welcome Back";
+  function WelcomeBackCtrl($scope, ProfileService) {
+    $scope.ratingColor = "color: #999999";
+
+    app.getHandle(function() {
+      ProfileService.getUserProfile(app.handle)
+        .then(function(data) {
+          $scope.profile = data;
+
+          var highestRating = 0;
+
+          angular.forEach($scope.profile.ratingSummary, function(value, key) {
+            if (highestRating < value.rating) {
+              highestRating = value.rating;
+              $scope.ratingColor = value.colorStyle;
+            }
+          });
+        });
+    });
+
 
   }
 

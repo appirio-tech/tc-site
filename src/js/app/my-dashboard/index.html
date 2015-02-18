@@ -2,8 +2,7 @@
 
 <div class="my-dashboard-container" >
   <div class="my-dashboard-column-left">
-    <div class="my-dashboard-widget welcome-back" ng-controller="WelcomeBackCtrl">
-      {{message}}
+    <div class="my-dashboard-widget welcome-back" ng-include="getTemplateURL('welcome-back.html')">
     </div>
     <div class="my-dashboard-widget member-program" ng-controller="MemberProgramCtrl">
       {{message}}
