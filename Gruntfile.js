@@ -30,7 +30,6 @@ module.exports = function(grunt) {
     auth0CallbackURL: grunt.option('auth-callback-url') || 'https://www.topcoder.com/reg2/callback.action',
     auth0LDAP: grunt.option('auth-ldap') || 'LDAP',
     auth0URL: grunt.option('auth-main-url') || 'topcoder.auth0.com',
-    communityURL: grunt.option('community-url') || 'http://community.topcoder.com',
     mainURL: grunt.option('main-url') || 'http://local.topcoder.com',
     apiURL: grunt.option('api-url') || 'https://api.topcoder.com/v2',
     cdnURL: grunt.option('cdn-url') || '/mf',
@@ -41,11 +40,12 @@ module.exports = function(grunt) {
     useGz: grunt.option('use-gz') || false,
     useMin: grunt.option('use-min') || false,
     useCND: grunt.option('use-cdn') || false,
+    communityURL: grunt.option('community-url') || '//community.topcoder.com',
 
-    lcURL: grunt.option('lc-url') || 'http://dev-lc1-ext-challenge-service.herokuapp.com',
-    lcDiscussionURL: grunt.option('lc-discussion-url') || 'http://dev-lc1-discussion-service.herokuapp.com',
-    lcUserURL: grunt.option('lc-user-url') || 'http://dev-lc1-user-service.herokuapp.com',
-    lcSiteUrl: grunt.option('lc-site-url') || 'http://dev-lc1-challenge-app.herokuapp.com',
+    lcURL: grunt.option('lc-url') || '//dev-lc1-ext-challenge-service.herokuapp.com',
+    lcDiscussionURL: grunt.option('lc-discussion-url') || '//dev-lc1-discussion-service.herokuapp.com',
+    lcUserURL: grunt.option('lc-user-url') || '//dev-lc1-user-service.herokuapp.com',
+    lcSiteUrl: grunt.option('lc-site-url') || '//dev-lc1-challenge-app.herokuapp.com',
     myFiltersURL: grunt.option('my-filters-url') || 'https://staging-user-settings-service.herokuapp.com',
     cbURL: grunt.option('cb-url') || 'https://coderbits.com'
   };
