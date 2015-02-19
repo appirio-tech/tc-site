@@ -8,6 +8,7 @@ Thumbs.db
 wp/config.json
 wp/wp-config.php
 wp/wp-content/uploads/
+wp/wp-content/themes/tcs-responsive/config/env.php
 
 # large/disallowed file types
 # a CDN should be used for these
