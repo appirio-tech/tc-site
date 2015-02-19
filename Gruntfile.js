@@ -94,15 +94,16 @@ module.exports = function(grunt) {
         var css = "";
         var scripts = "";
         if (environment == "debug") {
+          var ts = new Date().getTime();
           pkg.css.forEach(function(cssPath) {
-            css += "<link rel='stylesheet' href='" + cdnPrefix + "/css/" + cssPath + "' type='text/css' media='all' />";
+            css += "<link rel='stylesheet' href='" + cdnPrefix + "/css/" + cssPath + "?ver=" + ts + "' type='text/css' media='all' />";
           });
           pkg.js.forEach(function(jsPath) {
-            scripts += "<script type='text/javascript' src='" + cdnPrefix + "/js/" + jsPath + "'></script>";
+            scripts += "<script type='text/javascript' src='" + cdnPrefix + "/js/" + jsPath + "?ver=" + ts + "'></script>";
           });
         } else {
-          css = "<link rel='stylesheet' href='" + cdnPrefix + "/css/" + name + prodSuffix + ".css' type='text/css' media='all' />";
-          scripts = "<script type='text/javascript' src='" + cdnPrefix + "/js/" + name + prodSuffix + ".js'></script>";
+          css = "<link rel='stylesheet' href='" + cdnPrefix + "/css/" + name + prodSuffix + ".css?ver=<%= gitinfo.local.branch.current.shortSHA %>' type='text/css' media='all' />";
+          scripts = "<script type='text/javascript' src='" + cdnPrefix + "/js/" + name + prodSuffix + ".js?ver=<%= gitinfo.local.branch.current.shortSHA %>'></script>";
         }
 
         var head = grunt.file.read(srcJS + 'app/' + pkg.url + '/head.html') || '<html lang="en" itemscope itemtype="http://schema.org/Article" ng-app="challengeDetails"><head>';
@@ -137,6 +138,7 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
+    gitinfo : {},
     // Metadata.
     pkg: grunt.file.readJSON('package.json'),
     // build config
@@ -283,7 +285,7 @@ module.exports = function(grunt) {
   });
 
   // Default task.
-  grunt.registerTask('default', ['clean', 'buildPackages:dist', 'copy', 'replace', 'concat',  'cssmin', 'uglify', 'compress', 'writeConfig']);
+  grunt.registerTask('default', ['gitinfo', 'clean', 'buildPackages:dist', 'copy', 'replace', 'concat',  'cssmin', 'uglify', 'compress', 'writeConfig']);
   grunt.registerTask('dev', ['debug', 'watch'])
   grunt.registerTask('debug', ['clean', 'buildPackages:debug', 'copy', 'replace', 'concat', 'cssmin', 'writeConfig']);
 };
