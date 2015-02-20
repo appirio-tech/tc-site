@@ -43,11 +43,11 @@ module.exports = function(grunt) {
     useCND: grunt.option('use-cdn') || false,
     
 
-    lcURL: grunt.option('lc-url') || '//dev-lc1-ext-challenge-service.herokuapp.com',
-    lcDiscussionURL: grunt.option('lc-discussion-url') || '//dev-lc1-discussion-service.herokuapp.com',
-    lcUserURL: grunt.option('lc-user-url') || '//dev-lc1-user-service.herokuapp.com',
-    lcSiteUrl: grunt.option('lc-site-url') || '//dev-lc1-challenge-app.herokuapp.com',
-    myFiltersURL: grunt.option('my-filters-url') || 'https://staging-user-settings-service.herokuapp.com',
+    lcURL: grunt.option('lc-url') || '//prod-lc1-ext-challenge-service.herokuapp.com',
+    lcDiscussionURL: grunt.option('lc-discussion-url') || '//prod-lc1-discussion-service.herokuapp.com',
+    lcUserURL: grunt.option('lc-user-url') || '//prod-lc1-user-service.herokuapp.com',
+    lcSiteUrl: grunt.option('lc-site-url') || '//beta.topcoder.com',
+    myFiltersURL: grunt.option('my-filters-url') || '//lc1-user-settings-service.herokuapp.com',
     cbURL: grunt.option('cb-url') || 'https://coderbits.com'
   };
 
