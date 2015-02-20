@@ -343,7 +343,7 @@
                 eventUrl = 'http://community.topcoder.com/tc?module=MatchDetails&rd=' + challengeItem.challengeId;
               } else {
                 eventColor = '#228400';
-                eventUrl = 'http://www.topcoder.com/challenge-details/' + challengeItem.challengeId + '/?type=develop';
+                eventUrl = tcconfig.mainURL + '/challenge-details/' + challengeItem.challengeId + '/?type=develop';
               }
               event = {
                 "id": challengeItem.challengeId,
