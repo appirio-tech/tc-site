@@ -51,6 +51,11 @@ module.exports = function(grunt) {
     cbURL: grunt.option('cb-url') || 'https://coderbits.com'
   };
 
+  tcconfig.domain = function() {
+    var domainSplits = tcconfig.mainURL.split('.');
+    return domainSplits[domainSplits.length-2] + "." + domainSplits[domainSplits.length-1];
+  }();
+
   var cdnPrefix =  tcconfig.cdnURL + (tcconfig.useVer ? '/' + tcconfig.version : '');
   var prodSuffix =  '.min'; //TODO fix gzip tcconfig.useMin ? '.min' : '';
 
@@ -90,11 +95,14 @@ module.exports = function(grunt) {
   // custom tasks
   grunt.registerTask('buildPackages', 'Build packages based on supplied configuration', function(environment) {
 
+
+
     var globalRepls = function(snippet) {
       return snippet
         .replace(/@@analytics/g, analytics)
         .replace(/@@dependencies/g, dependencies)
         .replace(/@@tcconfig/g, JSON.stringify(tcconfig))
+        //.replace(/@@domain/g, cookieDomain)
         .replace(/@@community/g, tcconfig.communityURL);
     }
 

@@ -181,7 +181,7 @@
                 //check if auto registered through delayAction cookie
                 if (vm.delayAction && vm.tcDoAction[0] == 'register' && vm.tcDoAction[1] == vm.challenge.challengeId) {
                   //delete cookie
-                  document.cookie = 'tcDelayChallengeAction=; path=/; domain=.topcoder.com; expires=' + new Date(0).toUTCString();
+                  document.cookie = 'tcDelayChallengeAction=; path=/; domain=.' + tcconfig.domain + '; expires=' + new Date(0).toUTCString();
                 }
                 updateChallengeDetail();
               } else if (data["error"]["details"] === "You should agree with all terms of use.") {
@@ -198,7 +198,7 @@
         $.cookie('tcDelayChallengeAction', 'register|' + vm.challenge.challengeId + '|' + encodeURIComponent(vm.challenge.challengeName), {
           expires: 31,
           path: '/',
-          domain: '.topcoder.com'
+          domain: '.' + tcconfig.domain
         });
         $('.actionLogin').click();
       }
@@ -304,7 +304,7 @@
           vm.registerToChallenge();
         } else {
           //can no longer register, delete cookie
-          document.cookie = 'tcDelayChallengeAction=; path=/; domain=.topcoder.com; expires=' + new Date(0).toUTCString();
+          document.cookie = 'tcDelayChallengeAction=; path=/; domain=.' + tcconfig.domain + '; expires=' + new Date(0).toUTCString();
         }
       }
     }

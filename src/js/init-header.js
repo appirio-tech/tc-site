@@ -121,8 +121,8 @@ if (!loginState) {
       }
 
       if ( /action=logout/i.test( location.href ) ) {
-        document.cookie = 'tcsso=; path=/; domain=.topcoder.com; expires=' + new Date(0).toUTCString();
-        document.cookie = 'tcjwt=; path=/; domain=.topcoder.com; expires=' + new Date(0).toUTCString();
+        document.cookie = 'tcsso=; path=/; domain=.' + tcconfig.domain + '; expires=' + new Date(0).toUTCString();
+        document.cookie = 'tcjwt=; path=/; domain=.' + tcconfig.domain + '; expires=' + new Date(0).toUTCString();
 
         var match;
         if ( match = /next=([\w\.\:\/\-]+)/i.exec( location.href ) ) {
@@ -294,7 +294,7 @@ if (!loginState) {
       if (empty) return;
       if ($('#rememberMe').prop('checked')) {
         // Set a session cookie to mark that user selected "Remember Me"
-        $.cookie('rememberMe', true, {expires: 365, path: '/', domain: '.topcoder.com'});
+        $.cookie('rememberMe', true, {expires: 365, path: '/', domain: '.' + tcconfig.domain});
       }
       auth0Login.login({
           connection: 'LDAP',
@@ -389,8 +389,8 @@ function initMemberDetails(pagePersisted){
 
         // Clear local tcsso cookie on logout
         $('.logoutLink, .actionLogout').click(function() {
-          document.cookie = 'tcsso=; path=/; domain=.topcoder.com; expires=' + new Date(0).toUTCString();
-          document.cookie = 'tcjwt=; path=/; domain=.topcoder.com; expires=' + new Date(0).toUTCString();
+          document.cookie = 'tcsso=; path=/; domain=.' + tcconfig.domain + '; expires=' + new Date(0).toUTCString();
+          document.cookie = 'tcjwt=; path=/; domain=.' + tcconfig.domain + '; expires=' + new Date(0).toUTCString();
           // check if we have the weird facebook hash
           // if so, redirect to root
           if (window.location.hash == '#_=_') {
