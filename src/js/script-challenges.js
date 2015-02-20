@@ -823,16 +823,16 @@ appChallenges = {
                  * generate table row for design past contest type
                  */
                 if (typeof rec.numberOfRegistrants !== "undefined") {
-                    $('.contestName', row).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/ico-track-data.png" />' + '<a href="http://community.topcoder.com/longcontest/?module=ViewProblemStatement&rd=' + rec.roundId + '&pm=' + rec.problemId + '">' + rec.fullName + '</a>');
+                    $('.contestName', row).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/ico-track-data.png" />' + '<a href="' + tcconfig.communityURL + '/longcontest/?module=ViewProblemStatement&rd=' + rec.roundId + '&pm=' + rec.problemId + '">' + rec.fullName + '</a>');
                     $('.colType', row).html("Marathon");
                     $('.vStartDate', row).html(app.formatDate2(rec.startDate));
                     $('.vEndDate', row).html(app.formatDate2(rec.endDate));
                     $('.colTLeft', row).html(app.formatTimeLeft(rec.timeRemaining));
-                    $('.colReg', row).html('<a href="http://community.topcoder.com/longcontest/?module=ViewStandings&rd=' + rec.roundId + '">' + rec.numberOfRegistrants + '</a>');
+                    $('.colReg', row).html('<a href="' + tcconfig.communityURL + '/longcontest/?module=ViewStandings&rd=' + rec.roundId + '">' + rec.numberOfRegistrants + '</a>');
                     $('.colSub', row).html(rec.numberOfSubmissions);
                 } else {
                     //$('.contestName', row).html(rec.fullName);
-                    $('.contestName', row).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/ico-track-data.png" />' + '<a href="http://community.topcoder.com/longcontest/?module=ViewProblemStatement&rd=' + rec.roundId + '&pm=' + rec.problemId + '">' + rec.fullName + '</a>');
+                    $('.contestName', row).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/ico-track-data.png" />' + '<a href="' + tcconfig.communityURL + '/longcontest/?module=ViewProblemStatement&rd=' + rec.roundId + '&pm=' + rec.problemId + '">' + rec.fullName + '</a>');
                     $('.colType', row).html("Marathon");
                     $('.vStartDate', row).html(app.formatDate2(rec.startDate));
                     $('.vEndDate', row).html(app.formatDate2(rec.endDate));
@@ -1597,14 +1597,10 @@ appChallenges = {
 
                     $('.contestName', row).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/ico-track-data.png" />' + rec.fullName + '</a>');
                     $('.contestName', row).parents(".inTCO").addClass("hasTCOIco");
-                    $('.contestName', row).attr('href', 'http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId);
-
-                    //$('.contestName', row).html('<i></i>' + '<a href="http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.fullName + '</a>');
-                    //$('.colReg', row).html(rec.numberOfRegistrants);
-
+                    $('.contestName', row).attr('href', tcconfig.communityURL + '/tc?module=MatchDetails&rd=' + rec.roundId);
 
                     $('.vEndRound', row).html(startDate);
-                    $('.colReg', row).html('<a href=" http://community.topcoder.com/longcontest/?module=ViewStandings&rd=' + rec.roundId + '">' + rec.numberOfRegistrants + '</a>');
+                    $('.colReg', row).html('<a href="' + tcconfig.communityURL + '/longcontest/?module=ViewStandings&rd=' + rec.roundId + '">' + rec.numberOfRegistrants + '</a>');
                     $('.colSub', row).html(numSubmissions);
 
                     $('tbody', table).append(row);

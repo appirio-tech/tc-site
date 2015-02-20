@@ -1086,7 +1086,7 @@ var app = {
          */
         //            	$('.contestName', row).html('<i></i>' + rec.fullName);
 
-        $('.contestName', row).html('<i></i>' + '<a href="http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.fullName + '</a>');
+        $('.contestName', row).html('<i></i>' + '<a href="' + tcconfig.communityURL + '/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.fullName + '</a>');
 
         $trackName = 'mm';
         row.addClass('track-' + trackName);
@@ -1365,7 +1365,7 @@ var app = {
          * generate table row for contest type Marathon
          */
         //$('.contestName', con).html('<i></i>' + rec.fullName);
-        $('.contestName', con).html('<i></i>' + '<a href="http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.fullName + '</a>');
+        $('.contestName', con).html('<i></i>' + '<a href="' + tcconfig.communityURL + '/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.fullName + '</a>');
 
         if (rec.startDate == null || rec.startDate == "") {
           rec.startDate = "10.31.2013 10:10 EDT"; //dummy data
@@ -1558,7 +1558,7 @@ var app = {
         /*
          * generate table row for contest type Marathon
          */
-        $('.contestName', row).html('<i></i>' + '<a href=http://community.topcoder.com/tc?module=MatchDetails&rd=' + rec.roundId + '>' + rec.fullName + '</a>');
+        $('.contestName', row).html('<i></i>' + '<a href="' + tcconfig.communityURL + '/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.fullName + '</a>');
 
         if (rec.startDate == null || rec.startDate == "") {
           rec.startDate = "10.31.2013 10:10 EDT"; //dummy data

@@ -123,7 +123,7 @@
         challenge.submissions = challenge.submissions || [];
 
         if (challenge.event) {
-          challenge.event.url = challenge.event.shortDescription == 'tco15' ? 'http://tco15.topcoder.com/' : 'http://community.topcoder.com/' + challenge.event.shortDescription;
+          challenge.event.url = challenge.event.shortDescription == 'tco15' ? 'http://tco15.topcoder.com/' : tcconfig.communityURL + challenge.event.shortDescription;
         }
 
         var submissionMap = {};

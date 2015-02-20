@@ -25,7 +25,7 @@ window.tc = angular.module('tc', [
 ])
 
   .constant("API_URL", tcApiRUL)
-  .constant("PHOTO_LINK_LOCATION", "http://community.topcoder.com")
+  .constant("PHOTO_LINK_LOCATION", tcconfig.communityURL)
   .constant("MEMBER_PROFILE_TEMPLATE_URL", "/js/app/member-profile/partials/memberProfile.tpl.html")
 
 .config(['$httpProvider', 'RestangularProvider', 'API_URL',
