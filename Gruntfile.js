@@ -35,12 +35,13 @@ module.exports = function(grunt) {
     cdnURL: grunt.option('cdn-url') || '/mf',
     useVer: grunt.option('use-ver') || false,
     version: grunt.option('cdn-version') || '',
+    communityURL: grunt.option('community-url') || '//community.topcoder.com',
 
     // only used on wp setup
     useGz: grunt.option('use-gz') || false,
     useMin: grunt.option('use-min') || false,
     useCND: grunt.option('use-cdn') || false,
-    communityURL: grunt.option('community-url') || '//community.topcoder.com',
+    
 
     lcURL: grunt.option('lc-url') || '//dev-lc1-ext-challenge-service.herokuapp.com',
     lcDiscussionURL: grunt.option('lc-discussion-url') || '//dev-lc1-discussion-service.herokuapp.com',
@@ -74,6 +75,10 @@ module.exports = function(grunt) {
             match: 'tcconfig',
             replacement: tcconfig
           },
+          {
+            match: 'community',
+            replacement: tcconfig.communityURL
+          }
         ]
       },
       files: [
@@ -84,9 +89,17 @@ module.exports = function(grunt) {
 
   // custom tasks
   grunt.registerTask('buildPackages', 'Build packages based on supplied configuration', function(environment) {
-    header = header.replace('@@tcconfig', JSON.stringify(tcconfig));
-    footer = footer.replace('@@analytics', analytics);
-    footer = footer.replace('@@dependencies', dependencies);
+
+    var globalRepls = function(snippet) {
+      return snippet
+        .replace(/@@analytics/g, analytics);
+        .replace(/@@dependencies/g, dependencies);
+        .replace(/@@tcconfig/g, JSON.stringify(tcconfig));
+        .replace(/@@community/g, tcconfig.communityURL);
+    }
+
+    header = globalRepls(header);
+    footer = globalRepls(footer);
 
     for (var name in pkg_config.packages) {
       var pkg = pkg_config.packages[name];

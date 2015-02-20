@@ -1,5 +1,6 @@
 //Opera hack to run .ready() on each page load including on history navigation
 history.navigationMode = 'compatible';
+if (!tcconfig) { var tcconfig = @@tcconfig }
 $(document).ready(function() {
 
   function showModal(selector) {
@@ -135,8 +136,6 @@ if (!loginState) {
        loginState = nextLoc;
       }
     }
-
-    if (!tcconfig) { var tcconfig = @@tcconfig }
 
     var auth0Conf = {
       domain: tcconfig.auth0URL,
@@ -336,12 +335,13 @@ function initMemberDetails(pagePersisted){
           }, function(data) {
             var photoLink = data['photoLink'];
             if (photoLink) {
-              if (photoLink.indexOf('//') == -1)
-                photoLink = 'http://community.topcoder.com' + data['photoLink']
-              $('.userPic img').attr('src',  photoLink);
+              if (photoLink.indexOf('//') == -1) {
+                photoLink = tcconfig.communityURL + data['photoLink']
+              }
             } else {
-              $('.userPic img').attr('src', 'http://community.topcoder.com/i/m/nophoto_login.gif');
+              photoLink = tcconfig.communityURL + '/i/m/nophoto_login.gif';
             }
+            $('.userPic img').attr('src',  photoLink);
             $('.userDetails .coder').attr('href', $('.userDetails .coder').attr('href') + handle);
             $('.userDetails .link').attr('href', $('.userDetails .link').attr('href') + handle);
             $('.action .profileLink').attr('href', $('.action .profileLink').attr('href') + handle);

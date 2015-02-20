@@ -337,10 +337,10 @@
             _.each(challenges, function (challengeItem) {
               if (challengeItem.challengeType === 'SRM') {
                 eventColor = '#0163BE';
-                eventUrl = 'http://community.topcoder.com/tc?module=MatchDetails&rd=' + challengeItem.challengeId;
+                eventUrl = tcconfig.communityURL + '/tc?module=MatchDetails&rd=' + challengeItem.challengeId;
               } else if (challengeItem.challengeType === 'Marathon') {
                 eventColor = '#FF7400';
-                eventUrl = 'http://community.topcoder.com/tc?module=MatchDetails&rd=' + challengeItem.challengeId;
+                eventUrl = tcconfig.communityURL + '/tc?module=MatchDetails&rd=' + challengeItem.challengeId;
               } else {
                 eventColor = '#228400';
                 eventUrl = tcconfig.mainURL + '/challenge-details/' + challengeItem.challengeId + '/?type=develop';

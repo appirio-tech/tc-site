@@ -25,7 +25,7 @@ window.tc = angular.module('tc', [
 ])
 
   .constant("API_URL", tcApiRUL)
-  .constant("PHOTO_LINK_LOCATION", "http://community.topcoder.com")
+  .constant("PHOTO_LINK_LOCATION", tcconfig.communityURL)
   .constant("USERS_TEMPLATE_URL", "/js/app/users/partials/users.tpl.html")
   .constant("CODERBITS_API_HOST", cbApiURL)
   .constant("CODERBITS_TEMPLATE_URL", "/js/app/users/partials")

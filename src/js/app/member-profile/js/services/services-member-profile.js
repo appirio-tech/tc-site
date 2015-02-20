@@ -15,7 +15,7 @@ angular.module('tc.memberProfileService', [
  */
 .factory('NonApiSourceRestangular', function(Restangular) {
   return Restangular.withConfig(function(RestangularConfigurer) {
-    RestangularConfigurer.setBaseUrl('http://community.topcoder.com');
+    RestangularConfigurer.setBaseUrl(tcconfig.communityURL);
   });
 })
 
