@@ -92,9 +92,9 @@ module.exports = function(grunt) {
 
     var globalRepls = function(snippet) {
       return snippet
-        .replace(/@@analytics/g, analytics);
-        .replace(/@@dependencies/g, dependencies);
-        .replace(/@@tcconfig/g, JSON.stringify(tcconfig));
+        .replace(/@@analytics/g, analytics)
+        .replace(/@@dependencies/g, dependencies)
+        .replace(/@@tcconfig/g, JSON.stringify(tcconfig))
         .replace(/@@community/g, tcconfig.communityURL);
     }
 
