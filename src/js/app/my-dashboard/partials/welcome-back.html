@@ -1,3 +1,5 @@
 <div ng-controller="WelcomeBackCtrl">
-    Welcome back <span style="{{ratingColor}}">{{profile.handle}}</span>
+    <div>Welcome back <span style="{{ratingColor}}">{{profile.handle}}</span></div>
+    <div><img width="60px" src="{{photoLink}}"></div>
+    <div>Money in the bank: {{profile.overallEarning || 0 | currency}}</div>
 </div>

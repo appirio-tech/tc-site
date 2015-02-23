@@ -11,7 +11,7 @@
    * Inject dependencies
    * @type {string[]}
    */
-  WelcomeBackCtrl.$inject = ['$scope', 'ProfileService'];
+  WelcomeBackCtrl.$inject = ['$scope', 'ProfileService', 'PHOTO_LINK_LOCATION'];
 
   /**
    * Controller implementation
@@ -20,13 +20,13 @@
    * @param ChallengeService
    * @constructor
    */
-  function WelcomeBackCtrl($scope, ProfileService) {
+  function WelcomeBackCtrl($scope, ProfileService, PHOTO_LINK_LOCATION) {
     $scope.ratingColor = "color: #999999";
 
     app.getHandle(function() {
       ProfileService.getUserProfile(app.handle)
-        .then(function(data) {
-          $scope.profile = data;
+        .then(function(profile) {
+          $scope.profile = profile;
 
           var highestRating = 0;
 
@@ -36,6 +36,22 @@
               $scope.ratingColor = value.colorStyle;
             }
           });
+
+          if (profile && profile.photoLink !== '') {
+            if (profile.photoLink.indexOf('//') != -1){
+              $scope.photoLink = profile.photoLink;
+            } else {
+              $scope.photoLink = PHOTO_LINK_LOCATION + profile.photoLink;
+            }
+          } else {
+            $scope.photoLink = PHOTO_LINK_LOCATION + '/i/m/nophoto_login.gif';  
+          }
+
+          ProfileService.getMyActiveDevChallenges()
+            .then(function(data) {
+              console.log("The data:");
+              console.log(data);
+            });
         });
     });
 

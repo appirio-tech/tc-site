@@ -24,6 +24,10 @@
       return service.one("user").one("identity").get();
     }
 
+    service.getMyActiveDevChallenges = function() {
+      return service.one("user").getList("challenges", {type: "active"}, {'Authorization': 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "")}).get();
+    }
+
     return service;    
   }
 
