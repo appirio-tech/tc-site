@@ -37,8 +37,17 @@
 
     // Base API url
     RestangularProvider.setBaseUrl(API_URL);
-
-    // Format restangular response
+    
+    var $cookies;
+    angular.injector(['ngCookies']).invoke(function(_$cookies_) {
+      $cookies = _$cookies_;
+    });
+      // Format restangular response
+    if ($cookies.tcjwt) {
+      RestangularProvider.setDefaultHeaders({
+        'Authorization': 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "")
+      });
+    }
 
     // add a response intereceptor
     RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {

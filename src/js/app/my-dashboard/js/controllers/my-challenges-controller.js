@@ -11,7 +11,7 @@
    * Inject dependencies
    * @type {string[]}
    */
-  MyChallengesCtrl.$inject = ['$scope'];
+  MyChallengesCtrl.$inject = ['$scope', 'ChallengeService'];
 
   /**
    * Controller implementation
@@ -20,8 +20,11 @@
    * @param ChallengeService
    * @constructor
    */
-  function MyChallengesCtrl($scope) {
-    $scope.message = "My Challenges";
+  function MyChallengesCtrl($scope, ChallengeService) {
+    ChallengeService.getMyActiveChallenges()
+      .then(function(data) {
+        $scope.myChallenges = data;
+      });
   }
 
 
