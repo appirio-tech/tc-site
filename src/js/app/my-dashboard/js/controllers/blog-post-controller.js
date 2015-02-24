@@ -11,7 +11,7 @@
    * Inject dependencies
    * @type {string[]}
    */
-  BlogPostCtrl.$inject = ['$scope'];
+  BlogPostCtrl.$inject = ['$scope', 'BlogService'];
 
   /**
    * Controller implementation
@@ -20,8 +20,11 @@
    * @param ChallengeService
    * @constructor
    */
-  function BlogPostCtrl($scope) {
-    $scope.message = "Blog Post";
+  function BlogPostCtrl($scope, BlogService) {
+    BlogService.getBlogFeed()
+      .then(function(data) {
+        $scope.blogPosts = data;
+      });
   }
 
 

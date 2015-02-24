@@ -16,6 +16,7 @@
     .constant("API_URL", tcLCApiURL)
 
   .config(DataPreProcessing)
+  .constant("BLOG_LOCATION", "http://local.topcoder.com/feed/?post_type=blog")
   .constant("PHOTO_LINK_LOCATION", "http://community.topcoder.com");
 
   DataPreProcessing.$inject = ['$httpProvider', 'RestangularProvider', 'API_URL'];

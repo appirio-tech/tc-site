@@ -13,11 +13,14 @@
                 <td>{{challenge.challengeCommunity}}</td>
                 <td>{{challenge.firstPlacePrize | currency}}</td>
                 <td><a href="/challenge-details/{{challenge.challengeId}}">{{challenge.challengeName}}</a></td>
-                <td>{{challenge.submissionEndDate | date}}</td>
+                <td class="my-challenges-submittion-date">{{challenge.submissionEndDate | date}}</td>
             </tr>
         </tbody>
     </table>
 
+    <div ng-repeat="challenge in myChallenges">
+        
+    </div>
     <div ng-show="myChallenges.length === 0">
         You don't have any active challenges
     </div>

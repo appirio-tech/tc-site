@@ -83,3 +83,15 @@
 .srm-gadget {
     height: 300px;
 }
+
+.srm-gadget-table td {
+    padding-left: 5px;
+}
+
+.srm-gadget-table thead {
+    font-weight: bold;
+}
+
+.srm-gadget-coding-date {
+    width: 170px;
+}

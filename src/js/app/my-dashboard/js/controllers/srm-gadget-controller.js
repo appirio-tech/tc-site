@@ -11,7 +11,7 @@
    * Inject dependencies
    * @type {string[]}
    */
-  SRMGadgetCtrl.$inject = ['$scope'];
+  SRMGadgetCtrl.$inject = ['$scope', 'SRMService'];
 
   /**
    * Controller implementation
@@ -20,8 +20,11 @@
    * @param ChallengeService
    * @constructor
    */
-  function SRMGadgetCtrl($scope) {
-    $scope.message = "SRM Schedule";
+  function SRMGadgetCtrl($scope, SRMService) {
+    SRMService.getSRMSchedule()
+      .then(function(data) {
+        $scope.upcomingSRMs = data;
+      });
   }
 
 

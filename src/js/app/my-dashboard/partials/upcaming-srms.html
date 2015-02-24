@@ -1,0 +1,22 @@
+<div>
+    <table width="100%" ng-show="upcomingSRMs.length > 0" class="srm-gadget-table">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Registration</td>
+                <td>Coding</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="srm in upcomingSRMs">
+                <td>{{srm.contestName}}</td>
+                <td>{{srm.registrationStartTime | date:'medium' }}</td>
+                <td class="my-challenges-submittion-date">{{srm.codingStartTime | date:'medium'}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div ng-show="upcomingSRMs.length === 0">
+        There are no upcoming SRMs scheduled at this time
+    </div>
+</div>
