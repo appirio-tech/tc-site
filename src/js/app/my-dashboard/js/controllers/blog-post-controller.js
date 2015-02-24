@@ -1,7 +1,14 @@
+/**
+ * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
+ * @author mdesiderio
+ * @version 1.0
+ *
+ * Controller for the blog post widget
+ */
 (function () {
 
   /**
-   * Create controller Challenge Details
+   * Create blog post controller controller
    */
   angular
     .module('myDashboard')
@@ -14,10 +21,10 @@
   BlogPostCtrl.$inject = ['$scope', 'BlogService'];
 
   /**
-   * Controller implementation
+   * BlogPost Controller implementation
    *
    * @param $scope
-   * @param ChallengeService
+   * @param BlogService service to access and parse blog RSS feed
    * @constructor
    */
   function BlogPostCtrl($scope, BlogService) {
@@ -26,6 +33,5 @@
         $scope.blogPosts = data;
       });
   }
-
 
 })();

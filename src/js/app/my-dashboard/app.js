@@ -1,9 +1,10 @@
-/* TODO:
- * - Wrap in anon function
- * - Change style to match style guide
+/**
+ * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
+ * @author mdesiderio
+ * @version 1.0
  *
+ * App module for my dashboard page
  */
-
 (function () {
 
   angular
@@ -16,13 +17,15 @@
     .constant("API_URL", tcLCApiURL)
 
   .config(DataPreProcessing)
-  .constant("BLOG_LOCATION", "http://local.topcoder.com/feed/?post_type=blog")
-  .constant("PHOTO_LINK_LOCATION", "http://community.topcoder.com");
+  .constant("BLOG_LOCATION", tcconfig.blogRSSFeedURL)
+  .constant("MARKETING_MESSAGE_URL", tcconfig.marketingMessageMyDashURL)
+  .constant("PHOTO_LINK_LOCATION", tcconfig.photoLinkBaseURL);
 
   DataPreProcessing.$inject = ['$httpProvider', 'RestangularProvider', 'API_URL'];
 
   /**
-   *
+   * Sets restangular with specific configurations to access tc api
+   *  
    * @param $httpProvider
    * @param RestangularProvider
    * @param API_URL
@@ -38,18 +41,20 @@
 
     // Base API url
     RestangularProvider.setBaseUrl(API_URL);
-    
+
+    // Setup authentication header    
     var $cookies;
     angular.injector(['ngCookies']).invoke(function(_$cookies_) {
       $cookies = _$cookies_;
     });
-      // Format restangular response
+
     if ($cookies.tcjwt) {
       RestangularProvider.setDefaultHeaders({
         'Authorization': 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "")
       });
     }
 
+    // Format restangular response
     // add a response intereceptor
     RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
       var extractedData = '';

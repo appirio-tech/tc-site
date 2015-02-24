@@ -1,7 +1,14 @@
+/**
+ * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
+ * @author mdesiderio
+ * @version 1.0
+ *
+ * Controller for the member program widget
+ */
 (function () {
 
   /**
-   * Create controller Challenge Details
+   * Create member program widget
    */
   angular
     .module('myDashboard')
@@ -17,11 +24,9 @@
    * Controller implementation
    *
    * @param $scope
-   * @param ChallengeService
    * @constructor
    */
   function MemberProgramCtrl($scope) {
-    $scope.message = "Member Program";
   }
 
 

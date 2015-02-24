@@ -1,7 +1,14 @@
+/**
+ * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
+ * @author mdesiderio
+ * @version 1.0
+ *
+ * Controller for the my challenges widget
+ */
 (function () {
 
   /**
-   * Create controller Challenge Details
+   * Create my challenges controller
    */
   angular
     .module('myDashboard')
@@ -17,10 +24,12 @@
    * Controller implementation
    *
    * @param $scope
-   * @param ChallengeService
+   * @param ChallengeService services to access the challenges api
    * @constructor
    */
   function MyChallengesCtrl($scope, ChallengeService) {
+
+    // Fetch my active
     ChallengeService.getMyActiveChallenges()
       .then(function(data) {
         $scope.myChallenges = data;

@@ -1,7 +1,14 @@
-(function () {
+/**
+ * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
+ * @author mdesiderio
+ * @version 1.0
+ *
+ * Controller for the welcome back widget
+ */
+ (function () {
 
   /**
-   * Create controller Challenge Details
+   * Create welcome back widget controller
    */
   angular
     .module('myDashboard')
@@ -17,12 +24,16 @@
    * Controller implementation
    *
    * @param $scope
-   * @param ChallengeService
+   * @param ProfileService services to access profile information via API
+   * @param ChallengeService services to access challenge info via API
+   * @param PHOTO_LINK_LOCATION base link for user photo
    * @constructor
    */
   function WelcomeBackCtrl($scope, ProfileService, ChallengeService, PHOTO_LINK_LOCATION) {
+    // default rating collor
     $scope.ratingColor = "color: #999999";
 
+    // fetch user info to get handle
     app.getHandle(function() {
       ProfileService.getUserProfile(app.handle)
         .then(function(profile) {
@@ -30,6 +41,7 @@
 
           var highestRating = 0;
 
+          // Find user's highest rating to set color to the handle
           angular.forEach($scope.profile.ratingSummary, function(value, key) {
             if (highestRating < value.rating) {
               highestRating = value.rating;
@@ -37,6 +49,7 @@
             }
           });
 
+          // Parse user picture link to build photo url
           if (profile && profile.photoLink) {
             if (profile.photoLink.indexOf('//') != -1){
               $scope.photoLink = profile.photoLink;
@@ -49,6 +62,7 @@
 
         });
 
+        // Get active challenges in ordor to populate user's active challenges and review opportunities
         ChallengeService.getMyActiveChallenges()
           .then(function(data) {
             console.log(data);

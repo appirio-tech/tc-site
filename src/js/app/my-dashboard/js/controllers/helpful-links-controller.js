@@ -1,7 +1,14 @@
-(function () {
+/**
+ * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
+ * @author mdesiderio
+ * @version 1.0
+ *
+ * Controller for the helpful links widget
+ */
+ (function () {
 
   /**
-   * Create controller Challenge Details
+   * Create helpful links controller
    */
   angular
     .module('myDashboard')
@@ -14,10 +21,9 @@
   HelpfulLinksCtrl.$inject = ['$scope'];
 
   /**
-   * Controller implementation
+   * Helpful links controller implementation
    *
    * @param $scope
-   * @param ChallengeService
    * @constructor
    */
   function HelpfulLinksCtrl($scope) {

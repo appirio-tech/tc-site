@@ -527,13 +527,17 @@
         "reset-password.js",
         "app/my-dashboard/app.js",
         "app/my-dashboard/js/services/my-dashboard-services.js",
+        "app/my-dashboard/js/services/blog-services.js",
+        "app/my-dashboard/js/services/challenge-services.js",
+        "app/my-dashboard/js/services/profile-services.js",
+        "app/my-dashboard/js/services/srm-services.js",
         "app/my-dashboard/js/controllers/my-dashboard-controller.js",
         "app/my-dashboard/js/controllers/marketing-message-controller.js",
         "app/my-dashboard/js/controllers/member-program-controller.js",
         "app/my-dashboard/js/controllers/my-challenges-controller.js",
         "app/my-dashboard/js/controllers/helpful-links-controller.js",
         "app/my-dashboard/js/controllers/blog-post-controller.js",
-        "app/my-dashboard/js/controllers/srm-gadget-controller.js",
+        "app/my-dashboard/js/controllers/upcoming-srms-controller.js",
         "app/my-dashboard/js/controllers/welcome-back-controller.js"
       ],
       "css": [
