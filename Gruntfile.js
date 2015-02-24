@@ -97,6 +97,16 @@ module.exports = function(grunt) {
     },
   };
 
+  var concatCssFiles = {};
+  var minifyCssFiles = {};
+  var uglifyJsFiles = {};
+
+  for (var name in pkg_config.packages) {
+    concatCssFiles['tmp/' + name + '.concat.css'] = addBaseFilePath(pkg_config.packages[name].css, dist + '/css/');
+    minifyCssFiles[dist + '/css/' + name + '.min.css'] = ['tmp/' + name + '.concat.css'];
+    uglifyJsFiles[dist + '/js/' + name + '.min.js'] = addBaseFilePath(pkg_config.packages[name].js, dist + '/js/');
+  }
+
   // custom tasks
   grunt.registerTask('buildPackages', 'Build packages based on supplied configuration', function(environment) {
 
@@ -187,36 +197,14 @@ module.exports = function(grunt) {
         stripBanners: true
       },
       css: {
-        files: {
-          '<%= build.tmp %>/default.concat.css': addBaseFilePath(pkg_config.packages.default.css, '<%= build.dist %>/css/'),
-          '<%= build.tmp %>/challengelanding.concat.css': addBaseFilePath(pkg_config.packages.challengelanding.css, '<%= build.dist %>/css/'),
-          '<%= build.tmp %>/challenges.concat.css': addBaseFilePath(pkg_config.packages.challenges.css, '<%= build.dist %>/css/'),
-          '<%= build.tmp %>/challengeterms.concat.css': addBaseFilePath(pkg_config.packages.challengeterms.css, '<%= build.dist %>/css/'),
-          '<%= build.tmp %>/challengesubmit.concat.css': addBaseFilePath(pkg_config.packages.challengesubmit.css, '<%= build.dist %>/css/'),
-          '<%= build.tmp %>/ng-details.concat.css': addBaseFilePath(pkg_config.packages['ng-details'].css, '<%= build.dist %>/css/'),
-          '<%= build.tmp %>/ngChallenges.concat.css': addBaseFilePath(pkg_config.packages.ngChallenges.css, '<%= build.dist %>/css/'),
-          '<%= build.tmp %>/ng-member-profile.concat.css': addBaseFilePath(pkg_config.packages['ng-member-profile'].css, '<%= build.dist %>/css/'),
-          '<%= build.tmp %>/ng-users.concat.css': addBaseFilePath(pkg_config.packages['ng-users'].css, '<%= build.dist %>/css/'),
-          '<%= build.tmp %>/profile-builder.concat.css': addBaseFilePath(pkg_config.packages['profile-builder'].css, '<%= build.dist %>/css/')
-        }
+        files: concatCssFiles
       }
     },
     cssmin: {
       minify: {
         cwd: '<%= build.srcCss %>',
         ext: '.min.css',
-        files: {
-          '<%= build.dist %>/css/default.min.css': ['<%= build.tmp %>/default.concat.css'],
-          '<%= build.dist %>/css/challengelanding.min.css': ['<%= build.tmp %>/challengelanding.concat.css'],
-          '<%= build.dist %>/css/challenges.min.css': ['<%= build.tmp %>/challenges.concat.css'],
-          '<%= build.dist %>/css/challengeterms.min.css': ['<%= build.tmp %>/challengeterms.concat.css'],
-          '<%= build.dist %>/css/challengesubmit.min.css': ['<%= build.tmp %>/challengesubmit.concat.css'],
-          '<%= build.dist %>/css/ng-details.min.css': ['<%= build.tmp %>/ng-details.concat.css'],
-          '<%= build.dist %>/css/ngChallenges.min.css': ['<%= build.tmp %>/ngChallenges.concat.css'],
-          '<%= build.dist %>/css/ng-member-profile.min.css': ['<%= build.tmp %>/ng-member-profile.concat.css'],
-          '<%= build.dist %>/css/ng-users.min.css': ['<%= build.tmp %>/ng-users.concat.css'],
-          '<%= build.dist %>/css/profile-builder.min.css': ['<%= build.tmp %>/profile-builder.concat.css'],
-        }
+        files: minifyCssFiles
       }
     },
     copy: { main: {
@@ -240,18 +228,7 @@ module.exports = function(grunt) {
         mangle: false
       },
       js: {
-        files: {
-          '<%= build.dist %>/js/default.min.js': addBaseFilePath(pkg_config.packages.default.js, dist + '/js/'),
-          '<%= build.dist %>/js/challengelanding.min.js': addBaseFilePath(pkg_config.packages.challengelanding.js, dist + '/js/'),
-          '<%= build.dist %>/js/challenges.min.js': addBaseFilePath(pkg_config.packages.challenges.js, dist + '/js/'),
-          '<%= build.dist %>/js/challengeterms.min.js': addBaseFilePath(pkg_config.packages.challengeterms.js, dist + '/js/'),
-          '<%= build.dist %>/js/challengesubmit.min.js': addBaseFilePath(pkg_config.packages.challengesubmit.js, dist + '/js/'),
-          '<%= build.dist %>/js/ng-details.min.js': addBaseFilePath(pkg_config.packages['ng-details'].js, dist + '/js/'),
-          '<%= build.dist %>/js/ngChallenges.min.js': addBaseFilePath(pkg_config.packages.ngChallenges.js, dist + '/js/'),
-          '<%= build.dist %>/js/ng-member-profile.min.js': addBaseFilePath(pkg_config.packages['ng-member-profile'].js, dist + '/js/'),
-          '<%= build.dist %>/js/ng-users.min.js': addBaseFilePath(pkg_config.packages['ng-users'].js, dist + '/js/'),
-          '<%= build.dist %>/js/profile-builder.min.js': addBaseFilePath(pkg_config.packages['profile-builder'].js, dist + '/js/')
-        }
+        files: uglifyJsFiles
       }
     },
     ngAnnotate: {
