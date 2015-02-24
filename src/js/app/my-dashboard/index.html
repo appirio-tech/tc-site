@@ -4,8 +4,7 @@
   <div class="my-dashboard-column-left">
     <div class="my-dashboard-widget welcome-back" ng-include="getTemplateURL('welcome-back.html')">
     </div>
-    <div class="my-dashboard-widget member-program" ng-controller="MemberProgramCtrl">
-      {{message}}
+    <div class="my-dashboard-widget member-program" ng-controller="MemberProgramCtrl" ng-include="getTemplateURL('member-program.html')">
     </div>
     <div class="my-dashboard-widget helpful-links" ng-controller="HelpfulLinksCtrl" ng-include="getTemplateURL('helpful-links.html')">
     </div>
@@ -15,13 +14,12 @@
   </div>
 
   <div class="my-dashboard-column-right">
-    <div class="my-dashboard-widget marketing-message" ng-controller="MarketingMessageCtrl">
-      {{message}}
-    </div>
-    <div class="my-dashboard-widget my-challenges" ng-controller="MyChallengesCtrl" ng-include="getTemplateURL('my-challenges.html')">
+    <div class="my-dashboard-widget marketing-message" ng-controller="MarketingMessageCtrl" ng-include="getTemplateURL('marketing-message.html')">
     </div>
     <div class="my-dashboard-widget srm-gadget" ng-controller="SRMGadgetCtrl">
       {{message}}
+    </div>
+    <div class="my-dashboard-widget my-challenges" ng-controller="MyChallengesCtrl" ng-include="getTemplateURL('my-challenges.html')">
     </div>
   </div>
 </div>
