@@ -1,4 +1,5 @@
 <div>
+    <strong>My Challenges</strong>
     <table width="100%" ng-show="myChallenges.length > 0" class="my-challenges-table">
         <thead>
             <tr>
@@ -13,7 +14,7 @@
                 <td>{{challenge.challengeCommunity}}</td>
                 <td>{{challenge.firstPlacePrize | currency}}</td>
                 <td><a href="/challenge-details/{{challenge.challengeId}}">{{challenge.challengeName}}</a></td>
-                <td>{{challenge.submissionEndDate | date}}</td>
+                <td class="my-challenges-submittion-date">{{challenge.submissionEndDate | date}}</td>
             </tr>
         </tbody>
     </table>

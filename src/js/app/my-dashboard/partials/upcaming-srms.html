@@ -1,4 +1,5 @@
 <div>
+    <strong>Upcomging SRMs</strong>
     <table width="100%" ng-show="upcomingSRMs.length > 0" class="srm-gadget-table">
         <thead>
             <tr>
@@ -11,7 +12,7 @@
             <tr ng-repeat="srm in upcomingSRMs">
                 <td>{{srm.contestName}}</td>
                 <td>{{srm.registrationStartTime | date:'medium' }}</td>
-                <td class="my-challenges-submittion-date">{{srm.codingStartTime | date:'medium'}}</td>
+                <td>{{srm.codingStartTime | date:'medium'}}</td>
             </tr>
         </tbody>
     </table>
