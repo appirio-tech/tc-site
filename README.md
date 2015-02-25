@@ -240,4 +240,6 @@ More Git help can be found on several places online including the following:
 * https://about.gitlab.com/getting-help/
 * https://help.github.com/
 
-If you prefer to use a GUI, I recommend using SourceTree.  SourceTree is available on Mac and Windows.  http://www.sourcetreeapp.com/
+If you prefer to use a GUI, I recommend using SourceTree.  SourceTree is available on Mac and Windows.
+http://www.sourcetreeapp.com/
+
