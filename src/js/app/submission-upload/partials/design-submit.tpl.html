@@ -1,0 +1,140 @@
+
+<form action="http://studio.topcoder.com/" method="POST" name="submitForm" enctype="multipart/form-data" id="submitForm" autocomplete="off" tc-jq-transform>
+    <section class="formSection browseFile">
+        <div class="leftCol col">
+            <h3>BROWSE FILE</h3>
+            <dl class="group fileField linkRow jqtransformdone" style="z-index: 985;">
+                <dt>Submission (*.zip)</dt>
+                <dd tc-browse-file tc-validate-file-browser="submission">
+                    <p class="fileNameDisplay fileNameDisplayNoFile">All Visible Files (visible to
+                        challenge holder</p>
+                    <a class="btn fileBrowser btnAlt" href="javascript:;">Browse</a>
+                    <span class="error">error messages here</span>
+                    <input id="submission" data-type="zip" type="file" name="submission"
+                           class="fileInput">
+                </dd>
+            </dl>
+            <dl class="group fileField linkRow jqtransformdone" style="z-index: 985;">
+                <dt>Source (*.zip)</dt>
+                <dd tc-browse-file tc-validate-file-browser="source">
+                    <p class="fileNameDisplay fileNameDisplayNoFile">All Source Files (not visible to
+                        challenge holder)</p>
+                    <a class="btn fileBrowser btnAlt" href="javascript:;">Browse</a>
+                    <span class="error">error messages here</span>
+                    <input id="source" data-type="zip" type="file" name="source"
+                           class="fileInput">
+                </dd>
+            </dl>
+            <dl class="group fileField linkRow jqtransformdone" style="z-index: 985;">
+                <dt>Preview image (*.png/*.jpg)</dt>
+                <dd tc-browse-file tc-validate-file-browser="preview">
+                    <p class="fileNameDisplay fileNameDisplayNoFile">Single Preview image (Representing
+                        your submission</p>
+                    <a class="btn fileBrowser btnAlt" href="javascript:;">Browse</a>
+                    <span class="error">error messages here</span>
+                    <input id="image" data-type="jpg,png" type="file" name="image"
+                           class="fileInput">
+                </dd>
+            </dl>
+            <dl class="group fileField linkRow jqtransformdone" style="z-index: 985;">
+                <dt>Rank</dt>
+                <dd>
+                    <input type="text" class="jqtranformdone" maxlength="3" ng-model="uCtrl.rank" tc-number-only/>
+                </dd>
+            </dl>
+        </div>
+        <div class="rightCol col">
+            <p>Please follow the instructions on the Challenge Details page regarding what your
+                submission, source and preview files should contain.</p>
+
+            <p>Do not name any of your files "declaration.txt" as this is added by our system.</p>
+
+            <p>Please be sure to double-check that you have submitted the correct files and that your
+                JPG files (if applicable) are in RGB color mode.</p>
+            <a href="javascript:" class="">Learn more about formatting your submission file </a>
+        </div>
+        <div class="clear"></div>
+    </section>
+    <!-- /#end formSection-->
+    <section class="formSection declaration">
+        <div class="leftCol col">
+            <h3>DECLARATIONS</h3>
+
+            <h2 class="comments">Comments</h2>
+
+            <div class="inputCnt">
+                <textarea placeholder="Type comment here" rows="10" cols="10" ng-model="uCtrl.comment" maxlength="1000"></textarea>
+            </div>
+            <h2 class="fonts">Fonts</h2>
+
+            <p class="desc">Please list ALL fonts you have used in your design below</p>
+
+            <div class="inputCnt" ng-repeat="(key, value) in uCtrl.fonts" tc-validate-font>
+                <div class="selectCnt">
+                    <select name="font" ng-model="value.site" ng-options="option.select as option.label for option in uCtrl.fontOptions" onchange="if(arguments.length === 0)$(this).change()"></select>
+                </div>
+                <input type="text" class="name jqtranformdone" placeholder="Fonts Name" ng-model="value.name">
+                <input type="text" class="fontUrl jqtranformdone" placeholder="Fonts URL Source" ng-model="value.url" ng-disabled="value.site === 'Studio Standard Fonts list' ">
+                <a href class="btn btnAlt addRow" ng-click="uCtrl.addFont()" ng-if="$last">+</a>
+                <div class="clear"></div>
+                <span class="error">error messages here</span>
+            </div>
+            <h2 class="stockArt">Stock Art</h2>
+
+            <p class="desc warn" ng-if="!uCtrl.stockArtAllowed">Stock Art is not allowed in this contest</p>
+
+            <div class="inputCnt" ng-class="{disable : !uCtrl.stockArtAllowed}" ng-repeat="(key, value) in uCtrl.stockArts" tc-validate-stock-art>
+                <input type="text" class="photo jqtranformdone" placeholder="Photo description" ng-model="value.photo">
+                <input type="text" class="photoUrl jqtranformdone" placeholder="Photo URL" ng-model="value.url">
+                <input type="text" class="fileNo jqtranformdone" placeholder="File number" ng-model="value.number">
+                <a href="javascript:" class="btn btnAlt" ng-click="uCtrl.addStockArt()" ng-if="$last">+</a>
+                <div class="clear"></div>
+                <span class="error">error messages here</span>
+            </div>
+
+        </div>
+        <div class="rightCol col">
+            <p>Type a short note about your design here.
+                Explain revisions or other design elements
+                that may not be clear.</p>
+            <a href="javascript:" class="">See example</a>
+            <br/>
+            <br/>
+            <br/>
+
+            <p>Check to see if your font is on the
+                <a href="javascript:">Studio Standard Fonts list..</a> If it is, leave the URL field
+            </p>
+
+            <a href="javascript:" class="">Read Studio Fonts Policy</a>
+
+            <p>If you only used fonts that came with the client files, choose "I did not introduce any
+                new fonts" from the dropdown box.</p>
+
+            <p>If your font is not on the list, you must provide the URL to the font page (not file)
+                from one of the approved font websites in the dropdown box.</p>
+        </div>
+        <div class="clear"></div>
+    </section>
+    <!-- /#end formSection-->
+    <section class="agreement notAgreed" ng-class="{'notAgreed' : !uCtrl.termsAgreed}">
+        <input id="agree" type="checkbox" ng-model="uCtrl.termsAgreed"/>
+        <label>By clicking this box, you hereby agree to the <a id="termsLink" href="/community/how-it-works/terms/" target="_blank">topcoder terms of use</a> and to the extent your uploaded file wins a topcoder Competition, you hereby assign, grant and transfer and agree to assign, grant and transfer to topcoder all right and title in and to the Winning Submission (as further described in the terms of use).</label>
+        <a href="javascript:" id="submit" class="btn" tc-submit>Submit</a>
+    </section>
+    <!-- #/end agreement section-->
+    <section class="uploadContent" tc-upload-bar>
+        <h3>Uploading Submission</h3>
+        <p>Please don’t close the browser until the file is uploaded</p>
+        <div class="uploadBar">
+            <div class="loader"></div>
+            <div class="percentage">0%</div>
+        </div>
+        <!-- #/end uploadBar-->
+        <div class="buttonBar">
+            <a href="javascript:" id="cancelUpload" class="btn btnAlt">Cancel</a>
+        </div>
+        <!-- #/end buttonBar-->
+    </section>
+    <!-- #/end upload section-->
+</form>

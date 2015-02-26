@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+  @@head
+
+  <meta charset="utf-8">
+  <meta name="fragment" content="!">
+  <meta name="author" content="@topcoder" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <!--[if lt IE 9]>
+  <script src="/js/html5shiv.js" type="text/javascript"></script>
+  <script src="/js/respond.min.js" type="text/javascript"></script>
+  <script src="/js/modernizr.js" type="text/javascript"></script>
+  <link rel = "stylesheet" href = "/css/ie.css ? v = 201407282" / >
+  <![endif]-->
+  <script type="text/javascript">
+    // UNIVERSAL
+    var tcconfig = @@tcconfig
+
+    var isLC = '';
+    var sslAjax = true;
+    var wpUrl  = tcconfig.mainURL;
+    var ajaxUrl = tcconfig.mainURL + "/wp-admin/admin-ajax.php";
+
+    var tcApiRUL = tcconfig.apiURL;
+    var lcDiscussionURL = tcconfig.lcDiscussionURL;
+    var myFiltersURL = tcconfig.myFiltersURL;
+    var lcSiteUrl = tcconfig.lcSiteUrl;
+    var lcExternalUrl = tcconfig.lcURL;
+    var lcUserUrl = tcconfig.lcUserURL;
+
+    var siteURL = tcconfig.mainURL;
+    var communityURL = tcconfig.communityURL;
+    
+    var base_url = tcconfig.mainURL + '/wp-content/themes/tcs-responsive'; // can use '' ?
+    var stylesheet_dir = tcconfig.mainURL + '/wp-content/themes/tcs-responsive/css';
+    var timezone_string = "America/New_York";
+    var challengeType = 'develop';
+
+    var tcLCApiURL;
+    if (isLC) {
+      tcLCApiURL = lcURL;
+    } else {
+      tcLCApiURL = tcApiRUL;
+    }
+    var cbApiURL = tcconfig.cbURL;
+
+    window.prerenderReady = false;
+    
+    function getParameterByName(name, source) {
+      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+      results = regex.exec(source || location.search);
+      return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+    function getHashParameterByName(name, source) {
+      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+      var regex = new RegExp("[\\#&]" + name + "=([^&#]*)"),
+      results = regex.exec(source || location.hash);
+      return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
+    // CHALLENGE DETAILS
+    var autoRegister = getParameterByName('autoRegister');
+  </script>
+
+  <!-- HARDCODED FOR NOW -->
+  <link rel="shortcut icon" href="//www.topcoder.com/wp-content/themes/tcs-responsive/favicon.ico" />
+
+  <!-- GOT TO GO, CHINA CAN"T SEE THIS -->
+  <link rel='stylesheet' id='fonts-css'  href='//fonts.googleapis.com/css?family=Source+Sans+Pro%3A700%2C600%2C400%2C400italic%2C300&#038;ver=3.9.1' type='text/css' media='all' />
+
+  @@css
+
+  <meta name="google-site-verification" content="13nbPcn6VRWD2zdq-CEG0LbT00aOwSyhofA3OAEmbEI" />
+  <meta name="google-site-verification" content="p0OVxcrMQ2HYDsGgaRLRS9bsXuXmjKVcTGZnXNphIUI" />
+
+  <style>
+    .btn, a.btn, .blogCategoryMenu a, .searchBox input, .subscribeBox input {
+      behavior: url("/wp-content/themes/tcs-responsive/css/PIE.htc");
+    }
+  </style>
+
+  <style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+</head>
+
+<body>
+
+
+<div id="wrapper" class="tcssoUsingJS">
+  <nav class="sidebarNav mainNav onMobi">
+    <ul class="root"><li id="nav-menu-item-13018"><a href="/challenges/" class="13018"><i></i>Challenges</a>
+<ul class="child">
+  <li id="nav-menu-item-13510"><a href="/challenges" class="all"><i></i>All</a></li>
+  <li id="nav-menu-item-13511"><a href="/challenges/design/active/" class="design"><i></i>Design</a></li>
+  <li id="nav-menu-item-13512"><a href="/challenges/develop/active/" class="develop"><i></i>Development</a></li>
+  <li id="nav-menu-item-13513"><a href="/challenges/data/active/" class="data"><i></i>Data Science</a></li>
+  <li id="nav-menu-item-13529"><a href="@@community/contest/arena/ContestAppletProd.jnlp" class="topcoder-arena"><i></i>topcoder Arena</a></li>
+</ul>
+</li>
+<li id="nav-menu-item-15135"><a href="/community/" class="15135"><i></i>Community</a>
+<ul class="child">
+  <li id="nav-menu-item-15090"><a href="/community" class="home-3"><i></i>Home</a></li>
+  <li id="nav-menu-item-15079"><a href="/community/how-it-works/" class="how-it-works"><i></i>How It Works</a></li>
+  <li id="nav-menu-item-15080"><a href="http://apps.topcoder.com/forums/" class="forums-2"><i></i>Forums</a></li>
+  <li id="nav-menu-item-15132"><a href="/community/events/" class="15132"><i></i>Events</a></li>
+  <li id="nav-menu-item-15218"><a href="http://tco15.topcoder.com/" class="topcoder-open-2015"><i></i>Topcoder Open 2015</a></li>
+  <li id="nav-menu-item-15138"><a href="/community/member-programs/" class="15138"><i></i>Member Programs</a></li>
+  <li id="nav-menu-item-15133"><a href="/community/stories/" class="15133"><i></i>Stories</a></li>
+</ul>
+</li>
+<li id="nav-menu-item-15089"><a href="/about" class="about-topcoder"><i></i>About</a></li>
+<li id="nav-menu-item-13379"><a href="/blog/" class="13379"><i></i>Blog</a></li>
+      <li class="notLogged"><a href="javascript:;" class="btnRegister"><i></i>Sign Up</a></li>
+      <li class="userLi isLogged">
+        <div class="userInfo">
+          <div class="userPic">
+            <img src="" alt="">
+          </div>
+          <div class="userDetails">
+            <a href="" class="coder"></a>
+            <p class="country"></p>
+            <a href="" class="link myProfileLink">My Profile</a>
+            <a href="@@community/tc?module=MyHome" class="link">My TopCoder </a>
+            <a href="@@community/tc?module=MyHome" class="link">Account Settings </a>
+            <a href="javascript:;" class="actionLogout">Log Out</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.sidebarNav -->
+  <header id="navigation">
+    <div class="container">
+      <div class="headerTopRightMenu">
+        <div class="headerTopRightMenuLink logIn">
+          <div class="text"><a href="javascript:;" class="actionLogin" style="display: inline;">Log In</a></div>
+          <div class="icon"></div>
+          <div class="clear"></div>
+        </div>
+        <div class="separator"></div>
+        <div class="headerTopRightMenuLink contact">
+          <div class="text"><a href="/contact-us">Contact</a></div>
+          <div class="clear"></div>
+        </div>
+        <div class="separator"></div>
+        <div class="headerTopRightMenuLink help">
+          <div class="text"><a href="http://help.topcoder.com">Help Center</a></div>
+          <div class="clear"></div>
+        </div>
+        <div class="separator beforeSearch"></div>
+        <div class="headerTopRightMenuLink search last">
+          <div class="icon"></div>
+          <div class="text"><a id="searchButton" href="#">Search</a></div>
+          <div class="clear"></div>
+        </div>
+        <div id="searchWidget" class="hide">
+            <div class="box">
+              <div class="upperbox">
+                <div class="searchArea">
+                  <a id="btnSearchType" class="btn btnSearchType" href="#"><span id="searchTypeName">Site</span><i></i></a><input id="searchKeyword" type="text" class="searchInput" name="keyword" maxlength="64">
+                  <div id="requiredText" class="hide">Please input search keyword</div>
+                </div>
+                <div id="searchTypeList" class="hide">
+                  <a class="searchType">Site</a>
+                  <a class="searchType">Members</a>
+                </div>
+              </div>
+              <div class="lowerbox">
+                <div class="searchText">Find what you are looking for.</div>
+                <a id="searchButtonGo" class="btn btnGo" href="#">Go</a>
+              </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+      <h1 class="logo">
+        <a href="/" title="topcoder"></a>
+      </h1>
+      <nav id="mainNav" class="mainNav">
+
+
+        <ul class="root">
+          <li id="nav-menu-item-13018"><a href="/challenges/" class="13018"><i></i>Challenges</a>
+<ul class="child">
+  <li id="nav-menu-item-13510"><a href="/challenges" class="all"><i></i>All</a></li>
+  <li id="nav-menu-item-13511"><a href="/challenges/design/active/" class="design"><i></i>Design</a></li>
+  <li id="nav-menu-item-13512"><a href="/challenges/develop/active/" class="develop"><i></i>Development</a></li>
+  <li id="nav-menu-item-13513"><a href="/challenges/data/active/" class="data"><i></i>Data Science</a></li>
+  <li id="nav-menu-item-13529"><a href="@@community/contest/arena/ContestAppletProd.jnlp" class="topcoder-arena"><i></i>topcoder Arena</a></li>
+</ul>
+</li>
+<li id="nav-menu-item-15135"><a href="/community/" class="15135"><i></i>Community</a>
+<ul class="child">
+  <li id="nav-menu-item-15090"><a href="/community" class="home-3"><i></i>Home</a></li>
+  <li id="nav-menu-item-15079"><a href="/community/how-it-works/" class="how-it-works"><i></i>How It Works</a></li>
+  <li id="nav-menu-item-15080"><a href="http://apps.topcoder.com/forums/" class="forums-2"><i></i>Forums</a></li>
+  <li id="nav-menu-item-15132"><a href="/community/events/" class="15132"><i></i>Events</a></li>
+  <li id="nav-menu-item-15218"><a href="http://tco15.topcoder.com/" class="topcoder-open-2015"><i></i>Topcoder Open 2015</a></li>
+  <li id="nav-menu-item-15138"><a href="/community/member-programs/" class="15138"><i></i>Member Programs</a></li>
+  <li id="nav-menu-item-15133"><a href="/community/stories/" class="15133"><i></i>Stories</a></li>
+</ul>
+</li>
+<li id="nav-menu-item-15089"><a href="/about" class="about-topcoder"><i></i>About</a></li>
+<li id="nav-menu-item-13379"><a href="/blog/" class="13379"><i></i>Blog</a></li>
+        </ul>
+      </nav>
+      <div class="userDetailsWrapper hide">
+        <span class="btnAccWrap noReg">
+          <a href="javascript:;" class="btn btnAlt btnMyAcc">
+            My Account<i></i>
+          </a>
+        </span>
+
+        <div class="userWidget">
+          <div class="details">
+            <div class="userPic">
+              <img src="">
+            </div>
+            <div class="userDetails">
+              <p class="country"></p>
+              <!-- Bugfix I-109397: add Member Since title -->
+              <p class="lbl">Member Since :</p>
+
+              <p class="val memberSince"></p>
+
+              <p class="lbl">Total Earnings :</p>
+
+              <p class="val memberEarning"></p>
+            </div>
+          </div>
+          <div class="action">
+            <a class="profileLink" href="">My
+              Profile</a>
+            <a href="@@community/tc?module=MyHome">My TopCoder </a>
+            <a href="@@community/tc?module=MyHome" class="linkAlt">Account Settings</a>
+          </div>
+        </div>
+      </div>
+      <a class="onMobi noReg linkLogin actionLogin" href="javascript:;">Log In</a>
+      <span class="btnRegWrap noReg"><a href="javascript:;" class="btn btnRegister">Sign Up</a> </span>
+
+
+      <!-- /.userWidget -->
+    </div>
+  </header>
+<!-- Bugfix: I-108496 hidden element needed for non-firefox browsers to detect cache-persist status of page, used for above code to display member details -->
+<input type='hidden' id='cache-persist'>
+  <!-- /#header -->

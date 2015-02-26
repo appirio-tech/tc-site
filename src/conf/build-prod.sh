@@ -1,0 +1,1 @@
+grunt --main-url=https://www.topcoder.com --use-cdn=1 --use-min=1
