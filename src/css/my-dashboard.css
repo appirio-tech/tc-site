@@ -95,3 +95,13 @@
 .srm-gadget-coding-date {
     width: 170px;
 }
+
+.upcoming-srms-div {
+    position: relative;
+    height: 100%;
+}
+
+.practice-now-div {
+    position: absolute;
+    bottom: 0;
+}
