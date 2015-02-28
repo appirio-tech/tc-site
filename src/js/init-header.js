@@ -148,7 +148,7 @@ if (!loginState) {
     var auth0Register = new Auth0({
       domain: tcconfig.auth0URL,
       clientID: tcconfig.auth0ClientID,
-      callbackURL: tcconfig.mainURL,
+      callbackURL: tcconfig.mainURL + '?action=callback',
       state: loginState,
       redirect_uri: loginState
     });
