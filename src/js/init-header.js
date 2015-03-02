@@ -98,13 +98,13 @@ if (!loginState) {
 
       // redirect for non-modal registration
       if ( $('#mainContent #register').length>0 ) {
-          loginState = '/community/registration-complete/';
+          loginState = tcconfig.mainURL + '/community/registration-complete/';
       }
 
       // set to home page for non modal login
       if ( $('#mainContent #login').length>0 ) {
           if ( referer=='' || referer==loginState) {
-              loginState = '/';
+              loginState = tcconfig.mainURL;
           } else {
               loginState = referer;
           }
@@ -136,17 +136,22 @@ if (!loginState) {
        loginState = nextLoc;
       }
     }
-
-    var auth0Conf = {
+    
+    var auth0Login = new Auth0({
       domain: tcconfig.auth0URL,
       clientID: tcconfig.auth0ClientID,
       callbackURL: tcconfig.auth0CallbackURL,
       state: loginState,
       redirect_uri: loginState
-    }
-    
-    var auth0Login = new Auth0(auth0Conf);
-    var auth0Register = new Auth0(auth0Conf);
+    });
+
+    var auth0Register = new Auth0({
+      domain: tcconfig.auth0URL,
+      clientID: tcconfig.auth0ClientID,
+      callbackURL: tcconfig.mainURL + '?action=callback',
+      state: loginState,
+      redirect_uri: loginState
+    });
 
     auth0Register.getProfile(window.location.hash, function (err, profile, id_token, access_token, state) {
       socialProvider = profile.identities[0].connection;
@@ -297,7 +302,7 @@ if (!loginState) {
         $.cookie('rememberMe', true, {expires: 365, path: '/', domain: '.' + tcconfig.domain});
       }
       auth0Login.login({
-          connection: 'LDAP',
+          connection: tcconfig.auth0LDAP,
           state: loginState,
           username: document.getElementById('username').value,
           password: document.getElementById('password').value
