@@ -30,63 +30,68 @@
    * @constructor
    */
   function WelcomeBackCtrl($scope, ProfileService, ChallengeService, PHOTO_LINK_LOCATION) {
+    var vm = this;
     // default rating collor
-    $scope.ratingColor = "color: #999999";
+    vm.ratingColor = "color: #999999";
 
-    // fetch user info to get handle
-    app.getHandle(function() {
-      ProfileService.getUserProfile(app.handle)
-        .then(function(profile) {
-          $scope.profile = profile;
+    // activate controller
+    activate();
 
-          var highestRating = 0;
+    function activate() {
+      // fetch user info to get handle
+      app.getHandle(function() {
+        ProfileService.getUserProfile(app.handle)
+          .then(function(profile) {
+            vm.profile = profile;
 
-          // Find user's highest rating to set color to the handle
-          angular.forEach($scope.profile.ratingSummary, function(value, key) {
-            if (highestRating < value.rating) {
-              highestRating = value.rating;
-              $scope.ratingColor = value.colorStyle;
-            }
-          });
+            var highestRating = 0;
 
-          // Parse user picture link to build photo url
-          if (profile && profile.photoLink) {
-            if (profile.photoLink.indexOf('//') != -1){
-              $scope.photoLink = profile.photoLink;
-            } else {
-              $scope.photoLink = PHOTO_LINK_LOCATION + profile.photoLink;
-            }
-          } else {
-            $scope.photoLink = PHOTO_LINK_LOCATION + '/i/m/nophoto_login.gif';  
-          }
-
-        });
-
-        // Get active challenges in ordor to populate user's active challenges and review opportunities
-        ChallengeService.getMyActiveChallenges()
-          .then(function(data) {
-            console.log(data);
-
-            $scope.myActiveChallenges = data;
-
-            var ctOpenChallenges = 0;
-            var ctReviewChallenges = 0;
-
-            angular.forEach($scope.myActiveChallenges, function(challenge) {
-              if(challenge.roles && challenge.roles.indexOf("Submitter") != -1) {
-                ctOpenChallenges++
-              }
-              
-              if(challenge.roles && challenge.roles.indexOf("Reviewer") != -1) {
-                ctReviewChallenges++
+            // Find user's highest rating to set color to the handle
+            angular.forEach(vm.profile.ratingSummary, function(value, key) {
+              if (highestRating < value.rating) {
+                highestRating = value.rating;
+                vm.ratingColor = value.colorStyle;
               }
             });
 
-            $scope.myOpenChallengesCount = ctOpenChallenges;
-            $scope.reviewOpportunities = ctReviewChallenges;
-          });
-    });
+            // Parse user picture link to build photo url
+            if (profile && profile.photoLink) {
+              if (profile.photoLink.indexOf('//') != -1){
+                vm.photoLink = profile.photoLink;
+              } else {
+                vm.photoLink = PHOTO_LINK_LOCATION + profile.photoLink;
+              }
+            } else {
+              vm.photoLink = PHOTO_LINK_LOCATION + '/i/m/nophoto_login.gif';  
+            }
 
+          });
+
+          // Get active challenges in ordor to populate user's active challenges and review opportunities
+          ChallengeService.getMyActiveChallenges()
+            .then(function(data) {
+              console.log(data);
+
+              vm.myActiveChallenges = data;
+
+              var ctOpenChallenges = 0;
+              var ctReviewChallenges = 0;
+
+              angular.forEach(vm.myActiveChallenges, function(challenge) {
+                if(challenge.roles && challenge.roles.indexOf("Submitter") != -1) {
+                  ctOpenChallenges++
+                }
+                
+                if(challenge.roles && challenge.roles.indexOf("Reviewer") != -1) {
+                  ctReviewChallenges++
+                }
+              });
+
+              vm.myOpenChallengesCount = ctOpenChallenges;
+              vm.reviewOpportunities = ctReviewChallenges;
+            });
+      });
+    }
 
   }
 
