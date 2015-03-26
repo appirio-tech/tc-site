@@ -27,6 +27,14 @@
    * @constructor
    */
   function MemberProgramCtrl($scope) {
+    var vm = this;
+
+    //activate controller
+    activate();
+
+    function activate() {
+      // nothing to do yet
+    }
   }
 
 
