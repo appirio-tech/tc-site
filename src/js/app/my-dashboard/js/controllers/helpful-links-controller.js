@@ -27,7 +27,16 @@
    * @constructor
    */
   function HelpfulLinksCtrl($scope) {
-    $scope.message = "Helpful Links";
+    var vm = this;
+    // widget heading
+    this.message = "Helpful Links";
+    
+    //activate controller
+    activate();
+
+    function activate() {
+      // nothing to do yet
+    }
   }
 
 
