@@ -28,12 +28,18 @@
    * @constructor
    */
   function MyChallengesCtrl($scope, ChallengeService) {
+    var vm = this;
 
-    // Fetch my active
-    ChallengeService.getMyActiveChallenges()
-      .then(function(data) {
-        $scope.myChallenges = data;
+    // activate controller
+    activate();
+
+    function activate() {
+      // Fetch my active
+      return ChallengeService.getMyActiveChallenges()
+        .then(function(data) {
+          vm.myChallenges = data;
       });
+    }
   }
 
 
