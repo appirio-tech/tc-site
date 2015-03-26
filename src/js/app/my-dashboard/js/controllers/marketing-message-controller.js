@@ -29,8 +29,16 @@
    * @constructor
    */
   function MarketingMessageCtrl($scope, MARKETING_MESSAGE_URL, $sce) {
-    // set marketing message banner iframe url
-    $scope.marketingMessageURL = $sce.trustAsResourceUrl(MARKETING_MESSAGE_URL);
+    var vm = this;
+    vm.marketingMessageURL = "";
+
+    // activate controller
+    activate();
+
+    function activate() {
+      // set marketing message banner iframe url
+      vm.marketingMessageURL = $sce.trustAsResourceUrl(MARKETING_MESSAGE_URL);
+    }
   }
 
 
