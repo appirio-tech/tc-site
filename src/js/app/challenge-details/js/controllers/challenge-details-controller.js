@@ -272,6 +272,12 @@
     vm.scope.challenge = vm.challenge = challenge;
 
     var regList = challenge.registrants.map(function(x) { return x.handle; });
+    var submitters = challenge.registrants.map(function(x) {
+      if (x.submissionDate.length > 0) {
+        return x.handle;
+      }
+    });
+
     var provisionalNumFinalSubmitters = challenge.registrants.filter(function(x) {
       return x.submissionDate.length > 0;
     }).length;
@@ -280,6 +286,8 @@
     // this are the buttons for registration and submission
     vm.challenge.registrationDisabled = true;
     vm.challenge.submissionDisabled   = true;
+    // button for peer review for challenges with reviewType === PEER
+    vm.challenge.peerReviewDisabled   = true;
 
     vm.challenge.url = window.location.href;
 
@@ -344,6 +352,12 @@
     vm.numRegistrants   = challenge.numberOfRegistrants;
     vm.numSubmissions   = challenge.numberOfSubmissions;
     vm.numCheckpointSubmissions = challenge.numberOfCheckpointSubmissions;
+    vm.isPeerReviewed = vm.challenge.reviewType === 'PEER';
+
+    // update peer review button flag
+    if (handle && vm.isPeerReviewed && vm.inReview && submitters.indexOf(handle) != -1) {
+      vm.challenge.peerReviewDisabled = false;
+    }
 
     vm.hasCheckpoints = vm.numCheckpointSubmissions > 0;
     if (vm.numSubmissions == 0 && !vm.hasCheckpoints && provisionalNumFinalSubmitters > 0) {
