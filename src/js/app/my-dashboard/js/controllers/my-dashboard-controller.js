@@ -27,6 +27,16 @@
    * @constructor
    */
   function MyDashboardCtrl($scope) {
+    var vm = this;
+    vm.title = "My Dashboard";
+    vm.getTemplateURL = getTemplateURL;
+
+    // activate controller
+    activate();
+
+    function activate() {
+      // nothing to do yet
+    }
 
     /**
      * Gets the url for template files
@@ -34,7 +44,7 @@
      * @param template name of the template html file to retrieve, must be inside the partials folder 
      *        of the app
      */
-    $scope.getTemplateURL = function (template) {
+    function getTemplateURL(template) {
       return base_url + '/js/app/my-dashboard/partials/' + template;
     }
 
