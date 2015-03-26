@@ -1,6 +1,6 @@
-<div class="upcoming-srms-div">
+<div class="upcoming-srms-div" ng-controller="UpcomingSRMsCtrl as vm" >
     <strong>Upcoming SRMs</strong>
-    <table width="100%" ng-show="upcomingSRMs.length > 0" class="srm-gadget-table">
+    <table width="100%" ng-show="vm.upcomingSRMs.length > 0" class="srm-gadget-table">
         <thead>
             <tr>
                 <td>Name</td>
@@ -9,7 +9,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="srm in upcomingSRMs">
+            <tr ng-repeat="srm in vm.upcomingSRMs">
                 <td>{{srm.contestName}}</td>
                 <td>{{srm.registrationStartTime | date:'medium' }}</td>
                 <td>{{srm.codingStartTime | date:'medium'}}</td>
@@ -17,7 +17,7 @@
         </tbody>
     </table>
 
-    <div ng-show="upcomingSRMs.length === 0">
+    <div ng-show="vm.upcomingSRMs.length === 0">
         There are no upcoming SRMs scheduled at this time
     </div>
     <div class="practice-now-div">

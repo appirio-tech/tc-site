@@ -28,11 +28,18 @@
    * @constructor
    */
   function UpcomingSRMsCtrl($scope, SRMService) {
-    // Fetch the future srms scheduled
-    SRMService.getSRMSchedule()
-      .then(function(data) {
-        $scope.upcomingSRMs = data;
+    var vm = this;
+
+    // activate controller
+    activate();
+
+    function activate() {
+      // Fetch the future srms scheduled
+      return SRMService.getSRMSchedule()
+        .then(function(data) {
+          vm.upcomingSRMs = data;
       });
+    }
   }
 
 
