@@ -39,6 +39,8 @@
     challengeType = $location.search().type;
 
     var vm = this;
+    vm.reviewUrl = '';
+    vm.reviewBtnText = '';
 
     vm.callComplete = false;
     vm.scope = $scope;
@@ -148,7 +150,7 @@
       ChallengeService
           .getChallenge(challengeId)
           .then(function (challenge) {
-            processChallenge(challenge, handle, vm, ChallengeService);
+            processChallenge(challenge, handle, vm, ChallengeService, $location);
             vm.callComplete = true;
             $timeout(function () {
               window.prerenderReady = true;
@@ -162,7 +164,7 @@
       ChallengeService
           .getChallenge(challengeId)
           .then(function (challenge) {
-            processChallenge(challenge, vm.handle, vm, ChallengeService);
+            processChallenge(challenge, vm.handle, vm, ChallengeService, $location);
           });
     }
 
@@ -223,8 +225,9 @@
    * @param challenge
    * @param vm
    * @param ChallengeService
+   * @param $location
    */
-  function processChallenge(challenge, handle, vm, ChallengeService) {
+  function processChallenge(challenge, handle, vm, ChallengeService, $location) {
 
     // Global variable available from ng-page-challenge-details.php
     challengeName = challenge.challengeName;
@@ -355,8 +358,18 @@
     vm.isPeerReviewed = vm.challenge.reviewType === 'PEER';
 
     // update peer review button flag
-    if (handle && vm.isPeerReviewed && vm.inReview && submitters.indexOf(handle) != -1) {
-      vm.challenge.peerReviewDisabled = false;
+    if (handle && vm.inReview) {
+      if ((vm.isPeerReviewed && submitters.indexOf(handle) != -1) || !vm.isPeerReviewed) {
+        vm.challenge.peerReviewDisabled = false;
+      }
+    }
+
+    if (!vm.isPeerReviewed) {
+      vm.reviewBtnText = 'View Review';
+      vm.reviewUrl = 'https://software.' + $location.host() + '/review/actions/ViewProjectDetails?pid=' + vm.challenge.challengeId;
+    } else {
+      vm.reviewBtnText = 'Review This Challenge';
+      vm.reviewUrl = '/peer-reviews/index.html?challenge=' + vm.challenge.challengeId;
     }
 
     vm.hasCheckpoints = vm.numCheckpointSubmissions > 0;
