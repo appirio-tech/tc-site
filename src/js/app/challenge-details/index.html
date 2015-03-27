@@ -370,7 +370,7 @@
                 <h3>Review Style:</h3>
 
                 <div class="inner">
-                  <p><strong>Final Review: </strong><span>Community Review Board</span>
+                  <p><strong>Final Review: </strong><span>{{CD.reviewStyle}}</span>
                     <a onmouseout="hideTooltip('FinalReview');" onmouseover="showTooltip(this, 'FinalReview');" class="tooltip"
                        href="javascript:;"> </a></p>
 
@@ -528,7 +528,7 @@
       </div>
       <div class="tipBody">
       <!--Bugfix refactored-challenge-details-117: Removed unused hyperlink-->
-      Community Review Board performs a thorough review based on scorecards.
+      {{CD.reviewStyleTooltip}}
       </div>
       <div class="corner tl"></div>
       <div class="corner tr"></div>
