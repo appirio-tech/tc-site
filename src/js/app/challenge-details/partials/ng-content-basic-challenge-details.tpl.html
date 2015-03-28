@@ -27,8 +27,8 @@
              href="http://studio.topcoder.com/?module=ViewSubmission&ct={{CD.challenge.challengeId}}">
               <span>3</span> <strong>View Your Submission</strong>
           </a>
-          <a ng-show="!CD.isDesign" ng-class="{disabled:CD.challenge.peerReviewDisabled || !CD.callComplete, disabledNOT:!CD.challenge.peerReviewDisabled}" class="btn btnAction" ng-href="{{CD.reviewUrl}}">
-              <span>3</span><strong>{{CD.reviewBtnText}}</strong>
+          <a ng-show="!CD.isDesign && CD.isPeerReviewed" ng-class="{disabled:CD.challenge.peerReviewDisabled || !CD.callComplete, disabledNOT:!CD.challenge.peerReviewDisabled}" class="btn btnAction" ng-href="/peer-reviews/index.html?challenge={{CD.challenge.challengeId}}">
+              <span>3</span><strong>Review This Challenge</strong>
           </a>
         </div>
         <div class="middleColumn {{CD.isDesign ? 'studio' : ''}}">
