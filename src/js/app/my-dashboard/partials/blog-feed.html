@@ -1,0 +1,6 @@
+<div>
+    <strong>Blog</strong>
+    <div ng-repeat="blog in blogPosts | orderBy : pubDate : true | limitTo : 4">
+        <a href="{{blog.link}}" target="_blank">{{blog.pubDate | date : 'MMMM dd'}}</a>&nbsp;<span ng-bind-html="blog.description"></span>
+    </div>
+</div>
