@@ -39,9 +39,6 @@
     challengeType = $location.search().type;
 
     var vm = this;
-    // default review style
-    vm.reviewStyle = "";
-    vm.reviewStyleTooltip = "";
 
     vm.callComplete = false;
     vm.scope = $scope;
@@ -360,14 +357,6 @@
     // update peer review button flag
     if (handle && vm.isPeerReviewed && vm.inReview && submitters.indexOf(handle) != -1) {
       vm.challenge.peerReviewDisabled = false;
-    }
-    // challenge review style
-    if (vm.challenge.reviewType == 'PEER') {
-      vm.reviewStyle = 'Peer Review';
-      vm.reviewStyleTooltip = 'Your peers performs a thorough review based on scorecards.';
-    } else {
-      vm.reviewStyle = 'Community Review Board';
-      vm.reviewStyleTooltip = 'Community Review Board performs a thorough review based on scorecards.';
     }
 
     vm.hasCheckpoints = vm.numCheckpointSubmissions > 0;
