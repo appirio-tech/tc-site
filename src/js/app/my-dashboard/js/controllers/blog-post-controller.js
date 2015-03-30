@@ -28,10 +28,17 @@
    * @constructor
    */
   function BlogPostCtrl($scope, BlogService) {
-    BlogService.getBlogFeed()
-      .then(function(data) {
-        $scope.blogPosts = data;
+    var vm = this;
+
+    // activate controller
+    activate();
+
+    function activate() {
+      return BlogService.getBlogFeed()
+        .then(function(data) {
+          vm.blogPosts = data;
       });
+    }
   }
 
 })();

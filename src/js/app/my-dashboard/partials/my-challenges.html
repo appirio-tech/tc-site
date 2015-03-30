@@ -1,6 +1,6 @@
-<div>
+<div ng-controller="MyChallengesCtrl as vm" >
     <strong>My Challenges</strong>
-    <table width="100%" ng-show="myChallenges.length > 0" class="my-challenges-table">
+    <table width="100%" ng-show="vm.myChallenges.length > 0" class="my-challenges-table">
         <thead>
             <tr>
                 <td>Type</td>
@@ -10,7 +10,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="challenge in myChallenges">
+            <tr ng-repeat="challenge in vm.myChallenges">
                 <td>{{challenge.challengeCommunity}}</td>
                 <td>{{challenge.firstPlacePrize | currency}}</td>
                 <td><a href="/challenge-details/{{challenge.challengeId}}">{{challenge.challengeName}}</a></td>
@@ -19,7 +19,7 @@
         </tbody>
     </table>
 
-    <div ng-show="myChallenges.length === 0">
+    <div ng-show="vm.myChallenges.length === 0">
         You don't have any active challenges
     </div>
 </div>
