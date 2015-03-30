@@ -123,7 +123,13 @@
         challenge.submissions = challenge.submissions || [];
 
         if (challenge.event) {
-          challenge.event.url = challenge.event.shortDescription == 'tco15' ? 'http://tco15.topcoder.com/' : tcconfig.communityURL + challenge.event.shortDescription;
+          if (challenge.event.shortDescription == 'tc015') {
+            challenge.event.url = 'http://tco15.topcoder.com/';
+          } else if (challenge.event.shortDescription == 'swiftprogram') {
+            challenge.event.url = 'http://apple.topcoder.com';
+          } else {
+            challenge.event.url = tcconfig.communityURL + '/' + challenge.event.shortDescription;
+          }
         }
 
         var submissionMap = {};
