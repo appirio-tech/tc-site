@@ -32,47 +32,43 @@
           </a>
         </div>
 
-
-          <div class="middleColumn" ng-hide="true">
-            <img src="/mf/i/member-prog-flow.png" ng-show="CD.isPeerReviewed" />
+        <div class="middleColumn member-program-path" ng-show="CD.isPeerReviewed">
+          <div class="step">
+            <div class="details">
+              <div class="title">Arena Challenge</div>
+              <div class="description">Quickly provide a viable solution to a problem</div>
+              <div class="challenge-types">Challenge Pool | Auto test submission</div>
+            </div>
+            <div class="certification"></div>
           </div>
-          <div class="middleColumn member-program-path" ng-show="CD.isPeerReviewed">
-            <div class="step">
-              <div class="details">
-                <div class="title">Arena Challenge</div>
-                <div class="description">Quickly provide a viable solution to a problem</div>
-                <div class="challenge-types">Challenge Pool | Auto test submission</div>
-              </div>
-              <div class="certification"></div>
+          <div class="step-separator">&nbsp;</div>
+          <div class="step current">
+            <div class="details">
+              <div class="title">Peer Voted Challenge</div>
+              <div class="description">Provide one of the best solutions to a challenge as rated by your competition</div>
+              <div class="challenge-types">Small Group Challenges</div>
             </div>
-            <div class="step-separator">&nbsp;</div>
-            <div class="step current">
-              <div class="details">
-                <div class="title">Peer Voted Challenge</div>
-                <div class="description">Provide one of the best solutions to a challenge as rated by your competition</div>
-                <div class="challenge-types">Small Group Challenges</div>
-              </div>
-              <div class="certification">Associate</div>
-            </div>
-            <div class="step-separator">&nbsp;</div>
-            <div class="step">
-              <div class="details">
-                <div class="title">Performance Chanllenge</div>
-                <div class="description">Provide one of the best solutions to a challenge as rated by your competition</div>
-                <div class="challenge-types">Performance Based Certification</div>
-              </div>
-              <div class="certification">Professional</div>
-            </div>
-            <div class="step-separator">&nbsp;</div>
-            <div class="step">
-              <div class="details">
-                <div class="title">Community Challenge</div>
-                <div class="description">Win {x} challenges = entry into Community Building Challenges</div>
-                <div class="challenge-types">Top Level Challenges</div>
-              </div>
-              <div class="certification">Specialist</div>
-            </div>
+            <div class="certification">Associate</div>
           </div>
+          <div class="step-separator">&nbsp;</div>
+          <div class="step">
+            <div class="details">
+              <div class="title">Performance Chanllenge</div>
+              <div class="description">Provide one of the best solutions to a challenge as rated by your competition</div>
+              <div class="challenge-types">Performance Based Certification</div>
+            </div>
+            <div class="certification">Professional</div>
+          </div>
+          <div class="step-separator">&nbsp;</div>
+          <div class="step">
+            <div class="details">
+              <div class="title">Community Challenge</div>
+              <div class="description">Win {x} challenges = entry into Community Building Challenges</div>
+              <div class="challenge-types">Top Level Challenges</div>
+            </div>
+            <div class="certification">Specialist</div>
+          </div>
+        </div>
         <div class="middleColumn {{CD.isDesign ? 'studio' : ''}}" ng-show="!CD.isPeerReviewed">
           <table class="prizeTable">
             <tbody>
