@@ -1,6 +1,8 @@
 <div ng-controller="BlogPostCtrl as vm">
-    <strong>Blog</strong>
+  <div class="widget-header">Featured Blogs</div>
+  <div class="widget-body">
     <div ng-repeat="blog in vm.blogPosts | orderBy : pubDate : true | limitTo : 4">
         <a href="{{blog.link}}" target="_blank">{{blog.pubDate | date : 'MMMM dd'}}</a>&nbsp;<span ng-bind-html="blog.description"></span>
     </div>
+  </div>
 </div>

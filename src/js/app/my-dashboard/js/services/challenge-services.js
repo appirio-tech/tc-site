@@ -45,7 +45,7 @@
         service.activeChallengeDeferredList.push(deferred);
 
         // Fetch list of active challenges for current user
-        service.one("user").getList("challenges", {type: "active"})
+        service.one("user").getList("challenges", {type: "past"})
           .then(function(data) {
             // Sets the data, and returns it to all pending promises
             service.myActiveChallenges = data;

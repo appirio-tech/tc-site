@@ -172,12 +172,17 @@ sub, sup {
     clear: both;
 }
 .container {
-    width: 1010px;
+    /*width: 1010px;*/
     margin: 0 auto;
     position: relative;
 }
 .container.fluid{
     width: auto;
+}
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .stop-scrolling {
   height: 100%;
@@ -216,7 +221,7 @@ sub, sup {
     z-index: 5;
 }
 /* btns */
-.btn, a.btn{
+/*.btn, a.btn{
     display: inline-block;
     background: #ff9900;
     color: #fff;
@@ -251,7 +256,7 @@ sub, sup {
     .btnGreen:hover{
         background: #46b314;
 
-}
+}*/
 #navigation, #main{
     background: #fffffe;
 }
