@@ -2600,3 +2600,44 @@ h1.center {
 }
 
 /* styles for member program path box - end */
+
+/* styles for member program path box - start */
+
+.mission {
+    padding-top: 5px;
+}
+
+.mission.get-ready {
+
+}
+
+.mission.get-ready .badge {
+    text-align:center;
+    width: 130px;
+    height: 130px;
+    float:left;
+}
+
+.mission.get-ready .badge.step-one {
+    background: url("../i/get-ready-step-one.png") center center/130px 130px no-repeat;
+}
+
+.mission.get-ready .badge.education {
+    background: url("../i/get-ready-education.png") center center/130px 130px no-repeat;
+}
+
+.mission.get-ready .badge.ready-to-start {
+    background: url("../i/get-ready-ready-to-start.png") center center/130px 130px no-repeat;
+}
+
+.mission.get-ready .badge.finish {
+    background: url("../i/get-ready-finish.png") center center/130px 130px no-repeat;
+}
+
+.mission.get-ready .badge.highlighted {
+    border: 5px solid #ff7a00;
+    margin-left: -5px;
+    margin-top: -5px;
+}
+
+/* styles for member program path box - end */
