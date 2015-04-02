@@ -2544,3 +2544,59 @@ h1.center {
 }
 
 /* end markdown tables */
+
+/* styles for member program path box - start */
+
+.member-program-path .step-separator {
+    float:left;
+    width:2%;
+    line-height:135px;
+    font-size:20px;
+    background: url("../i/next.png") no-repeat center center;
+}
+
+.member-program-path .step {
+    float:left;
+    border:1px solid #e1e1e1;
+    box-sizing: border-box;
+    text-align:center;
+    width:23%;
+}
+
+.member-program-path .step .details {
+    clear:both;
+    height:110px;
+    /*background-color: #8ed25c;*/
+}
+
+.member-program-path .step.current .details {
+    background-color: #8ed25c;
+}
+
+.member-program-path .step .details .title {
+    font-weight: bold;
+    color: #47692e;
+}
+
+.member-program-path .step .details .description {
+    font-size:10px;
+}
+
+.member-program-path .step .details .challenge-types {
+    font-size:8px;
+    font-weight:bold;
+}
+
+.member-program-path .step .certification {
+    clear:both;
+    height:25px;
+    border-top:1px solid #e1e1e1;
+    background-color: #b7b7b7;
+    color: white;
+}
+
+.member-program-path .step.current .certification {
+    background-color: #46b314;
+}
+
+/* styles for member program path box - end */
