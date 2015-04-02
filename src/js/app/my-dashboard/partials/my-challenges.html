@@ -12,7 +12,7 @@
         </thead>
         <tbody>
             <tr ng-show="vm.myChallenges.length > 0" ng-repeat="challenge in vm.myChallenges">
-                <td>{{challenge.challengeCommunity}}</td>
+                <td class="{{challenge.challengeCommunity}}">&nbsp;</td>
                 <td>{{challenge.firstPlacePrize | currency}}</td>
                 <td><a href="/challenge-details/{{challenge.challengeId}}">{{challenge.challengeName}}</a></td>
                 <td class="ellipsis">{{challenge.roles.join(', ')}}</td>

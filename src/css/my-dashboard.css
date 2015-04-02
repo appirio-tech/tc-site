@@ -1,6 +1,6 @@
 .my-dashboard-container {
     width: 100%;
-    /*border: 1px solid;*/
+    border-bottom: 7px solid #e3e3e3;
 }
 
 .my-dashboard-column-left {
@@ -24,10 +24,15 @@
     /*width: 100%;*/
 }
 
+.widget {
+  border: 1px solid rgb(207,207,207);
+  border-radius: 5px;
+}
+
 .widget-header {
   background-color: rgb(237,237,237);
   border-bottom: 1px solid rgb(207,207,207);
-  border-radius: 5px;
+  /*border-radius: 5px;*/
   height: 40px;
   line-height: 40px;
 }
@@ -46,23 +51,13 @@
     margin-top: -8px;
 }
 
-.member-program {
-}
-
-.member-program-content {
-    margin-left: 6px;
-}
-
-.member-program-content h1,
-.member-program-content h2,
-.member-program-content h3,
-.member-program-content h4,
-.member-program-content p {
-    margin-top: 5px;
-}
-
 .blog-post {
-    height: 300px;
+    /*height: 300px;*/
+    overflow: scroll;
+}
+
+.blog-post .post {
+  border-bottom: 1px solid rgb(207,207,207);
 }
 
 .srm-gadget {
@@ -202,11 +197,19 @@
   display: inline-block;
 }
 
+.member-program {
+}
+
 .member-program-content {
-    background: -webkit-linear-gradient(360deg, rgb(15, 16, 31), rgb(101,220,85), rgb(164, 13, 62));
-    height: 375px;
+}
+
+.member-program-content {
+    /*background: -webkit-linear-gradient(360deg, rgb(15, 16, 31), rgb(101,220,85), rgb(164, 13, 62));*/
+    height: 377px;
     /*margin-left: 50px;*/
     overflow: hidden;
+    background: url('../i/swift-background-desktop.png') no-repeat center center;
+    color: #eeeeee;
 }
 
 .member-program-content .display-image {
@@ -259,6 +262,14 @@
 .my-challenges {
   max-height: 550px;
   min-height: 50px;
+}
+
+.my-challenges .develop {
+  background: url("../i/ico-track-develop.png") no-repeat center center;
+}
+
+.my-challenges .design {
+  background: url("../i/ico-track-design.png") no-repeat center center;
 }
 
 .my-challenges-table td {
