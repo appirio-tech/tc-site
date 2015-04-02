@@ -179,6 +179,28 @@ sub, sup {
 .container.fluid{
     width: auto;
 }
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.padding-reset {
+    padding: 0px;
+}
+
+.padding-vert-1x {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.padding-bottom-1x {
+    padding-bottom: 5px;
+}
+
+.center-align-text {
+    text-align: center;;
+}
+
 .stop-scrolling {
   height: 100%;
   overflow: hidden;

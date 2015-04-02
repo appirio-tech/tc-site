@@ -1,25 +1,26 @@
 <div ng-controller="MyChallengesCtrl as vm" >
     <strong>My Challenges</strong>
-    <table width="100%" ng-show="vm.myChallenges.length > 0" class="my-challenges-table">
+    <table width="100%" class="table table-bordered table-responsive">
         <thead>
-            <tr>
-                <td>Type</td>
-                <td>#1</td>
-                <td>Challenge</td>
-                <td>Submit By</td>
+            <tr class="active">
+                <th>Type</th>
+                <th>First Prize</th>
+                <th>Challenge</th>
+                <th>Roles</th>
+                <th>Submit By</th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="challenge in vm.myChallenges">
-                <td>{{challenge.challengeCommunity}}</td>
+            <tr ng-show="vm.myChallenges.length > 0" ng-repeat="challenge in vm.myChallenges">
+                <td class="{{challenge.challengeCommunity}}">&nbsp;</td>
                 <td>{{challenge.firstPlacePrize | currency}}</td>
                 <td><a href="/challenge-details/{{challenge.challengeId}}">{{challenge.challengeName}}</a></td>
-                <td class="my-challenges-submittion-date">{{challenge.submissionEndDate | date}}</td>
+                <td class="ellipsis">{{challenge.roles.join(', ')}}</td>
+                <td class="my-challenges-submittion-date ellipsis">{{challenge.submissionEndDate | date}}</td>
+            </tr>
+            <tr ng-show="vm.myChallenges.length === 0">
+              <td colspan="3">You don't have any active challenges</td>
             </tr>
         </tbody>
     </table>
-
-    <div ng-show="vm.myChallenges.length === 0">
-        You don't have any active challenges
-    </div>
 </div>

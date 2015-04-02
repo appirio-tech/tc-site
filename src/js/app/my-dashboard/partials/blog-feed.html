@@ -1,6 +1,17 @@
-<div ng-controller="BlogPostCtrl as vm">
-    <strong>Blog</strong>
-    <div ng-repeat="blog in vm.blogPosts | orderBy : pubDate : true | limitTo : 4">
-        <a href="{{blog.link}}" target="_blank">{{blog.pubDate | date : 'MMMM dd'}}</a>&nbsp;<span ng-bind-html="blog.description"></span>
+<div ng-controller="BlogPostCtrl as vm" class="widget container-fluid padding-reset">
+  <div class="widget-header">
+   <span class="col-xs-12">Featured Blogs</span>
+  </div>
+  <div class="widget-body">
+    <div ng-repeat="blog in vm.blogPosts | orderBy : pubDate : true | limitTo : 4" class="post">
+      <div>
+      	<a href="{{blog.link}}" target="_blank" class="col-xs-12 col-sm-8 ellipsis padding-vert-1x">{{blog.title}}</a>
+      	<span class="col-xs-12 col-sm-4 ellipsis">{{blog.pubDate | date : 'MMMM dd'}}</span>
+      </div>
+      <div>
+        <span ng-bind-html="blog.description" class="col-xs-12"></span>
+      </div>
+      <div class="clearfix"></div>
     </div>
+  </div>
 </div>

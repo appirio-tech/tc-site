@@ -89,6 +89,7 @@
 
               vm.myOpenChallengesCount = ctOpenChallenges;
               vm.reviewOpportunities = ctReviewChallenges;
+              console.log(vm);
             });
       });
     }
