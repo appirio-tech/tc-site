@@ -1,16 +1,13 @@
-<div ng-controller="BlogPostCtrl as vm" class="widget container-fluid padding-reset">
-  <div class="widget-header">
-   <span class="col-xs-12">Featured Blogs</span>
+<div ng-controller="BlogPostCtrl as vm" class="widget container-fluid padding-reset panel panel-default">
+  <div class="panel-heading">
+   <span class="panel-title">Featured Blogs</span>
   </div>
-  <div class="widget-body">
-    <div ng-repeat="blog in vm.blogPosts | orderBy : pubDate : true | limitTo : 4" class="post">
+  <div class="panel-body padding-vert-reset">
+    <div ng-repeat="blog in vm.blogPosts | orderBy : pubDate : true | limitTo : 4" class="post row">
       <div>
-      	<a href="{{blog.link}}" target="_blank" class="col-xs-12 col-sm-8 ellipsis padding-vert-1x">{{blog.title}}</a>
-      	<span class="col-xs-12 col-sm-4 ellipsis">{{blog.pubDate | date : 'MMMM dd'}}</span>
+      	<a href="{{blog.link}}" target="_blank" class="col-xs-12 padding-vert-1x">{{blog.title}}</a>
       </div>
-      <div>
-        <span ng-bind-html="blog.description" class="col-xs-12"></span>
-      </div>
+      <div class="col-xs-12 ellipsis right-align-text">{{blog.pubDate | date : 'MMMM dd'}}</div>
       <div class="clearfix"></div>
     </div>
   </div>
