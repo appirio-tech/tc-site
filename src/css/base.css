@@ -188,6 +188,16 @@ sub, sup {
     padding: 0px;
 }
 
+.padding-vert-reset {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.padding-horiz-reset {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
 .padding-vert-1x {
     padding-top: 5px;
     padding-bottom: 5px;
@@ -199,6 +209,10 @@ sub, sup {
 
 .center-align-text {
     text-align: center;;
+}
+
+.right-align-text {
+    text-align: right;;
 }
 
 .stop-scrolling {

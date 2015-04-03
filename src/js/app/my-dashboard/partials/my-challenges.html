@@ -15,11 +15,11 @@
                 <td class="{{challenge.challengeCommunity}}">&nbsp;</td>
                 <td>{{challenge.firstPlacePrize | currency}}</td>
                 <td><a href="/challenge-details/{{challenge.challengeId}}">{{challenge.challengeName}}</a></td>
-                <td class="ellipsis">{{challenge.roles.join(', ')}}</td>
+                <td rel="roles" class="ellipsis" title="{{challenge.roles.join(', ')}}">{{challenge.roles.join(', ')}}</td>
                 <td class="my-challenges-submittion-date ellipsis">{{challenge.submissionEndDate | date}}</td>
             </tr>
             <tr ng-show="vm.myChallenges.length === 0">
-              <td colspan="3">You don't have any active challenges</td>
+              <td colspan="5">You don't have any active challenges</td>
             </tr>
         </tbody>
     </table>

@@ -1,9 +1,15 @@
-<ul ng-controller="HelpfulLinksCtrl as vm">
-    <li class="header">{{vm.message}}</li>
-    <li><a href="http://forums.topcoder.com">Forums</a></li>
-    <li><a href="software.topcoder.com/review/">Online Review</a></li>
-    <li><a href="https://www.topcoder.com/challenges/?pageIndex=1">Challenges</a></li>
-    <li><a href="http://community.topcoder.com/tc?module=MyHome">Edit Preferences</a></li>
-    <li><a href="http://www.topcoder.com/community/getting-started/">Getting Started</a></li>
-    <li><a href="http://help.topcoder.com/">Help Center</a></li>
-</ul>
+<div ng-controller="HelpfulLinksCtrl as vm" class="panel panel-default">
+	<div class="panel-heading">
+    <span class="panel-title">{{vm.message}}</span> 
+  </div>
+  <div class="panel-body padding-vert-reset">
+    <ul class="row">
+      <li><a href="http://forums.topcoder.com">Forums</a></li>
+      <li><a href="software.topcoder.com/review/">Online Review</a></li>
+      <li><a href="https://www.topcoder.com/challenges/?pageIndex=1">Challenges</a></li>
+      <li><a href="http://community.topcoder.com/tc?module=MyHome">Edit Preferences</a></li>
+      <li><a href="http://www.topcoder.com/community/getting-started/">Getting Started</a></li>
+      <li><a href="http://help.topcoder.com/">Help Center</a></li>
+    </ul>
+  </div>
+</div>

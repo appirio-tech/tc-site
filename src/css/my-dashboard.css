@@ -29,18 +29,6 @@
   border-radius: 5px;
 }
 
-.widget-header {
-  background-color: rgb(237,237,237);
-  border-bottom: 1px solid rgb(207,207,207);
-  /*border-radius: 5px;*/
-  height: 40px;
-  line-height: 40px;
-}
-
-.welcome-back {
-  background-color: rgb(234, 234, 234);
-}
-
 .marketing-message {
     height: 150px;
     border: none;
@@ -58,6 +46,10 @@
 
 .blog-post .post {
   border-bottom: 1px solid rgb(207,207,207);
+}
+
+.blog-post .post:last-child {
+  border: none;
 }
 
 .srm-gadget {
@@ -88,11 +80,6 @@
 }
 
 .member-profile {
-  /*height: 250px;
-  background-color: rgb(234, 234, 234);
-  position: relative;
-  margin-bottom: 50px;
-  padding-top: 20px;*/
 }
 
 .member-profile .profile-left {
@@ -124,9 +111,6 @@
 }
 
 .member-profile .profile-bio {
-  /*position: absolute;
-  right: 20%;
-  top: 20px;*/
   color: rgb(91, 91, 91);
   height: 100px;
   text-align: right;
@@ -134,9 +118,6 @@
 }
 
 .member-profile .money-in-bank {
-  /*position: absolute;
-  bottom: -50px;
-  left: 20%;*/
   width: 220px;
   height: 75px;
   background-color: rgb(35, 153, 219);
@@ -150,9 +131,6 @@
 }
 
 .member-profile .challenges-registered {
-  /*position: absolute;
-  bottom: -50px;
-  left: 40%;*/
   width: 220px;
   height: 75px;
   background-color: rgb(196, 207, 28);
@@ -166,9 +144,6 @@
 }
 
 .member-profile .open-challenges {
-  /*position: absolute;
-  bottom: -50px;
-  left: 60%;*/
   width: 220px;
   height: 75px;
   background-color: rgb(125, 188, 52);
@@ -182,9 +157,6 @@
 }
 
 .member-profile .review-opportunities {
-  /*position: absolute;
-  bottom: -50px;
-  left: 80%;*/
   width: 220px;
   height: 75px;
   background-color: rgb(243, 131, 30);
@@ -239,25 +211,16 @@
 
 }
 
-.helpful-links ul {
-  border: 1px solid rgb(207,207,207);
-  border-radius: 5px;
-}
-
-.helpful-links ul > li.header {
-  background-color: rgb(237,237,237);
-}
-
 .helpful-links ul > li {
   border-bottom: 1px solid rgb(207,207,207);
   height: 40px;
   line-height: 40px;
   padding-left: 10px;
 }
+
 .helpful-links ul > li:last-child {
   border: none;
 }
-
 
 .my-challenges {
   max-height: 550px;
@@ -272,67 +235,18 @@
   background: url("../i/ico-track-design.png") no-repeat center center;
 }
 
-.my-challenges-table td {
-    padding-left: 5px;
+.my-challenges td[rel="roles"] {
+  max-width: 150px;
 }
-
-/*.my-challenges-submittion-date {
-    width: 90px;
-}*/
-
-/*.my-challenges table {
-  border: 1px solid rgb(207,207,207);
-  border-collapse: separate;
-  border-radius: 5px;
-}
-
-.my-challenges table > thead > tr {
-  background-color: rgb(237,237,237);
-  border-bottom: 1px solid rgb(207,207,207);
-  height: 40px;
-  line-height: 40px;
-}
-
-.my-challenges table > tbody > tr > td {
-  padding-left: 5px;
-  border-bottom: 1px solid rgb(207,207,207);
-  height: 40px;
-  line-height: 40px;
-}*/
-
 
 .upcoming-srms-div {
     position: relative;
     height: 100%;
 }
 
-/*.upcoming-srms-div table {
-  border: 1px solid rgb(207,207,207);
-  border-radius: 5px;
-  border-collapse: separate;
-}
-
-.upcoming-srms-div table > thead > tr {
-  background-color: rgb(237,237,237);
-  border-bottom: 1px solid rgb(207,207,207);
-  height: 40px;
-  line-height: 40px;
-}
-
-.upcoming-srms-div table > thead > tr > th {
-  border-bottom: 1px solid rgb(207,207,207);
-}*/
-
 .upcoming-srms-div .srm-gadget {
   max-height: 300px;
 }
-
-/*.upcoming-srms-div .srm-gadget-table td {
-  padding-left: 5px;
-  border-bottom: 1px solid rgb(207,207,207);
-  height: 40px;
-  line-height: 40px;
-}*/
 
 .upcoming-srms-div .srm-gadget-coding-date {
     width: 170px;
