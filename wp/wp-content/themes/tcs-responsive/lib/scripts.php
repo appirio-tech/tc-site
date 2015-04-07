@@ -23,7 +23,6 @@ function tcs_responsive_scripts() {
   $assets = array(
     'jquery' => '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
     'jquery_ui' => '//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js',
-    'fonts' => '//fonts.googleapis.com/css?family=Source+Sans+Pro:700,600,400,400italic,300',
     'respond'   =>  '/js/vendor/respond.min.js',
     'modernizr' => '/js/vendor/modernizr.js',
     'html5shiv' => '/js/vendor/html5shiv.js',
@@ -203,10 +202,6 @@ function tsc_get_script_preext() {
  * @param $assets array
  */
 function tsc_register_master($assets) {
-  // Add fonts
-  wp_register_style('fonts', $assets['fonts']);
-  wp_enqueue_style('fonts');
-
   // Setup jquery cdn and put in the header
   wp_deregister_script('jquery');
   wp_register_script('jquery', $assets['jquery'], array());
