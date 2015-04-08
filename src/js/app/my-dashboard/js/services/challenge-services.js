@@ -54,7 +54,7 @@
 
         // Fetch list of active challenges for current user
         service.one("user").getList("challenges", {
-            type: "past",
+            type: "active",
             pageIndex: pageIndex,
             pageSize: pageSize
           }).then(function(data) {
