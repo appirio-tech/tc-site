@@ -28,7 +28,7 @@
         <tr ng-show="vm.myChallenges.length > 0 && !vm.loading" ng-repeat="challenge in vm.myChallenges">
           <td class="{{challenge.challengeCommunity}}">&nbsp;</td>
           <td>{{challenge.firstPlacePrize | currency}}</td>
-          <td rel="challenge-name"><a href="/challenge-details/{{challenge.challengeId}}">{{challenge.challengeName}}</a></td>
+          <td rel="challenge-name"><a href="/challenge-details/{{challenge.challengeId}}?type={{challenge.challengeCommunity}}">{{challenge.challengeName}}</a></td>
           <td rel="roles" class="ellipsis" title="{{challenge.roles.join(', ')}}">{{challenge.roles.join(', ')}}</td>
           <td class="my-challenges-submittion-date ellipsis">{{challenge.submissionEndDate | date}}</td>
         </tr>
