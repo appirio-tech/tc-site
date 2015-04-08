@@ -31,7 +31,7 @@
     var vm = this;
     vm.loading = true;
     vm.pageIndex = 1;
-    vm.pageSize = 2;
+    vm.pageSize = 5;
     vm.totalPages = 1;
     vm.totalRecords = vm.totalPages * vm.pageSize;
     vm.firstRecordIndex = (vm.pageIndex - 1) * vm.pageSize + 1;
