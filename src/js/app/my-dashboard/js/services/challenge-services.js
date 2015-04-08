@@ -31,11 +31,13 @@
     /**
      * getMyActiveChallenges returns all challenges that the currently logged in user is involved in
      */
-    service.getMyActiveChallenges = function() {
+    service.getMyActiveChallenges = function(request) {
       var deferred = $q.defer();
 
+      var prevRequest = service.request;
+
       // If my active challenges has already been retrieved, simply return it
-      if(service.myActiveChallenges && service.myActiveChallenges != "waiting") {
+      if(service.myActiveChallenges && service.myActiveChallenges != "waiting" && !uniqueRequest(prevRequest, request)) {
         deferred.resolve(service.myActiveChallenges);
       } else {
         // Otherwise, set state to waiting, so that only one call is done to the server
@@ -44,9 +46,18 @@
         // Add promise to list to it can be resolved when call returns
         service.activeChallengeDeferredList.push(deferred);
 
+        // add default paging
+        var pageIndex = request && request.pageIndex ? request.pageIndex : 1;
+        var pageSize = request && request.pageSize ? request.pageSize : 10;
+
+        service.request = request;
+
         // Fetch list of active challenges for current user
-        service.one("user").getList("challenges", {type: "active"})
-          .then(function(data) {
+        service.one("user").getList("challenges", {
+            type: "past",
+            pageIndex: pageIndex,
+            pageSize: pageSize
+          }).then(function(data) {
             // Sets the data, and returns it to all pending promises
             service.myActiveChallenges = data;
             angular.forEach(service.activeChallengeDeferredList, function(def) {
@@ -57,6 +68,14 @@
       }
 
       return deferred.promise;
+    }
+
+    function uniqueRequest(prevRequest, currRequest) {
+      console.log(prevRequest);
+      console.log(currRequest);
+      if (!prevRequest || !currRequest) return true;
+      return prevRequest.pageIndex != currRequest.pageIndex ||
+        prevRequest.pageSize != currRequest.pageSize;
     }
 
     return service;  

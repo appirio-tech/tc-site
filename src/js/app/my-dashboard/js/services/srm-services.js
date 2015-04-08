@@ -28,8 +28,23 @@
      * getSRMSchedule returns list of upcoming SRMs currently scheduled
      *
      */
-    service.getSRMSchedule = function() {
-      return service.one("data").one("srm").getList("schedule", {sortColumn: "registrationstarttime", sortOrder: "asc", registrationStartTimeAfter: $filter('date')(new Date(), 'yyyy-MM-ddTHH:mm:ss.sssZ'), statuses: "A,P,F"});
+    service.getSRMSchedule = function(request) {
+
+      // add default paging
+      var pageIndex = request && request.pageIndex ? request.pageIndex : 1;
+      var pageSize = request && request.pageSize ? request.pageSize : 10;
+
+      service.request = request;
+
+      var filters = {
+        sortColumn: "registrationstarttime",
+        sortOrder: "asc",
+        registrationStartTimeAfter: $filter('date')(new Date(), 'yyyy-MM-ddTHH:mm:ss.sssZ'),
+        statuses: "A,P,F",
+        pageIndex: pageIndex,
+        pageSize: pageSize
+      };
+      return service.one("data").one("srm").getList("schedule", filters);
     }
 
     return service;  
