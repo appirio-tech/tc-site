@@ -3,6 +3,12 @@
     border-bottom: 7px solid #e3e3e3;
 }
 
+.my-dashboard-container .widget-loading {
+  width: 100%;
+  height: 50px;
+  background: url("../i/loading.gif") no-repeat center center;
+}
+
 .my-dashboard-column-left {
     width: 20%;
     float: left;
@@ -20,13 +26,21 @@
 }
 
 .my-dashboard-widget {
-    /*border: 1px solid;*/
-    /*width: 100%;*/
+  margin-bottom: 30px;
+  color: #666;
 }
 
 .widget {
   border: 1px solid rgb(207,207,207);
   border-radius: 5px;
+}
+
+.tc-pager {
+
+}
+
+.page-link {
+  margin-right: 5px;
 }
 
 .marketing-message {
@@ -88,6 +102,8 @@
 
 .member-profile .profile-right {
   direction: rtl;
+  /* workaround to vertical align middle */
+  padding-top: 46px;
 }
 
 .member-profile .profile-image {
@@ -103,11 +119,13 @@
   color: white;
   text-align: center;
   font-weight: bold;
+  margin-top: 15px;
 }
 
 .member-profile .profile-left .doj {
   color: rgb(91, 91, 91);
   text-align: center;
+  margin-top: 20px;
 }
 
 .member-profile .profile-bio {
@@ -119,54 +137,84 @@
 
 .member-profile .money-in-bank {
   width: 220px;
-  height: 75px;
-  background-color: rgb(35, 153, 219);
+  height: 82px;
+  /*background-color: rgb(35, 153, 219);
   border: 5px solid white;
-  border-radius: 52px;
+  border-radius: 52px;*/
   text-align: center;
   padding-top: 16px;
   box-sizing: border-box;
-  color: white;
   display: inline-block;
+}
+
+.member-profile .money-in-bank div[rel="value"] {
+  font-weight: bold;
+  font-size: 24px;
+  color: rgb(12, 75, 144);
+}
+
+.member-profile .money-in-bank div[rel="label"] {
+  margin-top: 30px;
+  font-weight: bold;
 }
 
 .member-profile .challenges-registered {
   width: 220px;
-  height: 75px;
-  background-color: rgb(196, 207, 28);
+  height: 82px;
+  /*background-color: rgb(196, 207, 28);
   border: 5px solid white;
-  border-radius: 52px;
+  border-radius: 52px;*/
   text-align: center;
   padding-top: 16px;
   box-sizing: border-box;
-  color: white;
+  /*color: white;*/
   display: inline-block;
 }
 
 .member-profile .open-challenges {
   width: 220px;
-  height: 75px;
-  background-color: rgb(125, 188, 52);
+  height: 82px;
+  /*background-color: rgb(125, 188, 52);
   border: 5px solid white;
-  border-radius: 52px;
+  border-radius: 52px;*/
   text-align: center;
   padding-top: 16px;
   box-sizing: border-box;
-  color: white;
   display: inline-block;
+}
+
+.member-profile .open-challenges div[rel="value"] {
+  font-weight: bold;
+  font-size: 24px;
+  color: rgb(99, 81, 111);
+}
+
+.member-profile .open-challenges div[rel="label"] {
+  margin-top: 30px;
+  font-weight: bold;
 }
 
 .member-profile .review-opportunities {
   width: 220px;
   height: 75px;
-  background-color: rgb(243, 131, 30);
+  /*background-color: rgb(243, 131, 30);
   border: 5px solid white;
-  border-radius: 52px;
+  border-radius: 52px;*/
   text-align: center;
   padding-top: 16px;
   box-sizing: border-box;
-  color: white;
   display: inline-block;
+}
+
+.member-profile .review-opportunities div[rel="value"] {
+  font-weight: bold;
+  font-size: 24px;
+  color: #FFB800;
+}
+
+.member-profile .review-opportunities div[rel="label"] {
+  margin-top: 30px;
+  font-weight: bold;
 }
 
 .member-program {
@@ -180,7 +228,7 @@
     height: 377px;
     /*margin-left: 50px;*/
     overflow: hidden;
-    background: url('../i/swift-background-desktop.png') no-repeat center center;
+    background: url('../i/swift_background_hpattern.jpg') repeat-x center center;
     color: #eeeeee;
 }
 
@@ -199,12 +247,8 @@
 }
 
 .member-program-content .signup {
-  /*float: right;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);*/
   color: white;
-  /*margin-right: 5%;*/
+  margin-top: 20px;
 }
 
 .helpful-links {
@@ -217,14 +261,25 @@
   line-height: 40px;
   padding-left: 10px;
 }
+.helpful-links ul > li > a {
+  color: #666;
+}
+
+.helpful-links ul > li > a:hover {
+  color: #FFB800;
+}
 
 .helpful-links ul > li:last-child {
   border: none;
 }
 
 .my-challenges {
-  max-height: 550px;
+  /*max-height: 550px;*/
   min-height: 50px;
+}
+
+.my-challenges .challenges-header {
+  margin-bottom: 20px;
 }
 
 .my-challenges .develop {
@@ -239,9 +294,21 @@
   max-width: 150px;
 }
 
+.my-challenges td[rel="challenge-name"] > a {
+  color: #666;
+}
+
+.my-challenges td[rel="challenge-name"] > a:hover {
+  color: #FFB800;
+}
+
 .upcoming-srms-div {
     position: relative;
     height: 100%;
+}
+
+.upcoming-srms-div .upcoming-srms-header {
+  margin-bottom: 20px;
 }
 
 .upcoming-srms-div .srm-gadget {

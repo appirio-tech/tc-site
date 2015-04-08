@@ -1,5 +1,18 @@
 <div class="upcoming-srms-div" ng-controller="UpcomingSRMsCtrl as vm" >
-    <strong>Upcoming SRMs</strong>
+    <div class="upcoming-srms-header clearfix">
+      <div class="pull-left"><strong>Upcoming SRMs</strong></div>
+      <div class="pull-right" ng-show="vm.totalPages > 1">
+        <ul class="tc-pager">
+          <li ng-show="vm.prevPageLink.val > 0 && vm.prevPageLink.val <= vm.totalPages" ng-click="vm.changePage(vm.prevPageLink)" class="page-link pull-left" ng-class="vm.getCurrentPageClass(vm.prevPageLink)">
+            <a href="#">{{vm.prevPageLink.text}}</a>
+          </li>
+          <li class="page-status pull-left page-link">{{vm.firstRecordIndex}}-{{vm.lastRecordIndex}} of {{vm.totalRecords}}</li>
+          <li ng-show="vm.nextPageLink.val > 0 && vm.nextPageLink.val <= vm.totalPages" ng-click="vm.changePage(vm.nextPageLink)" class="page-link pull-left" ng-class="vm.getCurrentPageClass(vm.nextPageLink)">
+            <a href="#">{{vm.nextPageLink.text}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
     <table width="100%" class="table table-bordered table-responsive">
         <thead>
             <tr class="active">
@@ -9,10 +22,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-show="vm.upcomingSRMs.length > 0" ng-repeat="srm in vm.upcomingSRMs">
+            <tr ng-show="vm.upcomingSRMs.length > 0 && !vm.loading" ng-repeat="srm in vm.upcomingSRMs">
                 <td>{{srm.contestName}}</td>
                 <td>{{srm.registrationStartTime | date:'medium' }}</td>
                 <td>{{srm.codingStartTime | date:'medium'}}</td>
+            </tr>
+            <tr ng-show="vm.loading">
+              <td colspan="3"><div class="widget-loading"></div></td>
             </tr>
             <tr ng-show="vm.upcomingSRMs.length > 0">
                 <td colspan="3">

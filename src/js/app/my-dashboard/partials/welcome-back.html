@@ -13,24 +13,25 @@
     <div class="doj">Joined: {{vm.profile.memberSince | date}}</div>
   </div>
   <div class="profile-right col-xs-12 col-sm-10">
-    <div class="profile-bio">
+    <!-- <div class="profile-bio">
       {{vm.profile.quote}}
-    </div>
+    </div> -->
     <div class="review-opportunities">
-      <div>{{vm.reviewOpportunities || 0}}</div>
-      <div>Review Opportunities</div>
+      <div rel="value">{{vm.reviewOpportunities || 0}}</div>
+      <div rel="label">Review Opportunities</div>
     </div>
     <div class="open-challenges">
-      <div>{{vm.myOpenChallengesCount || 0}}</div>
-      <div>Open Challenges</div>
+      <div rel="value">{{vm.myOpenChallengesCount || 0}}</div>
+      <div rel="label">Open Challenges</div>
     </div>
     <div class="money-in-bank" ng-hide="true" ng-show="vm.profile.overallEarning > 0">
-      <div>{{vm.profile.overallEarning || 0 | currency}}</div>
-      <div>Money in Bank</div>
+      <div rel="value">{{vm.profile.overallEarning || 0 | currency}}</div>
+      <div rel="label">Money in Bank</div>
     </div>
     <!-- <div class="challenges-registered">
       <div>{{vm.myOpenChallengesCount || 0}}</div>
       <div>Challenges registered</div>
     </div> -->
   </div>
+  <div class="clear"></div>
 </div>

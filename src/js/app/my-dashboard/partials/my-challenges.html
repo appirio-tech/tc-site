@@ -1,26 +1,43 @@
 <div ng-controller="MyChallengesCtrl as vm" >
-    <strong>My Challenges</strong>
+  <div class="widget-content">
+    <div class="challenges-header clearfix">
+      <div class="pull-left"><strong>My Challenges</strong></div>
+      <div class="pull-right" ng-show="vm.totalPages > 1">
+        <ul class="tc-pager">
+          <li ng-show="vm.prevPageLink.val > 0 && vm.prevPageLink.val <= vm.totalPages" ng-click="vm.changePage(vm.prevPageLink)" class="page-link pull-left" ng-class="vm.getCurrentPageClass(vm.prevPageLink)">
+            <a href="#">{{vm.prevPageLink.text}}</a>
+          </li>
+          <li class="page-status pull-left page-link">{{vm.firstRecordIndex}}-{{vm.lastRecordIndex}} of {{vm.totalRecords}}</li>
+          <li ng-show="vm.nextPageLink.val > 0 && vm.nextPageLink.val <= vm.totalPages" ng-click="vm.changePage(vm.nextPageLink)" class="page-link pull-left" ng-class="vm.getCurrentPageClass(vm.nextPageLink)">
+            <a href="#">{{vm.nextPageLink.text}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
     <table width="100%" class="table table-bordered table-responsive">
-        <thead>
-            <tr class="active">
-                <th>Type</th>
-                <th>First Prize</th>
-                <th>Challenge</th>
-                <th>Roles</th>
-                <th>Submit By</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-show="vm.myChallenges.length > 0" ng-repeat="challenge in vm.myChallenges">
-                <td class="{{challenge.challengeCommunity}}">&nbsp;</td>
-                <td>{{challenge.firstPlacePrize | currency}}</td>
-                <td><a href="/challenge-details/{{challenge.challengeId}}">{{challenge.challengeName}}</a></td>
-                <td rel="roles" class="ellipsis" title="{{challenge.roles.join(', ')}}">{{challenge.roles.join(', ')}}</td>
-                <td class="my-challenges-submittion-date ellipsis">{{challenge.submissionEndDate | date}}</td>
-            </tr>
-            <tr ng-show="vm.myChallenges.length === 0">
-              <td colspan="5">You don't have any active challenges</td>
-            </tr>
-        </tbody>
+      <thead>
+        <tr class="active">
+          <th>Type</th>
+          <th>First Prize</th>
+          <th>Challenge</th>
+          <th>Roles</th>
+          <th>Submit By</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-show="vm.myChallenges.length > 0 && !vm.loading" ng-repeat="challenge in vm.myChallenges">
+          <td class="{{challenge.challengeCommunity}}">&nbsp;</td>
+          <td>{{challenge.firstPlacePrize | currency}}</td>
+          <td rel="challenge-name"><a href="/challenge-details/{{challenge.challengeId}}">{{challenge.challengeName}}</a></td>
+          <td rel="roles" class="ellipsis" title="{{challenge.roles.join(', ')}}">{{challenge.roles.join(', ')}}</td>
+          <td class="my-challenges-submittion-date ellipsis">{{challenge.submissionEndDate | date}}</td>
+        </tr>
+        <tr ng-show="vm.loading">
+          <td colspan="5"><div class="widget-loading"></div></td>
+        </tr>
+        <tr ng-show="vm.myChallenges.length === 0">
+          <td colspan="5">You don't have any active challenges</td>
+        </tr>
+      </tbody>
     </table>
 </div>
