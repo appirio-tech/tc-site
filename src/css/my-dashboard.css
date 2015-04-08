@@ -137,7 +137,7 @@
 
 .member-profile .money-in-bank {
   width: 220px;
-  height: 75px;
+  height: 82px;
   /*background-color: rgb(35, 153, 219);
   border: 5px solid white;
   border-radius: 52px;*/
@@ -160,7 +160,7 @@
 
 .member-profile .challenges-registered {
   width: 220px;
-  height: 75px;
+  height: 82px;
   /*background-color: rgb(196, 207, 28);
   border: 5px solid white;
   border-radius: 52px;*/
@@ -173,10 +173,10 @@
 
 .member-profile .open-challenges {
   width: 220px;
-  height: 75px;
-  bac/*kground-color: rgb(125, 188, 52);
+  height: 82px;
+  /*background-color: rgb(125, 188, 52);
   border: 5px solid white;
-  border*/-radius: 52px;
+  border-radius: 52px;*/
   text-align: center;
   padding-top: 16px;
   box-sizing: border-box;
@@ -274,7 +274,7 @@
 }
 
 .my-challenges {
-  max-height: 550px;
+  /*max-height: 550px;*/
   min-height: 50px;
 }
 
