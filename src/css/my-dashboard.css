@@ -66,6 +66,14 @@
   border: none;
 }
 
+.blog-post a {
+  color: #666;
+}
+
+.blog-post a:hover {
+  color: #FFB800;
+}
+
 .srm-gadget {
   max-height: 300px;
 }
