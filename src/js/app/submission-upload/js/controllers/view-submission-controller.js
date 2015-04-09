@@ -23,7 +23,7 @@
             'date' : Utils.formatDate(submission.submissionDate, 'MMM DD,YYYY hh:mm a z'),
             'type' : submission.submissionType,
             'download' : submission.download,
-            'thumbnail' : 'http://studio.topcoder.com/?module=DownloadSubmission&sbmid=' + submission.submissionId + '&sbt=tiny'
+            'thumbnail' : '//studio.topcoder.com/?module=DownloadSubmission&sbmid=' + submission.submissionId + '&sbt=tiny'
           });
         });
       });

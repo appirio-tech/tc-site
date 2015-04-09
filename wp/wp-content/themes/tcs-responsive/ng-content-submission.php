@@ -44,8 +44,8 @@
                 //dateStr format : 2014-04-02 07:10
                 $dateObj = DateTime::createFromFormat('Y-m-d H:i', $dateStr);
                 $dateFormatted = $dateObj!=null ? $dateObj->format('d.m.Y , H:i') : "";
-                $submissionGridViewImg = "http://studio.topcoder.com/studio.jpg?module=DownloadSubmission&sbmid=".$submissionObj->submissionId."&sbt=small&sfi=1";
-                $submissionDownloadUrl = "http://studio.topcoder.com/?module=DownloadSubmission&sbmid=".$submissionObj->submissionId;
+                $submissionGridViewImg = "//studio.topcoder.com/studio.jpg?module=DownloadSubmission&sbmid=".$submissionObj->submissionId."&sbt=small&sfi=1";
+                $submissionDownloadUrl = "//studio.topcoder.com/?module=DownloadSubmission&sbmid=".$submissionObj->submissionId;
         ?>
         <?php if($key==0) : ?>
             <li class="slide">
@@ -130,8 +130,8 @@
                 //dateStr format : 2014-04-02 07:10
                 $dateObj = DateTime::createFromFormat('Y-m-d H:i', $dateStr);
                 $dateFormatted = $dateObj!=null ? $dateObj->format('d.m.Y , H:i') : "";
-                $submissionGridViewImg = "http://studio.topcoder.com/studio.jpg?module=DownloadSubmission&sbmid=".$submissionObj->submissionId."&sbt=small&sfi=1";
-                $submissionDownloadUrl = "http://studio.topcoder.com/?module=DownloadSubmission&sbmid=".$submissionObj->submissionId;
+                $submissionGridViewImg = "//studio.topcoder.com/studio.jpg?module=DownloadSubmission&sbmid=".$submissionObj->submissionId."&sbt=small&sfi=1";
+                $submissionDownloadUrl = "//studio.topcoder.com/?module=DownloadSubmission&sbmid=".$submissionObj->submissionId;
         ?>
         <?php if($key==0) : ?>
             <li class="slide">

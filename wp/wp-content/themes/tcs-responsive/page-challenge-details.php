@@ -96,7 +96,7 @@ include locate_template('header-challenge-landing.php');
       <a href="http://apps.topcoder.com/forums/?module=Category&categoryID=<?php echo $contest->forumId; ?>"
          class="contestForumIcon" target="_blank">Challenge Discussion</a>
     <?php else: ?>
-      <a href="http://studio.topcoder.com/forums?module=ThreadList&forumID=<?php echo $contest->forumId; ?>"
+      <a href="//studio.topcoder.com/forums?module=ThreadList&forumID=<?php echo $contest->forumId; ?>"
          class="contestForumIcon" target="_blank">Challenge Discussion</a>
     <?php endif; ?>
   </div>
@@ -585,10 +585,10 @@ include locate_template('header-challenge-landing.php');
 <div class="topRightTitle">
 
   <?php if ($contestType != 'design'): ?>
-    <a href="http://apps.topcoder.com/forums/?module=Category&categoryID=<?php echo $contest->forumId; ?>"
+    <a href="//apps.topcoder.com/forums/?module=Category&categoryID=<?php echo $contest->forumId; ?>"
        class="contestForumIcon" target="_blank">Challenge Discussion</a>
   <?php else: ?>
-    <a href="http://studio.topcoder.com/forums?module=ThreadList&forumID=<?php echo $contest->forumId; ?>"
+    <a href="//studio.topcoder.com/forums?module=ThreadList&forumID=<?php echo $contest->forumId; ?>"
        class="contestForumIcon" target="_blank">Challenge Discussion</a>
   <?php endif; ?>
 
@@ -698,7 +698,7 @@ include locate_template('header-challenge-landing.php');
             here</a>.
         </p>
 
-        <p>Questions? <a href="http://studio.topcoder.com/forums?module=ThreadList&amp;forumID=6">Ask in the Challenge Discussion Forums</a>.
+        <p>Questions? <a href="//studio.topcoder.com/forums?module=ThreadList&amp;forumID=6">Ask in the Challenge Discussion Forums</a>.
         </p>
 
       </div>

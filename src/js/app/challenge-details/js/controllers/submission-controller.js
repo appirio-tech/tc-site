@@ -80,8 +80,8 @@ var sub;
         }
         var submission = submissions[i];
         submission.formattedDate = this.formatDate(submission.submissionTime);
-        submission.downloadUrl = "http://studio.topcoder.com/?module=DownloadSubmission&sbmid=" + submission.submissionId;
-        submission.gridViewImg = "http://studio.topcoder.com/studio.jpg?module=DownloadSubmission&sbmid=" + submission.submissionId + "&sbt=small&sfi=1";
+        submission.downloadUrl = "//studio.topcoder.com/?module=DownloadSubmission&sbmid=" + submission.submissionId;
+        submission.gridViewImg = "//studio.topcoder.com/studio.jpg?module=DownloadSubmission&sbmid=" + submission.submissionId + "&sbt=small&sfi=1";
 
         /**
          * The downloadCouter and viewCounter is mock data.
@@ -210,7 +210,7 @@ var sub;
       var images = [];
       for (var i = 1; i <= total; i++) {
         images.push(
-          'http://studio.topcoder.com/?module=DownloadSubmission&'+
+          '//studio.topcoder.com/?module=DownloadSubmission&'+
           'sbmid='+ id +
           '&sbt='+ type +
           '&sfi=' + i);

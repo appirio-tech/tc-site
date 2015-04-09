@@ -22,10 +22,10 @@
     <a class="btn btnAction challengeRegisterBtn disabled" href="javascript:;"><span>1</span> <strong>Register
         For This Challenge</strong></a>
     <a class="btn btnAction challengeSubmissionBtn disabled" target="_blank"
-       href="http://studio.topcoder.com/?module=ViewRegistration&ct=<?php echo $contestID; ?>"><span>2</span> <strong>Submit
+       href="//studio.topcoder.com/?module=ViewRegistration&ct=<?php echo $contestID; ?>"><span>2</span> <strong>Submit
         Your Entries</strong></a>
     <a class="btn btnAction challengeSubmissionsBtn disabled" target="_blank"
-       href="http://studio.topcoder.com/?module=ViewSubmission&ct=<?php echo $contestID; ?>"><span>3</span> <strong>View
+       href="//studio.topcoder.com/?module=ViewSubmission&ct=<?php echo $contestID; ?>"><span>3</span> <strong>View
         Your Submission</strong></a>
   <?php
   endif;

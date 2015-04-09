@@ -17,7 +17,7 @@ $contest = get_contest_detail('', get_query_var('contestID'), $challengeType);
             <a href='<?php bloginfo("siteurl"); ?>/challenge-details/<?php echo $contestID; ?>/?type=develop' class="back">Back to Active Challenge</a>
             <h2 class="pageTitle"><?php echo $contest->challengeName; ?></h2>
             <!-- /#end page title-->
-            <form action="http://studio.topcoder.com/" method="POST" name="submitForm" enctype="multipart/form-data" id="submitForm" autocomplete="off">
+            <form action="//studio.topcoder.com/" method="POST" name="submitForm" enctype="multipart/form-data" id="submitForm" autocomplete="off">
                 <section class="formSection browseFile">
                     <h3>SUBMISSION UPLOAD</h3>
 
