@@ -1,6 +1,6 @@
 @@header
 
-
+<div ng-show="vm.loggedIn">
   <style>
     /* CSS to override bootstrap and existing css conflicts*/
     .btn, a.btn{
@@ -11,37 +11,34 @@
       box-sizing: initial;
     }
   </style>
-<div class="jumbotron my-dashboard-container">
-  <div class="container">
-    <div class="welcome-back" ng-include="vm.getTemplateURL('welcome-back.html')">
+  <div class="jumbotron my-dashboard-container">
+    <div class="container">
+      <div class="welcome-back" ng-include="vm.getTemplateURL('welcome-back.html')">
+    </div>
+    </div>
   </div>
-  </div>
-</div>
 
-<div class="my-dashboard-container container-fluid" >
-  <div class="clearfix visible-md-block visible-lg-block"></div>
-  <div class="row">
-    <div class="col-xs-12 col-sm-9 col-sm-push-3">
-      <div class="my-dashboard-widget marketing-message" ng-include="vm.getTemplateURL('marketing-message.html')">
+  <div class="my-dashboard-container container-fluid" >
+    <div class="clearfix visible-md-block visible-lg-block"></div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-9 col-sm-push-3">
+        <div class="my-dashboard-widget marketing-message" ng-include="vm.getTemplateURL('marketing-message.html')">
+        </div>
+        <div class="my-dashboard-widget my-challenges" ng-include="vm.getTemplateURL('my-challenges.html')">
+        </div>
+        <div class="my-dashboard-widget srm-gadget" ng-include="vm.getTemplateURL('upcaming-srms.html')">
+        </div>
       </div>
-      <div class="my-dashboard-widget my-challenges" ng-include="vm.getTemplateURL('my-challenges.html')">
-      </div>
-      <div class="my-dashboard-widget srm-gadget" ng-include="vm.getTemplateURL('upcaming-srms.html')">
-      </div>
-    </div>
-    <div class="col-xs-12 col-sm-3 col-sm-pull-9">
-      <div class="my-dashboard-widget member-program" ng-include="vm.getTemplateURL('member-program.html')">
-      </div>
-      <div class="my-dashboard-widget helpful-links" ng-include="vm.getTemplateURL('helpful-links.html')">
-      </div>
-      <div class="my-dashboard-widget blog-post" ng-include="vm.getTemplateURL('blog-feed.html')">
+      <div class="col-xs-12 col-sm-3 col-sm-pull-9">
+        <div class="my-dashboard-widget member-program" ng-include="vm.getTemplateURL('member-program.html')">
+        </div>
+        <div class="my-dashboard-widget helpful-links" ng-include="vm.getTemplateURL('helpful-links.html')">
+        </div>
+        <div class="my-dashboard-widget blog-post" ng-include="vm.getTemplateURL('blog-feed.html')">
+        </div>
       </div>
     </div>
   </div>
-  <div>
-      <div class="clear"></div>
-  </div>
-  <div class="clear"></div>
 </div>
 
 @@footer

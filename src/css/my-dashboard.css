@@ -44,7 +44,7 @@
 }
 
 .marketing-message {
-    height: 150px;
+    max-height: 150px;
     border: none;
 }
 
@@ -109,7 +109,7 @@
 }
 
 .member-profile .profile-right {
-  direction: rtl;
+  /*direction: rtl;*/
   /* workaround to vertical align middle */
   padding-top: 46px;
 }
@@ -194,7 +194,7 @@
 .member-profile .open-challenges div[rel="value"] {
   font-weight: bold;
   font-size: 24px;
-  color: rgb(99, 81, 111);
+  color: rgb(99, 181, 11);
 }
 
 .member-profile .open-challenges div[rel="label"] {
@@ -321,6 +321,14 @@
 
 .upcoming-srms-div .srm-gadget {
   max-height: 300px;
+}
+
+.upcoming-srms-div td[rel="srm-name"] > a {
+  color: #666;
+}
+
+.upcoming-srms-div td[rel="srm-name"] > a:hover {
+  color: #FFB800;
 }
 
 .upcoming-srms-div .srm-gadget-coding-date {
