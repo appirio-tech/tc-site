@@ -25,11 +25,11 @@
   .constant("FORUMS_APP_URL", tcconfig.forumsAppURL)
   .constant("HELP_APP_URL", tcconfig.helpAppURL)
   .constant("PHOTO_LINK_LOCATION", tcconfig.photoLinkBaseURL)
-  .run(['$rootScope', '$location', '$window', run]);
+  .run(['$rootScope', '$location', '$window', 'AuthService', run]);
 
   DataPreProcessing.$inject = ['$httpProvider', 'RestangularProvider', 'API_URL'];
 
-  function run($rootScope, $location, $window) {
+  function run($rootScope, $location, $window, AuthService) {
     $rootScope.$on('$locationChangeStart', function(event, next, current) { 
 
       if (AuthService.validate()) {
