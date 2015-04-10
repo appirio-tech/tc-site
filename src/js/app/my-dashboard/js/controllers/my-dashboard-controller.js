@@ -18,7 +18,7 @@
    * Inject dependencies
    * @type {string[]}
    */
-  MyDashboardCtrl.$inject = ['$scope'];
+  MyDashboardCtrl.$inject = ['$scope', '$location', 'AuthService'];
 
   /**
    * Controller implementation
@@ -26,9 +26,10 @@
    * @param $scope
    * @constructor
    */
-  function MyDashboardCtrl($scope) {
+  function MyDashboardCtrl($scope, $location, AuthService) {
     var vm = this;
     vm.title = "My Dashboard";
+    vm.loggedIn = AuthService.validate();
     vm.getTemplateURL = getTemplateURL;
 
     // activate controller

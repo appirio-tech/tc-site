@@ -44,7 +44,7 @@
 }
 
 .marketing-message {
-    height: 150px;
+    max-height: 150px;
     border: none;
 }
 
@@ -109,7 +109,6 @@
 }
 
 .member-profile .profile-right {
-  direction: rtl;
   /* workaround to vertical align middle */
   padding-top: 46px;
 }
@@ -121,6 +120,7 @@
   border: 5px solid white;
   border-radius: 72px;
   overflow: hidden;
+  margin: auto;
 }
 
 .member-profile .profile-left .handle {
@@ -144,11 +144,7 @@
 }
 
 .member-profile .money-in-bank {
-  width: 220px;
   height: 82px;
-  /*background-color: rgb(35, 153, 219);
-  border: 5px solid white;
-  border-radius: 52px;*/
   text-align: center;
   padding-top: 16px;
   box-sizing: border-box;
@@ -167,34 +163,23 @@
 }
 
 .member-profile .challenges-registered {
-  width: 220px;
   height: 82px;
-  /*background-color: rgb(196, 207, 28);
-  border: 5px solid white;
-  border-radius: 52px;*/
   text-align: center;
   padding-top: 16px;
   box-sizing: border-box;
-  /*color: white;*/
-  display: inline-block;
 }
 
 .member-profile .open-challenges {
-  width: 220px;
   height: 82px;
-  /*background-color: rgb(125, 188, 52);
-  border: 5px solid white;
-  border-radius: 52px;*/
   text-align: center;
   padding-top: 16px;
   box-sizing: border-box;
-  display: inline-block;
 }
 
 .member-profile .open-challenges div[rel="value"] {
   font-weight: bold;
   font-size: 24px;
-  color: rgb(99, 81, 111);
+  color: rgb(99, 181, 11);
 }
 
 .member-profile .open-challenges div[rel="label"] {
@@ -203,15 +188,10 @@
 }
 
 .member-profile .review-opportunities {
-  width: 220px;
   height: 75px;
-  /*background-color: rgb(243, 131, 30);
-  border: 5px solid white;
-  border-radius: 52px;*/
   text-align: center;
   padding-top: 16px;
   box-sizing: border-box;
-  display: inline-block;
 }
 
 .member-profile .review-opportunities div[rel="value"] {
@@ -298,6 +278,10 @@
   background: url("../i/ico-track-design.png") no-repeat center center;
 }
 
+.my-challenges th {
+  text-align: center;
+}
+
 .my-challenges td[rel="roles"] {
   max-width: 150px;
 }
@@ -323,6 +307,28 @@
   max-height: 300px;
 }
 
+.upcoming-srms-div th {
+  text-align: center;
+}
+
+.upcoming-srms-div td[rel="srm-name"] > a {
+  color: #666;
+}
+
+.upcoming-srms-div td[rel="srm-name"] > a:hover {
+  color: #FFB800;
+}
+
 .upcoming-srms-div .srm-gadget-coding-date {
     width: 170px;
+}
+
+.subscribe-updates input[type="text"] {
+  color: #333!important;
+  background: #fafafa;
+  border: 1px solid #e1e1e1;
+  height: 32px;
+  line-height: 16px;
+  box-sizing: border-box;
+  width: 100%;
 }

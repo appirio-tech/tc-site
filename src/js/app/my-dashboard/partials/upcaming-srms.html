@@ -23,7 +23,11 @@
         </thead>
         <tbody>
             <tr ng-show="vm.upcomingSRMs.length > 0 && !vm.loading" ng-repeat="srm in vm.upcomingSRMs">
-                <td>{{srm.contestName}}</td>
+                <td rel="srm-name">
+                  <a href="{{vm.communityBaseUrl}}/tc?module=MatchDetails&rd={{srm.roundId}}">
+                    {{srm.contestName}}
+                  </a>
+                </td>
                 <td>{{srm.registrationStartTime | date:'medium' }}</td>
                 <td>{{srm.codingStartTime | date:'medium'}}</td>
             </tr>

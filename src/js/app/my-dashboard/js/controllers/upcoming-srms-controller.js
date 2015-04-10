@@ -18,7 +18,7 @@
    * Inject dependencies
    * @type {string[]}
    */
-  UpcomingSRMsCtrl.$inject = ['$scope', 'SRMService'];
+  UpcomingSRMsCtrl.$inject = ['$scope', '$location', 'SRMService', 'COMMUNITY_URL'];
 
   /**
    * Controller implementation
@@ -27,8 +27,9 @@
    * @param SRMServices services to access topcoder API for SRM data
    * @constructor
    */
-  function UpcomingSRMsCtrl($scope, SRMService) {
+  function UpcomingSRMsCtrl($scope, $location,SRMService, COMMUNITY_URL) {
     var vm = this;
+    vm.communityBaseUrl = $location.protocol() + ":" + COMMUNITY_URL;
     vm.loading = true;
     vm.pageIndex = 1;
     vm.pageSize = 5;

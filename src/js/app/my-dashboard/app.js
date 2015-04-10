@@ -17,11 +17,31 @@
     .constant("API_URL", tcLCApiURL)
 
   .config(DataPreProcessing)
+  .constant("MAIN_URL", tcconfig.mainURL)
   .constant("BLOG_LOCATION", tcconfig.blogRSSFeedURL)
   .constant("MARKETING_MESSAGE_URL", tcconfig.marketingMessageMyDashURL)
-  .constant("PHOTO_LINK_LOCATION", tcconfig.photoLinkBaseURL);
+  .constant("COMMUNITY_URL", tcconfig.communityURL)
+  .constant("REVIEW_APP_URL", tcconfig.reviewAppURL)
+  .constant("FORUMS_APP_URL", tcconfig.forumsAppURL)
+  .constant("HELP_APP_URL", tcconfig.helpAppURL)
+  .constant("PHOTO_LINK_LOCATION", tcconfig.photoLinkBaseURL)
+  .run(['$rootScope', '$location', '$window', 'AuthService', run]);
 
   DataPreProcessing.$inject = ['$httpProvider', 'RestangularProvider', 'API_URL'];
+
+  function run($rootScope, $location, $window, AuthService) {
+    $rootScope.$on('$locationChangeStart', function(event, next, current) { 
+
+      if (AuthService.validate()) {
+        // nothing to do, valid user
+      } else {
+        console.log(event);
+        $returnUrl = $location.absUrl();
+        event.preventDefault();
+        $window.location.href = "http://local.topcoder-dev.com/login?next=" + $returnUrl;
+      }
+    });
+  }
 
   /**
    * Sets restangular with specific configurations to access tc api

@@ -1,0 +1,15 @@
+<div class="subscribe-updates-inner panel panel-default" ng-controller="SubscribeUpdatesCtrl as vm">
+  <div class="panel-heading">
+    <span class="panel-title">{{vm.title}}</span> 
+  </div>
+  <div class="panel-body">
+    <form action="https://www.feedblitz.com/f/f.fbz?AddNewUserDirect" method="POST" name="{{vm.feedBlitzFormName}}">
+      <div class="margin-bottom-3x"><span>Enter your Email ID</span></div>
+      <input type="text" name="EMAIL" placeholder="Email ID" ng-model="vm.email" />
+      <input type="hidden" value="{{vm.feedBlitzPublisher}}" name="PUBLISHER">
+      <input type="hidden" value="{{vm.feedBlitzFeedId}}" name="FEEDID">
+      <!-- Workaround to use style attribute to override display css property-->
+      <input type="submit" class="btn btnAlt margin-top-3x center-block" style="display:block;" value="Subscribe">
+    </form>
+  </div>
+</div>

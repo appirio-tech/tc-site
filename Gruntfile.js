@@ -36,6 +36,9 @@ module.exports = function(grunt) {
     useVer: grunt.option('use-ver') || false,
     version: grunt.option('cdn-version') || '',
     communityURL: grunt.option('community-url') || '//community.topcoder.com',
+    reviewAppURL: grunt.option('review-app-url') || 'software.topcoder.com/review',
+    helpAppURL: grunt.option('help-app-url') || 'help.topcoder.com',
+    forumsAppURL: grunt.option('review-app-url') || 'forums.topcoder.com',
 
     // only used on wp setup
     useGz: grunt.option('use-gz') || false,

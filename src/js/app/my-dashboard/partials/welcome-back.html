@@ -1,37 +1,29 @@
-<!--<div ng-controller="WelcomeBackCtrl as vm">
-  <div>Welcome back <span style="{{vm.ratingColor}}">{{vm.profile.handle}}</span></div>
-  <div><img width="60px" src="{{vm.photoLink}}"></div>
-  <div>Total Earnings: {{vm.profile.overallEarning || 0 | currency}}</div>
-  <div>My Open Challenges: <a target="_blank" href="https://www.topcoder.com/challenges/develop/active/?userChallenges">{{vm.myOpenChallengesCount}}</a></div>
-  <div>Review Opportunities: {{vm.reviewOpportunities}}</div>
-</div>-->
-
 <div class="member-profile" ng-controller="WelcomeBackCtrl as vm">
   <div class="profile-left col-xs-12 col-sm-2">
     <div class="profile-image"><img width="130px" src="{{vm.photoLink}}"></div>
+    <div rel="upload-photo" ng-show="vm.showUploadPhotoLink"><a href="{{vm.uploadPhotoLink}}">Upload Photo</a></div>
     <div class="handle" style="{{vm.ratingColor}}">[{{vm.profile.handle}}]</div>
     <div class="doj">Joined: {{vm.profile.memberSince | date}}</div>
   </div>
   <div class="profile-right col-xs-12 col-sm-10">
-    <!-- <div class="profile-bio">
-      {{vm.profile.quote}}
-    </div> -->
-    <div class="review-opportunities">
-      <div rel="value">{{vm.reviewOpportunities || 0}}</div>
-      <div rel="label">Review Opportunities</div>
+    <div class="col-xs-{{12/vm.statsToShow}}" ng-show="vm.profile && vm.profile.overallEarning > 0">
+      <div class="money-in-bank">
+        <div rel="value">{{vm.profile.overallEarning || 0 | currency}}</div>
+        <div rel="label">Money in Bank</div>
+      </div>
     </div>
-    <div class="open-challenges">
-      <div rel="value">{{vm.myOpenChallengesCount || 0}}</div>
-      <div rel="label">Open Challenges</div>
+    <div class="col-xs-{{12/vm.statsToShow}}">
+      <div class="open-challenges">
+        <div rel="value">{{vm.myOpenChallengesCount || 0}}</div>
+        <div rel="label">Open Challenges</div>
+      </div>
     </div>
-    <div class="money-in-bank" ng-hide="true" ng-show="vm.profile.overallEarning > 0">
-      <div rel="value">{{vm.profile.overallEarning || 0 | currency}}</div>
-      <div rel="label">Money in Bank</div>
+    <div class="col-xs-{{12/vm.statsToShow}}">
+      <div class="review-opportunities">
+        <div rel="value">{{vm.reviewOpportunities || 0}}</div>
+        <div rel="label">Review Opportunities</div>
+      </div>
     </div>
-    <!-- <div class="challenges-registered">
-      <div>{{vm.myOpenChallengesCount || 0}}</div>
-      <div>Challenges registered</div>
-    </div> -->
   </div>
   <div class="clear"></div>
 </div>
