@@ -298,6 +298,10 @@
   background: url("../i/ico-track-design.png") no-repeat center center;
 }
 
+.my-challenges th {
+  text-align: center;
+}
+
 .my-challenges td[rel="roles"] {
   max-width: 150px;
 }
@@ -323,6 +327,10 @@
   max-height: 300px;
 }
 
+.upcoming-srms-div th {
+  text-align: center;
+}
+
 .upcoming-srms-div td[rel="srm-name"] > a {
   color: #666;
 }
@@ -333,4 +341,14 @@
 
 .upcoming-srms-div .srm-gadget-coding-date {
     width: 170px;
+}
+
+.subscribe-updates input[type="text"] {
+  color: #333!important;
+  background: #fafafa;
+  border: 1px solid #e1e1e1;
+  height: 32px;
+  line-height: 16px;
+  box-sizing: border-box;
+  width: 100%;
 }

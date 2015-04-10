@@ -528,6 +528,7 @@
         "app/my-dashboard/js/controllers/member-program-controller.js",
         "app/my-dashboard/js/controllers/my-challenges-controller.js",
         "app/my-dashboard/js/controllers/helpful-links-controller.js",
+        "app/my-dashboard/js/controllers/subscribe-updates-controller.js",
         "app/my-dashboard/js/controllers/blog-post-controller.js",
         "app/my-dashboard/js/controllers/upcoming-srms-controller.js",
         "app/my-dashboard/js/controllers/welcome-back-controller.js"

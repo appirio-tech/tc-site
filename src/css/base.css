@@ -207,12 +207,33 @@ sub, sup {
     padding-bottom: 5px;
 }
 
+.margin-top-1x {
+    margin-top: 5px;
+}
+
+.margin-top-2x {
+    margin-top: 10px;
+}
+
+.margin-top-3x {
+    margin-top: 15px;
+}
+
+.margin-bottom-3x {
+    margin-bottom: 15px;
+}
+
+.margin-vert-3x {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
 .center-align-text {
-    text-align: center;;
+    text-align: center;
 }
 
 .right-align-text {
-    text-align: right;;
+    text-align: right;
 }
 
 .stop-scrolling {
