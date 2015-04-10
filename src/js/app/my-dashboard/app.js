@@ -38,7 +38,7 @@
         console.log(event);
         $returnUrl = $location.absUrl();
         event.preventDefault();
-        $window.location.href = "http://local.topcoder-dev.com/login?next=" + $returnUrl;
+        $window.location.href = tcconfig.mainURL + "/login?next=" + $returnUrl;
       }
     });
   }
