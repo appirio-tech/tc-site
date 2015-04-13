@@ -14,30 +14,32 @@
         </ul>
       </div>
     </div>
-    <table width="100%" class="table table-bordered table-responsive">
-      <thead>
-        <tr class="active">
-          <th>Type</th>
-          <th>First Prize</th>
-          <th>Challenge</th>
-          <th>Roles</th>
-          <th>Submit By</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-show="vm.myChallenges.length > 0 && !vm.loading" ng-repeat="challenge in vm.myChallenges">
-          <td class="{{challenge.challengeCommunity}}">&nbsp;</td>
-          <td>{{challenge.firstPlacePrize | currency}}</td>
-          <td rel="challenge-name"><a href="/challenge-details/{{challenge.challengeId}}?type={{challenge.challengeCommunity}}">{{challenge.challengeName}}</a></td>
-          <td rel="roles" class="ellipsis" title="{{challenge.roles.join(', ')}}">{{challenge.roles.join(', ')}}</td>
-          <td class="my-challenges-submittion-date ellipsis">{{challenge.submissionEndDate | date}}</td>
-        </tr>
-        <tr ng-show="vm.loading">
-          <td colspan="5"><div class="widget-loading"></div></td>
-        </tr>
-        <tr ng-show="vm.myChallenges.length === 0">
-          <td colspan="5">You don't have any active challenges</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="panel panel-default">
+      <table width="100%" class="table table-responsive">
+        <thead>
+          <tr class="active">
+            <th>Type</th>
+            <th>First Prize</th>
+            <th>Challenge</th>
+            <th>Roles</th>
+            <th>Submit By</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-show="vm.myChallenges.length > 0 && !vm.loading" ng-repeat="challenge in vm.myChallenges">
+            <td class="{{challenge.challengeCommunity}}">&nbsp;</td>
+            <td>{{challenge.firstPlacePrize | currency}}</td>
+            <td rel="challenge-name"><a href="/challenge-details/{{challenge.challengeId}}?type={{challenge.challengeCommunity}}">{{challenge.challengeName}}</a></td>
+            <td rel="roles" class="ellipsis" title="{{challenge.roles.join(', ')}}">{{challenge.roles.join(', ')}}</td>
+            <td class="my-challenges-submittion-date ellipsis">{{challenge.submissionEndDate | date}}</td>
+          </tr>
+          <tr ng-show="vm.loading">
+            <td colspan="5"><div class="widget-loading"></div></td>
+          </tr>
+          <tr ng-show="vm.myChallenges.length === 0">
+            <td colspan="5">You don't have any active challenges</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 </div>

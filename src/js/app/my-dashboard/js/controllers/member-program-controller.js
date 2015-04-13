@@ -18,7 +18,7 @@
    * Inject dependencies
    * @type {string[]}
    */
-  MemberProgramCtrl.$inject = ['$scope'];
+  MemberProgramCtrl.$inject = ['$scope', 'AuthService'];
 
   /**
    * Controller implementation
@@ -26,11 +26,15 @@
    * @param $scope
    * @constructor
    */
-  function MemberProgramCtrl($scope) {
+  function MemberProgramCtrl($scope, AuthService) {
     var vm = this;
 
-    //activate controller
-    activate();
+    // activate controller
+    if (AuthService.isLoggedIn === true) {
+      activate();
+    } else {
+      return false;
+    }
 
     function activate() {
       // nothing to do yet

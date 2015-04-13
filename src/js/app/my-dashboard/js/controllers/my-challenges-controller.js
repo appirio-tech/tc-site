@@ -18,7 +18,7 @@
    * Inject dependencies
    * @type {string[]}
    */
-  MyChallengesCtrl.$inject = ['$scope', 'ChallengeService'];
+  MyChallengesCtrl.$inject = ['$scope', 'AuthService','ChallengeService'];
 
   /**
    * Controller implementation
@@ -27,7 +27,7 @@
    * @param ChallengeService services to access the challenges api
    * @constructor
    */
-  function MyChallengesCtrl($scope, ChallengeService) {
+  function MyChallengesCtrl($scope, AuthService, ChallengeService) {
     var vm = this;
     vm.loading = true;
     vm.pageIndex = 1;
@@ -44,7 +44,11 @@
     vm.getCurrentPageClass = getCurrentPageClass;
 
     // activate controller
-    activate();
+    if (AuthService.isLoggedIn === true) {
+      activate();
+    } else {
+      return false;
+    }
 
     function activate() {
       initPaging();

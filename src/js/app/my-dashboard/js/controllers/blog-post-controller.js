@@ -18,7 +18,7 @@
    * Inject dependencies
    * @type {string[]}
    */
-  BlogPostCtrl.$inject = ['$scope', 'BlogService'];
+  BlogPostCtrl.$inject = ['$scope', 'AuthService', 'BlogService'];
 
   /**
    * BlogPost Controller implementation
@@ -27,11 +27,15 @@
    * @param BlogService service to access and parse blog RSS feed
    * @constructor
    */
-  function BlogPostCtrl($scope, BlogService) {
+  function BlogPostCtrl($scope, AuthService, BlogService) {
     var vm = this;
 
     // activate controller
-    activate();
+    if (AuthService.isLoggedIn === true) {
+      activate();
+    } else {
+      return false;
+    }
 
     function activate() {
       return BlogService.getBlogFeed()
