@@ -13,35 +13,37 @@
         </ul>
       </div>
     </div>
-    <table width="100%" class="table table-bordered table-responsive">
-        <thead>
-            <tr class="active">
-                <th>Name</th>
-                <th>Registration</th>
-                <th>Coding</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-show="vm.upcomingSRMs.length > 0 && !vm.loading" ng-repeat="srm in vm.upcomingSRMs">
-                <td rel="srm-name">
-                  <a href="{{vm.communityBaseUrl}}/tc?module=MatchDetails&rd={{srm.roundId}}">
-                    {{srm.contestName}}
-                  </a>
-                </td>
-                <td>{{srm.registrationStartTime | date:'medium' }}</td>
-                <td>{{srm.codingStartTime | date:'medium'}}</td>
-            </tr>
-            <tr ng-show="vm.loading">
-              <td colspan="3"><div class="widget-loading"></div></td>
-            </tr>
-            <tr ng-show="vm.upcomingSRMs.length > 0">
-                <td colspan="3">
-                  <a target="_blank" href="https://arena.topcoder.com">Practice now!</a>
-                </td>
-            </tr>
-            <tr ng-show="vm.upcomingSRMs.length === 0">
-              <td colspan="3">There are no upcoming SRMs scheduled at this time</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="panel panel-default">
+      <table width="100%" class="table table-responsive">
+          <thead>
+              <tr class="active">
+                  <th>Name</th>
+                  <th>Registration</th>
+                  <th>Coding</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr ng-show="vm.upcomingSRMs.length > 0 && !vm.loading" ng-repeat="srm in vm.upcomingSRMs">
+                  <td rel="srm-name">
+                    <a href="{{vm.communityBaseUrl}}/tc?module=MatchDetails&rd={{srm.roundId}}">
+                      {{srm.contestName}}
+                    </a>
+                  </td>
+                  <td>{{srm.registrationStartTime | date:'medium' }}</td>
+                  <td>{{srm.codingStartTime | date:'medium'}}</td>
+              </tr>
+              <tr ng-show="vm.loading">
+                <td colspan="3"><div class="widget-loading"></div></td>
+              </tr>
+              <tr ng-show="vm.upcomingSRMs.length > 0">
+                  <td colspan="3" rel="practice-now-link">
+                    <a target="_blank" href="https://arena.topcoder.com">Practice now!</a>
+                  </td>
+              </tr>
+              <tr ng-show="vm.upcomingSRMs.length === 0">
+                <td colspan="3">There are no upcoming SRMs scheduled at this time</td>
+              </tr>
+          </tbody>
+      </table>
+    </div>
 </div>

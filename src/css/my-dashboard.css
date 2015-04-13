@@ -1,6 +1,5 @@
 .my-dashboard-container {
     width: 100%;
-    border-bottom: 7px solid #e3e3e3;
 }
 
 .my-dashboard-container .widget-loading {
@@ -101,6 +100,10 @@
     bottom: 0;
 }
 
+.member-profile-header {
+  border-bottom: 7px solid #e3e3e3;
+}
+
 .member-profile {
 }
 
@@ -152,9 +155,9 @@
 }
 
 .member-profile .money-in-bank div[rel="value"] {
-  font-weight: bold;
-  font-size: 24px;
-  color: rgb(12, 75, 144);
+  /*font-weight: bold;*/
+  font-size: 35px;
+  color: #05619b;
 }
 
 .member-profile .money-in-bank div[rel="label"] {
@@ -177,9 +180,9 @@
 }
 
 .member-profile .open-challenges div[rel="value"] {
-  font-weight: bold;
-  font-size: 24px;
-  color: rgb(99, 181, 11);
+  /*font-weight: bold;*/
+  font-size: 35px;
+  color: #71be0a;
 }
 
 .member-profile .open-challenges div[rel="label"] {
@@ -196,8 +199,8 @@
 
 .member-profile .review-opportunities div[rel="value"] {
   font-weight: bold;
-  font-size: 24px;
-  color: #FFB800;
+  font-size: 35px;
+  color: #e7820b;
 }
 
 .member-profile .review-opportunities div[rel="label"] {
@@ -282,8 +285,18 @@
   text-align: center;
 }
 
+.my-challenges table > tbody> tr > td {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
 .my-challenges td[rel="roles"] {
   max-width: 150px;
+}
+
+.my-challenges td[rel="challenge-name"] {
+  text-align: left;
 }
 
 .my-challenges td[rel="challenge-name"] > a {
@@ -309,6 +322,16 @@
 
 .upcoming-srms-div th {
   text-align: center;
+}
+
+.upcoming-srms-div table > tbody> tr > td {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+.upcoming-srms-div td[rel="practice-now-link"] {
+  text-align: left;
 }
 
 .upcoming-srms-div td[rel="srm-name"] > a {

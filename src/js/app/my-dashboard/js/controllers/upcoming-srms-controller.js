@@ -18,7 +18,7 @@
    * Inject dependencies
    * @type {string[]}
    */
-  UpcomingSRMsCtrl.$inject = ['$scope', '$location', 'SRMService', 'COMMUNITY_URL'];
+  UpcomingSRMsCtrl.$inject = ['$scope', '$location', 'AuthService','SRMService', 'COMMUNITY_URL'];
 
   /**
    * Controller implementation
@@ -27,7 +27,7 @@
    * @param SRMServices services to access topcoder API for SRM data
    * @constructor
    */
-  function UpcomingSRMsCtrl($scope, $location,SRMService, COMMUNITY_URL) {
+  function UpcomingSRMsCtrl($scope, $location, AuthService, SRMService, COMMUNITY_URL) {
     var vm = this;
     vm.communityBaseUrl = $location.protocol() + ":" + COMMUNITY_URL;
     vm.loading = true;
@@ -45,7 +45,11 @@
     vm.getCurrentPageClass = getCurrentPageClass;
 
     // activate controller
-    activate();
+    if (AuthService.isLoggedIn === true) {
+      activate();
+    } else {
+      return false;
+    }
 
     function activate() {
       initPaging();
