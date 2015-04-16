@@ -1734,6 +1734,12 @@ var app = {
           'Authorization': 'Bearer ' + tcjwt
         },
         success: function(data) {
+          // SUP-20 // stores user identity in local storage or cookie
+          if (window.localStorage) {
+            window.localStorage.setItem("userIdentity", JSON.stringify(data));
+          } else {
+            $.cookie("userIdentity", JSON.stringify(data));
+          }
           if (_kmq) _kmq.push(['identify', data.email]);
           self.handle = data.handle;
           callback(self.handle);
