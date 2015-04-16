@@ -1,16 +1,60 @@
 <div class="member-program-content container-fluid" ng-controller="MemberProgramCtrl as vm">
-  <div class="center-align-text margin-top-3x">
-    <img src="/mf/i/swift-getting-started.png" />
-    <!-- <span>Get Started with Swift</span> -->
+  <div rel="validating-status-view" ng-show="vm.loading">
+    <div class="widget-loading"></div>
+    <div class="center-align-text" ng-bind="vm.loadingMessage"></div>
   </div>
-  <div class="description">
-    <p>Apple’s latest and greatest programming language for iOS8 that will enable you to become a rockstar mobile developer and achieve fortune & glory untold.</p>
+  <div rel="unregistered-view" ng-show="!vm.loading && !vm.registration">
+    <div class="center-align-text margin-top-3x">
+      <img src="/mf/i/swift-getting-started.png" />
+    </div>
+    <div class="description">
+      <p>Apple’s latest and greatest programming language for iOS8 that will enable you to become a rockstar mobile developer and achieve fortune & glory untold.</p>
 
-     
-    <p>We'll get you from a beginner to an expert and provide certifications to prove you are a great developer!  Sign up now and check out the first mission</p>
+       
+      <p>We'll get you from a beginner to an expert and provide certifications to prove you are a great developer!  Sign up now and check out the first mission</p>
+    </div>
+    <div class="signup">
+      <!-- used style as workaround to override display property -->
+      <input type="button" class="btn btn-primary center-block block-display" value="Join" style="display:block;" ng-click="vm.registerUser()">
+    </div>
   </div>
-  <div class="signup">
-    <!-- used style as workaround to override display property -->
-    <input type="button" class="btn btn-primary center-block block-display" value="Join" style="display:block;">
+  <div rel="registered-view" ng-show="!vm.loading && vm.registration">
+    <div class="center-align-text margin-top-3x">
+      <img src="/mf/i/swift-getting-started.png" />
+    </div>
+    <div class="description margin-top-3x">
+      <h3>Swift Recognition</h3>
+      <!-- TODO make badge list dynamic -->
+      <ul rel="badges" class="margin-top-3x">
+        <li class="margin-vert-1x">
+          <div rel="badge" class="col-xs-8 badge1">
+            <div rel="image" class="pull-left"></div>
+            <div rel="name" class="pull-left">Badge 1</div>
+          </div>
+          <div rel="badge-status" class="col-xs-4 completed">Completed</div>
+          <div class="clearfix"></div>
+        </li>
+        <li class="margin-vert-1x">
+          <div rel="badge" class="col-xs-8 badge2">
+            <div rel="image" class="pull-left"></div>
+            <div rel="name" class="pull-left">Badge 2</div>
+          </div>
+          <div rel="badge-status" class="col-xs-4 pending">Pending</div>
+          <div class="clearfix"></div>
+        </li>
+        <li class="margin-vert-1x">
+          <div rel="badge" class="col-xs-8 badge3">
+            <div rel="image" class="pull-left"></div>
+            <div rel="name" class="pull-left">Badge 3</div>
+          </div>
+          <div rel="badge-status" class="col-xs-4 pending">Pending</div>
+          <div class="clearfix"></div>
+        </li>
+      </ul>
+    </div>
+    <div class="clearfix nextstep">
+      <!-- used style as workaround to override display property -->
+      <a href="http://apple.topcoder.com/challenges" class="btn btn-primary center-block block-display" style="display:block;">Participate</a>
+    </div>
   </div>
 </div>

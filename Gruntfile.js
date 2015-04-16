@@ -32,6 +32,7 @@ module.exports = function(grunt) {
     auth0URL: grunt.option('auth-main-url') || 'topcoder.auth0.com',
     mainURL: grunt.option('main-url') || 'http://local.topcoder.com',
     apiURL: grunt.option('api-url') || 'https://api.topcoder.com/v2',
+    api3URL: grunt.option('api3-url') || 'https://api.topcoder.com/v3',
     cdnURL: grunt.option('cdn-url') || '/mf',
     useVer: grunt.option('use-ver') || false,
     version: grunt.option('cdn-version') || '',

@@ -520,6 +520,7 @@
         "app/my-dashboard/js/services/my-dashboard-services.js",
         "app/my-dashboard/js/services/auth-service.js",
         "app/my-dashboard/js/services/blog-services.js",
+        "app/my-dashboard/js/services/member-cert-services.js",
         "app/my-dashboard/js/services/challenge-services.js",
         "app/my-dashboard/js/services/profile-services.js",
         "app/my-dashboard/js/services/srm-services.js",

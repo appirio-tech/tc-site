@@ -242,6 +242,56 @@
   margin-top: 20px;
 }
 
+.member-program-content *[rel="badges"] {
+
+}
+
+.member-program-content *[rel="badges"] *[rel="badge"] div[rel="image"] {
+  width: 30px;
+  height: 34px;
+  background-size: cover;
+}
+
+.member-program-content *[rel="badges"] *[rel="badge"].badge1 div[rel="image"] {
+  background-image: url("../i/place-badge.png");
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+}
+
+.member-program-content *[rel="badges"] *[rel="badge"].badge2 div[rel="image"] {
+  background-image: url("../i/place-badge.png");
+  background-position: 0 -40px;
+  background-repeat: no-repeat;
+}
+
+.member-program-content *[rel="badges"] *[rel="badge"].badge3 div[rel="image"] {
+  background-image: url("../i/place-badge.png");
+  background-position:  0 -80px;
+  background-repeat: no-repeat;
+}
+
+.member-program-content *[rel="badges"] *[rel="badge"] div[rel="name"] {
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.member-program-content *[rel="badges"] *[rel="badge-status"] {
+  padding-left: 20px;
+}
+
+.member-program-content *[rel="badges"] *[rel="badge-status"].pending {
+  background: url("../i/check-box.png") no-repeat 0 0px;
+}
+
+.member-program-content *[rel="badges"] *[rel="badge-status"].completed {
+  background: url("../i/check-box.png") no-repeat 0 -20px;
+}
+
+.member-program-content .nextstep {
+  color: white;
+  margin-top: 20px;
+}
+
 .helpful-links {
 
 }
