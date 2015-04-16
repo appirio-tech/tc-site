@@ -23,16 +23,19 @@
     });
 
     /**
-     * getUserProfile returns the public profile of a given user identified by a userId
-     * @param userId string userId of the user
+     * getMemberRegistration Retrieves the registration status of the member for the given program
+     * @param userId string id of the user
+     * @param programId string id of the program of the registration
      * @returns promise
      */
-    service.getMemberRegistration = function(userId) {
-      return service.one("member-cert/registrations", userId).get();
+    service.getMemberRegistration = function(userId, programId) {
+      return service.one("member-cert/registrations", userId).one("programs", programId).get();
     }
 
     /**
-     * getIdentity returns the identity information of the currently logged in user, identified by the jwt session token
+     * registerMember Registers the given member for the given program.
+     * @param userId string id of the member to be registered
+     * @param programId string id of the program to be registered against
      * @returns promise
      */
     service.registerMember = function(userId, programId) {
