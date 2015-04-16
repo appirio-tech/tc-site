@@ -59,8 +59,10 @@
         var content = result ? result.content : null;
         if (content) {
           vm.registration = content;
-          vm.loading = false;
+        } else {
+          vm.registration = null;
         }
+        vm.loading = false;
       });
     }
 
@@ -70,12 +72,10 @@
       return MemberCertService.registerMember(db.user.uid, SWIFT_PROGRAM_ID).then(function(data) {
         var result = data.result;
         var content = result ? result.content : null;
-        //console.log(content);
-        if (content && content.length > 0) {
-          vm.registration = content[0];
-          vm.loading = false;
-          //console.log(vm.registration);
+        if (content) {
+          vm.registration = content;
         }
+        vm.loading = false;
       });
     }
   }
