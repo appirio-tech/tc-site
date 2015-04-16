@@ -1,6 +1,7 @@
 /**
  * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
  * @author mdesiderio
+ * @author vikas.agarwal@appirio.com
  * @version 1.0
  *
  * Controller for the welcome back widget
@@ -43,78 +44,84 @@
     // count of member stats/metrices to be shown in profile header
     vm.statsToShow = 2;
 
+    // parent dashboard controller
+    var db = $scope.$parent.vm;
+
     // activate controller
     if (AuthService.isLoggedIn === true) {
-      activate();
+      db.addIdentityChangeListener("welcomeback", function(identity) {
+        activate();
+      });
+      if (db.user) {
+        activate();
+      }
     } else { // if user is not logged in, return (to avoid extra ajax calls)
       return false;
     }
 
     function activate() {
-      // fetch user info to get handle
-      app.getHandle(function() {
-        ProfileService.getUserProfile(app.handle)
-          .then(function(profile) {
-            vm.profile = profile;
+      // fetch user info
+      ProfileService.getUserProfile(db.user.handle)
+        .then(function(profile) {
+          vm.profile = profile;
 
-            var highestRating = 0;
+          var highestRating = 0;
 
-            // Find user's highest rating to set color to the handle
-            angular.forEach(vm.profile.ratingSummary, function(value, key) {
-              if (highestRating < value.rating) {
-                highestRating = value.rating;
-                vm.ratingColor = value.colorStyle;
-              }
-            });
-
-            vm.showUploadPhotoLink = false;
-            // Parse user picture link to build photo url
-            if (profile && profile.photoLink) {
-              if (profile.photoLink.indexOf('//') != -1){
-                vm.photoLink = profile.photoLink;
-              } else {
-                vm.photoLink = PHOTO_LINK_LOCATION + profile.photoLink;
-              }
-            } else {
-              vm.photoLink = PHOTO_LINK_LOCATION + '/i/m/nophoto_login.gif';  
-              vm.uploadPhotoLink = $location.protocol + ":" + communityBaseUrl + '/tc?module=MyHome';
-              vm.showUploadPhotoLink = true;
+          // Find user's highest rating to set color to the handle
+          angular.forEach(vm.profile.ratingSummary, function(value, key) {
+            if (highestRating < value.rating) {
+              highestRating = value.rating;
+              vm.ratingColor = value.colorStyle;
             }
-
-            // calculates the count of metrices to be shown in profile header
-            if (vm.profile.overallEarning > 0) { // earnings should be shown
-              vm.statsToShow = 3;
-            } else { // earnings should not be shown
-              vm.statsToShow = 2;
-            }
-
           });
 
-          // Get active challenges in ordor to populate user's active challenges and review opportunities
-          ChallengeService.getMyActiveChallenges()
-            .then(function(data) {
-              console.log(data);
+          vm.showUploadPhotoLink = false;
+          // Parse user picture link to build photo url
+          if (profile && profile.photoLink) {
+            if (profile.photoLink.indexOf('//') != -1){
+              vm.photoLink = profile.photoLink;
+            } else {
+              vm.photoLink = PHOTO_LINK_LOCATION + profile.photoLink;
+            }
+          } else {
+            vm.photoLink = PHOTO_LINK_LOCATION + '/i/m/nophoto_login.gif';  
+            vm.uploadPhotoLink = $location.protocol + ":" + communityBaseUrl + '/tc?module=MyHome';
+            vm.showUploadPhotoLink = true;
+          }
 
-              vm.myActiveChallenges = data;
+          // calculates the count of metrices to be shown in profile header
+          if (vm.profile.overallEarning > 0) { // earnings should be shown
+            vm.statsToShow = 3;
+          } else { // earnings should not be shown
+            vm.statsToShow = 2;
+          }
 
-              var ctOpenChallenges = 0;
-              var ctReviewChallenges = 0;
+        });
 
-              angular.forEach(vm.myActiveChallenges, function(challenge) {
-                if(challenge.roles && challenge.roles.indexOf("Submitter") != -1) {
-                  ctOpenChallenges++
-                }
-                
-                if(challenge.roles && challenge.roles.indexOf("Reviewer") != -1) {
-                  ctReviewChallenges++
-                }
-              });
+        // Get active challenges in ordor to populate user's active challenges and review opportunities
+        ChallengeService.getMyActiveChallenges()
+          .then(function(data) {
+            console.log(data);
 
-              vm.myOpenChallengesCount = ctOpenChallenges;
-              vm.reviewOpportunities = ctReviewChallenges;
-              console.log(vm);
+            vm.myActiveChallenges = data;
+
+            var ctOpenChallenges = 0;
+            var ctReviewChallenges = 0;
+
+            angular.forEach(vm.myActiveChallenges, function(challenge) {
+              if(challenge.roles && challenge.roles.indexOf("Submitter") != -1) {
+                ctOpenChallenges++
+              }
+              
+              if(challenge.roles && challenge.roles.indexOf("Reviewer") != -1) {
+                ctReviewChallenges++
+              }
             });
-      });
+
+            vm.myOpenChallengesCount = ctOpenChallenges;
+            vm.reviewOpportunities = ctReviewChallenges;
+            console.log(vm);
+          });
     }
 
   }

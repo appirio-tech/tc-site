@@ -11,6 +11,7 @@
     .module('myDashboard', [
       'ngRoute',
       'restangular',
+      'angular-storage',
       'ngCookies',
       'myDashboard.services'
     ])
@@ -35,7 +36,6 @@
       if (AuthService.validate()) {
         // nothing to do, valid user
       } else {
-        console.log(event);
         $returnUrl = $location.absUrl();
         event.preventDefault();
         $window.location.href = tcconfig.mainURL + "/login?next=" + $returnUrl;
