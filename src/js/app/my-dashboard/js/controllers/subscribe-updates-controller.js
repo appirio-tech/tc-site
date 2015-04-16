@@ -1,6 +1,6 @@
 /**
  * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
- * @author vikas
+ * @author vikas.agarwal@appirio.com
  * @version 1.0
  *
  * Controller for subscribe for updates widget

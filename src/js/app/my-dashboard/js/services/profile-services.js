@@ -11,14 +11,14 @@
     .module('myDashboard.services')
     .factory('ProfileService', ProfileService);
 
-  ProfileService.$inject = ['Restangular'];
+  ProfileService.$inject = ['Restangular', 'store'];
 
   /**
    * SRMService 
    * @param Restangular to access the REST api
    * @constructor
    */
-  function ProfileService(Restangular) {
+  function ProfileService(Restangular, store) {
     var service = Restangular.withConfig(function(RestangularConfigurer) {
     });
 
@@ -37,6 +37,18 @@
      */
     service.getIdentity = function() {
       return service.one("user").one("identity").get();
+    }
+
+    service.getLocalIdentity = function() {
+      var identity = store.get("userIdentity");
+      if (!identity) {
+        var $cookies;
+        angular.injector(['ngCookies']).invoke(function(_$cookies_) {
+          $cookies = _$cookies_;
+        });
+        identity = $cookies["userIdentity"];
+      }
+      return identity;
     }
 
     return service;    

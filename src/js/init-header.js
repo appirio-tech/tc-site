@@ -1262,6 +1262,12 @@ function initMemberDetails(pagePersisted){
         $('.logoutLink, .actionLogout').click(function() {
           document.cookie = 'tcsso=; path=/; domain=.' + tcconfig.domain + '; expires=' + new Date(0).toUTCString();
           document.cookie = 'tcjwt=; path=/; domain=.' + tcconfig.domain + '; expires=' + new Date(0).toUTCString();
+          // SUP-20 // removes identity stored in local storage or cookie
+          if (window.localStorage) {
+            window.localStorage.removeItem("userIdentity");
+          } else {
+            $.removeCookie("userIdentity");
+          }
           // check if we have the weird facebook hash
           // if so, redirect to root
           if (window.location.hash == '#_=_') {
