@@ -2599,4 +2599,46 @@ h1.center {
     background-color: #46b314;
 }
 
+.member-program-path *[rel="next-step"] {
+    color: #797979;
+}
+
+.member-program-path *[rel="next-step"] *[rel="next-step-description"] {
+    width: 70%;
+    float: left;
+}
+
+.member-program-path *[rel="next-step"] *[rel="next-step-description"] *[rel="title"] {
+    font-size: 18px;
+}
+
+.member-program-path *[rel="next-step"] *[rel="next-step-description"] *[rel="description"] {
+    color: initial;
+}
+
+.member-program-path *[rel="next-step"] *[rel="next-step-description"] *[rel="action"] {
+    color: #666;
+    text-transform: uppercase;
+}
+
+.member-program-path *[rel="next-step"] *[rel="badge"] {
+    width: 30%;
+    float: left;
+    border: 1px solid #e7e7e7;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.member-program-path *[rel="next-step"] *[rel="badge"] *[rel="title"] {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.member-program-path *[rel="next-step"] *[rel="badge"] > img {
+    display: block;;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+}
+
 /* styles for member program path box - end */

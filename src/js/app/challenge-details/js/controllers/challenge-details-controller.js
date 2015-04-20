@@ -74,6 +74,7 @@
     vm.numberOfUniqueSubmitters = 0;
     vm.checkpointPassedScreeningSubmitterPercentage = 0;
     vm.checkpointPassedScreeningSubmissionPercentage = 0;
+    vm.phaseProgram = null;
 
     $interval(function () {
       if (vm.challenge && vm.challenge.currentPhaseRemainingTime) {
@@ -445,6 +446,61 @@
           if (vm.winningSubmissions.length < 2) vm.secondPlaceSubmission = false;
         }
       );
+    }
+
+    // top section
+    if (vm.challenge.reviewType == 'PEER') {
+      vm.phaseProgram = getPhaseProgramDetail(challenge.currentPhaseName);
+    }
+  }
+
+  /**
+   * Prepares phase specific member program details. This detail is used for PEER reviewed
+   * challenges only.
+   *
+   * @param phase name of the phase for which the details are to be prepared
+   */
+  function getPhaseProgramDetail(phase) {
+    if (phase === 'Draft') {
+      return {
+        nextStepTitle: "What's Next?",
+        nextStepDescription: "Hold tight. This challenge will be starting soon.",
+        nextStepAction: "",
+        nextBadgeImg: "/mf/i/member-program/missions/get-ready/level-5-512.png",
+        nextBadgeTitle: "Next badge"
+      };
+    } else if (phase === 'Registration') {
+      return {
+        nextStepTitle: "What's Next?",
+        nextStepDescription: "Register to participate by clicking the Register button. Then when you're ready, click Submit to upload your submission. Keep an eye on the time limit!",
+        nextStepAction: "",
+        nextBadgeImg: "/mf/i/member-program/missions/get-ready/level-5-512.png",
+        nextBadgeTitle: "Step One"
+      };
+    } else if (phase === 'Submission') {
+      return {
+        nextStepTitle: "What's Next?",
+        nextStepDescription: "Submit to upload your submission. Keep an eye on the time limit!",
+        nextStepAction: "",
+        nextBadgeImg: "/mf/i/member-program/missions/get-ready/level-5-512.png",
+        nextBadgeTitle: "Getting Ready"
+      };
+    } else if (phase === 'Review') {
+      return {
+        nextStepTitle: "What's Next?",
+        nextStepDescription: "If you got your submission uploaded in time, then it's time to review your peers.",
+        nextStepAction: "Click Review to start",
+        nextBadgeImg: "/mf/i/member-program/missions/get-ready/level-5-512.png",
+        nextBadgeTitle: "Break the Finish"
+      };
+    } else { // for default show only badge
+      return {
+        nextStepTitle: "",
+        nextStepDescription: "",
+        nextStepAction: "",
+        nextBadgeImg: "/mf/i/member-program/missions/get-ready/level-5-512.png",
+        nextBadgeTitle: "Next badge"
+      };
     }
   }
 
