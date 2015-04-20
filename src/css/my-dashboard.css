@@ -247,26 +247,38 @@
 }
 
 .member-program-content *[rel="badges"] *[rel="badge"] div[rel="image"] {
-  width: 30px;
-  height: 34px;
+  min-width: 30px;
+  min-height: 30px;
   background-size: cover;
 }
 
 .member-program-content *[rel="badges"] *[rel="badge"].badge1 div[rel="image"] {
-  background-image: url("../i/place-badge.png");
-  background-position: 0px 0px;
+  background-image: url("../i/member-program/get-ready-48.png");
   background-repeat: no-repeat;
 }
 
 .member-program-content *[rel="badges"] *[rel="badge"].badge2 div[rel="image"] {
-  background-image: url("../i/place-badge.png");
-  background-position: 0 -40px;
+  background-image: url("../i/member-program/step-one-48.png");
   background-repeat: no-repeat;
 }
 
 .member-program-content *[rel="badges"] *[rel="badge"].badge3 div[rel="image"] {
-  background-image: url("../i/place-badge.png");
-  background-position:  0 -80px;
+  background-image: url("../i/member-program/getting-ready-48.png");
+  background-repeat: no-repeat;
+}
+
+.member-program-content *[rel="badges"] *[rel="badge"].badge4 div[rel="image"] {
+  background-image: url("../i/member-program/on-starting-line-48.png");
+  background-repeat: no-repeat;
+}
+
+.member-program-content *[rel="badges"] *[rel="badge"].badge5 div[rel="image"] {
+  background-image: url("../i/member-program/break-the-finish-48.png");
+  background-repeat: no-repeat;
+}
+
+.member-program-content *[rel="badges"] *[rel="badge"].badge6 div[rel="image"] {
+  background-image: url("../i/member-program/get-certified-48.png");
   background-repeat: no-repeat;
 }
 
@@ -277,6 +289,7 @@
 
 .member-program-content *[rel="badges"] *[rel="badge-status"] {
   padding-left: 20px;
+  margin-top: 5px;
 }
 
 .member-program-content *[rel="badges"] *[rel="badge-status"].pending {
