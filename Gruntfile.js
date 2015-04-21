@@ -32,6 +32,7 @@ module.exports = function(grunt) {
     auth0URL: grunt.option('auth-main-url') || 'topcoder.auth0.com',
     mainURL: grunt.option('main-url') || 'http://local.topcoder.com',
     apiURL: grunt.option('api-url') || 'https://api.topcoder.com/v2',
+    api3URL: grunt.option('api3-url') || 'https://api.topcoder.com/v3',
     cdnURL: grunt.option('cdn-url') || '/mf',
     useVer: grunt.option('use-ver') || false,
     version: grunt.option('cdn-version') || '',
@@ -39,6 +40,7 @@ module.exports = function(grunt) {
     reviewAppURL: grunt.option('review-app-url') || 'software.topcoder.com/review',
     helpAppURL: grunt.option('help-app-url') || 'help.topcoder.com',
     forumsAppURL: grunt.option('review-app-url') || 'forums.topcoder.com',
+    swiftProgramId: grunt.option('swift-program-id') || 3445,
 
     // only used on wp setup
     useGz: grunt.option('use-gz') || false,

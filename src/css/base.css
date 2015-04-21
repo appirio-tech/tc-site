@@ -211,6 +211,15 @@ sub, sup {
     margin-top: 5px;
 }
 
+.margin-bottom-1x {
+    margin-bottom: 5px;
+}
+
+.margin-vert-1x {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
 .margin-top-2x {
     margin-top: 10px;
 }

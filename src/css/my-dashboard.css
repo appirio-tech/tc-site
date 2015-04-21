@@ -242,6 +242,69 @@
   margin-top: 20px;
 }
 
+.member-program-content *[rel="badges"] {
+
+}
+
+.member-program-content *[rel="badges"] *[rel="badge"] div[rel="image"] {
+  min-width: 30px;
+  min-height: 30px;
+  background-size: cover;
+}
+
+.member-program-content *[rel="badges"] *[rel="badge"].badge1 div[rel="image"] {
+  background-image: url("../i/member-program/get-ready-48.png");
+  background-repeat: no-repeat;
+}
+
+.member-program-content *[rel="badges"] *[rel="badge"].badge2 div[rel="image"] {
+  background-image: url("../i/member-program/step-one-48.png");
+  background-repeat: no-repeat;
+}
+
+.member-program-content *[rel="badges"] *[rel="badge"].badge3 div[rel="image"] {
+  background-image: url("../i/member-program/getting-ready-48.png");
+  background-repeat: no-repeat;
+}
+
+.member-program-content *[rel="badges"] *[rel="badge"].badge4 div[rel="image"] {
+  background-image: url("../i/member-program/on-starting-line-48.png");
+  background-repeat: no-repeat;
+}
+
+.member-program-content *[rel="badges"] *[rel="badge"].badge5 div[rel="image"] {
+  background-image: url("../i/member-program/break-the-finish-48.png");
+  background-repeat: no-repeat;
+}
+
+.member-program-content *[rel="badges"] *[rel="badge"].badge6 div[rel="image"] {
+  background-image: url("../i/member-program/get-certified-48.png");
+  background-repeat: no-repeat;
+}
+
+.member-program-content *[rel="badges"] *[rel="badge"] div[rel="name"] {
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.member-program-content *[rel="badges"] *[rel="badge-status"] {
+  padding-left: 20px;
+  margin-top: 5px;
+}
+
+.member-program-content *[rel="badges"] *[rel="badge-status"].pending {
+  background: url("../i/check-box.png") no-repeat 0 0px;
+}
+
+.member-program-content *[rel="badges"] *[rel="badge-status"].completed {
+  background: url("../i/check-box.png") no-repeat 0 -20px;
+}
+
+.member-program-content .nextstep {
+  color: white;
+  margin-top: 20px;
+}
+
 .helpful-links {
 
 }

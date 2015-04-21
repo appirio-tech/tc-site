@@ -16,6 +16,7 @@
       'myDashboard.services'
     ])
     .constant("API_URL", tcLCApiURL)
+    .constant("API3_URL", tcconfig.API3_URL)
 
   .config(DataPreProcessing)
   .constant("MAIN_URL", tcconfig.mainURL)
@@ -26,6 +27,8 @@
   .constant("FORUMS_APP_URL", tcconfig.forumsAppURL)
   .constant("HELP_APP_URL", tcconfig.helpAppURL)
   .constant("PHOTO_LINK_LOCATION", tcconfig.photoLinkBaseURL)
+  .constant('SWIFT_PROGRAM_ID', tcconfig.swiftProgramId)
+  .factory('Restangular3', Restangular3)
   .run(['$rootScope', '$location', '$window', 'AuthService', run]);
 
   DataPreProcessing.$inject = ['$httpProvider', 'RestangularProvider', 'API_URL'];
@@ -40,6 +43,14 @@
         event.preventDefault();
         $window.location.href = tcconfig.mainURL + "/login?next=" + $returnUrl;
       }
+    });
+  }
+
+
+  // Restangular service that uses v3
+  function Restangular3(Restangular) {
+    return Restangular.withConfig(function(RestangularConfigurer) {
+      RestangularConfigurer.setBaseUrl(tcconfig.api3URL);
     });
   }
 
