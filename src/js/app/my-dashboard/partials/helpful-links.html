@@ -1,15 +1,14 @@
 <div ng-controller="HelpfulLinksCtrl as vm" class="panel panel-default">
 	<div class="panel-heading">
-    <span class="panel-title">{{vm.message}}</span> 
+    <span class="panel-title">{{vm.visibleNode.name}}</span>
+    <a href="#" ng-show="vm.breadcrumb.length > 0" ng-click="vm.showPreviousLinks()" class="pull-right">Back</a>
   </div>
   <div class="panel-body padding-vert-reset">
     <ul class="row">
-      <li><a href="{{vm.forumsAppUrl}}">Forums</a></li>
-      <li><a href="{{vm.reviewAppUrl}}">Online Review</a></li>
-      <li><a href="{{vm.mainUrl}}/challenges/?pageIndex=1">Challenges</a></li>
-      <li><a href="{{vm.communityBaseUrl}}/tc?module=MyHome">Edit Preferences</a></li>
-      <li><a href="{{vm.mainUrl}}/community/getting-started/">Getting Started</a></li>
-      <li><a href="{{vm.helpAppUrl}}">Help Center</a></li>
+      <li ng-repeat="link in vm.visibleNode.children" ng-click="vm.changeVisibleLinks(link)">
+        <a ng-show="link.href" href="{{link.href}}" ng-bind="link.name" title="{{link.description}}"></a>
+        <span ng-show="!link.href" ng-bind="link.name"></span>
+      </li>
     </ul>
   </div>
 </div>
