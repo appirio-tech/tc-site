@@ -40,6 +40,7 @@
     vm.breadcrumb = [];
     vm.changeVisibleLinks = changeVisibleLinks;
     vm.showPreviousLinks = showPreviousLinks;
+    vm.hasChildren = hasChildren;
     
     //activate controller
     activate();
@@ -55,6 +56,10 @@
       };
 
       vm.visibleNode = vm.root;
+    }
+
+    function hasChildren(link) {
+      return link && link.children && link.children.length > 0;
     }
 
     function changeVisibleLinks(link) {

@@ -516,6 +516,7 @@
         "jquery.qtip.min.js",
         "jquery.jqtransform.js",
         "reset-password.js",
+        "bootstrap.min.js",
         "app/my-dashboard/js/lib/angular-storage.min.js",
         "app/my-dashboard/app.js",
         "app/my-dashboard/js/services/my-dashboard-services.js",
@@ -556,6 +557,7 @@
         "password-recovery.css",
         "challenge-tags.css",
         "style-404page.css",
+        "bootstrap.min.css",
         "my-dashboard.css"
       ]
     },    
