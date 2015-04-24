@@ -314,13 +314,20 @@
   height: 40px;
   line-height: 40px;
   padding-left: 10px;
+  padding-right: 10px;
 }
 .helpful-links ul > li > a {
   color: #666;
+  padding: inherit;
+  line-height: inherit;
 }
 
-.helpful-links ul > li > a:hover {
+.helpful-links ul > li > a:hover,
+.helpful-links .nav .open>a,
+.helpful-links .nav .open>a:hover,
+.helpful-links .nav .open>a:focus {
   color: #FFB800;
+  background-color: inherit;
 }
 
 .helpful-links ul > li:last-child {
