@@ -463,7 +463,7 @@
   function getPhaseProgramDetail(phase, status) {
     status = status.toLowerCase();
     phase = phase.trim().toLowerCase();
-    if (status === 'draft' || !phase || phase.trim().length == 0 || phase === 'draft') {
+    if (status === 'draft') {
       return {
         nextStepTitle: "What's Next?",
         nextStepDescription: "Hold tight. This challenge will be starting soon.",
