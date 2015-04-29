@@ -1,4 +1,13 @@
-// @TODO change to new API endpoints: http://api.topcoder.com/v2/challenges/30041860.  the type is no longer needed
+/**
+ * This code is copyright (c) 2015 Topcoder Corporation
+ *
+ * Changes in version 1.1 (topcoder new community site - Removal proxied API calls):
+ * - Removed LC related conditionals and calls
+ * - Replaced ajaxUrl with direct calls to api
+ *
+ * author: TCSASSEMBLER
+ * version 1.1
+ */
 /* TODO:
  * - bring up to style guide standards
  * - rename file to service name
@@ -10,7 +19,7 @@
     .module('challengeDetails.services', [])
     .factory('ChallengeService', ChallengeService);
 
-  ChallengeService.$inject = ['Restangular', 'API_URL', '$q', 'isLC', '$cookies']
+  ChallengeService.$inject = ['Restangular', 'API_URL', '$q', '$cookies']
 
   /**
    * Geting challenge information
@@ -21,7 +30,7 @@
    * @returns {*}
    * @constructor
    */
-  function ChallengeService(Restangular, API_URL, $q, isLC, $cookies) {
+  function ChallengeService(Restangular, API_URL, $q, $cookies) {
 
     var service = Restangular.withConfig(function(RestangularConfigurer) {
       RestangularConfigurer.setBaseUrl(API_URL);
@@ -116,7 +125,7 @@
       service
         .one(challengeType)
         .one('challenges')
-        .getList(id)
+        .getList(id, {refresh: 't'})
         .then(function(challenge) {
         challenge = challenge[0];
         challenge.registrants = challenge.registrants || [];
@@ -192,18 +201,14 @@
       if (!tcjwt) {
         defer.resolve({'error':{'details':'Internal error. Try to login again.'}});
       }
-      var jwtToken = tcjwt.replace(/["]/g, "");
 
       service
-        .oneUrl('register', ajaxUrl)
-        .get({
-          "action": "register_to_challenge",
-          "challengeId": id,
-          "jwtToken": jwtToken,
-          "isLC": isLC
-        })
+        .one('challenges', id)
+        .post('register')
         .then(function(response) {
           defer.resolve(response);
+        }, function(reason) {
+          defer.reject(reason['data']);
         });
 
       return defer.promise;
@@ -222,20 +227,14 @@
       if (!tcjwt) {
         defer.resolve({'error':{'details':'Internal error. Try to login again.'}});
       }
-      var jwtToken = tcjwt.replace(/["]/g, "");
 
       service
-        .oneUrl('documents', ajaxUrl)
-        .get({
-          "action": "get_challenge_documents",
-          "challengeId": id,
-          "challengeType": challengeType,
-          "nocache": true,
-          "jwtToken": jwtToken,
-          "isLC": isLC
-        })
+        .one(challengeType)
+        .one('challenges')
+        .getList(id, {refresh: 't'})
         .then(function(response) {
-          defer.resolve(response);
+          challenge = response[0];
+          defer.resolve(challenge);
         });
 
       return defer.promise;

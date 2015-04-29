@@ -1,4 +1,12 @@
-/* TODO:
+/**
+ * This code is copyright (c) 2015 Topcoder Corporation
+ * author: TCSASSEMBLER
+ * version 1.1
+ *
+ * Changed in 1.1 (topcoder new community site - Removal proxied API calls)
+ * Removed LC related conditionals and calls
+ */
+ /* TODO:
  * - Wrap in anon function
  * - Change style to match style guide
  *
@@ -12,22 +20,13 @@
       'ngCookies',
       'ngRoute',
       'angular-loading-bar',
-      'lc.services.discussion',
-      'lc.directives.discussion',
-      'lc.services.download',
-      'lc.directives.download',
-      'lc.services.user',
       'tc.SubmissionDirectives',
       'tc.SubmissionServices',
       'challengeDetails.filters',
       'challengeDetails.services'
     ])
 
-    .constant("API_URL", tcLCApiURL)
-
-    .constant("isLC", isLC)
-
-    .constant("lcDiscussionURL", lcDiscussionURL)
+    .constant("API_URL", tcconfig.apiURL)
 
     .constant("TEMPLATE_URL", "/js/app/challenge-details/partials/")
 

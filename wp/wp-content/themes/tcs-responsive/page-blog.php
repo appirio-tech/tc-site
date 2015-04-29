@@ -205,13 +205,6 @@ $blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the topcoder 
 								<?php if($currPage>1) :?><a class="prev" href="<?php echo $prevLink;?>">Newer Posts</a><?php endif; ?>
 							</div>
 						<?php endif; ?>
-
-							<div class="showMoreWrapper showMoreWrapperMobile">
-								<a id="showMoreBlogPost" href="javascript:;" class="btn">Show More</a>
-								<span class="morePostLoading">&nbsp;</span>
-								<span class="noMorePostExist">No more posts exist!</span>
-							</div>
-
 						</section>
 					<?php endif; 
 						// shouldn't have to reset global post here b/c we never updated it

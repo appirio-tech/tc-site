@@ -635,29 +635,6 @@ sub, sup {
             width: 104px;
             vertical-align: top;
 }
-
-#footer .footerContentSection{
-		width: 289px;
-		margin-right: 58px;
-		float: left;
-}
-	#footer .footerContentSection.aboutTopCoder{
-			margin-right: 0px;
-	}
-	#footer .title{
-			font-size: 18px;
-			color: #fff;
-	}
-	#footer .twFollowIcon{
-			height: 13px;
-			width: 24px;
-	   background: url(@@cdn/i/footer-twitter-icon.png) no-repeat;
-	   background-position: 0 0;
-	   display: inline-block;
-	}
-	#footer .twFollowBtnText{
-	   display: inline-block;   
-	}
 	
 #footer a.btn.btnFooter{
 	width: 85px;

@@ -1,4 +1,12 @@
 /*global module:false*/
+/**
+ * Copyright (C) 2015 TopCoder Inc., All Rights Reserved.
+ * @author TCSASSEMBLER
+ * @version 1.1
+ *
+ * Changed in 1.1 (topcoder new community site - Removal proxied API calls)
+ * Removed LC related constants
+ */
 module.exports = function(grunt) {
   // Load grunt libraries from package.json
   require('load-grunt-tasks')(grunt);
@@ -46,12 +54,7 @@ module.exports = function(grunt) {
     useGz: grunt.option('use-gz') || false,
     useMin: grunt.option('use-min') || false,
     useCND: grunt.option('use-cdn') || false,
-    
 
-    lcURL: grunt.option('lc-url') || '//prod-lc1-ext-challenge-service.herokuapp.com',
-    lcDiscussionURL: grunt.option('lc-discussion-url') || '//prod-lc1-discussion-service.herokuapp.com',
-    lcUserURL: grunt.option('lc-user-url') || '//prod-lc1-user-service.herokuapp.com',
-    lcSiteUrl: grunt.option('lc-site-url') || '//beta.topcoder.com',
     myFiltersURL: grunt.option('my-filters-url') || '//lc1-user-settings-service.herokuapp.com',
     cbURL: grunt.option('cb-url') || 'https://coderbits.com',
 

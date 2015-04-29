@@ -2,15 +2,18 @@
 
 /**
  * @file
- * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
+ * Copyright (C) 2015 TopCoder Inc., All Rights Reserved.
  * @author TCSASSEMBLER, ecnu_haozi
- * @version 1.1
+ * @version 1.2
  *
  * Read from config.json and load into WP
  *
  * Changed in 1.1
  *  Add config variable myFiltersURL. and set a defualt value for it. It can also be configured from external
  *  config.json.
+ *
+ * Changed in 1.2 (topcoder new community site - Removal proxied API calls)
+ * Removed LC related constants
  */
 
 function tc_load_config() {
@@ -32,11 +35,7 @@ function tc_load_config() {
 
     // API
     _tc_local_config_define('TC_API_URL', $config_map['apiURL']);
-    _tc_local_config_define('TC_LC_URL', $config_map['lcURL']);
-    _tc_local_config_define('LC_DISCUSSION_URL', $config_map['lcDiscussionURL']);
     _tc_local_config_define('MY_FILERS_URL', $config_map['myFiltersURL']);
-    _tc_local_config_define('LC_SITE_URL', $config_map['lcSiteUrl']);
-    _tc_local_config_define('LC_USER_URL', $config_map['lcUserURL']);
     _tc_local_config_define('CB_URL', $config_map['cbURL']);
 
     // AUTH0 STUFF
@@ -75,7 +74,6 @@ function tc_config_defaults() {
         'useVer' => false,
         'version' => time(),
         'useGz' => false,
-        'lcURL' => '',
         'myFiltersURL' => 'https://lc1-user-settings-service.herokuapp.com'
     );
 }

@@ -63,14 +63,7 @@ if (isset($_GET['auth']) && $_GET['auth'] == 'logout') {
   <link rel = "stylesheet" href = "<?php THEME_URL ?>/css/ie.css<?php if ($ver) { echo " ? v = $v"; } ?>" / >
   <![endif]-->
   <script type="text/javascript">
-    var sslAjax = <?php echo ( force_ssl_admin() || force_ssl_login() ) ? "true" : "false"; ?>;
     var wpUrl = "<?php bloginfo('wpurl')?>";
-    var ajaxUrl;
-    if (sslAjax) {
-      ajaxUrl = "<?php bloginfo('wpurl')?>".replace('http://', 'https://') + "/wp-admin/admin-ajax.php";
-    } else {
-      ajaxUrl = "<?php bloginfo('wpurl')?>" + "/wp-admin/admin-ajax.php";
-    }
     var tcApiRUL = '<?php echo TC_API_URL; ?>';
     var communityURL = '<?php echo community_URL(); ?>';
     var siteURL = '<?php bloginfo('siteurl');?>';

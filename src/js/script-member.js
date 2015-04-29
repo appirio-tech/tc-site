@@ -1,3 +1,11 @@
+/**
+ * Copyright (C) 2015 TopCoder Inc., All Rights Reserved.
+ * @author TCSASSEMBLER
+ * @version 1.1
+ *
+ * Changed in 1.1 (topcoder new community site - Removal proxied API calls)
+ * Replaced ajaxUrl with tcconfig.apiURL
+ */
 var tc_rating_dev_chart = [];
 
 /* chart update using data via ajax */
@@ -9,11 +17,7 @@ tc_rating_dev_chart.drawChart = function(challengetype) {
     }
     xhr = $.ajax({
         type: "POST",
-        url: ajaxUrl + "?action=ratings_dev_chart_data",
-        data: {
-            'handle': handle,
-            'challengetype': challengetype
-        },
+        url: tcconfig.apiURL + "/develop/statistics/" + handle + "/" + challengetype ,
         success: function(data) {
             if (data.indexOf('<') > -1) {
                 return false;
@@ -481,7 +485,7 @@ app.ajaxProfileRequest = function() {
 
     xhr = $.ajax({
         type: "POST",
-        url: ajaxUrl,
+        url: tcconfig.apiURL,
         data: reqProfileData,
         success: function(data) {
             $('.loading').hide();

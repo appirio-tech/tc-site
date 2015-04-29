@@ -17,17 +17,10 @@
     // UNIVERSAL
     var tcconfig = @@tcconfig
 
-    var isLC = '';
-    var sslAjax = true;
     var wpUrl  = tcconfig.mainURL;
-    var ajaxUrl = tcconfig.mainURL + "/wp-admin/admin-ajax.php";
 
     var tcApiRUL = tcconfig.apiURL;
-    var lcDiscussionURL = tcconfig.lcDiscussionURL;
     var myFiltersURL = tcconfig.myFiltersURL;
-    var lcSiteUrl = tcconfig.lcSiteUrl;
-    var lcExternalUrl = tcconfig.lcURL;
-    var lcUserUrl = tcconfig.lcUserURL;
 
     var siteURL = tcconfig.mainURL;
     var communityURL = tcconfig.communityURL;
@@ -37,12 +30,6 @@
     var timezone_string = "America/New_York";
     var challengeType = 'develop';
 
-    var tcLCApiURL;
-    if (isLC) {
-      tcLCApiURL = lcURL;
-    } else {
-      tcLCApiURL = tcApiRUL;
-    }
     var cbApiURL = tcconfig.cbURL;
 
     window.prerenderReady = false;

@@ -1,3 +1,11 @@
+/**
+ * Copyright (C) 2015 TopCoder Inc., All Rights Reserved.
+ * @author TCSASSEMBLER
+ * @version 1.1
+ *
+ * Changed in 1.1 (topcoder new community site - Removal proxied API calls)
+ * Replaced ajaxUrl with tcconfig.apiURL
+ */
 var sliderActive = false;
 var prizeSliderActive = false;
 var slider;
@@ -151,14 +159,16 @@ $(document).ready(function () {
 
   function getChallenge(tcjwt, callback) {
     if (tcjwt && (typeof challengeId != 'undefined')) {
-      $.getJSON(ajaxUrl, {
-        "action": "get_challenge_documents",
-        "challengeId": challengeId,
-        "challengeType": challengeType,
-        "nocache": true,
-        "jwtToken": tcjwt.replace(/["]/g, "")
-      }, function (data) {
-        callback(data);
+      $.ajax({
+        url: tcconfig.apiURL + '/' + challengeType + '/challenges/' + challengeId + '/?refresh=t',
+        type: "GET",
+        dataType: "json",
+        headers: {
+          'Authorization': 'Bearer ' + tcjwt.replace(/["]/g, "")
+        },
+        success: function (data) {
+          callback(data);
+        }
       });
     } else {
       $('.loading').hide();
@@ -367,19 +377,23 @@ $(function () {
       } else {
         $('.loading').show();
       }
-      $.getJSON(ajaxUrl, {
-        "action": "register_to_challenge",
-        "challengeId": challengeId,
-        "jwtToken": $.cookie('tcjwt').replace(/["]/g, "")
-      }, function (data) {
-        $('.loading').hide();
-        if (data["message"] === "ok") {
-          showModal("#registerSuccess");
-        } else if (data["error"]["details"] === "You should agree with all terms of use.") {
-          window.location = siteURL + "/challenge-details/terms/" + challengeId + "?challenge-type=" + challengeType;
-        } else if (data["error"]["details"]) {
-          $("#registerFailed .failedMessage").text(data["error"]["details"]);
-          showModal("#registerFailed");
+      $.ajax({
+        url: tcconfig.apiURL + '/challenges/' + challengeId + '/register',
+        type: "GET",
+        dataType: "json",
+        headers: {
+          'Authorization': 'Bearer ' + $.cookie('tcjwt').replace(/["]/g, "")
+        },
+        success: function (data) {
+          $('.loading').hide();
+          if (data["message"] === "ok") {
+            showModal("#registerSuccess");
+          } else if (data["error"]["details"] === "You should agree with all terms of use.") {
+            window.location = siteURL + "/challenge-details/terms/" + challengeId + "?challenge-type=" + challengeType;
+          } else if (data["error"]["details"]) {
+            $("#registerFailed .failedMessage").text(data["error"]["details"]);
+            showModal("#registerFailed");
+          }
         }
       });
     } else {

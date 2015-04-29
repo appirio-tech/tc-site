@@ -190,11 +190,6 @@ $blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the TopCoder-
 								endwhile;
 						?>
 							</div>
-							<div class="showMoreWrapper showMoreWrapperMobile">
-								<a id="showMoreBlogPost" href="javascript:;" class="btn">Show More</a>
-								<span class="morePostLoading">&nbsp;</span>
-								<span class="noMorePostExist">No more post exist!</span>
-							</div>
 						<?php
 							else :
 						?>
