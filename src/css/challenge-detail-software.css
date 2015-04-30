@@ -2606,6 +2606,8 @@ h1.center {
 .member-program-path *[rel="next-step"] *[rel="next-step-description"] {
     width: 70%;
     float: left;
+    height: 135px;
+    position: relative;
 }
 
 .member-program-path *[rel="next-step"] *[rel="next-step-description"] *[rel="title"] {
@@ -2619,6 +2621,8 @@ h1.center {
 .member-program-path *[rel="next-step"] *[rel="next-step-description"] *[rel="action"] {
     color: #666;
     text-transform: uppercase;
+    position: absolute;
+    bottom: 15px;
 }
 
 .member-program-path *[rel="next-step"] *[rel="badge"] {
