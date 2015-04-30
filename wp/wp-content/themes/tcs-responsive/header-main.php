@@ -1,14 +1,17 @@
 <?php
 /**
  * @file
- * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
+ * Copyright (C) 2015 TopCoder Inc., All Rights Reserved.
  * @author TCSASSEMBLER, ecnu_haozi
- * @version 1.1
+ * @version 1.2
  *
  * This header-main page.
  *
  * Changed in 1.1
  * Add a configurable variable 'myFiltersURL' to support "My filters" feature.
+ *
+ * Changed in 1.2 (topcoder new community site - Removal proxied API calls)
+ * Removed LC related constants
  */
 
 session_start();
@@ -120,23 +123,9 @@ if (basename(get_permalink()) == "challenges") {
   <link rel = "stylesheet" href = "<?php THEME_URL ?>/css/ie.css<?php if ($ver) { echo " ? v = $v"; } ?>" / >
   <![endif]-->
   <script type="text/javascript">
-    var isLC = '<?php echo get_query_var('lc'); ?>';
-    var sslAjax = <?php echo ( force_ssl_admin() || force_ssl_login() ) ? "true" : "false"; ?>;
     var wpUrl = "<?php bloginfo('wpurl')?>";
-    var ajaxUrl;
-    if (sslAjax) {
-      ajaxUrl = "<?php bloginfo('wpurl')?>".replace('http://', 'https://') + "/wp-admin/admin-ajax.php";
-    } else {
-      ajaxUrl = "<?php bloginfo('wpurl')?>" + "/wp-admin/admin-ajax.php";
-    }
-
     var tcApiRUL = '<?php echo TC_API_URL; ?>';
-    var lcDiscussionURL = '<?php echo LC_DISCUSSION_URL; ?>';
     var myFiltersURL = '<?php echo MY_FILERS_URL ?>';
-    var lcSiteUrl = '<?php echo LC_SITE_URL; ?>';
-    var lcExternalUrl = '<?php echo TC_LC_URL; ?>';
-    var lcUserUrl = '<?php echo LC_USER_URL; ?>';
-
     var siteURL = '<?php bloginfo('siteurl');?>';
     var communityURL = '<?php echo community_URL(); ?>';
     var base_url = '<?php bloginfo( 'stylesheet_directory' ); ?>';
@@ -144,13 +133,6 @@ if (basename(get_permalink()) == "challenges") {
     var autoRegister = '<?php echo get_query_var('autoRegister'); ?>';
     var timezone_string = "<?php echo get_option('timezone_string');?>";
     var challengeType;
-
-    var tcLCApiURL;
-    if (isLC) {
-      tcLCApiURL = '<?php echo TC_LC_URL; ?>';
-    } else {
-      tcLCApiURL = tcApiRUL;
-    }
     var cbApiURL = '<?php echo CB_URL; ?>';
   </script>
 

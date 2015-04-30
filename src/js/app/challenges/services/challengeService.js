@@ -1,11 +1,18 @@
 /*jslint nomen: true*/
 /*global angular: true, _: true */
 /**
-* Changelog
-* 09/17/2014 Add My Challenges Filter and Improve Filters
-* - Added UserChallengesService dependency to get the user challenges
-* - route request to UserChallengesService if track type is 'user-active' or 'user-past'
-*/
+ * Copyright (C) 2015 TopCoder Inc., All Rights Reserved.
+ * @author TCSASSEMBLER
+ * @version 1.1
+ *
+ * Changelog
+ * 09/17/2014 Add My Challenges Filter and Improve Filters
+ * - Added UserChallengesService dependency to get the user challenges
+ * - route request to UserChallengesService if track type is 'user-active' or 'user-past'
+ *
+ * 04/20/2015 topcoder new community site - Removal proxied API calls
+ * - Removed function ExternalChallengeDataService
+ */
 (function (angular) {
   'use strict';
 
@@ -15,8 +22,8 @@
     /**
      * Service to request challenges data rom TC API
      */
-    .factory('ChallengesService', ['Restangular', '$filter', '$q', 'ChallengeDataService', 'UserChallengesService', 'ChallengeDataCalendarService', 'ExternalChallengeDataService',
-      function (Restangular, $filter, $q, ChallengeDataService, UserChallengesService, ChallengeDataCalendarService, ExternalChallengeDataService) {
+    .factory('ChallengesService', ['Restangular', '$filter', '$q', 'ChallengeDataService', 'UserChallengesService', 'ChallengeDataCalendarService',
+      function (Restangular, $filter, $q, ChallengeDataService, UserChallengesService, ChallengeDataCalendarService) {
         var mockPaging = ['active', 'upcoming', 'user-active', 'user-past'],
           datas = {},
           defPageSize = 10;
@@ -301,38 +308,6 @@
           return moment(date).tz('America/New_York').format('YYYY-MM-DDTHH:mm:ss.SSSZZ');
         }
 
-        /**
-         * Get external data from new endpoint for active challenges on the design and develop tracks only.
-         * @returns {Object} promise - promise of the deferred object
-         */
-        function getExternalData() {
-          var deferred = $q.defer();
-          ExternalChallengeDataService.all('getActiveChallenges').getList().then(function (challenges) {
-            var developChallenges = [],
-              designChallenges = [];
-            _.each(challenges, function (challengeItem) {
-              challengeItem.eventId = challengeItem.event.id;
-              challengeItem.currentStatus = 'Active';
-              challengeItem.postingDate = formatDate(challengeItem.postingDate);
-              challengeItem.registrationEndDate = formatDate(challengeItem.registrationEndDate);
-              challengeItem.submissionEndDate = formatDate(challengeItem.submissionEndDate);
-              challengeItem.appealsEndDate = formatDate(challengeItem.appealsEndDate);
-              challengeItem.currentPhaseEndDate = formatDate(challengeItem.currentPhaseEndDate);
-              challengeItem.registrationStartDate = formatDate(challengeItem.registrationStartDate);
-              if (challengeItem.challengeCommunity === 'develop') {
-                developChallenges.push(challengeItem);
-              } else if (challengeItem.challengeCommunity === 'design') {
-                designChallenges.push(challengeItem);
-              }
-            });
-            deferred.resolve({
-              'develop': developChallenges,
-              'design': designChallenges
-            });
-          });
-          return deferred.promise;
-        }
-
         return {
           'getChallenges': function (listType, params) {
             var key = (params.type || 'all') + '_' + (listType || 'active'), // cache key
@@ -361,15 +336,8 @@
                 if (listType === 'active' && (params.type === 'develop' || params.type === 'design')) {
                   promises = [];
                   promises.push(getData(listType, cacheParams));
-                  if (!(datas['develop_active_external'] && datas['design_active_external'])) {
-                    promises.push(getExternalData());
-                  }
                   $q.all(promises).then(function (data) {
-                    if (data.length === 2) {
-                      datas['develop_active_external'] = data[1]['develop'];
-                      datas['design_active_external'] = data[1]['design'];
-                    }
-                    datas[key] = data[0].concat(datas[key + '_external']);
+                    datas[key] = data[0];
                     thenHandleParams(datas[key], params, deferred);
                   });
                 } else {
@@ -407,13 +375,6 @@
       function (Restangular, API_URL) {
         return Restangular.withConfig(function (RestangularConfigurer) {
           RestangularConfigurer.setBaseUrl(API_URL + '/dataScience/challenges');
-        });
-      }])
-
-    .factory('ExternalChallengeDataService', ['Restangular', 'LC_URL',
-      function (Restangular, LC_URL) {
-        return Restangular.withConfig(function (RestangularConfigurer) {
-          RestangularConfigurer.setBaseUrl(LC_URL);
         });
       }]);
 }(angular));

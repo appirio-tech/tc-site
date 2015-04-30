@@ -1,11 +1,14 @@
 /**
- * This code is copyright (c) 2014 Topcoder Corporation
+ * This code is copyright (c) 2015 Topcoder Corporation
  *
  * Changes in version 1.1 (Enhanced Member Profile Bugs Fixing):
  * - Added allSettled method for angular promises provider.
  *
+ * Changes in 1.2 (topcoder new community site - Removal proxied API calls)
+ * Removed LC related conditionals and calls
+ *
  * author: shubhendus, TCSASSEMBLER
- * version 1.1
+ * version 1.2
  */
 'use strict';
 
@@ -24,7 +27,7 @@ window.tc = angular.module('tc', [
   'tc.coderbitsDirectives'
 ])
 
-  .constant("API_URL", tcApiRUL)
+  .constant("API_URL", tcconfig.apiURL)
   .constant("PHOTO_LINK_LOCATION", tcconfig.communityURL)
   .constant("USERS_TEMPLATE_URL", "/js/app/users/partials/users.tpl.html")
   .constant("CODERBITS_API_HOST", cbApiURL)

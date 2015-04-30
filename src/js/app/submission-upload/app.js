@@ -1,9 +1,12 @@
 'use strict';
 
 /**
- * This code is copyright (c) 2014 Topcoder Corporation
+ * This code is copyright (c) 2015 Topcoder Corporation
  * author: TCSASSEMBLER
- * version 1.0
+ * version 1.1
+ *
+ * Changed in 1.1 (topcoder new community site - Removal proxied API calls)
+ * Removed LC related conditionals and calls
  */
 
 /*jslint nomen: true*/
@@ -20,10 +23,7 @@
     'tc.shared.directives.tcNumberOnly'
   ])
 
-  .constant("API_URL", tcLCApiURL)
-
-  .constant("isLC", isLC)
-
+  .constant("API_URL", tcconfig.apiURL)
 
   .config(DataPreProcessing);
 

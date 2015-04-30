@@ -1,4 +1,13 @@
 <?php
+/**
+ * @file
+ * Copyright (C) 2015 TopCoder Inc., All Rights Reserved.
+ * @author TCSASSEMBLER
+ * @version 1.1
+ *
+ * Changed in 1.1 (topcoder new community site - Removal proxied API calls)
+ * Removed LC related conditionals and functions
+ */
 
 function post_register_controller() {
   global $_POST;
@@ -166,9 +175,8 @@ function get_challenge_terms_ajax_controller()
     $challengeId = $_GET ["challengeId"];
     $role        = $_GET ["role"];
     $jwtToken    = $_GET ["jwtToken"];
-    $isLc = $_GET["isLc"];
 
-    $challengeTerms = get_challenge_terms( $challengeId, $role, $jwtToken, $isLc );
+    $challengeTerms = get_challenge_terms( $challengeId, $role, $jwtToken );
 
     if (isset( $challengeTerms )) {
         wp_send_json( $challengeTerms );
@@ -223,13 +231,8 @@ function register_to_challenge_ajax_controller()
 
     $challengeId = filter_input( INPUT_GET, "challengeId", FILTER_SANITIZE_NUMBER_INT );
     $jwtToken    = filter_input( INPUT_GET, "jwtToken", FILTER_SANITIZE_STRING );
-    $isLc        = filter_input(INPUT_GET, "isLC", FILTER_VALIDATE_BOOLEAN);
 
-    if ($isLc) {
-      $challengeReg = register_to_lc( $challengeId, $jwtToken );
-    } else {
-      $challengeReg = register_to_challenge( $challengeId, $jwtToken );
-    }
+    $challengeReg = register_to_challenge( $challengeId, $jwtToken );
 
     if (isset( $challengeReg )) {
         wp_send_json( $challengeReg );
@@ -365,13 +368,9 @@ function get_top_rank( $userKey = '', $contestType = 'Algorithm' )
 }
 
 /* challenge terms  */
-function get_challenge_terms( $challengeId, $role, $jwtToken, $isLc )
+function get_challenge_terms( $challengeId, $role, $jwtToken )
 {
-    if ($isLc) {
-      $url = TC_LC_URL . "/terms/$challengeId";
-    } else {
-      $url = TC_API_URL . "/terms/$challengeId?role=" . $role;
-    }
+    $url = TC_API_URL . "/terms/$challengeId?role=" . $role;
 
     $args     = array(
         'headers'     => array(
@@ -424,27 +423,6 @@ function register_to_challenge( $challengeId, $jwtToken )
         return "Error in processing request";
     }
     return json_decode( $response ['body'] );
-}
-
-/**
- * Register to LC
- */
-function register_to_lc($challengeId, $jwtToken) {
-  $url = TC_LC_URL . "/challenges/$challengeId/register";
-  $args = array(
-    'headers' => array(
-      'Authorization' => 'Bearer ' . $jwtToken
-    ),
-    'httpversion' => get_option('httpversion'),
-    'timeout' => 20
-  );
-
-  $response = wp_remote_post( $url, $args );
-
-  if (is_wp_error( $response ) || ! isset ( $response ['body'] )) {
-    return "Error in processing request";
-  }
-  return json_decode( $response ['body'] );
 }
 
 /* submit to development challenge */
@@ -1068,40 +1046,14 @@ function get_challenge_documents_controller()
     $challengeId = filter_input( INPUT_GET, "challengeId", FILTER_SANITIZE_STRING );
     $challengeType = filter_input( INPUT_GET, "challengeType", FILTER_SANITIZE_STRING );
     $resetCache = filter_input(INPUT_GET, 'nocache', FILTER_SANITIZE_STRING);
-    $isLc        = filter_input(INPUT_GET, "isLC", FILTER_VALIDATE_BOOLEAN);
 
-    if ($isLc) {
-      $docs = get_challenge_lc_documents($challengeId, $challengeType, $jwtToken);
-    } else {
-      $docs = get_challenge_documents_ajax($challengeId, $challengeType, $resetCache, $jwtToken);
-    }
+    $docs = get_challenge_documents_ajax($challengeId, $challengeType, $resetCache, $jwtToken);
 
     if ($docs !== "Error in processing request") {
       wp_send_json( $docs );
     } else {
       wp_send_json_error();
     }
-}
-
-function get_challenge_lc_documents($challengeId, $challengeType, $jwtToken) {
-  $url = TC_LC_URL . "/challenges/$challengeId/documents";
-
-  $args     = array(
-    'headers'     => array(
-      'Authorization' => 'Bearer ' . $jwtToken
-    ),
-    'httpversion' => get_option( 'httpversion'  ),
-    'timeout'     => get_option('request_timeout')
-  );
-  $response = wp_remote_get($url, $args);
-  if (is_wp_error($response) || !isset ( $response ['body'] )) {
-    return "Error in processing request";
-  }
-  if ($response ['response'] ['code'] == 200) {
-    $search_result = json_decode($response ['body']);
-    return $search_result;
-  }
-  return "Error in processing request";
 }
 
 function get_challenge_documents_ajax($contestID = '', $contestType = '', $resetCache = FALSE, $jwtToken = '') {

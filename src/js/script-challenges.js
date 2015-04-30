@@ -1,3 +1,11 @@
+/**
+ * Copyright (C) 2015 TopCoder Inc., All Rights Reserved.
+ * @author TCSASSEMBLER
+ * @version 1.1
+ *
+ * Changed in 1.1 (topcoder new community site - Removal proxied API calls)
+ * Replaced ajaxUrl with tcconfig.apiURL
+ */
 var pageSize = 8;
 var sortColumn = "";
 var sortOrder = "";
@@ -693,50 +701,44 @@ appChallenges = {
 
   /* populates technology tags drop down */
   getTechnologyTags: function(list, callback) {
-      var param = {};
-        param.action = 'get_all_platforms_and_technologies';
-
-        $.ajax({
-            url: ajaxUrl,
-            data: param,
-            type: "GET",
-            dataType: "json",
-            success: function(data) {
-              if (typeof data['platforms'] !== 'undefined' && data['platforms'].length > 0) {
-                var $pOptGroup = $('<optgroup label="Platforms">');
-                $.each(data['platforms'], function(key, val) {
-                  if (selectedPlatforms.indexOf(val) == -1) {
-                    $pOptGroup.append('<option value="' + val + '">' + val + '</option>');
-                  } else {
-                    $pOptGroup.append('<option value="' + val + '" selected>' + val + '</option>');
-                  }
-                });
-                $(list).append($pOptGroup);
+        $.when(
+            $.getJSON(tcconfig.apiURL, function(platforms) {
+                data['platforms'] = platforms;
+            }),
+            $.getJSON(tcconfig.apiURL, function(technologies) {
+                data['technologies'] = technologies;
+            })
+        ).then(function(data) {
+          if (typeof data['platforms'] !== 'undefined' && data['platforms'].length > 0) {
+            var $pOptGroup = $('<optgroup label="Platforms">');
+            $.each(data['platforms'], function(key, val) {
+              if (selectedPlatforms.indexOf(val) == -1) {
+                $pOptGroup.append('<option value="' + val + '">' + val + '</option>');
+              } else {
+                $pOptGroup.append('<option value="' + val + '" selected>' + val + '</option>');
               }
+            });
+            $(list).append($pOptGroup);
+          }
 
-              if (typeof data['technologies'] !== 'undefined' && data['technologies'].length > 0) {
-                var $tOptGroup = $('<optgroup label="Technologies">');
-                $.each(data['technologies'], function(key, val) {
-                  if (selectedTechnologies.indexOf(val) == -1) {
-                    $tOptGroup.append('<option value="' + val + '">' + val + '</option>');
-                  } else {
-                    $tOptGroup.append('<option value="' + val + '" selected>' + val + '</option>');
-                  }
-                });
-                $(list).append($tOptGroup);
+          if (typeof data['technologies'] !== 'undefined' && data['technologies'].length > 0) {
+            var $tOptGroup = $('<optgroup label="Technologies">');
+            $.each(data['technologies'], function(key, val) {
+              if (selectedTechnologies.indexOf(val) == -1) {
+                $tOptGroup.append('<option value="' + val + '">' + val + '</option>');
+              } else {
+                $tOptGroup.append('<option value="' + val + '" selected>' + val + '</option>');
               }
+            });
+            $(list).append($tOptGroup);
+          }
 
-              $(list).trigger("chosen:updated");
+          $(list).trigger("chosen:updated");
 
-                /* call back */
-              if (callback != null && callback != "") {
-                callback();
-              }
-            },
-
-            fail: function(data) {
-              $('.tags').hide();
-            }
+            /* call back */
+          if (callback != null && callback != "") {
+            callback();
+          }
         });
     },
 
@@ -744,7 +746,6 @@ appChallenges = {
 
         app.setLoading();
         var param = {};
-        param.action = ajaxAction;
         param.pageIndex = pageIndex;
         param.pageSize = postPerPage;
         param.contest_type = "data/marathon";
@@ -774,8 +775,7 @@ appChallenges = {
         }
 
         $.ajax({
-            url: ajaxUrl,
-            data: param,
+            url: tcconfig.apiURL + "/data/marathon/challenges?listType=" + listType + "&pageIndex=" + pageIndex + "&pageSize=" + pageSize,
             type: "GET",
             dataType: "json",
             success: function(data) {
@@ -906,8 +906,7 @@ appChallenges = {
         }
 
         $.ajax({
-            url: ajaxUrl,
-            data: param,
+            url: tcconfig.apiURL + '/' + contest_type + '/challenges?pageIndex=' + pageIndex + '&pageSize=' + pageSize + '&sortOrder=' + param.sortOrder + '&sortColumn=' + param.sortColumn,
             type: "GET",
             dataType: "json",
             success: function(data) {
@@ -960,17 +959,17 @@ appChallenges = {
 
         app.setLoading();
         var param = {};
-        param.action = ajaxAction;
         param.challengeType = contest_type;
         param.challengeId = challenge_id;
         param.jwtToken = $.cookie('tcjwt');
         if (typeof param.jwtToken !== 'undefined' && param.jwtToken.length > 0) {
-
             $.ajax({
-                url: ajaxUrl,
-                data: param,
+                url: tcconfig.apiURL + '/' + contest_type + '/challenges/' + challenge_id,
                 type: "GET",
                 dataType: "json",
+                headers: {
+                  'Authorization': 'Bearer ' + param.tcjwt.replace(/["]/g, "")
+                },
                 success: function(data) {
 
                     app.getReviewDetailTables(tableTime, tableApp, tableOpen, data.data);
@@ -1485,7 +1484,7 @@ appChallenges = {
         }
 
         $.ajax({
-            url: ajaxUrl,
+            url: tcconfig.apiURL + '/' + challengeType + '/challenges/',
             data: param,
             type: "GET",
             dataType: "json",
@@ -1553,9 +1552,8 @@ appChallenges = {
         param.action = "get_active_data_challenges";
         param.pageIndex = 1;
         param.pageSize = 2;
-
         $.ajax({
-            url: ajaxUrl,
+            url: tcconfig.apiURL + '/data/srm/',
             data: param,
             type: "GET",
             dataType: "json",

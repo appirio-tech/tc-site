@@ -1,4 +1,15 @@
 <?php
+/**
+ * @file
+ * Copyright (C) 2015 TopCoder Inc., All Rights Reserved.
+ * @author TCSASSEMBLER
+ * @version 1.1
+ *
+ * This is sidebar widget page
+ *
+ * Changed in 1.1
+ * Loading recent challenges data using ajax
+ */
 /* Register the widget */
 function theme_load_widgets() {
   register_widget('Related_Content');
@@ -512,11 +523,6 @@ class Popular_post_widget extends WP_Widget {
           endwhile;
           ?>
         </ul>
-        <div class="showMoreWrapper">
-          <a id="popularShowMore" href="javascript:;" class="btn jsShowMoreArchiveStories">Show More</a>
-          <span class="morePostLoading">&nbsp;</span>
-          <span class="noMorePostExist">No more post exist!</span>
-        </div>
       </div>
       <!-- /.popular post-->
     <?php endif; 
@@ -900,23 +906,17 @@ class Recent_challenges extends WP_Widget {
     ?>
     <div class="sideMostRecentChallenges">
 			<h3><?php echo $displayedTitle; ?></h3>
-			<?php
-				$recentDesign = get_active_contests_ajax('','design',1,1);
-				$recentDesign = $recentDesign->data[0];
-				$recentDev= get_active_contests_ajax('','develop',1,1);
-				$recentDev = $recentDev->data[0];
-				$recentData= get_active_contests_ajax('','data/marathan');
-				$recentData = $recentData->data[0];
-				$chLink =  get_page_link_by_slug('challenge-details');
-			?>
 			<ul>
-				<li><a class="contestName contestType1" href="<?php echo $chLink.$recentDev->challengeId ?>">
-						<i></i><?php echo $recentDev->challengeName ?>
-					</a></li>
-				<li class="alt"><a class="contestName contestType2" href="<?php echo $chLink.$recentDesign->challengeId ?>/?type=design">
-						<i></i><?php echo $recentDesign->challengeName ?>
-					</a></li>
-
+				<li>
+          <a class="contestName contestType1" href="">
+						<i></i>
+					</a>
+        </li>
+				<li class="alt">
+          <a class="contestName contestType2" href="">
+						<i></i>
+					</a>
+        </li>
 			</ul>
 		</div>
 

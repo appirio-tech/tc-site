@@ -182,19 +182,14 @@ include locate_template('header-challenge-landing.php');
         will be made at the closure of the approval phase. The second payment will be made at the
         completion of the support period.</p>
 
-      <h2 ng-if="!CD.isLC">Reliability Rating and Bonus</h2>
+      <h2>Reliability Rating and Bonus</h2>
 
-      <p ng-if="!CD.isLC">For challenges that have a reliability bonus, the bonus depends on the reliability rating at
+      <p>For challenges that have a reliability bonus, the bonus depends on the reliability rating at
         the moment of registration for that project. A participant with no previous projects is
         considered to have no reliability rating, and therefore gets no bonus.
         Reliability bonus does not apply to Digital Run winnings. Since reliability rating is
         based on the past 15 projects, it can only have 15 discrete values.<br>
         <a href="http://help.topcoder.com/development/understanding-reliability-and-ratings/">Read more.</a></p>
-    </article>
-
-    <article ng-if="CD.isLC && CD.isRegistered" id="lc-discussion">
-      <h1>Challenge Discussion</h1>
-      <lc-discussion remote-object-key="challenge" remote-object-id="CD.lcChallengeId" discussion-url="CD.lcDiscussionURL"></lc-discussion>
     </article>
 
   </article>
@@ -363,9 +358,6 @@ include locate_template('header-challenge-landing.php');
         <th class="successIconColumn">
           <div>Result</div>
         </th>
-        <th ng-show="CD.isLC">
-          <div>Scorecard</div>
-        </th>
       </tr>
       </thead>
       <tbody>
@@ -387,10 +379,6 @@ include locate_template('header-challenge-landing.php');
         <td class="successIconColumn">
           <i class="{{registrant.winner ? 'successIcon' : registrant.submissionStatus.match('Failed') ? 'failureIcon' : ''}}"
              title="{{registrant.winner ? 'Pass' : registrant.submissionStatus.match('Failed') ? 'Fail' : ''}}"></i>
-        </td>
-        <td ng-show="CD.isLC">
-          <!-- manage/#/challenges/{challengeId}/submissions/{submissionId}/scorecard -->
-          <a ng-if="registrant.lcSubmissionId" ng-href="{{CD.lcSiteUrl + '/scorecard/challenges/' + CD.challenge.challengeId + '/scorecard/' + registrant.lcScorecardId}}">View</a>
         </td>
       </tr>
       </tbody>
@@ -429,8 +417,7 @@ include locate_template('header-challenge-landing.php');
 <aside class="sideStream grid-1-3" style="float: left;">
 
 <div class="topRightTitle">
-    <a ng-show="!CD.isLC && CD.isRegistered" ng-href="{{CD.challenge.forumLink}}" class="contestForumIcon" target="_blank">Challenge Discussion</a>
-    <a ng-show="CD.isLC && CD.isRegistered" ng-href="{{CD.challenge.forumLink}}" class="contestForumIcon">Challenge Discussion</a>
+    <a ng-show="CD.isRegistered" ng-href="{{CD.challenge.forumLink}}" class="contestForumIcon" target="_blank">Challenge Discussion</a>
 </div>
 
 <div class="columnSideBar">
