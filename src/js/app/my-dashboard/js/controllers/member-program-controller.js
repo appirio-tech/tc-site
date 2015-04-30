@@ -29,6 +29,7 @@
    */
   function MemberProgramCtrl($scope, AuthService, MemberCertService, SWIFT_PROGRAM_ID) {
     var vm = this;
+    vm.user = null;
     vm.loading = true;
     vm.loadingMessage = "";
     vm.program = null;
@@ -40,21 +41,22 @@
 
     // activate controller
     if (AuthService.isLoggedIn === true) {
-      db.addIdentityChangeListener("memberprogram", function(identity) {
-        activate();
+      app.addIdentityChangeListener("memberprogram", function(identity) {
+        activate(identity);
       });
       if (db.user) {
-        activate();
+        activate(db.user);
       }
     } else {
       return false;
     }
 
-    function activate() {
+    function activate(user) {
       vm.loading = true;
       vm.loadingMessage = "Checking your program status";
+      vm.user = user;
       // gets member's registration status for the event
-      return MemberCertService.getMemberRegistration(db.user.uid, SWIFT_PROGRAM_ID).then(function(data) {
+      return MemberCertService.getMemberRegistration(vm.user.uid, SWIFT_PROGRAM_ID).then(function(data) {
         var result = data.result;
         var content = result ? result.content : null;
         if (content) {
@@ -69,7 +71,7 @@
     function registerUser() {
       vm.loading = true;
       vm.loadingMessage = "Registering for the program";
-      return MemberCertService.registerMember(db.user.uid, SWIFT_PROGRAM_ID).then(function(data) {
+      return MemberCertService.registerMember(vm.user.uid, SWIFT_PROGRAM_ID).then(function(data) {
         var result = data.result;
         var content = result ? result.content : null;
         if (content) {

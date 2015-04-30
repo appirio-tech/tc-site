@@ -1715,6 +1715,32 @@ var app = {
     return decoded;
   },
 
+  identityListeners: {},
+
+  /**
+   * Adds the provided listener for identity change event. If listener already exists, it does not update it.
+   * Caller has to remove it first and then add new one in such cases.
+   *
+   * @param name String name of the listener, it is used to uniquely identify a listener
+   * @param listener function callback to be called when identity change happens
+   */
+  addIdentityChangeListener: function(name, listener) {
+    if (!this.identityListeners[name]) {
+      this.identityListeners[name] = listener;
+    }
+  },
+
+  /**
+   * Removes the listener, identified by given name, for identity change event.
+   *
+   * @param name String name of the listener, it is used to uniquely identify a listener
+   */
+  removeIdentityChangeListener: function(name) {
+    if (this.identityListeners[name]) {
+      delete this.identityListeners[name];
+    }
+  },
+
   handle: "",
 
   // Get loggedin user handle, and remember it.
@@ -1734,12 +1760,12 @@ var app = {
           'Authorization': 'Bearer ' + tcjwt
         },
         success: function(data) {
-          // SUP-20 // stores user identity in local storage or cookie
-          if (window.localStorage) {
-            window.localStorage.setItem("userIdentity", JSON.stringify(data));
-          } else {
-            $.cookie("userIdentity", JSON.stringify(data));
-          }
+          for (var name in self.identityListeners) {
+            var listener = self.identityListeners[name];
+            if (typeof listener == 'function') {
+              listener.call(self, data);
+            }
+          };
           if (_kmq) _kmq.push(['identify', data.email]);
           self.handle = data.handle;
           callback(self.handle);

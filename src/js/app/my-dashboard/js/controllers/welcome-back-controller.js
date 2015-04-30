@@ -49,19 +49,19 @@
 
     // activate controller
     if (AuthService.isLoggedIn === true) {
-      db.addIdentityChangeListener("welcomeback", function(identity) {
-        activate();
+      app.addIdentityChangeListener("welcomeback", function(identity) {
+        activate(identity);
       });
       if (db.user) {
-        activate();
+        activate(db.user);
       }
     } else { // if user is not logged in, return (to avoid extra ajax calls)
       return false;
     }
 
-    function activate() {
+    function activate(user) {
       // fetch user info
-      ProfileService.getUserProfile(db.user.handle)
+      ProfileService.getUserProfile(user.handle)
         .then(function(profile) {
           vm.profile = profile;
 
@@ -101,7 +101,6 @@
         // Get active challenges in ordor to populate user's active challenges and review opportunities
         ChallengeService.getMyActiveChallenges()
           .then(function(data) {
-            console.log(data);
 
             vm.myActiveChallenges = data;
 
@@ -120,7 +119,6 @@
 
             vm.myOpenChallengesCount = ctOpenChallenges;
             vm.reviewOpportunities = ctReviewChallenges;
-            console.log(vm);
           });
     }
 
