@@ -597,9 +597,6 @@ function wp_default_styles( &$styles ) {
 		} elseif ( 'vietnamese' == $subset ) {
 			$subsets .= ',vietnamese';
 		}
-
-		// Hotlink Open Sans, for now
-		$open_sans_font_url = "//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,300,400,600&subset=$subsets";
 	}
 
 	// Register a stylesheet for the selected admin color scheme.
@@ -621,7 +618,6 @@ function wp_default_styles( &$styles ) {
 	// Common dependencies
 	$styles->add( 'buttons',   "/wp-includes/css/buttons$suffix.css" );
 	$styles->add( 'dashicons', "/wp-includes/css/dashicons$suffix.css" );
-	$styles->add( 'open-sans', $open_sans_font_url );
 
 	// Includes CSS
 	$styles->add( 'admin-bar',      "/wp-includes/css/admin-bar$suffix.css", array( 'open-sans', 'dashicons' ) );
