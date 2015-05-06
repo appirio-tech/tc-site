@@ -3,12 +3,31 @@
 <div ng-show="vm.loggedIn && vm.user">
   <style>
     /* CSS to override bootstrap and existing css conflicts*/
+    body {
+      font-family: "Source Sans Pro", Arial, Helvetica, sans-serif;
+    }
     .btn, a.btn{
       padding: 0px;
       box-sizing: initial;
     }
+    .btn:hover, .btn:focus {
+      color: #fff;
+    }
     input[type="email"], input[type="number"], input[type="password"], input[type="tel"], input[type="url"], input[type="text"]{
       box-sizing: initial;
+    }
+    p {
+      margin: initial;
+    }
+    div {
+      box-sizing: initial;
+    }
+    a {
+      box-sizing: initial;
+    }
+    h1, .h1, h2, .h2, h3, .h3 {
+      margin-top: 0px;
+      margin-bottom: 0px;
     }
   </style>
   <div class="jumbotron my-dashboard-container member-profile-header">
