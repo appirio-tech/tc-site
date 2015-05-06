@@ -101,7 +101,7 @@ appChallengeTerms = {
             if ($(this).parents(".notAgreed").length === 0) {
               app.setLoading();
               $.ajax({
-                type: "GET",
+                type: "POST",
                 url: tcconfig.apiURL + "/terms/" + termsOfUseID + "/agree",
                 dataType: 'json',
                 headers: {
@@ -171,7 +171,7 @@ appChallengeTerms = {
       var termId = getParameterByName('termId');
       if (termId) {
         $.ajax({
-          type: "GET",
+          type: "POST",
           url: tcconfig.apiURL + "/terms/" + termId + "/agree",
           dataType: 'json',
           headers: {
