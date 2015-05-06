@@ -82,11 +82,15 @@
       $cookies = _$cookies_;
     });
 
-    if ($cookies.tcjwt) {
-      RestangularProvider.setDefaultHeaders({
-        'Authorization': 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "")
-      });
-    }
+    RestangularProvider.addFullRequestInterceptor(function(element, operation, what, url) {
+      if ($cookies.tcjwt) {
+        if (what !== 'users') {
+          return {
+            headers: {'Authorization': 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "")}
+          };
+        }
+      }
+    });
 
     // Format restangular response
     // add a response intereceptor
