@@ -532,6 +532,7 @@
       "css": [
         "blog.css",
         "blog-responsive.css",
+        "bootstrap.min.css",
         "base.css",
         "style.css",
         "style-profile.css",
@@ -550,7 +551,6 @@
         "password-recovery.css",
         "challenge-tags.css",
         "style-404page.css",
-        "bootstrap.min.css",
         "my-dashboard.css"
       ]
     },    

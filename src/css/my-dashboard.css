@@ -54,7 +54,7 @@
 
 .blog-post {
     /*height: 300px;*/
-    overflow: scroll;
+    /*overflow: scroll;*/
 }
 
 .blog-post .post {
@@ -67,6 +67,7 @@
 
 .blog-post a {
   color: #666;
+  box-sizing: border-box;
 }
 
 .blog-post a:hover {
