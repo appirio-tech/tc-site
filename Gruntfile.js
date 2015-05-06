@@ -47,7 +47,7 @@ module.exports = function(grunt) {
     communityURL: grunt.option('community-url') || '//community.topcoder.com',
     reviewAppURL: grunt.option('review-app-url') || 'software.topcoder.com/review',
     helpAppURL: grunt.option('help-app-url') || 'help.topcoder.com',
-    forumsAppURL: grunt.option('review-app-url') || 'forums.topcoder.com',
+    forumsAppURL: grunt.option('forums-app-url') || 'forums.topcoder.com',
     swiftProgramId: grunt.option('swift-program-id') || 3445,
 
     // only used on wp setup
