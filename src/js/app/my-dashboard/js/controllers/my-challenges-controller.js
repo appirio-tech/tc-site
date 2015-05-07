@@ -59,7 +59,7 @@
       return ChallengeService.getMyActiveChallenges(searchRequest)
         .then(function(data) {
           if (data.pagination) {
-            vm.totalPages = Math.round(data.pagination.total / vm.pageSize);
+            vm.totalPages = Math.ceil(data.pagination.total / vm.pageSize);
             vm.totalRecords = data.pagination.total;
             vm.firstRecordIndex = (vm.pageIndex - 1) * vm.pageSize + 1;
             vm.lastRecordIndex = vm.pageIndex * vm.pageSize;
