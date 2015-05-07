@@ -102,7 +102,11 @@
 }
 
 .member-profile-header {
-  border-bottom: 7px solid #e3e3e3;
+  border-bottom: 7px solid #000;
+  background-image: url('../i/community-background.png');
+  background-size: cover;
+  background-position: 50% 50%;
+  color: #fff;
 }
 
 .member-profile {
