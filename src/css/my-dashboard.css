@@ -215,7 +215,7 @@
 .member-program-content {
 }
 
-.member-program-content {
+.member-program-content .panel-body {
     /*background: -webkit-linear-gradient(360deg, rgb(15, 16, 31), rgb(101,220,85), rgb(164, 13, 62));*/
     height: 377px;
     /*margin-left: 50px;*/
