@@ -139,13 +139,13 @@
 }
 
 .member-profile .profile-left .doj {
-  color: rgb(91, 91, 91);
+  /*color: rgb(91, 91, 91);*/
   text-align: center;
   margin-top: 20px;
 }
 
 .member-profile .profile-bio {
-  color: rgb(91, 91, 91);
+  /*color: rgb(91, 91, 91);*/
   height: 100px;
   text-align: right;
   direction: ltr;
@@ -162,7 +162,7 @@
 .member-profile .money-in-bank div[rel="value"] {
   /*font-weight: bold;*/
   font-size: 35px;
-  color: #05619b;
+  /*color: #05619b;*/
 }
 
 .member-profile .money-in-bank div[rel="label"] {
@@ -187,7 +187,7 @@
 .member-profile .open-challenges div[rel="value"] {
   /*font-weight: bold;*/
   font-size: 35px;
-  color: #71be0a;
+  /*color: #71be0a;*/
 }
 
 .member-profile .open-challenges div[rel="label"] {
@@ -203,9 +203,9 @@
 }
 
 .member-profile .review-opportunities div[rel="value"] {
-  font-weight: bold;
+  /*font-weight: bold;*/
   font-size: 35px;
-  color: #e7820b;
+  /*color: #e7820b;*/
 }
 
 .member-profile .review-opportunities div[rel="label"] {
