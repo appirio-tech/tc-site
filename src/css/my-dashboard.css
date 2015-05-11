@@ -363,6 +363,18 @@
   text-align: center;
 }
 
+.my-challenges th .sort.asc {
+  background: #f5f5f5 url("../i/sort-arrows.png") no-repeat 0 -94px;
+  width: 13px;
+  height: 13px;
+}
+
+.my-challenges th .sort.desc {
+  background: #f5f5f5 url("../i/sort-arrows.png") no-repeat 0 6px;
+  width: 13px;
+  height: 13px;
+}
+
 .my-challenges table > tbody> tr > td {
   padding-top: 20px;
   padding-bottom: 20px;

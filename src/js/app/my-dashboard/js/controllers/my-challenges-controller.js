@@ -32,6 +32,8 @@
     vm.loading = true;
     vm.pageIndex = 1;
     vm.pageSize = 5;
+    vm.sortColumn = 'submissionEndDate';
+    vm.sortOrder = 'desc';
     vm.totalPages = 1;
     vm.totalRecords = vm.totalPages * vm.pageSize;
     vm.firstRecordIndex = (vm.pageIndex - 1) * vm.pageSize + 1;
@@ -42,6 +44,7 @@
     vm.changePage = changePage;
     vm.isCurrentPage = isCurrentPage;
     vm.getCurrentPageClass = getCurrentPageClass;
+    vm.sort = sort;
 
     // activate controller
     if (AuthService.isLoggedIn === true) {
@@ -52,7 +55,12 @@
 
     function activate() {
       initPaging();
-      var searchRequest = {pageIndex: vm.pageIndex, pageSize: vm.pageSize};
+      var searchRequest = {
+        pageIndex: vm.pageIndex,
+        pageSize: vm.pageSize,
+        sortColumn: vm.sortColumn,
+        sortOrder: vm.sortOrder
+      };
       // show loading icon
       vm.loading = true;
       // Fetch my active
@@ -83,6 +91,16 @@
 
     function getCurrentPageClass(pageLink) {
       return isCurrentPage(pageLink) ? 'current-page' : '';
+    }
+
+    function sort(column) {
+      if (vm.sortColumn === column) {
+        vm.sortOrder = vm.sortOrder === 'desc' ? 'asc' : 'desc';
+      } else {
+        vm.sortOrder = 'desc';
+      }
+      vm.sortColumn = column;
+      activate();
     }
 
     function initPaging() {
