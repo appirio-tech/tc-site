@@ -441,6 +441,12 @@
           });
           if (vm.winningSubmissions.length == 0) vm.firstPlaceSubmission = false;
           if (vm.winningSubmissions.length < 2) vm.secondPlaceSubmission = false;
+
+          if(challenge.reviewType === "PEER") {
+            ChallengeService.getPeerReviewResults(challengeId).then(function(data) {
+              vm.peerReviewResults = data;
+            });
+          }
         }
       );
     }
