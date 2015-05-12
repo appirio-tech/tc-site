@@ -41,6 +41,15 @@
       }
     });
 
+    var servicev3 = Restangular.withConfig(function(RestangularConfigurer) {
+      RestangularConfigurer.setBaseUrl(tcconfig.api3URL);
+      if ($cookies.tcjwt) {
+        RestangularConfigurer.setDefaultHeaders({
+          'Authorization': 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "")
+        });
+      }
+    });
+
     /**
      *
      * @param id
@@ -89,6 +98,23 @@
         defer.resolve(results);
       });
       return defer.promise;
+    };
+
+    service.getPeerReviewResults = function(id) {
+      var defer = $q.defer();
+
+      servicev3
+        .one('challenges', id)
+        .one('results')
+        .getList().then(function(data) {
+          data = data[0].result.content
+          if (data.error) {
+            defer.resolve(false);
+          }
+          defer.resolve(data);
+        });
+
+        return defer.promise;
     };
 
     /**
