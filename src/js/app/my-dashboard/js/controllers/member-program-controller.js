@@ -29,6 +29,7 @@
    */
   function MemberProgramCtrl($scope, AuthService, MemberCertService, SWIFT_PROGRAM_ID) {
     var vm = this;
+    vm.title = 'iOS Developer Community';
     vm.user = null;
     vm.loading = true;
     vm.loadingMessage = "";

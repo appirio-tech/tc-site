@@ -58,7 +58,7 @@
     vm.challengeType = challengeType;
     vm.siteURL = siteURL;
 
-    vm.isLoggedIn = typeof $cookies.tcjwt !== 'undefined' && typeof $cookies.tcsso !== 'undefined';
+    vm.isLoggedIn = typeof $cookies.tcjwt !== 'undefined';
     vm.delayAction = typeof $cookies.tcDelayChallengeAction !== 'undefined';
     if (vm.delayAction) {
       vm.tcDoAction = $cookies.tcDelayChallengeAction.split('|');
@@ -441,6 +441,12 @@
           });
           if (vm.winningSubmissions.length == 0) vm.firstPlaceSubmission = false;
           if (vm.winningSubmissions.length < 2) vm.secondPlaceSubmission = false;
+
+          if(challenge.reviewType === "PEER") {
+            ChallengeService.getPeerReviewResults(challengeId).then(function(data) {
+              vm.peerReviewResults = data;
+            });
+          }
         }
       );
     }

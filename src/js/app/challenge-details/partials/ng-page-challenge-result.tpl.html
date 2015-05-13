@@ -119,7 +119,7 @@
     <!--#/end competitionDetails-->
   </article>
 
-  <article ng-if="!CD.isDesign && CD.submissions.length > 0">
+  <article ng-if="!CD.isDesign && CD.submissions.length > 0 && !CD.challenge.reviewType === 'PEER'">
     <div ng-if="CD.challenge.challengeType != 'Code' && CD.firstPlaceSubmission" class="winnerRow">
       <div class="place first">1<span>st</span></div>
       <!-- #/end place-->
@@ -315,6 +315,59 @@
     </div>
 
   </article>
+
+  <article ng-if="!CD.isDesign && CD.submissions.length > 0 && CD.challenge.reviewType === 'PEER'">
+
+    <table class="registrantsTable hideOnMobi">
+      <thead>
+      <tr>
+          <th class="leftAlign">
+              <a href="javascript:" class="">Username</a>
+          </th>
+          <th>
+              <a href="javascript:" style="padding-left: 15px">Result</a>
+          </th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="submission in CD.peerReviewResults" class="{{$index % 2 == 1 ? 'alt' : ''}}">
+          <td class="leftAlign"><a href="/member-profile/{{submission.handle}}" class="coderTextGray">{{submission.handle}}</a></td>
+          <td><span class="pass" ng-show="submission.passed">PASS</span><span class="fail" ng-show="!submission.passed">FAIL</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="competitionDetails">
+      <div class="registrant">
+        <h2>Registrants</h2>
+        <div class="values">
+          <span class="count"><a ng-click="showRegistrants();" class="link">{{CD.challenge.numberOfRegistrants}}</a></span>
+        </div>
+      </div>
+      <!--#/end registrant-->
+      <!--#/end round-->
+      <div class="round round2">
+        <h2>Final</h2>
+        <!--<div class="values">
+          <span class="count"><span class="sup">&nbsp;</span></span>
+          <span class="type">Submitter</span>
+          <span class="type">&nbsp;</span>
+        </div>-->
+        <div class="values">
+          <span class="count" ng-bind="CD.challenge.numberOfSubmissions"></span>
+          <span class="type">Submissions</span>
+        </div>
+        <!--<div class="values">
+          <span class="count">N/A<span class="sup">(N/A%)</span></span>
+          <span class="type">Passed Review</span>
+        </div>-->
+      </div>
+      <!--#/end round-->
+      <div class="clear"></div>
+    </div>
+
+  </article>
+
   <div ng-if="!CD.submissions || CD.submissions.length == 0">
     <div class="notView2">
       <p>
