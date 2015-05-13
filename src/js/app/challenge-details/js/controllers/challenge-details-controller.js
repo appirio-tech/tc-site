@@ -58,7 +58,7 @@
     vm.challengeType = challengeType;
     vm.siteURL = siteURL;
 
-    vm.isLoggedIn = typeof $cookies.tcjwt !== 'undefined' && typeof $cookies.tcsso !== 'undefined';
+    vm.isLoggedIn = typeof $cookies.tcjwt !== 'undefined';
     vm.delayAction = typeof $cookies.tcDelayChallengeAction !== 'undefined';
     if (vm.delayAction) {
       vm.tcDoAction = $cookies.tcDelayChallengeAction.split('|');

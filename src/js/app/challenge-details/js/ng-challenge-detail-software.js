@@ -84,7 +84,6 @@ $(document).ready(function () {
   // init tab nav
   app.tabNavinit();
 
-  var tcsso = getCookie('tcsso');
   var tcjwt = getCookie('tcjwt');
 
 });
