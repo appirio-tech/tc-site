@@ -74,7 +74,6 @@ $siteURL = site_url ();
 									if ( $('#referralText').length>0 ) {
 											var tcjwt = $.cookie('tcjwt');
 											if (tcjwt) {
-													var tcssoValues = tcsso.split("|");
 													var handle = '';
 
 													$.ajax({type: "GET", url: tcApiRUL + '/user/identity', dataType: 'json', headers: {'Authorization': 'Bearer ' + tcjwt}, function(data) {

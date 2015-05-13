@@ -45,21 +45,19 @@ var app = {
       $('body').addClass('ie7');
       ie7 = true;
     }
-    // expiry date for tcjwt and tcsso cookies extended 1 year if rememberme true
+    // expiry date for tcjwt cookie extended 1 year if rememberme true
     if ($.cookie('rememberMe')) {
       $.cookie.raw = true;
       var tcjwt = $.cookie('tcjwt');
-      var tcsso = $.cookie('tcsso');
-      if ((typeof tcjwt != 'undefined') && (typeof tcsso != 'undefined')) {
+      if ((typeof tcjwt != 'undefined')) {
         var cookieConfig = {
           expires: 365,
           path: '/',
           domain: '.topcoder.com'
         };
         $.cookie('tcjwt', tcjwt, cookieConfig);
-        $.cookie('tcsso', tcsso, cookieConfig);
       } else {
-        // if tcjwt and tcsso not present remove rememberme
+        // if tcjwt not present remove rememberme
         $.removeCookie('rememberMe');
       }
     }
@@ -1710,9 +1708,8 @@ var app = {
 
   isLoggedIn: function() {
     var tcjwt = $.cookie('tcjwt');
-    var tcsso = $.cookie('tcsso');
 
-    if (typeof tcjwt == "undefined" || typeof tcsso == "undefined") {
+    if (typeof tcjwt == "undefined") {
       return false;
     }
 
