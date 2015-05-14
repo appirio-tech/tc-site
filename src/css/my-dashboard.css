@@ -331,6 +331,7 @@
 }
 
 .helpful-links ul > li > a:hover,
+.helpful-links ul > li > a:focus,
 .helpful-links .nav .open>a,
 .helpful-links .nav .open>a:hover,
 .helpful-links .nav .open>a:focus {

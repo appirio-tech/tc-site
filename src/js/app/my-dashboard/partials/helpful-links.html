@@ -4,7 +4,7 @@
     <a href="#" ng-show="vm.breadcrumb.length > 0" ng-click="vm.showPreviousLinks()" class="pull-right">Back</a>
   </div>
   <div class="panel-body padding-vert-reset">
-    <ul class="nav nav-pills nav-stacked row">
+    <ul class="nav nav-stacked row">
       <li ng-repeat="link in vm.visibleNode.children" class="dropdown">
         <a  href="{{link.href}}" title="{{link.description}}" class="dropdown-toggle" data-toggle="dropdown">{{link.name}}
           <span class="caret" ng-show="vm.hasChildren(link)"></span>
