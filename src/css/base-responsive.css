@@ -514,10 +514,10 @@ em{
     #footer .rootNode > a{
         cursor: pointer;
     }
-    	#footer .footerContentSection, #footer .connected{
+    	#footer .connected{
 				width: 100%;		
 			}
-			#footer .footerContentSection.twitter, #footer .connected{
+			#footer .connected{
 				margin-top: 20px;	
 			}
 			.headerTopRightMenu{

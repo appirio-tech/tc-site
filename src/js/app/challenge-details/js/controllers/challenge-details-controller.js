@@ -1,4 +1,12 @@
-/*
+/**
+ * This code is copyright (c) 2015 Topcoder Corporation
+ * author: TCSASSEMBLER
+ * version 1.1
+ *
+ * Changed in 1.1 (topcoder new community site - Removal proxied API calls)
+ * Removed LC related conditionals and calls
+ */
+ /*
  * TODO:
  * - Bring up to style guide standards
  *   - lots of different stuff under this heading:
@@ -23,7 +31,7 @@
    * Inject dependencies
    * @type {string[]}
    */
-  ChallengeDetailCtrl.$inject = ['$scope', 'ChallengeService', '$q', '$cookies', '$location', '$interval', '$timeout', 'isLC', 'lcDiscussionURL', 'DiscussionService'];
+  ChallengeDetailCtrl.$inject = ['$scope', 'ChallengeService', '$q', '$cookies', '$location', '$interval', '$timeout'];
 
   /**
    * Controller implementation
@@ -32,7 +40,7 @@
    * @param ChallengeService
    * @constructor
    */
-  function ChallengeDetailCtrl($scope, ChallengeService, $q, $cookies, $location, $interval, $timeout, isLC, lcDiscussionURL) {
+  function ChallengeDetailCtrl($scope, ChallengeService, $q, $cookies, $location, $interval, $timeout) {
 
     // set challengeId and challengeType from the url
     challengeId = $location.path().split("/")[2];
@@ -46,16 +54,11 @@
     vm.callComplete = false;
     vm.scope = $scope;
 
-    vm.isLC = isLC;
-    vm.lcDiscussionURL = lcDiscussionURL;
-    vm.lcSiteUrl = lcSiteUrl;
-    vm.lcChallengeId = challengeId;
-
     // Global variable available from ng-page-challenge-details.php
     vm.challengeType = challengeType;
     vm.siteURL = siteURL;
 
-    vm.isLoggedIn = typeof $cookies.tcjwt !== 'undefined' && typeof $cookies.tcsso !== 'undefined';
+    vm.isLoggedIn = typeof $cookies.tcjwt !== 'undefined';
     vm.delayAction = typeof $cookies.tcDelayChallengeAction !== 'undefined';
     if (vm.delayAction) {
       vm.tcDoAction = $cookies.tcDelayChallengeAction.split('|');
@@ -188,10 +191,12 @@
                   document.cookie = 'tcDelayChallengeAction=; path=/; domain=.' + tcconfig.domain + '; expires=' + new Date(0).toUTCString();
                 }
                 updateChallengeDetail();
-              } else if (data["error"]["details"] === "You should agree with all terms of use.") {
-                window.location = siteURL + "/challenge-details/terms/" + vm.challenge.challengeId + "?challenge-type=" + challengeType + '&lc=' + isLC;
-              } else if (data["error"]["details"]) {
-                showError(data["error"]["details"]);
+              }
+            }, function (reason) {
+              if (reason["error"]["details"] === "You should agree with all terms of use.") {
+                window.location = siteURL + "/challenge-details/terms/" + vm.challenge.challengeId + "?challenge-type=" + challengeType;
+              } else if (reason["error"]["details"]) {
+                showError(reason["error"]["details"]);
               }
             }
         );
@@ -234,14 +239,6 @@
     challengeName = challenge.challengeName;
     vm.isDesign = (challengeType === 'design');
     vm.allowDownloads = challenge.currentPhaseName === 'Registration' || challenge.currentPhaseName === 'Submission';
-
-    ChallengeService
-      .getDocuments(challengeId, challengeType)
-      .then(function(data) {
-        if (data && !data.error) {
-          challenge.Documents = data.Documents;
-        }
-      });
 
 
     if ((challenge.currentPhaseName != 'Stalled' && challenge.checkpointSubmissionEndDate && challenge.checkpointSubmissionEndDate != '') || (challenge.checkpoints && challenge.checkpoints.length > 0)) {
@@ -444,13 +441,19 @@
           });
           if (vm.winningSubmissions.length == 0) vm.firstPlaceSubmission = false;
           if (vm.winningSubmissions.length < 2) vm.secondPlaceSubmission = false;
+
+          if(challenge.reviewType === "PEER") {
+            ChallengeService.getPeerReviewResults(challengeId).then(function(data) {
+              vm.peerReviewResults = data;
+            });
+          }
         }
       );
     }
 
     // top section
     if (vm.challenge.reviewType == 'PEER') {
-      vm.phaseProgram = getPhaseProgramDetail(challenge.currentPhaseName);
+      vm.phaseProgram = getPhaseProgramDetail(challenge.currentPhaseName, challenge.currentStatus);
     }
   }
 
@@ -460,8 +463,10 @@
    *
    * @param phase name of the phase for which the details are to be prepared
    */
-  function getPhaseProgramDetail(phase) {
-    if (phase === 'Draft') {
+  function getPhaseProgramDetail(phase, status) {
+    status = status.toLowerCase();
+    phase = phase.trim().toLowerCase();
+    if (status === 'draft') {
       return {
         nextStepTitle: "What's Next?",
         nextStepDescription: "Hold tight. This challenge will be starting soon.",
@@ -469,7 +474,7 @@
         nextBadgeImg: "/mf/i/member-program/missions/get-ready/level-5-512.png",
         nextBadgeTitle: "Next badge"
       };
-    } else if (phase === 'Registration') {
+    } else if (status === 'active' && phase === 'registration') {
       return {
         nextStepTitle: "What's Next?",
         nextStepDescription: "Register to participate by clicking the Register button. Then when you're ready, click Submit to upload your submission. Keep an eye on the time limit!",
@@ -477,7 +482,7 @@
         nextBadgeImg: "/mf/i/member-program/missions/get-ready/level-5-512.png",
         nextBadgeTitle: "Step One"
       };
-    } else if (phase === 'Submission') {
+    } else if (status === 'active' && phase === 'submission') {
       return {
         nextStepTitle: "What's Next?",
         nextStepDescription: "Submit to upload your submission. Keep an eye on the time limit!",
@@ -485,11 +490,19 @@
         nextBadgeImg: "/mf/i/member-program/missions/get-ready/level-5-512.png",
         nextBadgeTitle: "Getting Ready"
       };
-    } else if (phase === 'Review') {
+    } else if (status === 'active' && phase === 'review') {
       return {
         nextStepTitle: "What's Next?",
         nextStepDescription: "If you got your submission uploaded in time, then it's time to review your peers.",
         nextStepAction: "Click Review to start",
+        nextBadgeImg: "/mf/i/member-program/missions/get-ready/level-5-512.png",
+        nextBadgeTitle: "Break the Finish"
+      };
+    } else if (status === 'completed' || status.indexOf('cancelled') != -1) {
+      return {
+        nextStepTitle: "What's Next?",
+        nextStepDescription: "This challenge has completed.",
+        nextStepAction: "",
         nextBadgeImg: "/mf/i/member-program/missions/get-ready/level-5-512.png",
         nextBadgeTitle: "Break the Finish"
       };

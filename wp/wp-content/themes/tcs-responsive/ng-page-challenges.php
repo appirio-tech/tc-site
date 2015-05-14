@@ -5,14 +5,17 @@
 
 /**
  * @file
- * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
+ * Copyright (C) 2015 TopCoder Inc., All Rights Reserved.
  * @author TCSASSEMBLER, ecnu_haozi
- * @version 1.1
+ * @version 1.2
  *
  * This template shows a list of challenges
  *
  * Changed in 1.1
  * Add two templates my-filters and save-filters to support "My filters" feature.
+ *
+ * Changed in 1.2 (topcoder new community site - Removal proxied API calls)
+ * Removed LC related conditionals and calls
  */
 
 function add_base_url() {
@@ -459,7 +462,7 @@ get_header(); ?>
 <script type="text/ng-template" id="tableView/challengeName.html">
   <div class="colCh" ng-if="row.getProperty('challengeCommunity') !== 'data'">
     <div>
-      <a ng-href="/challenge-details/{{row.getProperty('challengeId')}}/?type={{row.getProperty('challengeCommunity')}}&lc={{row.getProperty('isLC')}}" class="contestName">
+      <a ng-href="/challenge-details/{{row.getProperty('challengeId')}}/?type={{row.getProperty('challengeCommunity')}}" class="contestName">
         <img alt="allContestIco" class="allContestIco" ng-src="{{images}}/ico-track-{{row.getProperty('challengeCommunity')}}.png">
         <span ng-cell-text>{{row.getProperty(col.field)}}</span>
         <img alt="allContestTCOIco" class="allContestTCOIco" ng-src="{{images}}/tco-flag-{{row.getProperty('challengeCommunity')}}.png">

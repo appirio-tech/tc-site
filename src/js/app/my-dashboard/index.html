@@ -1,14 +1,33 @@
 @@header
 
-<div ng-show="vm.loggedIn && vm.user">
+<div ng-show="vm.loggedIn && vm.user" class="content">
   <style>
     /* CSS to override bootstrap and existing css conflicts*/
+    body {
+      font-family: "Source Sans Pro", Arial, Helvetica, sans-serif;
+    }
     .btn, a.btn{
       padding: 0px;
       box-sizing: initial;
     }
+    .btn:hover, .btn:focus {
+      color: #fff;
+    }
     input[type="email"], input[type="number"], input[type="password"], input[type="tel"], input[type="url"], input[type="text"]{
       box-sizing: initial;
+    }
+    p {
+      margin: initial;
+    }
+    div.userPic, div.userDetails, div.userWidget {
+      box-sizing: initial;
+    }
+    a {
+      box-sizing: initial;
+    }
+    h1, .h1, h2, .h2, h3, .h3 {
+      margin-top: 0px;
+      margin-bottom: 0px;
     }
   </style>
   <div class="jumbotron my-dashboard-container member-profile-header">
@@ -22,8 +41,8 @@
     <div class="clearfix visible-md-block visible-lg-block"></div>
     <div class="row">
       <div class="col-xs-12 col-sm-9 col-sm-push-3">
-        <div class="my-dashboard-widget marketing-message" ng-include="vm.getTemplateURL('marketing-message.html')">
-        </div>
+        <!--<div class="my-dashboard-widget marketing-message" ng-include="vm.getTemplateURL('marketing-message.html')">
+        </div>-->
         <div class="my-dashboard-widget my-challenges" ng-include="vm.getTemplateURL('my-challenges.html')">
         </div>
         <div class="my-dashboard-widget srm-gadget" ng-include="vm.getTemplateURL('upcaming-srms.html')">

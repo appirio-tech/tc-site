@@ -95,20 +95,14 @@
                 will be made at the closure of the approval phase. The second payment will be made at the
                 completion of the support period.</p>
 
-              <h2 ng-if="!CD.isLC">Reliability Rating and Bonus</h2>
+              <h2>Reliability Rating and Bonus</h2>
 
-              <p ng-if="!CD.isLC">For challenges that have a reliability bonus, the bonus depends on the reliability rating at
+              <p>For challenges that have a reliability bonus, the bonus depends on the reliability rating at
                 the moment of registration for that project. A participant with no previous projects is
                 considered to have no reliability rating, and therefore gets no bonus.
                 Reliability bonus does not apply to Digital Run winnings. Since reliability rating is
                 based on the past 15 projects, it can only have 15 discrete values.<br>
                 <a href="http://help.topcoder.com/development/understanding-reliability-and-ratings/">Read more.</a></p>
-            </article>
-
-
-           <article ng-show="CD.isLC && CD.isRegistered" id="lc-discussion">
-              <h1>Challenge Discussion</h1>
-              <lc-discussion remote-object-key="challenge" remote-object-id="CD.lcChallengeId" discussion-url="CD.lcDiscussionURL"></lc-discussion>
             </article>
 
           </article>
@@ -278,9 +272,6 @@
                   <th class="successIconColumn">
                     <div>Result</div>
                   </th>
-                  <th ng-show="CD.isLC">
-                    <div>Scorecard</div>
-                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -302,10 +293,6 @@
                   <td class="successIconColumn">
                     <i class="{{registrant.winner ? 'successIcon' : registrant.submissionStatus.match('Failed') ? 'failureIcon' : ''}}"
                        title="{{registrant.winner ? 'Pass' : registrant.submissionStatus.match('Failed') ? 'Fail' : ''}}"></i>
-                  </td>
-                  <td ng-show="CD.isLC">
-                  <!-- manage/#/challenges/{challengeId}/submissions/{submissionId}/scorecard -->
-                  <a ng-if="registrant.lcSubmissionId" ng-href="{{CD.lcSiteUrl + '/scorecard/challenges/' + CD.challenge.challengeId + '/scorecard/' + registrant.lcScorecardId}}">View</a>
                   </td>
                 </tr>
               </tbody>
@@ -344,8 +331,7 @@
       <aside class="sideStream grid-1-3" style="float: left;">
 
       <div class="topRightTitle">
-          <a ng-show="!CD.isLC && CD.isRegistered" ng-href="{{CD.challenge.forumLink}}" class="contestForumIcon" target="_blank">Challenge Discussion</a>
-          <a ng-show="CD.isLC && CD.isRegistered" ng-href="{{CD.challenge.forumLink}}" class="contestForumIcon">Challenge Discussion</a>
+          <a ng-show="CD.isRegistered" ng-href="{{CD.challenge.forumLink}}" class="contestForumIcon" target="_blank">Challenge Discussion</a>
       </div>
 
       <div class="columnSideBar">
@@ -554,83 +540,5 @@
     </div>
     <div class="shadow"></div>
   </div>
-<script type="text/ng-template" id="lc-discussion.html">
-
-  <!-- template for tc-discussion directive -->
-  <style>
-    .message-box, .panel-title, .comment-box {
-      font-size: 12px;
-    }
-    .created-at {
-      font-weight: 400;
-      color: #555;
-    }
-    .message-pane {
-      padding: 10pxx;
-      display:block;
-    }
-    .message-textarea {
-      background-color: #fafafa;
-      padding: 7px 8px;
-      overflow: auto;
-      border: 1px solid #ccc;
-      border-radius: 3px;
-      width: 100%;
-      height: 100px;
-      margin: 0;
-      max-width: 100%;
-      min-height: 100px;
-    }
-    .comment-button {
-      margin: 6px 0;
-    }
-    img.message-avatar {
-      float: left;
-      margin-right: 10px;
-      margin-bottom: 10px;
-    }
-
-    p.message-text {
-      display: block;
-      margin-bottom: 20px;
-    }
-
-    .created-at {
-      font-weight: 400;
-      color: #228400;
-    }
-
-    .message-author {
-      font-weight: 600;
-    }
-
-    .message-box {
-      font-size: 12px;
-      display: block;
-      min-height: 50px;
-    }
-  </style>
-
-
-  <div class="discussion" data-ng-show="booted">
-    <div class="message-box ng-scope" data-ng-repeat="message in messages">
-      <a href="#"><img class="message-avatar" data-ng-src="{{users[message.authorId].avatarUrl}}" width="45" height="45"></a>
-      <span class="created-at ng-binding"><a data-ng-href="/member-profile/{{users[message.authorId].handle}}"><em class="ng-binding message-author">{{users[message.authorId].handle}}</em></a> commented at {{message.createdAt | date: "MMMM d, yyyy h:mm a"}}</span>
-      <p class="message-text">{{message.content}}</p>
-    </div>
-    <div class="row">
-      <div class="col-sm-offset-1 col-sm-8 col-md-offset-1 col-md-8">
-        <div class="row comment-box">
-          <div class="tab-content">
-            <div class="tab-pane active message-pane" id="home">
-              <textarea class="message-textarea" name="comment" data-ng-model="comment" rows="3" placeholder="Leave a comment"></textarea>
-              <a href="#" class="btn btn-success pull-right comment-button" data-ng-click="addComment()">Comment</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</script>
 
 @@footer

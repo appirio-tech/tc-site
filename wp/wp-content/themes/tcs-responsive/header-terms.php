@@ -1,5 +1,15 @@
 <?php
-
+/**
+ * @file
+ * Copyright (C) 2015 TopCoder Inc., All Rights Reserved.
+ * @author TCSASSEMBLER
+ * @version 1.1
+ *
+ * This header-terms page.
+ *
+ * Changed in 1.1 (topcoder new community site - Removal proxied API calls)
+ * Removed LC related constants
+ */
 function tc_header_terms_js() {
   global $termType;
 
@@ -10,7 +20,6 @@ function tc_header_terms_js() {
     var termType = "<?php echo $termType; ?>";
     var termsOfUseID = "<?php echo get_query_var('termsOfUseID');?>";
     var challengeType = "<?php echo get_query_var('challenge-type'); ?>";
-    var isLC = '<?php echo get_query_var('lc'); ?>';
   </script>
 <?php
 }

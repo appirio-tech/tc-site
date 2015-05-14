@@ -13,7 +13,7 @@
         <span>1</span><strong>Register For This Challenge</strong>
     </a>
     <a ng-show="!CD.isDesign" ng-class="{disabled:CD.challenge.submissionDisabled || !CD.callComplete, disabledNOT:!CD.challenge.submissionDisabled}" class="btn btnAction" target="_blank"
-       ng-href="/challenge-details/{{CD.challenge.challengeId}}/submit/?type=develop&lc={{CD.isLC}}">
+       ng-href="/challenge-details/{{CD.challenge.challengeId}}/submit/?type=develop">
         <span>2</span><strong>Submit Your Entries</strong>
     </a>
     <a ng-show="CD.isDesign" ng-click="CD.registerToChallenge()" ng-class="{disabled:CD.challenge.registrationDisabled || !CD.callComplete, disabledNOT:!CD.challenge.registrationDisabled}" class="btn btnAction challengeRegisterBtn" href="javascript:;">
@@ -33,20 +33,20 @@
 <tbody>
 
 <tr>
-    <td ng-if="!CD.isDesign && CD.challenge.challengeType != 'Code' && !CD.isLC" class="fifty">
+    <td ng-if="!CD.isDesign && CD.challenge.challengeType != 'Code'" class="fifty">
       <h2>1st PLACE</h2>
 
       <h3>
         <small>$</small><span ng-bind="CD.challenge.prize ? (CD.challenge.prize[0] ? CD.challenge.prize[0] : '') : ''"></span>
       </h3>
     </td>
-    <td ng-if="!CD.isDesign && CD.challenge.challengeType != 'Code' && !CD.isLC" class="fifty">
+    <td ng-if="!CD.isDesign && CD.challenge.challengeType != 'Code'" class="fifty">
       <h2>2nd PLACE</h2>
       <h3>
         <small>$</small><span ng-bind="CD.challenge.prize ? (CD.challenge.prize[1] ? CD.challenge.prize[1] : '0') : ''"></span>
       </h3>
     </td>
-    <td ng-if="(designOrCode = CD.isDesign || CD.challenge.challengeType == 'Code' || CD.isLC)" class="twenty {{!(CD.challenge.prize && CD.challenge.prize[0]) ? 'noPrize' : ''}}">
+    <td ng-if="(designOrCode = CD.isDesign || CD.challenge.challengeType == 'Code')" class="twenty {{!(CD.challenge.prize && CD.challenge.prize[0]) ? 'noPrize' : ''}}">
       <h2>1st PLACE</h2>
 
         <h3>

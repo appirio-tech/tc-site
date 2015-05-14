@@ -2,10 +2,16 @@
 /**
  * Template Name: Challenge Submit Template Using AngularJS
  */
-
 /**
  * @file
+ * Copyright (C) 2015 TopCoder Inc., All Rights Reserved.
+ * @author TCSASSEMBLER
+ * @version 1.1
+ *
  * This file shows challenge submit page using AngularJS
+ *
+ * Changed in 1.1 (topcoder new community site - Removal proxied API calls)
+ * Removed LC related conditionals and calls
  */
 
 // Add angular libraries
@@ -17,7 +23,6 @@ function tc_header_challenge_submit_js() {
     var challengeId = "<?php echo get_query_var('contestID');?>";
     var challengeType = "<?php echo get_query_var('type');?>";
     var THEME_URL="<?php echo THEME_URL;?>";
-    var isLC = '<?php echo get_query_var('lc'); ?>';
   </script>
 <?php
 }

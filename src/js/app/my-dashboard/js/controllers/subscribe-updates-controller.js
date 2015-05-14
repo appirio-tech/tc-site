@@ -30,6 +30,7 @@
     var vm = this;
     vm.title = "Subscribe to Updates";
     vm.loggedIn = AuthService.validate();
+    vm.frm = {};
     vm.email = null;
     // as of now not able to bind the url to view, so it is hard coded in view too
     vm.feedBlitzUrl = 'https://www.feedblitz.com/f/f.fbz?AddNewUserDirect';
@@ -46,18 +47,14 @@
     }
 
     function subscribe() {
-      var params = {
-        EMAIL: vm.email,
-        PUBLISHER: vm.feedBlitzPublisher,
-        FEEDID: vm.feedBlitzFeedId
-      };
-      $http.post(vm.feedBlitzUrl, params, {headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}}).
-        success(function(data, status, headers, config) {
-          console.log("subscribed");
-        }).
-        error(function(data, status, headers, config) {
-          console.log("error in subscription");
-        });
+      vm.frm = {};
+      if (!vm.email || vm.email.trim().length === 0) {
+        vm.frm.email = {error : true};
+        $scope.$apply();
+        return false;
+      }
+      $scope.$apply();
+      return true;
     }
 
   }
