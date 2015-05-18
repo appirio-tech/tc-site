@@ -1,3 +1,12 @@
+/**
+ * This code is copyright (c) 2015 Topcoder Corporation
+ * author: TCSASSEMBLER
+ * version 1.1
+ *
+ * Changed in 1.1 (topcoder new community site - Removal proxied API calls)
+ * Added new functions to fetch recent challenges for blog sidebar widget
+ */
+
 var ev = 'click';
 if ($.support.touch) {
   ev = 'tap'
@@ -36,21 +45,19 @@ var app = {
       $('body').addClass('ie7');
       ie7 = true;
     }
-    // expiry date for tcjwt and tcsso cookies extended 1 year if rememberme true
+    // expiry date for tcjwt cookie extended 1 year if rememberme true
     if ($.cookie('rememberMe')) {
       $.cookie.raw = true;
       var tcjwt = $.cookie('tcjwt');
-      var tcsso = $.cookie('tcsso');
-      if ((typeof tcjwt != 'undefined') && (typeof tcsso != 'undefined')) {
+      if ((typeof tcjwt != 'undefined')) {
         var cookieConfig = {
           expires: 365,
           path: '/',
           domain: '.topcoder.com'
         };
         $.cookie('tcjwt', tcjwt, cookieConfig);
-        $.cookie('tcsso', tcsso, cookieConfig);
       } else {
-        // if tcjwt and tcsso not present remove rememberme
+        // if tcjwt not present remove rememberme
         $.removeCookie('rememberMe');
       }
     }
@@ -77,6 +84,10 @@ var app = {
       adaptiveHeight: true
     });
 
+    if ($('.sideMostRecentChallenges').length > 0) {
+      app.getRecentDesignChallenge();
+      app.getRecentDevChallenge();
+    }
 
     $('.dataTable.challenges tbody, .layChallenges .dataTable tbody').html(null);
     $('#gridView .contestGrid').html(null);
@@ -275,27 +286,25 @@ var app = {
       $('.loading').show();
     }
   },
-  buildRequestData: function(actionType, contestType, contest_track, sortColumn, sortOrder, pageIndex, pageSize) {
-    var action = "";
-    //	switch contest type
-    switch (actionType) {
+  buildRequestData: function(listType, sortColumn, sortOrder, pageIndex, pageSize) {
+    var list = "";
+    //	switch list type
+    switch (listType) {
       case "activeContest":
-        action = "get_active_contest";
+        list = "active";
         break;
       case "pastContest":
-        action = "get_past_contest";
+        list = "past";
         break;
       case "reviewOpportunities":
-        action = "get_review_opportunities";
+        list = "review";
         break;
     }
     if (pageIndex == null || pageIndex == "") {
       pageIndex = 1;
     }
     ajax.data = {
-      "action": action,
-      "contest_type": contestType,
-      "contest_track": contest_track,
+      "listType": list,
       "sortColumn": sortColumn,
       "sortOrder": sortOrder,
       "pageIndex": pageIndex,
@@ -362,12 +371,8 @@ var app = {
       /*
        * get all contests data
        */
-      app.getPartialContests(ajaxUrl, $('.challenges'), 2, 'design', false, function() {
-        app.getPartialContests(ajaxUrl, $('.challenges'), 2, 'develop', true, function() {
-          app.getPartialContests(ajaxUrl, $('.challenges'), 1, 'data-marathon', true, function() {
-            app.getPartialContests(ajaxUrl, $('.challenges'), 1, 'data-srm', true);
-          });
-        });
+      app.getPartialContests(tcconfig.apiURL, $('.challenges'), 2, 'design', false, function() {
+        app.getPartialContests(tcconfig.apiURL, $('.challenges'), 2, 'develop', true);
       });
     }
 
@@ -433,11 +438,11 @@ var app = {
        * get all contests data
        */
       if (contest_track == "algorithm") {
-        app.getPartialContests(ajaxUrl, $('.challenges'), nRecords, 'data-marathon', false, function() {
-          app.getPartialContests(ajaxUrl, $('.challenges'), nRecords, 'data-srm', false);
+        app.getPartialContests(tcconfig.apiURL, $('.challenges'), nRecords, 'data/marathon', false, function() {
+          app.getPartialContests(tcconfig.apiURL, $('.challenges'), nRecords, 'data/srm', false);
         });
       } else {
-        app.getPartialContests(ajaxUrl, $('.challenges'), nRecords, contest_track, false, function() {});
+        app.getPartialContests(tcconfig.apiURL, $('.challenges'), nRecords, contest_track, false, function() {});
       }
     }
 
@@ -447,7 +452,7 @@ var app = {
     if (url == null || url == "") {
       return false;
     }
-    ajax.data["contest_type"] = challenge_type;
+    delete ajax.data["contest_type"];
     ajax.data["pageSize"] = pageSize;
     app.setLoading();
     if (xhr != "") {
@@ -455,10 +460,15 @@ var app = {
     }
 
 
-    xhr = $.getJSON(url, ajax.data, function(data) {
-      app.getPartialContestTable(table, data, pageSize, isAppend);
-      if (callback != null && callback != "") {
-        callback();
+    xhr = $.getJSON(url + '/' + challenge_type + '/challenges', ajax.data, function(data) {
+      if (data.data) {
+        ajax.data["contest_type"] = challenge_type;
+        app.getPartialContestTable(table, data.data, pageSize, isAppend);
+        if (callback != null && callback != "") {
+          callback();
+        }
+      } else {
+        $('.loading').hide();
       }
     }).fail(function() { /* add failure handler */
       $('.loading').hide();
@@ -482,11 +492,11 @@ var app = {
         $('.challengeType .' + conType).addClass('active');
 
         if (conType == "data") {
-          app.getContests(ajaxUrl, $('.dataTable'), 100, 'data-marathon', false, function() {
-            app.getContests(ajaxUrl, $('.dataTable'), 100, 'data-srm', true);
+          app.getContests(tcconfig.apiURL, $('.dataTable'), 100, 'data/marathon', false, function() {
+            app.getContests(tcconfig.apiURL, $('.dataTable'), 100, 'data/srm', true);
           });
         } else {
-          app.getContests(ajaxUrl, $('.dataTable'), 100, conType, false);
+          app.getContests(tcconfig.apiURL, $('.dataTable'), 100, conType, false);
         }
 
       }
@@ -494,7 +504,7 @@ var app = {
       /* view all records */
       $('.dataChanges .viewAll').on(ev, function() {
         ajax.data["pageIndex"] = 1;
-        app.getContests(ajaxUrl, $('.dataTable'), 1000, ajax.data["contest_type"]);
+        app.getContests(tcconfig.apiURL, $('.dataTable'), 1000, ajax.data["contest_type"]);
         $('.rt', $(this).closest('.dataChanges')).hide();
         $(this).parent().hide();
       });
@@ -510,12 +520,12 @@ var app = {
           _this.hide();
         }
         var conType = ajax.data.contest_type;
-        if (conType == "data" || conType == "data-srm" || conType == "data-marathon") {
-          app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-marathon', false, function() {
-            app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-srm', true);
+        if (conType == "data" || conType == "data/srm" || conType == "data/marathon") {
+          app.getContests(tcconfig.apiURL, $('.dataTable'), ajax.postPerPage, 'data/marathon', false, function() {
+            app.getContests(tcconfig.apiURL, $('.dataTable'), ajax.postPerPage, 'data/srm', true);
           });
         } else {
-          app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, conType, false);
+          app.getContests(tcconfig.apiURL, $('.dataTable'), ajax.postPerPage, conType, false);
         }
 
         return false;
@@ -530,12 +540,12 @@ var app = {
           ajax.data["pageIndex"] = 1;
         }
         var conType = ajax.data.contest_type;
-        if (conType == "data" || conType == "data-srm" || conType == "data-marathon") {
-          app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-marathon', false, function() {
-            app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-srm', true);
+        if (conType == "data" || conType == "data/srm" || conType == "data/marathon") {
+          app.getContests(tcconfig.apiURL, $('.dataTable'), ajax.postPerPage, 'data/marathon', false, function() {
+            app.getContests(tcconfig.apiURL, $('.dataTable'), ajax.postPerPage, 'data/srm', true);
           });
         } else {
-          app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, conType, false);
+          app.getContests(tcconfig.apiURL, $('.dataTable'), ajax.postPerPage, conType, false);
         }
 
         return false;
@@ -617,12 +627,12 @@ var app = {
           $('.challengeType .active').removeClass('active');
           $('.challengeType .' + conType).addClass('active');
 
-          if (conType == "data" || conType == "data-srm" || conType == "data-marathon") {
-            app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-marathon', false, function() {
-              app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-srm', true);
+          if (conType == "data" || conType == "data/srm" || conType == "data/marathon") {
+            app.getContests(tcconfig.apiURL, $('.dataTable'), ajax.postPerPage, 'data/marathon', false, function() {
+              app.getContests(tcconfig.apiURL, $('.dataTable'), ajax.postPerPage, 'data/srm', true);
             });
           } else {
-            app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, conType, false);
+            app.getContests(tcconfig.apiURL, $('.dataTable'), ajax.postPerPage, conType, false);
           }
         }
       });
@@ -637,11 +647,11 @@ var app = {
         $('.challengeType .' + conType).addClass('active');
 
         if (conType == "data") {
-          app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-marathon', false, function() {
-            app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-srm', true, callback);
+          app.getContests(tcconfig.apiURL, $('.dataTable'), ajax.postPerPage, 'data/marathon', false, function() {
+            app.getContests(tcconfig.apiURL, $('.dataTable'), ajax.postPerPage, 'data/srm', true, callback);
           });
         } else {
-          app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, conType, false, callback);
+          app.getContests(tcconfig.apiURL, $('.dataTable'), ajax.postPerPage, conType, false, callback);
         }
 
       }
@@ -651,11 +661,11 @@ var app = {
       /*
        * get all contests data
        */
-      app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'design', false,
+      app.getContests(tcconfig.apiURL, $('.dataTable'), ajax.postPerPage, 'design', false,
         function() {
-          app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'develop', true, function() {
-            app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-marathon', true, function() {
-              app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-srm', true);
+          app.getContests(tcconfig.apiURL, $('.dataTable'), ajax.postPerPage, 'develop', true, function() {
+            app.getContests(tcconfig.apiURL, $('.dataTable'), ajax.postPerPage, 'data/marathon', true, function() {
+              app.getContests(tcconfig.apiURL, $('.dataTable'), ajax.postPerPage, 'data/srm', true);
             });
           });
           callback();
@@ -666,11 +676,11 @@ var app = {
       /*
        * get all contests data
        */
-      app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'design', false,
+      app.getContests(tcconfig.apiURL, $('.dataTable'), ajax.postPerPage, 'design', false,
         function() {
-          app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'develop', true, function() {
-            app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-marathon', true, function() {
-              app.getContests(ajaxUrl, $('.dataTable'), ajax.postPerPage, 'data-srm', true);
+          app.getContests(tcconfig.apiURL, $('.dataTable'), ajax.postPerPage, 'develop', true, function() {
+            app.getContests(tcconfig.apiURL, $('.dataTable'), ajax.postPerPage, 'data/marathon', true, function() {
+              app.getContests(tcconfig.apiURL, $('.dataTable'), ajax.postPerPage, 'data/srm', true);
             });
           });
           callback();
@@ -1033,9 +1043,9 @@ var app = {
         count += 1;
       }
       var row = $(blueprints.challengeRow).clone();
-      var trackName = ajax.data["contest_type"].split('-')[0];
+      var trackName = ajax.data["contest_type"].split('/')[0];
       row.addClass('track-' + trackName);
-      if (rec && ajax.data["contest_type"] == "data-srm") {
+      if (rec && ajax.data["contest_type"] == "data/srm") {
         /*
          * generate table row for contest type SRM
          */
@@ -1080,7 +1090,7 @@ var app = {
         }
         $('.colSub', row).html(rec.submissions);
 
-      } else if (rec && ajax.data["contest_type"] == "data-marathon") {
+      } else if (rec && ajax.data["contest_type"] == "data/marathon") {
         /*
          * generate table row for contest type Marathon
          */
@@ -1312,11 +1322,11 @@ var app = {
       }
 
       var con = $(blueprints.challengeGridBlock).clone();
-      var trackName = ajax.data["contest_type"].split('-')[0];
+      var trackName = ajax.data["contest_type"].split('/')[0];
       con.addClass('track-' + trackName);
 
 
-      if (ajax.data["contest_type"] == "data-srm") {
+      if (ajax.data["contest_type"] == "data/srm") {
 
         /*
          * generate table row for contest type SRM
@@ -1360,7 +1370,7 @@ var app = {
           rec.submissions = "--"; //dummy data
         }
         $('.cgSub', con).html('<i></i>' + rec.submissions);
-      } else if (ajax.data["contest_type"] == "data-marathon") {
+      } else if (ajax.data["contest_type"] == "data/marathon") {
         /*
          * generate table row for contest type Marathon
          */
@@ -1520,9 +1530,9 @@ var app = {
         count += 1;
       }
       var row = $(blueprints.partialChallengeRow).clone();
-      var trackName = ajax.data["contest_type"].split('-')[0];
+      var trackName = ajax.data["contest_type"].split('/')[0];
       row.addClass('track-' + trackName);
-      if (rec && ajax.data["contest_type"] == "data-srm") {
+      if (rec && ajax.data["contest_type"] == "data/srm") {
         /*
          * generate table row for contest type SRM
          */
@@ -1554,7 +1564,7 @@ var app = {
         $('.colPur', row).html("$" + numberWithCommas(rec.purse));
 
 
-      } else if (rec && ajax.data["contest_type"] == "data-marathon") {
+      } else if (rec && ajax.data["contest_type"] == "data/marathon") {
         /*
          * generate table row for contest type Marathon
          */
@@ -1698,9 +1708,8 @@ var app = {
 
   isLoggedIn: function() {
     var tcjwt = $.cookie('tcjwt');
-    var tcsso = $.cookie('tcsso');
 
-    if (typeof tcjwt == "undefined" || typeof tcsso == "undefined") {
+    if (typeof tcjwt == "undefined") {
       return false;
     }
 
@@ -1713,6 +1722,32 @@ var app = {
     }
 
     return decoded;
+  },
+
+  identityListeners: {},
+
+  /**
+   * Adds the provided listener for identity change event. If listener already exists, it does not update it.
+   * Caller has to remove it first and then add new one in such cases.
+   *
+   * @param name String name of the listener, it is used to uniquely identify a listener
+   * @param listener function callback to be called when identity change happens
+   */
+  addIdentityChangeListener: function(name, listener) {
+    if (!this.identityListeners[name]) {
+      this.identityListeners[name] = listener;
+    }
+  },
+
+  /**
+   * Removes the listener, identified by given name, for identity change event.
+   *
+   * @param name String name of the listener, it is used to uniquely identify a listener
+   */
+  removeIdentityChangeListener: function(name) {
+    if (this.identityListeners[name]) {
+      delete this.identityListeners[name];
+    }
   },
 
   handle: "",
@@ -1728,18 +1763,18 @@ var app = {
     else if (typeof tcjwt !== 'undefined') {
       $.ajax({
         type: "GET",
-        url: tcApiRUL + '/user/identity',
+        url: tcconfig.apiURL + '/user/identity',
         dataType: 'json',
         headers: {
           'Authorization': 'Bearer ' + tcjwt
         },
         success: function(data) {
-          // SUP-20 // stores user identity in local storage or cookie
-          if (window.localStorage) {
-            window.localStorage.setItem("userIdentity", JSON.stringify(data));
-          } else {
-            $.cookie("userIdentity", JSON.stringify(data));
-          }
+          for (var name in self.identityListeners) {
+            var listener = self.identityListeners[name];
+            if (typeof listener == 'function') {
+              listener.call(self, data);
+            }
+          };
           if (_kmq) _kmq.push(['identify', data.email]);
           self.handle = data.handle;
           callback(self.handle);
@@ -1762,6 +1797,33 @@ var app = {
     var regex = new RegExp("[\\#&]" + name + "=([^&#]*)");
     var results = regex.exec(location.hash);
     return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  },
+
+  getRecentDesignChallenge: function() {
+    $.ajax({
+      type: 'GET',
+      url: tcconfig.apiURL + '/design/challenges?listType=Active&pageIndex=1&pageSize=1&sortOrder=desc&sortColumn=submissionEndDate',
+      dataType: 'json',
+      success: function(response) {
+        designChallenge = response.data[0];
+        $('.sideMostRecentChallenges a.contestType2')
+          .append(designChallenge.challengeName)        
+          .attr('href', tcconfig.mainURL + '/challenge-details/' + designChallenge.challengeId + '/?type=design');
+      }
+    });
+  },
+  getRecentDevChallenge: function() {
+    $.ajax({
+      type: 'GET',
+      url: tcconfig.apiURL + '/develop/challenges?listType=Active&pageIndex=1&pageSize=1&sortOrder=desc&sortColumn=submissionEndDate',
+      dataType: 'json',
+      success: function(response) {
+        devChallenge = response.data[0];
+        $('.sideMostRecentChallenges a.contestType1')
+          .append(devChallenge.challengeName)
+          .attr('href', tcconfig.mainURL + '/challenge-details/' + devChallenge.challengeId + '/?type=develop');
+      }
+    })
   }
 };
 

@@ -1,9 +1,12 @@
 /**
- * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
+ * Copyright (C) 2015 TopCoder Inc., All Rights Reserved.
  * @author mdesiderio
- * @version 1.0
+ * @version 1.1
  *
  * App module for my dashboard page
+ *
+ * Changed in 1.1 (topcoder new community site - Removal proxied API calls)
+ * Removed LC related conditionals and calls
  */
 (function () {
 
@@ -15,7 +18,8 @@
       'ngCookies',
       'myDashboard.services'
     ])
-    .constant("API_URL", tcLCApiURL)
+    .constant("API3_URL", tcconfig.API3_URL)
+    .constant("API_URL", tcconfig.apiURL)
 
   .config(DataPreProcessing)
   .constant("MAIN_URL", tcconfig.mainURL)
@@ -26,6 +30,8 @@
   .constant("FORUMS_APP_URL", tcconfig.forumsAppURL)
   .constant("HELP_APP_URL", tcconfig.helpAppURL)
   .constant("PHOTO_LINK_LOCATION", tcconfig.photoLinkBaseURL)
+  .constant('SWIFT_PROGRAM_ID', tcconfig.swiftProgramId)
+  .factory('Restangular3', Restangular3)
   .run(['$rootScope', '$location', '$window', 'AuthService', run]);
 
   DataPreProcessing.$inject = ['$httpProvider', 'RestangularProvider', 'API_URL'];
@@ -40,6 +46,14 @@
         event.preventDefault();
         $window.location.href = tcconfig.mainURL + "/login?next=" + $returnUrl;
       }
+    });
+  }
+
+
+  // Restangular service that uses v3
+  function Restangular3(Restangular) {
+    return Restangular.withConfig(function(RestangularConfigurer) {
+      RestangularConfigurer.setBaseUrl(tcconfig.api3URL);
     });
   }
 
@@ -68,11 +82,15 @@
       $cookies = _$cookies_;
     });
 
-    if ($cookies.tcjwt) {
-      RestangularProvider.setDefaultHeaders({
-        'Authorization': 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "")
-      });
-    }
+    RestangularProvider.addFullRequestInterceptor(function(element, operation, what, url) {
+      if ($cookies.tcjwt) {
+        if (what !== 'users') {
+          return {
+            headers: {'Authorization': 'Bearer ' + $cookies.tcjwt.replace(/["]/g, "")}
+          };
+        }
+      }
+    });
 
     // Format restangular response
     // add a response intereceptor

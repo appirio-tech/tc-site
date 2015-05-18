@@ -3,13 +3,20 @@
     <span class="panel-title">{{vm.title}}</span> 
   </div>
   <div class="panel-body">
-    <form action="https://www.feedblitz.com/f/f.fbz?AddNewUserDirect" method="POST" name="{{vm.feedBlitzFormName}}">
+    <form id="subscribe-updates" action="https://www.feedblitz.com/f/f.fbz?AddNewUserDirect" method="POST" name="{{vm.feedBlitzFormName}}" onsubmit="return validateSubscriptionForm();">
       <div class="margin-bottom-3x"><span>Enter your Email ID</span></div>
       <input type="text" name="EMAIL" placeholder="Email ID" ng-model="vm.email" />
+      <span class="errorInput" ng-show="vm.frm.email.error">Please fill the email!</span>
       <input type="hidden" value="{{vm.feedBlitzPublisher}}" name="PUBLISHER">
       <input type="hidden" value="{{vm.feedBlitzFeedId}}" name="FEEDID">
       <!-- Workaround to use style attribute to override display css property-->
       <input type="submit" class="btn btnAlt margin-top-3x center-block" style="display:block;" value="Subscribe">
     </form>
+    <script type="text/javascript">
+      function validateSubscriptionForm() {
+        console.log(angular.element('form#subscribe-updates').scope());
+        return angular.element('form#subscribe-updates').scope().vm.subscribe();
+      }
+    </script>
   </div>
 </div>

@@ -2,101 +2,21 @@
 
 /**
  * @file
- * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
+ * Copyright (C) 2015 TopCoder Inc., All Rights Reserved.
  * @author TCSASSEMBLER, ecnu_haozi
- * @version 1.1
+ * @version 1.2
  *
  * This footer page.
  *
  * Changed in 1.1
  * Add two modals 'filterSavedSuccess' and 'filterSavedFailed' to support "My filters" feature.
+ *
+ * Changed in 1.2 (topcoder new community site - Removal proxied API calls)
+ * Removed twitter, blog, and about section
  */
-require_once 'TwitterAPIExchange.php';
 
-$settings = array(
-  'oauth_access_token' => get_option('twAccessToken'),
-  'oauth_access_token_secret' => get_option('twAccessTokenSecret'),
-  'consumer_key' => get_option('twConsumerKey'),
-  'consumer_secret' => get_option('twConsumerSecret')
-);
-
-$url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
-$getfield = '?screen_name=topcoder&count=3';
-$requestMethod = 'GET';
-$twitter = new TwitterAPIExchange($settings);
-$tweets = json_decode($twitter->setGetfield($getfield)->buildOauth($url, $requestMethod)->performRequest());
-
-$blog_posts_args = array(
-  'posts_per_page' => 2,
-  'offset' => 0,
-  'orderby' => 'post_date',
-  'order' => 'DESC',
-  'post_type' => 'blog',
-  'suppress_filters' => true
-);
-
-$blog_posts = get_posts($blog_posts_args);
 ?>
 <footer id="footer">
-  <div class="container">
-    <div class="footerContentSection twitter">
-      <div class="title">Twitter</div>
-      <div class="footerContent">
-        <?php
-        foreach ($tweets as $tweet) :
-          ?>
-          <div class="footerTwEntry">
-            <?php
-            if ($tweet->retweeted_status):
-              ?>
-              <a href="//www.twitter.com/<?php echo $tweet->retweeted_status->user->screen_name; ?>">
-                @<?php echo $tweet->retweeted_status->user->screen_name; ?>
-              </a>
-            <?php else: ?>
-              <a href="<?php echo get_option('twitterURL'); ?>">
-                @<?php echo $tweet->user->screen_name; ?>
-              </a>
-            <?php endif; ?>
-            <?php echo $tweet->text; ?>
-          </div>
-        <?php endforeach; ?>
-        <a class="btn btnFooter" href="<?php echo get_option('twitterURL'); ?>"><span class="twFollowIcon"></span><span
-            class="twFollowBtnText">Follow</span></a>
-      </div>
-    </div>
-    <div class="footerContentSection recentBlogPosts">
-      <div class="title">Recent Blog Posts</div>
-      <div class="footerContent">
-        <?php
-        foreach ($blog_posts as $post) :
-          setup_postdata($post);
-          ?>
-          <div class="footerBlogEntry">
-            <a href="<?php the_permalink(); ?>"><?php the_date('F j'); ?></a> <?php echo wrap_content_strip_html(
-              wpautop($post->post_content),
-              150,
-              true,
-              '\n\r',
-              ''
-            ); ?>
-            <a href="<?php the_permalink(); ?>">...read more &gt;</a>
-          </div>
-        <?php endforeach; ?>
-        <a class="btn btnFooter" href="<?php bloginfo('wpurl') ?>/blog">View More</a>
-      </div>
-    </div>
-    <div class="footerContentSection aboutTopCoder">
-      <div class="title">About topcoder</div>
-      <div class="footerContent">
-        The topcoder community gathers the world’s experts in design, development and data science to work on
-        interesting and challenging problems for fun and reward. We want to help topcoder members improve their skills,
-        demonstrate and gain reward for their expertise, and provide the industry with objective insight on new and
-        emerging technologies.
-      </div>
-      <a class="btn btnFooter" href="<?php bloginfo('wpurl') ?>/mission">About Us</a>
-    </div>
-    <div class="clear"></div>
-  </div>
   <div class="container">
     <div class="connected">
       <section class="social">

@@ -1,4 +1,12 @@
-//Opera hack to run .ready() on each page load including on history navigation
+/**
+ * This code is copyright (c) 2015 Topcoder Corporation
+ * author: TCSASSEMBLER
+ * version 1.1
+ *
+ * Changed in 1.1 (topcoder new community site - Removal proxied API calls)
+ * Removed ajaxUrl with direct calls to APIs
+ */
+ //Opera hack to run .ready() on each page load including on history navigation
 history.navigationMode = 'compatible';
 if (!tcconfig) { var tcconfig = @@tcconfig }
 $(document).ready(function() {
@@ -185,15 +193,9 @@ if (!loginState) {
       var user = profile.user_id.substring(profile.user_id.indexOf('|')+1);
       $.ajax({
         type: 'GET',
-        data: {
-          provider: socialProviderId,
-          user: user,
-          action: 'get_social_validity'
-        },
         dataType: 'json',
-        url: ajaxUrl,
+        url: tcconfig.apiURL + '/users/validateSocial?socialProviderId=' + socialProviderId + '&socialUserId=' + user,
         success: function(data) {
-          console.log(data);
           if (!data.error && !(typeof data.available == 'undefined') && !data.available) {
             resetRegisterFields();
             $('.row .socialUnavailableErrorMessage').show();
@@ -738,7 +740,7 @@ if (!loginState) {
     $.ajax({
       type: 'GET',
       dataType: 'json',
-      url: tcApiRUL + '/users/validateEmail?email=' + email + '&cb='+ Math.random(),
+      url: tcconfig.apiURL + '/users/validateEmail?email=' + email + '&cb='+ Math.random(),
       success: function(data) {
         if (data.error || !data.available) {
           showInvalid();
@@ -781,7 +783,7 @@ if (!loginState) {
     $.ajax({
       type: 'GET',
       dataType: 'json',
-      url: tcApiRUL + '/users/validate/' + handle + '?cb='+ Math.random(),
+      url: tcconfig.apiURL + '/users/validate/' + handle + '?cb='+ Math.random(),
       success: function(data) {
         if (handleChanged) return;
         if (data.error || !data.valid) {
@@ -1003,41 +1005,37 @@ if (!loginState) {
           if (_kmq) 
             _kmq.push(['identify', fields.email]);
           
-          $.post(ajaxUrl + '?action=post_register', fields, function (data) {
-            if (data.code == "200") {
-              var tcAction = getCookie('tcDelayChallengeAction');
-              $('.modal').hide();
-              $("#thanks h2").html('Thanks for Registering');
-              $("#thanks p").html('We have sent you an email with activation instructions.<br>If you do not receive that email within 1 hour, please email <a href="mailto:support@topcoder.com">support@topcoder.com</a>');
-              if (tcAction) {
-                var tcDoAction = tcAction.split('|');
-                if (tcDoAction[0] === 'register') {
-                  //append challenge registration message
-                  $("#thanks p").after("<div style='padding-bottom: 30px'>In order to register for the selected challenge, you must return to the <a href='/challenge-details/" + tcDoAction[1] + "/?type=" + challengeType + "'>challenge details page</a> after you have activated your account.</div>");
-                  $('#thanks p').css({'padding-bottom': '10px'});
-                }
+          $.post(tcconfig.apiURL + '/users', fields, function(data) {
+            var tcAction = getCookie('tcDelayChallengeAction');
+            $('.modal').hide();
+            $("#thanks h2").html('Thanks for Registering');
+            $("#thanks p").html('We have sent you an email with activation instructions.<br>If you do not receive that email within 1 hour, please email <a href="mailto:support@topcoder.com">support@topcoder.com</a>');
+            if (tcAction) {
+              var tcDoAction = tcAction.split('|');
+              if (tcDoAction[0] === 'register') {
+                //append challenge registration message
+                $("#thanks p").after("<div style='padding-bottom: 30px'>In order to register for the selected challenge, you must return to the <a href='/challenge-details/" + tcDoAction[1] + "/?type=" + challengeType + "'>challenge details page</a> after you have activated your account.</div>");
+                $('#thanks p').css({'padding-bottom': '10px'});
               }
-              showModal('#thanks');
-              $('input.pwd:password').closest('.row').find('.valid').hide();
-              $('#registerForm .invalid').removeClass('invalid');
-              $('#registerForm .valid').removeClass('valid');
-              $('.err1,.err2', frm).hide();
-              resetRegisterFields();
             }
-            else {
-              //$('.modal').hide();
-              //$("#thanks h2").html('Error');
-              //$("#thanks p").html(data.description);
-              //showModal('#thanks');
-              alert(data.description);
-
-            }
-            // Issue ID: I-107903 - re-enable all the fields on the registration form
-            $('#register').find('input, select').prop('disabled', false);
-            $('.customSelectInner').css('color', '#000000');
-            $('#register a.btnSubmit').unbind('click', false);
-            $('#register .btnSubmit').html('Sign Up');
-          }, "json");
+            showModal('#thanks');
+            $('input.pwd:password').closest('.row').find('.valid').hide();
+            $('#registerForm .invalid').removeClass('invalid');
+            $('#registerForm .valid').removeClass('valid');
+            $('.err1,.err2', frm).hide();
+            resetRegisterFields();
+          })
+            .fail(function(error) {
+              console.log(error);
+              alert(error);
+            })
+            .always(function() {
+              // Issue ID: I-107903 - re-enable all the fields on the registration form
+              $('#register').find('input, select').prop('disabled', false);
+              $('.customSelectInner').css('color', '#000000');
+              $('#register a.btnSubmit').unbind('click', false);
+              $('#register .btnSubmit').html('Sign Up');
+            });
         }
       });
     });
@@ -1200,10 +1198,7 @@ function initMemberDetails(pagePersisted){
         $('.headerTopRightMenuLink.logIn a').text("Log Out").removeClass("actionLogin").addClass("actionLogout");
         app.getHandle(function(handle) {
           $('.userDetails .coder').text(handle);
-          $.get(ajaxUrl, {
-            "action": "get_member_profile",
-            "handle": handle
-          }, function(data) {
+          $.get(tcconfig.apiURL + '/users/' + handle, function(data) {
             var photoLink = data['photoLink'];
             if (photoLink) {
               if (photoLink.indexOf('//') == -1) {
@@ -1262,12 +1257,7 @@ function initMemberDetails(pagePersisted){
         $('.logoutLink, .actionLogout').click(function() {
           document.cookie = 'tcsso=; path=/; domain=.' + tcconfig.domain + '; expires=' + new Date(0).toUTCString();
           document.cookie = 'tcjwt=; path=/; domain=.' + tcconfig.domain + '; expires=' + new Date(0).toUTCString();
-          // SUP-20 // removes identity stored in local storage or cookie
-          if (window.localStorage) {
-            window.localStorage.removeItem("userIdentity");
-          } else {
-            $.removeCookie("userIdentity");
-          }
+
           // check if we have the weird facebook hash
           // if so, redirect to root
           if (window.location.hash == '#_=_') {

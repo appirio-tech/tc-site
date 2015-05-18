@@ -1,4 +1,15 @@
 <?php
+/**
+ * @file
+ * Copyright (C) 2015 TopCoder Inc., All Rights Reserved.
+ * @author TCSASSEMBLER
+ * @version 1.1
+ *
+ * This is sidebar widget page
+ *
+ * Changed in 1.1
+ * Loading recent challenges data using ajax
+ */
 /* Register the widget */
 function theme_load_widgets() {
   register_widget('Related_Content');
@@ -512,11 +523,6 @@ class Popular_post_widget extends WP_Widget {
           endwhile;
           ?>
         </ul>
-        <div class="showMoreWrapper">
-          <a id="popularShowMore" href="javascript:;" class="btn jsShowMoreArchiveStories">Show More</a>
-          <span class="morePostLoading">&nbsp;</span>
-          <span class="noMorePostExist">No more post exist!</span>
-        </div>
       </div>
       <!-- /.popular post-->
     <?php endif; 

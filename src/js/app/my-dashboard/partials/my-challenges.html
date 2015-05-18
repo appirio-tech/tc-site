@@ -18,20 +18,25 @@
       <table width="100%" class="table table-responsive">
         <thead>
           <tr class="active">
-            <th>Type</th>
-            <th>First Prize</th>
+            <th class="hidden-xs">Type</th>
+            <th class="hidden-xs">First Prize</th>
             <th>Challenge</th>
-            <th>Roles</th>
-            <th>Submit By</th>
+            <th class="hidden-sm hidden-md hidden-lg">Ist Prize</th>
+            <th class="hidden-xs hidden-sm">Roles</th>
+            <th class="hidden-xs">Submit By</th>
           </tr>
         </thead>
         <tbody>
           <tr ng-show="vm.myChallenges.length > 0 && !vm.loading" ng-repeat="challenge in vm.myChallenges">
-            <td class="{{challenge.challengeCommunity}}">&nbsp;</td>
-            <td>{{challenge.firstPlacePrize | currency}}</td>
-            <td rel="challenge-name"><a href="/challenge-details/{{challenge.challengeId}}?type={{challenge.challengeCommunity}}">{{challenge.challengeName}}</a></td>
-            <td rel="roles" class="ellipsis" title="{{challenge.roles.join(', ')}}">{{challenge.roles.join(', ')}}</td>
-            <td class="my-challenges-submittion-date ellipsis">{{challenge.submissionEndDate | date}}</td>
+            <td class="{{challenge.challengeCommunity}} hidden-xs">&nbsp;</td>
+            <td class="hidden-xs">{{challenge.firstPlacePrize | currency}}</td>
+            <td rel="challenge-name">
+              <a href="/challenge-details/{{challenge.challengeId}}?type={{challenge.challengeCommunity}}">{{challenge.challengeName}}</a>
+              <div class="hidden-sm hidden-md hidden-lg margin-top-2x"><span class="color-reset">Submit By:</span> {{challenge.submissionEndDate | date: 'MM/dd/yy HH:mm '}}</div>
+            </td>
+            <td class="hidden-sm hidden-md hidden-lg">{{challenge.firstPlacePrize | currency}}</td>
+            <td rel="roles" class="ellipsis hidden-xs hidden-sm" title="{{challenge.roles.join(', ')}}">{{challenge.roles.join(', ')}}</td>
+            <td class="hidden-xs" class="my-challenges-submittion-date ellipsis">{{challenge.submissionEndDate | date: 'MM/dd/yy HH:mm '}}</td>
           </tr>
           <tr ng-show="vm.loading">
             <td colspan="5"><div class="widget-loading"></div></td>

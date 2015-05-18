@@ -2,6 +2,10 @@
     width: 100%;
 }
 
+.my-dashboard-container .color-reset {
+    color: initial;
+}
+
 .my-dashboard-container .widget-loading {
   width: 100%;
   height: 50px;
@@ -54,7 +58,7 @@
 
 .blog-post {
     /*height: 300px;*/
-    overflow: scroll;
+    /*overflow: scroll;*/
 }
 
 .blog-post .post {
@@ -67,6 +71,7 @@
 
 .blog-post a {
   color: #666;
+  box-sizing: border-box;
 }
 
 .blog-post a:hover {
@@ -74,7 +79,6 @@
 }
 
 .srm-gadget {
-  max-height: 300px;
 }
 
 .srm-gadget-table td {
@@ -101,7 +105,11 @@
 }
 
 .member-profile-header {
-  border-bottom: 7px solid #e3e3e3;
+  border-bottom: 7px solid #000;
+  background-image: url('../i/community-background.png');
+  background-size: cover;
+  background-position: 50% 50%;
+  color: #fff;
 }
 
 .member-profile {
@@ -134,13 +142,13 @@
 }
 
 .member-profile .profile-left .doj {
-  color: rgb(91, 91, 91);
+  /*color: rgb(91, 91, 91);*/
   text-align: center;
   margin-top: 20px;
 }
 
 .member-profile .profile-bio {
-  color: rgb(91, 91, 91);
+  /*color: rgb(91, 91, 91);*/
   height: 100px;
   text-align: right;
   direction: ltr;
@@ -157,7 +165,7 @@
 .member-profile .money-in-bank div[rel="value"] {
   /*font-weight: bold;*/
   font-size: 35px;
-  color: #05619b;
+  /*color: #05619b;*/
 }
 
 .member-profile .money-in-bank div[rel="label"] {
@@ -182,7 +190,7 @@
 .member-profile .open-challenges div[rel="value"] {
   /*font-weight: bold;*/
   font-size: 35px;
-  color: #71be0a;
+  /*color: #71be0a;*/
 }
 
 .member-profile .open-challenges div[rel="label"] {
@@ -198,9 +206,9 @@
 }
 
 .member-profile .review-opportunities div[rel="value"] {
-  font-weight: bold;
+  /*font-weight: bold;*/
   font-size: 35px;
-  color: #e7820b;
+  /*color: #e7820b;*/
 }
 
 .member-profile .review-opportunities div[rel="label"] {
@@ -214,7 +222,7 @@
 .member-program-content {
 }
 
-.member-program-content {
+.member-program-content .panel-body {
     /*background: -webkit-linear-gradient(360deg, rgb(15, 16, 31), rgb(101,220,85), rgb(164, 13, 62));*/
     height: 377px;
     /*margin-left: 50px;*/
@@ -242,6 +250,69 @@
   margin-top: 20px;
 }
 
+.member-program-content *[rel="badges"] {
+
+}
+
+.member-program-content *[rel="badges"] *[rel="badge"] div[rel="image"] {
+  min-width: 30px;
+  min-height: 30px;
+  background-size: cover;
+}
+
+.member-program-content *[rel="badges"] *[rel="badge"].badge1 div[rel="image"] {
+  background-image: url("../i/member-program/get-ready-48.png");
+  background-repeat: no-repeat;
+}
+
+.member-program-content *[rel="badges"] *[rel="badge"].badge2 div[rel="image"] {
+  background-image: url("../i/member-program/step-one-48.png");
+  background-repeat: no-repeat;
+}
+
+.member-program-content *[rel="badges"] *[rel="badge"].badge3 div[rel="image"] {
+  background-image: url("../i/member-program/getting-ready-48.png");
+  background-repeat: no-repeat;
+}
+
+.member-program-content *[rel="badges"] *[rel="badge"].badge4 div[rel="image"] {
+  background-image: url("../i/member-program/on-starting-line-48.png");
+  background-repeat: no-repeat;
+}
+
+.member-program-content *[rel="badges"] *[rel="badge"].badge5 div[rel="image"] {
+  background-image: url("../i/member-program/break-the-finish-48.png");
+  background-repeat: no-repeat;
+}
+
+.member-program-content *[rel="badges"] *[rel="badge"].badge6 div[rel="image"] {
+  background-image: url("../i/member-program/get-certified-48.png");
+  background-repeat: no-repeat;
+}
+
+.member-program-content *[rel="badges"] *[rel="badge"] div[rel="name"] {
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.member-program-content *[rel="badges"] *[rel="badge-status"] {
+  padding-left: 20px;
+  margin-top: 5px;
+}
+
+.member-program-content *[rel="badges"] *[rel="badge-status"].pending {
+  background: url("../i/check-box.png") no-repeat 0 0px;
+}
+
+.member-program-content *[rel="badges"] *[rel="badge-status"].completed {
+  background: url("../i/check-box.png") no-repeat 0 -20px;
+}
+
+.member-program-content .nextstep {
+  color: white;
+  margin-top: 20px;
+}
+
 .helpful-links {
 
 }
@@ -251,13 +322,21 @@
   height: 40px;
   line-height: 40px;
   padding-left: 10px;
+  padding-right: 10px;
 }
 .helpful-links ul > li > a {
   color: #666;
+  padding: inherit;
+  line-height: inherit;
 }
 
-.helpful-links ul > li > a:hover {
+.helpful-links ul > li > a:hover,
+.helpful-links ul > li > a:focus,
+.helpful-links .nav .open>a,
+.helpful-links .nav .open>a:hover,
+.helpful-links .nav .open>a:focus {
   color: #FFB800;
+  background-color: inherit;
 }
 
 .helpful-links ul > li:last-child {

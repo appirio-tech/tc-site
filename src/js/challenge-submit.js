@@ -1,5 +1,10 @@
 /**
- * Challenge submit functions
+ * Copyright (C) 2015 TopCoder Inc., All Rights Reserved.
+ * @author TCSASSEMBLER
+ * @version 1.1
+ *
+ * Changed in 1.1 (topcoder new community site - Removal proxied API calls)
+ * Replaced ajaxUrl with tcconfig.apiURL
  */
 appChallengeSubmit = {
   init: function() {
@@ -88,24 +93,29 @@ appChallengeSubmit = {
               var submission = document.getElementById('submission').files[0];
               var fileReader= new FileReader();
               fileReader.onload = function(e) {
-                var xhr = $.post(ajaxUrl, {
-                  "action": "submit_to_dev_challenge",
-                  "challengeId": challengeId,
-                  "fileName": submission.name,
-                  "fileData": e.target.result.split("base64,")[1],
-                  "jwtToken": tcjwt.replace(/["]/g, "")
-                }, function(data) {
-                  if (data["submissionId"]){
-                    ajaxFileUploadSuccess(submission.name);
-                  } else {
-                    $( ".uploadBar .loader" ).stop();
-                    $('.container').removeClass('uploading');
-                    if(data["error"]["details"]){
-                      $("#registerFailed .failedMessage").text(data["error"]["details"]);
+                var xhr = $.ajax({
+                  type: "POST",
+                  url: tcconfig.apiURL + "/develop/challenges/" + challengeId + "/submit",
+                  headers: {
+                    'Authorization': 'Bearer ' + tcjwt.replace(/["]/g, "")
+                  },
+                  data: {
+                    "fileName": submission.name,
+                    "fileData": e.target.result.split("base64,")[1]
+                  },
+                  success: function (data) {
+                    if (data["submissionId"]){
+                      ajaxFileUploadSuccess(submission.name);
                     } else {
-                      $("#registerFailed .failedMessage").text("The submission could not be uploaded.");               
+                      $( ".uploadBar .loader" ).stop();
+                      $('.container').removeClass('uploading');
+                      if(data["error"]["details"]){
+                        $("#registerFailed .failedMessage").text(data["error"]["details"]);
+                      } else {
+                        $("#registerFailed .failedMessage").text("The submission could not be uploaded.");
+                      }
+                      showModal("#registerFailed");
                     }
-                    showModal("#registerFailed");
                   }
                 });
                 $("#cancelUpload").click(function(){
@@ -136,7 +146,7 @@ appChallengeSubmit = {
   prevSubmissionWarning: function () {
     if (app.isLoggedIn()) {
       app.getHandle(function (handle) {
-        url = tcApiRUL + '/' + challengeType + '/challenges/' + challengeId;
+        url = tcconfig.apiURL + '/' + challengeType + '/challenges/' + challengeId;
         $.getJSON(url, function (data) {
           currRegistrant = $.grep(data.registrants, function (registrant) {
             return registrant.handle === handle;

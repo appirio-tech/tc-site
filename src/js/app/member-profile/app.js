@@ -1,7 +1,10 @@
 /**
- * This code is copyright (c) 2014 Topcoder Corporation
+ * This code is copyright (c) 2015 Topcoder Corporation
  * author: TCS-ASSEMBLER
- * version 1.0
+ * version 1.1
+ *
+ * Changed in 1.1 (topcoder new community site - Removal proxied API calls)
+ * Removed LC related conditionals and calls
  */
 'use strict';
 
@@ -24,7 +27,7 @@ window.tc = angular.module('tc', [
   }
 ])
 
-  .constant("API_URL", tcApiRUL)
+  .constant("API_URL", tcconfig.apiURL)
   .constant("PHOTO_LINK_LOCATION", tcconfig.communityURL)
   .constant("MEMBER_PROFILE_TEMPLATE_URL", "/js/app/member-profile/partials/memberProfile.tpl.html")
 

@@ -183,11 +183,6 @@ $categories = $activeMenuObj!=null ? $activeMenuObj->cat_name : "Categories";
               endwhile;
               ?>
             </div>
-            <div class="showMoreWrapper showMoreWrapperMobile">
-              <a id="showMoreBlogPost" href="javascript:;" class="btn">Show More</a>
-              <span class="morePostLoading">&nbsp;</span>
-              <span class="noMorePostExist">No more post exist!</span>
-            </div>
             <?php
             else :
               ?>

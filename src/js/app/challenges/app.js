@@ -1,7 +1,7 @@
 /**
- * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
+ * Copyright (C) 2015 TopCoder Inc., All Rights Reserved.
  * @author TCSASSEMBLER, ecnu_haozi
- * @version 1.1
+ * @version 1.2
  *
  * Changed in 1.1
  * <ul>
@@ -9,6 +9,9 @@
  * feature.</li>
  * <li>Add the configuration of "My filters" feature's API server URL. It's set in global variable "myFiltersURL".</li>
  * </ul>
+ * 
+ * Changed in 1.2 (topcoder new community site - Removal proxied API calls)
+ * Removed LC related conditionals and calls
  */
 'use strict';
 
@@ -28,9 +31,8 @@ window.tc = angular.module('tc', [
   'ngAnimate'
 ])
 
-  .constant("API_URL", tcApiRUL)
+  .constant("API_URL", tcconfig.apiURL)
   .constant('MY_FILTER_API_URL', myFiltersURL)
-  .constant("LC_URL", lcExternalUrl)
 
   .config(['$httpProvider', 'RestangularProvider', 'API_URL', function($httpProvider, RestangularProvider, API_URL) {
     /*

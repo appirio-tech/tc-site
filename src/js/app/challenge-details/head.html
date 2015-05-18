@@ -1,6 +1,6 @@
 <html lang="en" itemscope itemtype="http://schema.org/Article" ng-app="challengeDetails"  ng-controller="CDCtrl as CD">
 <head>
-  <title>{{CD.challenge.challengeName}}</title>
+  <title ng-bind="CD.challenge.challengeName"></title>
   <meta name="description" content="{{CD.challenge.detailedRequirements | htmlToText | limitTo: 155}}">
   <!-- Schema.org markup for Google+ -->
   <meta itemprop="name" content="{{CD.challenge.challengeName}}">
