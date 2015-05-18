@@ -44,7 +44,7 @@
 
     // set challengeId and challengeType from the url
     challengeId = $location.path().split("/")[2];
-    challengeType = $location.search().type;
+    challengeType = $location.search().type || 'develop';
 
     var vm = this;
     // default review style
