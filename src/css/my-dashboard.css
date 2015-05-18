@@ -223,12 +223,8 @@
 }
 
 .member-program-content .panel-body {
-    /*background: -webkit-linear-gradient(360deg, rgb(15, 16, 31), rgb(101,220,85), rgb(164, 13, 62));*/
     height: 377px;
-    /*margin-left: 50px;*/
     overflow: hidden;
-    background: url('../i/swift_background_hpattern.jpg') repeat-x center center;
-    color: #eeeeee;
 }
 
 .member-program-content .display-image {
@@ -296,15 +292,18 @@
 }
 
 .member-program-content *[rel="badges"] *[rel="badge-status"] {
-  padding-left: 20px;
   margin-top: 5px;
 }
+.member-program-content *[rel="badges"] *[rel="badge-status"] *[rel="image"] {
+  width: 20px;
+  height: 20px;
+}
 
-.member-program-content *[rel="badges"] *[rel="badge-status"].pending {
+.member-program-content *[rel="badges"] *[rel="badge-status"].pending *[rel="image"] {
   background: url("../i/check-box.png") no-repeat 0 0px;
 }
 
-.member-program-content *[rel="badges"] *[rel="badge-status"].completed {
+.member-program-content *[rel="badges"] *[rel="badge-status"].completed *[rel="image"] {
   background: url("../i/check-box.png") no-repeat 0 -20px;
 }
 
