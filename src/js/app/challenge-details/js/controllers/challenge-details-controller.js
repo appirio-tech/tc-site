@@ -471,7 +471,7 @@
         nextStepTitle: "What's Next?",
         nextStepDescription: "Hold tight. This challenge will be starting soon.",
         nextStepAction: "",
-        nextBadgeImg: "/mf/i/member-program/missions/get-ready/level-5-512.png",
+        nextBadgeImg: "/mf/i/member-program/peer-badge-big.png",
         nextBadgeTitle: "Next badge"
       };
     } else if (status === 'active' && phase === 'registration') {
@@ -479,7 +479,7 @@
         nextStepTitle: "What's Next?",
         nextStepDescription: "Register to participate by clicking the Register button. Then when you're ready, click Submit to upload your submission. Keep an eye on the time limit!",
         nextStepAction: "",
-        nextBadgeImg: "/mf/i/member-program/missions/get-ready/level-5-512.png",
+        nextBadgeImg: "/mf/i/member-program/peer-badge-big.png",
         nextBadgeTitle: "Step One"
       };
     } else if (status === 'active' && phase === 'submission') {
@@ -487,7 +487,7 @@
         nextStepTitle: "What's Next?",
         nextStepDescription: "Submit to upload your submission. Keep an eye on the time limit!",
         nextStepAction: "",
-        nextBadgeImg: "/mf/i/member-program/missions/get-ready/level-5-512.png",
+        nextBadgeImg: "/mf/i/member-program/peer-badge-big.png",
         nextBadgeTitle: "Getting Ready"
       };
     } else if (status === 'active' && phase === 'review') {
@@ -495,7 +495,7 @@
         nextStepTitle: "What's Next?",
         nextStepDescription: "If you got your submission uploaded in time, then it's time to review your peers.",
         nextStepAction: "Click Review to start",
-        nextBadgeImg: "/mf/i/member-program/missions/get-ready/level-5-512.png",
+        nextBadgeImg: "/mf/i/member-program/peer-badge-big.png",
         nextBadgeTitle: "Break the Finish"
       };
     } else if (status === 'completed' || status.indexOf('cancelled') != -1) {
@@ -503,7 +503,7 @@
         nextStepTitle: "What's Next?",
         nextStepDescription: "This challenge has completed.",
         nextStepAction: "",
-        nextBadgeImg: "/mf/i/member-program/missions/get-ready/level-5-512.png",
+        nextBadgeImg: "/mf/i/member-program/peer-badge-big.png",
         nextBadgeTitle: "Break the Finish"
       };
     } else { // for default show only badge
@@ -511,7 +511,7 @@
         nextStepTitle: "",
         nextStepDescription: "",
         nextStepAction: "",
-        nextBadgeImg: "/mf/i/member-program/missions/get-ready/level-5-512.png",
+        nextBadgeImg: "/mf/i/member-program/peer-badge-big.png",
         nextBadgeTitle: "Next badge"
       };
     }
