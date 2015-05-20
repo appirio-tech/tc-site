@@ -227,6 +227,10 @@
     overflow: hidden;
 }
 
+.member-program-content img[rel="program-logo"] {
+  height: 80px;
+}
+
 .member-program-content .display-image {
   height: 260px;
   background-color: white;
@@ -237,8 +241,7 @@
 }
 
 .member-program-content .description {
-  /*float: left;
-  width: 50%;*/
+  text-align: justify;
 }
 
 .member-program-content .signup {
