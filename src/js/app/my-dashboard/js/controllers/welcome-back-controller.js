@@ -85,7 +85,7 @@
             }
           } else {
             vm.photoLink = PHOTO_LINK_LOCATION + '/i/m/nophoto_login.gif';  
-            vm.uploadPhotoLink = $location.protocol + ":" + communityBaseUrl + '/tc?module=MyHome';
+            vm.uploadPhotoLink = $location.protocol() + ":" + communityBaseUrl + '/tc?module=MyHome';
             vm.showUploadPhotoLink = true;
           }
 
