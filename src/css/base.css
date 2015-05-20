@@ -215,6 +215,14 @@ sub, sup {
     margin-bottom: 5px;
 }
 
+.margin-left-1x {
+    margin-left: 5px;
+}
+
+.margin-right-1x {
+    margin-right: 5px;
+}
+
 .margin-vert-1x {
     margin-top: 5px;
     margin-bottom: 5px;
