@@ -17,9 +17,18 @@
       <table width="100%" class="table table-responsive">
           <thead>
               <tr class="active">
-                  <th>Name</th>
-                  <th>Registration</th>
-                  <th>Coding</th>
+                  <th>
+                    <span>Name</span>
+                    <div class="sort-icon-place"></div>
+                  </th>
+                  <th rel="sortable" ng-click="vm.sort('registrationStartTime')">
+                    <span>Registration</span>
+                    <div class="sort-icon-place" ng-class="{sort: vm.sortColumn == 'registrationStartTime', desc: vm.sortOrder == 'desc', asc: vm.sortOrder == 'asc'} "></div>
+                  </th>
+                  <th rel="sortable" ng-click="vm.sort('codingStartTime')">
+                    <span>Coding</span>
+                    <div class="sort-icon-place" ng-class="{sort: vm.sortColumn == 'codingStartTime', desc: vm.sortOrder == 'desc', asc: vm.sortOrder == 'asc'} "></div>
+                  </th>
               </tr>
           </thead>
           <tbody>

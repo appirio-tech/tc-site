@@ -49,6 +49,8 @@
         // add default paging
         var pageIndex = request && request.pageIndex ? request.pageIndex : 1;
         var pageSize = request && request.pageSize ? request.pageSize : 10;
+        var sortColumn  = request && request.sortColumn ? request.sortColumn : 'submissionEndDate';
+        var sortOrder  = request && request.sortOrder ? request.sortOrder : 'asc';
 
         service.request = request;
 
@@ -56,7 +58,9 @@
         service.one("user").getList("challenges", {
             type: "active",
             pageIndex: pageIndex,
-            pageSize: pageSize
+            pageSize: pageSize,
+            sortColumn: sortColumn,
+            sortOrder: sortOrder
           }).then(function(data) {
             // Sets the data, and returns it to all pending promises
             service.myActiveChallenges = data;
@@ -71,11 +75,11 @@
     }
 
     function uniqueRequest(prevRequest, currRequest) {
-      console.log(prevRequest);
-      console.log(currRequest);
       if (!prevRequest || !currRequest) return true;
       return prevRequest.pageIndex != currRequest.pageIndex ||
-        prevRequest.pageSize != currRequest.pageSize;
+        prevRequest.pageSize != currRequest.pageSize ||
+        prevRequest.sortColumn != currRequest.sortColumn ||
+        prevRequest.sortOrder != currRequest.sortOrder;
     }
 
     return service;  
