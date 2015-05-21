@@ -71,8 +71,6 @@
     }
 
     function uniqueRequest(prevRequest, currRequest) {
-      console.log(prevRequest);
-      console.log(currRequest);
       if (!prevRequest || !currRequest) return true;
       return prevRequest.pageIndex != currRequest.pageIndex ||
         prevRequest.pageSize != currRequest.pageSize;

@@ -30,6 +30,8 @@
   function MyChallengesCtrl($scope, AuthService, ChallengeService) {
     var vm = this;
     vm.loading = true;
+    vm.myChallenges = [];
+    vm.visibleChallenges = [];
     vm.pageIndex = 1;
     vm.pageSize = 5;
     vm.totalPages = 1;
@@ -55,21 +57,35 @@
       var searchRequest = {pageIndex: vm.pageIndex, pageSize: vm.pageSize};
       // show loading icon
       vm.loading = true;
+      // remove following if block when API supports paging
+      if (vm.pageIndex > 1) {
+        processChallengesResponse(vm.myChallenges);
+        vm.loading = false;
+        return;
+      }
       // Fetch my active
       return ChallengeService.getMyActiveChallenges(searchRequest)
         .then(function(data) {
-          if (data.pagination) {
-            vm.totalPages = Math.ceil(data.pagination.total / vm.pageSize);
-            vm.totalRecords = data.pagination.total;
-            vm.firstRecordIndex = (vm.pageIndex - 1) * vm.pageSize + 1;
-            vm.lastRecordIndex = vm.pageIndex * vm.pageSize;
-            vm.lastRecordIndex = vm.lastRecordIndex > vm.totalRecords ? vm.totalRecords : vm.lastRecordIndex;
-          }
-          vm.myChallenges = data;
+          processChallengesResponse(data);
           // stop loading icon
           vm.loading = false;
 
       });
+    }
+
+    function processChallengesResponse(data) {
+      if (data.pagination) {
+        vm.totalPages = Math.ceil(data.pagination.total / vm.pageSize);
+        vm.totalRecords = data.pagination.total;
+        vm.firstRecordIndex = (vm.pageIndex - 1) * vm.pageSize + 1;
+        vm.lastRecordIndex = vm.pageIndex * vm.pageSize;
+        vm.lastRecordIndex = vm.lastRecordIndex > vm.totalRecords ? vm.totalRecords : vm.lastRecordIndex;
+      }
+      vm.myChallenges = data;
+      // uncomment following line when API supports paging
+      // vm.visibleChallenges = data;
+      // remove following line when API supports paging
+      vm.visibleChallenges = data.slice(vm.firstRecordIndex, vm.lastRecordIndex + 1);
     }
 
     function changePage(pageLink) {
