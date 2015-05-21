@@ -29,7 +29,7 @@
      * @returns promise
      */
     service.getMemberRegistration = function(userId, programId) {
-      return service.one("member-cert/registrations", userId).one("programs", programId).get();
+      return service.one("memberCert/registrations", userId).one("programs", programId).get();
     }
 
     /**
@@ -39,7 +39,7 @@
      * @returns promise
      */
     service.registerMember = function(userId, programId) {
-      return service.one("member-cert/registrations", userId).one("programs", programId).post();
+      return service.one("memberCert/registrations", userId).one("programs", programId).post();
     }
 
     return service;    

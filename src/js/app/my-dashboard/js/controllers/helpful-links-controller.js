@@ -101,14 +101,6 @@
       };
       links.push(link);
       link = {
-        id: 'onlinereview',
-        name: 'Online Review',
-        description: 'Your submission & scoring tool',
-        href: vm.reviewAppUrl,
-        children: []
-      };
-      links.push(link);
-      link = {
         id: 'digitalrun',
         name: 'The Digital Run',
         description: 'The Digital Run',
@@ -117,11 +109,27 @@
       };
       links.push(link);
       link = {
-        id: 'statistics',
-        name: 'Statistics',
-        description: 'Statistics',
+        id: 'topranked',
+        name: 'Top Ranked',
+        description: 'Top Ranked',
         href: null,
-        children: getStatisticsLinks()
+        children: getTopRankedLinks()
+      };
+      links.push(link);
+      link = {
+        id: 'recordbook',
+        name: 'Record Book',
+        description: 'Record Book',
+        href: null,
+        children: getRecordBookLinks()
+      };
+      links.push(link);
+      link = {
+        id: 'cotm',
+        name: 'Coder of the Month',
+        description: 'Coder of the Month',
+        href: null,
+        children: getCOTMLinks()
       };
       links.push(link);
       link = {
@@ -132,11 +140,19 @@
         children: getReviewBoardsLinks()
       };
       links.push(link);
+      link = {
+        id: 'reviewopportunities',
+        name: 'Review Opportunities',
+        description: 'Review Opportunities',
+        href: null,
+        children: getReviewOpportunitiesLinks()
+      };
+      links.push(link);
       return links;
     }
 
     function getMainUrl(relativeUrl) {
-      var url = $location.protocol() + "://" + vm.mainUrl;
+      var url = vm.mainUrl;
       if (relativeUrl) {
         url += relativeUrl;
       }
@@ -230,24 +246,199 @@
         children: []
       };
       links.push(link);
+      link = {
+        id: 'matchoverview',
+        name: 'Match Overview',
+        description: 'Match Overview',
+        href: getMainUrl('/longcontest/stats/?module=ViewOverview'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'matchwinners',
+        name: 'Match Winners',
+        description: 'Match Winners',
+        href: getMainUrl('/longcontest/stats/?module=MatchWinners'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'matcheditorials',
+        name: 'Match Editorials',
+        description: 'Match Editorials',
+        href: getMainUrl('/longcontest/?module=Static&d1=match_editorials&d2=archive'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'matchdatafeeds',
+        name: 'Data Feeds',
+        description: 'Data Feeds',
+        href: getMainUrl('/longcontest/?module=Static&d1=support&d2=dataFeed'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'practice',
+        name: 'Practice',
+        description: 'Practice',
+        href: getMainUrl('/longcontest/?module=ViewPractice'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'queuestatus',
+        name: 'Queue Status',
+        description: 'Queue Status',
+        href: getMainUrl('/longcontest/?module=ViewQueue'),
+        children: []
+      };
+      links.push(link);
       return links;
     }
 
     function getStatisticsLinks() {
       var links = [];
+      return links;
+    }
+
+    function getTopRankedLinks() {
+      var links = [];
       var link = {
-        id: 'topranked',
-        name: 'Top Ranked',
-        description: 'Top Ranked',
-        href: null,
+        id: 'algorithm',
+        name: 'Algorithm',
+        description: 'Algorithm',
+        href: getMainUrl('/tc?module=AlgoRank'),
         children: []
       };
       links.push(link);
       link = {
-        id: 'recordbook',
-        name: 'Record Book',
-        description: 'Record Book',
-        href: null,
+        id: 'highschool',
+        name: 'High School',
+        description: 'High School',
+        href: getMainUrl('/tc?module=HSRank'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'marathonmatch',
+        name: 'Marathon Match',
+        description: 'Marathon Match',
+        href: getMainUrl('/longcontest/stats/?module=CoderRank'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'conceptulization',
+        name: 'Conceptulization',
+        description: 'Conceptulization',
+        href: getMainUrl('/stat?c=top_conceptors'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'specification',
+        name: 'Specification',
+        description: 'Specification',
+        href: getMainUrl('/stat?c=top_specificators'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'architecture',
+        name: 'Architecture',
+        description: 'Architecture',
+        href: getMainUrl('/stat?c=top_architects'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'design',
+        name: 'Design',
+        description: 'Design',
+        href: getMainUrl('/stat?c=top_designers'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'development',
+        name: 'Development',
+        description: 'Development',
+        href: getMainUrl('/stat?c=top_developers'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'assembly',
+        name: 'Assembly',
+        description: 'Assembly',
+        href: getMainUrl('/stat?c=top_assemblers'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'testsuites',
+        name: 'Test Suites',
+        description: 'Test Suites',
+        href: getMainUrl('/stat?c=top_testers'),
+        children: []
+      };
+      links.push(link);
+      return links;
+    }
+
+    function getRecordBookLinks() {
+      var links = [];
+      var link = {
+        id: 'algorithm',
+        name: 'Algorithm',
+        description: 'Algorithm',
+        href: getMainUrl('/tc?module=Static&d1=statistics&d2=recordbook_home'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'component',
+        name: 'Component',
+        description: 'Component',
+        href: getMainUrl('/tc?module=Static&d1=compstats&d2=comp_recordbook_home'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'marathonmatch',
+        name: 'Marathon Match',
+        description: 'Marathon Match',
+        href: getMainUrl('/longcontest/?module=Static&d1=stats&d2=recordbook_home'),
+        children: []
+      };
+      links.push(link);
+      return links;
+    }
+
+    function getCOTMLinks() {
+      var links = [];
+      var link = {
+        id: 'algorithm',
+        name: 'Algorithm',
+        description: 'Algorithm',
+        href: getMainUrl('/tc?module=COMHistory&achtid=5'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'design',
+        name: 'Design',
+        description: 'Design',
+        href: getMainUrl('/tc?module=COMHistory&achtid=6'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'development',
+        name: 'Development',
+        description: 'Development',
+        href: getMainUrl('/tc?module=COMHistory&achtid=7'),
         children: []
       };
       links.push(link);
@@ -260,7 +451,7 @@
         id: 'conceptulization',
         name: 'Conceptulization',
         description: 'Conceptulization',
-        href: null,
+        href: getMainUrl('/tc?module=ReviewBoard&pt=23'),
         children: []
       };
       links.push(link);
@@ -268,7 +459,236 @@
         id: 'specification',
         name: 'Specification',
         description: 'Specification',
-        href: null,
+        href: getMainUrl('/tc?module=ReviewBoard&pt=6'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'architecture',
+        name: 'Architecture',
+        description: 'Architecture',
+        href: getMainUrl('/tc?module=ReviewBoard&pt=7'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'componentdesign',
+        name: 'Component Design',
+        description: 'Component Design',
+        href: getMainUrl('/tc?module=ReviewBoard&pt=1'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'componentdevelopment',
+        name: 'Component Development',
+        description: 'Component Development',
+        href: getMainUrl('/tc?module=ReviewBoard&pt=2'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'assembly',
+        name: 'Assembly',
+        description: 'Assembly',
+        href: getMainUrl('/tc?module=ReviewBoard&pt=14'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'first2finish',
+        name: 'First2Finish',
+        description: 'First2Finish',
+        href: getMainUrl('/tc?module=ReviewBoard&pt=38'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'code',
+        name: 'Code',
+        description: 'Code',
+        href: getMainUrl('/tc?module=ReviewBoard&pt=39'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'testsuites',
+        name: 'Test Suites',
+        description: 'Test Suites',
+        href: getMainUrl('/tc?module=ReviewBoard&pt=13'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'report',
+        name: 'Report',
+        description: 'Report',
+        href: getMainUrl('/tc?module=ReviewBoard&pt=36'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'uiprototype',
+        name: 'UI Prototype',
+        description: 'UI Prototype',
+        href: getMainUrl('/tc?module=ReviewBoard&pt=19'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'riabuild',
+        name: 'Ria Build',
+        description: 'Ria Build',
+        href: getMainUrl('/tc?module=ReviewBoard&pt=24'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'contentcreation',
+        name: 'Content Creation',
+        description: 'Content Creation',
+        href: getMainUrl('/tc?module=ReviewBoard&pt=35'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'testscenarios',
+        name: 'Test Scenarios',
+        description: 'Test Scenarios',
+        href: getMainUrl('/tc?module=ReviewBoard&pt=26'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'bughunt',
+        name: 'Bug Hunt',
+        description: 'Bug Hunt',
+        href: getMainUrl('/tc?module=ReviewBoard&pt=9'),
+        children: []
+      };
+      links.push(link);
+      return links;
+    }
+
+    function getReviewOpportunitiesLinks() {
+      var links = [];
+      var link = {
+        id: 'conceptulization',
+        name: 'Conceptulization',
+        description: 'Conceptulization',
+        href: getMainUrl('/tc?module=ViewReviewAuctions&pt=23'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'specification',
+        name: 'Specification',
+        description: 'Specification',
+        href: getMainUrl('/tc?module=ViewReviewAuctions&pt=6'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'architecture',
+        name: 'Architecture',
+        description: 'Architecture',
+        href: getMainUrl('/tc?module=ViewReviewAuctions&pt=7'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'componentdesign',
+        name: 'Component Design',
+        description: 'Component Design',
+        href: getMainUrl('/tc?module=ViewReviewAuctions&pt=1'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'componentdevelopment',
+        name: 'Component Development',
+        description: 'Component Development',
+        href: getMainUrl('/tc?module=ViewReviewAuctions&pt=2'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'assembly',
+        name: 'Assembly',
+        description: 'Assembly',
+        href: getMainUrl('/tc?module=ViewReviewAuctions&pt=14'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'first2finish',
+        name: 'First2Finish',
+        description: 'First2Finish',
+        href: getMainUrl('/tc?module=ViewReviewAuctions&pt=38'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'code',
+        name: 'Code',
+        description: 'Code',
+        href: getMainUrl('/tc?module=ViewReviewAuctions&pt=39'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'testsuites',
+        name: 'Test Suites',
+        description: 'Test Suites',
+        href: getMainUrl('/tc?module=ViewReviewAuctions&pt=13'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'report',
+        name: 'Report',
+        description: 'Report',
+        href: getMainUrl('/tc?module=ViewReviewAuctions&pt=36'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'uiprototype',
+        name: 'UI Prototype',
+        description: 'UI Prototype',
+        href: getMainUrl('/tc?module=ViewReviewAuctions&pt=19'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'riabuild',
+        name: 'Ria Build',
+        description: 'Ria Build',
+        href: getMainUrl('/tc?module=ViewReviewAuctions&pt=24'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'contentcreation',
+        name: 'Content Creation',
+        description: 'Content Creation',
+        href: getMainUrl('/tc?module=ViewReviewAuctions&pt=35'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'testscenarios',
+        name: 'Test Scenarios',
+        description: 'Test Scenarios',
+        href: getMainUrl('/tc?module=ViewReviewAuctions&pt=26'),
+        children: []
+      };
+      links.push(link);
+      link = {
+        id: 'bughunt',
+        name: 'Bug Hunt',
+        description: 'Bug Hunt',
+        href: getMainUrl('/tc?module=ViewReviewAuctions&pt=9'),
         children: []
       };
       links.push(link);
