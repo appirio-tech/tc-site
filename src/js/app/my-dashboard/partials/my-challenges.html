@@ -45,7 +45,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-show="vm.myChallenges.length > 0 && !vm.loading" ng-repeat="challenge in vm.myChallenges">
+          <tr ng-show="vm.visibleChallenges.length > 0 && !vm.loading" ng-repeat="challenge in vm.visibleChallenges">
             <td class="{{challenge.challengeCommunity}} hidden-xs">&nbsp;</td>
             <td class="hidden-xs">{{challenge.firstPlacePrize | currency}}</td>
             <td rel="challenge-name">
@@ -59,7 +59,7 @@
           <tr ng-show="vm.loading">
             <td colspan="5"><div class="widget-loading"></div></td>
           </tr>
-          <tr ng-show="vm.myChallenges.length === 0">
+          <tr ng-show="vm.visibleChallenges.length === 0">
             <td colspan="5">You don't have any active challenges</td>
           </tr>
         </tbody>
