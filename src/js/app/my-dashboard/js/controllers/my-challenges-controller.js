@@ -99,7 +99,7 @@
       // uncomment following line when API supports paging
       // vm.visibleChallenges = data;
       // remove following line when API supports paging
-      vm.visibleChallenges = data.slice(vm.firstRecordIndex, vm.lastRecordIndex + 1);
+      vm.visibleChallenges = data.slice(vm.firstRecordIndex - 1, vm.lastRecordIndex);
     }
 
     /**
