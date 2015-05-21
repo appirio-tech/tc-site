@@ -50,7 +50,7 @@
         var pageIndex = request && request.pageIndex ? request.pageIndex : 1;
         var pageSize = request && request.pageSize ? request.pageSize : 10;
         var sortColumn  = request && request.sortColumn ? request.sortColumn : 'submissionEndDate';
-        var sortOrder  = request && request.sortOrder ? request.sortOrder : 'desc';
+        var sortOrder  = request && request.sortOrder ? request.sortOrder : 'asc';
 
         service.request = request;
 

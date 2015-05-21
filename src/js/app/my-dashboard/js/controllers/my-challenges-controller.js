@@ -1,6 +1,7 @@
 /**
  * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
  * @author mdesiderio
+ * @author vikas.agarwal@appirio.com
  * @version 1.0
  *
  * Controller for the my challenges widget
@@ -33,7 +34,7 @@
     vm.pageIndex = 1;
     vm.pageSize = 5;
     vm.sortColumn = 'submissionEndDate';
-    vm.sortOrder = 'desc';
+    vm.sortOrder = 'asc';
     vm.totalPages = 1;
     vm.totalRecords = vm.totalPages * vm.pageSize;
     vm.firstRecordIndex = (vm.pageIndex - 1) * vm.pageSize + 1;
@@ -48,12 +49,17 @@
 
     // activate controller
     if (AuthService.isLoggedIn === true) {
-      activate();
+      getChallenges();
     } else {
       return false;
     }
 
-    function activate() {
+    /**
+     * getChallenges Fetches user's active challenges from the API
+     *
+     * @return {Object} promise of API call
+     */
+    function getChallenges() {
       initPaging();
       var searchRequest = {
         pageIndex: vm.pageIndex,
@@ -80,19 +86,47 @@
       });
     }
 
+    /**
+     * changePage changes page in the result set
+     *
+     * @param {JSON} pageLink page link object
+     *
+     * @return {Object} promise of API call with updated pageIndex
+     */
     function changePage(pageLink) {
       vm.pageIndex = pageLink.val;
-      activate();
+      getChallenges();
     }
 
+    /**
+     * isCurrentPage checks if the give page link is the current page
+     *
+     * @param {JSON} pageLink page link object
+     *
+     * @return {Boolean} true if the given page is the current page, false otherwise
+     */
     function isCurrentPage (pageLink) {
       return pageLink.val === vm.pageIndex;
     }
 
+    /**
+     * getCurrentPageClass Identifies the css class to be used for the given page link
+     *
+     * @param {JSON} pageLink page link object
+     *
+     * @return {String}
+     */
     function getCurrentPageClass(pageLink) {
       return isCurrentPage(pageLink) ? 'current-page' : '';
     }
 
+    /**
+     * sort sorts the results based on the given column
+     *
+     * @param {String} column page link object
+     *
+     * @return {Object} promise of API call with updated sort params
+     */
     function sort(column) {
       if (vm.sortColumn === column) {
         vm.sortOrder = vm.sortOrder === 'desc' ? 'asc' : 'desc';
@@ -103,6 +137,9 @@
       activate();
     }
 
+    /**
+     * initPaging Initializes the paging
+     */
     function initPaging() {
       vm.pageLinks = [
         {text: "Prev", val: vm.pageIndex - 1},

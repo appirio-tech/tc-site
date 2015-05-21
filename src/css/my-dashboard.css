@@ -375,6 +375,11 @@
   height: 12px;
 
 }
+
+.my-challenges th[rel="sortable"] {
+  cursor: pointer;
+}
+
 .my-challenges th .sort.asc {
   background: #f5f5f5 url("../i/sort-arrows.png") no-repeat center -94px;
 }
@@ -421,6 +426,25 @@
 
 .upcoming-srms-div th {
   text-align: center;
+}
+
+.upcoming-srms-div th .sort,
+.upcoming-srms-div th .sort-icon-place {
+  width: 100%;
+  height: 12px;
+
+}
+
+.upcoming-srms-div th[rel="sortable"] {
+  cursor: pointer;
+}
+
+.upcoming-srms-div th .sort.asc {
+  background: #f5f5f5 url("../i/sort-arrows.png") no-repeat center -94px;
+}
+
+.upcoming-srms-div th .sort.desc {
+  background: #f5f5f5 url("../i/sort-arrows.png") no-repeat center 6px;
 }
 
 .upcoming-srms-div table > tbody> tr > td {

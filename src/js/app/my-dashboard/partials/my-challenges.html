@@ -22,15 +22,15 @@
               <span>Type</span>
               <div class="sort-icon-place"></div>
             </th>
-            <th class="hidden-xs" ng-click="vm.sort('firstPlacePrize')">
+            <th rel="sortable" class="hidden-xs" ng-click="vm.sort('firstPlacePrize')">
               <span>First Prize</span>
               <div class="sort-icon-place" ng-class="{sort: vm.sortColumn == 'firstPlacePrize', desc: vm.sortOrder == 'desc', asc: vm.sortOrder == 'asc'} "></div>
             </th>
-            <th ng-click="vm.sort('challengeName')">
+            <th rel="sortable" ng-click="vm.sort('challengeName')">
               <span>Challenge</span>
               <div class="sort-icon-place" ng-class="{sort: vm.sortColumn == 'challengeName', desc: vm.sortOrder == 'desc', asc: vm.sortOrder == 'asc'} "></div>
             </th>
-            <th class="hidden-sm hidden-md hidden-lg" ng-click="vm.sort('firstPlacePrize')">
+            <th rel="sortable" class="hidden-sm hidden-md hidden-lg" ng-click="vm.sort('firstPlacePrize')">
               <span>Ist Prize</span>
               <div class="sort-icon-place" ng-class="{sort: vm.sortColumn == 'firstPlacePrize', desc: vm.sortOrder == 'desc', asc: vm.sortOrder == 'asc'} "></div>
             </th>
@@ -38,7 +38,7 @@
               <span>Roles</span>
               <div class="sort-icon-place"></div>
             </th>
-            <th class="hidden-xs" ng-click="vm.sort('submissionEndDate')">
+            <th rel="sortable" class="hidden-xs" ng-click="vm.sort('submissionEndDate')">
               <span>Submit By</span>
               <div class="sort-icon-place" ng-class="{sort: vm.sortColumn == 'submissionEndDate', desc: vm.sortOrder == 'desc', asc: vm.sortOrder == 'asc'} "></div>
             </th>
