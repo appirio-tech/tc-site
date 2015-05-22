@@ -237,6 +237,7 @@
 
     // Global variable available from ng-page-challenge-details.php
     challengeName = challenge.challengeName;
+    reviewScorecardId = challenge.reviewScorecardId;
     vm.isDesign = (challengeType === 'design');
     vm.allowDownloads = challenge.currentPhaseName === 'Registration' || challenge.currentPhaseName === 'Submission';
 
@@ -363,9 +364,11 @@
     if (vm.challenge.reviewType == 'PEER') {
       vm.reviewStyle = 'Peer Review';
       vm.reviewStyleTooltip = 'Your peers performs a thorough review based on scorecards.';
+      vm.reviewScorecardLink = '/reviews/index.html#/scorecard/' + reviewScorecardId;
     } else {
       vm.reviewStyle = 'Community Review Board';
       vm.reviewStyleTooltip = 'Community Review Board performs a thorough review based on scorecards.';
+      vm.reviewScorecardLink = 'http://software.topcoder.com/review/actions/ViewScorecard.do?method=viewScorecard&scid=' + reviewScorecardId;
     }
 
     vm.hasCheckpoints = vm.numCheckpointSubmissions > 0;
