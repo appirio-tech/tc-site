@@ -237,7 +237,7 @@
 
     // Global variable available from ng-page-challenge-details.php
     challengeName = challenge.challengeName;
-    reviewScorecardId = challenge.reviewScorecardId;
+    var reviewScorecardId = challenge.reviewScorecardId;
     vm.isDesign = (challengeType === 'design');
     vm.allowDownloads = challenge.currentPhaseName === 'Registration' || challenge.currentPhaseName === 'Submission';
 
