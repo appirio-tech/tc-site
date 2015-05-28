@@ -381,14 +381,14 @@
                       Scorecard</a></p>
 
                   <p ng-show="!CD.isDesign && CD.challenge.reviewScorecardId"><a
-                      href="http://software.topcoder.com/review/actions/ViewScorecard.do?method=viewScorecard&scid={{CD.challenge.reviewScorecardId}}">Review
+                      href="{{CD.reviewScorecardLink}}" target="_blank">Review
                       Scorecard</a></p>
                 </div>
 
               </div>
 
             </li>
-            <li ng-hide="CD.isDesign" class="slide">
+            <li ng-hide="CD.isDesign || CD.isPeerReviewed" class="slide">
 
               <div class="umltoolLinks slideBox">
                 <h3>Get the UML Tool:</h3>
