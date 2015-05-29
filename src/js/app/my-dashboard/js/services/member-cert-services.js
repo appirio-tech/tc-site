@@ -29,7 +29,16 @@
      * @returns promise
      */
     service.getMemberRegistration = function(userId, programId) {
-      return service.one("member-cert/registrations", userId).one("programs", programId).get();
+      return service.one("memberCert/registrations", userId).one("programs", programId).get();
+    }
+
+    /**
+     * peerBadgeCompleted Retrieves the status of the logged in member for the peer badge
+     * @param programId string id of the program
+     * @returns promise
+     */
+    service.peerBadgeCompleted = function(programId) {
+      return service.all("badges").one("isCompleted").get({filter: 'eventId=' + programId});
     }
 
     /**
@@ -39,7 +48,7 @@
      * @returns promise
      */
     service.registerMember = function(userId, programId) {
-      return service.one("member-cert/registrations", userId).one("programs", programId).post();
+      return service.one("memberCert/registrations", userId).one("programs", programId).post();
     }
 
     return service;    

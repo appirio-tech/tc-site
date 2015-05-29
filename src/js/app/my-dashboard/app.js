@@ -31,6 +31,7 @@
   .constant("HELP_APP_URL", tcconfig.helpAppURL)
   .constant("PHOTO_LINK_LOCATION", tcconfig.photoLinkBaseURL)
   .constant('SWIFT_PROGRAM_ID', tcconfig.swiftProgramId)
+  .constant('SWIFT_PROGRAM_URL', tcconfig.swiftProgramURL)
   .factory('Restangular3', Restangular3)
   .run(['$rootScope', '$location', '$window', 'AuthService', run]);
 

@@ -223,12 +223,12 @@
 }
 
 .member-program-content .panel-body {
-    /*background: -webkit-linear-gradient(360deg, rgb(15, 16, 31), rgb(101,220,85), rgb(164, 13, 62));*/
     height: 377px;
-    /*margin-left: 50px;*/
     overflow: hidden;
-    background: url('../i/swift_background_hpattern.jpg') repeat-x center center;
-    color: #eeeeee;
+}
+
+.member-program-content img[rel="program-logo"] {
+  height: 80px;
 }
 
 .member-program-content .display-image {
@@ -241,8 +241,7 @@
 }
 
 .member-program-content .description {
-  /*float: left;
-  width: 50%;*/
+  text-align: justify;
 }
 
 .member-program-content .signup {
@@ -257,54 +256,66 @@
 .member-program-content *[rel="badges"] *[rel="badge"] div[rel="image"] {
   min-width: 30px;
   min-height: 30px;
-  background-size: cover;
+  background-image: url('../i/member-program/sprite.png');
+  background-repeat: no-repeat;
+  zoom: 0.5;
 }
 
-.member-program-content *[rel="badges"] *[rel="badge"].badge1 div[rel="image"] {
-  background-image: url("../i/member-program/get-ready-48.png");
-  background-repeat: no-repeat;
+.member-program-content *[rel="badges"] *[rel="badge"].participant div[rel="image"] {
+  background-position: -112px 0px;
+  width: 76px;
+  height: 76px;
 }
 
-.member-program-content *[rel="badges"] *[rel="badge"].badge2 div[rel="image"] {
-  background-image: url("../i/member-program/step-one-48.png");
-  background-repeat: no-repeat;
+.member-program-content *[rel="badges"] *[rel="badge"].education div[rel="image"] {
+  background-position: -112px -78px;
+  width: 74px;
+  height: 74px;
 }
 
-.member-program-content *[rel="badges"] *[rel="badge"].badge3 div[rel="image"] {
-  background-image: url("../i/member-program/getting-ready-48.png");
-  background-repeat: no-repeat;
+.member-program-content *[rel="badges"] *[rel="badge"].peer div[rel="image"] {
+  background-position: 0px -83px;
+  width: 66px;
+  height: 90px;
 }
 
-.member-program-content *[rel="badges"] *[rel="badge"].badge4 div[rel="image"] {
-  background-image: url("../i/member-program/on-starting-line-48.png");
-  background-repeat: no-repeat;
+.member-program-content *[rel="badges"] *[rel="badge"].challenge div[rel="image"] {
+  background-position: -190px -76px;
+  width: 54px;
+  height: 74px;
 }
 
-.member-program-content *[rel="badges"] *[rel="badge"].badge5 div[rel="image"] {
-  background-image: url("../i/member-program/break-the-finish-48.png");
-  background-repeat: no-repeat;
+.member-program-content *[rel="badges"] *[rel="badge"].high-performer div[rel="image"] {
+  background-position: -190px 0px;
+  width: 63px;
+  height: 74px;
 }
 
-.member-program-content *[rel="badges"] *[rel="badge"].badge6 div[rel="image"] {
-  background-image: url("../i/member-program/get-certified-48.png");
-  background-repeat: no-repeat;
+.member-program-content *[rel="badges"] *[rel="badge"].custom div[rel="image"] {
+  background-position: 0px -175px;
+  width: 64px;
+  height: 64px;
 }
 
 .member-program-content *[rel="badges"] *[rel="badge"] div[rel="name"] {
-  margin-top: 5px;
   margin-left: 5px;
+  line-height: 37px; /* sync with height of the badge images */
 }
 
 .member-program-content *[rel="badges"] *[rel="badge-status"] {
-  padding-left: 20px;
-  margin-top: 5px;
+  line-height: 37px; /* sync with height of the badge images */
+}
+.member-program-content *[rel="badges"] *[rel="badge-status"] *[rel="image"] {
+  width: 20px;
+  height: 20px;
+  margin-top: 8px; /* (height(badge) - height(checkbox)) / 2 = (37 - 20)/2 */
 }
 
-.member-program-content *[rel="badges"] *[rel="badge-status"].pending {
+.member-program-content *[rel="badges"] *[rel="badge-status"].pending *[rel="image"] {
   background: url("../i/check-box.png") no-repeat 0 0px;
 }
 
-.member-program-content *[rel="badges"] *[rel="badge-status"].completed {
+.member-program-content *[rel="badges"] *[rel="badge-status"].completed *[rel="image"] {
   background: url("../i/check-box.png") no-repeat 0 -20px;
 }
 
@@ -360,8 +371,30 @@
   background: url("../i/ico-track-design.png") no-repeat center center;
 }
 
-.my-challenges th {
+.my-challenges table > thead > tr > th {
   text-align: center;
+  white-space: nowrap;
+  padding-left: 13px;
+  padding-right: 13px;
+}
+
+.my-challenges th .sort,
+.my-challenges th .sort-icon-place {
+  width: 100%;
+  height: 12px;
+
+}
+
+.my-challenges th[rel="sortable"] {
+  cursor: pointer;
+}
+
+.my-challenges th .sort.asc {
+  background: #f5f5f5 url("../i/sort-arrows.png") no-repeat center -94px;
+}
+
+.my-challenges th .sort.desc {
+  background: #f5f5f5 url("../i/sort-arrows.png") no-repeat center 6px;
 }
 
 .my-challenges table > tbody> tr > td {
@@ -376,6 +409,7 @@
 
 .my-challenges td[rel="challenge-name"] {
   text-align: left;
+  /*max-width: 320px;*/
 }
 
 .my-challenges td[rel="challenge-name"] > a {
@@ -401,6 +435,25 @@
 
 .upcoming-srms-div th {
   text-align: center;
+}
+
+.upcoming-srms-div th .sort,
+.upcoming-srms-div th .sort-icon-place {
+  width: 100%;
+  height: 12px;
+
+}
+
+.upcoming-srms-div th[rel="sortable"] {
+  cursor: pointer;
+}
+
+.upcoming-srms-div th .sort.asc {
+  background: #f5f5f5 url("../i/sort-arrows.png") no-repeat center -94px;
+}
+
+.upcoming-srms-div th .sort.desc {
+  background: #f5f5f5 url("../i/sort-arrows.png") no-repeat center 6px;
 }
 
 .upcoming-srms-div table > tbody> tr > td {

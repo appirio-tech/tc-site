@@ -2,7 +2,7 @@
   <div class="profile-left col-xs-12 col-sm-2">
     <div class="profile-image"><img width="130px" src="{{vm.photoLink}}"></div>
     <div rel="upload-photo" ng-show="vm.showUploadPhotoLink"><a href="{{vm.uploadPhotoLink}}">Upload Photo</a></div>
-    <div class="handle" style="{{vm.ratingColor}}">[{{vm.profile.handle}}]</div>
+    <div class="handle" style="{{vm.ratingColor}}">{{vm.profile.handle}}</div>
     <div class="doj">Joined: <span ng-bind="vm.profile.memberSince | date"></span></div>
   </div>
   <div class="profile-right col-xs-12 col-sm-10">
