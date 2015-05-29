@@ -32,7 +32,7 @@
           <li class="margin-vert-2x" ng-repeat="badge in vm.badges">
             <div rel="badge" class="pull-left {{badge.id}}">
               <div rel="image" class="pull-left"></div>
-              <div rel="name" class="pull-left" ng-bind="badge.name + ' Badge'"></div>
+              <div rel="name" class="pull-left" ng-bind="badge.name"></div>
             </div>
             <div rel="badge-status" ng-show="badge.enabled" class="pull-right" ng-class="{pending: !badge.completed, completed: badge.completed}">
               <div rel="image" class="pull-right margin-left-1x"></div>
