@@ -29,58 +29,17 @@
       <div class="description margin-top-3x">
         <!-- TODO make badge list dynamic -->
         <ul rel="badges" class="margin-top-3x">
-          <li class="margin-vert-2x">
-            <div rel="badge" class="pull-left badge1">
+          <li class="margin-vert-2x" ng-repeat="badge in vm.badges">
+            <div rel="badge" class="pull-left {{badge.id}}">
               <div rel="image" class="pull-left"></div>
-              <div rel="name" class="pull-left">Participant Badge</div>
+              <div rel="name" class="pull-left" ng-bind="badge.name + ' Badge'"></div>
             </div>
-            <div rel="badge-status" class="pull-right completed">
+            <div rel="badge-status" ng-show="badge.enabled" class="pull-right" ng-class="{pending: !badge.completed, completed: badge.completed}">
               <div rel="image" class="pull-right margin-left-1x"></div>
-              <div rel="text" class="pull-right">Completed</div>
+              <div rel="text" class="pull-right" ng-bind="badge.completed ? 'Completed' : 'Pending'"></div>
             </div>
-            <div class="clearfix"></div>
-          </li>
-          <li class="margin-vert-2x">
-            <div rel="badge" class="pull-left badge2">
-              <div rel="image" class="pull-left"></div>
-              <div rel="name" class="pull-left">Education Badge</div>
-            </div>
-            <div rel="badge-status" class="pull-right pending">
-              <div rel="image" class="pull-right margin-left-1x hidden"></div>
-              <div rel="text" class="pull-right">Coming Soon</div>
-            </div>
-            <div class="clearfix"></div>
-          </li>
-          <li class="margin-vert-2x">
-            <div rel="badge" class="pull-left badge3">
-              <div rel="image" class="pull-left"></div>
-              <div rel="name" class="pull-left">Peer Badge</div>
-            </div>
-            <div rel="badge-status" class="pull-right pending">
-              <div rel="image" class="pull-right margin-left-1x"></div>
-              <div rel="text" class="pull-right">Pending</div>
-            </div>
-            <div class="clearfix"></div>
-          </li>
-          <li class="margin-vert-2x">
-            <div rel="badge" class="pull-left badge4">
-              <div rel="image" class="pull-left"></div>
-              <div rel="name" class="pull-left">Challenge Badge</div>
-            </div>
-            <div rel="badge-status" class="pull-right pending">
-              <div rel="image" class="pull-right margin-left-1x hidden"></div>
-              <div rel="text" class="pull-right">Coming Soon</div>
-            </div>
-            <div class="clearfix"></div>
-          </li>
-          <li class="margin-vert-2x">
-            <div rel="badge" class="pull-left badge5">
-              <div rel="image" class="pull-left"></div>
-              <div rel="name" class="pull-left">High Performer Badge</div>
-            </div>
-            <div rel="badge-status" class="pull-right pending">
-              <div rel="image" class="pull-right margin-left-1x hidden"></div>
-              <div rel="text" class="pull-right">Coming Soon</div>
+            <div rel="badge-status" ng-show="!badge.enabled" class="pull-right">
+              <span>Coming Soon</span>
             </div>
             <div class="clearfix"></div>
           </li>

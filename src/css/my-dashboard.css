@@ -261,37 +261,37 @@
   zoom: 0.5;
 }
 
-.member-program-content *[rel="badges"] *[rel="badge"].badge1 div[rel="image"] {
+.member-program-content *[rel="badges"] *[rel="badge"].participant div[rel="image"] {
   background-position: -112px 0px;
   width: 76px;
   height: 76px;
 }
 
-.member-program-content *[rel="badges"] *[rel="badge"].badge2 div[rel="image"] {
+.member-program-content *[rel="badges"] *[rel="badge"].education div[rel="image"] {
   background-position: -112px -78px;
   width: 74px;
   height: 74px;
 }
 
-.member-program-content *[rel="badges"] *[rel="badge"].badge3 div[rel="image"] {
+.member-program-content *[rel="badges"] *[rel="badge"].peer div[rel="image"] {
   background-position: 0px -83px;
   width: 66px;
   height: 90px;
 }
 
-.member-program-content *[rel="badges"] *[rel="badge"].badge4 div[rel="image"] {
+.member-program-content *[rel="badges"] *[rel="badge"].challenge div[rel="image"] {
   background-position: -190px -76px;
   width: 54px;
   height: 74px;
 }
 
-.member-program-content *[rel="badges"] *[rel="badge"].badge5 div[rel="image"] {
+.member-program-content *[rel="badges"] *[rel="badge"].high-performer div[rel="image"] {
   background-position: -190px 0px;
   width: 63px;
   height: 74px;
 }
 
-.member-program-content *[rel="badges"] *[rel="badge"].badge6 div[rel="image"] {
+.member-program-content *[rel="badges"] *[rel="badge"].custom div[rel="image"] {
   background-position: 0px -175px;
   width: 64px;
   height: 64px;

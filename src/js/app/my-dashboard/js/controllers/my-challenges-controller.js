@@ -49,7 +49,7 @@
     vm.getCurrentPageClass = getCurrentPageClass;
     vm.sort = sort;
 
-    // activate controller
+    // getChallenges controller
     if (AuthService.isLoggedIn === true) {
       getChallenges();
     } else {
@@ -150,7 +150,7 @@
         vm.sortOrder = 'desc';
       }
       vm.sortColumn = column;
-      activate();
+      getChallenges();
     }
 
     /**

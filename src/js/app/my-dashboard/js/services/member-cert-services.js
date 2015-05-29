@@ -33,6 +33,15 @@
     }
 
     /**
+     * peerBadgeCompleted Retrieves the status of the logged in member for the peer badge
+     * @param programId string id of the program
+     * @returns promise
+     */
+    service.peerBadgeCompleted = function(programId) {
+      return service.all("badges").one("isCompleted").get({filter: 'eventId=' + programId});
+    }
+
+    /**
      * registerMember Registers the given member for the given program.
      * @param userId string id of the member to be registered
      * @param programId string id of the program to be registered against
