@@ -19,7 +19,7 @@
    * Inject dependencies
    * @type {string[]}
    */
-  MemberProgramCtrl.$inject = ['$scope', 'AuthService', 'MemberCertService', 'SWIFT_PROGRAM_ID'];
+  MemberProgramCtrl.$inject = ['$scope', 'AuthService', 'MemberCertService', 'SWIFT_PROGRAM_ID', 'SWIFT_PROGRAM_URL'];
 
   /**
    * Controller implementation
@@ -27,12 +27,13 @@
    * @param $scope
    * @constructor
    */
-  function MemberProgramCtrl($scope, AuthService, MemberCertService, SWIFT_PROGRAM_ID) {
+  function MemberProgramCtrl($scope, AuthService, MemberCertService, SWIFT_PROGRAM_ID, SWIFT_PROGRAM_URL) {
     var vm = this;
     vm.title = 'iOS Developer Community';
     vm.user = null;
     vm.loading = true;
     vm.loadingMessage = "";
+    vm.programUrl = SWIFT_PROGRAM_URL;
     vm.program = null;
     vm.registration = null;
     vm.registerUser = registerUser;
