@@ -48,6 +48,7 @@
     vm.isCurrentPage = isCurrentPage;
     vm.getCurrentPageClass = getCurrentPageClass;
     vm.sort = sort;
+    vm.renderWidget = false;
 
     // getChallenges controller
     if (AuthService.isLoggedIn === true) {
@@ -83,7 +84,7 @@
           processChallengesResponse(data);
           // stop loading icon
           vm.loading = false;
-
+          vm.renderWidget = vm.myChallenges && vm.myChallenges.length > 0;
       });
     }
 

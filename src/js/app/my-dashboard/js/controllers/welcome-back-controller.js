@@ -45,7 +45,7 @@
     vm.statsToShow = 2;
 
     // parent dashboard controller
-    var db = $scope.$parent.vm;
+    var db = $scope.$parent.db;
 
     // activate controller
     if (AuthService.isLoggedIn === true) {
