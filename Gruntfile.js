@@ -49,6 +49,7 @@ module.exports = function(grunt) {
     helpAppURL: grunt.option('help-app-url') || 'help.topcoder.com',
     forumsAppURL: grunt.option('forums-app-url') || 'forums.topcoder.com',
     swiftProgramId: grunt.option('swift-program-id') || 3445,
+    swiftProgramURL: grunt.option('swift-program-url') || 'http://apple.topcoder.com',
 
     // only used on wp setup
     useGz: grunt.option('use-gz') || false,
@@ -59,7 +60,7 @@ module.exports = function(grunt) {
     cbURL: grunt.option('cb-url') || 'https://coderbits.com',
 
     blogRSSFeedURL: grunt.option('blog-rss-feed') || 'https://www.topcoder.com/feed/?post_type=blog',
-    photoLinkBaseURL: grunt.option('photo-link-base') || 'http://community.topcoder.com',
+    photoLinkBaseURL: grunt.option('photo-link-base') || 'https://www.topcoder.com',
 
     marketingMessageMyDashURL: grunt.option('marketing-message-my-dash-url') || 'https://banners-r-us.herokuapp.com/serve?size=650x150'
   };

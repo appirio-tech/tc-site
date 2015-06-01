@@ -31,6 +31,8 @@
   function MyChallengesCtrl($scope, AuthService, ChallengeService) {
     var vm = this;
     vm.loading = true;
+    vm.myChallenges = [];
+    vm.visibleChallenges = [];
     vm.pageIndex = 1;
     vm.pageSize = 5;
     vm.sortColumn = 'submissionEndDate';
@@ -47,7 +49,7 @@
     vm.getCurrentPageClass = getCurrentPageClass;
     vm.sort = sort;
 
-    // activate controller
+    // getChallenges controller
     if (AuthService.isLoggedIn === true) {
       getChallenges();
     } else {
@@ -69,21 +71,35 @@
       };
       // show loading icon
       vm.loading = true;
+      // remove following if block when API supports paging
+      if (vm.pageIndex > 1) {
+        processChallengesResponse(vm.myChallenges);
+        vm.loading = false;
+        return;
+      }
       // Fetch my active
       return ChallengeService.getMyActiveChallenges(searchRequest)
         .then(function(data) {
-          if (data.pagination) {
-            vm.totalPages = Math.ceil(data.pagination.total / vm.pageSize);
-            vm.totalRecords = data.pagination.total;
-            vm.firstRecordIndex = (vm.pageIndex - 1) * vm.pageSize + 1;
-            vm.lastRecordIndex = vm.pageIndex * vm.pageSize;
-            vm.lastRecordIndex = vm.lastRecordIndex > vm.totalRecords ? vm.totalRecords : vm.lastRecordIndex;
-          }
-          vm.myChallenges = data;
+          processChallengesResponse(data);
           // stop loading icon
           vm.loading = false;
 
       });
+    }
+
+    function processChallengesResponse(data) {
+      if (data.pagination) {
+        vm.totalPages = Math.ceil(data.pagination.total / vm.pageSize);
+        vm.totalRecords = data.pagination.total;
+        vm.firstRecordIndex = (vm.pageIndex - 1) * vm.pageSize + 1;
+        vm.lastRecordIndex = vm.pageIndex * vm.pageSize;
+        vm.lastRecordIndex = vm.lastRecordIndex > vm.totalRecords ? vm.totalRecords : vm.lastRecordIndex;
+      }
+      vm.myChallenges = data;
+      // uncomment following line when API supports paging
+      // vm.visibleChallenges = data;
+      // remove following line when API supports paging
+      vm.visibleChallenges = data.slice(vm.firstRecordIndex - 1, vm.lastRecordIndex);
     }
 
     /**
@@ -134,7 +150,7 @@
         vm.sortOrder = 'desc';
       }
       vm.sortColumn = column;
-      activate();
+      getChallenges();
     }
 
     /**
