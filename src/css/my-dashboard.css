@@ -111,6 +111,11 @@
   background-position: 50% 50%;
   color: #fff;
 }
+@media only screen and (min-width: 768px) {
+  .member-profile-header {
+    padding: 15px 0;
+  }
+}
 
 .member-profile {
 }
