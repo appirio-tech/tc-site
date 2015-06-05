@@ -269,7 +269,7 @@
                   <th class="subDateColumn">
                     <div>Submission Date</div>
                   </th>
-                  <th class="successIconColumn">
+                  <th class="successIconColumn" ng-show="!CD.isPeerReviewed">
                     <div>Result</div>
                   </th>
                 </tr>
@@ -290,7 +290,7 @@
                   <td ng-class="CD.challengeType == 'design' ? 'regDateColumnDesign' : 'regDateColumn'" ng-bind="registrant.registrationDate | formatDate:2"></td>
                   <td ng-class="CD.challengeType == 'design' ? 'subDateColumnDesign' : 'subDateColumn'" ng-bind="registrant.submissionDate | formatDate:2"></td>
                   <!--bugfix refactored-challenge-details-68: added missing icons -->
-                  <td class="successIconColumn">
+                  <td class="successIconColumn" ng-show="!CD.isPeerReviewed">
                     <i class="{{registrant.winner ? 'successIcon' : registrant.submissionStatus.match('Failed') ? 'failureIcon' : ''}}"
                        title="{{registrant.winner ? 'Pass' : registrant.submissionStatus.match('Failed') ? 'Fail' : ''}}"></i>
                   </td>
