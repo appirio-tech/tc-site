@@ -65,7 +65,10 @@ module.exports = function(grunt) {
   };
 
   tcconfig.domain = function() {
-    var domainSplits = tcconfig.mainURL.split('.');
+    // remove "port" part
+    // var domainSplits = tcconfig.mainURL.split('.');
+    var baseURL = tcconfig.mainURL.replace(/:[0-9]+/, ''),
+        domainSplits = baseURL.split('.');
     return domainSplits[domainSplits.length-2] + "." + domainSplits[domainSplits.length-1];
   }();
 

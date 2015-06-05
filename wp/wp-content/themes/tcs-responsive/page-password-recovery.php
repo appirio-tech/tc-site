@@ -16,23 +16,23 @@ $redirect 	= false;
 $tokenObj 	= null;
 if(trim($handle)!='') {
 	$response = generateResetToken($handle);
-	
 	$obj = json_decode($response['body']);
-    if ($response['response']['code']== 200) {
+	
+	if ($response['response']['code']== 200) {
 		$tokenObj = $obj;
 	} else {
-		$msg = $obj->error->details;
+		$msg = $obj->result->content;
 	}
-	
 }
 
 if($tokenObj!=null) {
-	if ( $tokenObj->successful ) {
-		$changePasswordLink = $changePasswordPage;
-		$msg = "Sit tight! A confirmation code is on its way to your email.";
-		$redirect = true;		
-	} elseif( isset($tokenObj->socialProvider) ) {
-		$msg = 'It looks like you have a social account associated with your profile. You can login using your ' . $tokenObj->socialProvider . ' account, or click <a href="/password-reset">here</a> to reset your password.';
+	// COR-119: v3 format
+	if ( isset($tokenObj->result->content->socialProfile) ) {
+		$msg = 'It looks like you have a social account associated with your profile. You can login using your ' . $tokenObj->result->content->socialProfile->provider . ' account, or click <a href="/password-reset">here</a> to reset your password.';
+	} else {
+                $changePasswordLink = $changePasswordPage;
+                $msg = "Sit tight! A confirmation code is on its way to your email.";
+                $redirect = true;
 	}
 }
 /**
