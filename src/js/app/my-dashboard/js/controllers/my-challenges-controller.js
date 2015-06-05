@@ -48,8 +48,9 @@
     vm.isCurrentPage = isCurrentPage;
     vm.getCurrentPageClass = getCurrentPageClass;
     vm.sort = sort;
+    vm.renderWidget = false;
 
-    // activate controller
+    // getChallenges controller
     if (AuthService.isLoggedIn === true) {
       getChallenges();
     } else {
@@ -71,19 +72,13 @@
       };
       // show loading icon
       vm.loading = true;
-      // remove following if block when API supports paging
-      if (vm.pageIndex > 1) {
-        processChallengesResponse(vm.myChallenges);
-        vm.loading = false;
-        return;
-      }
       // Fetch my active
       return ChallengeService.getMyActiveChallenges(searchRequest)
         .then(function(data) {
           processChallengesResponse(data);
           // stop loading icon
           vm.loading = false;
-
+          vm.renderWidget = vm.myChallenges && vm.myChallenges.length > 0;
       });
     }
 
@@ -150,7 +145,7 @@
         vm.sortOrder = 'desc';
       }
       vm.sortColumn = column;
-      activate();
+      getChallenges();
     }
 
     /**

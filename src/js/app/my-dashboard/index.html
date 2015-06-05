@@ -1,6 +1,6 @@
 @@header
 
-<div ng-show="vm.loggedIn && vm.user" class="content">
+<div ng-show="db.loggedIn && db.user" class="content">
   <style>
     /* CSS to override bootstrap and existing css conflicts*/
     body {
@@ -32,7 +32,7 @@
   </style>
   <div class="jumbotron my-dashboard-container member-profile-header">
     <div class="container">
-      <div class="welcome-back" ng-include="vm.getTemplateURL('welcome-back.html')">
+      <div class="welcome-back" ng-include="db.getTemplateURL('welcome-back.html')">
     </div>
     </div>
   </div>
@@ -41,21 +41,21 @@
     <div class="clearfix visible-md-block visible-lg-block"></div>
     <div class="row">
       <div class="col-xs-12 col-sm-8 col-sm-push-4 col-md-9 col-md-push-3">
-        <!--<div class="my-dashboard-widget marketing-message" ng-include="vm.getTemplateURL('marketing-message.html')">
+        <!--<div class="my-dashboard-widget marketing-message" ng-include="db.getTemplateURL('marketing-message.html')">
         </div>-->
-        <div class="my-dashboard-widget my-challenges" ng-include="vm.getTemplateURL('my-challenges.html')">
+        <div class="my-dashboard-widget my-challenges" ng-include="db.getTemplateURL('my-challenges.html')" ng-controller="MyChallengesCtrl as vm" ng-show="vm.renderWidget">
         </div>
-        <div class="my-dashboard-widget srm-gadget" ng-include="vm.getTemplateURL('upcaming-srms.html')">
+        <div class="my-dashboard-widget srm-gadget" ng-include="db.getTemplateURL('upcaming-srms.html')">
         </div>
       </div>
       <div class="col-xs-12 col-sm-4 col-sm-pull-8 col-md-3 col-md-pull-9">
-        <div class="my-dashboard-widget member-program" ng-include="vm.getTemplateURL('member-program.html')">
+        <div class="my-dashboard-widget member-program" ng-include="db.getTemplateURL('member-program.html')">
         </div>
-        <div class="my-dashboard-widget helpful-links" ng-include="vm.getTemplateURL('helpful-links.html')">
+        <div class="my-dashboard-widget helpful-links" ng-include="db.getTemplateURL('helpful-links.html')">
         </div>
-        <div class="my-dashboard-widget subscribe-updates" ng-include="vm.getTemplateURL('subscribe-updates.html')">
+        <div class="my-dashboard-widget subscribe-updates" ng-include="db.getTemplateURL('subscribe-updates.html')">
         </div>
-        <div class="my-dashboard-widget blog-post" ng-include="vm.getTemplateURL('blog-feed.html')">
+        <div class="my-dashboard-widget blog-post" ng-include="db.getTemplateURL('blog-feed.html')">
         </div>
       </div>
     </div>
