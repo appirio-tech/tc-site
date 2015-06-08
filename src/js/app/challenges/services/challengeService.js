@@ -186,6 +186,7 @@
             // Add My Challenges Filter and Improve Filters challenge -- different api endpoint
             return UserChallengesService.getUserChallenges(listType === 'user-past' ? 'past' : 'active', params);
           } else {
+            params.review = 'COMMUNITY,INTERNAL';
             return Restangular.one('challenges').getList(listType, params);
           }
         }
