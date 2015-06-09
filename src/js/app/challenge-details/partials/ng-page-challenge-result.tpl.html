@@ -119,7 +119,7 @@
     <!--#/end competitionDetails-->
   </article>
 
-  <article ng-if="!CD.isDesign && CD.submissions.length > 0 && !CD.challenge.reviewType === 'PEER'">
+  <article ng-if="!CD.isDesign && CD.submissions.length > 0 && !(CD.challenge.reviewType === 'PEER')">
     <div ng-if="CD.challenge.challengeType != 'Code' && CD.firstPlaceSubmission" class="winnerRow">
       <div class="place first">1<span>st</span></div>
       <!-- #/end place-->
