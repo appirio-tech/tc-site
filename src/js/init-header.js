@@ -110,12 +110,10 @@ if (!loginState) {
       }
 
       // set to home page for non modal login
-      if ( $('#mainContent #login').length>0 ) {
-          if ( referer=='' || referer==loginState) {
-              loginState = tcconfig.mainURL;
-          } else {
-              loginState = referer;
-          }
+      if ( referer=='' || referer==loginState) {
+          loginState = tcconfig.mainURL + '/my-dashboard';
+      } else {
+          loginState = referer;
       }
 
       if ( /action=showlogin/i.test( loginState )) {
