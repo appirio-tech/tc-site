@@ -259,47 +259,29 @@
 }
 
 .member-program-content *[rel="badges"] *[rel="badge"] div[rel="image"] {
-  min-width: 30px;
-  min-height: 30px;
-  background-image: url('../i/member-program/sprite.png');
+  width: 48px;
+  height: 48px;
   background-repeat: no-repeat;
-  zoom: 0.5;
 }
 
 .member-program-content *[rel="badges"] *[rel="badge"].participant div[rel="image"] {
-  background-position: -112px 0px;
-  width: 76px;
-  height: 76px;
+  background-image: url('../i/member-program/svg/Member-06.svg');
 }
 
 .member-program-content *[rel="badges"] *[rel="badge"].education div[rel="image"] {
-  background-position: -112px -78px;
-  width: 74px;
-  height: 74px;
+  background-image: url('../i/member-program/svg/Education-06.svg');
 }
 
 .member-program-content *[rel="badges"] *[rel="badge"].peer div[rel="image"] {
-  background-position: 0px -83px;
-  width: 66px;
-  height: 90px;
+  background-image: url('../i/member-program/svg/Show-Your-Skills-06.svg');
 }
 
 .member-program-content *[rel="badges"] *[rel="badge"].challenge div[rel="image"] {
-  background-position: -190px -76px;
-  width: 54px;
-  height: 74px;
+  background-image: url('../i/member-program/svg/Challenger-06.svg');
 }
 
 .member-program-content *[rel="badges"] *[rel="badge"].high-performer div[rel="image"] {
-  background-position: -190px 0px;
-  width: 63px;
-  height: 74px;
-}
-
-.member-program-content *[rel="badges"] *[rel="badge"].custom div[rel="image"] {
-  background-position: 0px -175px;
-  width: 64px;
-  height: 64px;
+  background-image: url('../i/member-program/svg/High-Performer-06.svg');
 }
 
 .member-program-content *[rel="badges"] *[rel="badge"] div[rel="name"] {
