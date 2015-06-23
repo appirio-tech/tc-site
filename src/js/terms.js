@@ -49,7 +49,7 @@ appChallengeTerms = {
               $('.agree-label').hide();
               $('#termSubmit').text('Go Back');
               $('.agreement').removeClass('notAgreed');
-              var finalDest = escape(siteURL + "/challenge-details/terms/" + challengeId + "?challenge-type=" + challengeType + "&termId=" + termsOfUseID + "&cb=" + Math.random());
+              var finalDest = escape(siteURL + "/challenge-details/terms/" + challengeId + "?challenge-type=" + challengeType + "&cb=" + Math.random());
               $.ajax({
                 url: tcconfig.apiURL + '/terms/docusign/viewURL',
                 type: 'POST',
