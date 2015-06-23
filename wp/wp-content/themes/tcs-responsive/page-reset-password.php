@@ -18,18 +18,13 @@ if( $updatePassword=="true" ) {
 	$password = $_POST["password"];
 	
 	$response = changePassword($handle,$password,$unlockCode);
-
+	// COR-119: v3 format
 	$obj = json_decode($response['body']);
-	if( $response['response']['code']==200 ) {		
-		if ( isset($obj->error) ) {
-			$error = $obj->error;
-		} else {
-			$msg = $obj->description;		
-		}
-	}
-	else {
-		$error = $obj->error->details;
-	}
+        if ($response['response']['code']== 200) {
+                $msg = 'Your password has been reset!';
+        } else {
+                $msg = $obj->result->content;
+        }
 }
 ?>
 

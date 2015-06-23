@@ -35,6 +35,7 @@ function tc_load_config() {
 
     // API
     _tc_local_config_define('TC_API_URL', $config_map['apiURL']);
+    _tc_local_config_define('TC_API3_URL', $config_map['api3URL']);
     _tc_local_config_define('MY_FILERS_URL', $config_map['myFiltersURL']);
     _tc_local_config_define('CB_URL', $config_map['cbURL']);
 
@@ -64,6 +65,7 @@ function tc_config_defaults() {
     return array(
         'mainURL' => 'http://www.topcoder.com',
         'apiURL' => 'https://api.topcoder.com/v2',
+        'api3URL' => 'https://api.topcoder.com/v3',
         'auth0ClientID' => '6ZwZEUo2ZK4c50aLPpgupeg5v2Ffxp9P',
         'auth0CallbackURL' => 'https://www.topcoder.com/reg2/callback.action',
         'auth0LDAP' => 'LDAP',

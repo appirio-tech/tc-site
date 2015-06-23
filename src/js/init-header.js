@@ -194,8 +194,10 @@ if (!loginState) {
       $.ajax({
         type: 'GET',
         dataType: 'json',
-        url: tcconfig.apiURL + '/users/validateSocial?socialProviderId=' + socialProviderId + '&socialUserId=' + user,
+        //COR-119 
+        url: tcconfig.api3URL + '/users/validateSocial?socialProviderId=' + socialProviderId + '&socialUserId=' + user,
         success: function(data) {
+          /* COR-119: moved to fail()
           if (!data.error && !(typeof data.available == 'undefined') && !data.available) {
             resetRegisterFields();
             $('.row .socialUnavailableErrorMessage').show();
@@ -204,9 +206,16 @@ if (!loginState) {
             $('#register a.btnSubmit').removeClass('socialRegister');
             socialProviderId = undefined;
           }
+          */
         }
       }).fail(function() {
         console.log('fail');
+        resetRegisterFields();
+        $('.row .socialUnavailableErrorMessage').show();
+        $('#register .err1,.err2,.err3,.err4,.err5,.err6,.err7,.err8,span.valid').hide();
+        $('#register input.invalid').removeClass('invalid');
+        $('#register a.btnSubmit').removeClass('socialRegister');
+        socialProviderId = undefined;
       });
 
       socialUserName = handle;
@@ -740,20 +749,18 @@ if (!loginState) {
     $.ajax({
       type: 'GET',
       dataType: 'json',
-      url: tcconfig.apiURL + '/users/validateEmail?email=' + email + '&cb='+ Math.random(),
+      //COR-119: v3 api
+      url: tcconfig.api3URL + '/users/validateEmail?email=' + email + '&cb='+ Math.random(),
       success: function(data) {
-        if (data.error || !data.available) {
-          showInvalid();
-        } else {
-          emailIsFree = true;
-          var node = $('#register form.register input.email:text');
-          node.parents(".row").find("span.valid").css("display", "inline-block");
-          node.closest('.row').find('input:text').removeClass('invalid');
-          node.closest('.row').find('span.err1').hide();
-          node.closest('.row').find('span.err2').hide();
-          node.closest('.row').find('span.err3').hide();
-          emailDeferred.resolve();
-        }
+        console.log(data);
+        emailIsFree = true;
+        var node = $('#register form.register input.email:text');
+        node.parents(".row").find("span.valid").css("display", "inline-block");
+        node.closest('.row').find('input:text').removeClass('invalid');
+        node.closest('.row').find('span.err1').hide();
+        node.closest('.row').find('span.err2').hide();
+        node.closest('.row').find('span.err3').hide();
+        emailDeferred.resolve();
       }
     }).fail(function() { showInvalid(); });
   }
@@ -783,20 +790,18 @@ if (!loginState) {
     $.ajax({
       type: 'GET',
       dataType: 'json',
-      url: tcconfig.apiURL + '/users/validate/' + handle + '?cb='+ Math.random(),
+      //COR-119: v3 api
+      url: tcconfig.api3URL + '/users/validate/handle/' + handle + '?cb='+ Math.random(),
       success: function(data) {
         if (handleChanged) return;
-        if (data.error || !data.valid) {
-          showInvalid();
-        } else {
-          handleIsFree = true;
-          var node = $('#register form.register input.name.handle:text');
-          node.parents(".row").find("span.valid").css("display", "inline-block");
-          node.closest('.row').find('input:text').removeClass('invalid');
-          node.closest('.row').find('span.err1').hide();
-          node.closest('.row').find('span.err2').hide();
-          handleDeferred.resolve();
-        }
+        
+        handleIsFree = true;
+        var node = $('#register form.register input.name.handle:text');
+        node.parents(".row").find("span.valid").css("display", "inline-block");
+        node.closest('.row').find('input:text').removeClass('invalid');
+        node.closest('.row').find('span.err1').hide();
+        node.closest('.row').find('span.err2').hide();
+        handleDeferred.resolve();
       }
     }).fail(function() {
         if (handleChanged) return;
@@ -1004,8 +1009,38 @@ if (!loginState) {
 
           if (_kmq) 
             _kmq.push(['identify', fields.email]);
-          
-          $.post(tcconfig.apiURL + '/users', fields, function(data) {
+
+          //COR-119: v3 format
+          var userData = {
+            handle: fields.handle,
+            email: fields.email,
+            firstName: fields.firstName,
+            lastName: fields.lastName,
+            country: {
+              name: fields.country
+            },
+            credential: {
+	      password: fields.password
+            }
+          };
+          if ((typeof socialProviderId != 'undefined') && socialProviderId !== "") {
+            userData.socialProfile = {
+              userId: fields.socialUserId,
+    	      provider: fields.socialProvider,
+    	      name: fields.socialUserName,    	  
+    	      email: fields.socialEmail,
+    	      emailVerified: true
+            }
+          }
+          var payload = JSON.stringify({ param: userData });
+
+          $.ajax({
+            url: tcconfig.api3URL + '/users',
+            type: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: payload,
+            success: function(data) {
             var tcAction = getCookie('tcDelayChallengeAction');
             $('.modal').hide();
             $("#thanks h2").html('Thanks for Registering');
@@ -1024,7 +1059,7 @@ if (!loginState) {
             $('#registerForm .valid').removeClass('valid');
             $('.err1,.err2', frm).hide();
             resetRegisterFields();
-          })
+            }})
             .fail(function(error) {
               console.log(error);
               alert(error);
@@ -1039,7 +1074,6 @@ if (!loginState) {
         }
       });
     });
-
   });
 
   $('#login a.btnSubmit').on('click', function () {

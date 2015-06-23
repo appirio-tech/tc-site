@@ -995,11 +995,12 @@ function get_contests_rss($listType, $challengeType = "", $technologies = "", $p
 
 // Forgot Password
 function generateResetToken($handle = '') {
-    $url = TC_API_URL . "/users/resetToken/";
+    // COR-119: v3 api
+    $url = TC_API3_URL . "/users/resetToken";
 
     if(filter_var($handle, FILTER_VALIDATE_EMAIL)) {
         //input handle is email
-        $url .= "?email=".$handle;
+        $url .= "?email=" . urlencode($handle);
     }
     else {
         //input handle is handle
@@ -1021,15 +1022,19 @@ function generateResetToken($handle = '') {
 
 function changePassword($handle = '', $password = '' , $unlockCode = '') {
 
-    $url = TC_API_URL . "/users/resetPassword/" . $handle;
-
-    $arrParam = array('handle' => $handle, 'password' => $password, 'token' => $unlockCode );
+    // COR-119: v3 api
+    $url = TC_API3_URL . "/users/resetPassword";
+    $data = "{\"param\" : {\"handle\" : \"" . $handle . "\", \"credential\" : {\"resetToken\" : \"" . $unlockCode . "\", \"password\" : \"" . $password . "\"}}}";
     $args = array(
+        'method' => 'PUT',
+        'headers' => array(
+          'Content-Type' => 'application/json'
+        ),
         'httpversion' => get_option('httpversion'),
         'timeout' => get_option('request_timeout'),
-        'body'=>$arrParam
+        'body' => $data
     );
-    $response = wp_remote_post($url, $args);
+    $response = wp_remote_request($url, $args);
 
     if (is_wp_error($response) || !isset ($response ['body'])) {
         return "error";
