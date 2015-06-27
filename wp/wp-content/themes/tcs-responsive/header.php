@@ -29,7 +29,7 @@ $nav = array(
             <a href="" class="coder"></a>
             <p class="country"></p>
             <a href="" class="link myProfileLink">My Profile</a>
-            <a href="/my-dashboard" class="link">My TopCoder </a>
+            <a href="//community.topcoder.com/tc?module=MyHome" class="link">My TopCoder </a>
             <a href="//community.topcoder.com/tc?module=MyHome" class="link">Account Settings </a>
             <a href="javascript:;" class="actionLogout">Log Out</a>
           </div>
@@ -120,7 +120,7 @@ $nav = array(
           <div class="action">
             <a class="profileLink" href="">My
               Profile</a>
-            <a href="/my-dashboard">My TopCoder </a>
+            <a href="//community.topcoder.com/tc?module=MyHome">My TopCoder </a>
             <a href="//community.topcoder.com/tc?module=MyHome" class="linkAlt">Account Settings</a>
           </div>
         </div>
