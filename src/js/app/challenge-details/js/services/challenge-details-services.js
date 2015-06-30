@@ -161,7 +161,7 @@
           if (challenge.event.shortDescription == 'tc015') {
             challenge.event.url = 'http://tco15.topcoder.com/';
           } else if (challenge.event.shortDescription == 'swiftprogram') {
-            challenge.event.url = 'http://apple.topcoder.com';
+            challenge.event.url = 'http://ios.topcoder.com';
           } else {
             challenge.event.url = tcconfig.communityURL + '/' + challenge.event.shortDescription;
           }
