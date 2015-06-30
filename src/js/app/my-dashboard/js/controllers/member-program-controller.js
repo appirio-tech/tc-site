@@ -37,7 +37,7 @@
     vm.badges = [
       { id : 'participant', enabled : true, completed: true, name: 'Participant'},
       { id : 'education', enabled : false, completed: false, name: 'Education'},
-      { id : 'peer', enabled : true, completed: false, name: 'Peer'},
+      { id : 'peer', enabled : true, completed: false, name: 'Skills'},
       { id : 'challenge', enabled : false, completed: false, name: 'Challenge'},
       { id : 'high-performer', enabled : false, completed: false, name: 'High Performer'}
     ]

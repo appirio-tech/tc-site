@@ -49,7 +49,7 @@ module.exports = function(grunt) {
     helpAppURL: grunt.option('help-app-url') || 'help.topcoder.com',
     forumsAppURL: grunt.option('forums-app-url') || 'forums.topcoder.com',
     swiftProgramId: grunt.option('swift-program-id') || 3445,
-    swiftProgramURL: grunt.option('swift-program-url') || 'http://apple.topcoder.com',
+    swiftProgramURL: grunt.option('swift-program-url') || 'http://ios.topcoder.com',
 
     // only used on wp setup
     useGz: grunt.option('use-gz') || false,
