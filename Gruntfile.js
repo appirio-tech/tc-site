@@ -38,6 +38,7 @@ module.exports = function(grunt) {
     auth0CallbackURL: grunt.option('auth-callback-url') || 'https://www.topcoder.com/reg2/callback.action',
     auth0LDAP: grunt.option('auth-ldap') || 'LDAP',
     auth0URL: grunt.option('auth-main-url') || 'topcoder.auth0.com',
+    domain: grunt.option || 'topcoder.com',
     mainURL: grunt.option('main-url') || 'http://local.topcoder.com',
     apiURL: grunt.option('api-url') || 'https://api.topcoder.com/v2',
     api3URL: grunt.option('api3-url') || 'https://api.topcoder.com/v3',
