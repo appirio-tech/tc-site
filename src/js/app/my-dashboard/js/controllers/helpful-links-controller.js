@@ -230,7 +230,7 @@
         id: 'problemarchive',
         name: 'Problem Archive',
         description: 'Problem Archive',
-        href: getCommunityUrl('tc?module=ProblemArchive'),
+        href: getCommunityUrl('/tc?module=ProblemArchive'),
         children: []
       };
       links.push(link);
