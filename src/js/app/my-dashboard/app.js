@@ -22,6 +22,7 @@
     .constant("API_URL", tcconfig.apiURL)
 
   .config(DataPreProcessing)
+  .constant("DOMAIN", tcconfig.domain)
   .constant("MAIN_URL", tcconfig.mainURL)
   .constant("BLOG_LOCATION", tcconfig.blogRSSFeedURL)
   .constant("MARKETING_MESSAGE_URL", tcconfig.marketingMessageMyDashURL)
