@@ -18,7 +18,7 @@
    * Inject dependencies
    * @type {string[]}
    */
-  HelpfulLinksCtrl.$inject = ['$scope', '$location', 'MAIN_URL', 'COMMUNITY_URL', 'REVIEW_APP_URL', 'FORUMS_APP_URL', 'HELP_APP_URL'];
+  HelpfulLinksCtrl.$inject = ['$scope', 'MAIN_URL', 'COMMUNITY_URL', 'REVIEW_APP_URL', 'FORUMS_APP_URL', 'HELP_APP_URL', 'DOMAIN'];
 
   /**
    * Helpful links controller implementation
@@ -26,14 +26,15 @@
    * @param $scope
    * @constructor
    */
-  function HelpfulLinksCtrl($scope, $location, MAIN_URL, COMMUNITY_URL, REVIEW_APP_URL, FORUMS_APP_URL, HELP_APP_URL) {
+  function HelpfulLinksCtrl($scope, MAIN_URL, COMMUNITY_URL, REVIEW_APP_URL, FORUMS_APP_URL, HELP_APP_URL, DOMAIN) {
     var vm = this;
-    vm.communityBaseUrl = $location.protocol() + ":" + COMMUNITY_URL;
+    vm.communityBaseUrl = COMMUNITY_URL;
     vm.mainUrl = MAIN_URL;
-    vm.reviewAppUrl = $location.protocol() + "://" + REVIEW_APP_URL;
-    vm.forumsAppUrl = $location.protocol() + "://" + FORUMS_APP_URL;
-    vm.helpAppUrl = $location.protocol() + "://" + HELP_APP_URL;
-    vm.digitalRunUrl = $location.protocol() + "://" + vm.mainUrl + "/dr";
+    vm.domain = DOMAIN;
+    vm.reviewAppUrl = "//" + REVIEW_APP_URL;
+    vm.forumsAppUrl = "//" + FORUMS_APP_URL;
+    vm.helpAppUrl = "//" + HELP_APP_URL;
+    vm.digitalRunUrl = vm.communityBaseUrl + "/dr";
     // array to store all the links to be shown in the widget
     vm.root = null;
     vm.visibleNode = null;
@@ -160,7 +161,15 @@
     }
 
     function getAppsUrl(relativeUrl) {
-      var url = $location.protocol() + "://apps." + vm.mainUrl;
+      var url = "//apps." + vm.domain;
+      if (relativeUrl) {
+        url += relativeUrl;
+      }
+      return url;
+    }
+    
+    function getCommunityUrl(relativeUrl) {
+      var url = vm.communityBaseUrl;
       if (relativeUrl) {
         url += relativeUrl;
       }
@@ -181,7 +190,7 @@
         id: 'matcharchive',
         name: 'Match Archive',
         description: 'Match Archive',
-        href: getMainUrl('/tc?module=MatchList'),
+        href: getCommunityUrl('/tc?module=MatchList'),
         children: []
       };
       links.push(link);
@@ -189,7 +198,7 @@
         id: 'matchoverviews',
         name: 'Match Overviews',
         description: 'Match Overviews',
-        href: getMainUrl('/stat?c=round_overview'),
+        href: getCommunityUrl('/stat?c=round_overview'),
         children: []
       };
       links.push(link);
@@ -197,7 +206,7 @@
         id: 'matchwinners',
         name: 'Match Winners',
         description: 'Match Winners',
-        href: getMainUrl('/tc?module=SrmDivisionWins'),
+        href: getCommunityUrl('/tc?module=SrmDivisionWins'),
         children: []
       };
       links.push(link);
@@ -205,7 +214,7 @@
         id: 'matchresults',
         name: 'Match Results',
         description: 'Match Results',
-        href: getMainUrl('/stat?c=last_match'),
+        href: getCommunityUrl('/stat?c=last_match'),
         children: []
       };
       links.push(link);
@@ -221,7 +230,7 @@
         id: 'problemarchive',
         name: 'Problem Archive',
         description: 'Problem Archive',
-        href: getMainUrl('tc?module=ProblemArchive'),
+        href: getCommunityUrl('tc?module=ProblemArchive'),
         children: []
       };
       links.push(link);
@@ -250,7 +259,7 @@
         id: 'matchoverview',
         name: 'Match Overview',
         description: 'Match Overview',
-        href: getMainUrl('/longcontest/stats/?module=ViewOverview'),
+        href: getCommunityUrl('/longcontest/stats/?module=ViewOverview'),
         children: []
       };
       links.push(link);
@@ -258,7 +267,7 @@
         id: 'matchwinners',
         name: 'Match Winners',
         description: 'Match Winners',
-        href: getMainUrl('/longcontest/stats/?module=MatchWinners'),
+        href: getCommunityUrl('/longcontest/stats/?module=MatchWinners'),
         children: []
       };
       links.push(link);
@@ -266,7 +275,7 @@
         id: 'matcheditorials',
         name: 'Match Editorials',
         description: 'Match Editorials',
-        href: getMainUrl('/longcontest/?module=Static&d1=match_editorials&d2=archive'),
+        href: getCommunityUrl('/longcontest/?module=Static&d1=match_editorials&d2=archive'),
         children: []
       };
       links.push(link);
@@ -274,7 +283,7 @@
         id: 'matchdatafeeds',
         name: 'Data Feeds',
         description: 'Data Feeds',
-        href: getMainUrl('/longcontest/?module=Static&d1=support&d2=dataFeed'),
+        href: getCommunityUrl('/longcontest/?module=Static&d1=support&d2=dataFeed'),
         children: []
       };
       links.push(link);
@@ -282,7 +291,7 @@
         id: 'practice',
         name: 'Practice',
         description: 'Practice',
-        href: getMainUrl('/longcontest/?module=ViewPractice'),
+        href: getCommunityUrl('/longcontest/?module=ViewPractice'),
         children: []
       };
       links.push(link);
@@ -290,7 +299,7 @@
         id: 'queuestatus',
         name: 'Queue Status',
         description: 'Queue Status',
-        href: getMainUrl('/longcontest/?module=ViewQueue'),
+        href: getCommunityUrl('/longcontest/?module=ViewQueue'),
         children: []
       };
       links.push(link);
@@ -308,7 +317,7 @@
         id: 'algorithm',
         name: 'Algorithm',
         description: 'Algorithm',
-        href: getMainUrl('/tc?module=AlgoRank'),
+        href: getCommunityUrl('/tc?module=AlgoRank'),
         children: []
       };
       links.push(link);
@@ -316,7 +325,7 @@
         id: 'highschool',
         name: 'High School',
         description: 'High School',
-        href: getMainUrl('/tc?module=HSRank'),
+        href: getCommunityUrl('/tc?module=HSRank'),
         children: []
       };
       links.push(link);
@@ -324,7 +333,7 @@
         id: 'marathonmatch',
         name: 'Marathon Match',
         description: 'Marathon Match',
-        href: getMainUrl('/longcontest/stats/?module=CoderRank'),
+        href: getCommunityUrl('/longcontest/stats/?module=CoderRank'),
         children: []
       };
       links.push(link);
@@ -332,7 +341,7 @@
         id: 'conceptulization',
         name: 'Conceptulization',
         description: 'Conceptulization',
-        href: getMainUrl('/stat?c=top_conceptors'),
+        href: getCommunityUrl('/stat?c=top_conceptors'),
         children: []
       };
       links.push(link);
@@ -340,7 +349,7 @@
         id: 'specification',
         name: 'Specification',
         description: 'Specification',
-        href: getMainUrl('/stat?c=top_specificators'),
+        href: getCommunityUrl('/stat?c=top_specificators'),
         children: []
       };
       links.push(link);
@@ -348,7 +357,7 @@
         id: 'architecture',
         name: 'Architecture',
         description: 'Architecture',
-        href: getMainUrl('/stat?c=top_architects'),
+        href: getCommunityUrl('/stat?c=top_architects'),
         children: []
       };
       links.push(link);
@@ -356,7 +365,7 @@
         id: 'design',
         name: 'Design',
         description: 'Design',
-        href: getMainUrl('/stat?c=top_designers'),
+        href: getCommunityUrl('/stat?c=top_designers'),
         children: []
       };
       links.push(link);
@@ -364,7 +373,7 @@
         id: 'development',
         name: 'Development',
         description: 'Development',
-        href: getMainUrl('/stat?c=top_developers'),
+        href: getCommunityUrl('/stat?c=top_developers'),
         children: []
       };
       links.push(link);
@@ -372,7 +381,7 @@
         id: 'assembly',
         name: 'Assembly',
         description: 'Assembly',
-        href: getMainUrl('/stat?c=top_assemblers'),
+        href: getCommunityUrl('/stat?c=top_assemblers'),
         children: []
       };
       links.push(link);
@@ -380,7 +389,7 @@
         id: 'testsuites',
         name: 'Test Suites',
         description: 'Test Suites',
-        href: getMainUrl('/stat?c=top_testers'),
+        href: getCommunityUrl('/stat?c=top_testers'),
         children: []
       };
       links.push(link);
@@ -393,7 +402,7 @@
         id: 'algorithm',
         name: 'Algorithm',
         description: 'Algorithm',
-        href: getMainUrl('/tc?module=Static&d1=statistics&d2=recordbook_home'),
+        href: getCommunityUrl('/tc?module=Static&d1=statistics&d2=recordbook_home'),
         children: []
       };
       links.push(link);
@@ -401,7 +410,7 @@
         id: 'component',
         name: 'Component',
         description: 'Component',
-        href: getMainUrl('/tc?module=Static&d1=compstats&d2=comp_recordbook_home'),
+        href: getCommunityUrl('/tc?module=Static&d1=compstats&d2=comp_recordbook_home'),
         children: []
       };
       links.push(link);
@@ -409,7 +418,7 @@
         id: 'marathonmatch',
         name: 'Marathon Match',
         description: 'Marathon Match',
-        href: getMainUrl('/longcontest/?module=Static&d1=stats&d2=recordbook_home'),
+        href: getCommunityUrl('/longcontest/?module=Static&d1=stats&d2=recordbook_home'),
         children: []
       };
       links.push(link);
@@ -422,7 +431,7 @@
         id: 'algorithm',
         name: 'Algorithm',
         description: 'Algorithm',
-        href: getMainUrl('/tc?module=COMHistory&achtid=5'),
+        href: getCommunityUrl('/tc?module=COMHistory&achtid=5'),
         children: []
       };
       links.push(link);
@@ -430,7 +439,7 @@
         id: 'design',
         name: 'Design',
         description: 'Design',
-        href: getMainUrl('/tc?module=COMHistory&achtid=6'),
+        href: getCommunityUrl('/tc?module=COMHistory&achtid=6'),
         children: []
       };
       links.push(link);
@@ -438,7 +447,7 @@
         id: 'development',
         name: 'Development',
         description: 'Development',
-        href: getMainUrl('/tc?module=COMHistory&achtid=7'),
+        href: getCommunityUrl('/tc?module=COMHistory&achtid=7'),
         children: []
       };
       links.push(link);
@@ -451,7 +460,7 @@
         id: 'conceptulization',
         name: 'Conceptulization',
         description: 'Conceptulization',
-        href: getMainUrl('/tc?module=ReviewBoard&pt=23'),
+        href: getCommunityUrl('/tc?module=ReviewBoard&pt=23'),
         children: []
       };
       links.push(link);
@@ -459,7 +468,7 @@
         id: 'specification',
         name: 'Specification',
         description: 'Specification',
-        href: getMainUrl('/tc?module=ReviewBoard&pt=6'),
+        href: getCommunityUrl('/tc?module=ReviewBoard&pt=6'),
         children: []
       };
       links.push(link);
@@ -467,7 +476,7 @@
         id: 'architecture',
         name: 'Architecture',
         description: 'Architecture',
-        href: getMainUrl('/tc?module=ReviewBoard&pt=7'),
+        href: getCommunityUrl('/tc?module=ReviewBoard&pt=7'),
         children: []
       };
       links.push(link);
@@ -475,7 +484,7 @@
         id: 'componentdesign',
         name: 'Component Design',
         description: 'Component Design',
-        href: getMainUrl('/tc?module=ReviewBoard&pt=1'),
+        href: getCommunityUrl('/tc?module=ReviewBoard&pt=1'),
         children: []
       };
       links.push(link);
@@ -483,7 +492,7 @@
         id: 'componentdevelopment',
         name: 'Component Development',
         description: 'Component Development',
-        href: getMainUrl('/tc?module=ReviewBoard&pt=2'),
+        href: getCommunityUrl('/tc?module=ReviewBoard&pt=2'),
         children: []
       };
       links.push(link);
@@ -491,7 +500,7 @@
         id: 'assembly',
         name: 'Assembly',
         description: 'Assembly',
-        href: getMainUrl('/tc?module=ReviewBoard&pt=14'),
+        href: getCommunityUrl('/tc?module=ReviewBoard&pt=14'),
         children: []
       };
       links.push(link);
@@ -499,7 +508,7 @@
         id: 'first2finish',
         name: 'First2Finish',
         description: 'First2Finish',
-        href: getMainUrl('/tc?module=ReviewBoard&pt=38'),
+        href: getCommunityUrl('/tc?module=ReviewBoard&pt=38'),
         children: []
       };
       links.push(link);
@@ -507,7 +516,7 @@
         id: 'code',
         name: 'Code',
         description: 'Code',
-        href: getMainUrl('/tc?module=ReviewBoard&pt=39'),
+        href: getCommunityUrl('/tc?module=ReviewBoard&pt=39'),
         children: []
       };
       links.push(link);
@@ -515,7 +524,7 @@
         id: 'testsuites',
         name: 'Test Suites',
         description: 'Test Suites',
-        href: getMainUrl('/tc?module=ReviewBoard&pt=13'),
+        href: getCommunityUrl('/tc?module=ReviewBoard&pt=13'),
         children: []
       };
       links.push(link);
@@ -523,7 +532,7 @@
         id: 'report',
         name: 'Report',
         description: 'Report',
-        href: getMainUrl('/tc?module=ReviewBoard&pt=36'),
+        href: getCommunityUrl('/tc?module=ReviewBoard&pt=36'),
         children: []
       };
       links.push(link);
@@ -531,7 +540,7 @@
         id: 'uiprototype',
         name: 'UI Prototype',
         description: 'UI Prototype',
-        href: getMainUrl('/tc?module=ReviewBoard&pt=19'),
+        href: getCommunityUrl('/tc?module=ReviewBoard&pt=19'),
         children: []
       };
       links.push(link);
@@ -539,7 +548,7 @@
         id: 'riabuild',
         name: 'Ria Build',
         description: 'Ria Build',
-        href: getMainUrl('/tc?module=ReviewBoard&pt=24'),
+        href: getCommunityUrl('/tc?module=ReviewBoard&pt=24'),
         children: []
       };
       links.push(link);
@@ -547,7 +556,7 @@
         id: 'contentcreation',
         name: 'Content Creation',
         description: 'Content Creation',
-        href: getMainUrl('/tc?module=ReviewBoard&pt=35'),
+        href: getCommunityUrl('/tc?module=ReviewBoard&pt=35'),
         children: []
       };
       links.push(link);
@@ -555,7 +564,7 @@
         id: 'testscenarios',
         name: 'Test Scenarios',
         description: 'Test Scenarios',
-        href: getMainUrl('/tc?module=ReviewBoard&pt=26'),
+        href: getCommunityUrl('/tc?module=ReviewBoard&pt=26'),
         children: []
       };
       links.push(link);
@@ -563,7 +572,7 @@
         id: 'bughunt',
         name: 'Bug Hunt',
         description: 'Bug Hunt',
-        href: getMainUrl('/tc?module=ReviewBoard&pt=9'),
+        href: getCommunityUrl('/tc?module=ReviewBoard&pt=9'),
         children: []
       };
       links.push(link);
@@ -576,7 +585,7 @@
         id: 'conceptulization',
         name: 'Conceptulization',
         description: 'Conceptulization',
-        href: getMainUrl('/tc?module=ViewReviewAuctions&pt=23'),
+        href: getCommunityUrl('/tc?module=ViewReviewAuctions&pt=23'),
         children: []
       };
       links.push(link);
@@ -584,7 +593,7 @@
         id: 'specification',
         name: 'Specification',
         description: 'Specification',
-        href: getMainUrl('/tc?module=ViewReviewAuctions&pt=6'),
+        href: getCommunityUrl('/tc?module=ViewReviewAuctions&pt=6'),
         children: []
       };
       links.push(link);
@@ -592,7 +601,7 @@
         id: 'architecture',
         name: 'Architecture',
         description: 'Architecture',
-        href: getMainUrl('/tc?module=ViewReviewAuctions&pt=7'),
+        href: getCommunityUrl('/tc?module=ViewReviewAuctions&pt=7'),
         children: []
       };
       links.push(link);
@@ -600,7 +609,7 @@
         id: 'componentdesign',
         name: 'Component Design',
         description: 'Component Design',
-        href: getMainUrl('/tc?module=ViewReviewAuctions&pt=1'),
+        href: getCommunityUrl('/tc?module=ViewReviewAuctions&pt=1'),
         children: []
       };
       links.push(link);
@@ -608,7 +617,7 @@
         id: 'componentdevelopment',
         name: 'Component Development',
         description: 'Component Development',
-        href: getMainUrl('/tc?module=ViewReviewAuctions&pt=2'),
+        href: getCommunityUrl('/tc?module=ViewReviewAuctions&pt=2'),
         children: []
       };
       links.push(link);
@@ -616,7 +625,7 @@
         id: 'assembly',
         name: 'Assembly',
         description: 'Assembly',
-        href: getMainUrl('/tc?module=ViewReviewAuctions&pt=14'),
+        href: getCommunityUrl('/tc?module=ViewReviewAuctions&pt=14'),
         children: []
       };
       links.push(link);
@@ -624,7 +633,7 @@
         id: 'first2finish',
         name: 'First2Finish',
         description: 'First2Finish',
-        href: getMainUrl('/tc?module=ViewReviewAuctions&pt=38'),
+        href: getCommunityUrl('/tc?module=ViewReviewAuctions&pt=38'),
         children: []
       };
       links.push(link);
@@ -632,7 +641,7 @@
         id: 'code',
         name: 'Code',
         description: 'Code',
-        href: getMainUrl('/tc?module=ViewReviewAuctions&pt=39'),
+        href: getCommunityUrl('/tc?module=ViewReviewAuctions&pt=39'),
         children: []
       };
       links.push(link);
@@ -640,7 +649,7 @@
         id: 'testsuites',
         name: 'Test Suites',
         description: 'Test Suites',
-        href: getMainUrl('/tc?module=ViewReviewAuctions&pt=13'),
+        href: getCommunityUrl('/tc?module=ViewReviewAuctions&pt=13'),
         children: []
       };
       links.push(link);
@@ -648,7 +657,7 @@
         id: 'report',
         name: 'Report',
         description: 'Report',
-        href: getMainUrl('/tc?module=ViewReviewAuctions&pt=36'),
+        href: getCommunityUrl('/tc?module=ViewReviewAuctions&pt=36'),
         children: []
       };
       links.push(link);
@@ -656,7 +665,7 @@
         id: 'uiprototype',
         name: 'UI Prototype',
         description: 'UI Prototype',
-        href: getMainUrl('/tc?module=ViewReviewAuctions&pt=19'),
+        href: getCommunityUrl('/tc?module=ViewReviewAuctions&pt=19'),
         children: []
       };
       links.push(link);
@@ -664,7 +673,7 @@
         id: 'riabuild',
         name: 'Ria Build',
         description: 'Ria Build',
-        href: getMainUrl('/tc?module=ViewReviewAuctions&pt=24'),
+        href: getCommunityUrl('/tc?module=ViewReviewAuctions&pt=24'),
         children: []
       };
       links.push(link);
@@ -672,7 +681,7 @@
         id: 'contentcreation',
         name: 'Content Creation',
         description: 'Content Creation',
-        href: getMainUrl('/tc?module=ViewReviewAuctions&pt=35'),
+        href: getCommunityUrl('/tc?module=ViewReviewAuctions&pt=35'),
         children: []
       };
       links.push(link);
@@ -680,7 +689,7 @@
         id: 'testscenarios',
         name: 'Test Scenarios',
         description: 'Test Scenarios',
-        href: getMainUrl('/tc?module=ViewReviewAuctions&pt=26'),
+        href: getCommunityUrl('/tc?module=ViewReviewAuctions&pt=26'),
         children: []
       };
       links.push(link);
@@ -688,7 +697,7 @@
         id: 'bughunt',
         name: 'Bug Hunt',
         description: 'Bug Hunt',
-        href: getMainUrl('/tc?module=ViewReviewAuctions&pt=9'),
+        href: getCommunityUrl('/tc?module=ViewReviewAuctions&pt=9'),
         children: []
       };
       links.push(link);
