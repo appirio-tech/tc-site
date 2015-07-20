@@ -35,6 +35,8 @@
 
     // activate controller
     if (AuthService.isLoggedIn === true) {
+      // SUP-1050, workaround to not cache the page
+      angular.element('#cache-persist').val(null);
       activate();
     } else { // if user is not logged in, return (to avoid extra ajax calls)
       return false;
