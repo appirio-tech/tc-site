@@ -823,7 +823,7 @@ appChallenges = {
                  * generate table row for design past contest type
                  */
                 if (typeof rec.numberOfRegistrants !== "undefined") {
-                    $('.contestName', row).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/ico-track-data.png" />' + '<a href="' + tcconfig.communityURL + '/longcontest/?module=ViewProblemStatement&rd=' + rec.roundId + '&pm=' + rec.problemId + '">' + rec.fullName + '</a>');
+                    $('.contestName', row).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/ico-track-data.png" />' + '<a href="' + tcconfig.communityURL + '/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.fullName + '</a>');
                     $('.colType', row).html("Marathon");
                     $('.vStartDate', row).html(app.formatDate2(rec.startDate));
                     $('.vEndDate', row).html(app.formatDate2(rec.endDate));
@@ -832,7 +832,7 @@ appChallenges = {
                     $('.colSub', row).html(rec.numberOfSubmissions);
                 } else {
                     //$('.contestName', row).html(rec.fullName);
-                    $('.contestName', row).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/ico-track-data.png" />' + '<a href="' + tcconfig.communityURL + '/longcontest/?module=ViewProblemStatement&rd=' + rec.roundId + '&pm=' + rec.problemId + '">' + rec.fullName + '</a>');
+                    $('.contestName', row).html('<img alt="" class="allContestIco" src="' + stylesheet_dir + '/i/ico-track-data.png" />' + '<a href="' + tcconfig.communityURL + '/tc?module=MatchDetails&rd=' + rec.roundId + '">' + rec.fullName + '</a>');
                     $('.colType', row).html("Marathon");
                     $('.vStartDate', row).html(app.formatDate2(rec.startDate));
                     $('.vEndDate', row).html(app.formatDate2(rec.endDate));
