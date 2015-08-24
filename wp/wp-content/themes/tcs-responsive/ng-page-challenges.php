@@ -480,7 +480,7 @@ get_header(); ?>
   </div>
   <div class="colCh" ng-if="row.getProperty('challengeCommunity') === 'data'">
     <div>
-      <a ng-href="//community.topcoder.com/longcontest/?module=ViewProblemStatement&rd={{row.getProperty('roundId')}}&pm={{row.getProperty('problemId')}}" class="contestName">
+      <a ng-href="//community.topcoder.com/tc?module=MatchDetails&rd={{row.getProperty('roundId')}}" class="contestName">
         <img alt="allContestIco" class="allContestIco" ng-src="{{images}}/ico-track-{{row.getProperty('challengeCommunity')}}.png">
         <span ng-cell-text>{{row.getProperty('fullName')}}</span>
         <img alt="allContestTCOIco" class="allContestTCOIco" ng-src="{{images}}/tco-flag-{{row.getProperty('challengeCommunity') != 'data'?row.getProperty('challengeCommunity'):'develop'}}.png" ng-show="contest.contestType != 'data'">
