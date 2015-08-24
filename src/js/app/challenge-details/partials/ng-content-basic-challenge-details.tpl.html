@@ -95,7 +95,7 @@
                 </td>
               </tr>
               <tr><!-- Bugfix: Added noPrize class when challenge has no reliability bonus -->
-                <td ng-if="!CD.isDesign" colspan="{{CD.challenge.challengeType == 'Code' ? '2' : ''}}" class="{{ (!CD.challenge.reliabilityBonus || CD.challenge.challengeType === 'Bug Hunt') ? 'noPrize' : ''}}">
+                <td ng-if="!CD.isDesign" colspan="5" class="{{ (!CD.challenge.reliabilityBonus || CD.challenge.challengeType === 'Bug Hunt') ? 'noPrize' : ''}}">
                   <p class="realibilityPara">
                     Reliability Bonus
                     <span ng-if="CD.reliabilityBonus && CD.challenge.challengeType !== 'Bug Hunt'" ng-bind-template="${{CD.challenge.reliabilityBonus}}">
@@ -104,15 +104,9 @@
                       N/A
                     </span>
                   </p>
-                </td><!-- Bugfix: Added noPrize class when challenge has no DR points -->
-                <td ng-if="!CD.isDesign" colspan="{{CD.challenge.challengeType == 'Code' ? '3' : ''}}" class="{{!CD.challenge.digitalRunPoints ? 'noPrize' : ''}}">
-                  <p class="drPointsPara">DR Points <span ng-bind="CD.challenge.digitalRunPoints ? CD.challenge.digitalRunPoints : 'N/A'"></span></p>
                 </td>
                 </td>
-                <td ng-if="CD.isDesign" colspan="2">
-                  <p class="scPoints"><span ng-bind="CD.challenge.digitalRunPoints ? CD.challenge.digitalRunPoints : ''"></span>{{!CD.challenge.digitalRunPoints ? 'NO' : ''}} STUDIO CUP POINTS</p>
-                </td>
-                <td ng-if="CD.isDesign" colspan="3">
+                <td ng-if="CD.isDesign" colspan="5">
                   <p class="scPoints" ng-if="CD.challenge.numberOfCheckpointsPrizes > 0"><span ng-bind="CD.challenge.numberOfCheckpointsPrizes"></span> CHECKPOINT AWARDS WORTH <span ng-bind-template="${{CD.challenge.topCheckPointPrize}}"></span>
                     EACH</p>
                   <p class="scPoints" ng-if="CD.challenge.numberOfCheckpointsPrizes == 0">NO CHECKPOINT AWARDS</p>
@@ -223,7 +217,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td ng-if="!CD.isDesign" colspan="{{CD.challenge.challengeType == 'Code' ? '2' : ''}}">
+                    <td ng-if="!CD.isDesign" colspan="5">
                       <p class="realibilityPara">
                         Reliability Bonus
                         <span ng-if="CD.reliabilityBonus && CD.reliabilityBonus.length > 0">
@@ -234,14 +228,8 @@
                         </span>
                       </p>
                     </td>
-                    <td ng-if="!CD.isDesign" colspan="{{CD.challenge.challengeType == 'Code' ? '3' : ''}}">
-                      <p class="drPointsPara">DR Points <span ng-bind="CD.challenge.digitalRunPoints ? CD.challenge.digitalRunPoints : 'N/A'"></span></p>
                     </td>
-                    </td>
-                    <td ng-if="CD.isDesign" colspan="2">
-                        <p class="scPoints"><span ng-bind="CD.challenge.digitalRunPoints ? CD.challenge.digitalRunPoints : 'NO'"></span> STUDIO CUP POINTS</p>
-                    </td>
-                    <td ng-if="CD.isDesign" colspan="3">
+                    <td ng-if="CD.isDesign" colspan="5">
                       <p class="scPoints"><span ng-bind="CD.challenge.numberOfCheckpointsPrizes"></span> CHECKPOINT AWARDS WORTH $<span ng-bind="CD.challenge.topCheckPointPrize"></span>
                         EACH</p>
                     </td>
