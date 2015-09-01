@@ -114,7 +114,7 @@
         return (
         React.createElement("div", {className: "contest "+ trackTag +" trackSD type-" + challenge.challengeCommunity, key: challenge.challengeId}, 
           React.createElement("div", {className: "cgCh"}, 
-            React.createElement("a", {href: challenge.challengeCommunity != 'data' ? "/challenge-details/" +challenge.challengeId+"/?type="+challenge.challengeCommunity : tcconfig.communityURL + '/longcontest/?module=ViewProblemStatement&rd=' + challenge.roundId + '&pm=' + challenge.problemId, className: "contestName"}, 
+            React.createElement("a", {href: challenge.challengeCommunity != 'data' ? "/challenge-details/" +challenge.challengeId+"/?type="+challenge.challengeCommunity : tcconfig.communityURL + '/tc?module=MatchDetails&rd=' + challenge.roundId, className: "contestName"}, 
               React.createElement("img", {alt: "", className: "allContestIco", src: images + '/ico-track-' + challenge.challengeCommunity + '.png'}), 
               React.createElement("span", {className: "gridChallengName"}, challenge.challengeName), 
               React.createElement("img", {alt: "", className: challenge.challengeCommunity != 'data' ? "allContestTCOIco" : "allContestTCOIco ng-hide", src: images + '/tco-flag-' + challenge.challengeCommunity + '.png'}), 
