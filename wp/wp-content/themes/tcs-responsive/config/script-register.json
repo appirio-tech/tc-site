@@ -28,8 +28,9 @@
         "jquery.qtip.min.js",
         "jquery.jqtransform.js",
         "reset-password.js",
-        "highcharts.js"
-
+        "highcharts.js",
+        "member-onboarding.js",
+		"isotope.pkgd.min.js"
       ],
       "css": [
         "blog.css",
@@ -52,7 +53,9 @@
         "challenge-submit.css",
         "password-recovery.css",
         "challenge-tags.css",
-        "style-getting-started.css"
+        "style-getting-started.css",
+		"member-onboarding.css",
+        "icomoon-fonts.css"
       ]
     },
     "challengelanding": {
