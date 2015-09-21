@@ -14,12 +14,16 @@
 function theme_load_widgets() {
   register_widget('Related_Content');
   register_widget('Search_blog_widget');
+  register_widget('Search_member_onboarding_widget');
   register_widget('Blog_category_widget');
   register_widget('Popular_post_widget');
   register_widget('Subscribe_widget');
   register_widget('Download_banner_widget');
   register_widget('Quote_widget');
   register_widget('Recent_challenges');
+  register_widget('Onboarding_Recent_Posts');
+  register_widget('Onboarding_Recent_Comments');
+  register_widget('Onboarding_Categories');
 }
 
 add_action('widgets_init', 'theme_load_widgets');
@@ -263,6 +267,88 @@ class Search_blog_widget extends WP_Widget {
 
 /**
  * Search Blog Widget End
+ */
+ 
+/**
+ * Search Member Onboarding Widget
+ */
+class Search_member_onboarding_widget extends WP_Widget {
+  // setup widget
+  function Search_member_onboarding_widget() {
+
+    // widget settings
+    $widget_ops = array(
+      'classname' => 'search_member_onboarding_widget',
+      'description' => __('Search onboarding widget', 'search_member_onboarding_widget')
+    );
+
+    // widget control settings
+    $control_ops = array(
+      'width' => 388,
+      'height' => 327,
+      'id_base' => 'search_member_onboarding_widget'
+    );
+
+    // create widget
+    $this->WP_Widget('search_member_onboarding_widget', __('Search member onboarding widget', 'search_member_onboarding_widget'), $widget_ops, $control_ops);
+  }
+
+  /**
+   * How to display the widget on the screen.
+   */
+  function widget($args, $instance) {
+    // Widget output
+    extract($args);
+
+    /* Our variables from the widget settings. */
+    $title = $instance ['contest'];
+
+    /* Before widget (defined by themes). */
+    echo $before_widget;
+    ?>
+    <div class="widget_search">
+        <form class="mk-searchform" method="get" id="searchform" action="<?php bloginfo("wpurl"); ?>" novalidate="">
+            <input type="text" class="text-input" placeholder="Search" value="" name="s" id="s">
+            <i class="mk-icon-search"><input value="" type="submit" class="search-button"></i>
+        </form>
+    </div>
+
+    <?php
+    /* After widget (defined by themes). */
+    echo $after_widget;
+  }
+
+  /**
+   * Update the widget settings.
+   */
+  function update($new_instance, $old_instance) {
+    $instance = $old_instance;
+
+    /* Strip tags for title and name to remove HTML (important for text inputs). */
+    $instance ['title'] = strip_tags($new_instance ['title']);
+
+    return $instance;
+  }
+
+  /**
+   * Displays the widget settings controls on the widget panel.
+   * Make use of the get_field_id() and get_field_name() function
+   * when creating your form elements. This handles the confusing stuff.
+   */
+  function form($instance) {
+
+    /* Set up some default widget settings. */
+    $defaults = array(
+      'title' => __('Blog Search', event_widget)
+    );
+    $instance = wp_parse_args(( array ) $instance, $defaults);
+    ?>
+  <?php
+  }
+}
+
+/**
+ * Search Member Onboarding Widget End
  */
 
 /**
@@ -933,3 +1019,411 @@ class Recent_challenges extends WP_Widget {
 /**
  * Recent challenges Widget End
  */
+
+ 
+/*
+	RECENT POSTS
+*/
+
+class Onboarding_Recent_Posts extends WP_Widget {
+
+	function Onboarding_Recent_Posts() {
+		$widget_ops = array( "classname" => "widget_posts_lists", "description" => "Displays the Recent posts" );
+		$this-> WP_Widget( "onboarding_recent_posts", "Onboarding Recent Posts", $widget_ops );
+		$this-> alt_option_name = "widget_onboarding_recent_posts";
+
+		add_action( "save_post", array( &$this, "flush_widget_cache" ) );
+		add_action( "deleted_post", array( &$this, "flush_widget_cache" ) );
+		add_action( "switch_theme", array( &$this, "flush_widget_cache" ) );
+	}
+
+
+	function widget( $args, $instance ) {
+
+		$cache = array();
+		if ( ! $this->is_preview() ) {
+			$cache = wp_cache_get( 'widget_onboarding_recent_posts', 'widget' );
+		}
+
+		if ( ! is_array( $cache ) ) {
+			$cache = array();
+		}
+
+		if ( ! isset( $args['widget_id'] ) ) {
+			$args['widget_id'] = $this->id;
+		}
+
+		if ( isset( $cache[ $args['widget_id'] ] ) ) {
+			echo $cache[ $args['widget_id'] ];
+			return;
+		}
+
+		ob_start();
+
+        $title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : __( 'Recent Articles' ); 
+
+		/** This filter is documented in wp-includes/default-widgets.php */
+		$title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
+
+		$number = ( ! empty( $instance['number'] ) ) ? absint( $instance['number'] ) : 5;
+		if ( ! $number )
+			$number = 5;
+		$show_date = isset( $instance['show_date'] ) ? $instance['show_date'] : false;
+
+		/**
+		 * Filter the arguments for the Recent Posts widget.
+		 *
+		 * @since 3.4.0
+		 *
+		 * @see WP_Query::get_posts()
+		 *
+		 * @param array $args An array of arguments used to retrieve the recent posts.
+		 */
+        $r = new WP_Query( apply_filters( 'widget_posts_args', array(
+            'post_type' => 'member-onboarding',
+            'posts_per_page'      => $number,
+            'no_found_rows'       => true,
+            'post_status'         => 'publish',
+            'ignore_sticky_posts' => true,
+        )));
+
+		if ($r->have_posts()) :
+?>
+		<?php echo $args['before_widget']; ?>
+		<?php if ( $title ) {
+			echo $args['before_title'] . $title . $args['after_title'];
+		} ?>
+		<ul>
+		<?php while ( $r->have_posts() ) : $r->the_post(); ?>
+			<li>
+				<a href="<?php the_permalink(); ?>"><?php get_the_title() ? the_title() : the_ID(); ?></a>
+			<?php if ( $show_date ) : ?>
+				<span class="post-date"><?php echo get_the_date(); ?></span>
+			<?php endif; ?>
+			</li>
+		<?php endwhile; ?>
+		</ul>
+		<?php echo $args['after_widget']; ?>
+<?php
+		// Reset the global $the_post as this query will have stomped on it
+		wp_reset_postdata();
+
+		endif;
+
+		if ( ! $this->is_preview() ) {
+			$cache[ $args['widget_id'] ] = ob_get_flush();
+			wp_cache_set( 'widget_onboarding_recent_posts', $cache, 'widget' );
+		} else {
+			ob_end_flush();
+		}
+
+	}
+
+	public function update( $new_instance, $old_instance ) {
+		$instance = $old_instance;
+		$instance['title'] = strip_tags($new_instance['title']);
+		$instance['number'] = (int) $new_instance['number'];
+		$instance['show_date'] = isset( $new_instance['show_date'] ) ? (bool) $new_instance['show_date'] : false;
+		$this->flush_widget_cache();
+
+		$alloptions = wp_cache_get( 'alloptions', 'options' );
+		if ( isset($alloptions['widget_onboarding_recent_posts']) )
+			delete_option('widget_onboarding_recent_posts');
+
+		return $instance;
+	}
+
+	public function flush_widget_cache() {
+		wp_cache_delete('widget_recent_posts', 'widget');
+	}
+
+	public function form( $instance ) {
+		$title     = isset( $instance['title'] ) ? esc_attr( $instance['title'] ) : '';
+		$number    = isset( $instance['number'] ) ? absint( $instance['number'] ) : 5;
+		$show_date = isset( $instance['show_date'] ) ? (bool) $instance['show_date'] : false;
+?>
+		<p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+		<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" /></p>
+
+		<p><label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of posts to show:' ); ?></label>
+		<input id="<?php echo $this->get_field_id( 'number' ); ?>" name="<?php echo $this->get_field_name( 'number' ); ?>" type="text" value="<?php echo $number; ?>" size="3" /></p>
+
+		<p><input class="checkbox" type="checkbox" <?php checked( $show_date ); ?> id="<?php echo $this->get_field_id( 'show_date' ); ?>" name="<?php echo $this->get_field_name( 'show_date' ); ?>" />
+		<label for="<?php echo $this->get_field_id( 'show_date' ); ?>"><?php _e( 'Display post date?' ); ?></label></p>
+<?php
+	}
+}
+
+/**
+ * Recent_Comments widget class
+ *
+ * @since 2.8.0
+ */
+class Onboarding_Recent_Comments extends WP_Widget {
+
+	public function __construct() {
+		$widget_ops = array('classname' => 'widget_onboarding_recent_comments', 'description' => __( 'Onboarding most recent comments.' ) );
+		parent::__construct('onborading-recent-comments', __('Onboarding Recent Comments'), $widget_ops);
+		$this->alt_option_name = 'widget_onboarding_recent_comments';
+
+		if ( is_active_widget(false, false, $this->id_base) )
+			add_action( 'wp_head', array($this, 'recent_comments_style') );
+
+		add_action( 'comment_post', array($this, 'flush_widget_cache') );
+		add_action( 'edit_comment', array($this, 'flush_widget_cache') );
+		add_action( 'transition_comment_status', array($this, 'flush_widget_cache') );
+	}
+
+	public function recent_comments_style() {
+
+		/**
+		 * Filter the Recent Comments default widget styles.
+		 *
+		 * @since 3.1.0
+		 *
+		 * @param bool   $active  Whether the widget is active. Default true.
+		 * @param string $id_base The widget ID.
+		 */
+		if ( ! current_theme_supports( 'widgets' ) // Temp hack #14876
+			|| ! apply_filters( 'show_recent_comments_widget_style', true, $this->id_base ) )
+			return;
+		?>
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+<?php
+	}
+
+	public function flush_widget_cache() {
+		wp_cache_delete('widget_onboarding_recent_comments', 'widget');
+	}
+
+	public function widget( $args, $instance ) {
+		global $comments, $comment;
+
+		$cache = array();
+		if ( ! $this->is_preview() ) {
+			$cache = wp_cache_get('widget_onboarding_recent_comments', 'widget');
+		}
+		if ( ! is_array( $cache ) ) {
+			$cache = array();
+		}
+
+		if ( ! isset( $args['widget_id'] ) )
+			$args['widget_id'] = $this->id;
+
+		if ( isset( $cache[ $args['widget_id'] ] ) ) {
+			echo $cache[ $args['widget_id'] ];
+			return;
+		}
+
+		$output = '';
+
+		$title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : __( 'Recent Comments' );
+
+		/** This filter is documented in wp-includes/default-widgets.php */
+		$title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
+
+		$number = ( ! empty( $instance['number'] ) ) ? absint( $instance['number'] ) : 5;
+		if ( ! $number )
+			$number = 5;
+
+		/**
+		 * Filter the arguments for the Recent Comments widget.
+		 *
+		 * @since 3.4.0
+		 *
+		 * @see WP_Comment_Query::query() for information on accepted arguments.
+		 *
+		 * @param array $comment_args An array of arguments used to retrieve the recent comments.
+		 */
+		$comments = get_comments( apply_filters( 'widget_comments_args', array(
+            'post_type' => 'member-onboarding',
+			'number'      => $number,
+			'status'      => 'approve',
+			'post_status' => 'publish'
+		) ) );
+
+		$output .= $args['before_widget'];
+		if ( $title ) {
+			$output .= $args['before_title'] . $title . $args['after_title'];
+		}
+
+		$output .= '<ul id="recentcomments">';
+		if ( $comments ) {
+			// Prime cache for associated posts. (Prime post term cache if we need it for permalinks.)
+			$post_ids = array_unique( wp_list_pluck( $comments, 'comment_post_ID' ) );
+			_prime_post_caches( $post_ids, strpos( get_option( 'permalink_structure' ), '%category%' ), false );
+
+			foreach ( (array) $comments as $comment) {
+				$output .= '<li class="recentcomments">';
+				/* translators: comments widget: 1: comment author, 2: post link */
+				$output .= sprintf( _x( '%1$s on %2$s', 'widgets' ),
+					'<span class="comment-author-link">' . get_comment_author_link() . '</span>',
+					'<a href="' . esc_url( get_comment_link( $comment->comment_ID ) ) . '">' . get_the_title( $comment->comment_post_ID ) . '</a>'
+				);
+				$output .= '</li>';
+			}
+		}
+		$output .= '</ul>';
+		$output .= $args['after_widget'];
+
+		echo $output;
+
+		if ( ! $this->is_preview() ) {
+			$cache[ $args['widget_id'] ] = $output;
+			wp_cache_set( 'widget_onboarding_recent_comments', $cache, 'widget' );
+		}
+	}
+
+	public function update( $new_instance, $old_instance ) {
+		$instance = $old_instance;
+		$instance['title'] = strip_tags($new_instance['title']);
+		$instance['number'] = absint( $new_instance['number'] );
+		$this->flush_widget_cache();
+
+		$alloptions = wp_cache_get( 'alloptions', 'options' );
+		if ( isset($alloptions['widget_onboarding_recent_comments']) )
+			delete_option('widget_onboarding_recent_comments');
+
+		return $instance;
+	}
+
+	public function form( $instance ) {
+		$title  = isset( $instance['title'] ) ? esc_attr( $instance['title'] ) : '';
+		$number = isset( $instance['number'] ) ? absint( $instance['number'] ) : 5;
+?>
+		<p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+		<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" /></p>
+
+		<p><label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of comments to show:' ); ?></label>
+		<input id="<?php echo $this->get_field_id( 'number' ); ?>" name="<?php echo $this->get_field_name( 'number' ); ?>" type="text" value="<?php echo $number; ?>" size="3" /></p>
+<?php
+	}
+}
+
+/**
+ * Categories widget class
+ *
+ * @since 2.8.0
+ */
+class Onboarding_Categories extends WP_Widget {
+
+	public function __construct() {
+		$widget_ops = array( 'classname' => 'onboarding_categories', 'description' => __( "A list or dropdown of categories." ) );
+		parent::__construct('onboarding-categories', __('Onboarding Categories'), $widget_ops);
+	}
+
+	public function widget( $args, $instance ) {
+
+		/** This filter is documented in wp-includes/default-widgets.php */
+		$title = apply_filters( 'widget_title', empty( $instance['title'] ) ? __( 'Categories' ) : $instance['title'], $instance, $this->id_base );
+
+		$c = ! empty( $instance['count'] ) ? '1' : '0';
+		$h = ! empty( $instance['hierarchical'] ) ? '1' : '0';
+		$d = ! empty( $instance['dropdown'] ) ? '1' : '0';
+
+		echo $args['before_widget'];
+		if ( $title ) {
+			echo $args['before_title'] . $title . $args['after_title'];
+		}
+
+		$cat_args = array(
+            'taxonomy'     => 'member-onboarding-categories',
+			'orderby'      => 'name',
+			'show_count'   => $c,
+			'hierarchical' => $h,
+            'include' => get_cat_ID('About Topcoder') . ',' . get_cat_ID('Competing') . ',' . get_cat_ID('Getting Around'),
+		);
+
+		if ( $d ) {
+			static $first_dropdown = true;
+
+			$dropdown_id = ( $first_dropdown ) ? 'cat' : "{$this->id_base}-dropdown-{$this->number}";
+			$first_dropdown = false;
+
+			echo '<label class="screen-reader-text" for="' . esc_attr( $dropdown_id ) . '">' . $title . '</label>';
+
+			$cat_args['show_option_none'] = __( 'Select Category' );
+			$cat_args['id'] = $dropdown_id;
+
+			/**
+			 * Filter the arguments for the Categories widget drop-down.
+			 *
+			 * @since 2.8.0
+			 *
+			 * @see wp_dropdown_categories()
+			 *
+			 * @param array $cat_args An array of Categories widget drop-down arguments.
+			 */
+			wp_dropdown_categories( apply_filters( 'widget_categories_dropdown_args', $cat_args ) );
+?>
+
+<script type='text/javascript'>
+/* <![CDATA[ */
+(function() {
+	var dropdown = document.getElementById( "<?php echo esc_js( $dropdown_id ); ?>" );
+	function onCatChange() {
+		if ( dropdown.options[ dropdown.selectedIndex ].value > 0 ) {
+			location.href = "<?php echo home_url(); ?>/?cat=" + dropdown.options[ dropdown.selectedIndex ].value;
+		}
+	}
+	dropdown.onchange = onCatChange;
+})();
+/* ]]> */
+</script>
+
+<?php
+		} else {
+?>
+		<ul>
+<?php
+		$cat_args['title_li'] = '';
+
+		/**
+		 * Filter the arguments for the Categories widget.
+		 *
+		 * @since 2.8.0
+		 *
+		 * @param array $cat_args An array of Categories widget options.
+		 */
+		wp_list_categories( apply_filters( 'widget_categories_args', $cat_args ) );
+?>
+		</ul>
+<?php
+		}
+
+		echo $args['after_widget'];
+	}
+
+	public function update( $new_instance, $old_instance ) {
+		$instance = $old_instance;
+		$instance['title'] = strip_tags($new_instance['title']);
+		$instance['count'] = !empty($new_instance['count']) ? 1 : 0;
+		$instance['hierarchical'] = !empty($new_instance['hierarchical']) ? 1 : 0;
+		$instance['dropdown'] = !empty($new_instance['dropdown']) ? 1 : 0;
+
+		return $instance;
+	}
+
+	public function form( $instance ) {
+		//Defaults
+		$instance = wp_parse_args( (array) $instance, array( 'title' => '') );
+		$title = esc_attr( $instance['title'] );
+		$count = isset($instance['count']) ? (bool) $instance['count'] :false;
+		$hierarchical = isset( $instance['hierarchical'] ) ? (bool) $instance['hierarchical'] : false;
+		$dropdown = isset( $instance['dropdown'] ) ? (bool) $instance['dropdown'] : false;
+?>
+		<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e( 'Title:' ); ?></label>
+		<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" /></p>
+
+		<p><input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id('dropdown'); ?>" name="<?php echo $this->get_field_name('dropdown'); ?>"<?php checked( $dropdown ); ?> />
+		<label for="<?php echo $this->get_field_id('dropdown'); ?>"><?php _e( 'Display as dropdown' ); ?></label><br />
+
+		<input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id('count'); ?>" name="<?php echo $this->get_field_name('count'); ?>"<?php checked( $count ); ?> />
+		<label for="<?php echo $this->get_field_id('count'); ?>"><?php _e( 'Show post counts' ); ?></label><br />
+
+		<input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id('hierarchical'); ?>" name="<?php echo $this->get_field_name('hierarchical'); ?>"<?php checked( $hierarchical ); ?> />
+		<label for="<?php echo $this->get_field_id('hierarchical'); ?>"><?php _e( 'Show hierarchy' ); ?></label></p>
+<?php
+	}
+
+}

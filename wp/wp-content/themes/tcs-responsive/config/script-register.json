@@ -55,7 +55,8 @@
         "challenge-tags.css",
         "style-getting-started.css",
 		"member-onboarding.css",
-        "icomoon-fonts.css"
+        "icomoon-fonts.css",
+        "font-awesome.css"
       ]
     },
     "challengelanding": {

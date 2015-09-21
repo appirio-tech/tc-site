@@ -41,6 +41,15 @@ if (function_exists ( 'register_sidebar' )) {
       'before_widget' => '',
       'after_widget' => ''
     ) );
+	
+  // onboarding sidebar
+  register_sidebar ( array (
+      'name' => 'Member Onboarding Sidebar',
+      'id' => 'member_onboarding_sidebar',
+      'description' => 'Sidebar on Member Onboarding',
+      'before_widget' => '',
+      'after_widget' => ''
+    ) );
 
   // generic sidebar
   register_sidebar ( array (
