@@ -89,7 +89,7 @@ $blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the topcoder 
                         <div class="clearboth"></div>
                     </div>
                 </div>
-                <a href=".." class="closePost"></a>
+                <!--<a href=".." class="closePost"></a>-->
                 <div class="clearboth"></div>
 			</div>
 		</div>

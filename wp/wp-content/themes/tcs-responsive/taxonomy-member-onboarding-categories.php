@@ -40,7 +40,7 @@ $blogPageTitle = "Member Onboarding";
 				<h2 class="blogPageTitle"><?php echo $blogPageTitle;?></h2>
 				<span class="blogIcon"></span>
 			</div>
-			<div class="blogCategoryWrapper">
+			<div id="member-category" class="blogCategoryWrapper">
 				<div class="container">
 					<div class="innerWrapper">
 						<div class="blogCategoryMenu">
@@ -53,7 +53,7 @@ $blogPageTitle = "Member Onboarding";
 							<a href="<?php echo $menu->url;?>" class="<?php echo $active;?>"><?php echo $menu->title;?></a>
 						<?php endforeach; ?>
 						</div>
-						<ul class="blogMenuMobile">
+						<?php /*?><ul class="blogMenuMobile">
 							<div class="default">Categories<span class="arrow"></span></div>
 							<div class="current"><?php echo $categories;?><span class="arrow"></span></div>
 							<?php
@@ -62,7 +62,7 @@ $blogPageTitle = "Member Onboarding";
 							?>
 								<li><a href="<?php echo $menu->url;?>"><?php echo $menu->title;?></a></li>
 							<?php endforeach; ?>
-						</ul>
+						</ul><?php */?>
 					</div>
 				</div>
 			</div>
@@ -73,19 +73,21 @@ $blogPageTitle = "Member Onboarding";
 
 
 		<article id="mainContent" class="splitLayout overviewPage">
-			<div class="container blogPageMainContent">
+			<div id="onboarding" class="container blogPageMainContent">
 				<div class="rightSplit  grid-3-3">
 					<div class="mainStream grid-2-3">
 						<section id="blogPageContent" class="pageContent">
 						<div class="subscribeTopWrapper">
 							<?php
 								$catName = $cat->name;
+								$catDesc = $cat->description;
 								$feedUrl = get_bloginfo("wpurl")."/feed/?cat=$catId&post_type=member-onboarding";
 							?>
-							<span class="currentCatLink rssCat">Browsing '<?php echo $catName;?>'</span>
-							<a class="feedBtn" href="<?php echo $feedUrl;?>">Subscribe to <?php echo $catName;?></a>
+							<h1><?php echo $catName;?></h1>
+                            <h2><?php echo $catDesc;?></h2>
+							<?php /*?><a class="feedBtn" href="<?php echo $feedUrl;?>">Subscribe to <?php echo $catName;?></a><?php */?>
 						</div>
-						<div class="blogsWrapper">
+						<div class="box-member-onboarding">
 							<input type="hidden" class="pageNo" value="<?php echo $currPage; ?>" />
 							<input type="hidden" class="catId" value="<?php echo $catId; ?>" />
 						<?php 
@@ -131,17 +133,24 @@ $blogPageTitle = "Member Onboarding";
 									$authorObj = get_user_by("id",$post->post_author);
 									$authorLink = get_bloginfo("wpurl")."/author/".$authorObj->user_nicename;
 						?>		
-							<!-- Blog Item -->
-							<div class="blogItem">
+							<!-- Blog Item --> 
 								<!-- Thumb place holder -->
-								<div class="mobiThumbPlaceholder">
-									<a href="<?php the_permalink();?>"><img src="<?php echo $imageUrlMobile;?>" width="300" height="160" /></a>
-								</div>
+                                <a class="onboarding-item" href="<?php the_permalink();?>"> 
+                                <span class="thumbnail"><img src="<?php echo $imageUrlMobile;?>"/></span>
+                                <span class="info">
+                                <span class="title">
+                                <?php the_title();?>
+                                </span>
+                                </span>
+									<?php /*?><a href="<?php the_permalink();?>"><img src="<?php echo $imageUrlMobile;?>" width="300" height="160" /></a> 
+                                    
 								<!-- Thumb place holder end -->
-								<a href="<?php the_permalink();?>" class="blogTitle blueLink"><?php the_title();?></a>
+								<a href="<?php the_permalink();?>" class="blogTitle blueLink"><?php the_title();?></a><?php */?>
 								
+                                </a>
+                                
 								<!-- Blog Desc -->
-								<div class="blogDescBox">
+								<?php /*?><div class="blogDescBox">
 									<div class="postDate"><?php echo $dateStr;?> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; By:&nbsp;&nbsp;</div>
 									<div class="postAuthor"><a href="<?php echo $authorLink; ?>" class="author blueLink"><?php the_author();?></a></div>
 									<div class="postCategory">In : 
@@ -159,40 +168,13 @@ $blogPageTitle = "Member Onboarding";
                                         echo $categories[11];
 									?>									
 									</div>
-								</div>
+								</div><?php */?>
 								<!-- Blog Desc End -->
 								
 								<!-- Blog Right Section -->
-								<div class="blogRightSection">
-									<!-- Imageplacehoder -->
-									<div class="imagePlaceholder">
-										<a href="<?php the_permalink();?>"><img src="<?php echo $imageUrl;?>" width="158" height="158" /></a>
-									</div>
-									<!-- Imageplacehoder End -->
-									
-									<!-- Content Right -->
-									<div class="contentRight">
-										<div class="excerpt">
-											<?php 
-												$excerpt = wrap_content_strip_html(wpautop($post->post_content), 400, true,'\n\r','');
-												echo $excerpt;
-											?>
-										</div>
-										<div class="shareVia">
-											<span>Share via : </span>
-											<a href="<?php echo $email_article;?>" class="shareButton shareMail small"></a>
-											<a href="<?php echo $fbShare;?>" class="shareButton shareFb small"></a>
-											<a href="<?php echo $twitterShare;?>" class="shareButton shareTw small"></a>
-											<a href="<?php echo $gplusShare;?>" class="shareButton shareGPlus small"></a>
-										</div>
-										<a href="<?php the_permalink();?>" class="continueReading">Continue Reading</a>
-									</div>
-									<!-- Content Right End -->
-									
-								</div>
+								 
 								<!-- Blog Right Section End -->
-								
-							</div>
+								 
 							<!-- Blog Item End -->
 						<?php 
 								endwhile;
@@ -234,7 +216,7 @@ $blogPageTitle = "Member Onboarding";
 
 					</div>
 					<!-- /.mainStream -->
-					<aside class="sideStream  grid-1-3">
+					<aside id="" class="sideStream  grid-1-3">
 						
 						<?php get_sidebar("blog"); ?>		
 						
