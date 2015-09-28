@@ -76,39 +76,66 @@ Template Name: Member Onboarding
 			$posts = new WP_Query($args);
 	 
 			if( $posts->have_posts() ): while( $posts->have_posts() ) : $posts->the_post(); ?>
-	  
-	  
+	   
+                        
+                        <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                            <div class="flipper">
+                                <div class="front">
+                                    <span class="name">
+                                    <?php echo get_the_title(); ?>
+                                    </span>
+                                </div>
+                                <div class="back"> 
+                                    <span class="excerpt">
+                                    <?php 
+									$excerpts = get_post_meta($post->ID, 'excerpt', false); ?> 
+									<?php foreach($excerpts as $excerpt) {
+                                        echo $excerpt;
+                                        }
+									?>
+                                    </span>
+                                    <a href="<?php echo get_the_permalink(); ?>" class="read-more">Read More</a>
+                                </div>
+                            </div>
+                        </div>
                        
                        <?php 
 					    
+						
 					   
 					    //echo '<div class="all onboarding-item '. $tax .'">';
-						echo '<a class="onboarding-item '. $termname .'" href="';
-						
-						echo get_the_permalink();
-						echo '">';
+						//echo '<a class="onboarding-item '. $termname .'" href="';
+//						
+//						echo get_the_permalink();
+//						echo '">';
 						//echo '<a href="'. the_permalink() .'" title="'. the_title_attribute() .'">';
-						echo '<span class="thumbnail">';
+						//echo '<span class="thumbnail">';
 						?>
                         
-                        <?php if(has_post_thumbnail()) { ?>
+                        <?php /*?><?php if(has_post_thumbnail()) { ?>
 								<?php the_post_thumbnail(); ?>
-						<?php }
-						/* no post image so show a default img */
-						else { ?>
+						<?php }<?php */?> 
+						<?php /*?>else { ?>
 							   <img src="<?php bloginfo('template_url'); ?>/assets/img/default-img.png" alt="<?php echo get_the_title(); ?>" title="<?php echo get_the_title(); ?>" width="110" height="110" />
-						<?php } ?>
+						<?php } ?><?php */?>
                         
-						<?php 
-						echo '</span>';
+						<?php /*?><?php  
 						echo '<span class="info">';
 						echo '<span class="title">'; 
-						echo get_the_title();
-						echo '</span>';
+						echo get_the_title(); 
+						echo '</span>'; 
+						echo '<span class="excerpt">';    
+						$excerpts = get_post_meta($post->ID, 'excerpt', false); ?> 
+                            <?php foreach($excerpts as $excerpt) {
+                                echo $excerpt;
+                                }
+						echo '</span>';  
 						echo '</span>';
 						echo '</a>';
-					   
-					   ?>
+						 
+					   ?><?php */?>
+                       
+                       
 	  
 					   
 	 
@@ -170,6 +197,7 @@ Template Name: Member Onboarding
         	<h3>What will you create?</h3>
             <h4>Jump into a competition now!</h4>
             <a href="#" class="btn btnBlue">VIEW CHALLENGES</a>
+            <!--<a data-rel="lightbox" class="btn-play" href="https://www.youtube.com/watch?v=_ncY-jYlTjY?autoplay=1">GETTING STARTED</a>-->
             
         </div>
         

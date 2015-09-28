@@ -23,7 +23,7 @@ $blogPageTitle = "Member Onboarding";
 	var page = <?php echo $currPage; ?>;
 </script>
 <div class="content">
-	<div id="main">
+	<div id="onboarding">
 	<?php
         $tax = 'member-onboarding-categories';
         $slug = get_query_var($wp_query->query_vars['taxonomy']);
@@ -37,8 +37,8 @@ $blogPageTitle = "Member Onboarding";
 		<!-- page title -->
 		<div class="pageTitleWrapper">
 			<div class="pageTitle container">
-				<h2 class="blogPageTitle"><?php echo $blogPageTitle;?></h2>
-				<span class="blogIcon"></span>
+				<h2 class="blogPageTitle"><?php echo $blogPageTitle;?> Category</h2>
+				<div class="clearboth"></div>
 			</div>
 			<div id="member-category" class="blogCategoryWrapper">
 				<div class="container">
@@ -68,8 +68,7 @@ $blogPageTitle = "Member Onboarding";
 			</div>
 		</div>
 		<!-- page title end -->
-
-
+		 
 
 
 		<article id="mainContent" class="splitLayout overviewPage">
@@ -87,7 +86,7 @@ $blogPageTitle = "Member Onboarding";
                             <h2><?php echo $catDesc;?></h2>
 							<?php /*?><a class="feedBtn" href="<?php echo $feedUrl;?>">Subscribe to <?php echo $catName;?></a><?php */?>
 						</div>
-						<div class="box-member-onboarding">
+						<div class="single-member-onboarding">
 							<input type="hidden" class="pageNo" value="<?php echo $currPage; ?>" />
 							<input type="hidden" class="catId" value="<?php echo $catId; ?>" />
 						<?php 
@@ -135,19 +134,38 @@ $blogPageTitle = "Member Onboarding";
 						?>		
 							<!-- Blog Item --> 
 								<!-- Thumb place holder -->
-                                <a class="onboarding-item" href="<?php the_permalink();?>"> 
+                                
+                                <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                                <div class="flipper">
+                                    <div class="front">
+                                        <span class="name">
+                                        <?php echo get_the_title(); ?>
+                                        </span>
+                                    </div>
+                                    <div class="back"> 
+                                        <span class="excerpt">
+                                        <?php 
+                                        $excerpts = get_post_meta($post->ID, 'excerpt', false); ?> 
+                                        <?php foreach($excerpts as $excerpt) {
+                                            echo $excerpt;
+                                            }
+                                        ?>
+                                        </span>
+                                        <a href="<?php echo get_the_permalink(); ?>" class="read-more">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                                <?php /*?><a class="onboarding-item" href="<?php the_permalink();?>"> 
                                 <span class="thumbnail"><img src="<?php echo $imageUrlMobile;?>"/></span>
                                 <span class="info">
                                 <span class="title">
                                 <?php the_title();?>
                                 </span>
-                                </span>
-									<?php /*?><a href="<?php the_permalink();?>"><img src="<?php echo $imageUrlMobile;?>" width="300" height="160" /></a> 
-                                    
-								<!-- Thumb place holder end -->
-								<a href="<?php the_permalink();?>" class="blogTitle blueLink"><?php the_title();?></a><?php */?>
+                                </span>  
 								
-                                </a>
+                                </a><?php */?>
                                 
 								<!-- Blog Desc -->
 								<?php /*?><div class="blogDescBox">
