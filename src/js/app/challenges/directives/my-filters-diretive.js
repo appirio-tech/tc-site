@@ -149,7 +149,7 @@
           });
         }, function(error) {
           ctrl.filters = [];
-          MyFiltersService.showError('An error occurs when retrieving filters from server.', error);
+          //MyFiltersService.showError('An error occurs when retrieving filters from server.', error);
         });
       };
       /**
