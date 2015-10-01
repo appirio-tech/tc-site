@@ -106,7 +106,7 @@
               });
             }
           }, function(error) {
-            MyFiltersService.showError('An error occured when retrieving filters from server.', error);
+            //MyFiltersService.showError('An error occured when retrieving filters from server.', error);
           });
           ctrl.closeDialogAndClear();
         } else {
