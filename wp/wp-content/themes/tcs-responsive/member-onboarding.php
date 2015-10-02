@@ -17,8 +17,14 @@ Template Name: Member Onboarding
  
     <ul id="filters">
         <?php
-            $terms = get_terms("member-onboarding-categories");
+		 
+			  $args         = array( 
+				  'orderby'  => 'id',
+				  'order'    => 'ASC'
+			  );
+            $terms = get_terms("member-onboarding-categories", $args);
             $count = count($terms);
+			
                 //echo '<li><a href="javascript:void(0)" title="" data-filter=".all" class="active">All</a></li>';
             if ( $count > 0 ){
  
@@ -43,12 +49,15 @@ Template Name: Member Onboarding
 	$post_type = 'member-onboarding';
 	 
 	// Get all the taxonomies for this post type
-	$taxonomies = get_object_taxonomies( array( 'post_type' => $post_type,) );
+	$taxonomies = get_object_taxonomies( array( 'post_type' => $post_type) );
 	 
 	foreach( $taxonomies as $taxonomy ) :
-	 
+	 	 $args         = array( 
+				  'orderby'  => 'id',
+				  'order'    => 'ASC'
+		);
 		// Gets every "category" (term) in this taxonomy to get the respective posts
-		$terms = get_terms( $taxonomy );
+		$terms = get_terms( $taxonomy, $args);
 	 
 		foreach( $terms as $term ) : ?>
 	 	  <?php
@@ -68,7 +77,7 @@ Template Name: Member Onboarding
 						array(
 							'taxonomy' => $taxonomy,
 							'field' => 'slug',
-							'terms' => $term->slug,
+							'terms' => $term->slug
 						)
 					)
 	 
@@ -192,6 +201,9 @@ Template Name: Member Onboarding
  
  <div class="onboarding-footer">
    		<div class="container">
+        
+        
+        
    		<h2>What can you do with topcoder today?</h2>
    		<div class="col-left">
         	<h3>What will you create?</h3>

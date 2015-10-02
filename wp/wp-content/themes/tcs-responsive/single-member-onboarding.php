@@ -89,7 +89,7 @@ $blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the topcoder 
                         <div class="clearboth"></div>
                     </div>
                 </div>
-                <!--<a href=".." class="closePost"></a>-->
+                <a href=".." class="closePost"></a>
                 <div class="clearboth"></div>
 			</div>
 		</div>
@@ -132,10 +132,10 @@ $blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the topcoder 
                             <?php endif;  ?><?php */?>
 
                             <!-- Related Posts -->
-                            <?php do_action('blog_similar_posts', $post->ID); ?>
+                           <?php /*?> <?php do_action('blog_similar_posts', $post->ID); ?><?php */?>
                             
                             <!-- Comments -->
-                            <?php /*?><?php comments_template( '', true ); ?><?php */?>
+                           <?php /*?> <?php comments_template( '', true ); ?><?php */?>
 
 						</section>
 

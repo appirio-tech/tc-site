@@ -1,33 +1,55 @@
 $( document ).ready(function() {
     
-    if($('#filters').length)
-        var top = $('#filters').offset().top - parseFloat($('#filters').css('marginTop').replace(/auto/, 100));
-  $(window).scroll(function (event) {
-    // what the y position of the scroll is
-    var y = $(this).scrollTop();
+if($('#filters').length){
 
-    // whether that's below the form
-    if (y >= top) {
-      // if so, ad the fixed class
-      $('#filters').addClass('fixed');
-    } else {
-      // otherwise remove it
-      $('#filters').removeClass('fixed');
+var sections = $('.box-member-onboarding')
+  , nav = $('#filters')
+  , nav_height = nav.outerHeight();
+var topfilter = $('#filters').offset().top - parseFloat($('#filters').css('marginTop').replace(/auto/, 100));
+
+$(window).on('scroll', function () {
+  var cur_pos = $(this).scrollTop();
+  
+  
+  var y = $(this).scrollTop();
+	
+	// whether that's below the form
+	if (y >= topfilter) {
+	  // if so, ad the fixed class
+	  $('#filters').addClass('fixed');
+	} else {
+	  // otherwise remove it
+	  $('#filters').removeClass('fixed'); 
+	  nav.find('a').removeClass('active');
+      sections.removeClass('active');
+	}
+  
+  sections.each(function() {
+    var top = $(this).offset().top - nav_height,
+        bottom = top + $(this).outerHeight();
+    
+    if (cur_pos >= top && cur_pos <= bottom) {
+      nav.find('a').removeClass('active');
+      sections.removeClass('active');
+      
+      $(this).addClass('active');
+      nav.find('a[href="#'+$(this).attr('id')+'"]').addClass('active');
     }
   });
-	
-    $('.mk-smooth').click(function() {
-        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-            var target = $(this.hash);
-            target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-            if (target.length) {
-                $('html,body').animate({
-                            scrollTop: (target.offset().top - 120)
-                            }, 800);
-                return false;
-            }
-        }
-    });
+});
+
+nav.find('a').on('click', function () {
+  var $el = $(this)
+    , id = $el.attr('href');
+  
+  $('html, body').animate({
+    scrollTop: $(id).offset().top - nav_height
+  }, 500);
+  
+  return false;
+});
+	 
+} 
   
     if ($('#single-member-onboarding').length){
         $('.pagnav-wrapper').show();

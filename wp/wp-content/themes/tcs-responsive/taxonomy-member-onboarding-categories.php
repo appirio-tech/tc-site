@@ -30,6 +30,8 @@ $blogPageTitle = "Member Onboarding";
         $cat = get_term_by('slug', $slug, $tax);
 		$catId = $cat->term_id;		
 		$categories = $cat->name;
+		 
+		  
  
 	?>
 	<!-- Start Overview Page-->
@@ -81,12 +83,14 @@ $blogPageTitle = "Member Onboarding";
 								$catName = $cat->name;
 								$catDesc = $cat->description;
 								$feedUrl = get_bloginfo("wpurl")."/feed/?cat=$catId&post_type=member-onboarding";
+								$termname = strtolower($categories);
+           						$termname = str_replace(' ', '-', $termname); 
 							?>
 							<h1><?php echo $catName;?></h1>
                             <h2><?php echo $catDesc;?></h2>
 							<?php /*?><a class="feedBtn" href="<?php echo $feedUrl;?>">Subscribe to <?php echo $catName;?></a><?php */?>
 						</div>
-						<div class="single-member-onboarding">
+						<div id="box-<?php echo $termname; ?>" class="single-member-onboarding">
 							<input type="hidden" class="pageNo" value="<?php echo $currPage; ?>" />
 							<input type="hidden" class="catId" value="<?php echo $catId; ?>" />
 						<?php 

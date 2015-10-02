@@ -22,7 +22,14 @@
 #onboarding ul,
 #onboarding li {
     list-style: none;
+	color: #777777;
+    font-size: 16px; 
 }
+
+#onboarding ul  { 
+	margin: 0px 0 25px 0;
+}
+
 /*#onboarding input[type=email], #onboarding input[type=password], 
 #onboarding input[type=search], #onboarding input[type=tel], 
 #onboarding input[type=text], #onboarding textarea{
@@ -57,23 +64,24 @@
 }
 #onboarding .pageTitleWrapper .pageTitle h2.blogPageTitle {
     float: left;
-    font-size: 40px;
+    font-size: 38px;
     color: #4d4d4d;
     text-transform: none;
     font-weight: 200;
     letter-spacing: 0px;
-    margin: 30px 20px 30px 0;
+    margin: 36px 20px 30px 0;
     line-height: 120%;
     -ms-word-wrap: break-word;
     word-wrap: break-word;
     padding: 0;
+	width:90%;
 }
 
 /* Close/Back button */
 #onboarding .closePost {
     position: absolute;
-    right: -75px;
-    top: 15px;
+    left: -75px;
+    top: 45px;
     width: 23px;
     height: 33px;
     background: url('/mf/i/onboarding_close.png');
@@ -119,11 +127,11 @@
     font-family: "Source Sans Pro";
 }
 #onboarding .pageContent .contentWrapper p {
-    font-size: 16px;
+    font-size: 16px; 
     color: #777777;
     line-height: auto;
     word-wrap: break-word;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 	padding-bottom:0!important;
 }
 #onboarding .arve-wrapper {
@@ -716,7 +724,11 @@ form#commentform .comment-textarea textarea {
 #onboarding .cat-item a {
     display: inline-block;
     margin: 5px 0;
-    line-height: 18px;
+    line-height: 18px; 
+    color: #a3a3ae;
+    font-size: 16px!important;
+    font-weight: 400 !important; 
+    text-transform: uppercase;
 }
 #onboarding .cat-item:before {
     margin-right: 7px;
@@ -786,10 +798,11 @@ form#commentform .comment-textarea textarea {
 	display:block;
 	text-align:center;
 	border: 0 none;
-    color: rgb(58, 60, 67);
-    font-size: 48px;
+    color: #3d3d3d;
+    font-size: 36px;
     font-weight: 200 !important;
-	margin-top: 30px;
+	margin-top: 0px;
+	text-transform:uppercase;
 }
 
 #onboarding .subscribeTopWrapper{
@@ -801,8 +814,8 @@ form#commentform .comment-textarea textarea {
 	display:block;
 	text-align:left;
 	border: 0 none;
-    color: rgb(58, 60, 67);
-    font-size: 40px;
+    color: #3d3d3d;
+    font-size: 36px;
     font-weight: 200 !important; 
 	padding:0!important;
 }
@@ -811,8 +824,8 @@ form#commentform .comment-textarea textarea {
 	display:block;
 	text-align:left;
 	border: 0 none;
-    color: rgb(58, 60, 67);
-    font-size: 32px;
+   color: #3d3d3d;
+    font-size: 24px;
     font-weight: 200 !important;
 	   margin-bottom: 50px;
 	   padding:0!important;
@@ -823,7 +836,7 @@ form#commentform .comment-textarea textarea {
 	display:block;
 	text-align:center;
 	border: 0 none;
-    color: rgb(58, 60, 67);
+    color: #3d3d3d;
     font-size: 36px;
     font-weight: 200 !important;
 	margin-bottom: 50px; 
@@ -832,13 +845,9 @@ form#commentform .comment-textarea textarea {
 .box-member-onboarding{
 	display:inline-block;
 	clear: both;
-	padding-bottom: 100px; 
+	padding-top: 50px; 
 }
-
-.single-member-onboarding .flip-container .front{
-	background: #eeeeee;
-}
-
+ 
 .onboarding-footer{
 	background:#ffffff;
 	padding: 40px 0 80px 0;
@@ -953,7 +962,9 @@ form#commentform .comment-textarea textarea {
 	padding-bottom:100px;
 }
 .contentWrapper h2{
-	margin: 30px 0;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	font-size:32px;
 }
 
 .contentWrapper table{
@@ -1036,17 +1047,24 @@ form#commentform .comment-textarea textarea {
 }
 
 #filters li a{
+	/*font-face: SofiaProRegular;*/
 	background-color: none;
     border: 0;
-    color: rgb(58, 60, 67);
+    color: #a3a3ae;
     margin: 10px;
     padding: 12px 20px;
-	font-size: 24px;
-    font-weight: 100 !important;
+	font-size: 16px;
+	line-height: 19px;
+    font-weight: 400 !important;
+	text-transform:uppercase;
 }
 
-#filters li a.active{ 
-    border-bottom: 3px solid #a0c549 !important;  
+#filters li a.active{  
+	color: #3d3d3d;
+}
+
+#filters li a:hover{  
+	color: #0096ff;  
 }
 
 #portfolio {
@@ -1486,6 +1504,9 @@ color: #3d4d65 !important;
 			resize: vertical;
 			overflow: visible!important;
 			height: 250px;
+			display: -webkit-inline-box;
+			-webkit-box-pack: center;
+			-webkit-box-align: center;
 		}
 
 		.back {
@@ -1500,29 +1521,52 @@ color: #3d4d65 !important;
 		}
 
 		.front .name {
-			color: #337ab7;
-			font-size: 32px !important;
-			font-weight: 300 !important;
-			line-height: 36px;  
+			color: #3d3d3d;
+			font-size: 30px !important;
+			font-weight: 200 !important;
+			line-height: 32px;  
 			text-align: center; 
- 			
+			word-wrap:normal;  
 			 display: inline-block!important;
 			*display: inline!important; /** for ie6/7 */
 			zoom: 1;
 			vertical-align: middle;
 			width: auto;
     		height: auto;
-			padding: 20px !important;
+			padding: 5px 15px !important;
 		} 
-		 
 		
-
+		#box-about-topcoder .front{
+			background: #e6d9fc;
+		}  
+		
+		#box-about-topcoder .back{
+			background: #9f70fe;
+			color: #fff;
+		} 
+		
+		#box-getting-around .front{
+			background: #fde7b3;
+		}
+		
+		#box-getting-around .back{
+			background: #f9ae3c;
+			color: #fff;
+		}
+		
+		#box-competing .front{
+			background: #c6dbfd;
+		}
 		 
-
+		#box-competing .back{
+			background: #6792fd;
+			color: #fff;
+		}  
+		
 		.back .excerpt {
 			display:block; 
-			color: #fff !important;
-			font-size: 18px;
+			color: #fff;
+			font-size: 16px;
 			text-wrap:normal;
 			padding: 15px !important;
 		}
@@ -1585,3 +1629,105 @@ color: #3d4d65 !important;
 			    transform: rotateX(180deg);
 			}
 		/* END: Accommodating for IE */
+
+.pageContent h3{ 
+	padding-bottom:10px!important;
+	padding-top:10px!important;
+	line-height: 32px;
+}
+
+#single-member-onboarding table td{
+	padding:5px 10px 5px 10px;
+	vertical-align:middle; 
+}
+
+#single-member-onboarding table td.no-padding{
+	padding:5px 10px 5px 0; 
+}
+
+#single-member-onboarding table .border{
+	border: 1px solid #eeeeee;
+}
+
+
+#single-member-onboarding p{
+    font-size: 16px;
+    color: #777777;
+    line-height: auto;
+    word-wrap: break-word;
+    margin-bottom: 15px;
+	padding-bottom:0!important;
+}
+
+#single-member-onboarding td{
+    font-size: 16px;
+    color: #777777;  
+}
+
+#single-member-onboarding table,
+#single-member-onboarding table tbody,
+#single-member-onboarding table tr{ 
+	width:100%;
+}
+
+#single-member-onboarding table .button{
+	 border-radius: 5px!important;
+	 background:#81a5de;
+	 color: #fff;
+	 text-align:center;
+	 font-size: 15px;
+	 line-height: 18px;
+	 font-weight:400;
+	 word-wrap:normal;
+	 padding: 15px 10px;
+	 display:block;
+}
+
+#single-member-onboarding table .button:hover{ 
+	 background:#566eb6;
+}
+
+#single-member-onboarding table.message {
+	margin: 50px 0!important;
+}
+
+#single-member-onboarding table.client img {
+	display:block;
+	margin: 0 auto;
+	width:140px!important;
+}
+ 
+#single-member-onboarding table.message td{ 
+	background: #f3f3f3;
+	padding: 10px!important;  
+}
+
+#single-member-onboarding table.message td:first-child{
+	text-align:center!important;
+}
+
+#single-member-onboarding .no-border-top{
+	border-top: 0!important;
+}
+
+#single-member-onboarding .center-top{
+	text-align:center;
+	vertical-align:top!important;
+	font-size: 18px;
+}
+
+#single-member-onboarding  .align-top{ 
+	vertical-align:top!important; 
+}
+
+
+
+#single-member-onboarding table.message td,
+#single-member-onboarding table.message p{
+	 font-size: 22px!important;
+	 line-height: 32px;
+}
+
+.center-text{
+	text-align:center;
+}

@@ -510,5 +510,23 @@ register_taxonomy( "member-onboarding-categories",
 		 ) 
 );
 
+// Video Autoplay
+function autoplay_video( $provider ) {
+  $provider = add_query_arg( 'autoplay', 1 , $provider );
+  $provider = add_query_arg( 'loop', 1 , $provider );
+  return $provider;
+}
+add_filter('oembed_fetch_url', 'autoplay_video', 10, 3);
+
+// Youtube autoplay
+function autoplay_youtube($html, $url, $args) {
+    if(strstr($url, "youtube"))
+        $html = str_replace("?feature=oembed", "?feature=oembed&autoplay=true&rel=0", $html);
+    
+    return $html;
+}
+add_filter('embed_oembed_html', 'autoplay_youtube', 10, 3);
+ 
+
 ?>
  
