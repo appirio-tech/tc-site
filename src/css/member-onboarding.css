@@ -1731,3 +1731,15 @@ color: #3d4d65 !important;
 .center-text{
 	text-align:center;
 }
+
+.front {
+    background: #fff none repeat scroll 0 0;
+    border-radius: 5px !important;
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    justify-content: center;
+    overflow: visible !important;
+    resize: vertical;
+    z-index: 2;
+}

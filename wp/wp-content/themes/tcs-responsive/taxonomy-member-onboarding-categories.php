@@ -240,7 +240,7 @@ $blogPageTitle = "Member Onboarding";
 					<!-- /.mainStream -->
 					<aside id="" class="sideStream  grid-1-3">
 						
-						<?php get_sidebar("blog"); ?>		
+						<?php get_sidebar("Member Onboarding Sidebar"); ?>		
 						
 					</aside>
 					<!-- /.sideStream -->
