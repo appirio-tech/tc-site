@@ -67,7 +67,7 @@
 			var matchesYoutube = videoURL.match(/(?:(?:http|https):\/\/)?(?:www\.)?youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)/);
 
 			if(matchesYoutube) {
-				videoToShow = '//www.youtube.com/embed/'+matchesYoutube[1];
+				videoToShow = '//www.youtube.com/embed/'+matchesYoutube[1]+'?autoplay=1';
 				return true;
 			}
 
