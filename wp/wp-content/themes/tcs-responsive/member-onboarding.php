@@ -66,7 +66,7 @@ Template Name: Member Onboarding
 		  ?> 
           <?php echo '<div id="box-'. $termname .'" class="box-member-onboarding">' ?> 
 		  <?php echo '<h1>'.  $term->name .'</h1>' ?>
-          <?php echo '<h2>'.  $term->description .'</h2>' ?> 
+          <?php /*?><?php echo '<h2>'.  $term->description .'</h2>' ?> <?php */?>
 	 
 			<?php
 			$args = array(
@@ -204,11 +204,16 @@ Template Name: Member Onboarding
         
         
         
-   		<h2>What can you do with topcoder today?</h2>
+   		<h2>What can you do with Topcoder today?</h2>
    		<div class="col-left">
         	<h3>What will you create?</h3>
             <h4>Jump into a competition now!</h4>
-            <a href="#" class="btn btnBlue">VIEW CHALLENGES</a>
+            <ul class="footer-buttons">
+            	<li><a href="https://www.topcoder.com/challenges/design/active/"><span></span><p>Design</p></a></li>
+                <li><a href="https://www.topcoder.com/challenges/develop/active/"><span></span><p>Development</p></a></li>
+                <li><a href="https://www.topcoder.com/challenges/data/active/"><span></span><p>Data Science</p></a></li>
+                <li class="last"><a href="https://arena.topcoder.com/"><span></span><p>Competitive Programming</p></a></li>
+            </ul>
             <!--<a data-rel="lightbox" class="btn-play" href="https://www.youtube.com/watch?v=_ncY-jYlTjY?autoplay=1">GETTING STARTED</a>-->
             
         </div>
@@ -216,7 +221,7 @@ Template Name: Member Onboarding
         <div class="col-right">
         	<h3>What will you learn?</h3>
             <h4>Learn more and practice now!</h4>
-            <a href="#" class="btn btnBlue">LEARN MORE</a>
+            <a href="https://www.topcoder.com/community/member-programs/topcoder-fun-challenges/" class="btn btnBlue">LEARN MORE</a>
         </div>
         </div>
    </div>

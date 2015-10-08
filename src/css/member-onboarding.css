@@ -1,3 +1,172 @@
+/* fonts */ 
+@font-face {
+    font-family: 'Sofia Pro';
+    src: url('/mf/fonts/sofiapro-ultralight-webfont.eot');
+    src: url('/mf/fonts/sofiapro-ultralight-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/mf/fonts/sofiapro-ultralight-webfont.woff') format('woff'),
+		 url('/mf/fonts/sofiapro-ultralight-webfont.ttf') format('truetype'), 
+         url('/mf/fonts/sofiapro-ultralight-webfont.svg#sofia_pro_ultralight') format('svg');
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Sofia Pro'; 
+    src: url('/mf/fonts/sofiapro-ultralight-italic-webfont.eot');
+    src: url('/mf/fonts/sofiapro-ultralight-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/mf/fonts/sofiapro-ultralight-italic-webfont.woff') format('woff'),
+		 url('/mf/fonts/sofiapro-ultralight-italic-webfont.ttf') format('truetype'), 
+         url('/mf/fonts/sofiapro-ultralight-italic-webfont.svg#sofia_pro_ultralightitalic') format('svg');
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Sofia Pro';
+    src: url('/mf/fonts/sofiapro-extralight-webfont.eot');
+    src: url('/mf/fonts/sofiapro-extralight-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/mf/fonts/sofiapro-extralight-webfont.woff') format('woff'),
+		 url('/mf/fonts/sofiapro-extralight-webfont.woff2') format('woff2'), 
+         url('/mf/fonts/sofiapro-extralight-webfont.svg#sofia_pro_extralight') format('svg');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Sofia Pro'; 
+    src: url('/mf/fonts/sofiapro-extralight-italic-webfont.eot');
+    src: url('/mf/fonts/sofiapro-extralight-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/mf/fonts/sofiapro-extralight-italic-webfont.woff') format('woff'),
+		 url('/mf/fonts/sofiapro-extralight-italic-webfont.woff2') format('woff2'), 
+         url('/mf/fonts/sofiapro-extralight-italic-webfont.ttf') format('truetype');
+    font-weight: 200;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Sofia Pro';
+    src: url('/mf/fonts/sofiapro-light-webfont.eot');
+    src: url('/mf/fonts/sofiapro-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/mf/fonts/sofiapro-light-webfont.woff') format('woff'),
+		 url('/mf/fonts/sofiapro-light-webfont.woff2') format('woff2'), 
+         url('/mf/fonts/sofiapro-light-webfont.svg#sofia_pro_light') format('svg'),
+		 url('/mf/fonts/sofiapro-light-webfont.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+} 
+
+@font-face {
+    font-family: 'Sofia Pro'; 
+    src: url('/mf/fonts/sofiapro-light-italic-webfont.eot');
+    src: url('/mf/fonts/sofiapro-light-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/mf/fonts/sofiapro-light-italic-webfont.woff') format('woff'), 
+         url('/mf/fonts/sofiapro-light-italic-webfont.ttf') format('truetype'),
+		 url('/mf/fonts/sofiapro-light-italic-webfont.svg#sofia_pro_lightitalic') format('svg');
+    font-weight: 300;
+    font-style: italic;
+} 
+
+@font-face {
+    font-family: 'Sofia Pro';
+    src: url('/mf/fonts/sofiapro-regular-webfont.eot');
+    src: url('/mf/fonts/sofiapro-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/mf/fonts/sofiapro-regular-webfont.woff') format('woff'),
+		 url('/mf/fonts/sofiapro-regular-webfont.woff2') format('woff2'), 
+		 url('/mf/fonts/sofiapro-regular-webfont.ttf') format('truetype'),
+         url('/mf/fonts/sofiapro-regular-webfont.svg#sofia_pro_regular') format('svg');
+    font-weight: 400;
+    font-style: normal;
+} 
+
+@font-face {
+    font-family: 'Sofia Pro';
+    src: url('/mf/fonts/sofiapro-medium-webfont.eot');
+    src: url('/mf/fonts/sofiapro-medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/mf/fonts/sofiapro-medium-italic.woff') format('woff'),
+		 url('/mf/fonts/sofiapro-medium-italic.woff2') format('woff2'), 
+         url('/mf/fonts/sofiapro-medium-webfont.svg#sofia_pro_medium') format('svg'),
+		 url('/mf/fonts/sofiapro-medium-webfont.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+} 
+
+@font-face {
+    font-family: 'Sofia Pro'; 
+    src: url('/mf/fonts/sofiapro-medium-italic.eot');
+    src: url('/mf/fonts/sofiapro-medium-italic.eot?#iefix') format('embedded-opentype'),
+         url('/mf/fonts/sofiapro-medium-italic.woff') format('woff'), 
+         url('/mf/fonts/sofiapro-medium-italic.ttf') format('truetype'),
+		 url('/mf/fonts/sofiapro-medium-italic.svg#sofia_pro_mediumitalic') format('svg');
+    font-weight: 500;
+    font-style: italic;
+} 
+
+@font-face {
+    font-family: 'Sofia Pro';
+    src: url('/mf/fonts/sofiapro-semibold-webfont.eot');
+    src: url('/mf/fonts/sofiapro-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/mf/fonts/sofiapro-semibold-webfont.woff') format('woff'),
+		 url('/mf/fonts/sofiapro-semibold-webfont.woff2') format('woff2'), 
+         url('/mf/fonts/sofiapro-semibold-webfont.svg#sofia_pro_semibold') format('svg'),
+		 url('/mf/fonts/sofiapro-semibold-webfont.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+} 
+
+@font-face {
+    font-family: 'Sofia Pro'; 
+    src: url('/mf/fonts/sofiapro-semibold-italic-webfont.eot');
+    src: url('/mf/fonts/sofiapro-semibold-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/mf/fonts/sofiapro-semibold-italic-webfont.woff') format('woff'), 
+         url('/mf/fonts/sofiapro-semibold-italic-webfont.ttf') format('truetype'),
+		 url('/mf/fonts/sofiapro-semibold-italic-webfont.svg#sofia_pro_semibolditalic') format('svg');
+    font-weight: 600;
+    font-style: italic;
+} 
+
+@font-face {
+    font-family: 'Sofia Pro';
+    src: url('/mf/fonts/sofiapro-bold-webfont.eot');
+    src: url('/mf/fonts/sofiapro-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/mf/fonts/sofiapro-bold-webfont.woff') format('woff'),
+		 url('/mf/fonts/sofiapro-bold-webfont.woff2') format('woff2'), 
+         url('/mf/fonts/sofiapro-bold-webfont.svg#sofia_pro_bold') format('svg'),
+		 url('/mf/fonts/sofiapro-bold-webfont.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+} 
+
+@font-face {
+    font-family: 'Sofia Pro'; 
+    src: url('/mf/fonts/sofiapro-bold-italic-webfont.eot');
+    src: url('/mf/fonts/sofiapro-bold-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/mf/fonts/sofiapro-bold-italic-webfont.woff') format('woff'), 
+         url('/mf/fonts/sofiapro-bold-italic-webfont.ttf') format('truetype'),
+		 url('/mf/fonts/sofiapro-bold-italic-webfont.svg#sofia_pro_bolditalic') format('svg');
+    font-weight: 700;
+    font-style: italic;
+} 
+ 
+@font-face {
+    font-family: 'Sofia Pro';
+    src: url('/mf/fonts/sofiapro-black-webfont.eot');
+    src: url('/mf/fonts/sofiapro-black-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/mf/fonts/sofiapro-black-webfont.woff') format('woff'),
+		 url('/mf/fonts/sofiapro-black-webfont.woff2') format('woff2'), 
+         url('/mf/fonts/sofiapro-black-webfont.svg#sofia_pro_black') format('svg'),
+		 url('/mf/fonts/sofiapro-black-webfont.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+} 
+
+@font-face {
+    font-family: 'Sofia Pro'; 
+    src: url('/mf/fonts/sofiapro-black-italic-webfont.eot');
+    src: url('/mf/fonts/sofiapro-black-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/mf/fonts/sofiapro-black-italic-webfont.woff') format('woff'),  
+		 url('/mf/fonts/sofiapro-black-italic-webfont.woff2#sofia_pro_blackitalic') format('svg');
+    font-weight: 800;
+    font-style: italic;
+} 
+
 /* Member Onboarding Base */
 /*#onboarding a:active, #onboarding a:focus, 
 #onboarding a:hover, #onboarding a:link, 
@@ -53,7 +222,7 @@
 
 #onboarding,
 #onboarding h3 {
-    font-family: "Source Sans Pro";
+    font-family: 'Sofia Pro';
 }
 #onboarding .pageTitleWrapper {
     height: initial;
@@ -124,10 +293,11 @@
     font-weight: bold;
     text-transform: none;
     margin: 30px 0;
-    font-family: "Source Sans Pro";
+    font-family: 'Sofia Pro';
 }
 #onboarding .pageContent .contentWrapper p {
-    font-size: 16px; 
+    font-size: 16px;
+	font-weight:100;
     color: #777777;
     line-height: auto;
     word-wrap: break-word;
@@ -162,7 +332,7 @@
     font-weight: 300;
     letter-spacing: normal;
     padding: 9px 12px 9px 0;
-    font-family: "Source Sans Pro";
+    font-family: 'Sofia Pro';
 }
 [class^=mk-icon-], #onboarding #recentcomments li:before,
 #onboarding .cat-item:before {
@@ -753,15 +923,21 @@ form#commentform .comment-textarea textarea {
     z-index: 5!important;
 }
 
-.memberOnboardingView .master-slider a{   
-	background:#ffffff!important;  
-	color:#000000!important;
-	padding: 15px 20px!important;
-	font-size:14px!important;
-	width:auto!important;
+.memberOnboardingView .ls-slide p.btn-play{
+	cursor:pointer;   
+	background:#ffffff url("/mf/i/play-icon.png") no-repeat scroll 14px 17px!important;
 }
 
-.memberOnboardingView .master-slider a:hover{ 
+.memberOnboardingView .ls-slide p.btn-play:hover{ 
+	background:#000000 url("/mf/i/play-icon-hover.png") no-repeat scroll 14px 17px!important; 
+	color:#fff!important;  
+}
+
+.memberOnboardingView .ls-slide p.btn-learn-more{ 
+	cursor:pointer; 
+}
+
+.memberOnboardingView .ls-slide p.btn-learn-more:hover{ 
 	background:#000000!important; 
 	color:#fff!important;  
 }
@@ -773,8 +949,9 @@ form#commentform .comment-textarea textarea {
 	-moz-border-radius: 5px!important;
     -webkit-border-radius: 5px!important;
     -khtml-border-radius: 5px!important;
-    border-radius:5px!important;
-	padding-left: 25px!important;
+    border-radius:5px!important; 
+    font-size: 14px !important;
+    padding: 15px 20px 15px 25px !important; 
 }
 
 .memberOnboardingView .master-slider a.btn-play:hover{ 
@@ -789,7 +966,7 @@ form#commentform .comment-textarea textarea {
 
 .onboarding-body{
 	display:block;
-	margin: 50px auto 100px auto!important;  
+	margin: 0 auto 100px auto!important;  
 	overflow:hidden!important;  
 }
 
@@ -800,7 +977,8 @@ form#commentform .comment-textarea textarea {
 	border: 0 none;
     color: #3d3d3d;
     font-size: 36px;
-    font-weight: 200 !important;
+	margin-bottom: 50px;
+    font-weight: 300 !important;
 	margin-top: 0px;
 	text-transform:uppercase;
 }
@@ -845,7 +1023,7 @@ form#commentform .comment-textarea textarea {
 .box-member-onboarding{
 	display:inline-block;
 	clear: both;
-	padding-top: 50px; 
+	padding-top: 70px; 
 }
  
 .onboarding-footer{
@@ -864,7 +1042,7 @@ form#commentform .comment-textarea textarea {
 .onboarding-footer h2{
 	text-align:center;
 	margin-bottom:50px;
-	font-size:60px;
+	font-size:54px;
 	/*font-family: "Myriad Pro";*/
 	font-weight: 300;
 	color: #00aeff!important; 
@@ -872,7 +1050,8 @@ form#commentform .comment-textarea textarea {
 
 .onboarding-footer h3{
 	text-align:center; 
-	font-size:38px;
+	font-size:35px;
+	margin-bottom:10px;
 	/*font-family: "Myriad Pro";*/
 	font-weight: 300;
 	color: #323334!important; 
@@ -1047,7 +1226,7 @@ form#commentform .comment-textarea textarea {
 }
 
 #filters li a{
-	/*font-face: SofiaProRegular;*/
+	font-family: "Sofia Pro";
 	background-color: none;
     border: 0;
     color: #a3a3ae;
@@ -1070,7 +1249,7 @@ form#commentform .comment-textarea textarea {
 #portfolio {
 	display:block;
 	clear:both;
-	margin-left: 30px;
+	margin-left: 15px;
 }
 
 #portfolio .onboarding-item{
@@ -1248,7 +1427,7 @@ color: #3d4d65 !important;
 .single-share-box {
     position:absolute;
     left:-220px;
-    bottom:-11px;
+    bottom:-37px;
     background-color:#252525;
     margin:0;
     list-style:none;
@@ -1732,14 +1911,43 @@ color: #3d4d65 !important;
 	text-align:center;
 }
 
-.front {
-    background: #fff none repeat scroll 0 0;
-    border-radius: 5px !important;
-    display: flex;
-    flex-direction: column;
-    height: 250px;
-    justify-content: center;
-    overflow: visible !important;
-    resize: vertical;
-    z-index: 2;
+.footer-buttons{
+	display:block;
+	margin-left: 30px;
+}
+
+.footer-buttons li{
+	float:left;
+	width: 108px;
+	margin-right: 10px;
+}
+
+.footer-buttons li span{
+	display:inline-block;
+	clear:both;
+	overflow: hidden;
+	margin: 0 auto 10px auto;
+	width: 60px;
+	height: 60px;
+	background:#32D50A;
+}
+
+.footer-buttons li p{
+	display:inline-block;
+	clear:both;
+	overflow: hidden;
+	margin-top: 10px;
+}
+
+.footer-buttons li.last p{ 
+	margin-top: 0!important;
+}
+
+.footer-buttons li a{
+	display:block; 
+	font-size: 14px;
+	font-weight: 200;
+	text-transform:uppercase;
+	color: #a3a3ae;
+	text-align:center;
 }

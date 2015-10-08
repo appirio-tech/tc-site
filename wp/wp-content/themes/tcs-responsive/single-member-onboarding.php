@@ -80,7 +80,7 @@ $blogPageTitle = get_option("blog_page_title") == "" ? "Welcome to the topcoder 
                             <ul class="single-share-box mk-box-to-trigger">
                                 <li><a class="facebook-share" data-title="<?php $title ?>" data-url="<?php get_permalink() ?>" href="#"><i class="mk-moon-facebook"></i></a></li>
                                 <li><a class="twitter-share" data-title="<?php $title ?>" data-url="'<?php get_permalink() ?>" href="#"><i class="mk-moon-twitter"></i></a></li>
-                                <li><a class="googleplus-share" data-title="<?php $title ?>" data-url="<?php get_permalink() ?>" href="#"><i class="mk-moon-googleplus"></i></a></li>
+                                <li><a class="googleplus-share" data-title="<?php $title ?>" data-url="<?php get_permalink() ?>" href="#"><i class="mk-moon-google-plus"></i></a></li>
                                 <li><a class="pinterest-share" data-image="'.$image_src_array[0].'" data-title="<?php $title ?>" data-url="<?php get_permalink() ?>" href="#"><i class="mk-moon-pinterest"></i></a></li>
                                 <li><a class="linkedin-share" data-title="<?php $title ?>" data-url="<?php get_permalink() ?>" href="#"><i class="mk-moon-linkedin"></i></a></li>
                             </ul>
