@@ -176,10 +176,23 @@
     color: #333333;
     font-weight: normal;
 }
-*/#onboarding div {
+*/
+#onboarding div {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+}
+
+#onboarding .pageTitleWrapper,
+#onboarding .overviewPage,
+.memberOnboardingView #page,
+.memberOnboardingView #page h1, 
+.memberOnboardingView #page h2, 
+.memberOnboardingView #page h3, 
+.memberOnboardingView #page h4, 
+.memberOnboardingView #page h5, 
+.memberOnboardingView #page h6 {
+     font-family: 'Sofia Pro'; 
 }
 #onboarding img {
     max-width: 100%;
@@ -1933,7 +1946,7 @@ color: #3d4d65 !important;
 }
 
 .footer-buttons li p{
-	display:inline-block;
+	display:block;
 	clear:both;
 	overflow: hidden;
 	margin-top: 10px;

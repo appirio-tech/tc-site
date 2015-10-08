@@ -14,7 +14,7 @@ div, article, aside, details, figcaption, figure, footer, header, hgroup, menu, 
 body {
     line-height: 1.2em;
     /* set default font details */
-    font-family: "Sofia Pro", Arial, Helvetica, sans-serif;
+    font-family: "Source Sans Pro", Arial, Helvetica, sans-serif;
     font-size: 15px;
     color: #333;
 	font-weight:normal;
@@ -66,7 +66,7 @@ table {
 input, textarea {
     color: #333;
     font-size: 15px;
-    font-family: "Sofia Pro", Arial, Helvetica, sans-serif;
+    font-family: lato, Arial, Helvetica, sans-serif;
     outline: none;
     vertical-align: baseline;
 }
@@ -83,7 +83,7 @@ input[type="email"], input[type="number"], input[type="password"], input[type="t
  h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
     line-height: 1.125em;
-    font-family: "Sofia Pro", Arial, Helvetica, sans-serif;
+    font-family: lato, Arial, Helvetica, sans-serif;
 }
 header h1,
 .sideStream h1{
