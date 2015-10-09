@@ -309,13 +309,11 @@
     font-family: 'Sofia Pro';
 }
 #onboarding .pageContent .contentWrapper p {
+    color: #666;
     font-size: 16px;
-	font-weight:100;
-    color: #777777;
-    line-height: auto;
-    word-wrap: break-word;
     margin-bottom: 10px;
-	padding-bottom:0!important;
+    padding-bottom: 0 !important;
+    word-wrap: break-word;
 }
 #onboarding .arve-wrapper {
     max-width: 100%!important;
@@ -332,9 +330,9 @@
     list-style: none;
 }
 #onboarding .sideStream ul li a {
-    color: #999999;
-    outline: 0;
-	font-size:13px;
+    color: #666;
+    font-size: 13px;
+    outline: 0 none;
     text-decoration: none;
 }
 #onboarding .widgettitle {
@@ -1851,9 +1849,9 @@ color: #3d4d65 !important;
 	padding-bottom:0!important;
 }
 
-#single-member-onboarding td{
+#single-member-onboarding td {
+    color: #666;
     font-size: 16px;
-    color: #777777;  
 }
 
 #single-member-onboarding table,
