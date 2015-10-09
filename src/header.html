@@ -72,163 +72,51 @@
 
 
 <div id="wrapper" class="tcssoUsingJS">
-  <nav class="sidebarNav mainNav onMobi">
-    <ul class="root"><li id="nav-menu-item-13018"><a href="/challenges/" class="13018"><i></i>Challenges</a>
-<ul class="child">
-  <li id="nav-menu-item-13510"><a href="/challenges" class="all"><i></i>All</a></li>
-  <li id="nav-menu-item-13511"><a href="/challenges/design/active/" class="design"><i></i>Design</a></li>
-  <li id="nav-menu-item-13512"><a href="/challenges/develop/active/" class="develop"><i></i>Development</a></li>
-  <li id="nav-menu-item-13513"><a href="/challenges/data/active/" class="data"><i></i>Data Science</a></li>
-  <li id="nav-menu-item-13529"><a href="@@community/contest/arena/ContestAppletProd.jnlp" class="topcoder-arena"><i></i>topcoder Arena</a></li>
-</ul>
-</li>
-<li id="nav-menu-item-15135"><a href="/community/" class="15135"><i></i>Community</a>
-<ul class="child">
-  <li id="nav-menu-item-15090"><a href="/community" class="home-3"><i></i>Home</a></li>
-  <li id="nav-menu-item-15079"><a href="/community/how-it-works/" class="how-it-works"><i></i>How It Works</a></li>
-  <li id="nav-menu-item-15080"><a href="http://apps.topcoder.com/forums/" class="forums-2"><i></i>Forums</a></li>
-  <li id="nav-menu-item-15132"><a href="/community/events/" class="15132"><i></i>Events</a></li>
-  <li id="nav-menu-item-15218"><a href="http://tco15.topcoder.com/" class="topcoder-open-2015"><i></i>Topcoder Open 2015</a></li>
-  <li id="nav-menu-item-15138"><a href="/community/member-programs/" class="15138"><i></i>Member Programs</a></li>
-  <li id="nav-menu-item-15133"><a href="/community/stories/" class="15133"><i></i>Stories</a></li>
-</ul>
-</li>
-<li id="nav-menu-item-15089"><a href="/about" class="about-topcoder"><i></i>About</a></li>
-<li id="nav-menu-item-13379"><a href="/blog/" class="13379"><i></i>Blog</a></li>
-      <li class="notLogged"><a href="javascript:;" class="btnRegister btn-primary"><i></i>Sign Up</a></li>
-      <li class="userLi isLogged">
-        <div class="userInfo">
-          <div class="userPic">
-            <img src="" alt="">
-          </div>
-          <div class="userDetails">
-            <a href="" class="coder"></a>
-            <p class="country"></p>
-            <a href="" class="link myProfileLink">My Profile</a>
-            <a href="/my-dashboard" class="link">My TopCoder </a>
-            <a href="@@community/tc?module=MyHome" class="link">Account Settings </a>
-            <a href="javascript:;" class="actionLogout">Log Out</a>
-          </div>
+
+<!-- Header container -->
+<div ng-class="{'autocomplete': main.searchTerm.length &gt; 0}" class="header-wrapper">
+  <!-- Main header element -->
+  <div ng-intro-options="vm.introOptions" ng-intro-method="launchIntro"></div>
+  <header class="top-header"><a href="/" class="logo-link"></a>
+    <!-- Header content visible on small screens -->
+    <div class="show-small mobile-heading"><span ng-if="main.menuVisible" class="tc-text-logo">[ topcoder ]</span>
+      <button type="button" ng-if="!main.menuVisible" ng-click="main.menuVisible = true" class="btn-open-menu">Menu</button>
+      <button type="button" ng-if="main.menuVisible" ng-click="main.menuVisible = false" class="btn-close-menu"></button>
+      <!-- User link (profile or join) --><a ui-sref="profile.about({userHandle: vm.userHandle})" ng-switch="vm.isAuth" data-ng-if="!main.menuVisible" class="user-link"><img ng-switch-when="true" ng-src="{{vm.profile.photoURL}}" class="user-avatar"/><span ng-switch-when="false" class="btn-link">JOIN</span></a>
+    </div>
+    <!-- main menu  -->
+    <ul class="main-menu">
+      <!-- search container -->
+      <li class="menu-item search-wrapper">
+        <div class="menu-item-header show-large">
+          <button type="button" class="btn-expand-search search-icon"></button>
+        </div>
+        <div class="submenu">
+          <input type="text" placeholder="find people" ng-model="vm.searchTerm" ng-keyup="vm.checkSubmit($event)"/>
         </div>
       </li>
-    </ul>
-  </nav>
-  <!-- /.sidebarNav -->
-  <header id="navigation">
-    <div class="container">
-      <div class="headerTopRightMenu">
-        <div class="headerTopRightMenuLink logIn">
-          <div class="text"><a href="javascript:;" class="actionLogin" style="display: inline;">Log In</a></div>
-          <div class="icon"></div>
-          <div class="clear"></div>
+      <!-- user menu -->
+      <li ng-switch="vm.isAuth" ng-class="{'anonymous-menu': !vm.isAuth}" class="menu-item link-group user-menu">
+        <div ng-switch-when="true">
+          <div class="menu-item-header"><span ui-sref="profile.about({userHandle: vm.userHandle})"><img ng-src="{{vm.profile.photoURL}}" class="user-avatar"/><span class="username">{{vm.userHandle}}</span></span></div><a ui-sref="settings.profile" class="btn-link btn-edit-profile show-small">EDIT</a>
+          <ul class="submenu">
+            <header-menu-item ng-repeat="item in vm.userMenu" item="item"></header-menu-item>
+            <li class="submenu-item"><a ng-click="vm.logout(); main.menuVisible = vm.isAuth = false" class="menu-link"><img ng-src="/images/nav/logout.svg" class="menu-icon"/>
+                <div class="menu-text">LOG OUT</div></a></li>
+          </ul>
         </div>
-        <div class="separator"></div>
-        <div class="headerTopRightMenuLink contact">
-          <div class="text"><a href="/contact-us">Contact</a></div>
-          <div class="clear"></div>
-        </div>
-        <div class="separator"></div>
-        <div class="headerTopRightMenuLink help">
-          <div class="text"><a href="http://help.topcoder.com">Help Center</a></div>
-          <div class="clear"></div>
-        </div>
-        <div class="separator beforeSearch"></div>
-        <div class="headerTopRightMenuLink search last">
-          <div class="icon"></div>
-          <div class="text"><a id="searchButton" href="#">Search</a></div>
-          <div class="clear"></div>
-        </div>
-        <div id="searchWidget" class="hide">
-            <div class="box">
-              <div class="upperbox">
-                <div class="searchArea">
-                  <a id="btnSearchType" class="btn btnSearchType" href="#"><span id="searchTypeName">Site</span><i></i></a><input id="searchKeyword" type="text" class="searchInput" name="keyword" maxlength="64">
-                  <div id="requiredText" class="hide">Please input search keyword</div>
-                </div>
-                <div id="searchTypeList" class="hide">
-                  <a class="searchType">Site</a>
-                  <a class="searchType">Members</a>
-                </div>
-              </div>
-              <div class="lowerbox">
-                <div class="searchText">Find what you are looking for.</div>
-                <a id="searchButtonGo" class="btn btnGo" href="#">Go</a>
-              </div>
-            </div>
-        </div>
-        <div class="clear"></div>
-      </div>
-      <div class="clear"></div>
-      <h1 class="logo">
-        <a href="/" title="topcoder"></a>
-      </h1>
-      <nav id="mainNav" class="mainNav">
-
-
-        <ul class="root">
-          <li id="nav-menu-item-13018"><a href="/challenges/" class="13018"><i></i>Challenges</a>
-<ul class="child">
-  <li id="nav-menu-item-13510"><a href="/challenges" class="all"><i></i>All</a></li>
-  <li id="nav-menu-item-13511"><a href="/challenges/design/active/" class="design"><i></i>Design</a></li>
-  <li id="nav-menu-item-13512"><a href="/challenges/develop/active/" class="develop"><i></i>Development</a></li>
-  <li id="nav-menu-item-13513"><a href="/challenges/data/active/" class="data"><i></i>Data Science</a></li>
-  <li id="nav-menu-item-13529"><a href="@@community/contest/arena/ContestAppletProd.jnlp" class="topcoder-arena"><i></i>topcoder Arena</a></li>
-</ul>
-</li>
-<li id="nav-menu-item-15135"><a href="/community/" class="15135"><i></i>Community</a>
-<ul class="child">
-  <li id="nav-menu-item-15090"><a href="/community" class="home-3"><i></i>Home</a></li>
-  <li id="nav-menu-item-15079"><a href="/community/how-it-works/" class="how-it-works"><i></i>How It Works</a></li>
-  <li id="nav-menu-item-15080"><a href="http://apps.topcoder.com/forums/" class="forums-2"><i></i>Forums</a></li>
-  <li id="nav-menu-item-15132"><a href="/community/events/" class="15132"><i></i>Events</a></li>
-  <li id="nav-menu-item-15218"><a href="http://tco15.topcoder.com/" class="topcoder-open-2015"><i></i>Topcoder Open 2015</a></li>
-  <li id="nav-menu-item-15138"><a href="/community/member-programs/" class="15138"><i></i>Member Programs</a></li>
-  <li id="nav-menu-item-15133"><a href="/community/stories/" class="15133"><i></i>Stories</a></li>
-</ul>
-</li>
-<li id="nav-menu-item-15089"><a href="/about" class="about-topcoder"><i></i>About</a></li>
-<li id="nav-menu-item-13379"><a href="/blog/" class="13379"><i></i>Blog</a></li>
+        <!-- links for anonymous user -->
+        <div ng-switch-when="false" class="menu-item-header"><a ui-sref="register" class="btn-link">REGISTER</a><a ui-sref="login" class="btn-link secondary-link">LOGIN</a><a ng-click="launchIntro();" ng-show="!!vm.introOptions">Intro</a></div>
+      </li>
+      <li ng-repeat="(menu, items) in vm.menuLinks" class="menu-item link-group">
+        <div class="menu-item-header">{{menu}}</div>
+        <ul class="submenu">
+          <header-menu-item ng-repeat="item in items" item="item"></header-menu-item>
         </ul>
-      </nav>
-      <div class="userDetailsWrapper hide">
-        <span class="btnAccWrap noReg">
-          <a href="javascript:;" class="btn btnAlt btnMyAcc">
-            My Account<i></i>
-          </a>
-        </span>
-
-        <div class="userWidget">
-          <div class="details">
-            <div class="userPic">
-              <img src="">
-            </div>
-            <div class="userDetails">
-              <p class="country"></p>
-              <!-- Bugfix I-109397: add Member Since title -->
-              <p class="lbl">Member Since :</p>
-
-              <p class="val memberSince"></p>
-
-              <p class="lbl">Total Earnings :</p>
-
-              <p class="val memberEarning"></p>
-            </div>
-          </div>
-          <div class="action">
-            <a class="profileLink" href="">My
-              Profile</a>
-            <a href="/my-dashboard">My TopCoder </a>
-            <a href="@@community/tc?module=MyHome" class="linkAlt">Account Settings</a>
-          </div>
-        </div>
-      </div>
-      <a class="onMobi noReg linkLogin actionLogin" href="javascript:;">Log In</a>
-      <span class="btnRegWrap noReg"><a href="javascript:;" class="btn btnRegister btn-primary">Sign Up</a> </span>
-
-
-      <!-- /.userWidget -->
-    </div>
+      </li>
+    </ul>
   </header>
+</div>
+
 <!-- Bugfix: I-108496 hidden element needed for non-firefox browsers to detect cache-persist status of page, used for above code to display member details -->
 <input type='hidden' id='cache-persist'>
-  <!-- /#header -->
