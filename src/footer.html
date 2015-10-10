@@ -160,9 +160,27 @@
         $scope.vm = vm = {};
         $scope.main = {};
         $scope.main.menuVisible = false;
-        vm.isAuth = true;
-        vm.userHandle = "FIXME";
-        vm.photoURL = "https://community.topcoder-dev.com/i/m/thabo.png";
+        vm.isAuth = false;
+        
+        if (app.isLoggedIn()) {
+          vm.isAuth = true;
+          app.getHandle(function(handle) {
+            $.get(tcconfig.apiURL + '/users/' + handle, function(data) {
+              var photoLink = data['photoLink'];
+              if (photoLink) {
+                if (photoLink.indexOf('//') == -1) {
+                  photoLink = tcconfig.communityURL + data['photoLink']
+                }
+              } else {
+                photoLink = tcconfig.communityURL + '/i/m/nophoto_login.gif';
+              }
+              //vm.photoURL = photoLink;
+              $('.user-avatar').attr('src', photoLink);
+            });
+            //vm.userHandle = handle;
+            $('.username').html(handle);
+          });
+        }
         
         vm.menuLinks =
         {
@@ -170,7 +188,7 @@
               { 'href':  "/challenges/design/active/", 'text': 'DESIGN CHALLENGES', 'icon': '/mf/i/nav/design.svg' },
               { 'href':  "/challenges/develop/active", 'text': 'DEVELOPMENT CHALLENGES', 'icon': '/mf/i/nav/development.svg' },
               { 'href':  "/challenges/data/active", 'text': 'DATA SCIENCE CHALLENGES', 'icon': '/mf/i/nav/data-science.svg' },
-              { 'href':  'vm.constants.ARENA_URL', 'text': 'THE ARENA', 'icon': '/mf/i/nav/srms.svg' },
+              { 'href':  'https:' + tcconfig.arenaURL, 'text': 'THE ARENA', 'icon': '/mf/i/nav/srms.svg' },
           ],
           'learn': [
               { 'href': '/community/design/', 'text': 'DESIGN', 'icon': '/mf/i/nav/scroll-design.svg' },
@@ -181,24 +199,35 @@
           'community': [
               { 'href': '/community/members/', 'text': 'MEMBERS', 'icon': '/mf/i/nav/users.svg' },
               { 'href': '/community/member-programs/', 'text': 'PROGRAMS', 'icon': '/mf/i/nav/medal.svg' },
-              { 'href': 'vm.constants.FORUMS_APP_URL', 'text': 'FORUMS', 'icon': '/mf/i/nav/forum.svg' },
+              { 'href': 'https://' + tcconfig.forumsAppURL, 'text': 'FORUMS', 'icon': '/mf/i/nav/forum.svg' },
               { 'href': '/community/statistics/', 'text': 'STATISTICS', 'icon': '/mf/i/nav/statistics.svg' },
               { 'href': '/community/events/', 'text': 'EVENTS', 'icon': '/mf/i/nav/calendar.svg' },
               { 'href': '/blog/', 'text': 'BLOG', 'icon': '/mf/i/nav/blog.svg' }
           ]
         };
         
+        vm.userMenu = [
+          { 'href': '/my-dashboard', 'text': 'DASHBOARD', 'icon': '/mf/i/nav/dashboard.svg' },
+          { 'href': '/profile/about', 'text': 'MY PROFILE', 'icon': '/mf/i/nav/badge.svg' },
+          { 'href': 'https:' + tcconfig.communityURL + '/PactsMemberServlet?module=PaymentHistory&full_list=false', 'text': 'PAYMENTS', 'icon': '/mf/i/nav/money-bag.svg' },
+          { 'href': '/settings/profile', 'text': 'SETTINGS', 'icon': '/mf/i/nav/gear.svg' },
+        ];
+        
         vm.checkSubmit = function(ev) {
           if (ev.keyCode === 13)
             window.location.replace(tcconfig.mainURL + '/search?s=' + vm.searchTerm + '&scope=member');
         }
         
+        vm.login = function() {
+          //window.location.href = "/login?next=" + encodeURIComponent(window.location.href);
+          window.location.href = "https://www.topcoder-dev.com/login?next=" + encodeURIComponent(window.location.href);
+        }
+        
         vm.logout = function() {
-          // TODO
-          //  vm.logout(); 
+          document.cookie = 'tcsso=; path=/; domain=.' + tcconfig.domain + '; expires=' + new Date(0).toUTCString();
+          document.cookie = 'tcjwt=; path=/; domain=.' + tcconfig.domain + '; expires=' + new Date(0).toUTCString(); 
           main.menuVisible = vm.isAuth = false;
         }
-        $scope.greeting = 'Welcome!';
       }
     };
   });

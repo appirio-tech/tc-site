@@ -25,7 +25,12 @@
           </div>
           <a href="/settings/profile" class="btn-link btn-edit-profile show-small">EDIT</a>
           <ul class="submenu">
-            <header-menu-item ng-repeat="item in vm.userMenu" item="item"></header-menu-item>
+            <li class="submenu-item" ng-repeat="item in vm.userMenu">
+              <a ng-href="{{item.href}}" ng-class="{ 'active': isActive() }" class="menu-link">
+                <img ng-src="{{item.icon}}" class="menu-icon"/>
+                <div class="menu-text">{{item.text}}</div>
+              </a>
+            </li>
             <li class="submenu-item">
               <a ng-click="vm.logout()" class="menu-link">
                 <img ng-src="/mf/i/nav/logout.svg" class="menu-icon"/>
@@ -36,21 +41,20 @@
         </div>
         <div ng-switch-when="false" class="menu-item-header">
           <a href="/register" class="btn-link">REGISTER</a>
-          <a href="/login" class="btn-link secondary-link">LOGIN</a>
+          <a ng-click="vm.login()" class="btn-link secondary-link">LOGIN</a>
         </div>
       </li>
-      <li ng-repeat="items in vm.menuLinks" class="menu-item link-group">
-        <!--<div class="menu-item-header">{{menu}}</div>
-        <ul class="submenu">
-          <header-menu-item ng-repeat="item in items" item="item"></header-menu-item>
-        </ul>-->
-      </li>
-      <!--<li ng-repeat="(menu, items) in vm.menuLinks" class="menu-item link-group">
+      <li ng-repeat="(menu,items) in vm.menuLinks" class="menu-item link-group">
         <div class="menu-item-header">{{menu}}</div>
         <ul class="submenu">
-          <header-menu-item ng-repeat="item in items" item="item"></header-menu-item>
+          <li class="submenu-item" ng-repeat="item in items">
+            <a ng-href="{{item.href}}" ng-class="{ 'active': isActive() }" class="menu-link">
+              <img ng-src="{{item.icon}}" class="menu-icon"/>
+              <div class="menu-text">{{item.text}}</div>
+            </a>
+          </li>
         </ul>
-      </li>-->
+      </li>
     </ul>
   </header>
 </div>
