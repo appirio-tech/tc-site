@@ -149,6 +149,85 @@
 @@scripts
 @@analytics
 
+<script>
+(function() {
+  var headerApp = angular.module('tc.header', [])
+  headerApp.directive('ngHeaderBootstrap', function(){
+    return {
+      restrict: 'C',
+      templateUrl: tcconfig.mainURL + '/js/app/header/partials/header-nav.html',
+      controller: function($scope){
+        $scope.vm = vm = {};
+        $scope.main = {};
+        $scope.main.menuVisible = false;
+        vm.isAuth = true;
+        vm.userHandle = "FIXME";
+        vm.photoURL = "https://community.topcoder-dev.com/i/m/thabo.png";
+        
+        vm.menuLinks =
+        {
+          'compete': [
+              { 'href':  "/challenges/design/active/", 'text': 'DESIGN CHALLENGES', 'icon': '/mf/i/nav/design.svg' },
+              { 'href':  "/challenges/develop/active", 'text': 'DEVELOPMENT CHALLENGES', 'icon': '/mf/i/nav/development.svg' },
+              { 'href':  "/challenges/data/active", 'text': 'DATA SCIENCE CHALLENGES', 'icon': '/mf/i/nav/data-science.svg' },
+              { 'href':  'vm.constants.ARENA_URL', 'text': 'THE ARENA', 'icon': '/mf/i/nav/srms.svg' },
+          ],
+          'learn': [
+              { 'href': '/community/design/', 'text': 'DESIGN', 'icon': '/mf/i/nav/scroll-design.svg' },
+              { 'href': '/community/development/', 'text': 'DEVELOPMENT', 'icon': '/mf/i/nav/scroll-develop.svg' },
+              { 'href': '/community/data-science/', 'text': 'DATA SCIENCE', 'icon': '/mf/i/nav/scroll-data.svg' },
+              { 'href': '/community/competitive%20programming/', 'text': 'COMPETITIVE PROGRAMMING', 'icon': '/mf/i/nav/srms.svg' },
+          ],
+          'community': [
+              { 'href': '/community/members/', 'text': 'MEMBERS', 'icon': '/mf/i/nav/users.svg' },
+              { 'href': '/community/member-programs/', 'text': 'PROGRAMS', 'icon': '/mf/i/nav/medal.svg' },
+              { 'href': 'vm.constants.FORUMS_APP_URL', 'text': 'FORUMS', 'icon': '/mf/i/nav/forum.svg' },
+              { 'href': '/community/statistics/', 'text': 'STATISTICS', 'icon': '/mf/i/nav/statistics.svg' },
+              { 'href': '/community/events/', 'text': 'EVENTS', 'icon': '/mf/i/nav/calendar.svg' },
+              { 'href': '/blog/', 'text': 'BLOG', 'icon': '/mf/i/nav/blog.svg' }
+          ]
+        };
+        
+        vm.checkSubmit = function(ev) {
+          if (ev.keyCode === 13)
+            window.location.replace(tcconfig.mainURL + '/search?s=' + vm.searchTerm + '&scope=member');
+        }
+        
+        vm.logout = function() {
+          // TODO
+          //  vm.logout(); 
+          main.menuVisible = vm.isAuth = false;
+        }
+        $scope.greeting = 'Welcome!';
+      }
+    };
+  });
+  
+  headerApp.directive('headerMenuItem', function() {
+    return {
+      restrict: 'E',
+      templateUrl: '/js/app/header/partials/header-menu-item.html',
+      scope: {
+        item: '='
+      },
+      controller: ['$scope', '$state', function($scope) {
+        var href = $scope.item.href;
+        $scope.isActive = function() {
+          if (window.location.pathname == href)
+            return true;
+          return false;
+        }
+      }]
+    };
+  });
+  
+angular.bootstrap($('.ng-header-bootstrap'), ['tc.header']);
+})();
+  
+  
+
+</script>
+
 </div>
 
 </body>
