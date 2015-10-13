@@ -182,8 +182,7 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
-
-#onboarding .pageTitleWrapper,
+ 
 #onboarding .overviewPage,
 .memberOnboardingView #page,
 .memberOnboardingView #page h1, 
@@ -201,14 +200,14 @@
     vertical-align: middle;
     -ms-interpolation-mode: bicubic;
 }
-#onboarding ul,
-#onboarding li {
+#onboarding .contentWrapper ul,
+#onboarding .contentWrapper li {
     list-style: none;
 	color: #777777;
     font-size: 16px; 
 }
 
-#onboarding ul  { 
+#onboarding .contentWrapper ul  { 
 	margin: 0px 0 25px 0;
 }
 
@@ -232,8 +231,7 @@
 #onboarding{
 	padding-top:0!important;
 }
-
-#onboarding,
+ 
 #onboarding h3 {
     font-family: 'Sofia Pro';
 }
@@ -249,7 +247,7 @@
     font-size: 38px;
     color: #4d4d4d;
     text-transform: none;
-    font-weight: 200;
+    font-weight: 300;
     letter-spacing: 0px;
     margin: 36px 20px 30px 0;
     line-height: 120%;
@@ -309,11 +307,12 @@
     font-family: 'Sofia Pro';
 }
 #onboarding .pageContent .contentWrapper p {
+    font-size: 16px; 
     color: #666;
-    font-size: 16px;
-    margin-bottom: 10px;
-    padding-bottom: 0 !important;
+    line-height: auto;
     word-wrap: break-word;
+    margin-bottom: 10px;
+	padding-bottom:0!important;
 }
 #onboarding .arve-wrapper {
     max-width: 100%!important;
@@ -331,8 +330,8 @@
 }
 #onboarding .sideStream ul li a {
     color: #666;
-    font-size: 13px;
-    outline: 0 none;
+    outline: 0;
+	font-size:13px;
     text-decoration: none;
 }
 #onboarding .widgettitle {
@@ -906,7 +905,7 @@ form#commentform .comment-textarea textarea {
     display: inline-block;
     margin: 5px 0;
     line-height: 18px; 
-    color: #a3a3ae;
+    color: #666;
     font-size: 16px!important;
     font-weight: 400 !important; 
     text-transform: uppercase;
@@ -1005,21 +1004,10 @@ form#commentform .comment-textarea textarea {
 	border: 0 none;
     color: #3d3d3d;
     font-size: 36px;
-    font-weight: 200 !important; 
+    font-weight: 300; 
 	padding:0!important;
-}
-
-#onboarding .subscribeTopWrapper h2{
-	display:block;
-	text-align:left;
-	border: 0 none;
-   color: #3d3d3d;
-    font-size: 24px;
-    font-weight: 200 !important;
-	   margin-bottom: 50px;
-	   padding:0!important;
-}
-
+	margin-bottom: 50px;
+}  
 
 .onboarding-body h2{
 	display:block;
@@ -1842,16 +1830,16 @@ color: #3d4d65 !important;
 
 #single-member-onboarding p{
     font-size: 16px;
-    color: #777777;
+    color: #666;
     line-height: auto;
     word-wrap: break-word;
     margin-bottom: 15px;
 	padding-bottom:0!important;
 }
 
-#single-member-onboarding td {
-    color: #666;
+#single-member-onboarding td{
     font-size: 16px;
+    color: #666;  
 }
 
 #single-member-onboarding table,

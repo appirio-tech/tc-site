@@ -86,8 +86,7 @@ $blogPageTitle = "Member Onboarding";
 								$termname = strtolower($categories);
            						$termname = str_replace(' ', '-', $termname); 
 							?>
-							<h1><?php echo $catName;?></h1>
-                            <h2><?php echo $catDesc;?></h2>
+							<h1><?php echo $catName;?></h1> 
 							<?php /*?><a class="feedBtn" href="<?php echo $feedUrl;?>">Subscribe to <?php echo $catName;?></a><?php */?>
 						</div>
 						<div id="box-<?php echo $termname; ?>" class="single-member-onboarding">
