@@ -79,7 +79,7 @@
           vm.userSkills = response;
         });
       } else {
-        window.location.href = "/login?next=/account/integrations";
+        showModal('#login');
       }
 
       vm.unLink = unLink;
