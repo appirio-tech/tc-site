@@ -340,19 +340,12 @@ if (!loginState) {
   });
 
   $('.btnRegister').on('click', function () {
-    if ($('.mainStream #register').length>0) return;
-    //document.getElementById("registerForm").reset();
-    showModal('#register');
+    window.location.href = "/register";
 
   });
 
   $('.actionLogin').on('click', function () {
-    if ($('.mainStream #login').length>0) return;
-    document.getElementById("loginForm").reset();
-    $('#loginForm .btnSubmit').html('Login');
-    $(".pwd, .confirm, .strength").parents(".row").show();
-    $("#register a.btnSubmit").removeClass("socialRegister");
-    showModal('#login');
+    window.location.href = "/login?next=" + encodeURIComponent(window.location.href);
   });
 
   $('.closeModal,#bgModal').not('.redirectOnConfirm').on('click', function () {
@@ -1095,8 +1088,7 @@ if (!loginState) {
   });
 
   $('.switch-to-register').click(function() {
-    $('#login').hide();
-    showModal('#register');
+    window.location.href = "/register";
   });
 
   /*check if on registration complete page and add challenge detail link - currently only way to this since 
@@ -1276,11 +1268,7 @@ function initMemberDetails(pagePersisted){
         $('.headerTopRightMenuLink.logIn a').unbind('click');
         $('.headerTopRightMenuLink.logIn a').text("Log In").removeClass("actionLogout").addClass("actionLogin");
         $('.actionLogin').on('click', function() {
-          document.getElementById("loginForm").reset();
-          $('#loginForm .btnSubmit').html('Login');
-          $(".pwd, .confirm, .strength").parents(".row").show();
-          $("#register a.btnSubmit").removeClass("socialRegister");
-          showModal('#login');
+          window.location.href = "/login?next=" + encodeURIComponent(window.location.href);
         });
         $('.loginLink, .linkLogin, .btnRegister, .signUp a.btn').addClass('show').show();
         $('.btnRegister').parent('.sign-up').show();
