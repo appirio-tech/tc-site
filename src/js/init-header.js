@@ -345,7 +345,7 @@ if (!loginState) {
   });
 
   $('.actionLogin').on('click', function () {
-    window.location.href = "/login?next=" + escape(window.location.href);
+    window.location.href = "/login";
   });
 
   $('.closeModal,#bgModal').not('.redirectOnConfirm').on('click', function () {
@@ -1268,7 +1268,7 @@ function initMemberDetails(pagePersisted){
         $('.headerTopRightMenuLink.logIn a').unbind('click');
         $('.headerTopRightMenuLink.logIn a').text("Log In").removeClass("actionLogout").addClass("actionLogin");
         $('.actionLogin').on('click', function() {
-          window.location.href = "/login?next=" + escape(window.location.href);
+          window.location.href = "/login";
         });
         $('.loginLink, .linkLogin, .btnRegister, .signUp a.btn').addClass('show').show();
         $('.btnRegister').parent('.sign-up').show();
