@@ -261,6 +261,7 @@ _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
             });
             //vm.userHandle = handle;
             $('.username').html(handle);
+            $('.profile-link').attr('href', '/members/' + handle);
           });
         }
         
@@ -291,7 +292,7 @@ _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
         
         vm.userMenu = [
           { 'href': '/my-dashboard', 'text': 'DASHBOARD', 'icon': '/mf/i/nav/dashboard.svg' },
-          { 'href': '/profile/about', 'text': 'MY PROFILE', 'icon': '/mf/i/nav/badge.svg' },
+          { 'href': '/profile', 'text': 'MY PROFILE', 'icon': '/mf/i/nav/badge.svg', 'class': 'profile-link' },
           { 'href': 'https:' + tcconfig.communityURL + '/PactsMemberServlet?module=PaymentHistory&full_list=false', 'text': 'PAYMENTS', 'icon': '/mf/i/nav/money-bag.svg' },
           { 'href': '/settings/profile', 'text': 'SETTINGS', 'icon': '/mf/i/nav/gear.svg' },
         ];
