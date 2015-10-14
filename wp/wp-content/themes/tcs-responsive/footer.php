@@ -300,7 +300,13 @@ _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
           if (ev.keyCode === 13)
             window.location.replace(tcconfig.mainURL + '/search?s=' + vm.searchTerm + '&scope=member');
         }
-        
+
+        vm.isActive = function(href) {
+          if (window.location.pathname == href)
+            return true;
+          return false;
+        }
+
         vm.login = function() {
           window.location.href = "/login?next=" + encodeURIComponent(window.location.href);
         }
@@ -311,24 +317,6 @@ _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
           main.menuVisible = vm.isAuth = false;
         }
       }
-    };
-  });
-  
-  headerApp.directive('headerMenuItem', function() {
-    return {
-      restrict: 'E',
-      templateUrl: '/js/app/header/partials/header-menu-item.html',
-      scope: {
-        item: '='
-      },
-      controller: ['$scope', '$state', function($scope) {
-        var href = $scope.item.href;
-        $scope.isActive = function() {
-          if (window.location.pathname == href)
-            return true;
-          return false;
-        }
-      }]
     };
   });
   
