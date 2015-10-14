@@ -237,7 +237,7 @@ _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
   headerApp.directive('ngHeaderBootstrap', function(){
     return {
       restrict: 'C',
-      templateUrl: tcconfig.mainURL + '/js/app/header/partials/header-nav.html',
+      templateUrl: tcconfig.mainURL + '/mf/js/app/header/partials/header-nav.html',
       controller: function($scope){
         $scope.vm = vm = {};
         $scope.main = {};
