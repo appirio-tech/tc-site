@@ -623,7 +623,8 @@ sub, sup {
   border: none;
   outline: none;
   cursor: pointer;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  box-sizing: content-box; }
 
 .tc-text-logo {
   color: #B7B7B7;
