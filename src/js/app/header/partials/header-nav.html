@@ -26,7 +26,7 @@
           <a href="/settings/profile" class="btn-link btn-edit-profile show-small">EDIT</a>
           <ul class="submenu">
             <li class="submenu-item" ng-repeat="item in vm.userMenu">
-              <a ng-href="{{item.href}}" ng-class="{ 'active': vm.isActive(item.href), 'profile-link': item.class == 'profile-link' }" class="menu-link">
+              <a ng-href="{{item.href}}" ng-class="{ 'active': vm.isActive(item.href), 'profile-link': item.class == 'profile-link' }" class="menu-link" target="{{ item.target ? item.target : '_self'}}">
                 <img ng-src="{{item.icon}}" class="menu-icon"/>
                 <div class="menu-text">{{item.text}}</div>
               </a>
@@ -48,7 +48,7 @@
         <div class="menu-item-header">{{header}}</div>
         <ul class="submenu">
           <li class="submenu-item" ng-repeat="item in vm.menuLinks[header]">
-            <a ng-click="$event.stopPropagation();" ng-href="{{item.href}}" ng-class="{ 'active': vm.isActive(item.href) }" class="menu-link">
+            <a ng-click="$event.stopPropagation();" ng-href="{{item.href}}" ng-class="{ 'active': vm.isActive(item.href) }" class="menu-link" target="{{ item.target ? item.target : '_self'}}">
               <img ng-src="{{item.icon}}" class="menu-icon"/>
               <div class="menu-text">{{item.text}}</div>
             </a>

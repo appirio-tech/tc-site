@@ -272,7 +272,7 @@ _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
               { 'href':  "/challenges/design/active/", 'text': 'DESIGN CHALLENGES', 'icon': '/mf/i/nav/design.svg' },
               { 'href':  "/challenges/develop/active", 'text': 'DEVELOPMENT CHALLENGES', 'icon': '/mf/i/nav/development.svg' },
               { 'href':  "/challenges/data/active", 'text': 'DATA SCIENCE CHALLENGES', 'icon': '/mf/i/nav/data-science.svg' },
-              { 'href':  'https:' + tcconfig.arenaURL, 'text': 'THE ARENA', 'icon': '/mf/i/nav/srms.svg' },
+              { 'href':  'https:' + tcconfig.arenaURL, 'text': 'THE ARENA', 'icon': '/mf/i/nav/srms.svg', 'target': '_blank' },
           ],
           'learn': [
               { 'href': '/community/design/', 'text': 'DESIGN', 'icon': '/mf/i/nav/scroll-design.svg' },
@@ -283,7 +283,7 @@ _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
           'community': [
               { 'href': '/community/members/', 'text': 'MEMBERS', 'icon': '/mf/i/nav/users.svg' },
               { 'href': '/community/member-programs/', 'text': 'PROGRAMS', 'icon': '/mf/i/nav/medal.svg' },
-              { 'href': 'https://' + tcconfig.forumsAppURL, 'text': 'FORUMS', 'icon': '/mf/i/nav/forum.svg' },
+              { 'href': 'https://' + tcconfig.forumsAppURL, 'text': 'FORUMS', 'icon': '/mf/i/nav/forum.svg', 'target': '_blank' },
               { 'href': '/community/statistics/', 'text': 'STATISTICS', 'icon': '/mf/i/nav/statistics.svg' },
               { 'href': '/community/events/', 'text': 'EVENTS', 'icon': '/mf/i/nav/calendar.svg' },
               { 'href': '/blog/', 'text': 'BLOG', 'icon': '/mf/i/nav/blog.svg' }
@@ -293,7 +293,7 @@ _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
         vm.userMenu = [
           { 'href': '/my-dashboard', 'text': 'DASHBOARD', 'icon': '/mf/i/nav/dashboard.svg' },
           { 'href': '/profile', 'text': 'MY PROFILE', 'icon': '/mf/i/nav/badge.svg', 'class': 'profile-link' },
-          { 'href': 'https:' + tcconfig.communityURL + '/PactsMemberServlet?module=PaymentHistory&full_list=false', 'text': 'PAYMENTS', 'icon': '/mf/i/nav/money-bag.svg' },
+          { 'href': 'https:' + tcconfig.communityURL + '/PactsMemberServlet?module=PaymentHistory&full_list=false', 'text': 'PAYMENTS', 'icon': '/mf/i/nav/money-bag.svg', 'target': '_blank' },
           { 'href': '/settings/profile', 'text': 'SETTINGS', 'icon': '/mf/i/nav/gear.svg' },
         ];
         
