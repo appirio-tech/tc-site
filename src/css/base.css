@@ -37,14 +37,19 @@ blockquote:before, blockquote:after, q:before, q:after {
 a{
  background: transparent;   
 }
+a, a:active, a:visited  {
+    text-decoration: none; 
+    outline: none;     
+}
 :not('.ng-header-bootstrap') a,
 :not('.ng-header-bootstrap') a:active,
 :not('.ng-header-bootstrap') a:visited  {
-    text-decoration: none;
     color: #FF8A00;
     -moz-transition-duration: .3s; -webkit-transition-duration: .3s; transition-duration: .3s;    
     -webkit-tap-highlight-color: rgba(0,0,0,0);
-    outline: none;
+}
+a.profile-link-dropdown {
+  color: #a3a3a3;
 }
 a[href$='javascript:;']{
     -webkit-touch-callout: none;
@@ -623,7 +628,8 @@ sub, sup {
   border: none;
   outline: none;
   cursor: pointer;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  box-sizing: content-box; }
 
 .tc-text-logo {
   color: #B7B7B7;
