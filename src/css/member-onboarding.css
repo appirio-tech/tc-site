@@ -238,6 +238,8 @@
 #onboarding .pageTitleWrapper {
     height: initial;
     margin-bottom: 10px;
+	overflow:hidden;
+	clear:both;
 }
 #onboarding .pageTitleWrapper .pageTitle {
     height: initial;
@@ -1235,6 +1237,7 @@ form#commentform .comment-textarea textarea {
 	line-height: 19px;
     font-weight: 400 !important;
 	text-transform:uppercase;
+	text-decoration: none!important;
 }
 
 #filters li a.active{  
@@ -1675,17 +1678,18 @@ color: #3d4d65 !important;
 			-ms-transform: rotateY(0deg);
 			background: #fff;
 			z-index: 2;
-		    border-radius: 5px!important;
-		    display: flex;
-			flex-direction: column;
+		    border-radius: 5px!important; 
 			justify-content: center; 
 			resize: vertical;
 			overflow: visible!important;
 			height: 250px;
+			min-height:250px; 
 			display: -webkit-inline-box;
 			-webkit-box-pack: center;
-			-webkit-box-align: center;
-		}
+			-webkit-box-align: center; 
+			display:table;
+		} 
+		
 
 		.back {
 			background: #337ab7;
@@ -1697,6 +1701,14 @@ color: #3d4d65 !important;
 			position:relative;
 			 border-radius: 5px !important; 
 		}
+		
+		.back .excerpt a{
+			display:block;
+			color: #fff; 
+		}
+		.back .excerpt a:hover{
+			text-decoration: underline;
+		}
 
 		.front .name {
 			color: #3d3d3d;
@@ -1705,14 +1717,17 @@ color: #3d4d65 !important;
 			line-height: 32px;  
 			text-align: center; 
 			word-wrap:normal;  
-			 display: inline-block!important;
+			 display: table-cell!important;
 			*display: inline!important; /** for ie6/7 */
 			zoom: 1;
 			vertical-align: middle;
 			width: auto;
     		height: auto;
-			padding: 5px 15px !important;
+			padding: 0 15px !important;
+			position: relative;  
 		} 
+		
+		 
 		
 		#box-about-topcoder .front{
 			background: #e6d9fc;
@@ -1898,8 +1913,6 @@ color: #3d4d65 !important;
 	vertical-align:top!important; 
 }
 
-
-
 #single-member-onboarding table.message td,
 #single-member-onboarding table.message p{
 	 font-size: 22px!important;
@@ -1949,4 +1962,105 @@ color: #3d4d65 !important;
 	text-transform:uppercase;
 	color: #a3a3ae;
 	text-align:center;
+}
+
+@media only screen and (max-width: 480px) {
+	#onboarding .pageTitleWrapper{
+		padding-bottom: 20px;
+	}
+	#onboarding .pageTitleWrapper .pageTitle h2.blogPageTitle{
+		display:block;
+		padding-right:0;
+		margin-bottom:0; 
+		width:100%; 
+		white-space:normal!important;
+	}
+	.mk-post-nav{
+		display: none;
+	}
+	#onboarding .blogDescBox{
+		margin-top:10px!important;
+		padding-right:0px!important;
+		margin-bottom:0px!important;
+		padding-bottom:0px!important;
+	} 
+	.single-social-section .mk-blog-print {
+		padding-right:0px!important;
+	}
+	#filters { 
+		padding: 10px 0!important; 
+	}
+	#filters li{
+		display:block;
+	}
+	#filters li a{
+		display:block;  
+		margin-bottom: 10px;
+		padding:0!important;
+	}
+	.box-member-onboarding{
+		float: none!important;
+		display:block;
+		margin: 0 auto 0 auto!important; 
+	}
+	.flip-container{
+		float: none!important;
+		display:block;
+		margin: 0 auto 15px auto!important; 
+	}
+	.footer-buttons li{
+		margin-bottom: 10px;
+	}
+	
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+	
+	table{
+        display: block;
+        width: 100%; 
+    }
+	
+	tbody{
+        display: block;
+        width: 100%;
+		padding:0;
+		margin:0;
+    }
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	} 
+	
+	td {  
+		border: none; 
+		position: relative;
+		padding-left: 50%;
+		width: 98%!important; 
+		padding: 10px 1%!important;
+		overflow:hidden;  
+	}
+	
+	#single-member-onboarding table.message td{
+		width: 98%!important; 
+		padding: 10px 1%!important;
+	}
+	
+	td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */ 
+		width: 100%;  
+		white-space: nowrap;
+	}
+	
+	#single-member-onboarding table .button{
+		width: 100%!important;
+	}
+	 
+	
 }
