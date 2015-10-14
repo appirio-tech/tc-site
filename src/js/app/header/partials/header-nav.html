@@ -1,0 +1,60 @@
+<div class="header-wrapper">
+  <header class="top-header">
+    <a href="/" class="logo-link"></a>
+    <div class="show-small mobile-heading"><span ng-if="main.menuVisible" class="tc-text-logo">[ topcoder ]</span>
+      <button type="button" ng-if="!main.menuVisible" ng-click="main.menuVisible = true" class="btn-open-menu">Menu</button>
+      <button type="button" ng-if="main.menuVisible" ng-click="main.menuVisible = false" class="btn-close-menu"></button>
+      <a ui-sref="profile.about({userHandle: vm.userHandle})" ng-switch="vm.isAuth" data-ng-if="!main.menuVisible" class="user-link"><img ng-switch-when="true" ng-src="{{vm.profile.photoURL}}" class="user-avatar"/><span ng-switch-when="false" class="btn-link">JOIN</span></a>
+    </div>
+   <ul class="main-menu">
+      <li class="menu-item search-wrapper">
+        <div class="menu-item-header show-large">
+          <button type="button" class="btn-expand-search search-icon"></button>
+        </div>
+        <div class="submenu">
+          <input type="text" placeholder="find people" ng-model="vm.searchTerm" ng-keyup="vm.checkSubmit($event)"/>
+        </div>
+      </li>
+      <li ng-switch="vm.isAuth" ng-class="{'anonymous-menu': !vm.isAuth}" class="menu-item link-group user-menu">
+        <div ng-switch-when="true">
+          <div class="menu-item-header">
+            <span ui-sref="profile.about({userHandle: vm.userHandle})">
+              <img ng-src="{{vm.photoURL}}" class="user-avatar"/>
+              <span class="username">{{vm.userHandle}}</span>
+            </span>
+          </div>
+          <a href="/settings/profile" class="btn-link btn-edit-profile show-small">EDIT</a>
+          <ul class="submenu">
+            <li class="submenu-item" ng-repeat="item in vm.userMenu">
+              <a ng-href="{{item.href}}" ng-class="{ 'active': isActive() }" class="menu-link">
+                <img ng-src="{{item.icon}}" class="menu-icon"/>
+                <div class="menu-text">{{item.text}}</div>
+              </a>
+            </li>
+            <li class="submenu-item">
+              <a ng-click="vm.logout()" class="menu-link">
+                <img ng-src="/mf/i/nav/logout.svg" class="menu-icon"/>
+                <div class="menu-text">LOG OUT</div>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div ng-switch-when="false" class="menu-item-header">
+          <a href="/register" class="btn-link">REGISTER</a>
+          <a ng-click="vm.login()" class="btn-link secondary-link">LOGIN</a>
+        </div>
+      </li>
+      <li ng-repeat="header in vm.menuHeaders" class="menu-item link-group">
+        <div class="menu-item-header">{{header}}</div>
+        <ul class="submenu">
+          <li class="submenu-item" ng-repeat="item in vm.menuLinks[header]">
+            <a ng-href="{{item.href}}" ng-class="{ 'active': isActive() }" class="menu-link">
+              <img ng-src="{{item.icon}}" class="menu-icon"/>
+              <div class="menu-text">{{item.text}}</div>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </header>
+</div>

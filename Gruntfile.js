@@ -48,9 +48,10 @@ module.exports = function(grunt) {
     communityURL: grunt.option('community-url') || '//community.topcoder.com',
     reviewAppURL: grunt.option('review-app-url') || 'software.topcoder.com/review',
     helpAppURL: grunt.option('help-app-url') || 'help.topcoder.com',
-    forumsAppURL: grunt.option('forums-app-url') || 'forums.topcoder.com',
+    forumsAppURL: grunt.option('forums-app-url') || 'apps.topcoder.com/forums/',
     swiftProgramId: grunt.option('swift-program-id') || 3445,
     swiftProgramURL: grunt.option('swift-program-url') || 'http://ios.topcoder.com',
+    arenaURL: grunt.option('arena-url') || '//arena.topcoder.com',
 
     // only used on wp setup
     useGz: grunt.option('use-gz') || false,
