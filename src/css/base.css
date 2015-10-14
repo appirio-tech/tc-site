@@ -875,9 +875,19 @@ sub, sup {
     max-width: 1376px;
     margin: 0 auto; }
     .top-header .main-menu {
-      line-height: 54px; }
+      line-height: 54px; 
+    }
+    .top-header .menu-item .submenu {
+      overflow: hidden;
+      max-height: 0px;      
+      transition: all .25s ease-in-out;
+    }
+    .top-header .menu-item:hover .submenu {
+      max-height: 500px;
+    }
     .top-header .menu-item:not(:hover) .submenu:not(.expanded):not(:hover) {
-      display: none; }
+      padding: 0px 54px 0px 54px;
+    }
     .top-header .menu-link:hover {
       background-color: #0096ff; }
     .top-header .menu-link.active {
