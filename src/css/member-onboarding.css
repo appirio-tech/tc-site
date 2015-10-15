@@ -236,13 +236,31 @@
     font-family: 'Sofia Pro';
 }
 #onboarding .pageTitleWrapper {
-    height: initial;
+    height: auto!important;
     margin-bottom: 10px;
-	overflow:hidden;
+	overflow:hidden!important;
 	clear:both;
+	/*IE*/
+	line-height: inherit !important;
+	/* Rest of the world */
+	line-height: initial !important;
+	
+	/*IE*/
+	min-height: auto !important; 
+	/* Rest of the world */
+	min-height: initial !important;
 }
 #onboarding .pageTitleWrapper .pageTitle {
-    height: initial;
+    height: auto!important;
+	/*IE*/
+	line-height: inherit !important;
+	/* Rest of the world */
+	line-height: initial !important;
+	
+	/*IE*/
+	min-height: auto !important; 
+	/* Rest of the world */
+	min-height: initial !important;
 }
 #onboarding .pageTitleWrapper .pageTitle h2.blogPageTitle {
     float: left;
@@ -1928,11 +1946,12 @@ color: #3d4d65 !important;
 	margin-left: 30px;
 }
 
-.footer-buttons li{
+.footer-buttons li,
+.footer-buttons li a{
 	float:left;
 	width: 108px;
 	margin-right: 10px;
-}
+} 
 
 .footer-buttons li span{
 	display:inline-block;
@@ -1940,9 +1959,26 @@ color: #3d4d65 !important;
 	overflow: hidden;
 	margin: 0 auto 10px auto;
 	width: 60px;
-	height: 60px;
-	background:#32D50A;
+	height: 60px; 
 }
+
+.icon-design span{
+	background: url("/mf/i/design_onboarding_icon.png") no-repeat 0 0;
+	background-size: 60px 60px;
+}
+.icon-development span{
+	background:url("/mf/i/development_onboarding_icon.png") no-repeat 0 0;
+	background-size: 60px 60px;
+}
+.icon-data-science span{
+	background:url("/mf/i/data_science_onboarding_icon.png") no-repeat 0 0;
+	background-size: 60px 60px;
+}
+.icon-programming span{
+	background:url("/mf/i/competitive_programming_onboarding_icon.png") no-repeat 0 0;
+	background-size: 60px 60px;
+}
+
 
 .footer-buttons li p{
 	display:block;
@@ -1958,10 +1994,15 @@ color: #3d4d65 !important;
 .footer-buttons li a{
 	display:block; 
 	font-size: 14px;
-	font-weight: 200;
+	font-weight: 400;
 	text-transform:uppercase;
 	color: #a3a3ae;
 	text-align:center;
+}
+
+.box-15439,
+.box-15440{
+	display: none;
 }
 
 @media only screen and (max-width: 480px) {
