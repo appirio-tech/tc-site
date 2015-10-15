@@ -87,7 +87,7 @@ Template Name: Member Onboarding
 			if( $posts->have_posts() ): while( $posts->have_posts() ) : $posts->the_post(); ?>
 	   
                         
-                        <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                        <div class="flip-container box-<?php echo $post->ID ?>" ontouchstart="this.classList.toggle('hover');">
                             <div class="flipper">
                                 <div class="front">
                                     <span class="name">
@@ -209,10 +209,10 @@ Template Name: Member Onboarding
         	<h3>What will you create?</h3>
             <h4>Jump into a competition now!</h4>
             <ul class="footer-buttons">
-            	<li><a href="https://www.topcoder.com/challenges/design/active/"><span></span><p>Design</p></a></li>
-                <li><a href="https://www.topcoder.com/challenges/develop/active/"><span></span><p>Development</p></a></li>
-                <li><a href="https://www.topcoder.com/challenges/data/active/"><span></span><p>Data Science</p></a></li>
-                <li class="last"><a href="https://arena.topcoder.com/"><span></span><p>Competitive Programming</p></a></li>
+            	<li><a href="https://www.topcoder.com/challenges/design/active/" class="icon-design"><span></span><p>Design</p></a></li>
+                <li><a href="https://www.topcoder.com/challenges/develop/active/" class="icon-development"><span></span><p>Development</p></a></li>
+                <li><a href="https://www.topcoder.com/challenges/data/active/" class="icon-data-science"><span></span><p>Data Science</p></a></li>
+                <li class="last"><a href="https://arena.topcoder.com/"  class="icon-programming"><span></span><p>Competitive Programming</p></a></li>
             </ul>
             <!--<a data-rel="lightbox" class="btn-play" href="https://www.youtube.com/watch?v=_ncY-jYlTjY?autoplay=1">GETTING STARTED</a>-->
             
