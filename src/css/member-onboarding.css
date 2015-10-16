@@ -1156,24 +1156,25 @@ form#commentform .comment-textarea textarea {
 	background-color:#363636!important; 
 }
 
-.contentWrapper{
+#single-member-onboarding{
 	padding-bottom:100px;
 }
-.contentWrapper h2{
+
+#single-member-onboarding h2{
 	margin-bottom: 20px;
 	margin-top: 20px;
 	font-size:32px;
 }
 
-.contentWrapper table{
+#single-member-onboarding table{
 	margin: 20px 0;
 }
 
-.contentWrapper  ul{
+#single-member-onboarding  ul{
 	padding:0!important;
 }
 
-.contentWrapper  ul li {
+#single-member-onboarding  ul li {
     background: rgba(0, 0, 0, 0) url("/mf/i/content-list-dot.png") no-repeat scroll 0 0!important;
     line-height: 24px!important;
     padding: 0 0 0 22px!important;
@@ -1841,7 +1842,8 @@ color: #3d4d65 !important;
 			}
 		/* END: Accommodating for IE */
 
-.pageContent h3{ 
+#onboarding h3,
+#single-member-onboarding .pageContent h3{ 
 	padding-bottom:10px!important;
 	padding-top:10px!important;
 	line-height: 32px;
