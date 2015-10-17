@@ -1,16 +1,5 @@
 <?php
 
-if (isset($_GET['_escaped_fragment_']) || 
-	(isset($_SERVER['HTTP_USER_AGENT']) && strpos($_SERVER['HTTP_USER_AGENT'], 'facebookexternalhit') !== false)) {
-	$opts = array('http'=>array('method'=>"GET", 'header'=>"X-Prerender-Token: fC07JMTM06w1k8RIdLDs\r\n"));
-	$context = stream_context_create($opts);
-
-	$renderer = 'http://service.prerender.io/http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-	$rendered = file_get_contents($renderer, false, $context);
-	echo $rendered;
-	return;
-}
-
 foreach ($_GET as $key => $value) {
 	$_GET[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_STRING);
 }
