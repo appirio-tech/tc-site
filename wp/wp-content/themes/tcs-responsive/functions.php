@@ -529,4 +529,3 @@ add_filter('embed_oembed_html', 'autoplay_youtube', 10, 3);
  
 
 ?>
- 
