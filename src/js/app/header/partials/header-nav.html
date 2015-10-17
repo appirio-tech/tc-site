@@ -4,7 +4,7 @@
     <div class="show-small mobile-heading"><span ng-if="main.menuVisible" class="tc-text-logo">[ topcoder ]</span>
       <button type="button" ng-if="!main.menuVisible" ng-click="main.menuVisible = true" class="btn-open-menu">Menu</button>
       <button type="button" ng-if="main.menuVisible" ng-click="main.menuVisible = false" class="btn-close-menu"></button>
-      <a href='' ng-switch="vm.isAuth" data-ng-if="!main.menuVisible" class="user-link profile-link"><img ng-switch-when="true" ng-src="{{vm.profile.photoURL}}" class="user-avatar"/><span ng-switch-when="false" class="btn-link">JOIN</span></a>
+      <a ng-href={{vm.profileLink}} ng-switch="vm.isAuth" data-ng-if="!main.menuVisible" class="user-link"><img ng-switch-when="true" ng-src="{{vm.photoURL}}" class="user-avatar"/><span ng-switch-when="false" class="btn-link">JOIN</span></a>
     </div>
    <ul class="main-menu">
       <li class="menu-item search-wrapper">
@@ -18,7 +18,7 @@
       <li ng-switch="vm.isAuth" ng-class="{'anonymous-menu': !vm.isAuth}" class="menu-item link-group user-menu">
         <div ng-switch-when="true">
           <div class="menu-item-header">
-            <a href='' class="profile-link profile-link-dropdown">
+            <a ng-href={{vm.profileLink}} class="profile-link-dropdown">
               <img ng-src="{{vm.photoURL}}" class="user-avatar"/>
               <span class="username">{{vm.userHandle}}</span>
             </a>
@@ -26,7 +26,7 @@
           <a href="/settings/profile" class="btn-link btn-edit-profile show-small">EDIT</a>
           <ul class="submenu">
             <li class="submenu-item" ng-repeat="item in vm.userMenu">
-              <a ng-href="{{item.href}}" ng-class="{ 'active': vm.isActive(item.href), 'profile-link': item.class == 'profile-link' }" class="menu-link" target="{{ item.target ? item.target : '_self'}}">
+              <a ng-href="{{item.href}}" ng-class="{ 'active': vm.isActive(item.href) }" class="menu-link" target="{{ item.target ? item.target : '_self'}}">
                 <img ng-src="{{item.icon}}" class="menu-icon"/>
                 <div class="menu-text">{{item.text}}</div>
               </a>

@@ -238,7 +238,7 @@ _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
     return {
       restrict: 'C',
       templateUrl: tcconfig.mainURL + '/mf/js/app/header/partials/header-nav.html',
-      controller: function($scope){
+      controller: function($scope, $timeout){
         $scope.vm = vm = {};
         $scope.main = {};
         $scope.main.menuVisible = false;
@@ -256,12 +256,20 @@ _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
               } else {
                 photoLink = tcconfig.communityURL + '/i/m/nophoto_login.gif';
               }
-              //vm.photoURL = photoLink;
-              $('.user-avatar').attr('src', photoLink);
+              $timeout(function() {
+                vm.photoURL = photoLink;
+              });
             });
-            //vm.userHandle = handle;
-            $('.username').html(handle);
-            $('.profile-link').attr('href', '/members/' + handle);
+
+            $timeout(function() {
+              vm.userHandle = handle;
+              vm.userMenu = [
+                { 'href': '/my-dashboard', 'text': 'DASHBOARD', 'icon': '/mf/i/nav/dashboard.svg' },
+                { 'href': '/members/' + handle, 'text': 'MY PROFILE', 'icon': '/mf/i/nav/badge.svg' },
+                { 'href': 'https:' + tcconfig.communityURL + '/PactsMemberServlet?module=PaymentHistory&full_list=false', 'text': 'PAYMENTS', 'icon': '/mf/i/nav/money-bag.svg', 'target': '_blank' },
+                { 'href': '/settings/profile', 'text': 'SETTINGS', 'icon': '/mf/i/nav/gear.svg' },
+              ];
+            });
           });
         }
 
@@ -289,13 +297,6 @@ _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
               { 'href': '/blog/', 'text': 'BLOG', 'icon': '/mf/i/nav/blog.svg' }
           ]
         };
-
-        vm.userMenu = [
-          { 'href': '/my-dashboard', 'text': 'DASHBOARD', 'icon': '/mf/i/nav/dashboard.svg' },
-          { 'href': '/profile', 'text': 'MY PROFILE', 'icon': '/mf/i/nav/badge.svg', 'class': 'profile-link' },
-          { 'href': 'https:' + tcconfig.communityURL + '/PactsMemberServlet?module=PaymentHistory&full_list=false', 'text': 'PAYMENTS', 'icon': '/mf/i/nav/money-bag.svg', 'target': '_blank' },
-          { 'href': '/settings/profile', 'text': 'SETTINGS', 'icon': '/mf/i/nav/gear.svg' },
-        ];
 
         vm.checkSubmit = function(ev) {
           if (ev.keyCode === 13)
