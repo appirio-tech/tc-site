@@ -115,9 +115,8 @@
         <div className={"contest "+ trackTag +" trackSD type-" + challenge.challengeCommunity} key={challenge.challengeId}>
           <div className="cgCh">
             <a href={challenge.challengeCommunity != 'data' ? "/challenge-details/" +challenge.challengeId+"/?type="+challenge.challengeCommunity : tcconfig.communityURL + '/tc?module=MatchDetails&rd=' + challenge.roundId} className="contestName">
-              <img alt="" className="allContestIco" src={images + '/ico-track-' + challenge.challengeCommunity + '.png'} />
+              <img alt="" className="allContestIco" src={(scope.contest.contestType == 'data' && challenge.challengeCommunity == 'develop') ? images + 'ico-competitive-develop-challenge.svg' : images + 'ico-' + challenge.challengeCommunity + '-challenge.svg'} />
               <span className="gridChallengName">{challenge.challengeName}</span>
-              <img alt="" className={challenge.challengeCommunity != 'data' ? "allContestTCOIco" : "allContestTCOIco ng-hide"} src={images + '/tco-flag-' + challenge.challengeCommunity + '.png'} />
               <Qtip text={challenge.challengeType} title="Challenge Type" community={challenge.challengeCommunity}>
                 <span className="track-symbol">{track.toUpperCase()}</span>
               </Qtip>
@@ -177,9 +176,9 @@
             </Qtip>
           </div>
           <div className={classNames[challengeCombo].gdUpcoming !== undefined ? 'genInfo gdUpcoming':'genInfo gdUpcoming ng-hide'}>
-            <Qtip text={scope.getContestDuration(challenge.registrationStartDate, challenge.submissionEndDate)} title="Duration (days)" community={challenge.challengeCommunity}> 
+            <Qtip text={scope.getContestDuration(challenge.registrationStartDate, challenge.submissionEndDate)} title="Duration (days)" community={challenge.challengeCommunity}>
               <p className="cgTLeft" data-hasqtip={0} aria-describedby="qtip-0"><i />{scope.getContestDuration(challenge.registrationStartDate, challenge.submissionEndDate)+(scope.getContestDuration(challenge.registrationStartDate, challenge.submissionEndDate)<2?" Day":" Days")}</p>
-            </Qtip>  
+            </Qtip>
             <Qtip text={scope.currencyFilter(challenge.totalPrize)} title="Total Prize" community={challenge.challengeCommunity}>
               <p className="cgPur" data-hasqtip={1} aria-describedby="qtip-1"><i /> {scope.currencyFilter(challenge.totalPrize)}</p>
             </Qtip>

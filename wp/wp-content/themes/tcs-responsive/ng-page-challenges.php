@@ -46,24 +46,28 @@ get_header(); ?>
 
 
   <script type="text/ng-template" id="challenge-list.html">
-    <article id="mainContent" class="layChallenges">
+    <div class="header-container">
       <div class="container">
         <header>
-          <h1>
-            {{titles[contest.contestType]}}
-            <span class="subscribeTopWrapper">
-              <a class="feedBtn" target="_self" href="{{feedUrl}}" title="Subscribe to challenges"></a>
-            </span>
-          </h1>
-          <aside class="rt">
-            <span class="views">
-              <a href="" ng-click="view = 'grid'" class="gridView" ng-class="{isActive: view == 'grid'}" qtip title="Layout" text="Grid View" community="design"></a>
-              <a href="" ng-click="view = 'table'" class="listView" ng-class="{isActive: view == 'table'}" qtip title="Layout" text="List View" community="design"></a>
-              <a href="" ng-show="contest.contestType === 'data'" ng-click="view = 'calendar'" class="calendarView" ng-class="{isActive: view == 'calendar'}" qtip title="Layout" text="Calendar View" community="design"></a>
-            </span>
-          </aside>
+          <h1 ng-bind="titles[contest.contestType]"></h1>
         </header>
-
+      </div><!-- /.container -->
+    </div>
+    <!-- header-container end -->
+    <article id="mainContent" class="layChallenges">
+      <div class="container">
+          <div class="links">
+            <div class="text-center">
+              <a href="/challenges/design/active" class="link" ng-class="{active: contest.contestType === 'design'}">Design</a>
+              <a href="/challenges/develop/active" class="link" ng-class="{active: contest.contestType === 'develop'}">Development</a>
+              <a href="/challenges/data/active" class="link" ng-class="{active: contest.contestType === 'data'}">Data Science</a>
+              <span class="views">
+                <a href="" ng-click="view = 'grid'" ng-class="{isActive: view == 'grid'}" qtip title="Layout" text="Grid View" community="design"><i class="icon-th-large"></i> GRID</a>
+                <a href="" ng-click="view = 'table'" ng-class="{isActive: view == 'table'}" qtip title="Layout" text="List View" community="design"><i class="icon-list-ul"></i> LIST</a>
+                <a href="" ng-show="contest.contestType === 'data'" ng-click="view = 'calendar'" ng-class="{isActive: view == 'calendar'}" qtip title="Layout" text="Calendar View" community="design"><i class="icon-calendar"></i> CALENDAR</a>
+              </span>
+            </div>
+          </div>
         <div ng-hide="view === 'calendar'">
           <div data-tc-challenges-actions contest="contest" show-filters="showFilters" ng-show="contest.contestType && contest.contestType != ''"></div>
 
@@ -242,7 +246,7 @@ get_header(); ?>
                 <a href="javascript:;" ng-click="reset()" >
                      <span>x</span><i>Clear All Tags</i>
                  </a>
-                <save-filter ng-show="authenticated"></save-filter>           
+                <save-filter ng-show="authenticated"></save-filter>
              </div>
             <div class="clear"></div>
         </div>
@@ -364,7 +368,7 @@ get_header(); ?>
       <a class="btn btnCancel btnSecondary" ng-click="saveFilterCtrl.closeDialogAndClear()">Cancel</a><a class="btn btnSaveSearch" ng-click="saveFilterCtrl.saveFilter();">Save My Search</a>
       </div>
     </form>
-  </div>     
+  </div>
 </script>
 
 <script type="text/ng-template" id="my-filters.html">
@@ -427,9 +431,8 @@ get_header(); ?>
   <div class="colCh" ng-if="row.getProperty('challengeCommunity') !== 'data'">
     <div>
       <a ng-href="/challenge-details/{{row.getProperty('challengeId')}}/?type={{row.getProperty('challengeCommunity')}}" class="contestName">
-        <img alt="allContestIco" class="allContestIco" ng-src="{{images}}/ico-track-{{row.getProperty('challengeCommunity')}}.png">
+        <img alt="allContestIco" class="allContestIco" ng-src="{{images}}ico{{contest.contestType == 'data' ? '-competitive' : ''}}-{{row.getProperty('challengeCommunity')}}-challenge.svg">
         <span ng-cell-text>{{row.getProperty(col.field)}}</span>
-        <img alt="allContestTCOIco" class="allContestTCOIco" ng-src="{{images}}/tco-flag-{{row.getProperty('challengeCommunity')}}.png">
         <span class="track-symbol" qtip title="Challenge Type" text="{{row.getProperty('challengeType')}}" community="{{row.getProperty('challengeCommunity')}}">
           {{getTrackSymbol(row.getProperty('challengeType')).toUpperCase()}}
         </span>
@@ -445,9 +448,8 @@ get_header(); ?>
   <div class="colCh" ng-if="row.getProperty('challengeCommunity') === 'data'">
     <div>
       <a ng-href="//community.topcoder.com/tc?module=MatchDetails&rd={{row.getProperty('roundId')}}" class="contestName">
-        <img alt="allContestIco" class="allContestIco" ng-src="{{images}}/ico-track-{{row.getProperty('challengeCommunity')}}.png">
+        <img alt="allContestIco" class="allContestIco" ng-src="{{images}}ico-data-challenge.svg">
         <span ng-cell-text>{{row.getProperty('fullName')}}</span>
-        <img alt="allContestTCOIco" class="allContestTCOIco" ng-src="{{images}}/tco-flag-{{row.getProperty('challengeCommunity') != 'data'?row.getProperty('challengeCommunity'):'develop'}}.png" ng-show="contest.contestType != 'data'">
       </a>
     </div>
   </div>

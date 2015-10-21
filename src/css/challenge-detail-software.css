@@ -1,20 +1,25 @@
+.challenge-detail .header-container {
+    background: #fff;
+    box-shadow: 0 1px 3px #D1D3D4;
+}
+.challenge-detail .header-container .container {
+    margin: 0 60px;
+    padding: 10px 60px;
+}
 .challenge-detail .pageHeading h1 {
-    font-size: 30px;
-    line-height: 30px;
-    font-weight: normal;
-    color: #474747;
-    padding: 15px 0;
-    margin: 10px 0;
-    border-bottom: 1px solid #e7e7e7;
+    font-size: 32px;
+    line-height: 38px;
+    padding: 15px 0 0;
+    margin: 10px 0 0;
     overflow: hidden;
+    text-align: left;
 }
 
 .challenge-detail .pageHeading h2 {
-    font-size: 14px;
+    font-size: 18px;
     line-height: 30px;
-    font-weight: bold;
-    color: #666666;
-    margin: 10px 0;
+    color: #A3A3AE;
+    margin: 10px 0 20px;
     overflow: hidden;
 }
 
@@ -25,12 +30,13 @@
 #stepBox {
     display: block;
     overflow: hidden;
+    margin-bottom: 30px;
 }
 
 #stepBox .leftColumn {
     display: inline;
     float: left;
-    width: 133px;
+    width: 145px;
 }
 
 .view-challenge-result #stepBox .leftColumn a {
@@ -44,8 +50,8 @@
 #stepBox .middleColumn {
     display: inline;
     float: left;
-    width: 550px;
-    margin: 0 22px;
+    width: 605px;
+    margin: 0 18px;
 }
 
 #stepBox .middleColumn table {
@@ -64,6 +70,7 @@
     font-size: 14px;
     font-weight: bold;
     margin-bottom: 27px;
+    text-align: center;
 }
 
 #stepBox .middleColumn table h3 {
@@ -105,8 +112,8 @@ font-size: 18px;
 }
 #stepBox .rightColumn {
     display: inline;
-    float: left;
-    width: 283px;
+    float: right;
+    width: 300px;
 }
 
 .challenge-detail .grid-3-3 {
@@ -132,7 +139,6 @@ font-size: 18px;
 
 #stepBox .rightColumn .nextBox {
     position: relative;
-    width: 283px;
 }
 
 #stepBox .rightColumn .nextBox .nextBoxContent,
@@ -166,7 +172,7 @@ font-size: 18px;
     float: left;
     font-weight: bold;
     text-align: left;
-    width: 150px; /* Issue ID: I-107591 - adjust the value so all the deadlines are displayed correctly. Previous value: 155px */
+    width: 135px; /* Issue ID: I-107591 - adjust the value so all the deadlines are displayed correctly. Previous value: 155px */
 }
 
 #stepBox .rightColumn .nextBox .nextDTitle {
@@ -197,10 +203,6 @@ font-size: 18px;
     background: url("@@cdn/i/ico-time.png") no-repeat 0 0;
 }
 
-.challenge-detail.develop #stepBox .rightColumn .nextBox .icoTime {
-    background: url("@@cdn/i/ico-time-develop.png") no-repeat 0 0;
-}
-
 #stepBox .rightColumn .nextBox .timeLeft {
     color: #FFFFFE;
     font-size: 30px;
@@ -229,7 +231,6 @@ font-size: 18px;
 
 #stepBox .rightColumn .deadlineBox {
     position: relative;
-    width: 283px;
 }
 
 #stepBox .rightColumn .deadlineBox .deadlineBoxContent {
@@ -703,7 +704,7 @@ h1.center {
 
 .challenge-detail.develop .btnAction {
     background: #64c51c !important;
-    border-bottom: 4px solid #46b314 !important;
+    border-bottom: none !important;
 }
 
 .challenge-detail.develop .btnAction:hover {
@@ -738,7 +739,6 @@ h1.center {
     float: left;
     height: 100%;
     width: 77%;
-    margin-top: 4px !important;
 
 }
 
@@ -777,14 +777,9 @@ h1.center {
     font-size: 18px;
 }
 
-#stepBox .rightColumn .nextBox .allDeadlineNextBoxContent.studio {
-    height: 90px;
+#stepBox .rightColumn .nextBox .allDeadlineNextBoxContent.studio p {
+    padding-bottom: 5px;
 }
-
-#stepBox .rightColumn .nextBox .allDeadlineNextBoxContent.studio label {
-    width: 150px; /* Issue ID: I-107591 - adjust the value so all the deadlines are displayed correctly. Previous value: 155px */
-}
-
 .challenge-detail .tabNav span.inactive {
     color: #aaa;
     cursor: default;
@@ -1058,10 +1053,6 @@ h1.center {
         height: 43px;
         padding-left: 35px;
         padding-top: 10px;
-    }
-
-    .challenge-detail.develop #stepBox .rightColumn .nextBox .icoTime {
-        background: url("@@cdn/i/ico-time-develop-phone.png") no-repeat 0 10px;
     }
 
     #stepBox .rightColumn .nextBox .nextDTitle {

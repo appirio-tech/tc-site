@@ -21,6 +21,25 @@
 
 /* end of edit by evilkyro1965 */
 
+.header-container {
+    background: #fff;
+    box-shadow: 0 1px 3px #D1D3D4;
+}
+
+.header-container .container {
+    margin: 0 60px;
+    padding: 10px 60px;
+}
+
+.header-container .container header h1 {
+    font-size: 32px;
+    line-height: 38px;
+    padding: 15px 0;
+    margin: 10px 0 0;
+    overflow: hidden;
+    text-align: left;
+}
+
 body, #wrapper {
     min-width: 1024px !important;
 }
@@ -164,7 +183,23 @@ select {
     width: auto;
     margin: 0 auto;
 }
-
+.layChallenges .links {
+  border-bottom: 1px solid #D1D3D4;
+  padding-bottom: 5px;
+}
+.layChallenges .links .link {
+    margin: 0 1%;
+    padding: 0 1% 7px;
+    color: #A3A3AE;
+    font-size: 16px;
+    line-height: 19px;
+    font-family: "Sofia Pro", Helvetica, Arial;
+    text-transform: uppercase;
+}
+.layChallenges .links .link.active {
+    border-bottom: 4px solid #0096FF;
+    color: #000000;
+}
 .landingChallenges .challengeType {
     width: 300px;
 }
@@ -558,7 +593,6 @@ select {
 }
 
 #tcoTableAllContest .colCh a img.allContestIco {
-    height: 36px;
     padding: 0px;
 }
 
@@ -754,19 +788,17 @@ caption.reviewDetail {
     overflow: hidden;
 }
 .contestGrid .cgCh a:hover {
-    color: #FFB800
+    color: #0096FF;
 }
 
 .contestGrid .technologyTags a:hover {
-    color: #FFB800
+    color: #0096FF;
 }
 
 .contestGrid .cgCh a img {
     position: absolute;
     top: 0;
     left: 15px;
-    background: url(@@cdn/i/tco/tco-arrow.png) no-repeat;
-    background-position: 0 10px;
     padding-bottom: 8px;
 }
 
@@ -785,7 +817,6 @@ caption.reviewDetail {
 }
 
 #gridAll .cgCh a img.allContestIco {
-    height: 36px;
     padding: 0px;
 }
 
@@ -1065,7 +1096,7 @@ select:disabled {
 }
 
 .ui-datepicker-calendar .ui-datepicker-today {
-    background-color: #FF8A00;
+    background-color: #0096FF;
     color: #fff;
 }
 
@@ -1074,7 +1105,7 @@ select:disabled {
 }
 
 .ui-datepicker-calendar .ui-datepicker-current-day {
-    background-color: #FFB800;
+    background-color: #0096FF;
     color: #fff;
 }
 
@@ -1105,8 +1136,6 @@ select:disabled {
 
 .ui-datepicker-prev,
 .ui-datepicker-next {
-    background: url(@@cdn/i/arrows-rl.png) no-repeat;
-    background-position: 3px -25px;
     cursor: pointer;
     z-index: 10;
 }
@@ -1124,21 +1153,22 @@ select:disabled {
     text-indent: 10000px;
     display: block;
     overflow: hidden;
-    top: 9px;
+    top: 13px;
     left: 11px;
     position: absolute;
+    background: url(@@cdn/i/chevron-left-design.png) no-repeat;
 }
 
 .ui-datepicker-next {
     width: 20px;
     height: 20px;
     text-indent: 10000px;
-    background-position: 3px 4px;
     display: block;
     overflow: hidden;
-    top: 9px;
+    top: 13px;
     right: 11px;
     position: absolute;
+    background: url(@@cdn/i/chevron-right-design.png) no-repeat;
 }
 
 .ui-datepicker-next.ui-state-disabled {
