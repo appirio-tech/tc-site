@@ -2,7 +2,9 @@
 -----------------------------*/
 
 @media (max-width: 1019px) {
-
+.header-container header h1 {
+    text-align: center !important;
+}
 #banner{
     height: 355px;
     background: #fff  url(@@cdn/i/bg-banner-sprite-m.png) repeat-x;
@@ -610,18 +612,17 @@
     }
     .dataTable th,
     .dataTable td{
-        border: solid #e7e7e7;
-        border-width: 1px 0;
+        border-bottom: 1px solid #d4d4d4;
     }
     .dataTable th{
         vertical-align: middle;
-        background: #f1f1f1;
+        background: #fff;
         font-weight: normal;
         height: 42px;
         font-size: 14px;
     }
     .dataTable tbody .alt td{
-        background: #f7f7f7;
+        background: #fcfcfc;
     }
     .dataTable th.colCh{
         text-align: left;
@@ -638,31 +639,18 @@
             padding-left: 66px;
             display: inline-block;
         }
-            .dataTable .colCh a i{
-                position: absolute;
-                top: 4px;
-                left: 14px;
-                background: url(@@cdn/i/ico-tracks.png) no-repeat;
-                background-position: 0 0;
-                background-color: #7ab800;
-                width: 40px;
-                height: 36px;
-                transition-duration: 0.2s;
-}
-        .dataTable .trackSD .colCh a i{
-            background-position: 0 0;
+        .dataTable .colCh a i{
+            position: absolute;
+            top: 4px;
+            left: 14px;
             background-color: #7ab800;
+            transition-duration: 0.2s;
         }
-        .dataTable .trackUX .colCh a i{
-            background-position: 0 -50px;
-            background-color: #00add0;
-        }
-        .dataTable .trackAn .colCh a i{
-            background-position: 0 -100px;
-            background-color: #ffae00;
+        .dataTable .colCh a span.track-symbol {
+            left: -51px;
         }
         .dataTable .colCh a:hover{
-            color: #FF8A00;
+            color: #097DCE;
         }
         .dataTable .colCh a:hover i{
             box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
@@ -1059,8 +1047,6 @@
 }
     .starsOfMonth .profile{;
         border: 1px solid #dfe1e1;
-        max-width: 262px;
-
         margin: 15px 0 0;
         width: auto;
 }
@@ -1080,13 +1066,6 @@
     .starsOfMonth .profileAn h3{
             color: #ff7400;
     }
-    .starsOfMonth .profile .memberPic{
-        float: left;
-    }
-    .starsOfMonth .profile .details .row{
-        margin: 5px 0 13px 150px;
-
-}
     .starsOfMonth .profile  label{
         font-size: 12px;
     }
@@ -1113,7 +1092,7 @@
 
 /* whatsHappening */
 #whatsHappening{
-    background: #d2d2d2;
+    background: #fff;
     padding: 12px 0 26px 0;
 }
 #whatsHappening .inner{

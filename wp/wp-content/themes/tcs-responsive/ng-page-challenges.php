@@ -47,11 +47,9 @@ get_header(); ?>
 
   <script type="text/ng-template" id="challenge-list.html">
     <div class="header-container">
-      <div class="container">
-        <header>
-          <h1 ng-bind="titles[contest.contestType]"></h1>
-        </header>
-      </div><!-- /.container -->
+      <header>
+        <h1 ng-bind="titles[contest.contestType]"></h1>
+      </header>
     </div>
     <!-- header-container end -->
     <article id="mainContent" class="layChallenges">

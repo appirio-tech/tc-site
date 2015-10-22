@@ -136,8 +136,8 @@
     font-family: 'Sofia Pro';
     src: url('/mf/fonts/sofiapro-medium-webfont.eot');
     src: url('/mf/fonts/sofiapro-medium-webfont.eot?#iefix') format('embedded-opentype'),
-         url('/mf/fonts/sofiapro-medium-italic.woff') format('woff'),
-		 url('/mf/fonts/sofiapro-medium-italic.woff2') format('woff2'),
+         url('/mf/fonts/sofiapro-medium-webfont.woff') format('woff'),
+		 url('/mf/fonts/sofiapro-medium-webfont.woff2') format('woff2'),
          url('/mf/fonts/sofiapro-medium-webfont.svg#sofia_pro_medium') format('svg'),
 		 url('/mf/fonts/sofiapro-medium-webfont.ttf') format('truetype');
     font-weight: 500;
@@ -952,76 +952,85 @@
     width: 100%;
     font-size: 14px;
 }
-    .dataTable .imp{
-        color: #f00;
-    }
-    .dataTable th,
-    .dataTable td{
-        border: solid #e7e7e7;
-        border-width: 1px 0;
-    }
-    .dataTable th{
-        vertical-align: middle;
-        background: #f1f1f1;
-        font-weight: normal;
-        height: 42px;
-        font-size: 14px;
-    }
-    .layChallenges .dataTable .colCh{
-        width: 308px;
-    }
-
-
-    .dataTable tbody .alt td{
-        background: #f7f7f7;
-    }
-
-   .dataTable th.colCh{
-        text-align: left;
-        text-indent: 56px;
-        width: 308px
-    }
-        .dataTable .colCh div{
-            margin-right: 15px;
+.dataTable .imp{
+    color: #f00;
 }
-        .dataTable .colCh a{
-            color: #666;
-            line-height: 22px;
-			padding-left: 35px;
-            display: inline-block;
-
-            cursor: pointer;
-            position: relative;
+.dataTable th,
+.dataTable td{
+    border-bottom: 1px solid #d4d4d4;
 }
-            .dataTable .colCh a i{
-                position: absolute;
-                top: 4px;
-                left: 14px;
-                background: url(@@cdn/i/ico-tracks.png) no-repeat;
-                background-position: 0 0;
-                background-color: #7ab800;
-                width: 40px;
-                height: 36px;
-                transition-duration: 0.2s;
-                cursor: pointer;
+.dataTable th{
+    background-color: #fff;
+    color: #7F7F7F;
+    line-height: 37px;
+    vertical-align: middle;
+    text-align: left;
+    font-family: "Sofia Pro", Helvetica, Arial, sans-serif;
+    word-wrap: break-word;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 400;
 }
-        .dataTable .trackSD .colCh a i,
-        .dataTable .track-develop .colCh a i{
-            background-position: 0 0;
-            background-color: #7ab800;
-        }
-        .dataTable .trackUX .colCh a i,
-        .dataTable .track-design .colCh a i{
-            background-position: 0 -50px;
-            background-color: #00add0;
-        }
-        .dataTable .trackAn .colCh a i,
-        .dataTable .track-data .colCh a i{
-            background-position: 0 -100px;
-            background-color: #ffae00;
-        }
+.dataTable th.colTime {
+  text-align: center;
+}
+.layChallenges .dataTable .colCh{
+    width: 308px;
+}
+.dataTable tbody .alt td{
+    background: #FCFCFC;
+}
+.dataTable td.colCh , .dataTable td.colTime, .dataTable td.colPur {
+    margin-right: 15px;
+    vertical-align: top;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: left;
+}
+.dataTable td.colPur  {
+  padding-top: 30px;
+}
+.dataTable .colCh a{
+    color: #666;
+    line-height: 22px;
+    padding-left: 35px;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+}
+.dataTable .colCh a i{
+    position: absolute;
+    top: 4px;
+    left: 14px;
+    width: 40px;
+    height: 75px;
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
+.dataTable .track-develop .colCh a i {
+  background: url(@@cdn/i/ico-develop-challenge.svg) no-repeat;
+}
+.dataTable .track-design .colCh a i {
+  background: url(@@cdn/i/ico-design-challenge.svg) no-repeat;
+}
+.dataTable .colCh a span.track-symbol {
+    position: absolute;
+    left: -21px;
+    top: 45px;
+    z-index: 10;
+    color: white;
+    font-weight: bold;
+    width: 40px;
+    display: inline-block;
+    text-align: center;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+.layChallenges .dataTable .colCh a span.track-symbol {
+    left: 12px;
+}
         .dataTable .colCh a:hover{
-            color: #FF8A00;
+            color: #097DCE;
         }
         .dataTable .colCh a:hover i{
             box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
@@ -1029,13 +1038,8 @@
     .dataTable .btn{
         width: 86px;
     }
-    .dataTable tbody td{
-        height: 95px;
-        vertical-align: middle;
-    }
-    .dataTable tbody td{
-        height: 95px;
-        vertical-align: middle;
+    .dataTable.challenges tbody tr{
+        height: 140px;
     }
 .dataTable th.colTime{
     width: 224px;
@@ -1070,6 +1074,10 @@
 .dataTable tbody .colPur{
     text-align: left;
     text-indent: 20px;
+}
+.dataTable tfoot tr td {
+  border: none;
+  padding-top: 10px;
 }
 /* contest gird view */
 #tableView{
@@ -1319,10 +1327,6 @@
         bottom: 0;
     }
 /* tops */
-.tops{
-    margin-top: 30px;
-
-}
     .tops > nav{
         padding: 12px 0 10px;
     }
@@ -1358,7 +1362,7 @@
         cursor: default;
     }
 .tops .topsTable{
-    font-size: 12px;
+    font-size: 14px;
 }
 .topsTable .colRank{
     width: 42px;
@@ -1367,6 +1371,10 @@
     font-size: 12px;
     padding-top: 13px;
     height: 28px;
+    text-align: center;
+    background: #f7f7f7;
+    color: #000;
+    text-transform: none;
 }
     .tops .topsTable td{
         text-align: center;
@@ -1393,9 +1401,13 @@
     margin: 18px 0 0;
 }
     .starsOfMonth h2{
-        color: #2e3b19;
-        font-size: 24px;
-        line-height: 24px;
+        color: #3d3d3d;
+        font-size: 28px;
+        line-height: 34px;
+        font-family: "Sofia Pro";
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 60px;
     }
     .starsOfMonth h2 small{
         display: block;
@@ -1406,20 +1418,63 @@
     .starsOfMonth .starProfiles{
         overflow: hidden;
 
-        margin: 0 -12px;
+        margin: 0 90px;
 }
     .starsOfMonth .profile{
         border: 1px solid #dfe1e1;
-        padding: 18px;
-        width: 262px;
-
+        width: 300px;
+        height: 368px;
         margin: 0 auto;
+        border-radius: 4px;
 }
-    .starsOfMonth .profileUX{
-        margin: 0;
+    .starsOfMonth .profileHeader {
+        height: 110px;
+        position: relative;
+        border-radius: 4px 4px 0 0;
     }
-    .starsOfMonth .profileAn{
-        margin: 0 0 0 20px;
+    .starsOfMonth .profileHeader i {
+        height: 26px;
+        width: 25px;
+        color: #f6f6f6;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+    .starsOfMonth .profileHeader.profileUX {
+        background: #21B2F1;
+    }
+    .starsOfMonth .profileHeader.profileUX i {
+        background: url(@@cdn/i/ico-design-challenge.svg);
+
+        background-position: 73px 69px;
+    }
+    .starsOfMonth .profileHeader.profileSD {
+        background: #05C14F;
+    }
+    .starsOfMonth .profileHeader.profileSD i {
+        background: url(@@cdn/i/ico-develop-challenge.svg);
+
+        background-position: 73px 69px;
+    }
+    .starsOfMonth .profileHeader.profileAn {
+        background: #FC9A00
+    }
+    .starsOfMonth .profileHeader.profileAn i {
+        background: url(@@cdn/i/ico-data-challenge.svg);
+
+        background-position: 73px 69px;
+    }
+    .starsOfMonth .memberPic {
+        position: relative;
+        top: -70px;
+        left: 80px;
+        margin-bottom: -70px;
+    }
+    .starsOfMonth .memberPic img {
+        height: 140px;
+        width: 140px;
+        border-radius: 50%;
+        vertical-align: middle;
     }
     .starsOfMonth .profile .details{
         overflow: hidden;
@@ -1437,24 +1492,25 @@
     .starsOfMonth .profileAn h3{
             color: #ff7400;
     }
-    .starsOfMonth .profile .memberPic{
-        float: left;
+    .starsOfMonth .profile .details h3 {
+        font-size: 26px;
+        line-height: 32px;
+        color: #3d3d3d;
+        font-weight: 600;
     }
     .starsOfMonth .profile .details .row{
-        margin: 5px 0 13px 150px;
-
-}
-    .starsOfMonth .profile  label{
-        font-size: 12px;
+        margin: 10px auto 40px;
+        text-align: center;
     }
     .starsOfMonth .profile .wonPurse{
         line-height: 24px;
+        font-family: "Merriweather Sans", Helvetica, Arial, sans-serif;
     }
     .starsOfMonth .profile .inPurse{
         font-size: 18px;
+        font-weight: bold;
     }
     .starProfiles .grid-3-1{
-        float: left;
         margin-top: 15px;
         overflow: hidden;
 }
@@ -1467,7 +1523,8 @@
 
 /* whatsHappening */
 #whatsHappening{
-    background: #d2d2d2;
+    background: #fff;
+    margin: -30px 60px 60px;
     padding: 30px 0 36px 0;
 }
     #whatsHappening .inner{
@@ -1477,7 +1534,10 @@
         width: 100%;
     }
     #whatsHappening h2{
-        font-size: 24px;
+        font-size: 22px;
+        line-height: 28px;
+        color: #a3a3ae;
+        text-align: center;
         margin-bottom: 22px;
     }
     #whatsHappening .featuredImg{
@@ -1494,9 +1554,10 @@
     }
     #whatsHappening .slide .title{
         font-weight: bold;
-        font-size: 14px;
-
-        line-height: 24px;
+        font-size: 18px;
+        font-family: "Merriweather Sans", Helvetica, Arial, sans-serif;
+        color: #3d3d3d;
+        line-height: 22px;
         height: 50px;
         overflow: hidden;
 }
@@ -1504,7 +1565,14 @@
         line-height: 30px;
     }
     #whatsHappening .slide .excerpt{
-        line-height: 18px;
+        line-height: 22px;
+        font-size: 13px;
+        color: #3d3d3d;
+        font-family: "Merriweather Sans", Helvetica, Arial, sans-serif;
+    }
+    #whatsHappening .slide .excerpt a.more {
+        display: inline-block;
+        margin-top: 20px;
     }
     #whatsHappening .grid-3-1 > section{
         width: 301px;
