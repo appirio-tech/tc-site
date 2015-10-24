@@ -269,6 +269,7 @@ font-size: 18px;
     float: left;
     border-left: 1px solid #D0D0D1;
     height: 16px;
+    font-size: 16px;
     line-height: 18px;
 }
 
@@ -489,6 +490,7 @@ h1.center {
 
 .challenge-detail .columnSideBar p strong {
     color: #000;
+    font-size: 16px;
 }
 
 .reviewStyle p {
@@ -739,7 +741,7 @@ h1.center {
     float: left;
     height: 100%;
     width: 77%;
-
+    color: #fff;
 }
 
 .btnMyAcc span {
@@ -980,7 +982,7 @@ h1.center {
     }
 
     .challenge-detail .grid-3-3 {
-        width: 100%;
+        width: 100% !important;
     }
 
     .challenge-detail .topRightTitleAlt,
@@ -2637,3 +2639,236 @@ h1.center {
 }
 
 /* styles for member program path box - end */
+/* Stylish Start */
+body {
+    font-family: "Sofia Pro", "Merriweather Sans", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 22px;
+    color: #333;
+    background-color: #f6f6f6;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 400;
+    line-height: 1.125em;
+    font-family: "Sofia Pro", Helvetica, Arial, sans-serif;
+}
+.sideStream h1,
+header h1,
+.challenge-detail.develop .tableWrap h1,
+.challenge-detail .tableWrap h1 {
+    font-size: 28px;
+    color: #3D3D3D;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    border: none;
+}
+h2,
+.challenge-detail .tableWrap h2 {
+    font-size: 18px;
+    font-weight: 400;
+    font-style: normal;
+    color: #000;
+    text-transform: uppercase;
+    font-family: "Sofia Pro", "Merriweather Sans", Helvetica, Aria, sans-serif;
+    margin: 40px 0 10px 0;
+    text-align: left;
+}
+.challenge-detail .columnSideBar h3 {
+    color: #3d3d3d;
+    font-size: 14px;
+    padding-bottom: 0;
+}
+p,
+.challenge-detail .tableWrap p {
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 24px;
+    color: #3d3d3d;
+    padding-bottom: 24px;
+    margin: 0;
+}
+.challenge-detail .tableWrap strong {
+    color: #3d3d3d;
+    font-weight: 600;
+}
+em {
+    font-style: italic;
+    font-family: "Merriweather", Georgia, serif;
+}
+.note {
+    border-left: 6px solid #d2d2d2;
+    padding-left: 30px;
+    padding-bottom: 0px !important;
+}
+.challenge-detail .columnSideBar {
+    display: block;
+    clear: none;
+    width: 100%;
+    background: #f7f7f7;
+    border: none;
+    margin-top: 0;
+    padding: 20px 10px;
+}
+.challenge-detail.develop .columnSideBar {
+    margin-top: 25px;
+}
+.challenge-detail .columnSideBar .inner {
+    padding: 10px;
+    border-bottom: none;
+}
+#main,
+#wrapper > .content {
+    background: #F6F6F6;
+    position: relative;
+    z-index: 5;
+}
+#mainContent.splitLayout,
+#mainContent.layChallenges {
+    padding: 90px 60px 30px;
+    margin: 60px;
+    background: #fff;
+}
+#mainContent .container {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+#main {
+    background: #F6F6F6;
+}
+#navigation {
+    background: #fff;
+}
+.challenge-detail .grid-3-3 {
+    padding: 0 10px 0 0;
+    box-sizing: border-box;
+}
+.challenge-detail .rightSplit {
+    float: left;
+    width: calc(100% - 330px);
+    margin-right: 30px;
+}
+.challenge-detail a,
+.challenge-detail a:active,
+.challenge-detail a:visited {
+    text-decoration: none;
+    color: #0096FF;
+    -moz-transition-duration: .3s;
+    -webkit-transition-duration: .3s;
+    transition: .2s all ease-in-out;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    outline: 0;
+}
+.challenge-detail a:hover {
+    color: #097DCE;
+    text-decoration: underline;
+}
+/* tabs */
+
+.challenge-detail .tabNav {
+/*     border-bottom: none; */
+    margin-bottom: 30px;
+}
+div#challengeNav {
+    display: inline-block;
+    /* padding-right: 20px; */
+
+    position: relative;
+    padding-left: 20px;
+    float: none;
+}
+a,
+a:active,
+a:visited {
+    text-decoration: none;
+    color: #0096FF;
+    -moz-transition-duration: .3s;
+    -webkit-transition-duration: .3s;
+    transition: .2s all ease-in-out;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    outline: 0;
+}
+a:hover {
+    color: #097DCE;
+    text-decoration: underline;
+}
+/* content box */
+
+#stepBox .leftColumn a {
+    margin-bottom: 10px;
+    border-radius: 0px;
+    height: 49px;
+}
+.challenge-detail .btnAction strong {
+    font-size: 11px;
+    margin-top: 14px;
+}
+.challenge-detail .btnAction {
+    background: #0096FF!important;
+    border-bottom: 4px solid #0096ff!important;
+    text-align: left!important;
+    line-height: 12px!important;
+    font-size: 12px!important;
+    font-weight: 700!important;
+    text-transform: uppercase;
+    overflow: hidden;
+    display: block;
+}
+.challenge-detail .btnAction:hover {
+    color: #fff;
+    background-color: #097DCE;
+}
+#stepBox .rightColumn .nextBox .allDeadlineNextBoxContent,
+#stepBox .rightColumn .nextBox .nextBoxContent {
+    background: #85CCFF;
+    border: 1px solid #0096FF;
+    margin: 0 auto;
+    padding: 10px 13px;
+    height: 125px;
+}
+#stepBox .rightColumn .nextBox .icoTime {
+    height: auto;
+    display: block;
+    padding-left: 0;
+    padding-top: 0px;
+    background: none;
+}
+#stepBox .rightColumn .nextBox .CEDate,
+#stepBox .rightColumn .nextBox .nextDTitle {
+    color: #333;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+#stepBox .rightColumn .nextBox .nextDTitle,
+.challenge-detail.develop #stepBox .rightColumn .nextBox .nextDTitle {
+    color: #fff;
+    display: block;
+    font-size: 15px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+#stepBox .rightColumn .nextBox .timeLeft {
+    color: #FFFFFE;
+    font-size: 22px;
+    line-height: 30px;
+    margin: 24px 0px;
+    padding: 0;
+    display: block;
+    text-align: center;
+}
+.challenge-detail .grid-3-3 {
+    padding: 0 10px 0 0;
+    box-sizing: border-box;
+}
+.challenge-detail .rightSplit {
+    float: left;
+}
+/* Stylish End */

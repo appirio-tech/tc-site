@@ -20,7 +20,7 @@ $postPerPage = get_option ( "contest_per_page" ) == "" ? 30 : get_option ( "cont
 <style>
 .bx-controls{display:none}
 </style>
-<div class="content">
+<div class="content community">
 	<div id="main">
 		<div class="header-container">
       <header>

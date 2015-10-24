@@ -1329,6 +1329,7 @@
 /* tops */
     .tops > nav{
         padding: 12px 0 10px;
+        font-weight: bold;
     }
     .tops h1{
         border-bottom: 1px solid #e7e7e7;
@@ -1395,10 +1396,10 @@
 }
 /* starsOfMonth */
 .starsOfMonth{
-    background: url(@@cdn/i/shadow.png) 50% 0 no-repeat;
-    border-top: 1px solid #dfe1e1;
-    padding-top: 19px;
-    margin: 18px 0 0;
+    background: #fff;
+    margin: -30px 60px 60px;
+    padding: 30px 0 36px 0;
+    border: none;
 }
     .starsOfMonth h2{
         color: #3d3d3d;
@@ -1520,7 +1521,6 @@
     .starProfiles .gird-mid .profile{
        margin: 0 auto;
 }
-
 /* whatsHappening */
 #whatsHappening{
     background: #fff;
@@ -2896,3 +2896,68 @@ hr.light {
     font-weight: bold;
     background-color: #f1f1f1;
 }
+/* Stylish Start */
+.community body {
+    font-family: "Sofia Pro", "Merriweather Sans", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 22px;
+    color: #333;
+    background-color: #f6f6f6;
+}
+.community .sideStream h1,
+.community header h1 {
+    font-size: 28px;
+    color: #3D3D3D;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    border: none;
+}
+.community p {
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 24px;
+    color: #3d3d3d;
+    padding-bottom: 24px;
+    margin: 0;
+}
+.community #main,
+.community #wrapper > .content {
+    background: #F6F6F6;
+    position: relative;
+    z-index: 5;
+}
+.community #mainContent.splitLayout {
+    padding: 90px 60px 30px;
+    margin: 60px;
+    background: #fff;
+}
+.community #mainContent .container {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+.community #main {
+    background: #F6F6F6;
+}
+.community a,
+.community a:active,
+.community a:visited {
+    text-decoration: none;
+    -moz-transition-duration: .3s;
+    -webkit-transition-duration: .3s;
+    transition: .2s all ease-in-out;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    outline: 0;
+}
+.community .coderTextRed,
+.community .coderTextYellow,
+.community .coderTextRed:active,
+.community .coderTextRed:hover,
+.community .coderTextRed:link,
+.community .coderTextRed:visited {
+    padding: 0 13px 0 0;
+    margin: 0;
+    position: relative;
+}
+/* Stylish End */

@@ -59,7 +59,7 @@ get_header(); ?>
               <a href="/challenges/design/active" class="link" ng-class="{active: contest.contestType === 'design'}">Design</a>
               <a href="/challenges/develop/active" class="link" ng-class="{active: contest.contestType === 'develop'}">Development</a>
               <a href="/challenges/data/active" class="link" ng-class="{active: contest.contestType === 'data'}">Data Science</a>
-              <span class="views">
+              <span class="views hideOnMobile">
                 <a href="" ng-click="view = 'grid'" ng-class="{isActive: view == 'grid'}" qtip title="Layout" text="Grid View" community="design"><i class="icon-th-large"></i> GRID</a>
                 <a href="" ng-click="view = 'table'" ng-class="{isActive: view == 'table'}" qtip title="Layout" text="List View" community="design"><i class="icon-list-ul"></i> LIST</a>
                 <a href="" ng-show="contest.contestType === 'data'" ng-click="view = 'calendar'" ng-class="{isActive: view == 'calendar'}" qtip title="Layout" text="Calendar View" community="design"><i class="icon-calendar"></i> CALENDAR</a>

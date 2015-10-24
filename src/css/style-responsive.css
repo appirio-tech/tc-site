@@ -301,7 +301,6 @@
     width: 8px;
     top: 7px;
     right: 4px;
-    background: url(@@cdn/i/arrow-nxt.png) no-repeat;
     background-position:  0 0;
     position: absolute;
     -moz-transition-duration: .3s; -webkit-transition-duration: .3s; transition-duration: .3s;
@@ -548,8 +547,8 @@
 #mainContent .dataChanges{
     padding-top: 19px;
     font-size: 14px;
-
-    min-height: 18px;
+    width: 100%;
+    height: 60px;
     overflow: hidden;
     position: relative;
 }
@@ -558,9 +557,7 @@
 }
     #mainContent .dataChanges .mid{
         text-align: center;
-
-        display: block;
-        margin: 0 100px;
+        margin: 20px;
         position: relative;
 }
     #mainContent .dataChanges .lt{
@@ -1022,12 +1019,6 @@
     max-width: 300px;
     margin: 0 auto;
     width: auto;
-}
-.starsOfMonth{
-    background: url(@@cdn/i/shadow.png) 50% 0 no-repeat;
-    border-top: 1px solid #dfe1e1;
-    padding-top: 26px;
-    background-size: 120% 20px;
 }
     .starsOfMonth h2{
         color: #2e3b19;
@@ -1606,4 +1597,21 @@
 	padding: 20px 0 5px 0;
 }
 
+}
+/* For community page */
+@media (max-width: 480px ) {
+  .community #mainContent.splitLayout {
+    margin: 30px 10px;
+    padding: 30px 10px;
+  }
+  .tops .topsTable .colHandle {
+    text-align: center;
+  }
+}
+@media (max-width: 960px) {
+  .challenge-detail .rightSplit  .grid-3-3 {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
 }

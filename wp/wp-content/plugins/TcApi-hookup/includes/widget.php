@@ -151,7 +151,7 @@ class Tops_Rank_Widget extends WP_Widget {
 				?>
 				<tr>
 					<td><?php echo $row->rank;?></td>
-					<td class="colHandle"><a href="<?php echo $handleLink;?>" class="coderText<?php echo $row->color;?>"><?php echo $row->handle;?></a></td>
+					<td class="colHandle"><a href="<?php echo $handleLink;?>" class="coderTextBlack"><?php echo $row->handle;?></a></td>
 					<td><?php echo $row->rating;?></td>
 				</tr>
 			<?php endforeach; ?>
@@ -204,7 +204,7 @@ class Tops_Rank_Widget extends WP_Widget {
 				<tr>
 					<td><?php echo $row->rank;?></td>
 <!--					<td class="colHandle"><span class="coderTextRed"><?php echo $row->handle;?></span></td> -->
-					<td class="colHandle"><a href="<?php echo $handleLink;?>" class="coderText<?php echo $row->color;?>"><?php echo $row->handle;?></a></td>
+					<td class="colHandle"><a href="<?php echo $handleLink;?>" class="coderTextRed"><?php echo $row->handle;?></a></td>
 					<td><?php echo $row->rating;?></td>
 				</tr>
 			<?php endforeach; ?>
@@ -276,8 +276,8 @@ class Tops_Rank_Widget extends WP_Widget {
 				$contestLink = get_post_meta ( $postId, "Contest Link", true );
 				$contestLink = $contestLink == "" ? "javascript:;" : $contestLink;
 				$userkey = get_option ( 'api_user_key' );
-			#	$data = get_member_profile ( $userkey, $handle );
-			#	$arrRating = $data->ratingsSummary;
+			  $data = get_member_profile (  $handle );
+			  $arrRating = $data->ratingsSummary;
 				$rating = 0;
 				for($i = 0; $i < count ( $arrRating ); $i ++) {
 					if ($arrRating [$i]->rating > $rating) {
