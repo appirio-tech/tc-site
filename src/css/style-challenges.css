@@ -783,7 +783,7 @@ caption.reviewDetail {
 /*Bugfix I-107027: restrict contest name to 2 lines in grid mode*/
 .contestGrid .cgCh a span {
     display:inline-block;
-    height: 2.4em;
+    height: 2.7em;
     width: 100%;
     overflow: hidden;
 }

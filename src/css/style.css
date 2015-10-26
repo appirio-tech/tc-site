@@ -834,7 +834,7 @@
     .layChallenges .challengeType ul > li{
         float: left;
         border-left: 1px solid #D0D0D1;
-        height: 16px;
+        height: 18px;
         line-height: 18px;
 }
     .layChallenges .challengeType ul li:first-child{
@@ -1397,7 +1397,7 @@
 /* starsOfMonth */
 .starsOfMonth{
     background: #fff;
-    margin: -30px 60px 60px;
+    margin: -50px 60px 60px;
     padding: 30px 0 36px 0;
     border: none;
 }
@@ -2928,7 +2928,7 @@ hr.light {
     z-index: 5;
 }
 .community #mainContent.splitLayout {
-    padding: 90px 60px 30px;
+    padding: 90px 60px;
     margin: 60px;
     background: #fff;
 }
