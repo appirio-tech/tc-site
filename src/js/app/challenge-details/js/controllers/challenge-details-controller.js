@@ -31,7 +31,7 @@
    * Inject dependencies
    * @type {string[]}
    */
-  ChallengeDetailCtrl.$inject = ['$scope', 'ChallengeService', '$q', '$cookies', '$location', '$interval', '$timeout'];
+  ChallengeDetailCtrl.$inject = ['$scope', 'ChallengeService', '$q', '$cookies', '$location', '$interval', '$timeout', '$rootScope'];
 
   /**
    * Controller implementation
@@ -40,7 +40,7 @@
    * @param ChallengeService
    * @constructor
    */
-  function ChallengeDetailCtrl($scope, ChallengeService, $q, $cookies, $location, $interval, $timeout) {
+  function ChallengeDetailCtrl($scope, ChallengeService, $q, $cookies, $location, $interval, $timeout, $rootScope) {
 
     // set challengeId and challengeType from the url
     challengeId = $location.path().split("/")[2];
@@ -104,6 +104,13 @@
 
       updateTabForNonResults();
     };
+
+    $rootScope.$on('$locationChangeStart', function(event, toUrl, fromUrl) {
+        var parser = document.createElement('a');
+        parser.href = toUrl;
+        if (!parser.pathname.startsWith("/challenge-details/"))
+            window.location.reload();
+    });
 
     var handlePromise = $q.defer();
     //The handle is needed to enable the buttons
