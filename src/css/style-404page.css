@@ -1,6 +1,6 @@
 #wrapper404 #navigation {
 	height: 94px;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
 	behavior: url(./wp-content/themes/tcs-responsive/css/PIE.htc);
 }
 #wrapper404 #navigation .container {
@@ -22,8 +22,8 @@
 	padding-top: 20px;
 	padding-bottom: 20px;
 	background-color: #fcfcfc;
-
-}
+	
+}	
 	#wrapper404 .page404 .container {
 		width: auto;
 	}
@@ -79,7 +79,7 @@
 			background-image: url('../i/404-Mobile.png');
 		}
 	}
-
+	
 	#wrapper404 .step404 #print_btn{
 		margin: 0 auto;
 		padding-top: 20px;
@@ -132,4 +132,4 @@
 	#print_area {
 		display: block;
 	}
-}
+}	
