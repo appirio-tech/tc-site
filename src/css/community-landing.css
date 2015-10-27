@@ -11,7 +11,7 @@
     #banner.design .inner .container{
         background: url(@@cdn/i/banner-2.png) 50% 0 no-repeat;
 	}
-	
+
 #banner.develop{
     background: url(@@cdn/i/bg-banner-sprite-develop.png) 0 0 repeat-x;
 }
@@ -20,7 +20,7 @@
 	}
     #banner.develop .inner .container{
         background: url(@@cdn/i/banner-3.png) 50% 0 no-repeat;
-	}	
+	}
 
 #banner.algorithm{
     background: url(@@cdn/i/bg-banner-sprite-data.png) 0 0 repeat-x;
@@ -30,26 +30,26 @@
 	}
     #banner.algorithm .inner .container{
         background: url(@@cdn/i/banner-4.png) 50% 0 no-repeat;
-	}		
-	
+	}
+
 .pageContent h1,.pageContent h2,.pageContent h3,.pageContent h4,.pageContent h5,.pageContent h6,.pageContent h7 {
 	color:#333333;
 }
 .pageContent p {
 	margin-bottom:20px;
 }
-					
+
 .starsOfMonthWrapper {
 	background: url(@@cdn/i/stars-of-month-bg.png) 0 0 repeat-x;
 	height:354px;
-}	
+}
 	.starsOfMonthInner {
 		background: url(@@cdn/i/bg-stars-of-month.jpg) 50% 0 no-repeat;
 		height:354px;
 		width:1010px;
 		margin:0px auto;
 	}
-	
+
 	.starsOfMonthWrapper .sectionTitle {
 		font-weight:normal;
 		font-size:36px;
@@ -62,7 +62,7 @@
 .starItem {
 	float:left;
     width: 320px;
-    height: 208px;	
+    height: 208px;
 	margin-left:25px;
 	float:left;
 }
@@ -78,7 +78,7 @@
 	background: #00aeff;
 	padding:10px;
 	color:#fff;
-}	
+}
 .starItem .starContent{
 	width: 320px;
     height: 208px;
@@ -91,10 +91,10 @@
     box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
     .starItem .details{
-        position: relative;        
+        position: relative;
     }
     .starItem .details .userPicture{
-        float: left;    
+        float: left;
         margin: 20px 0 0 20px;
         width: 120px;
         height: 120px;
@@ -106,11 +106,11 @@
 }
     .starItem .details .userPicture img{
         width: 120px;
-    
+
         background: #ccc;
 }
     .starItem .details .userDetailsCommunity{
-        margin-left: 174px;    
+        margin-left: 174px;
         min-height: 154px;
         padding-top: 14px;
 }
@@ -136,33 +136,33 @@
         font-size: 12px;
         letter-spacing: 1px;
         padding-top: 6px;
-    
+
         line-height: 20px;
 }
     .starItem .details .userDetailsCommunity .val{
         font-size: 18px;
         letter-spacing: 1px;
         line-height: 24px;
-    
+
         font-weight: bold;
-	}	
+	}
 
 .develop .starItem .starTitle {
 	background: #75d30d;
-}		
+}
 .develop .starItem .starContent{
     border-top: 4px solid #75d30d;
-}	
+}
 .develop .starItem .userHandle {
 	color:#52ac09;
 }
 
 .algorithm .starItem .starTitle {
 	background: #ffae00;
-}		
+}
 .algorithm .starItem .starContent{
     border-top: 4px solid #ffae00;
-}	
+}
 .algorithm .starItem .userHandle {
 	color:#ffae00;
 }
@@ -205,16 +205,16 @@
 	}
     #banner.develop .inner .container{
         background: none;
-	}	
+	}
     #banner.algorithm .inner .container{
         background: none;
-	}	
-	
+	}
+
 	.starsOfMonthWrapper {
 		background: url(@@cdn/i/stars-of-month-bg.png) 0 0 repeat;
 		height:auto;
 		min-height:354px;
-	}	
+	}
 	.starsOfMonthInner {
 		background: none;
 		min-width:0px;
@@ -223,22 +223,67 @@
 		margin:0px auto;
 		padding-bottom:40px;
 	}
-	
+
 	.starItem {
 		float:none;
 		margin:0px auto;
 		margin-top:20px;
 		overflow:hidden;
 	}
-	
+
 	.starsOfMonthInner .first {
 		margin-left:auto;
 	}
-	
+
 	.starItem .starTitle {
 		min-width: 0px;
 		width:auto;
 		margin:0px auto;
-	}	
-	
+	}
+
+}
+.header-container {
+    background: #fff;
+    box-shadow: 0 1px 3px #D1D3D4;
+		padding: 10px 120px;
+}
+.header-container header h1 {
+    font-size: 32px;
+		font-weight: 700;
+    line-height: 38px;
+    padding: 15px 0;
+    margin: 10px 0 0;
+    overflow: hidden;
+    text-align: left;
+}
+.header-container .statistics, .header-container .statistics .ilb {
+	display: inline-block;
+}
+.header-container .statistics {
+	float: right;
+}
+.header-container .statistics p {
+	padding-bottom: 0;
+	text-align: center;
+}
+.header-container .statistics .val {
+	font-size: 32px;
+	line-height: 38px;
+	font-family: "Sofia Pro";
+	font-weight: 400;
+	color: #3d3d3d;
+}
+.header-container .statistics .lbl {
+	font-size: 12px;
+	line-height: 14px;
+	color: #a3a3ae;
+}
+.dataTable.challenges {
+	background: #fff;
+}
+@media (min-width: 1020px) {
+	.grid-3-3 .grid-2-3 {
+	    width: calc( 100% - 360px);
+	    float: left;
+	}
 }

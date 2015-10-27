@@ -343,7 +343,7 @@ function get_top_rank( $userKey = '', $contestType = 'Algorithm' )
             $url = TC_API_URL . "/users/tops/develop?pageSize=10";
             break;
         case "data":
-            $url = TC_API_URL . "/data/srm/statistics/tops";
+            $url = TC_API_URL . "/data/srm/statistics/tops?pageSize=10";
             break;
 		case "design":
             $url = TC_API_URL . "/users/tops/design?pageSize=10";
