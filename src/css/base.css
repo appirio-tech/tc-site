@@ -595,8 +595,8 @@ sub, sup {
   .social-links {
     margin-bottom: 3px; }
     .social-links a {
-      width: 20px;
-      height: 20px;
+      width: 26px;
+      height: 26px;
       margin-top: 13px; }
     .social-links .fb-link {
       background-image: url(@@cdn/i/ico-facebook_desktop.svg); }
