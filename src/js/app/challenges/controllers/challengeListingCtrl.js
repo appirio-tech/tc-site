@@ -218,13 +218,16 @@
 
       switch($scope.contest.contestType) {
         case "develop":
-          $scope.contest.reviewLink = "/review-opportunities";
+          $scope.contest.reviewLink = "/review/development-review-opportunities/";
+          $scope.contest.reviewLinkTitle = "Review";
           break;
         case "design":
-          $scope.contest.reviewLink = "//studio.topcoder.com/?module=ViewReviewOpportunities";
+          $scope.contest.reviewLink = "/review/design-review-opportunities/";
+          $scope.contest.reviewLinkTitle = "Review";
           break;
         case "data":
           $scope.contest.reviewLink = tcconfig.communityURL + "/longcontest/?module=ViewQueue";
+          $scope.contest.reviewLinkTitle = "Queue";
           break;
       }
 
