@@ -266,7 +266,7 @@ _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
               vm.userMenu = [
                 { 'href': '/my-dashboard', 'text': 'DASHBOARD', 'icon': '/mf/i/nav/dashboard.svg' },
                 { 'href': '/members/' + handle, 'text': 'MY PROFILE', 'icon': '/mf/i/nav/badge.svg' },
-                { 'href': 'https:' + tcconfig.communityURL + '/PactsMemberServlet?module=PaymentHistory&full_list=false', 'text': 'PAYMENTS', 'icon': '/mf/i/nav/money-bag.svg', 'target': '_blank' },
+                { 'href': 'https:' + tcconfig.communityURL + '/PactsMemberServlet?module=PaymentHistory&full_list=false', 'text': 'PAYMENTS', 'icon': '/mf/i/nav/money-bag.svg' },
                 { 'href': '/settings/profile', 'text': 'SETTINGS', 'icon': '/mf/i/nav/gear.svg' },
               ];
             });
@@ -277,12 +277,13 @@ _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
         vm.menuLinks =
         {
           'compete': [
-              { 'href':  "/challenges/design/active/", 'text': 'DESIGN CHALLENGES', 'icon': '/mf/i/nav/design.svg' },
-              { 'href':  "/challenges/develop/active", 'text': 'DEVELOPMENT CHALLENGES', 'icon': '/mf/i/nav/development.svg' },
-              { 'href':  "/challenges/data/active", 'text': 'DATA SCIENCE CHALLENGES', 'icon': '/mf/i/nav/data-science.svg' },
-              { 'href':  'https:' + tcconfig.arenaURL, 'text': 'THE ARENA', 'icon': '/mf/i/nav/srms.svg', 'target': '_blank' },
+              { 'href':  "/challenges/design/active/?pageIndex=1", 'text': 'DESIGN CHALLENGES', 'icon': '/mf/i/nav/design.svg' },
+              { 'href':  "/challenges/develop/active/?pageIndex=1", 'text': 'DEVELOPMENT CHALLENGES', 'icon': '/mf/i/nav/development.svg' },
+              { 'href':  "/challenges/data/active/?pageIndex=1", 'text': 'DATA SCIENCE CHALLENGES', 'icon': '/mf/i/nav/data-science.svg' },
+              { 'href':  'https:' + tcconfig.arenaURL, 'text': 'COMPETITIVE PROGRAMMING', 'icon': '/mf/i/nav/srms.svg', 'target': '_blank' },
           ],
           'learn': [
+              { 'href': '/getting-started/', 'text': 'GETTING STARTED', 'icon': '/mf/i/nav/rocket.svg' },
               { 'href': '/community/design/', 'text': 'DESIGN', 'icon': '/mf/i/nav/scroll-design.svg' },
               { 'href': '/community/development/', 'text': 'DEVELOPMENT', 'icon': '/mf/i/nav/scroll-develop.svg' },
               { 'href': '/community/data-science/', 'text': 'DATA SCIENCE', 'icon': '/mf/i/nav/scroll-data.svg' },
@@ -291,7 +292,7 @@ _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
           'community': [
               { 'href': '/community/members/', 'text': 'MEMBERS', 'icon': '/mf/i/nav/users.svg' },
               { 'href': '/community/member-programs/', 'text': 'PROGRAMS', 'icon': '/mf/i/nav/medal.svg' },
-              { 'href': 'https://' + tcconfig.forumsAppURL, 'text': 'FORUMS', 'icon': '/mf/i/nav/forum.svg', 'target': '_blank' },
+              { 'href': 'https://' + tcconfig.forumsAppURL, 'text': 'FORUMS', 'icon': '/mf/i/nav/forum.svg' },
               { 'href': '/community/statistics/', 'text': 'STATISTICS', 'icon': '/mf/i/nav/statistics.svg' },
               { 'href': '/community/events/', 'text': 'EVENTS', 'icon': '/mf/i/nav/calendar.svg' },
               { 'href': '/blog/', 'text': 'BLOG', 'icon': '/mf/i/nav/blog.svg' }
