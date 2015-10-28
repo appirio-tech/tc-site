@@ -216,6 +216,18 @@
         isUserChallenges: !!$routeParams.userChallenges
       };
 
+      switch($scope.contest.contestType) {
+        case "develop":
+          $scope.contest.reviewLink = "/review-opportunities";
+          break;
+        case "design":
+          $scope.contest.reviewLink = "//studio.topcoder.com/?module=ViewReviewOpportunities";
+          break;
+        case "data":
+          $scope.contest.reviewLink = tcconfig.communityURL + "/longcontest/?module=ViewQueue";
+          break;
+      }
+
       parseFilters();
 
       $scope.titles = {

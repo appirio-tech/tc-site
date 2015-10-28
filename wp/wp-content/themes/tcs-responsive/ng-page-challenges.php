@@ -164,7 +164,7 @@ get_header(); ?>
         <li><a href="/challenges/{{contest.contestType}}/active/" class="link" ng-class="{active: isActive('active')}">Open Challenges</a></li>
         <li><a href="/challenges/{{contest.contestType}}/past/" class="link" ng-class="{active: isActive('past')}">Past Challenges</a></li>
         <li><a href="/challenges/{{contest.contestType}}/upcoming/" class="link" ng-class="{active: isActive('upcoming')}">Upcoming Challenges</a></li>
-        <!-- Coming soon!  <li><a href="//www.topcoder.com/review-opportunities/develop/" class="link">Review Opportunities</a></li> -->
+        <li><a ng-href="{{contest.reviewLink}}" class="link">Review</a>
       </ul>
     </div>
 
