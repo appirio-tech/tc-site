@@ -159,6 +159,173 @@
   font-weight: 300;
 }
 
+@font-face {
+    font-family: 'Sofia Pro';
+    src: url('/mf/fonts/sofiapro-ultralight-webfont.eot');
+    src: url('/mf/fonts/sofiapro-ultralight-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/mf/fonts/sofiapro-ultralight-webfont.woff') format('woff'),
+		 url('/mf/fonts/sofiapro-ultralight-webfont.ttf') format('truetype'),
+         url('/mf/fonts/sofiapro-ultralight-webfont.svg#sofia_pro_ultralight') format('svg');
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Sofia Pro';
+    src: url('/mf/fonts/sofiapro-ultralight-italic-webfont.eot');
+    src: url('/mf/fonts/sofiapro-ultralight-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/mf/fonts/sofiapro-ultralight-italic-webfont.woff') format('woff'),
+		 url('/mf/fonts/sofiapro-ultralight-italic-webfont.ttf') format('truetype'),
+         url('/mf/fonts/sofiapro-ultralight-italic-webfont.svg#sofia_pro_ultralightitalic') format('svg');
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Sofia Pro';
+    src: url('/mf/fonts/sofiapro-extralight-webfont.eot');
+    src: url('/mf/fonts/sofiapro-extralight-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/mf/fonts/sofiapro-extralight-webfont.woff') format('woff'),
+		 url('/mf/fonts/sofiapro-extralight-webfont.woff2') format('woff2'),
+         url('/mf/fonts/sofiapro-extralight-webfont.svg#sofia_pro_extralight') format('svg');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Sofia Pro';
+    src: url('/mf/fonts/sofiapro-extralight-italic-webfont.eot');
+    src: url('/mf/fonts/sofiapro-extralight-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/mf/fonts/sofiapro-extralight-italic-webfont.woff') format('woff'),
+		 url('/mf/fonts/sofiapro-extralight-italic-webfont.woff2') format('woff2'),
+         url('/mf/fonts/sofiapro-extralight-italic-webfont.ttf') format('truetype');
+    font-weight: 200;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Sofia Pro';
+    src: url('/mf/fonts/sofiapro-light-webfont.eot');
+    src: url('/mf/fonts/sofiapro-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/mf/fonts/sofiapro-light-webfont.woff') format('woff'),
+		 url('/mf/fonts/sofiapro-light-webfont.woff2') format('woff2'),
+         url('/mf/fonts/sofiapro-light-webfont.svg#sofia_pro_light') format('svg'),
+		 url('/mf/fonts/sofiapro-light-webfont.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Sofia Pro';
+    src: url('/mf/fonts/sofiapro-light-italic-webfont.eot');
+    src: url('/mf/fonts/sofiapro-light-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/mf/fonts/sofiapro-light-italic-webfont.woff') format('woff'),
+         url('/mf/fonts/sofiapro-light-italic-webfont.ttf') format('truetype'),
+		 url('/mf/fonts/sofiapro-light-italic-webfont.svg#sofia_pro_lightitalic') format('svg');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Sofia Pro';
+    src: url('/mf/fonts/sofiapro-regular-webfont.eot');
+    src: url('/mf/fonts/sofiapro-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/mf/fonts/sofiapro-regular-webfont.woff') format('woff'),
+		 url('/mf/fonts/sofiapro-regular-webfont.woff2') format('woff2'),
+		 url('/mf/fonts/sofiapro-regular-webfont.ttf') format('truetype'),
+         url('/mf/fonts/sofiapro-regular-webfont.svg#sofia_pro_regular') format('svg');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Sofia Pro';
+    src: url('/mf/fonts/sofiapro-medium-webfont.eot');
+    src: url('/mf/fonts/sofiapro-medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/mf/fonts/sofiapro-medium-webfont.woff') format('woff'),
+		 url('/mf/fonts/sofiapro-medium-webfont.woff2') format('woff2'),
+         url('/mf/fonts/sofiapro-medium-webfont.svg#sofia_pro_medium') format('svg'),
+		 url('/mf/fonts/sofiapro-medium-webfont.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Sofia Pro';
+    src: url('/mf/fonts/sofiapro-medium-italic.eot');
+    src: url('/mf/fonts/sofiapro-medium-italic.eot?#iefix') format('embedded-opentype'),
+         url('/mf/fonts/sofiapro-medium-italic.woff') format('woff'),
+         url('/mf/fonts/sofiapro-medium-italic.ttf') format('truetype'),
+		 url('/mf/fonts/sofiapro-medium-italic.svg#sofia_pro_mediumitalic') format('svg');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Sofia Pro';
+    src: url('/mf/fonts/sofiapro-semibold-webfont.eot');
+    src: url('/mf/fonts/sofiapro-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/mf/fonts/sofiapro-semibold-webfont.woff') format('woff'),
+		 url('/mf/fonts/sofiapro-semibold-webfont.woff2') format('woff2'),
+         url('/mf/fonts/sofiapro-semibold-webfont.svg#sofia_pro_semibold') format('svg'),
+		 url('/mf/fonts/sofiapro-semibold-webfont.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Sofia Pro';
+    src: url('/mf/fonts/sofiapro-semibold-italic-webfont.eot');
+    src: url('/mf/fonts/sofiapro-semibold-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/mf/fonts/sofiapro-semibold-italic-webfont.woff') format('woff'),
+         url('/mf/fonts/sofiapro-semibold-italic-webfont.ttf') format('truetype'),
+		 url('/mf/fonts/sofiapro-semibold-italic-webfont.svg#sofia_pro_semibolditalic') format('svg');
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Sofia Pro';
+    src: url('/mf/fonts/sofiapro-bold-webfont.eot');
+    src: url('/mf/fonts/sofiapro-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/mf/fonts/sofiapro-bold-webfont.woff') format('woff'),
+		 url('/mf/fonts/sofiapro-bold-webfont.woff2') format('woff2'),
+         url('/mf/fonts/sofiapro-bold-webfont.svg#sofia_pro_bold') format('svg'),
+		 url('/mf/fonts/sofiapro-bold-webfont.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Sofia Pro';
+    src: url('/mf/fonts/sofiapro-bold-italic-webfont.eot');
+    src: url('/mf/fonts/sofiapro-bold-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/mf/fonts/sofiapro-bold-italic-webfont.woff') format('woff'),
+         url('/mf/fonts/sofiapro-bold-italic-webfont.ttf') format('truetype'),
+		 url('/mf/fonts/sofiapro-bold-italic-webfont.svg#sofia_pro_bolditalic') format('svg');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Sofia Pro';
+    src: url('/mf/fonts/sofiapro-black-webfont.eot');
+    src: url('/mf/fonts/sofiapro-black-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/mf/fonts/sofiapro-black-webfont.woff') format('woff'),
+		 url('/mf/fonts/sofiapro-black-webfont.woff2') format('woff2'),
+         url('/mf/fonts/sofiapro-black-webfont.svg#sofia_pro_black') format('svg'),
+		 url('/mf/fonts/sofiapro-black-webfont.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Sofia Pro';
+    src: url('/mf/fonts/sofiapro-black-italic-webfont.eot');
+    src: url('/mf/fonts/sofiapro-black-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/mf/fonts/sofiapro-black-italic-webfont.woff') format('woff'),
+		 url('/mf/fonts/sofiapro-black-italic-webfont.woff2#sofia_pro_blackitalic') format('svg');
+    font-weight: 800;
+    font-style: italic;
+}
 /* main
 ---------------------------*/
 #banner{
@@ -167,18 +334,18 @@
     background: url(@@cdn/i/bg-slide-sprite.jpg) 0 0 repeat-x;
 }
     #banner .inner{
-     
+
        height: 226px;
        background:  url(@@cdn/i/bg-slide.jpg) 50% 0 no-repeat;
 }
     #banner .inner .container{
         background: url(@@cdn/i/banner-1.png) 50% 0 no-repeat;
-    
+
         padding-left: 0;
 }
     #banner .inner .container .bx-wrapper{
         margin-left: 395px;
-    
+
         max-width: 600px !important;
 }
 /* slider */
@@ -186,7 +353,7 @@
     height: 226px;
     display: block;
 }
-    #banner .slider .con{    
+    #banner .slider .con{
         width: 590px;
         margin: 0 auto;
 }
@@ -194,7 +361,7 @@
         position: absolute;
         left: 60px;
         top: 175px;
-    
+
         width: 101px;
 }
     #banner .slider .slide{
@@ -203,29 +370,29 @@
         color: #fff;
         font-weight: bold;
         text-align: center;
-    
+
         overflow: hidden;
 }
     #banner .slider li .con{
         height: 196px;
         padding: 30px 20px 0 0;
         position: relative;
-    
+
 }
     #banner .slider li.welcome .con{
     background: url(@@cdn/i/tc-cs.png) -400px 0 no-repeat;
-        
+
     }
     #banner .slider li .textOnly{
         font-size: 14px;
-    
+
         font-weight: normal;
         line-height: 18px;
 }
      #banner .bx-controls{
          position: absolute;
          left: 50%;
-     
+
          bottom: 13px;
          z-index: 60;
          width: auto;
@@ -233,14 +400,14 @@
 }
         #banner .bx-controls .bx-pager{
             overflow: hidden;
-        
+
 }
         #banner .bx-controls .bx-pager-item{
             float: left;
             margin-left: 5px;
             text-align: left;
             text-indent: -100px;
-            overflow: hidden;            
+            overflow: hidden;
         }
             #banner .bx-controls .bx-pager-item a{
                 display: block;
@@ -248,12 +415,12 @@
                 width: 12px;
                 background: url(@@cdn/i/nav-dot.png) no-repeat;
                 background-position: 0 -12px;
-            
+
                 -moz-transition-duration: 0s; -webkit-transition-duration: 0s; transition-duration: 0s;
 }
             #banner .bx-controls .bx-pager-item a.active,
             #banner .bx-controls .bx-pager-item a:hover{
-                background-position: 0 0;                
+                background-position: 0 0;
             }
     #banner .welcome{
         color: #fff;
@@ -263,17 +430,17 @@
         position: absolute;
         right: 93px;
         width: 458px;
-    
+
         top: 54px;
 }
     #banner .welcome info{
-        
+
     }
      #banner .welcome h2{
         color: #fff;
         font-weight: bold;
         font-size: 28px;
-    
+
         padding-bottom: 9px;
         text-transform: uppercase;
         line-height: 34px;
@@ -284,7 +451,7 @@
     line-height: 68px;
     height: 68px;
 }
-    
+
     #stats em{
         font-weight: bold;
     }
@@ -294,10 +461,10 @@
         top: 14px;
         width: 205px;
     }
-    
+
 /* mainContent */
 #mainContent{
-    background: url(@@cdn/i/shadow.png) 50% 0 no-repeat;    
+    background: url(@@cdn/i/shadow.png) 50% 0 no-repeat;
     padding-top: 8px;
     padding-bottom: 32px;
 }
@@ -309,7 +476,7 @@
     #mainContent .title{
         padding-top: 32px;
         text-align: center;
-    
+
         margin-bottom: 16px;
 }
     #mainContent .slogan{
@@ -330,7 +497,7 @@
         margin-left: 25px;
         position: relative;
         text-align: center;
-    
+
         padding-top: 141px;
 }
     .whatVdo > section:first-child{
@@ -340,7 +507,7 @@
         padding-bottom: 15px;
         color: #01a8e9;
     }
-    
+
     .whatVdo > section.build h3{
         color: #228400;
     }
@@ -350,7 +517,7 @@
     .whatVdo > section p{
         font-size: 16px;
         line-height: 24px;
-    
+
         letter-spacing: 1px;
         padding: 0 10px;
 }
@@ -360,14 +527,14 @@
         left: 50%;
         max-height: 130px;
         width: 127px;
-    
+
         margin-left: -63px;
 }
     .whatVdo > section.build i{
-        background-position: 50% -150px;        
+        background-position: 50% -150px;
     }
     .whatVdo > section.solve i{
-        background-position: 50% -300px;        
+        background-position: 50% -300px;
     }
 
 #featuredContent{
@@ -385,7 +552,7 @@
     }
      #featuredContent .container > section{
          position: relative;
-     
+
 }
         #featuredContent .container > section > h3,
         #featuredContent .container > section > p,
@@ -393,7 +560,7 @@
             margin: 0 25px 0 146px;
         }
      #featuredContent .container > section .badge{
-        position: absolute;   
+        position: absolute;
         left: 0;
         top: -1px;
         width: 185px;
@@ -418,7 +585,7 @@
       }
     #featuredContent .container > section .em{
         padding: 7px 0 3px;
-    
+
         color: #333;
 }
     #featuredContent .container > section em{
@@ -431,7 +598,7 @@
      }
      #featuredContent .container > section .action{
     padding: 20px 0 5px;
-         
+
      }
 .nextLink{
     position: relative;
@@ -444,13 +611,13 @@
     width: 8px;
     top: 7px;
     right: 4px;
-    background: url(@@cdn/i/arrow-nxt.png) no-repeat;
+    background: url(@@cdn/i/chevron-right-design.png) no-repeat;
     background-position:  0 0;
     position: absolute;
-    transition-duration: 0.2s;    
+    transition-duration: 0.2s;
 }
 .nextLink:hover{
-   color: #FF8A00; 
+   color: #FF8A00;
 }
 .nextLink:hover i{
     right: 0;
@@ -460,19 +627,19 @@
     padding-left: 23px;
 }
 .prevLink i{
-    background: url(@@cdn/i/arrow-prev.png) no-repeat;
+    background: url(@@cdn/i/chevron-left-design.png) no-repeat;
     right: auto;
     left: 4px;
 }
 .prevLink:hover{
-   color: #FF8A00; 
+   color: #FF8A00;
 }
 .prevLink:hover i{
     left: 0;
 }
      #featuredContent .container > section .action a{
          font-size: 22px;
-         display: inline-block;  
+         display: inline-block;
          line-height: 26px;
     }
     #featuredContent .toBusiness{
@@ -495,7 +662,7 @@
         float: left;
         width: 320px;
         text-align: center;
-    
+
         margin-left: 25px;
 }
     #aboutContent .container > section:first-child{
@@ -514,7 +681,7 @@
         font-size: 18px;
         line-height: 24px;
     }
-    
+
 .userWidget{
     width: 332px;
     height: 208px;
@@ -539,18 +706,18 @@
         margin-left: 1.5%;
         float: left;
         text-align: center;
-    
+
         font-size: 12px;
         letter-spacing: 1px;
 }
     .userWidget .action a:first-child{
-        margin-left: 0;        
+        margin-left: 0;
     }
     .userWidget .details{
-        position: relative;        
+        position: relative;
     }
     .userWidget .details .userPic{
-        float: left;    
+        float: left;
         margin: 20px 0 0 20px;
         width: 120px;
         height: 120px;
@@ -562,11 +729,11 @@
 }
     .userWidget .details .userPic img{
         width: 120px;
-    
+
         background: #ccc;
 }
     .userWidget .details .userDetails{
-        margin-left: 174px;    
+        margin-left: 174px;
         min-height: 154px;
         padding-top: 14px;
 }
@@ -588,38 +755,38 @@
         font-size: 12px;
         letter-spacing: 1px;
         padding-top: 6px;
-    
+
         line-height: 20px;
 }
     .userWidget .details .userDetails .val{
         font-size: 18px;
         letter-spacing: 1px;
         line-height: 24px;
-    
+
         font-weight: bold;
 }
 
 /* hero area */
 #hero{
     min-height: 162px;
-    background: #eee; 
+    background: #eee;
 }
     #hero .track{
         text-align: center;
         font-size: 18px;
         color: #01a8e9;
-    
+
         margin-top: 0px;
         line-height: 20px;
 }
     #hero .track a{
-        color: #01a8e9;        
-    
+        color: #01a8e9;
+
         display: block;  height: 142px;  padding-top: 18px;
 }
     #hero .track a:hover{
-        text-decoration: underline;     
-    
+        text-decoration: underline;
+
         background: #f9f9f9;
 }
     #hero .trackSD a{
@@ -650,17 +817,17 @@
     padding: 22px 0 5px;
 }
     #hero .trackInfo{
-       height: 120px; 
+       height: 120px;
        background: #fff;
        box-shadow: 0 1px 1px rgba(0,0,0,0.5);
        font-size: 14px;
-       color: #666;    
+       color: #666;
        position: relative;
 }
     #hero .trackInfo i{
        height: 89px;
        width: 89px;
-    
+
        position: absolute;
        left: 13px;
        top: 13px;
@@ -670,7 +837,7 @@
     }
     #hero .trackInfo h3{
        display: block;
-       color: #01a8e9;       
+       color: #01a8e9;
        padding: 16px 0 3px 118px;
     }
     #hero .trackInfo.trackSD h3{
@@ -681,7 +848,7 @@
     }
     #hero .trackInfo a{
        display: inline-block;
-    
+
        font-size: 12px;
 }
 /* lay Challenges */
@@ -690,7 +857,7 @@
 }
     .layChallenges  header{
         border-bottom: 1px solid #e7e7e7;
-    
+
         padding-bottom: 12px;
         position: relative;
         font-size: 16px;
@@ -698,7 +865,7 @@
     .layChallenges  header .rt{
         position: absolute;
         right: 0;
-    
+
         top: 4px;
 }
     .layChallenges  header .rt a{
@@ -706,59 +873,32 @@
         display: inline-block;
         float: left;
         margin-left: 20px;
-    
+
         line-height: 36px;
         -moz-transition-duration: 0s; -webkit-transition-duration: 0s; transition-duration: 0s;
         border-top: 3px solid transparent;
-}   
+}
     .layChallenges  header .rt .calendarView:hover,
     .layChallenges  header .rt .gridView:hover,
     .layChallenges  header .rt .listView:hover{
         border-top: 3px solid #FF8A00;
     }
 
-
+    .layChallenges .views {
+      float: right;
+    }
     .layChallenges .views > a{
-    display: inline-block;
-    height: 30px;
-    width: 30px;
-    background: url(@@cdn/i/ico-views.png) no-repeat;
-    background-position: 0 0;
-}
-    .layChallenges .views .gridView{
-        background-position: 0 -47px;
+      font-size: 11px;
+      line-height: 13px;
+      color: #A3A3AE;
     }
-    .layChallenges .views .listView{
-        background-position: 0 -147px;
+    .layChallenges .views a + a {
+      margin-left: 10px;
     }
-    .layChallenges .views .calendarView{
-        background-position: 0 -247px;
-    }
-    
-    .layChallenges .views .gridView.isActive{
-        background-position: 0 3px;
-        cursor: default;
-    }
-    .layChallenges .views .gridView.isActive:hover{
-        border-top: 3px solid rgba(0, 0, 0, 0);
-    }
-    
-    .layChallenges .views .listView.isActive{
-        background-position: 0 -97px;
-        cursor: default;
-    }
-    .layChallenges .views .listView.isActive:hover{
-        border-top: 3px solid transparent;
+    .layChallenges .views a.isActive {
+      color: #000000;
     }
 
-    .layChallenges .views .calendarView.isActive{
-        background-position: 0 -197px;
-        cursor: default;
-    }
-    .layChallenges .views .calendarView.isActive:hover{
-        border-top: 3px solid transparent;
-    }
-    
 .layChallenges .actions{
     min-height: 25px;
     position: relative;
@@ -767,13 +907,13 @@
     z-index: 10;
 }
     .layChallenges .actions .rt{
-        float: right;    
+        float: right;
         margin-top: -25px;
         line-height: 24px;
 }
     .layChallenges .actions .lt{
         float: left;
-    
+
         line-height: 24px;
         margin-top: -25px;
         min-width: 118px;
@@ -784,28 +924,28 @@
         margin-right: 8px;
     }
     .layChallenges .challengeType{
-    
+
         width: 300px;
         margin: 0 auto;
 }
     .layChallenges .challengeType ul{
         overflow: hidden;
-    
+
         display: block;
         font-size: 16px;
         padding: 3px 0;
 }
     .layChallenges .challengeType ul > li{
-        float: left;    
+        float: left;
         border-left: 1px solid #D0D0D1;
-        height: 16px;
+        height: 18px;
         line-height: 18px;
 }
     .layChallenges .challengeType ul li:first-child{
         border-left: 0;
     }
     .layChallenges .challengeType ul .link{
-        margin: 0 10px;        
+        margin: 0 10px;
     }
     .layChallenges .challengeType ul .link.active,
     .layChallenges .challengeType ul .link.active:hover{
@@ -815,7 +955,7 @@
     .layChallenges .actions .searchLink{
         background: url(@@cdn/i/ico-zoom.png) 0 50% no-repeat;
         padding-left: 27px;
-    
+
         line-height: 22px;
         height: 22px;
         display: inline-block;
@@ -824,10 +964,10 @@
         display: inline-block;
         padding-right: 20px;
         position: relative;
-    
+
         margin-left: 4px;
 }
-    
+
     .layChallenges .actions .upDown i{
         position: absolute;
         right: 0;
@@ -835,11 +975,11 @@
         width: 13px;
         height: 24px;
         background: url(@@cdn/i/arrows-ud.png) no-repeat;
-        background-position: 0 8px;       
+        background-position: 0 8px;
     }
     .layChallenges .actions .on .upDown i{
         background-position: 100% -13px;
-        -moz-transition-duration: .3s; -webkit-transition-duration: .3s; transition-duration: .3s;    
+        -moz-transition-duration: .3s; -webkit-transition-duration: .3s; transition-duration: .3s;
     }
     .lt .ddWrap{
          float: left;
@@ -852,7 +992,7 @@
     .ddWrap .list{
         border: 1px solid #ccc;
         border-top: none;
-    
+
         display: none;
         background: #fff;
 }
@@ -864,7 +1004,7 @@
         border-top: 1px solid #ccc;
         padding: 0 5px;
         font-size: 12px;
-    
+
         line-height: 26px;
         text-align: left;
 }
@@ -872,39 +1012,39 @@
     .ddWrap .list li.active{
         background: #f7f7f7;
     }
-/* dataChanges */    
+/* dataChanges */
 #mainContent .dataChanges{
     padding-top: 19px;
     font-size: 16px;
-    
+
     min-height: 20px;
     overflow: hidden;
 }
     #mainContent .dataChanges .lt{
-        float: left;        
+        float: left;
     }
     #mainContent .dataChanges .rt{
-        float: right;        
-    
+        float: right;
+
         text-align: right;
         overflow: hidden;
 }
     #mainContent .dataChanges .nextLink{
-        display: inline-block;   
+        display: inline-block;
         padding-right: 20px;
         position: relative;
         padding-left: 40px;
         float: left;
-}   
+}
     #mainContent .dataChanges .nextLink i{
         top: 4px;
     }
     #mainContent .dataChanges .prevLink{
-        display: inline-block;   
+        display: inline-block;
         padding-left: 20px;
         position: relative;
         float: left;
-}   
+}
     #mainContent .dataChanges .prevLink.hide{
         display: none;
     }
@@ -916,76 +1056,85 @@
     width: 100%;
     font-size: 14px;
 }
-    .dataTable .imp{
-        color: #f00;
-    }
-    .dataTable th,
-    .dataTable td{
-        border: solid #e7e7e7;
-        border-width: 1px 0;
-    }
-    .dataTable th{
-        vertical-align: middle;
-        background: #f1f1f1;
-        font-weight: normal;
-        height: 42px;    
-        font-size: 14px;
-    }
-    .layChallenges .dataTable .colCh{
-        width: 308px;
-    }
-	
-	
-    .dataTable tbody .alt td{
-        background: #f7f7f7;
-    }
-	
-   .dataTable th.colCh{
-        text-align: left;
-        text-indent: 56px;
-        width: 308px
-    }
-        .dataTable .colCh div{
-            margin-right: 15px;
+.dataTable .imp{
+    color: #f00;
 }
-        .dataTable .colCh a{
-            color: #666;
-            line-height: 22px;
-			padding-left: 35px;
-            display: inline-block;
-        
-            cursor: pointer;
-            position: relative;
+.dataTable th,
+.dataTable td{
+    border-bottom: 1px solid #d4d4d4;
 }
-            .dataTable .colCh a i{
-                position: absolute;
-                top: 4px;
-                left: 14px;
-                background: url(@@cdn/i/ico-tracks.png) no-repeat;
-                background-position: 0 0;
-                background-color: #7ab800; 
-                width: 40px;
-                height: 36px;
-                transition-duration: 0.2s;
-                cursor: pointer;
+.dataTable th{
+    background-color: #fff;
+    color: #7F7F7F;
+    line-height: 37px;
+    vertical-align: middle;
+    text-align: left;
+    font-family: "Sofia Pro", Helvetica, Arial, sans-serif;
+    word-wrap: break-word;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 400;
 }
-        .dataTable .trackSD .colCh a i,
-        .dataTable .track-develop .colCh a i{
-            background-position: 0 0;
-            background-color: #7ab800; 
-        }
-        .dataTable .trackUX .colCh a i,
-        .dataTable .track-design .colCh a i{
-            background-position: 0 -50px;
-            background-color: #00add0; 
-        }
-        .dataTable .trackAn .colCh a i,
-        .dataTable .track-data .colCh a i{
-            background-position: 0 -100px;
-            background-color: #ffae00; 
-        }
+.dataTable th.colTime {
+  text-align: center;
+}
+.layChallenges .dataTable .colCh{
+    width: 308px;
+}
+.dataTable tbody .alt td{
+    background: #FCFCFC;
+}
+.dataTable td.colCh , .dataTable td.colTime, .dataTable td.colPur {
+    margin-right: 15px;
+    vertical-align: top;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: left;
+}
+.dataTable td.colPur  {
+  padding-top: 30px;
+}
+.dataTable .colCh a{
+    color: #666;
+    line-height: 22px;
+    padding-left: 35px;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+}
+.dataTable .colCh a i{
+    position: absolute;
+    top: 4px;
+    left: 14px;
+    width: 40px;
+    height: 75px;
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
+.dataTable .track-develop .colCh a i {
+  background: url(@@cdn/i/ico-develop-challenge.svg) no-repeat;
+}
+.dataTable .track-design .colCh a i {
+  background: url(@@cdn/i/ico-design-challenge.svg) no-repeat;
+}
+.dataTable .colCh a span.track-symbol {
+    position: absolute;
+    left: -21px;
+    top: 45px;
+    z-index: 10;
+    color: white;
+    font-weight: bold;
+    width: 40px;
+    display: inline-block;
+    text-align: center;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+.layChallenges .dataTable .colCh a span.track-symbol {
+    left: 12px;
+}
         .dataTable .colCh a:hover{
-            color: #FF8A00;
+            color: #097DCE;
         }
         .dataTable .colCh a:hover i{
             box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
@@ -993,13 +1142,8 @@
     .dataTable .btn{
         width: 86px;
     }
-    .dataTable tbody td{
-        height: 95px;
-        vertical-align: middle;
-    }
-    .dataTable tbody td{
-        height: 95px;
-        vertical-align: middle;
+    .dataTable.challenges tbody tr{
+        height: 140px;
     }
 .dataTable th.colTime{
     width: 224px;
@@ -1007,10 +1151,10 @@
 .dataTable tbody .colTime .row{
     overflow: hidden;
     line-height: 24px;
-    font-size: 12px;    
+    font-size: 12px;
 }
     .dataTable tbody .colTime .row .lbl{
-        float: left; 
+        float: left;
         width: 85px;
     }
     .dataTable tbody .colTime .row .val{
@@ -1022,7 +1166,7 @@
 .dataTable th.colPur{
     width: 98px;
 }
-    .dataTable tbody .colTLeft, 
+    .dataTable tbody .colTLeft,
     .dataTable tbody .colPur,
     .dataTable tbody .colReg,
     .dataTable tbody .colSub{
@@ -1032,9 +1176,13 @@
 
 .dataTable .colPur,
 .dataTable tbody .colPur{
-    text-align: left;    
+    text-align: left;
     text-indent: 20px;
-}    
+}
+.dataTable tfoot tr td {
+  border: none;
+  padding-top: 10px;
+}
 /* contest gird view */
 #tableView{
     padding-top: 15px;
@@ -1053,7 +1201,7 @@
     .contestGrid .contest{
         display: inline-block;
         border: 1px solid #e7e7e7;
-    
+
         width: 298px;
         height: 228px;
         position: relative;
@@ -1063,19 +1211,19 @@
     .contestGrid.alt .contest{
         width: 318px;
         margin: 15px 12px 16px 13px;
-    } 
+    }
     .contestGrid .cgCh{
         margin: 18px 0 14px;
     }
     .contestGrid .cgCh a{
         color: #666;
         position: relative;
-        padding: 0 0 0 54px;  
+        padding: 0 0 0 54px;
         display: block;
         height: 36px;
         max-width: 234px;
         line-height: 18px;
-        overflow: hidden; 
+        overflow: hidden;
 }
     .contestGrid .cgCh a:hover{
         color: #FF8A00;
@@ -1088,8 +1236,8 @@
         background-position: 0 -50px;
         background-color: #00add0;
         width: 40px;
-        height: 36px;        
-        -moz-transition-duration: .3s; -webkit-transition-duration: .3s; transition-duration: .3s;    
+        height: 36px;
+        -moz-transition-duration: .3s; -webkit-transition-duration: .3s; transition-duration: .3s;
     }
     .contestGrid .trackSD .cgCh a i{
         background-position: 0 -50px;
@@ -1112,17 +1260,17 @@
         line-height: 24px;
     }
         .contestGrid .cgTime .lbl{
-            float: left;            
+            float: left;
         }
         .contestGrid .cgTime .val{
-            margin-left: 92px; 
+            margin-left: 92px;
         }
         .contestGrid.alt .cgTime .val{
-            margin-left: 104px; 
-        }		
+            margin-left: 104px;
+        }
     .contestGrid .genInfo{
         background: #f7f7f7;
-            
+
         position: absolute;
         bottom: 0;
         right: 0;
@@ -1136,16 +1284,16 @@
         width: 24.8%;
         text-align: center;
         font-size: 18px;
-        color: #00add0; 
+        color: #00add0;
         padding-top: 8px;
 }
-    contestGrid .trackSD .genInfo > p{        
+    contestGrid .trackSD .genInfo > p{
         color: #00add0;
     }
-    .contestGrid .trackUX .genInfo > p{        
+    .contestGrid .trackUX .genInfo > p{
         color: #7ab800;
     }
-    .contestGrid .trackAn .genInfo > p{        
+    .contestGrid .trackAn .genInfo > p{
         color: #ffae00;
     }
     .contestGrid .genInfo > p.imp{
@@ -1154,25 +1302,25 @@
     .contestGrid .genInfo > p i{
         display: block;
         height: 30px;
-        width: 30px;        
+        width: 30px;
         margin: 0 auto;
         background-image: url(@@cdn/i/ico-con.png);
-        background-repeat: no-repeat;    
+        background-repeat: no-repeat;
         margin-bottom: 9px;
 }
-    .contestGrid .trackSD .genInfo > p i{        
+    .contestGrid .trackSD .genInfo > p i{
         background-color: #00add0;
     }
-    .contestGrid .type-develop .genInfo > p i{        
+    .contestGrid .type-develop .genInfo > p i{
         background-color: #47a911;
     }
-    .contestGrid .trackUX .genInfo > p i{        
+    .contestGrid .trackUX .genInfo > p i{
         background-color: #7ab800;
     }
-    .contestGrid .trackAn .genInfo > p i{         
+    .contestGrid .trackAn .genInfo > p i{
         background-color: #ffae00;
     }
-    .contestGrid1 .contest .genInfo > p.imp i{        
+    .contestGrid1 .contest .genInfo > p.imp i{
         background-color: #f00;
     }
     .contestGrid .genInfo .cgTLeft i{
@@ -1187,7 +1335,7 @@
     .contestGrid .genInfo .cgSub i{
         background-position: 0 0;
     }
-    
+
 /* welcome Banner */
 .welcomeBanner{
     margin-top: 1px;
@@ -1196,13 +1344,13 @@
     font-size: 18px;
     line-height: 24px;
     background: #006eb0;
-    background: -moz-linear-gradient(left,  #006eb0 0%, #00d9fa 100%); 
-    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#006eb0), color-stop(100%,#00d9fa)); 
-    background: -webkit-linear-gradient(left,  #006eb0 0%,#00d9fa 100%); 
-    background: -o-linear-gradient(left,  #006eb0 0%,#00d9fa 100%); 
-    background: -ms-linear-gradient(left,  #006eb0 0%,#00d9fa 100%); 
-    background: linear-gradient(to right,  #006eb0 0%,#00d9fa 100%); 
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#006eb0', endColorstr='#00d9fa',GradientType=1 ); 
+    background: -moz-linear-gradient(left,  #006eb0 0%, #00d9fa 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#006eb0), color-stop(100%,#00d9fa));
+    background: -webkit-linear-gradient(left,  #006eb0 0%,#00d9fa 100%);
+    background: -o-linear-gradient(left,  #006eb0 0%,#00d9fa 100%);
+    background: -ms-linear-gradient(left,  #006eb0 0%,#00d9fa 100%);
+    background: linear-gradient(to right,  #006eb0 0%,#00d9fa 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#006eb0', endColorstr='#00d9fa',GradientType=1 );
 
 }
     .welcomeBanner p{
@@ -1221,7 +1369,7 @@
         height: 42px;
         width: 151px;
     }
-    
+
 /* splitLayout */
 #mainContent.splitLayout{
     background: none;
@@ -1243,7 +1391,7 @@
         height: 17px;
         width: 100%;
         background: url(@@cdn/i/shadow-small.png) 50% 0 no-repeat;
-    
+
         margin: 0;
 }
     .diagnostics > div{
@@ -1252,7 +1400,7 @@
         float: left;
         font-size: 10px;
         text-align: center;
-    
+
         background: url(@@cdn/i/ico-flags.png) no-repeat;
         background-position: 0 0;
         line-height: 14px;
@@ -1272,7 +1420,7 @@
         background-position: 0 -450px;
     }
     .diagnostics .val{
-        font-size: 12px;    
+        font-size: 12px;
         color: #fff;
         margin-top: 60px;
 }
@@ -1283,20 +1431,17 @@
         bottom: 0;
     }
 /* tops */
-.tops{
-    margin-top: 30px;
-    
-}
     .tops > nav{
         padding: 12px 0 10px;
+        font-weight: bold;
     }
     .tops h1{
         border-bottom: 1px solid #e7e7e7;
         padding-bottom: 13px;
-    }   
+    }
     .tops ul{
         overflow: hidden;
-    
+
         display: inline-block;
         font-size: 16px;
         padding: 3px 0;
@@ -1305,7 +1450,7 @@
         display: block;
 }
     .tops ul > li{
-        float: left;    
+        float: left;
         border-left: 1px solid #D0D0D1;
         height: 16px;
         line-height: 18px;
@@ -1314,7 +1459,7 @@
         border-left: 0;
     }
     .tops ul .link{
-        margin: 0 10px;        
+        margin: 0 10px;
     }
     .tops ul .link.active,
     .tops ul .link.active:hover{
@@ -1322,7 +1467,7 @@
         cursor: default;
     }
 .tops .topsTable{
-    font-size: 12px;
+    font-size: 14px;
 }
 .topsTable .colRank{
     width: 42px;
@@ -1331,16 +1476,20 @@
     font-size: 12px;
     padding-top: 13px;
     height: 28px;
+    text-align: center;
+    background: #f7f7f7;
+    color: #000;
+    text-transform: none;
 }
     .tops .topsTable td{
         text-align: center;
-    
+
         height: 32px;
 }
     .tops .views{
         text-align: right;
         font-size: 16px;
-    
+
         margin-top: 19px;
 }
 
@@ -1351,88 +1500,136 @@
 }
 /* starsOfMonth */
 .starsOfMonth{
-    background: url(@@cdn/i/shadow.png) 50% 0 no-repeat;
-    border-top: 1px solid #dfe1e1;
-    padding-top: 19px;
-    margin: 18px 0 0;
+    background: #fff;
+    margin: -50px 60px 60px;
+    padding: 30px 0 36px 0;
+    border: none;
 }
     .starsOfMonth h2{
-        color: #2e3b19;
-        font-size: 24px;
-        line-height: 24px;
+        color: #3d3d3d;
+        font-size: 28px;
+        line-height: 34px;
+        font-family: "Sofia Pro";
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 60px;
     }
     .starsOfMonth h2 small{
         display: block;
         font-size: 14px;
-    
+
         line-height: 18px;
 }
     .starsOfMonth .starProfiles{
         overflow: hidden;
-    
-        margin: 0 -12px;
+
+        margin: 0 90px;
 }
     .starsOfMonth .profile{
         border: 1px solid #dfe1e1;
-        padding: 18px;
-        width: 262px;
-    
+        width: 300px;
+        height: 368px;
         margin: 0 auto;
+        border-radius: 4px;
 }
-    .starsOfMonth .profileUX{
-        margin: 0;
+    .starsOfMonth .profileHeader {
+        height: 110px;
+        position: relative;
+        border-radius: 4px 4px 0 0;
     }
-    .starsOfMonth .profileAn{
-        margin: 0 0 0 20px;
+    .starsOfMonth .profileHeader i {
+        height: 26px;
+        width: 25px;
+        color: #f6f6f6;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+    .starsOfMonth .profileHeader.profileUX {
+        background: #21B2F1;
+    }
+    .starsOfMonth .profileHeader.profileUX i {
+        background: url(@@cdn/i/ico-design-challenge.svg);
+
+        background-position: 73px 69px;
+    }
+    .starsOfMonth .profileHeader.profileSD {
+        background: #05C14F;
+    }
+    .starsOfMonth .profileHeader.profileSD i {
+        background: url(@@cdn/i/ico-develop-challenge.svg);
+
+        background-position: 73px 69px;
+    }
+    .starsOfMonth .profileHeader.profileAn {
+        background: #FC9A00
+    }
+    .starsOfMonth .profileHeader.profileAn i {
+        background: url(@@cdn/i/ico-data-challenge.svg);
+
+        background-position: 73px 69px;
+    }
+    .starsOfMonth .memberPic {
+        position: relative;
+        top: -70px;
+        left: 80px;
+        margin-bottom: -70px;
+    }
+    .starsOfMonth .memberPic img {
+        height: 140px;
+        width: 140px;
+        border-radius: 50%;
+        vertical-align: middle;
     }
     .starsOfMonth .profile .details{
         overflow: hidden;
     }
     .starsOfMonth .profile h3{
-        color: #01a8e9;    
+        color: #01a8e9;
         margin-bottom: 16px;
-}   
+}
     .starsOfMonth .profileUX h3{
-            color: #01a8e9;  
+            color: #01a8e9;
     }
     .starsOfMonth .profileSD h3{
-            color: #228400;  
+            color: #228400;
     }
     .starsOfMonth .profileAn h3{
-            color: #ff7400;  
+            color: #ff7400;
     }
-    .starsOfMonth .profile .memberPic{
-        float: left;
+    .starsOfMonth .profile .details h3 {
+        font-size: 26px;
+        line-height: 32px;
+        color: #3d3d3d;
+        font-weight: 600;
     }
     .starsOfMonth .profile .details .row{
-        margin: 5px 0 13px 150px;
-    
-}
-    .starsOfMonth .profile  label{
-        font-size: 12px;
+        margin: 10px auto 40px;
+        text-align: center;
     }
     .starsOfMonth .profile .wonPurse{
         line-height: 24px;
+        font-family: "Merriweather Sans", Helvetica, Arial, sans-serif;
     }
     .starsOfMonth .profile .inPurse{
         font-size: 18px;
+        font-weight: bold;
     }
     .starProfiles .grid-3-1{
-        float: left;    
         margin-top: 15px;
         overflow: hidden;
-} 
+}
     .starProfiles .gird-rt .profile{
        float: right;
 }
     .starProfiles .gird-mid .profile{
        margin: 0 auto;
 }
-
 /* whatsHappening */
 #whatsHappening{
-    background: #d2d2d2;
-    padding: 30px 0 36px 0; 
+    background: #fff;
+    margin: -30px 60px 60px;
+    padding: 30px 0 36px 0;
 }
     #whatsHappening .inner{
         margin: 0 -12px;
@@ -1441,13 +1638,16 @@
         width: 100%;
     }
     #whatsHappening h2{
-        font-size: 24px;
+        font-size: 22px;
+        line-height: 28px;
+        color: #a3a3ae;
+        text-align: center;
         margin-bottom: 22px;
     }
     #whatsHappening .featuredImg{
         width: 100%;
         height: 180px;
-    
+
         margin-bottom: 26px;
 }
     #whatsHappening .featuredImg img{
@@ -1458,17 +1658,25 @@
     }
     #whatsHappening .slide .title{
         font-weight: bold;
-        font-size: 14px;
-    
-        line-height: 24px;
+        font-size: 18px;
+        font-family: "Merriweather Sans", Helvetica, Arial, sans-serif;
+        color: #3d3d3d;
+        line-height: 22px;
         height: 50px;
         overflow: hidden;
 }
     #whatsHappening .slide .postedBy{
-        line-height: 30px;        
+        line-height: 30px;
     }
     #whatsHappening .slide .excerpt{
-        line-height: 18px;        
+        line-height: 22px;
+        font-size: 13px;
+        color: #3d3d3d;
+        font-family: "Merriweather Sans", Helvetica, Arial, sans-serif;
+    }
+    #whatsHappening .slide .excerpt a.more {
+        display: inline-block;
+        margin-top: 20px;
     }
     #whatsHappening .grid-3-1 > section{
         width: 301px;
@@ -1476,12 +1684,12 @@
     #whatsHappening .grid-rt > section{
         float: right;
     }
-    #whatsHappening .grid-mid > section{        
+    #whatsHappening .grid-mid > section{
         margin: 0 auto;
     }
     #whatsHappening .slider .bx-controls{
         text-align: center;
-    
+
         margin-top: 30px;
 }
     #whatsHappening .slider .bx-pager{
@@ -1491,7 +1699,7 @@
         display: inline;
         text-align: center;
         overflow: hidden;
-    
+
         max-width: 21px;
         vertical-align: top;
         height: 11px;
@@ -1505,12 +1713,12 @@
             height: 11px;
             margin: 0 5px;
             -moz-transition-duration: 0s; -webkit-transition-duration: 0s; transition-duration: 0s;
-        
+
             overflow: hidden;
 }
     #whatsHappening .slider .bx-controls .bx-pager-item a.active,
     #whatsHappening .slider .bx-controls .bx-pager-item a:hover{
-        background-position: 0 -20px;        
+        background-position: 0 -20px;
     }
 /* device specific */
 .onMobi{
@@ -1568,7 +1776,7 @@
 		float: left;
 	}
 .csRealResults {
-	padding: 7px 0 8px 0;	
+	padding: 7px 0 8px 0;
 	margin: 0 -12px;
 	overflow: hidden;
 }
@@ -1579,10 +1787,10 @@
 	}
 	.csRealResults .realResult{
 		border: 1px solid #dfe1e1;
-		padding: 20px;	
+		padding: 20px;
 	}
 	.csRealResults .csLogo{
-		margin-bottom: 20px;	
+		margin-bottom: 20px;
 	}
 	.csRealResults .quoterName{
 		padding-bottom: 0;
@@ -1593,9 +1801,9 @@
 		padding-bottom: 0;
 		font-weight: normal;
 	}
-/*Right side: Find Related Content*/	
+/*Right side: Find Related Content*/
 .sideFindRelatedContent{
-	margin-bottom: 20px;	
+	margin-bottom: 20px;
 }
 .sideFindRelatedContent h3{
 	padding: 0 15px;
@@ -1652,8 +1860,8 @@
 			width: 55px;
 			max-height: 55px;
 			max-width: 55px;
-			position: absolute; 
-			top: 0; 
+			position: absolute;
+			top: 0;
 			left: 0;
 			cursor: pointer;
 		}
@@ -1679,7 +1887,7 @@
 			color: #828282;
 			font-weight: 300;
         }
-/*Right side: sideQuote*/	
+/*Right side: sideQuote*/
 .sideQuote{
 	margin-bottom: 20px;
 	padding: 18px 0 16px 50px;
@@ -1695,7 +1903,7 @@
 	font-size: 14px;
 	color: #0071bc;
 }
-/*Right side: Most Recent Challenges*/	
+/*Right side: Most Recent Challenges*/
 .sideMostRecentChallenges h3{
 	background-color: #f1f1f1;
 	line-height: 42px;
@@ -1755,7 +1963,7 @@
 		background-position: 0 -120px;
 		background-color: #ffae00;
 	}
-	
+
 /*Case Studies Page*/
 #mainContent.casePage{
     background: none;
@@ -1774,7 +1982,7 @@
 		position: relative;
 		-moz-transition-duration: .2s; -webkit-transition-duration: .2s; transition-duration: .2s;
 	}
-	
+
 		.casesView .caseGrid a.jsShowCaseDetails > img{
 			display: block;
 			width: 230px;
@@ -1783,17 +1991,17 @@
 			-moz-transition-duration: .4s; -webkit-transition-duration: .4s; transition-duration: .4s;
 		}
 		.casesView .caseGrid a.jsShowCaseDetails:hover > img{
-			-webkit-transform: rotate(10deg) scale(1.1,1.1);     /* for Chrome || Safari */  
-            -moz-transform: rotate(10deg) scale(1.1,1.1);        /* for Firefox */  
-            -ms-transform: rotate(10deg) scale(1.1,1.1);         /* for IE ç¼©æ”¾0.5 */  
-            -o-transform:  rotate(10deg) scale(1.1,1.1);          /* for Opera */  
+			-webkit-transform: rotate(10deg) scale(1.1,1.1);     /* for Chrome || Safari */
+            -moz-transform: rotate(10deg) scale(1.1,1.1);        /* for Firefox */
+            -ms-transform: rotate(10deg) scale(1.1,1.1);         /* for IE ç¼©æ”¾0.5 */
+            -o-transform:  rotate(10deg) scale(1.1,1.1);          /* for Opera */
 			transform: rotate(10deg) scale(1.1,1.1);
 		}
 		.casesView .caseGrid a.isShow:hover > img{
-			-webkit-transform: none;									/* for Chrome || Safari */  
-            -moz-transform: none;										/* for Firefox */  
-            -ms-transform: none;										/* for IE ç¼©æ”¾0.5 */  
-            -o-transform: none;											/* for Opera */  
+			-webkit-transform: none;									/* for Chrome || Safari */
+            -moz-transform: none;										/* for Firefox */
+            -ms-transform: none;										/* for IE ç¼©æ”¾0.5 */
+            -o-transform: none;											/* for Opera */
 		}
 		.casesView .caseGrid a.jsShowCaseDetails > i{
 			display: none;
@@ -1809,7 +2017,7 @@
 		}
 		.casesView .caseGrid a.isShow > i{
 			display: block;
-			cursor: default;	
+			cursor: default;
 		}
 .casesView .caseGridRowLast{
 	margin-right: 0;
@@ -1858,10 +2066,10 @@
 			background-position: 0 -30px;
 		}
 .casePage .caseBriefWrapper{
-	padding: 0 0 50px 0;	
+	padding: 0 0 50px 0;
 }
 	.casePage .caseBriefWrapper .caseTitle {
-		padding: 33px 0 23px 0;	
+		padding: 33px 0 23px 0;
 	}
 		.casePage .caseBriefWrapper  .caseTitle h3{
 			padding: 0 0 5px 0;
@@ -1882,7 +2090,7 @@
 		.casePage .caseBriefWrapper .quoteTxt{
 			background: url(@@cdn/i/quote-mark-trans.png) 0 0 no-repeat;
 			color: #ffffff;
-			padding: 9px 0 9px 50px 
+			padding: 9px 0 9px 50px
 		}
 		.casePage .caseBriefWrapper .quoterName{
 			padding-left: 50px;
@@ -1927,7 +2135,7 @@
 		width: 100px;
 	}
 	#mainContent.casePage .dataChanges .rt{
-		margin-top: 8px;	
+		margin-top: 8px;
 	}
 
 /*Case Details Page*/
@@ -1937,7 +2145,7 @@
 }
 	.casePage .caseTitle img{
 		display: block;
-		margin: 0 auto;		
+		margin: 0 auto;
 	}
 	.casePage .caseTitle h3{
 		display: block;
@@ -1949,12 +2157,12 @@
 	}
 	.casePage .caseTitle p{
 		display: block;
-		margin: 0 auto;	
+		margin: 0 auto;
 		line-height: 24px;
-		font-size: 20px;	
+		font-size: 20px;
 	}
 .casePage .caseBanner{
-	margin-bottom: 33px;	
+	margin-bottom: 33px;
 }
 	.casePage .caseBanner img.dCaseBanner{
 		display: block;
@@ -1967,16 +2175,16 @@
 		font-size: 22px;
 		line-height: 26px;
 		padding: 6px 0 25px 0;
-		
+
 	}
 	.casePage .caseDetails article p{
 		line-height: 24px;
 		padding: 0 30px 24px 0;
 		font-size: 14px;
 		font-weight: 300;
-		
+
 	}
-/*Right side: Case Quote*/	
+/*Right side: Case Quote*/
 .caseQuote{
 	margin-bottom: 20px;
 	padding-bottom: 11px;
@@ -2000,18 +2208,18 @@
 		line-height: 17px;
 		font-size: 14px;
 		font-weight: 300;
-		text-indent: 2px;	
+		text-indent: 2px;
 	}
-/*Right side: Case Video*/	
+/*Right side: Case Video*/
 .caseVideo .placeholderImg{
-	display: block;	
+	display: block;
 }
 /*Press Release Page*/
 #mainContent.pressReleasePage{
 	padding-bottom: 0;
 }
 .pressTitleWrapper{
-	text-align: center;	
+	text-align: center;
 	padding: 0 200px 33px 200px;
 	border-bottom: 1px solid #d0d0d0;
 	margin-bottom: 42px;
@@ -2046,7 +2254,7 @@
 .pressAside {
 	font-size: 18px;
 	line-height: 28px;
-	
+
 }
 .aboutAreaWrapper{
 	background: #02a4f0 url(@@cdn/i/about-shadow.png) center 0 no-repeat;
@@ -2110,10 +2318,10 @@
 		cursor: pointer;
 	}
 	.resourceList li .contentBrief{
-		font-weight: 300;	
+		font-weight: 300;
 	}
 	.showMoreResourceWrapper{
-		display: none;	
+		display: none;
 	}
 /*Story Page*/
 #mainContent.storyPage{
@@ -2121,7 +2329,7 @@
 	padding: 0 0 46px 0;
 }
 .storiesList li.grid-3-1{
-	float: left;	
+	float: left;
 }
 	.storiesList li.grid-3-1 .storySpoker{
 		line-height: 34px;
@@ -2160,7 +2368,7 @@
 	}
 .leftArrowLink{
 	position: relative;
-	display: inline-block;   
+	display: inline-block;
 	padding-right: 20px;
 	position: relative;
 	font-weight: 300;
@@ -2179,7 +2387,7 @@
 	}
 .leftArrowLink:hover{
    color: #FF8A00;
-   cursor: pointer; 
+   cursor: pointer;
    text-shadow: 0 0 3px #ffdaa2;
 }
 	.leftArrowLink:hover i{
@@ -2191,7 +2399,7 @@
 	text-align: center;
 	padding: 5px 0 23px 0;
 	border-bottom: 1px solid #d0d0d0;
-	margin-bottom: 24px;	
+	margin-bottom: 24px;
 }
 	.storyDetailsWrapper .storyTitle .author{
 		line-height: 24px;
@@ -2202,7 +2410,7 @@
 		padding-bottom: 14px;
 		color: #b2b2b2;
 		font-size: 14px;
-		font-weight: 300;	
+		font-weight: 300;
 	}
 	.storyDetailsWrapper .storyTitle h3{
 		line-height: 36px;
@@ -2210,7 +2418,7 @@
 		color: #0071bc;
 	}
 .storyDetails article{
-	overflow: hidden;	
+	overflow: hidden;
 }
 	.storyDetails article p{
 		line-height: 24px;
@@ -2228,7 +2436,7 @@
 	}
 		.storyDetails article .sideImage img{
 			display: block;
-			max-width: 417px;		
+			max-width: 417px;
 		}
 		.storyDetails article .sideImage p{
 			line-height: 17px;
@@ -2236,13 +2444,13 @@
 			margin: 10px 0 0 0;
 			border-top: 1px solid #e1e3e3;
 			border-bottom: 1px solid #e1e3e3;
-			color: #858585;	
+			color: #858585;
 		}
 	.storyDetails article .storyPic{
 		display: block;
 		margin: 2px 0 27px 0;
 	}
-/*Right side: Search Stories*/	
+/*Right side: Search Stories*/
 .sideSearchStories{
 	margin-bottom: 27px;
 	margin-top: 6px;
@@ -2281,7 +2489,7 @@
 			width: 65px;
 			vertical-align: top;
 		}
-/*Right side: Story Archive*/	
+/*Right side: Story Archive*/
 .sideArchiveStories h3{
 	background-color: #f1f1f1;
 	line-height: 42px;
@@ -2345,7 +2553,7 @@
 		line-height: 16px;
 		font-size:12px;
 		font-weight: 300;
-		
+
 	}
 	.sideArchiveStories li .archiveStoriesLink:hover img{
 		box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
@@ -2359,7 +2567,7 @@
 	}
 .sideArchiveStories .showMoreWrapper{
 	padding-top: 10px;
-	text-align: center;	
+	text-align: center;
 }
 	.sideArchiveStories .showMoreWrapper .btn{
 		width: 100px;
@@ -2508,7 +2716,7 @@
 }
 
 /**
- * Start of New Home Page additional styles 
+ * Start of New Home Page additional styles
  */
 #promo-banner {
 	background: #f1f1f1;
@@ -2544,7 +2752,7 @@
 			#promo-banner .bx-pager-item a.active {
 				background-position: 0 100%;
 			}
-			
+
 #featuredContent.home {
 	margin-top: 32px;
 	padding-bottom: 20px;
@@ -2554,7 +2762,7 @@
 		height: 100%;
 		overflow: hidden;
 	}
-	
+
 	#featuredContent.home h3 {
 		font-size: 27px !important;
 		line-height: normal !important;
@@ -2578,7 +2786,7 @@
 		margin-left: 0;
 		width: 50%;
 	}
-	
+
 .lead {
 	font-size: 24px;
 	line-height: 1.5;
@@ -2590,7 +2798,7 @@
 	.lead small {
 		font-size: smaller;
 	}
-	
+
 h2.title {
 	font-size: 42px;
 	margin: 10px 0;
@@ -2625,7 +2833,7 @@ h4.title {
 	color: #333;
 	margin: 10px 0;
 }
-	
+
 .grid-row {
 	margin: 0 -15px;
 }
@@ -2639,7 +2847,7 @@ h4.title {
 hr.light {
 	background: #e9e9e9;
 	border: none;
-	height: 1px;	
+	height: 1px;
 	margin: 20px 0;
 }
 
@@ -2648,7 +2856,7 @@ hr.light {
 		background: url(@@cdn/i/chevron-right-design.png) 100% 50% no-repeat;
 		padding-right: 18px;
 	}
-	
+
 .text-development { color: #278904 !important; }
 	.text-development.chevron-right {
 		background: url(@@cdn/i/chevron-right-development.png) 100% 50% no-repeat;
@@ -2792,3 +3000,68 @@ hr.light {
     font-weight: bold;
     background-color: #f1f1f1;
 }
+/* Stylish Start */
+.community body {
+    font-family: "Sofia Pro", "Merriweather Sans", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 22px;
+    color: #333;
+    background-color: #f6f6f6;
+}
+.community .sideStream h1,
+.community header h1 {
+    font-size: 28px;
+    color: #3D3D3D;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    border: none;
+}
+.community p {
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 24px;
+    color: #3d3d3d;
+    padding-bottom: 24px;
+    margin: 0;
+}
+.community #main,
+.community #wrapper > .content {
+    background: #F6F6F6;
+    position: relative;
+    z-index: 5;
+}
+.community #mainContent.splitLayout {
+    padding: 90px 60px;
+    margin: 60px;
+    background: #fff;
+}
+.community #mainContent .container {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+.community #main {
+    background: #F6F6F6;
+}
+.community a,
+.community a:active,
+.community a:visited {
+    text-decoration: none;
+    -moz-transition-duration: .3s;
+    -webkit-transition-duration: .3s;
+    transition: .2s all ease-in-out;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    outline: 0;
+}
+.community .coderTextRed,
+.community .coderTextYellow,
+.community .coderTextRed:active,
+.community .coderTextRed:hover,
+.community .coderTextRed:link,
+.community .coderTextRed:visited {
+    padding: 0 13px 0 0;
+    margin: 0;
+    position: relative;
+}
+/* Stylish End */

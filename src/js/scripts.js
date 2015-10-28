@@ -140,7 +140,7 @@ var app = {
 
     $('.userWidget').on(ev, function(e) {
       e.stopPropagation();
-    });								
+    });
   },
   // event bindings
   initEvents: function() {
@@ -692,42 +692,69 @@ var app = {
   getTrackSymbol: function(type) {
     var trackName = "o";
     switch (type) {
-      case "Web Design":
-        trackName = "w";
-        break;
-      case "Widget or Mobile Screen Design":
-        trackName = "wi";
-        break;
-      case "Logo Design":
-        trackName = "l";
-        break;
-      case "Banners/Icons":
-        trackName = "bi";
-        break;
-      case "Wireframes":
-        trackName = "wf";
-        break;
-      case "Idea Generation":
-        trackName = "ig";
-        break;
-      case "Other":
-        trackName = "o";
-        break;
-      case "UI Prototype Competition":
-        trackName = "p";
-        break;
-      case "Content Creation":
-        trackName = "cc";
-        break;
-      case "Assembly Competition":
-        trackName = "as";
-        break;
-      case "Conceptualization":
-        trackName = "c";
-        break;
-      case "Marathon":
-        trackName = "mm";
-        break;
+    case "Web Design":
+      trackName = "w";
+      break;
+    case "Widget or Mobile Screen Design":
+      trackName = "wi";
+      break;
+    case "Wireframes":
+      trackName = "wf";
+      break;
+    case "Idea Generation":
+      trackName = "ig";
+      break;
+    case "Other":
+      trackName = "o";
+      break;
+    case "UI Prototype Competition":
+      trackName = "p";
+      break;
+    case "Content Creation":
+      trackName = "cc";
+      break;
+    case "Assembly Competition":
+      trackName = "ac";
+      break;
+    case "Print\/Presentation":
+      trackName = "pr";
+      break;
+    case "Banners\/Icons":
+      trackName = "bi";
+      break;
+    case "Code":
+      trackName = "c";
+      break;
+    case "Architecture":
+      trackName = "a";
+      break;
+    case "Bug Hunt":
+      trackName = "bh";
+      break;
+    case "Specification":
+      trackName = "spc";
+      break;
+    case "Test Suites":
+      trackName = "ts";
+      break;
+    case "Copilot Posting":
+      trackName = "cp";
+      break;
+    case "Conceptualization":
+      trackName = "c";
+      break;
+    case "First2Finish":
+      trackName = "ff";
+      break;
+    case "Design First2Finish":
+      trackName = "df2f";
+      break;
+    case "Application Front-End Design":
+      trackName = "af";
+      break;
+    default:
+      trackName = "o";
+      break;
 
     }
     return trackName;
@@ -1599,8 +1626,8 @@ var app = {
         /*
          * generate table row for contest type
          */
-
-        $('.contestName', row).html('<i></i>' + '<a href="/challenge-details/' + rec.challengeId + '?type=design">' + rec.challengeName + '</a>');
+        var trackName = app.getTrackSymbol(rec.challengeType);
+        $('.contestName', row).html('<i></i>' + '<a href="/challenge-details/' + rec.challengeId + '?type=design">' + rec.challengeName + '<span class="track-symbol">'+ trackName +'</span></a>');
 
         if (rec.startDate == null || rec.startDate == "") {
           rec.startDate = "10.31.2013 10:10 EDT"; //dummy data
@@ -1637,7 +1664,8 @@ var app = {
           /*
            * generate table row for contest type
            */
-          $('.contestName', row).html('<i></i>' + '<a href="/challenge-details/' + rec.challengeId + '">' + rec.challengeName + '</a>');
+          var trackName = app.getTrackSymbol(rec.challengeType);
+          $('.contestName', row).html('<i></i>' + '<a href="/challenge-details/' + rec.challengeId + '">' + rec.challengeName + '<span class="track-symbol">'+ trackName +'</span></a>');
 
           if (rec.startDate == null || rec.startDate == "") {
             rec.startDate = "10.31.2013 10:10 EDT"; //dummy data
@@ -1807,7 +1835,7 @@ var app = {
       success: function(response) {
         designChallenge = response.data[0];
         $('.sideMostRecentChallenges a.contestType2')
-          .append(designChallenge.challengeName)        
+          .append(designChallenge.challengeName)
           .attr('href', tcconfig.mainURL + '/challenge-details/' + designChallenge.challengeId + '/?type=design');
       }
     });

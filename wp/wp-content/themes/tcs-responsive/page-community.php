@@ -20,12 +20,34 @@ $postPerPage = get_option ( "contest_per_page" ) == "" ? 30 : get_option ( "cont
 <style>
 .bx-controls{display:none}
 </style>
-<div class="content">
+<div class="content community">
 	<div id="main">
-
-	<?php if(have_posts()) : the_post();?>
-		<?php the_content();?>
-	<?php endif; wp_reset_query();?>
+		<div class="header-container">
+      <header>
+        <h1>
+					COMMUNITY
+					<div class="flr statistics ilb">
+						<?php $summary = get_activity_summary(); ?>
+						<div class="activeMembers ilb">
+							<p class="val"><?php echo number_format($summary->memberCount); ?></p>
+							<p class="lbl">ACTIVE MEMBER</p>
+						</div>
+						<div class="competingToday ilb">
+							<p class="val"><?php echo number_format($summary->activeMembersCount); ?></p>
+							<p class="lbl">COMPETING TODAY</p>
+						</div>
+						<div class="availPrize ilb">
+							<p class="val"><?php echo '$' . number_format($summary->prizePurse); ?></p>
+							<p class="lbl">AVAILABLE PRIZE</p>
+						</div>
+						<div class="activeChallenges ilb">
+							<p class="val"><?php echo number_format($summary->activeContestsCount); ?></p>
+							<p class="lbl">ACTIVE CHALLENGES</p>
+						</div>
+					</div>
+				</h1>
+      </header>
+		</div>
 
 
 
@@ -34,7 +56,7 @@ $postPerPage = get_option ( "contest_per_page" ) == "" ? 30 : get_option ( "cont
 			<input type="hidden" class="postPerPage" value="<?php echo $postPerPage;?>"/>
 
 			<div class="container">
-				<div class="rightSplit  grid-3-3">
+				<div class="grid-3-3">
 					<div class="mainStream partialList  grid-2-3">
 						<div class=" viewTab">
 							<div class="tableWrap">
@@ -52,50 +74,29 @@ $postPerPage = get_option ( "contest_per_page" ) == "" ? 30 : get_option ( "cont
 											<td colspan="3">&nbsp;</td>
 										</tr>
 									</tbody>
+									<tfoot>
+										<td colspan="3"><a href="/challenges" class="viewAll">View All</a></td>
+									</tfoot>
 								</table>
 							</div>
 						</div>
 						<!-- /#tableView -->
-						<div class="dataChanges">
-							<div class="rt">
-								<a href="/challenges" class="viewAll">View All</a>
-							</div>
-						</div>
-						<!-- /.dataChanges -->
 					</div>
 					<!-- /.mainStream -->
 					<aside class="sideStream  grid-1-3">
-						<div class="diagnostics">
-							<div class="activeMembers">
-								<p class="val"><?php
-								$summary = get_activity_summary();
-								echo number_format($summary->memberCount); ?></p>
-								<label class="lbl">ACTIVE MEMBERS</label>
-							</div>
-							<div class="competingToday">
-								<p class="val"><?php echo number_format($summary->activeMembersCount); ?></p>
-								<label class="lbl">COMPETING TODAY</label>
-							</div>
-							<div class="availPrize">
-								<p class="val"><?php echo '$' . number_format($summary->prizePurse); ?></p>
-								<label class="lbl">AVAILABLE PRIZE</label>
-							</div>
-							<div class="activeChallenges">
-								<p class="val"><?php echo number_format($summary->activeContestsCount); ?></p>
-								<label class="lbl">ACTIVE CHALLENGES</label>
-							</div>
-							<div class="shadow"></div>
-						</div>
-						<!-- /.diagnostics -->
 								<?php dynamic_sidebar('Sidebar Community');?>
-							</aside>
+					</aside>
 					<!-- /.sideStream -->
 					<div class="clear"></div>
 				</div>
 				<!-- /.rightSplit -->
-						<?php dynamic_sidebar('BottomBar Community');?>
+
 					</div>
 		</article>
+
+					<?php dynamic_sidebar('BottomBar Community');?>
+
+
 		<!-- /#mainContent -->
 		<div id="whatsHappening">
 			<div class="container grid grid-float">

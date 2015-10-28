@@ -1,14 +1,16 @@
-/* width < 1010px  
+/* width < 1010px
 -----------------------------*/
 
 @media (max-width: 1019px) {
-    
+.header-container header h1 {
+    text-align: center !important;
+}
 #banner{
     height: 355px;
     background: #fff  url(@@cdn/i/bg-banner-sprite-m.png) repeat-x;
-    overflow: hidden; 
+    overflow: hidden;
 }
-#banner .inner{    
+#banner .inner{
    height: 355px;
    background: url(@@cdn/i/bg-banner-m.png) 50% 0 repeat-x;
 }
@@ -21,7 +23,7 @@
     margin: 0;
     max-width: 100% !important;
 }
-    
+
 
 /* slider */
 #banner .slider{
@@ -30,7 +32,7 @@
 }
     #banner .slider .welcome .con{
         background: url(@@cdn/i/banner-1-m.png) 50% 100% no-repeat;
-    
+
         height: 355px;
         text-align: center;
         width: auto;
@@ -42,7 +44,7 @@
         position: relative;
         left: auto;
         top: auto;
-    
+
         width: 101px;
         margin-top: 14px;
 }
@@ -53,13 +55,13 @@
         font-weight: bold;
         text-align: center;
         background: #666;
-    
+
         margin-top: 80px;
-}    
+}
      #banner .bx-controls{
          position: absolute;
          right: 0;
-     
+
          left: 0;
          bottom: auto;
          top: 12px;
@@ -67,7 +69,7 @@
 }
         #banner .bx-controls .bx-pager{
             overflow: hidden;
-        
+
             text-align: center;
 }
         #banner .bx-controls .bx-pager-item{
@@ -75,8 +77,8 @@
             margin: 0 3px;
             text-align: left;
             text-indent: -100px;
-            overflow: hidden;            
-        
+            overflow: hidden;
+
             display: inline-block;
 }
             #banner .bx-controls .bx-pager-item a{
@@ -85,37 +87,37 @@
                 width: 12px;
                 background: url(@@cdn/i/nav-dot.png) no-repeat;
                 background-position: 0 -12px;
-            
+
                 -moz-transition-duration: 0s; -webkit-transition-duration: 0s; transition-duration: 0s;
 }
             #banner .bx-controls .bx-pager-item a.active,
             #banner .bx-controls .bx-pager-item a:hover{
-                background-position: 0 0;                
+                background-position: 0 0;
             }
     #banner .welcome{
         color: #fff;
         font-size: 12px;
-    
+
         letter-spacing: 1px;
         line-height: 16px;
 }
     #banner .welcome blockquote{
         position: relative;
         right: auto;
-    
+
         top: auto;
         padding-top: 28px;
         margin: 0 10px;
         width: auto;
 }
     #banner .welcome info{
-        
+
     }
      #banner .welcome h2{
         color: #fff;
         font-weight: bold;
         font-size: 16px;
-    
+
         padding-bottom: 9px;
         text-transform: uppercase;
         text-align: center;
@@ -132,7 +134,7 @@
 }
     #stats p{
         text-indent: 0;
-    
+
         letter-spacing: 1px;
         min-height: 26px;
         padding-top: 8px;
@@ -146,10 +148,10 @@
         top: 0;
         width: 205px;
     }
-    
+
 /* mainContent */
 #mainContent{
-    background: url(@@cdn/i/shadow.png) 50% 0 no-repeat;    
+    background: url(@@cdn/i/shadow.png) 50% 0 no-repeat;
     padding-top: 8px;
     padding-bottom: 18px;
     background-size: 120% 20px;
@@ -157,7 +159,7 @@
     #mainContent .title{
         padding-top: 14px;
         text-align: center;
-    
+
         margin-bottom: 12px;
 }
     #mainContent .slogan{
@@ -165,7 +167,7 @@
         font-size: 13px;
         font-weight: 300;
         line-height: 18px;
-    
+
         margin: 0 8px;
 }
 .whatVdo{
@@ -180,7 +182,7 @@
         margin-left: 0;
         position: relative;
         text-align: center;
-    
+
         padding-top: 141px;
         margin-top: 20px;
 }
@@ -191,7 +193,7 @@
         padding-bottom: 15px;
         color: #01a8e9;
     }
-    
+
     .whatVdo > section.build h3{
         color: #228400;
     }
@@ -201,7 +203,7 @@
     .whatVdo > section p{
         font-size: 13px;
         line-height: 18px;
-    
+
         letter-spacing: 1px;
         padding: 0 10px;
 }
@@ -212,10 +214,10 @@
         height: 130px;
     }
     .whatVdo > section.build i{
-        background-position: 50% -150px;        
+        background-position: 50% -150px;
     }
     .whatVdo > section.solve i{
-        background-position: 50% -300px;        
+        background-position: 50% -300px;
     }
 
 #featuredContent{
@@ -230,30 +232,30 @@
         right: 0;
         background: #eee;
         position: absolute;
-    
+
         display: none;
 }
      #featuredContent .container > section{
          position: relative;
-     
+
          padding-bottom: 22px;
 }
         #featuredContent .container > section > h3,
         #featuredContent .container > section > p,
         #featuredContent .container > section > .action{
             margin: 0 12px;
-        
+
             text-align: center;
 }
      #featuredContent .container > section .badge{
-        position: absolute;   
+        position: absolute;
         left: 50%;
         top: -1px;
         width: 185px;
         height: 125px;
         background: url(@@cdn/i/ico-featured.png) no-repeat;
         background-position: 0 0;
-    
+
         margin-left: -73px;
 }
     #featuredContent .container > section.toChallenge .badge{
@@ -287,7 +289,7 @@
      }
      #featuredContent .container > section .action{
     padding: 15px 0 5px;
-         
+
      }
 .nextLink{
     position: relative;
@@ -299,26 +301,25 @@
     width: 8px;
     top: 7px;
     right: 4px;
-    background: url(@@cdn/i/arrow-nxt.png) no-repeat;
     background-position:  0 0;
     position: absolute;
-    -moz-transition-duration: .3s; -webkit-transition-duration: .3s; transition-duration: .3s;    
+    -moz-transition-duration: .3s; -webkit-transition-duration: .3s; transition-duration: .3s;
 }
 .nextLink:hover{
-   color: #FF8A00; 
+   color: #FF8A00;
 }
 .nextLink:hover i{
     right: 0;
 }
      #featuredContent .container > section .action a{
          font-size: 18px;
-         display: inline-block;  
+         display: inline-block;
          line-height: 24px;
     }
     #featuredContent .toBusiness{
         float: none;
         width: auto;
-    
+
         margin: 0 -10px;
 }
     #featuredContent .toChallenge{
@@ -328,7 +329,7 @@
 /* hero area */
 #hero{
     min-height: 162px;
-    background: #eee; 
+    background: #eee;
 }
     #hero .trackList{
         margin: 0 -10px;
@@ -337,9 +338,9 @@
         text-align: center;
         font-size: 13px;
         color: #01a8e9;
-    
+
         margin-top: 18px;
-        -webkit-box-sizing: border-box;  -moz-box-sizing: border-box; box-sizing: border-box;       
+        -webkit-box-sizing: border-box;  -moz-box-sizing: border-box; box-sizing: border-box;
         padding: 0;
         margin: 18px 1.5% 0;
         width: 30.2%;
@@ -366,17 +367,17 @@
     #hero .trackAn i{
         background: url(@@cdn/i/ico-an.png) 50% 0 no-repeat;
     }
-    
+
 #hero .tracksInfo{
     padding: 2px 2px 14px;
     margin: 0 -10px;
 }
     #hero .trackInfo{
-       height: 120px; 
+       height: 120px;
        background: #fff;
        box-shadow: 0 1px 1px rgba(0,0,0,0.5);
        font-size: 14px;
-       color: #666;    
+       color: #666;
        position: relative;
        float: none;
        display: block;
@@ -386,19 +387,19 @@
     #hero .trackInfo i{
        height: 89px;
        width: 89px;
-    
+
        position: absolute;
        left: 13px;
        top: 13px;
 }
     #hero .trackInfo p{
        padding-left: 118px;
-    
+
        margin-right: 8px;
 }
     #hero .trackInfo h3{
        display: block;
-       color: #01a8e9;       
+       color: #01a8e9;
        padding: 16px 0 3px 118px;
     }
     #hero .trackInfo.trackSD h3{
@@ -409,7 +410,7 @@
     }
     #hero .trackInfo a{
        display: inline-block;
-    
+
        font-size: 12px;
 }
 /* layout Challenges */
@@ -418,7 +419,7 @@
 }
     .layChallenges  header{
         border-bottom: 1px solid #e7e7e7;
-    
+
         padding-bottom: 8px;
         position: relative;
         font-size: 16px;
@@ -428,7 +429,7 @@
     .layChallenges  header .rt{
         position: absolute;
         right: 0;
-    
+
         top: 4px;
         display: none;
 }
@@ -436,7 +437,7 @@
         display: inline-block;
         float: left;
         margin-left: 20px;
-    
+
         line-height: 36px;
         -moz-transition-duration: 0s; -webkit-transition-duration: 0s; transition-duration: 0s;
 }
@@ -444,28 +445,8 @@
     display: inline-block;
     height: 30px;
     width: 30px;
-    background: url(@@cdn/i/ico-views.png) no-repeat;
-    background-position: 0 0;
 }
-    .layChallenges .views .calendarView,
-    .layChallenges .views .gridView{
-        background-position: 0 -50px;
-    }
-    .layChallenges .views .listView{
-        background-position: 0 -150px;
-    }
-    
-    .layChallenges .views .calendarView.isActive,
-    .layChallenges .views .gridView.isActive{
-        background-position: 0 0px;
-        cursor: default;
-    }
-    
-    .layChallenges .views .listView.isActive{
-        background-position: 0 -100px;
-        cursor: default;
-    }
-    
+
 .layChallenges .actions{
     min-height: 25px;
     position: relative;
@@ -474,7 +455,7 @@
     margin: 0 -10px;
 }
     .layChallenges .actions .rt{
-        float: none;    
+        float: none;
         margin-top: 0;
         line-height: 42px;
         border-bottom: 1px solid #e7e7e7;
@@ -498,12 +479,12 @@
             display: inline-block;
             vertical-align: top;
             height: 24px;
-        
+
             z-index: 100;
             position: relative;
 }
     .layChallenges .challengeType{
-    
+
         width: auto;
         margin: 0;
         border-bottom: 1px solid #e7e7e7;
@@ -513,13 +494,13 @@
 }
     .layChallenges .challengeType ul{
         overflow: hidden;
-    
+
         display: inline-block;
         font-size: 16px;
         padding: 4px 0;
 }
     .layChallenges .challengeType ul > li{
-        float: left;    
+        float: left;
         border-left: 1px solid #D0D0D1;
         height: 16px;
         line-height: 18px;
@@ -528,7 +509,7 @@
         border-left: 0;
     }
     .layChallenges .challengeType ul .link{
-        margin: 0 10px;        
+        margin: 0 10px;
     }
     .layChallenges .challengeType ul .link.active,
     .layChallenges .challengeType ul .link.active:hover{
@@ -538,7 +519,7 @@
     .layChallenges .actions .searchLink{
         background: url(@@cdn/i/ico-zoom.png) 0 50% no-repeat;
         padding-left: 27px;
-    
+
         line-height: 22px;
         height: 22px;
         display: inline-block;
@@ -547,7 +528,7 @@
         display: inline-block;
         padding-right: 20px;
         position: relative;
-    
+
         border-left: 1px solid transparent;
 }
     .layChallenges .actions .upDown i{
@@ -557,17 +538,17 @@
         width: 13px;
         height: 24px;
         background: url(@@cdn/i/arrows-ud.png) no-repeat;
-        background-position: 0 9px;        
+        background-position: 0 9px;
     }
     .layChallenges .actions .upDown.alt{
         background-position: 100% -11px;
     }
-/* dataChanges */    
+/* dataChanges */
 #mainContent .dataChanges{
     padding-top: 19px;
     font-size: 14px;
-    
-    min-height: 18px;
+    width: 100%;
+    height: 60px;
     overflow: hidden;
     position: relative;
 }
@@ -576,14 +557,12 @@
 }
     #mainContent .dataChanges .mid{
         text-align: center;
-    
-        display: block;
-        margin: 0 100px;
+        margin: 20px;
         position: relative;
 }
     #mainContent .dataChanges .lt{
-        float: left;        
-    
+        float: left;
+
         min-width: 99px;
         z-index: 1;
         position: absolute;
@@ -591,8 +570,8 @@
         top: 19px;
 }
     #mainContent .dataChanges .rt{
-        float: right;        
-    
+        float: right;
+
         text-align: right;
         z-index: 1;
         position: absolute;
@@ -600,22 +579,22 @@
         top: 19px;
 }
     #mainContent .dataChanges .nextLink{
-        display: inline-block;   
+        display: inline-block;
         padding-right: 18px;
         position: relative;
         padding-left: 10px;
-}   
+}
     #mainContent .dataChanges .nextLink i{
         top: 2px;
     }
     #mainContent .dataChanges .prevLink{
-        display: inline-block;   
+        display: inline-block;
         padding-left: 18px;
         position: relative;
-}   
+}
     #mainContent .dataChanges .prevLink.hide{
         display: none;
-    
+
 }
     #mainContent .dataChanges .prevLink i{
         top: 2px;
@@ -630,18 +609,17 @@
     }
     .dataTable th,
     .dataTable td{
-        border: solid #e7e7e7;
-        border-width: 1px 0;
+        border-bottom: 1px solid #d4d4d4;
     }
     .dataTable th{
         vertical-align: middle;
-        background: #f1f1f1;
+        background: #fff;
         font-weight: normal;
-        height: 42px;    
+        height: 42px;
         font-size: 14px;
     }
     .dataTable tbody .alt td{
-        background: #f7f7f7;
+        background: #fcfcfc;
     }
     .dataTable th.colCh{
         text-align: left;
@@ -658,31 +636,18 @@
             padding-left: 66px;
             display: inline-block;
         }
-            .dataTable .colCh a i{
-                position: absolute;
-                top: 4px;
-                left: 14px;
-                background: url(@@cdn/i/ico-tracks.png) no-repeat;
-                background-position: 0 0;
-                background-color: #7ab800; 
-                width: 40px;
-                height: 36px;
-                transition-duration: 0.2s;
-}
-        .dataTable .trackSD .colCh a i{
-            background-position: 0 0;
-            background-color: #7ab800; 
+        .dataTable .colCh a i{
+            position: absolute;
+            top: 4px;
+            left: 14px;
+            background-color: #7ab800;
+            transition-duration: 0.2s;
         }
-        .dataTable .trackUX .colCh a i{
-            background-position: 0 -50px;
-            background-color: #00add0; 
-        }
-        .dataTable .trackAn .colCh a i{
-            background-position: 0 -100px;
-            background-color: #ffae00; 
+        .dataTable .colCh a span.track-symbol {
+            left: -51px;
         }
         .dataTable .colCh a:hover{
-            color: #FF8A00;
+            color: #097DCE;
         }
         .dataTable .colCh a:hover i{
             box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
@@ -704,10 +669,10 @@
 .dataTable tbody .colTime .row{
     overflow: hidden;
     line-height: 24px;
-    font-size: 12px;    
+    font-size: 12px;
 }
     .dataTable tbody .colTime .row .lbl{
-        float: left; 
+        float: left;
         width: 85px;
     }
     .dataTable tbody .colTime .row .val{
@@ -719,7 +684,7 @@
 .dataTable th.colPur{
     width: 98px;
 }
-    .dataTable tbody .colTLeft, 
+    .dataTable tbody .colTLeft,
     .dataTable tbody .colPur,
     .dataTable tbody .colReg,
     .dataTable tbody .colSub{
@@ -729,7 +694,7 @@
 
 #tableView{
     display: none !important;
-}   
+}
 #gridView{
     display: block !important;
 }
@@ -746,7 +711,7 @@
     .contestGrid .contest{
         display: block;
         border: 1px solid #e7e7e7;
-    
+
         width: auto;
         height: 268px;
         position: relative;
@@ -759,13 +724,13 @@
     .contestGrid .cgCh a{
         color: #666;
         position: relative;
-        padding: 0 0 0 54px;    
+        padding: 0 0 0 54px;
         display: block;
         height: 36px;
         max-width: 1000px;
         margin-right: 10px;
         line-height: 18px;
-        overflow: hidden; 
+        overflow: hidden;
 }
     .contestGrid .cgCh a:hover{
         color: #FF8A00;
@@ -778,8 +743,8 @@
         background-position: 0 -50px;
         background-color: #00add0;
         width: 40px;
-        height: 36px;        
-        -moz-transition-duration: .3s; -webkit-transition-duration: .3s; transition-duration: .3s;    
+        height: 36px;
+        -moz-transition-duration: .3s; -webkit-transition-duration: .3s; transition-duration: .3s;
     }
     .contestGrid .trackSD .cgCh a i{
         background-position: 0 -50px;
@@ -802,14 +767,14 @@
         line-height: 24px;
     }
         .contestGrid .cgTime .lbl{
-            float: left;            
+            float: left;
         }
         .contestGrid .cgTime .val{
-            margin-left: 92px; 
+            margin-left: 92px;
         }
     .contestGrid .genInfo{
         background: #f7f7f7;
-            
+
         position: absolute;
         bottom: 0;
         right: 0;
@@ -823,16 +788,16 @@
         width: 24.8%;
         text-align: center;
         font-size: 18px;
-        color: #00add0;    
+        color: #00add0;
         padding-top: 8px;
 }
-    contestGrid .trackSD .genInfo > p{        
+    contestGrid .trackSD .genInfo > p{
         color: #00add0;
     }
-    .contestGrid .trackUX .genInfo > p{        
+    .contestGrid .trackUX .genInfo > p{
         color: #7ab800;
     }
-    .contestGrid .trackAn .genInfo > p{        
+    .contestGrid .trackAn .genInfo > p{
         color: #ffae00;
     }
     .contestGrid .genInfo > p.imp{
@@ -841,23 +806,23 @@
     .contestGrid .genInfo > p i{
         display: block;
         height: 30px;
-        width: 30px;        
+        width: 30px;
         margin: 0 auto;
         background-image: url(@@cdn/i/ico-con.png);
         background-color: #00add0;
-        background-repeat: no-repeat;    
+        background-repeat: no-repeat;
         margin-bottom: 9px;
 }
-    .contestGrid .trackSD .genInfo > p i{        
+    .contestGrid .trackSD .genInfo > p i{
         background-color: #00add0;
     }
-    .contestGrid .trackUX .genInfo > p i{        
+    .contestGrid .trackUX .genInfo > p i{
         background-color: #7ab800;
     }
-    .contestGrid .trackAn .genInfo > p i{        
+    .contestGrid .trackAn .genInfo > p i{
         background-color: #ffae00;
     }
-    .contestGrid1 .contest .genInfo > p.imp i{        
+    .contestGrid1 .contest .genInfo > p.imp i{
         background-color: #f00;
     }
     .contestGrid .genInfo .cgTLeft i{
@@ -872,7 +837,7 @@
     .contestGrid .genInfo .cgSub i{
         background-position: 0 0;
     }
-    
+
 /* welcome Banner */
 .welcomeBanner{
     margin-top: 0;
@@ -880,19 +845,19 @@
     color: #fff;
     min-height: 85px;
     font-size: 14px;
-    line-height: 16px;       
+    line-height: 16px;
 
     text-align: center;
 }
     .welcomeBanner p{
         margin-right: 0;
-    
+
         text-align: center;
 }
     .welcomeBanner .title{
         font-size: 18px;
         padding-top: 20px;
-    
+
         line-height: 18px;
         margin-bottom: 18px;
 }
@@ -904,11 +869,11 @@
         line-height: 46px;
         height: 42px;
         width: 151px;
-    
+
         margin-bottom: 25px;
         margin-top: 20px;
 }
-    
+
 /* splitLayout */
 #mainContent.splitLayout{
     background: none;
@@ -917,14 +882,14 @@
     position: relative;
 }
     #mainContent.splitLayout .mainStream{
-        width: auto;        
-    
+        width: auto;
+
         display: block;
         float: none;
 }
     #mainContent.splitLayout .sideStream{
         width: auto;
-    
+
         display: block;
         float: none;
         margin-top: 22px;
@@ -950,7 +915,7 @@
         height: 17px;
         width: 100%;
         background: url(@@cdn/i/shadow-small.png) 50% 0 no-repeat;
-    
+
         margin: 0;
 }
     .diagnostics > div{
@@ -959,7 +924,7 @@
         float: none;
         font-size: 10px;
         text-align: center;
-    
+
         background: url(@@cdn/i/ico-flags.png) no-repeat;
         background-position: 0 0;
         line-height: 14px;
@@ -980,7 +945,7 @@
         background-position: 0 -450px;
     }
     .diagnostics .val{
-        font-size: 12px;    
+        font-size: 12px;
         color: #fff;
         margin-top: 60px;
 }
@@ -993,7 +958,7 @@
 /* tops */
 .tops{
     margin-top: 25px;
-    
+
 }
     .tops > nav{
         padding: 12px 0 10px;
@@ -1001,10 +966,10 @@
     .tops h1{
         border-bottom: 1px solid #e7e7e7;
         padding-bottom: 13px;
-    }   
+    }
     .tops ul{
         overflow: hidden;
-    
+
         display: inline-block;
         font-size: 16px;
         padding: 3px 0;
@@ -1013,7 +978,7 @@
         display: block;
 }
     .tops ul > li{
-        float: left;    
+        float: left;
         border-left: 1px solid #D0D0D1;
         height: 16px;
         line-height: 18px;
@@ -1022,7 +987,7 @@
         border-left: 0;
     }
     .tops ul .link{
-        margin: 0 10px;        
+        margin: 0 10px;
     }
     .tops ul .link.active,
     .tops ul .link.active:hover{
@@ -1039,27 +1004,21 @@
 }
     .tops .topsTable td{
         text-align: center;
-    
+
         height: 32px;
 }
     .tops .views{
         text-align: right;
         font-size: 16px;
-    
+
         margin-top: 19px;
 }
 
 /* starsOfMonth */
-.somInner{    
+.somInner{
     max-width: 300px;
     margin: 0 auto;
     width: auto;
-}
-.starsOfMonth{
-    background: url(@@cdn/i/shadow.png) 50% 0 no-repeat;
-    border-top: 1px solid #dfe1e1;
-    padding-top: 26px;
-    background-size: 120% 20px;
 }
     .starsOfMonth h2{
         color: #2e3b19;
@@ -1069,18 +1028,16 @@
     .starsOfMonth h2 small{
         display: block;
         font-size: 14px;
-    
+
         line-height: 18px;
 }
     .starsOfMonth .starProfiles{
         overflow: hidden;
-    
+
         margin: 0;
 }
     .starsOfMonth .profile{;
         border: 1px solid #dfe1e1;
-        max-width: 262px;
-    
         margin: 15px 0 0;
         width: auto;
 }
@@ -1088,25 +1045,18 @@
         overflow: hidden;
     }
     .starsOfMonth .profile h3{
-        color: #01a8e9;    
+        color: #01a8e9;
         margin-bottom: 16px;
-}   
+}
     .starsOfMonth .profileUX h3{
-            color: #01a8e9;  
+            color: #01a8e9;
     }
     .starsOfMonth .profileSD h3{
-            color: #228400;  
+            color: #228400;
     }
     .starsOfMonth .profileAn h3{
-            color: #ff7400;  
+            color: #ff7400;
     }
-    .starsOfMonth .profile .memberPic{
-        float: left;
-    }
-    .starsOfMonth .profile .details .row{
-        margin: 5px 0 13px 150px;
-    
-}
     .starsOfMonth .profile  label{
         font-size: 12px;
     }
@@ -1117,13 +1067,13 @@
         font-size: 18px;
     }
     .starProfiles .grid-3-1{
-        float: none;    
+        float: none;
         margin-top: 15px;
         overflow: hidden;
         width: auto;
         display: block;
         margin: 0;
-} 
+}
     .starProfiles .gird-rt .profile{
        float: none;
 }
@@ -1133,8 +1083,8 @@
 
 /* whatsHappening */
 #whatsHappening{
-    background: #d2d2d2;
-    padding: 12px 0 26px 0; 
+    background: #fff;
+    padding: 12px 0 26px 0;
 }
 #whatsHappening .inner{
     margin: 0;
@@ -1154,7 +1104,7 @@
     #whatsHappening .featuredImg{
         width: 100%;
         height: 180px;
-    
+
         margin-bottom: 26px;
 }
     #whatsHappening .featuredImg img{
@@ -1166,37 +1116,37 @@
     #whatsHappening .slide .title{
         font-weight: bold;
         font-size: 14px;
-    
+
         line-height: 24px;
         height: 50px;
         overflow: hidden;
 }
     #whatsHappening .slide .postedBy{
-        line-height: 30px;        
+        line-height: 30px;
     }
     #whatsHappening .slide .excerpt{
-        line-height: 18px;        
+        line-height: 18px;
     }
     #whatsHappening .slide .excerpt .more{
         display: block;
     }
     #whatsHappening .grid-3-1 > section{
-        width: auto;    
+        width: auto;
         padding-bottom: 30px;
         border-bottom: 1px solid #cacaca;
 }
     #whatsHappening .grid-rt > section{
         float: none;
         border-bottom: none;
-    
+
         padding-bottom: 0;
 }
-    #whatsHappening .grid-mid > section{        
+    #whatsHappening .grid-mid > section{
         margin: 0 auto;
     }
     #whatsHappening .slider .bx-controls{
         text-align: center;
-    
+
         margin-top: 16px;
 }
     #whatsHappening .slider .bx-controls .bx-pager-item{
@@ -1217,15 +1167,15 @@
         }
     #whatsHappening .slider .bx-controls .bx-pager-item a.active,
     #whatsHappening .slider .bx-controls .bx-pager-item a:hover{
-        background-position: 0 -20px;        
+        background-position: 0 -20px;
     }
     #whatsHappening .grid-3-1{
         float: none;
-    
+
         display: block;
         width: auto;
     }
-    
+
     /*Title*/
 
 .pageTitleWrapper {
@@ -1253,10 +1203,10 @@
 		padding: 6px 0 2px 14px;
 	}
 	.pageContent ul .listTitle{
-		display: block;	
+		display: block;
 	}
 	.pageContent ul .listTitleDash{
-		display: none;	
+		display: none;
 	}
 	.pageContent ol {
 		padding: 6px 10px 2px 33px;
@@ -1283,7 +1233,7 @@
 		-webkit-box-sizing: border-box;  -moz-box-sizing: border-box; box-sizing: border-box;
 		padding-right: 65px;
 		border-right: 10px solid transparent;
-		
+
 	}
 	.sideFindRelatedContent .searchRelatedBox .btn {
 		position: absolute;
@@ -1298,7 +1248,7 @@
 			line-height: 14px;
 		}
 .sideMostRecentChallenges{
-	margin-bottom: 32px;	
+	margin-bottom: 32px;
 }
 	.sideMostRecentChallenges h3 {
 		padding: 0 9px;
@@ -1309,7 +1259,7 @@
 	.sideMostRecentChallenges li.alt {
 		padding: 14px 0;
 	}
-	
+
 /*Case Page*/
 .casesView.container{
 	margin: 0;
@@ -1348,23 +1298,23 @@
 	padding: 18px 0;
 }
 .casesView .caseGrid a.jsShowCaseDetails > img{
-	padding: 0;	
+	padding: 0;
 }
 .grid-4 .caseDetailsWrapper{
-	display: none;	
+	display: none;
 }
 #mainContent.casePage .dataChanges{
-	margin-top: 17px;	
+	margin-top: 17px;
 }
 .casePage .jsCloseCaseDetails{
 	top: 12px;
-	right: 0;	
+	right: 0;
 }
 .casePage .caseBriefWrapper{
-	padding-bottom: 25px;	
+	padding-bottom: 25px;
 }
 .casePage .caseBriefWrapper .caseTitle{
-	padding: 41px 0 23px 0;	
+	padding: 41px 0 23px 0;
 }
 .casePage .caseBriefWrapper .caseTitle h3{
 	line-height: 30px;
@@ -1376,7 +1326,7 @@
 }
 .casePage .caseBriefWrapper .caseQuote{
 	width: auto;
-	float: none;	
+	float: none;
 	padding: 0 0 11px 0;
 	margin-bottom: 20px;
 }
@@ -1404,7 +1354,7 @@
 	margin: 0;
 }
 .casePage .caseTitle{
-	padding: 4px 0 12px 0;	
+	padding: 4px 0 12px 0;
 }
 .casePage .caseTitle h3{
 	font-size: 25px;
@@ -1421,7 +1371,7 @@
 	margin: 0 auto;
 }
 .casePage .caseBanner{
-	margin-bottom: 11px;	
+	margin-bottom: 11px;
 }
 .casePage .caseBanner img {
 	width: 100%;
@@ -1439,7 +1389,7 @@
 	margin-bottom: 23px;
 }
 .caseQuote .quoteTxt{
-	padding-bottom: 23px;	
+	padding-bottom: 23px;
 }
 .caseQuote .quoterName,
 .caseQuote .quoterTitle{
@@ -1502,7 +1452,7 @@
 
 /*Resource Page*/
 .resourceList{
-	padding-top: 5px;	
+	padding-top: 5px;
 }
 .resourceList li{
 	padding: 0;
@@ -1574,11 +1524,11 @@
 .storyPage .grid-3-3 .grid-2-3,
 .storyPage .grid-3-3 .grid-1-3{
 	float: none;
-	width: 100%;	
+	width: 100%;
 }
 
 .storyDetailsWrapper .storyTitle{
-	padding: 0 0 32px 0;	
+	padding: 0 0 32px 0;
 }
 .storyDetailsWrapper .storyTitle .author{
 	font-size: 16px;
@@ -1598,7 +1548,7 @@
 .storyDetails article .sideImage img{
 	width: 100%;
 	max-width: 100%;
-	height: auto;	
+	height: auto;
 }
 .storyDetails article .sideImage p {
     padding: 10px 0 14px 0;
@@ -1614,7 +1564,7 @@
 	margin-bottom: 21px;
 }
 .sideSearchStories h3{
-	text-align: center;	
+	text-align: center;
 }
 .sideSearchStories .searchStoriesBox{
 	border-width: 0;
@@ -1627,7 +1577,7 @@
 	-webkit-box-sizing: border-box;  -moz-box-sizing: border-box; box-sizing: border-box;
 	padding-right: 65px;
 	border-right: 10px solid transparent;
-	
+
 }
 .sideSearchStories .searchStoriesBox .btn {
 	position: absolute;
@@ -1647,4 +1597,21 @@
 	padding: 20px 0 5px 0;
 }
 
+}
+/* For community page */
+@media (max-width: 480px ) {
+  .community #mainContent.splitLayout {
+    margin: 30px 10px;
+    padding: 30px 10px;
+  }
+  .tops .topsTable .colHandle {
+    text-align: center;
+  }
+}
+@media (max-width: 960px) {
+  .challenge-detail .rightSplit  .grid-3-3 {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
 }

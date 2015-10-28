@@ -3,10 +3,343 @@
 
 <div id="cdNgMain" ng-init="CD.callComplete=false" ng-show="CD.callComplete" class="hide content challenge-detail view-challenge-result {{CD.challengeType != 'design' ? 'develop' : ''}}">
 <div id="main">
-  <div ng-include src="getTemplateURL('ng-content-basic-challenge-details.tpl.html')"></div>
+  <div ng-include src="getTemplateURL('ng-content-basic-challenge-details.tpl.html')" class="header-container"></div>
 
   <article id="mainContent" class="splitLayout">
     <div class="container">
+      <div id="stepBox">
+        <div class="container rightSplit  grid-3-3">
+
+          <div class="leftColumn">
+            <a ng-show="!CD.isDesign" ng-click="CD.registerToChallenge()" ng-class="{disabled:CD.challenge.registrationDisabled || !CD.callComplete, disabledNOT:!CD.challenge.registrationDisabled}" class="btn btnAction challengeRegisterBtn" href="javascript:;">
+                <span>1</span><strong>Register For This Challenge</strong>
+            </a>
+            <a ng-show="!CD.isDesign" ng-class="{disabled:CD.challenge.submissionDisabled || !CD.callComplete, disabledNOT:!CD.challenge.submissionDisabled}" class="btn btnAction" target="_blank"
+              ng-href="/challenge-details/{{CD.challenge.challengeId}}/submit/?type=develop">
+                <span>2</span><strong>Submit Your Entries</strong>
+            </a>
+            <a ng-show="CD.isDesign" ng-click="CD.registerToChallenge()" ng-class="{disabled:CD.challenge.registrationDisabled || !CD.callComplete, disabledNOT:!CD.challenge.registrationDisabled}" class="btn btnAction challengeRegisterBtn" href="javascript:;">
+                <span>1</span> <strong>Register For This Challenge</strong>
+            </a>
+            <a ng-show="CD.isDesign" ng-class="{disabled:CD.challenge.submissionDisabled || !CD.callComplete, disabledNOT:!CD.challenge.submissionDisabled}" class="btn btnAction" target="_blank"
+               ng-href="//studio.topcoder.com/?module=ViewRegistration&ct={{CD.challenge.challengeId}}">
+                <span>2</span> <strong>Submit Your Entries</strong>
+            </a>
+            <a ng-show="CD.isDesign" ng-class="{disabled:CD.challenge.submissionDisabled || !CD.callComplete, disabledNOT:!CD.challenge.submissionDisabled}" class="btn btnAction" target="_blank"
+               href="//studio.topcoder.com/?module=ViewSubmission&ct={{CD.challenge.challengeId}}">
+                <span>3</span> <strong>View Your Submission</strong>
+            </a>
+            <a ng-show="!CD.isDesign && CD.isPeerReviewed" ng-class="{disabled:CD.challenge.peerReviewDisabled || !CD.callComplete, disabledNOT:!CD.challenge.peerReviewDisabled}" class="btn btnAction" ng-href="/reviews/index.html#/challenge/{{CD.challenge.challengeId}}" target="_blank">
+                <span>3</span><strong>Review This Challenge</strong>
+            </a>
+          </div>
+
+          <div class="middleColumn member-program-path" ng-show="CD.isPeerReviewed && CD.phaseProgram">
+            <div ng-include src="getTemplateURL('ng-content-challenge-topsection.tpl.html')"></div>
+          </div>
+          <div class="middleColumn {{CD.isDesign ? 'studio' : ''}}" ng-show="!CD.isPeerReviewed">
+            <table class="prizeTable">
+              <tbody>
+
+                <tr>
+                  <td ng-if="!CD.isDesign && CD.challenge.challengeType != 'Code'" class="fifty">
+                    <h2>1st PLACE</h2>
+
+                    <h3>
+                      <small>$</small><span ng-bind="CD.challenge.prize ? (CD.challenge.prize[0] ? CD.challenge.prize[0] : '') : ''"></span>
+                    </h3>
+                  </td>
+                  <td ng-if="!CD.isDesign && CD.challenge.challengeType != 'Code'" class="fifty">
+                    <h2>2nd PLACE</h2>
+                    <h3>
+                      <small>$</small><span ng-bind="CD.challenge.prize ? (CD.challenge.prize[1] ? CD.challenge.prize[1] : '0') : ''"></span>
+                    </h3>
+                  </td>
+                  <td ng-if="(designOrCode = CD.isDesign || CD.challenge.challengeType == 'Code')" class="twenty {{!(CD.challenge.prize && CD.challenge.prize[0]) ? 'noPrize' : ''}}">
+                    <h2>1st PLACE</h2>
+
+                    <h3>
+                      <small>$</small><span ng-bind="(CD.challenge.prize && CD.challenge.prize[0]) || 0"></span></h3>
+                  </td>
+                  <td ng-if="designOrCode" class="twenty {{!(CD.challenge.prize && CD.challenge.prize[1]) ? 'noPrize' : ''}}">
+                    <h2>2nd PLACE</h2>
+
+                    <h3>
+                      <small>$</small><span ng-bind="(CD.challenge.prize && CD.challenge.prize[1]) || 0"></span></h3>
+                  </td>
+                  <td ng-if="designOrCode" class="twenty {{!(CD.challenge.prize && CD.challenge.prize[2]) ? 'noPrize' : ''}}">
+                    <h2>3rd PLACE</h2>
+
+                    <h3>
+                      <small>$</small><span ng-bind="(CD.challenge.prize && CD.challenge.prize[2]) || 0"></span></h3>
+                  </td>
+                  <td ng-if="designOrCode" class="twenty {{!(CD.challenge.prize && CD.challenge.prize[3]) ? 'noPrize' : ''}}">
+                    <h2>4th PLACE</h2>
+
+                    <h3>
+                      <small>$</small><span ng-bind="(CD.challenge.prize && CD.challenge.prize[3]) || 0"></span></h3>
+                  </td>
+                  <td ng-if="designOrCode" class="twenty {{!(CD.challenge.prize && CD.challenge.prize[4]) ? 'noPrize' : ''}}">
+                    <h2>5th PLACE</h2>
+
+                    <h3>
+                      <small>$</small><span ng-bind="(CD.challenge.prize && CD.challenge.prize[4]) || 0"></span></h3>
+                  </td>
+                  <td ng-if="designOrCode && (CD.challenge.prize && CD.challenge.prize.length > 5)" class="morePayments active closed" rowspan="2">
+                  </td>
+                  <td ng-if="designOrCode && (CD.challenge.prize && CD.challenge.prize.length <= 5)" class="morePayments inactive" rowspan="2">
+                  </td>
+                </tr>
+                <tr ng-if="CD.challenge.prize  && CD.challenge.prize.length > 5 && (currentPlace = 6)" class="additionalPrizes hide" ng-repeat="i in range(0, (CD.challenge.prize.length - 5) / 5)">
+                  <td class="twenty" ng-if="CD.challenge.prize.length > 5 + i * 5" ng-repeat="j in range(i * 5, max((i + 1) * 5), CD.challenge.prize.length)">
+                    <h2 ng-bind-template="{{j + 1}}'th PLACE'"></h2>
+                    <h3><small>$</small><span ng-bind="CD.challenge.prize[j]"></span></h3>
+                  </td>
+                </tr>
+                <tr><!-- Bugfix: Added noPrize class when challenge has no reliability bonus -->
+                  <td ng-if="!CD.isDesign" colspan="5" class="{{ (!CD.challenge.reliabilityBonus || CD.challenge.challengeType === 'Bug Hunt') ? 'noPrize' : ''}}">
+                    <p class="realibilityPara">
+                      Reliability Bonus
+                      <span ng-if="CD.reliabilityBonus && CD.challenge.challengeType !== 'Bug Hunt'" ng-bind-template="${{CD.challenge.reliabilityBonus}}">
+                      </span>
+                      <span ng-if="!(CD.reliabilityBonus) || CD.challenge.challengeType === 'Bug Hunt'">
+                        N/A
+                      </span>
+                    </p>
+                  </td>
+                  </td>
+                  <td ng-if="CD.isDesign" colspan="5">
+                    <p class="scPoints" ng-if="CD.challenge.numberOfCheckpointsPrizes > 0"><span ng-bind="CD.challenge.numberOfCheckpointsPrizes"></span> CHECKPOINT AWARDS WORTH <span ng-bind-template="${{CD.challenge.topCheckPointPrize}}"></span>
+                      EACH</p>
+                    <p class="scPoints" ng-if="CD.challenge.numberOfCheckpointsPrizes == 0">NO CHECKPOINT AWARDS</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          <!-- TODO: not sure why this code is repeated -- probably get rid of it (or make sure my fix of it is correct) -->
+          <div class="prizeSlider hide">
+            <ul>
+              <li class="slide">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td ng-if="!CD.isDesign && CD.challenge.challengeType != 'Code'" class="fifty">
+                        <h2>1st PLACE</h2>
+
+                        <h3>
+                          <small>$</small><span ng-bind="CD.challenge.prize ? (CD.challenge.prize[0] ? CD.challenge.prize[0] : '') : ''"></span>
+                        </h3>
+                      </td>
+                      <td ng-if="!CD.isDesign && CD.challenge.challengeType != 'Code'" class="fifty">
+                        <h2>2nd PLACE</h2>
+                        <h3>
+                          <small>$</small><span ng-bind="CD.challenge.prize ? (CD.challenge.prize[1] ? CD.challenge.prize[1] : '0') : ''"></span>
+                        </h3>
+                      </td>
+                      <td ng-if="(designOrCode = CD.isDesign || CD.challenge.challengeType == 'Code') && (CD.challenge.prize && CD.challenge.prize[0])" class="twenty">
+                        <h2>1st PLACE</h2>
+
+                        <h3>
+                          <small>$</small><span ng-bind="CD.challenge.prize[0]"></span>
+                        </h3>
+                      </td>
+                      <td ng-if="designOrCode && !(CD.challenge.prize && CD.challenge.prize[0])" class="twenty noPrize">
+                        <h2>1st PLACE</h2>
+
+                        <h3>
+                          <small>$</small>0
+                        </h3>
+                      </td>
+                      <td ng-if="designOrCode && (CD.challenge.prize && CD.challenge.prize[1])" class="twenty">
+                        <h2>2nd PLACE</h2>
+
+                        <h3>
+                          <small>$</small><span ng-bind="CD.challenge.prize[1]"></span>
+                        </h3>
+                      </td>
+                      <td ng-if="designOrCode && !(CD.challenge.prize && CD.challenge.prize[1])" class="twenty noPrize">
+                        <h2>2nd PLACE</h2>
+
+                        <h3>
+                          <small>$</small>0
+                        </h3>
+                      </td>
+                      <td ng-if="designOrCode && (CD.challenge.prize && CD.challenge.prize[2])" class="twenty">
+                        <h2>3rd PLACE</h2>
+
+                        <h3>
+                          <small>$</small><span ng-bind="CD.challenge.prize[2]"></span>
+                        </h3>
+                      </td>
+                      <td ng-if="designOrCode && !(CD.challenge.prize && CD.challenge.prize[2])" class="twenty noPrize">
+                        <h2>3rd PLACE</h2>
+
+                        <h3>
+                          <small>$</small>0
+                        </h3>
+                      </td>
+                      <td ng-if="designOrCode && (CD.challenge.prize && CD.challenge.prize[3])" class="twenty">
+                        <h2>4th PLACE</h2>
+
+                        <h3>
+                          <small>$</small><span ng-bind="CD.challenge.prize[3]"></span>
+                        </h3>
+                      </td>
+                      <td ng-if="designOrCode && !(CD.challenge.prize && CD.challenge.prize[3])" class="twenty noPrize">
+                        <h2>4th PLACE</h2>
+
+                        <h3>
+                          <small>$</small><span ng-bind="CD.challenge.prize[3]"></span>
+                        </h3>
+                      </td>
+                      <td ng-if="designOrCode && (CD.challenge.prize && CD.challenge.prize[4])" class="twenty">
+                        <h2>5th PLACE</h2>
+
+                        <h3>
+                          <small>$</small><span ng-bind="CD.challenge.prize[4]"></span>
+                        </h3>
+                      </td>
+                      <td ng-if="designOrCode && (CD.challenge.prize && CD.challenge.prize[5])" class="twenty noPrize">
+                        <h2>5th PLACE</h2>
+
+                        <h3>
+                          <small>$</small>0
+                        </h3>
+                      </td>
+                      <!-- previously used rowspan logic might be needed: {{2 + ((CD.challenge.prize.length - 5) / 5)}} -->
+                      <td ng-if="designOrCode && (CD.challenge.prize && CD.challenge.prize.length > 5)" class="morePayments active closed" rowspan="2">
+                      </td>
+                      <td ng-if="designOrCode && (CD.challenge.prize && CD.challenge.prize.length <= 5)" class="morePayments inactive" rowspan="2">
+                      </td>
+                    </tr>
+                    <tr ng-if="CD.challenge.prize  && CD.challenge.prize.length > 5 && (currentPlace = 6)" class="additionalPrizes hide" ng-repeat="i in range(0, (CD.challenge.prize.length - 5) / 5)">
+                      <td class="twenty" ng-if="CD.challenge.prize.length > 5 + i * 5" ng-repeat="j in range(i * 5, max((i + 1) * 5), CD.challenge.prize.length)">
+                        <h2 ng-bind-template="{{j + 1}}'th PLACE'"></h2>
+                        <h3><small>$</small><span ng-bind="CD.challenge.prize[j]"></span></h3>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td ng-if="!CD.isDesign" colspan="5">
+                        <p class="realibilityPara">
+                          Reliability Bonus
+                          <span ng-if="CD.reliabilityBonus && CD.reliabilityBonus.length > 0">
+                            {{CD.challenge.reliabilityBonus}}
+                          </span>
+                          <span ng-if="!(CD.reliabilityBonus && CD.reliabilityBonus.length > 0)">
+                            N/A
+                          </span>
+                        </p>
+                      </td>
+                      </td>
+                      <td ng-if="CD.isDesign" colspan="5">
+                        <p class="scPoints"><span ng-bind="CD.challenge.numberOfCheckpointsPrizes"></span> CHECKPOINT AWARDS WORTH $<span ng-bind="CD.challenge.topCheckPointPrize"></span>
+                          EACH</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </li>
+            </ul>
+
+          </div>
+
+        </div>
+        <div class="rightColumn">
+
+          <div class="nextBox" ng-init="toggleAllNext = true;">
+
+            <div class="nextBoxContent nextDeadlineNextBoxContent"  ng-show="toggleAllNext">
+              <div class="icoTime">
+                <span class="nextDTitle">Current Phase</span>
+                <!-- Bugfix I-106745: if current status of contest is not Active, output current contest status, else output current contest phase if active. -->
+                <span
+                  class="CEDate" ng-bind="CD.challenge.currentStatus.indexOf('Active') < 0 ? CD.challenge.currentStatus : CD.challenge.currentPhaseName"></span>
+              </div>
+              <!-- Bugfix I-106745: Added check for cancelled contest before display of current phase remaining time -->
+              <span ng-if="CD.challenge.currentStatus != 'Completed' && CD.challenge.currentStatus != 'Deleted' && CD.challenge.currentStatus.indexOf('Cancelled') < 0 && CD.challenge.currentPhaseRemainingTime > 0" class="timeLeft">
+                <span ng-bind="CD.challenge.currentPhaseRemainingTime | daysLeft"></span>
+                <small><ng-pluralize count="CD.challenge.currentPhaseRemainingTime | daysLeft" when="{'1': 'Day', 'other': 'Days'}"/></small>
+                <span ng-bind="CD.challenge.currentPhaseRemainingTime | hoursLeft"></span>
+                <small><ng-pluralize count="CD.challenge.currentPhaseRemainingTime | hoursLeft" when="{'1': 'Hour', 'other': 'Hours'}"/></small>
+                <span ng-bind="CD.challenge.currentPhaseRemainingTime | minsLeft"></span>
+                <small><ng-pluralize count="CD.challenge.currentPhaseRemainingTime | minsLeft" when="{'1': 'Min', 'other': 'Mins'}"/></small>
+              </span>
+            </div>
+            <!--End nextBoxContent-->
+            <div ng-if="!CD.isDesign" class="nextBoxContent allDeadlineNextBoxContent ng-hide" ng-show="!toggleAllNext">
+              <p><label>Start Date:</label>
+                <span>
+                 {{CD.challenge.postingDate | formatDate:2}}
+                </span>
+              </p>
+              <p><label>Register By:</label>
+               <span>
+                 {{CD.challenge.registrationEndDate | formatDate:2}}
+               </span>
+              </p>
+              <p class="{{CD.challenge.finalFixEndDate ? '' : 'last'"><label>Submit By:</label>
+                <span>
+                  {{CD.challenge.submissionEndDate | formatDate:2}}
+                </span>
+              </p>
+              <p ng-show="CD.inReview && CD.isPeerReviewed">
+                <label>Review By:</label>
+                <span>
+                  {{CD.challenge.currentPhaseEndDate | formatDate:2}}
+                </span>
+              </p>
+
+              <p ng-if="CD.challenge.finalFixEndDate" class="{{CD.challenge.finalFixEndDate ? 'last' : ''"><label>Final Submission:</label>
+                <span>
+                  {{CD.challenge.finalFixEndDate | formatDate:2}}
+                </span>
+              </p>
+
+            </div>
+            <!--End nextBoxContent-->
+            <div ng-if="CD.isDesign" class="nextBoxContent allDeadlineNextBoxContent studio ng-hide" ng-show="!toggleAllNext">
+              <p><label>Start Date:</label>
+                <span>
+                  {{CD.challenge.postingDate | formatDate:2}}
+                </span>
+              </p>
+              <p ng-if="CD.challenge.checkpointSubmissionEndDate != ''"><label>Checkpoint:</label>
+                <span>
+                  {{CD.challenge.checkpointSubmissionEndDate | formatDate:2}}
+                </span>
+              </p>
+
+              <p><label>End Date:</label>
+                <span>
+                  {{CD.challenge.submissionEndDate | formatDate:2}}
+                </span>
+              </p>
+
+              <p class="last"><label>Winners Announced:</label>
+                <span>
+                  {{CD.challenge.appealsEndDate  | formatDate:2}}
+                </span>
+              </p>
+            </div>
+            <!--End nextBoxContent-->
+          </div>
+
+          <!--End nextBox-->
+          <div class="deadlineBox">
+
+            <div class="deadlineBoxContent nextDeadlinedeadlineBoxContent" ng-show="toggleAllNext">
+              <a class="viewAllDeadLineBtn" ng-click="toggleAllNext = !toggleAllNext">View all deadlines +</a>
+            </div>
+            <!--End deadlineBoxContent-->
+            <div class="deadlineBoxContent allDeadlinedeadlineBoxContent ng-hide" ng-show="!toggleAllNext">
+              <a class="viewNextDeadLineBtn" ng-click="toggleAllNext = !toggleAllNext">View next deadline +</a>
+            </div>
+            <!--End deadlineBoxContent-->
+          </div>
+          <!--End deadlineBox-->
+        </div>
+        </div>
+      </div><!-- Step Box end -->
       <div class="rightSplit  grid-3-3">
         <div class="mainStream partialList">
 
@@ -52,12 +385,12 @@
 
         <div ng-if="!CD.isDesign" id="contest-overview" class="tableWrap {{CD.activeTab != 'details' ? 'hide' : ''}} tab">
           <article ng-if="!CD.isDesign" id="contestOverview">
-            <h1>Challenge Overview</h1>
+            <h2>Challenge Overview</h2>
 
             <p ng-bind-html="CD.challenge.detailedRequirements | trust"></p>
 
             <article id="platforms">
-              <h1>Platforms</h1>
+              <h2>Platforms</h2>
               <ul>
                 <li ng-if="(hasPlatforms = CD.challenge.platforms && CD.challenge.platforms.length > 0)" ng-repeat="platform in CD.challenge.platforms" >
                   <strong ng-bind="platform"></strong>
@@ -69,7 +402,7 @@
             </article>
 
             <article id="technologies">
-              <h1>Technologies</h1>
+              <h2>Technologies</h2>
               <div class="technologyTags">
                 <ul>
                   <li ng-if="CD.challenge.technology && CD.challenge.technology.length > 0" ng-repeat="tech in CD.challenge.technology">
@@ -88,7 +421,7 @@
             <div ng-bind-html="CD.challenge.finalSubmissionGuidelines | trust"></div>
 
             <article id="payments">
-              <h1>Payments</h1>
+              <h2>Payments</h2>
 
               <p>TopCoder will compensate members in accordance with the payment structure of this challenge.
                 Initial payment for the winning member will be distributed in two installments. The first payment
@@ -112,20 +445,21 @@
           <article ng-if="CD.isDesign" id="contestOverview">
 
             <article id="contestSummary">
-              <h1>CHALLENGE SUMMARY</h1>
+              <h2>CHALLENGE SUMMARY</h2>
 
               <p class="paragraph" ng-bind-html="CD.challenge.introduction | trust"></p>
 
               <p></p>
 
-              <p class="paragraph1"><b>Please read the challenge specification carefully and watch the forums for any
+              <p class="note"><em>Please read the challenge specification carefully and watch the forums for any
                   questions or feedback concerning this challenge. It is important that you monitor any updates
                   provided by the client or Studio Admins in the forums. Please post any questions you might have for
-                  the client in the forums.</b></p>
+                  the client in the forums.</em>
+              </p>
             </article>
 
             <article id="studioTournamentFormat" ng-if="CD.challenge.numberOfCheckpointsPrizes > 0">
-              <h1>CHALLENGE FORMAT</h1>
+              <h2>CHALLENGE FORMAT</h2>
               <p class="paragraph">This competition will be run as a two-round challenge.</p>
               <div>
                 <span class="subTitle">Round One (1)</span>
@@ -170,13 +504,13 @@
             </article>
 
             <article id="fullDescription">
-              <h1>FULL DESCRIPTION &amp; PROJECT GUIDE</h1>
+              <h2>FULL DESCRIPTION &amp; PROJECT GUIDE</h2>
 
               <p ng-bind-html="CD.challenge.detailedRequirements | trust"></p>
             </article>
 
             <article id="stockPhotography">
-              <h1>STOCK PHOTOGRAPHY</h1>
+              <h2>STOCK PHOTOGRAPHY</h2>
 
               <p ng-if="CD.challenge.allowStockArt"> Stock photography is allowed in this challenge.<br>
                 <a href="http://help.topcoder.com/design/design-copyright-and-font-policies/policy-for-stock-photos-in-design-submissions/">See this page for more details.</a></p>
@@ -188,7 +522,7 @@
             </article>
 
             <article id="howtosubmit">
-              <h1>HOW TO SUBMIT</h1>
+              <h2>HOW TO SUBMIT</h2>
 
               <p>
               <ul class="howToSubmit">
@@ -217,7 +551,7 @@
             </article>
 
             <article id="winnerselection">
-              <h1>WINNER SELECTION</h1>
+              <h2>WINNER SELECTION</h2>
 
               <p>
                 Submissions are viewable to the client as they are entered into the challenge. Winners are selected by the
@@ -226,7 +560,7 @@
             </article>
 
             <article id="payments">
-              <h1>PAYMENTS</h1>
+              <h2>PAYMENTS</h2>
 
               <p>TopCoder will compensate members in accordance with the payment structure of this challenge.
                 Initial payment for the winning member will be distributed in two installments. The first payment

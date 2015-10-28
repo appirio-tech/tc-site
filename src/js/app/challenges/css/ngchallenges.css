@@ -94,7 +94,7 @@
 .challengesGrid .colTime {
     vertical-align: top;
     padding-top: 15px;
-    padding-bottom: 15px;   
+    padding-bottom: 15px;
     text-align: left;
 }
 
@@ -137,7 +137,7 @@
     text-overflow: ellipsis;
     display: inline-block;
     height: 100%;
-    color: #FF8A00;
+    color: #666;
 }
 
 /* TESTING FOR ANGULAR NEED TO REMOVE */
@@ -184,7 +184,7 @@
     font-size: 13px;
 }
 
-/* Mobile View Fix */   
+/* Mobile View Fix */
 @media (max-width: 1019px) {
     .hideOnMobile, .contestGrid .contest .hideOnMobile {
         display:none;
@@ -193,7 +193,7 @@
         min-width: 0px !important;
         width:auto;
     }
-    
+
     .contestGrid.alt .contest {
         min-width: 0px !important;
         width: auto;
@@ -202,13 +202,13 @@
         border:none;
         padding-top:0px;
     }
-    
+
     .layChallenges .actions .rt {
         border:none;
         padding-top:10px;
         padding-right:10px;
     }
-    
+
     #hero .container {
         margin:0px;
     }
@@ -222,4 +222,4 @@
     .contestGrid .contest {
         width:auto;
     }
-}   
+}
