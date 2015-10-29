@@ -256,7 +256,23 @@ _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
               } else {
                 photoLink = tcconfig.communityURL + '/i/m/nophoto_login.gif';
               }
+              
+              var color = '';
+              var ratings = data['ratingSummary'];
+              if (ratings) {
+                var maxRating = 0;
+                for (var i = 0; i < ratings.length; i++) {
+                  if (maxRating < ratings[i]['rating']) {
+                    maxRating = ratings[i]['rating'];
+                    color = ratings[i]['colorStyle'].split(": ")[1];
+                  }
+                }
+              } else if (data['isPM'] == true) {
+                color = '#FF9900';
+              }
+              
               $timeout(function() {
+                vm.handleStyle = { color: color };
                 vm.photoURL = photoLink;
               });
             });
