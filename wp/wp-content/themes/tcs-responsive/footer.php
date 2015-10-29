@@ -290,7 +290,7 @@ _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
               { 'href': '/community/competitive%20programming/', 'text': 'COMPETITIVE PROGRAMMING', 'icon': '/mf/i/nav/book-cp.svg' },
           ],
           'community': [
-              { 'href': '/community/members/', 'text': 'MEMBERS', 'icon': '/mf/i/nav/members.svg' },
+              { 'href': '/community/members/', 'text': 'OVERVIEW', 'icon': '/mf/i/nav/members.svg' },
               { 'href': '/community/member-programs/', 'text': 'PROGRAMS', 'icon': '/mf/i/nav/programs.svg' },
               { 'href': 'https://' + tcconfig.forumsAppURL, 'text': 'FORUMS', 'icon': '/mf/i/nav/forums.svg' },
               { 'href': '/community/statistics/', 'text': 'STATISTICS', 'icon': '/mf/i/nav/statistics.svg' },
