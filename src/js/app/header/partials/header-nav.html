@@ -20,7 +20,7 @@
           <div class="menu-item-header">
             <a ng-href={{vm.profileLink}} class="profile-link-dropdown">
               <img ng-src="{{vm.photoURL}}" class="user-avatar"/>
-              <span class="username">{{vm.userHandle}}</span>
+              <span ng-style="vm.handleStyle" class="username">{{vm.userHandle}}</span>
             </a>
           </div>
           <a href="/settings/profile" class="btn-link btn-edit-profile show-small">EDIT</a>
