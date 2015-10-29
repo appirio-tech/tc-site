@@ -42,46 +42,10 @@ get_header(); ?>
   <div class="content">
   <div id="main">
       <div ng-view>
-        <div id="hero">
-          <div class="container grid grid-float">
-            <div class="grid-3-1 track trackUX" ng-class="{isActive: contest.contestType == 'design'}">
-              <a href="/challenges/design/{{contest.listType != 'calendar' ? contest.listType : 'active'}}/"><i></i>Graphic Design Challenges
-              </a><span class="arrow"></span>
-            </div>
-            <div class="grid-3-1 track trackSD" ng-class="{isActive: contest.contestType == 'develop'}">
-              <a href="/challenges/develop/{{contest.listType != 'calendar' ? contest.listType : 'active'}}/"><i></i>Software Development Challenges
-              </a><span class="arrow"></span>
-            </div>
-            <div class="grid-3-1 track trackAn" ng-class="{isActive: contest.contestType == 'data'}">
-              <a href="/challenges/data/{{contest.listType}}/">
-                <i></i>Data Science Challenges
-              </a><span class="arrow"></span>
-            </div>
-          </div>
-        </div>
       </div>
 
 
   <script type="text/ng-template" id="challenge-list.html">
-
-    <div id="hero">
-      <div class="container grid grid-float">
-        <div class="grid-3-1 track trackUX" ng-class="{isActive: contest.contestType == 'design'}">
-          <a href="/challenges/design/{{contest.listType != 'calendar' ? contest.listType : 'active'}}/"><i></i>Graphic Design Challenges
-          </a><span class="arrow"></span>
-        </div>
-        <div class="grid-3-1 track trackSD" ng-class="{isActive: contest.contestType == 'develop'}">
-          <a href="/challenges/develop/{{contest.listType != 'calendar' ? contest.listType : 'active'}}/"><i></i>Software Development Challenges
-          </a><span class="arrow"></span>
-        </div>
-        <div class="grid-3-1 track trackAn" ng-class="{isActive: contest.contestType == 'data'}">
-          <a href="/challenges/data/{{contest.listType}}/">
-            <i></i>Data Science Challenges
-          </a><span class="arrow"></span>
-        </div>
-      </div>
-    </div>
-
     <article id="mainContent" class="layChallenges">
       <div class="container">
         <header>
@@ -200,7 +164,7 @@ get_header(); ?>
         <li><a href="/challenges/{{contest.contestType}}/active/" class="link" ng-class="{active: isActive('active')}">Open Challenges</a></li>
         <li><a href="/challenges/{{contest.contestType}}/past/" class="link" ng-class="{active: isActive('past')}">Past Challenges</a></li>
         <li><a href="/challenges/{{contest.contestType}}/upcoming/" class="link" ng-class="{active: isActive('upcoming')}">Upcoming Challenges</a></li>
-        <!-- Coming soon!  <li><a href="//www.topcoder.com/review-opportunities/develop/" class="link">Review Opportunities</a></li> -->
+        <li><a ng-href="{{contest.reviewLink}}" class="link" target="_blank">{{contest.reviewLinkTitle}}</a>
       </ul>
     </div>
 

@@ -326,3 +326,206 @@ add_filter('pre_get_posts','empty_search_filter');
 function createTwitterPost($text, $permalink) {
   return "//twitter.com/home?status=Blog:%20" . str_replace('%0A','',urlencode(wrap_content_strip_html(wpautop($text), 100, true,'\n\r')) . " " . $permalink . " via @topcoder");
 }
+
+/* Related posts */
+if (!function_exists('mk_blog_similar_posts')) {
+    function mk_blog_similar_posts($post_id)
+    {
+        
+        global $post, $mk_options, $single_layout;
+                
+        $backup = $post;
+        $categories = get_the_terms($post->ID, 'member-onboarding-categories');
+        $categoriesIDs = array();
+        $related_post_found = false;
+        $showposts = 3;
+        $column_css = 'three-cols';
+        
+        if ($categories) {
+            foreach($categories as $key=>$category) {
+                $categoriesIDs[$key] = $category->term_id;
+            }
+            $related = new WP_Query(array(
+                'post_type' => 'member-onboarding',
+                'tax_query' => array(
+                    array(
+                        'taxonomy' => 'member-onboarding-categories',
+                        'field'    => 'id',
+                        'terms'    => $categoriesIDs,
+                    ),
+                ),
+                'post__not_in' => array(
+                    $post->ID
+                ) ,
+                'showposts' => $showposts,
+                'ignore_sticky_posts' => 1
+            ));
+            $output = '';
+            if ($related->have_posts()) {
+                $related_post_found = true;
+                $output.= '<section class="blog-similar-posts">';
+				$output.= '<div class="similar-post-title">' . __('Related content', 'mk_framework') . '</div>';
+                $output.= '<ul class="' . $column_css . '">';
+                while ($related->have_posts()) {
+                    $related->the_post();
+                    $output.= '<li><div class="similar-post-holder">';
+                    $output.= '<a class="mk-similiar-thumbnail" href="' . get_permalink() . '" title="' . get_the_title() . '">';
+                    if (has_post_thumbnail()) {
+                        $image_src_array = wp_get_attachment_image_src(get_post_thumbnail_id() , 'full', true);
+                        $image_src = $image_src_array[0];
+                    } 
+                    else {
+                        $image_src = '/mf/i/dummy-images/dummy-'.mt_rand(1,7).'.png';
+                    }
+                    $output.= '<img src="' . $image_src . '" alt="' . get_the_title() . '" />';
+                    $output.= '<div class="image-hover-overlay"></div></a>';
+                    $output.= '<a href="' . get_permalink() . '" class="mk-similiar-title">' . get_the_title() . '</a>';
+                    $output.= '</div></li>';
+                }
+                $output.= '</ul>';
+                $output.= '<div class="clearboth"></div></section>';
+            }
+            $post = $backup;
+        }
+        if (!$related_post_found) {
+            $recent = new WP_Query(array(
+                'post_type' => 'member-onboarding',
+                'showposts' => $showposts,
+                'nopaging' => 0,
+                'post_status' => 'publish',
+                'ignore_sticky_posts' => 1
+            ));
+            $output = '';
+            if ($recent->have_posts()) {
+                $related_post_found = true;
+                $output.= '<section class="blog-similar-posts">';
+                $output.= '<div class="similar-post-title">' . __('Recent Articles', 'mk_framework') . '</div>';
+                $output.= '<ul class="' . $column_css . '">';
+                while ($recent->have_posts()) {
+                    $recent->the_post();
+                    $output.= '<li><div class="similar-post-holder">';
+                    $output.= '<a class="mk-similiar-thumbnail" href="' . get_permalink() . '" title="' . get_the_title() . '">';
+                    if (has_post_thumbnail()) {
+                        $image_src_array = wp_get_attachment_image_src(get_post_thumbnail_id() , 'full', true);
+                        $image_src = $image_src_array[0];
+                        $output.= '<img src="' . $image_src . '" alt="' . get_the_title() . '" />';
+                    } 
+                    else {
+                        $image_src = '/mf/i/dummy-images/dummy-'.mt_rand(1,7).'.png';
+                        $output.= '<img src="' . $image_src . '" alt="' . get_the_title() . '" />';
+                    }
+                    $output.= '</a>';
+                    $output.= '<a href="' . get_permalink() . '" class="mk-similiar-title">' . get_the_title() . '</a>';
+                    $output.= '</div></li>';
+                }
+                $output.= '</ul>';
+                $output.= '<div class="clearboth"></div></section>';
+            }
+        }
+        wp_reset_postdata();
+        echo $output;
+    }
+}
+
+add_action('blog_similar_posts', 'mk_blog_similar_posts');
+
+/**
+ * Adds Next/Previous post navigations to single posts
+ *
+ */
+
+function mk_post_nav($same_category = true, $taxonomy = 'member-onboarding-categories')
+{
+
+    global $mk_options;
+  
+    if(!is_singular('member-onboarding'))
+        return false;
+
+    $options = array();
+    $options['same_category'] = true;
+    $options['excluded_terms'] = '';
+
+    $options['type'] = get_post_type();
+    $options['taxonomy'] = $taxonomy;
+
+    if(!is_singular() || is_post_type_hierarchical($options['type'])) 
+        $options['is_hierarchical'] = true;
+
+    $options = apply_filters('mk_post_nav_settings', $options);
+
+    $entries['prev'] = get_previous_post($options['same_category'], $options['excluded_terms'], $options['taxonomy']);
+    $entries['next'] = get_next_post($options['same_category'], $options['excluded_terms'], $options['taxonomy']);
+
+    $entries = apply_filters('mk_post_nav_entries', $entries, $options);
+    $output = "";
+
+
+    foreach ($entries as $key => $entry) {
+        if(empty($entry)) continue;
+
+        $post_type =  get_post_type($entry->ID);
+
+        $icon   = $post_image = "";
+        $link  = get_permalink($entry->ID);
+        $image = get_the_post_thumbnail($entry->ID, 'thumbnail');
+        $class = $image ? "with-image" : "without-image";
+        $icon = ($key == 'prev') ? '<i class="mk-icon-long-arrow-left"></i>' : '<i class="mk-icon-long-arrow-right"></i>';
+        $output .= '<a class="mk-post-nav mk-post-'.$key.' '.$class.'" href="'.$link.'">';
+          
+          
+        $output .= '<span class="pagnav-wrapper">';
+        $output .= '<span class="pagenav-top">';
+
+        $icon = '<span class="mk-pavnav-icon">'.$icon.'</span>';
+
+        if($image) {
+            $post_image = '<span class="pagenav-image">'.$image.'</span>';
+        }
+
+        $output .= $key == 'next' ?  $icon.$post_image : $post_image.$icon;
+        $output .= "</span>";
+
+        $output .= '<div class="nav-info-container">';
+        $output .= '<span class="pagenav-bottom">';
+
+        $output .= '<span class="pagenav-title">'.get_the_title($entry->ID).'</span>';
+
+        $output .= "</span>";  
+        $output .= "</div>";     
+        $output .= "</span>";
+        $output .= "</a>";
+      }
+      echo $output;
+}
+add_action( 'wp_footer', 'mk_post_nav' );
+ 
+register_taxonomy( "member-onboarding-categories", 
+	array( 	"member-onboarding" ), 
+	array( 	"hierarchical" => true,
+			"labels" => array('name'=>"Member Onboarding Type",'add_new_item'=>"Add New Type"), 
+			"singular_label" => __( "Field" ), 
+			"rewrite" => array( 'slug' => 'fields', // This controls the base slug that will display before each term 
+							'with_front' => false)
+		 ) 
+);
+
+// Video Autoplay
+function autoplay_video( $provider ) {
+  $provider = add_query_arg( 'autoplay', 1 , $provider );
+  $provider = add_query_arg( 'loop', 1 , $provider );
+  return $provider;
+}
+add_filter('oembed_fetch_url', 'autoplay_video', 10, 3);
+
+// Youtube autoplay
+function autoplay_youtube($html, $url, $args) {
+    if(strstr($url, "youtube"))
+        $html = str_replace("?feature=oembed", "?feature=oembed&autoplay=true&rel=0", $html);
+    
+    return $html;
+}
+add_filter('embed_oembed_html', 'autoplay_youtube', 10, 3);
+ 
+
+?>
