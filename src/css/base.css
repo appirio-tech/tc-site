@@ -520,6 +520,11 @@ sub, sup {
 		}
 /* footer
 ---------------------------*/
+footer {
+  font-family: "Merriweather Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: 400;
+}
+
 .bottom-footer {
   background-color: #3D3D3D;
   padding: 1px 20px 30px 20px; }
@@ -547,7 +552,7 @@ sub, sup {
 
 @media only screen and (max-width: 1024px) {
   .bottom-footer, .fold-pusher {
-    height: 200px; }
+    height: 170px; }
   .bottom-footer .menu-item {
     display: none;
     margin-top: 30px; }
@@ -572,7 +577,7 @@ sub, sup {
 
 @media only screen and (min-width: 1025px) {
   .bottom-footer, .fold-pusher {
-    height: 270px; }
+    height: 200px; }
   .bottom-footer {
     padding-top: 40px; }
     .bottom-footer .submenu-item + .submenu-item {
