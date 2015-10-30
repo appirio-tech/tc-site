@@ -39,8 +39,9 @@ get_header(); ?>
     }
   </script>
 <!-- moved ng-app to <html> element so page titles can be updated with angular -->
-  <div class="content cl-wrapper">
+  <div class="content">
   <div id="main">
+  <div class="cl-wrapper">
       <div ng-view>
       </div>
 
@@ -569,5 +570,6 @@ get_header(); ?>
   <span ng-cell-text><a href="/challenge-details/{{row.getProperty('challengeId')}}/?type={{row.getProperty('challengeCommunity')}}#winner">View Winners</a></span>
 </script>
 
+</div>
 
 <?php get_footer(); ?>
