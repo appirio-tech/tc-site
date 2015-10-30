@@ -1,7 +1,7 @@
 @@header
 
 
-<div id="cdNgMain" ng-init="CD.callComplete=false" ng-show="CD.callComplete" class="hide content challenge-detail view-challenge-result {{CD.challengeType != 'design' ? 'develop' : ''}}">
+<div id="cdNgMain" ng-init="CD.callComplete=false" ng-show="CD.callComplete" class="cd-wrapper hide content challenge-detail view-challenge-result {{CD.challengeType != 'design' ? 'develop' : ''}}">
 <div id="main">
   <div ng-include src="getTemplateURL('ng-content-basic-challenge-details.tpl.html')" class="header-container"></div>
 

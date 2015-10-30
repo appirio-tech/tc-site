@@ -39,7 +39,7 @@ get_header(); ?>
     }
   </script>
 <!-- moved ng-app to <html> element so page titles can be updated with angular -->
-  <div class="content">
+  <div class="content cl-wrapper">
   <div id="main">
       <div ng-view>
       </div>
