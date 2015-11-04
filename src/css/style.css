@@ -338,16 +338,6 @@
     }
 
 /* mainContent */
-#mainContent{
-    background: url(@@cdn/i/shadow.png) 50% 0 no-repeat;
-    padding-top: 8px;
-    padding-bottom: 32px;
-}
-#mainContent.layChallenges{
-    padding-top: 30px;
-    padding-bottom: 20px;
-    background: #FFFffe;
-}
     #mainContent .title{
         padding-top: 32px;
         text-align: center;
@@ -730,20 +720,19 @@
 .layChallenges{
     display: block;
 }
-    .layChallenges  header{
-        border-bottom: 1px solid #e7e7e7;
-
+    .layChallenges header{
+        border-bottom: 1px solid #f0f0f0;
         padding-bottom: 12px;
         position: relative;
         font-size: 16px;
 }
-    .layChallenges  header .rt{
+    .layChallenges header .rt{
         position: absolute;
         right: 0;
 
         top: 4px;
 }
-    .layChallenges  header .rt a{
+    .layChallenges header .rt a{
         padding-top: 1px;
         display: inline-block;
         float: left;
@@ -753,14 +742,15 @@
         -moz-transition-duration: 0s; -webkit-transition-duration: 0s; transition-duration: 0s;
         border-top: 3px solid transparent;
 }
-    .layChallenges  header .rt .calendarView:hover,
-    .layChallenges  header .rt .gridView:hover,
-    .layChallenges  header .rt .listView:hover{
+    .layChallenges header .rt .calendarView:hover,
+    .layChallenges header .rt .gridView:hover,
+    .layChallenges header .rt .listView:hover{
         border-top: 3px solid #FF8A00;
     }
 
     .layChallenges .views {
-      float: right;
+      position: absolute;
+      right: 55px;
     }
     .layChallenges .views > a{
       font-size: 11px;
@@ -808,7 +798,7 @@
 
         display: block;
         font-size: 16px;
-        padding: 3px 0;
+        padding: 10px 0 0 55px;
 }
     .layChallenges .challengeType ul > li{
         float: left;

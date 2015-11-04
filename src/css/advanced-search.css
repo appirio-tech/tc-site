@@ -153,12 +153,8 @@
     clear: both;
 }
 .new-search-box {
-    width: 100%;
-    display: block;
-    height: auto;
     position: relative;
-    border: 1px solid #e1e1e1;
-    border-bottom: 0;
+    margin: 0 55px 0 55px;
 }
     .new-search-box input.search-text {
         height: 30px;

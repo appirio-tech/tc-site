@@ -47,16 +47,16 @@ get_header(); ?>
 
 
   <script type="text/ng-template" id="challenge-list.html">
-    <div class="header-container">
-      <header>
-        <h1 ng-bind="titles[contest.contestType]"></h1>
-      </header>
-    </div>
-    <!-- header-container end -->
     <article id="mainContent" class="layChallenges">
+
+      <div class="header-container">
+        <header><h1 ng-bind="titles[contest.contestType]"></h1>
+        </header>
+      </div>
+
       <div class="container">
           <div class="links">
-            <div class="text-center">
+            <div class="challenges-sub-nav">
               <a href="/challenges/design/active" class="link" ng-class="{active: contest.contestType === 'design'}">Design</a>
               <a href="/challenges/develop/active" class="link" ng-class="{active: contest.contestType === 'develop'}">Development</a>
               <a href="/challenges/data/active" class="link" ng-class="{active: contest.contestType === 'data'}">Data Science</a>

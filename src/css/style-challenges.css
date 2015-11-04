@@ -22,8 +22,7 @@
 /* end of edit by evilkyro1965 */
 
 .header-container {
-    background: #fff;
-    box-shadow: 0 1px 3px #D1D3D4;
+    background: #fcfcfc;
 }
 
 .header-container .container {
@@ -31,13 +30,13 @@
     padding: 10px 60px;
 }
 
-.header-container .container header h1 {
-    font-size: 32px;
-    line-height: 38px;
-    padding: 15px 0;
-    margin: 10px 0 0;
+.header-container header h1 {
+    font-size: 36px;
+    line-height: 43px;
     overflow: hidden;
-    text-align: left;
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 30px;
 }
 
 body, #wrapper {
@@ -184,21 +183,20 @@ select {
     margin: 0 auto;
 }
 .layChallenges .links {
-  border-bottom: 1px solid #D1D3D4;
-  padding-bottom: 5px;
+  border-bottom: 1px solid #f0f0f0;
 }
 .layChallenges .links .link {
-    margin: 0 1%;
-    padding: 0 1% 7px;
+    margin-right: 35px;
     color: #A3A3AE;
     font-size: 16px;
-    line-height: 19px;
+    line-height: 24px;
     font-family: "Sofia Pro", Helvetica, Arial;
     text-transform: uppercase;
 }
 .layChallenges .links .link.active {
-    border-bottom: 4px solid #0096FF;
+    border-bottom: 2px solid #0096FF;
     color: #000000;
+    padding-bottom: 18px
 }
 .landingChallenges .challengeType {
     width: 300px;
@@ -1462,6 +1460,19 @@ span.subscribeTopWrapper .feedBtn {
   line-height: 22px;
   color: #333;
   background-color: #f6f6f6;
+  padding: 30px 0 30px 0;
+  clear: both;
+}
+
+.cl-wrapper .challenges-sub-nav {
+  text-align: center;
+  height: 40px;
+  padding: 20px 0 0 60px;
+  background: #fcfcfc;
+}
+
+.cl-wrapper .challenges-sub-nav a:hover {
+    text-decoration: none;
 }
   .cl-wrapper h1,
   .cl-wrapper h2,
@@ -1469,11 +1480,10 @@ span.subscribeTopWrapper .feedBtn {
   .cl-wrapper h4,
   .cl-wrapper h5,
   .cl-wrapper h6 {
-    font-weight: 400;
+    font-weight: 500;
     line-height: 1.125em;
     font-family: "Sofia Pro", Helvetica, Arial, sans-serif; }
   .cl-wrapper .sideStream h1,
-  .cl-wrapper header h1,
   .cl-wrapper .challenge-detail.develop .tableWrap h1,
   .cl-wrapper .challenge-detail .tableWrap h1 {
     font-size: 28px;
@@ -1555,8 +1565,8 @@ span.subscribeTopWrapper .feedBtn {
     z-index: 5; }
   .cl-wrapper #mainContent.splitLayout,
   .cl-wrapper #mainContent.layChallenges {
-    padding: 90px 60px 30px;
-    margin: 60px;
+    max-width: 1242px;
+    margin: 0 auto 0 auto;
     background: #fff; }
   .cl-wrapper #mainContent .container {
     padding: 0;
@@ -1588,6 +1598,7 @@ span.subscribeTopWrapper .feedBtn {
   .cl-wrapper .prevLink:hover {
     color: #097DCE; }
   .cl-wrapper #mainContent .dataChanges {
+    padding: 20px 0 20px 0;
     text-align: center;
     font-family: "Sofia Pro", Helvetica, Arial;
     font-size: 14px;
@@ -1695,8 +1706,6 @@ span.subscribeTopWrapper .feedBtn {
     cursor: default;
     text-transform: none;
     text-decoration: none; }
-  .cl-wrapper .new-search-box {
-    border: none; }
   .cl-wrapper .new-search-box input.search-text {
     width: calc( 100% - 14px);
     display: block;
