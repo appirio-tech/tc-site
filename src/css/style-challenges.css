@@ -31,12 +31,12 @@
 }
 
 .header-container header h1 {
+    padding-top: 30px;
+    padding-left: 60px;
     font-size: 36px;
     line-height: 43px;
     overflow: hidden;
     text-transform: uppercase;
-    text-align: center;
-    padding-top: 30px;
 }
 
 body, #wrapper {
