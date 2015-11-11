@@ -115,7 +115,7 @@
         React.createElement("div", {className: "contest "+ trackTag +" trackSD type-" + challenge.challengeCommunity, key: challenge.challengeId},
           React.createElement("div", {className: "cgCh"},
             React.createElement("a", {href: challenge.challengeCommunity != 'data' ? "/challenge-details/" +challenge.challengeId+"/?type="+challenge.challengeCommunity : tcconfig.communityURL + '/tc?module=MatchDetails&rd=' + challenge.roundId, className: "contestName"},
-              React.createElement("img", {alt: "", className: "allContestIco", src: (scope.contest.contestType == 'data' && challenge.challengeCommunity == 'develop') ? images + 'ico-competitive-develop-challenge.svg' : images + 'ico-' + challenge.challengeCommunity + '-challenge.svg'}), 
+              React.createElement("img", {alt: "", className: "allContestIco", src: (scope.contest.contestType == 'data' && challenge.challengeCommunity == 'develop') ? images + 'ico-track-data.svg' : images + 'ico-track-' + challenge.challengeCommunity + '.svg'}), 
               React.createElement("span", {className: "gridChallengName"}, challenge.challengeName),
               React.createElement(Qtip, {text: challenge.challengeType, title: "Challenge Type", community: challenge.challengeCommunity},
                 React.createElement("span", {className: "track-symbol"}, track.toUpperCase())

@@ -115,7 +115,7 @@
         <div className={"contest "+ trackTag +" trackSD type-" + challenge.challengeCommunity} key={challenge.challengeId}>
           <div className="cgCh">
             <a href={challenge.challengeCommunity != 'data' ? "/challenge-details/" +challenge.challengeId+"/?type="+challenge.challengeCommunity : tcconfig.communityURL + '/tc?module=MatchDetails&rd=' + challenge.roundId} className="contestName">
-              <img alt="" className="allContestIco" src={(scope.contest.contestType == 'data' && challenge.challengeCommunity == 'develop') ? images + 'ico-competitive-develop-challenge.svg' : images + 'ico-' + challenge.challengeCommunity + '-challenge.svg'} />
+              <img alt="" className="allContestIco" src={(scope.contest.contestType == 'data' && challenge.challengeCommunity == 'develop') ? images + 'ico-competitive-develop-challenge.svg' : images + 'ico-track-' + challenge.challengeCommunity + '.svg'} />
               <span className="gridChallengName">{challenge.challengeName}</span>
               <Qtip text={challenge.challengeType} title="Challenge Type" community={challenge.challengeCommunity}>
                 <span className="track-symbol">{track.toUpperCase()}</span>
