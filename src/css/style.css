@@ -1058,10 +1058,10 @@
 .contestGrid{
     display: block;
     overflow: hidden;
-    margin: 0 -29px 0 -25px;
 }
 .contestGrid.alt{
-    margin: 0 -12px -18px -12px;
+  width: 84%;
+  margin: 0 auto;
 }
     .contestGrid .contest{
         display: inline-block;
