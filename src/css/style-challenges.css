@@ -228,8 +228,6 @@ select {
     position: absolute;
     left: 12px;
     top: 4px;
-    background: url(@@cdn/i/tco/tco-arrow.png) no-repeat;
-    background-position: 0 10px;
 
     -moz-transition-duration: .2s;
     -webkit-transition-duration: .2s;
@@ -1606,7 +1604,8 @@ span.subscribeTopWrapper .feedBtn {
   .cl-wrapper #mainContent .dataChanges .lt {
     float: none;
     display: inline;
-    padding: 0; }
+    padding: 0;
+    margin-right: 30px;}
   .cl-wrapper #mainContent .dataChanges .rt {
     float: none;
     text-align: right;
