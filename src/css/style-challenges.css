@@ -30,13 +30,24 @@
     padding: 10px 60px;
 }
 
+.header-container header {
+    padding: 30px 60px;
+}
+
 .header-container header h1 {
-    padding-top: 30px;
-    padding-left: 60px;
+    display: inline-block;
+    vertical-align: middle;
     font-size: 36px;
-    line-height: 43px;
+    line-height: 1;
     overflow: hidden;
     text-transform: uppercase;
+}
+
+.header-container header span {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0;
+    margin-left: 10px;
 }
 
 body, #wrapper {
