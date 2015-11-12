@@ -739,6 +739,8 @@ footer {
   width: 100%;
   padding: 0 15px 0 37px;
   background: transparent;
+  font-family: 'Merriweather Sans', Arial, Helvetica, sans-serif;
+  font-size: 22px;
   outline: none;
   box-shadow: none; }
   .search-wrapper input:focus {
@@ -746,14 +748,23 @@ footer {
     box-shadow: none; }
 
 .search-wrapper ::-webkit-input-placeholder {
-  color: #7f7f7f; }
+  color: #7f7f7f;
+  text-transform: uppercase;
+  font-size: 11px;
+  }
 
 .search-wrapper ::-moz-placeholder {
   /* Firefox 19+ */
-  color: #7f7f7f; }
+  color: #7f7f7f;
+  text-transform: uppercase;
+  font-size: 11px;
+  }
 
 .search-wrapper :-ms-input-placeholder {
-  color: #7f7f7f; }
+  color: #7f7f7f;
+  text-transform: uppercase;
+  font-size: 11px;
+  }
 
 .search-wrapper .submenu:before {
   content: '';
