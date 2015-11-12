@@ -334,6 +334,7 @@ _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
           document.cookie = 'tcsso=; path=/; domain=.' + tcconfig.domain + '; expires=' + new Date(0).toUTCString();
           document.cookie = 'tcjwt=; path=/; domain=.' + tcconfig.domain + '; expires=' + new Date(0).toUTCString();
           main.menuVisible = vm.isAuth = false;
+          window.location.href = '/logout';
         }
       }
     };
