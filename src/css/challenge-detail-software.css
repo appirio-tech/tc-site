@@ -1,25 +1,31 @@
 .challenge-detail .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
     background: #fff;
-    box-shadow: 0 1px 3px #D1D3D4;
+    border-bottom: 1px solid #f0f0f0;
 }
 .challenge-detail .header-container .container {
     margin: 0 60px;
     padding: 10px 60px;
 }
+
+.challenge-detail .pageHeading {
+    padding: 30px 60px;
+}
+
 .challenge-detail .pageHeading h1 {
     font-size: 32px;
     line-height: 38px;
-    padding: 15px 0 0;
-    margin: 10px 0 0;
     overflow: hidden;
-    text-align: left;
+    text-align: left !important;
 }
 
 .challenge-detail .pageHeading h2 {
     font-size: 18px;
     line-height: 30px;
     color: #A3A3AE;
-    margin: 10px 0 20px;
+    margin-top: 10px;
     overflow: hidden;
 }
 
@@ -113,12 +119,12 @@ font-size: 18px;
 #stepBox .rightColumn {
     display: inline;
     float: right;
-    width: 300px;
+    width: 290px;
 }
 
 .challenge-detail .grid-3-3 {
     float: left;
-    width: 728px;
+    width: 790px;
 }
 
 .challenge-detail .currentTab-checkpoints .grid-3-3,
@@ -129,7 +135,7 @@ font-size: 18px;
 
 .challenge-detail .grid-1-3 {
     float: right;
-    width: 282px;
+    width: 288px;
 }
 
 .challenge-detail .currentTab-checkpoints .grid-1-3,
@@ -404,8 +410,7 @@ h1.center {
 }
 
 .challenge-detail .topRightTitle {
-    display: block;
-    width: 100%;
+    position: static !important;
 }
 
 .challenge-detail .topRightTitleAlt {
@@ -720,6 +725,7 @@ h1.center {
 }
 
 .challenge-detail .btnAction span {
+    display: inline-block;
     float: left;
     width: 21px;
     height: 37px;
@@ -738,8 +744,8 @@ h1.center {
 }
 
 .challenge-detail .btnAction strong {
-    float: left;
-    height: 100%;
+    display: inline-block;
+    padding-top: 5px;
     width: 77%;
     color: #fff;
 }
@@ -961,7 +967,7 @@ h1.center {
 }
 
 @media (max-width: 1019px) {
-    .challenge-detail .pageHeading h1 {
+/*    .challenge-detail .pageHeading h1 {
         font-size: 18px;
         line-height: 24px;
         padding: 8px 0;
@@ -1135,7 +1141,7 @@ h1.center {
         background-position: 0 -20px;
     }
 
-    /* Studio */
+    /* Studio * /
     .prizeSlider .bx-controls {
         margin: 10px 0 10px 0;
         text-align: center;
@@ -1222,7 +1228,7 @@ h1.center {
         padding-right: 5px;
         padding-top: 22px;
         padding-bottom: 22px;
-    }
+    }*/
 }
 
 /*new css for topcoder view checkpoints and view submission */
@@ -2642,11 +2648,13 @@ h1.center {
 
 /* stylish changes per Victor applied to challenge details only */
 .cd-wrapper {
-  font-family: "Sofia Pro", "Merriweather Sans", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  line-height: 22px;
-  color: #333;
-  background-color: #f6f6f6;
+    min-width: 1220px;
+    padding-top: 30px;
+    font-family: "Sofia Pro", "Merriweather Sans", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 22px;
+    color: #333;
+    background-color: #f6f6f6;
 }
   .cd-wrapper h1,
   .cd-wrapper h2,
@@ -2718,8 +2726,9 @@ h1.center {
     z-index: 5; }
   .cd-wrapper #mainContent.splitLayout,
   .cd-wrapper #mainContent.layChallenges {
-    padding: 90px 60px 30px;
-    margin: 60px;
+    max-width: 1080px;
+    padding: 60px 60px 30px;
+    margin: 0 auto;
     background: #fff; }
   .cd-wrapper #mainContent .container {
     padding: 0;

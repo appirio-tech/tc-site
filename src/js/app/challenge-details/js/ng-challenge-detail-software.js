@@ -50,85 +50,85 @@ function getAnchor(url) {
 //create slider if page is wide
 $(document).ready(function () {
 
-  if (window.innerWidth < 1019) {
+  // if (window.innerWidth < 1019) {
 
-    $(".rightColumn").insertAfter('.leftColumn');
-    $('.grid-1-3').insertBefore('#contest-overview');
-    $('.scroll-pane').jScrollPane({ autoReinitialise: true });
+  //   $(".rightColumn").insertAfter('.leftColumn');
+  //   $('.grid-1-3').insertBefore('#contest-overview');
+  //   $('.scroll-pane').jScrollPane({ autoReinitialise: true });
 
-    sliderActive = createSlider();
+  //   sliderActive = createSlider();
 
-    $('#stepBox .rightColumn .nextBox .allDeadlineNextBoxContent p:nth-child(3)').addClass('moveRight');
-    if ($('.studio').length > 0) {
-      updateDesignContestMobile();
-    }
-    // Hide deadline boxes on mobile view
-    updateDeadlineBoxMobile();
+  //   $('#stepBox .rightColumn .nextBox .allDeadlineNextBoxContent p:nth-child(3)').addClass('moveRight');
+  //   if ($('.studio').length > 0) {
+  //     updateDesignContestMobile();
+  //   }
+  //   // Hide deadline boxes on mobile view
+  //   updateDeadlineBoxMobile();
 
-    $('.registrantsTable').not('.mobile').addClass('hide');
-    $('.registrantsTable.mobile').removeClass('hide');
-  } else {
+  //   $('.registrantsTable').not('.mobile').addClass('hide');
+  //   $('.registrantsTable.mobile').removeClass('hide');
+  // } else {
 
-    if ($('.studio').length > 0) {
-      updateDesignContest();
-    }
-    // Show deadline boxes
-    updateDeadlineBox();
+  //   if ($('.studio').length > 0) {
+  //     updateDesignContest();
+  //   }
+  //   // Show deadline boxes
+  //   updateDeadlineBox();
 
-    $('.registrantsTable').not('.mobile').removeClass('hide');
-    $('.registrantsTable.mobile').addClass('hide');
-  }
+  //   $('.registrantsTable').not('.mobile').removeClass('hide');
+  //   $('.registrantsTable.mobile').addClass('hide');
+  // }
 
-  $('a[href="' + getAnchor(location.href) + '"]').click();
+  // $('a[href="' + getAnchor(location.href) + '"]').click();
 
-  // init tab nav
-  app.tabNavinit();
+  // // init tab nav
+  // app.tabNavinit();
 
-  var tcjwt = getCookie('tcjwt');
+  // var tcjwt = getCookie('tcjwt');
 
 });
 
 //create/destroy slider based on width
 $(window).resize(function () {
 
-  if (window.innerWidth < 1019) {
-    if (sliderActive == false) {
-      $(".rightColumn").insertAfter('.leftColumn');
-      $('.grid-1-3').insertBefore('#contest-overview');
-      $('.scroll-pane').jScrollPane({ autoReinitialise: true });
-      sliderActive = createSlider();
-    }
-    if ($('.studio').length > 0) {
-      updateDesignContestMobile();
-    }
-    // Hide deadline boxes on mobile view
-    updateDeadlineBoxMobile();
+  // if (window.innerWidth < 1019) {
+  //   if (sliderActive == false) {
+  //     $(".rightColumn").insertAfter('.leftColumn');
+  //     $('.grid-1-3').insertBefore('#contest-overview');
+  //     $('.scroll-pane').jScrollPane({ autoReinitialise: true });
+  //     sliderActive = createSlider();
+  //   }
+  //   if ($('.studio').length > 0) {
+  //     updateDesignContestMobile();
+  //   }
+  //   // Hide deadline boxes on mobile view
+  //   updateDeadlineBoxMobile();
 
-    $('.registrantsTable').not('.mobile').addClass('hide');
-    $('.registrantsTable.mobile').removeClass('hide');
-  }
+  //   $('.registrantsTable').not('.mobile').addClass('hide');
+  //   $('.registrantsTable.mobile').removeClass('hide');
+  // }
 
-  if (window.innerWidth > 1019) {
-    if (sliderActive == true) {
-      $(".rightColumn").insertAfter('.middleColumn');
-      $('.grid-1-3').insertAfter('.rightSplit');
-      $('.scroll-pane').jScrollPane({ autoReinitialise: true });
+  // if (window.innerWidth > 1019) {
+  //   if (sliderActive == true) {
+  //     $(".rightColumn").insertAfter('.middleColumn');
+  //     $('.grid-1-3').insertAfter('.rightSplit');
+  //     $('.scroll-pane').jScrollPane({ autoReinitialise: true });
 
-      slider.destroySlider();
-      sliderActive = false;
-      // Replace the destroyed slider with a previously cloned one
-      // Hack for a known bxslider bug: http://stackoverflow.com/questions/16283955/window-resize-with-bxslider-destroyed-breaks-style
-      $('.slider > ul:first-child').replaceWith(sliderClone);
-    }
-    if ($('.studio').length > 0) {
-      updateDesignContest();
-    }
-    // Show deadline boxes
-    updateDeadlineBox();
+  //     slider.destroySlider();
+  //     sliderActive = false;
+  //     // Replace the destroyed slider with a previously cloned one
+  //     // Hack for a known bxslider bug: http://stackoverflow.com/questions/16283955/window-resize-with-bxslider-destroyed-breaks-style
+  //     $('.slider > ul:first-child').replaceWith(sliderClone);
+  //   }
+  //   if ($('.studio').length > 0) {
+  //     updateDesignContest();
+  //   }
+  //   // Show deadline boxes
+  //   updateDeadlineBox();
 
-    $('.registrantsTable').not('.mobile').removeClass('hide');
-    $('.registrantsTable.mobile').addClass('hide');
-  }
+  //   $('.registrantsTable').not('.mobile').removeClass('hide');
+  //   $('.registrantsTable.mobile').addClass('hide');
+  // }
 });
 
 $(window).bind('orientationchange', function (event) {
