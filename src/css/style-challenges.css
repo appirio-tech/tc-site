@@ -603,10 +603,6 @@ select {
     padding: 0px;
 }
 
-.colCh a:hover img.allContestIco {
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
-}
-
 .tcoTable .colCh.nonTCO {
     text-align: left;
 }
@@ -844,10 +840,6 @@ caption.reviewDetail {
 .dataTable .colCh span.track-symbol {
     left: 11px;
     top: 46px;
-}
-
-.cgCh a:hover img.allContestIco {
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
 .contestGrid .cgTime {
