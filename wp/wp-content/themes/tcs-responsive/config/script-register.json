@@ -385,7 +385,7 @@
         "app/users/js/controllers/controllers-users.js",
         "app/users/js/directives/directives-users.js",
         "app/users/js/directives/badge-directive-users.js",
-        "app/users/js/directives/coderbits-directive-users.js",        
+        "app/users/js/directives/coderbits-directive-users.js",
         "app/users/js/directives/develop-directive-users.js",
         "app/users/js/controllers/base-controller-users.js",
         "app/users/js/controllers/design-controller-users.js",
@@ -557,7 +557,7 @@
         "style-404page.css",
         "my-dashboard.css"
       ]
-    },    
+    },
     "ngChallenges": {
       "name": "ngChallenges",
       "js": [
@@ -630,6 +630,7 @@
         "style-challenges.css",
         "jquery.qtip.min.css",
         "advanced-search.css",
+        "font-awesome.css",
         "../js/app/challenges/css/ngchallenges.css",
         "../js/app/challenges/lib/angular-loading-bar-0.3.0/loading-bar.css",
         "../js/app/challenges/lib/select2/select2-3.4.8/select2.css",

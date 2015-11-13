@@ -68,7 +68,7 @@
         display: block !important;
         width: 11px !important;
         height: 7px !important;
-        background: url("../i/icon-filter.png") no-repeat 0 0 !important;
+        background: url("../i/icon-filter-blue.png") no-repeat 0 0 !important;
         right: 10px !important;
         top: 14px !important;
         position: absolute !important;
@@ -120,7 +120,7 @@
         border-bottom: none;
     }
     .select2-results .select2-highlighted {
-        background: #ff9900 !important;
+        background: #0096FF !important;
         color: #fff !important;
     }
     .select2-results .select2-disabled .select2-result-label {
@@ -153,12 +153,8 @@
     clear: both;
 }
 .new-search-box {
-    width: 100%;
-    display: block;
-    height: auto;
     position: relative;
-    border: 1px solid #e1e1e1;
-    border-bottom: 0;
+    margin: 0 55px 0 55px;
 }
     .new-search-box input.search-text {
         height: 30px;
@@ -282,7 +278,7 @@ input.search-text::-webkit-input-placeholder {
                     margin-left: 8px;
                     margin-right: 6px;
                     margin-top: 11px;
-                    background: url("../i/close-tag.png") no-repeat;
+                    background: url("../i/close-tag-blue.png") no-repeat;
                     display: block;
                     width: 7px;
                     height: 7px;
@@ -368,7 +364,7 @@ input.search-text::-webkit-input-placeholder {
     display: block;
     width: 28px;
     height: 28px;
-    background: url("../i/icon-filter.png") no-repeat 0 -18px;
+    background: url("../i/icon-filter-blue.png") no-repeat 0 -18px;
     position: relative;
     top: 3px;
 }
@@ -415,7 +411,7 @@ input.search-text::-webkit-input-placeholder {
 .datepic-head {
     line-height: 36px;
     font-size: 14px;
-    color: #ff9900;
+    color: #0096FF;
     margin-right: 18px;
 }
 .from-datepicker.hasDatepicker{
@@ -503,10 +499,10 @@ input.search-text::-webkit-input-placeholder {
     color: #fff;
     margin-left: 16px;
 }
-/* myFilterWrap */ 
+/* myFilterWrap */
 .new-search-box .filtersSectn{
     background: #f9f9f9;
-    
+
     padding-left: 15px;
     width: 304px;
     box-sizing: border-box;
@@ -539,13 +535,13 @@ input.search-text::-webkit-input-placeholder {
     padding-left: 8px;
     color: #666;
     position: relative;
-} 
+}
 .myFilterWrap .btnFilter .arrow{
-    display: block;  
-    width: 12px;  
-    height: 10px;  
-    
-    background: url("../i/icon-filter.png") no-repeat 0 0;
+    display: block;
+    width: 12px;
+    height: 10px;
+
+    background: url("../i/icon-filter-blue.png") no-repeat 0 0;
     position: absolute;
     right: 10px;
     top: 15px;
@@ -566,21 +562,21 @@ input.search-text::-webkit-input-placeholder {
     font-size: 22px;
     font-weight: normal;
     padding: 0 15px;
-} 
+}
 .myFilterWrap .caption{
     color: #666;
     font-size: 13px;
     font-weight: 300;
     padding: 0 15px 12px;
     border-bottom: 1px solid #E7E7E7;
-} 
+}
 .myFilterWrap .savedSearchList{
     padding: 4px 12px;
     max-height: 290px;
     overflow: auto;
-} 
+}
 .myFilterWrap .filterPop .hr{
-    height: 1px; 
+    height: 1px;
     background: #e7e7e7;
 }
 .myFilterWrap .savedSearchList h6{
@@ -597,9 +593,9 @@ input.search-text::-webkit-input-placeholder {
     padding: 11px 11px 13px;
     min-height: 78px;
     box-sizing: border-box;
-} 
+}
 .myFilterWrap .savedSearch:hover{
-    border: 1px solid #f90;
+    border: 1px solid #0096FF;
     cursor: pointer;
 }
 .myFilterWrap .savedSearch .name{
@@ -609,23 +605,23 @@ input.search-text::-webkit-input-placeholder {
     overflow: hidden;
     white-space: nowrap;
     height: 18px;
-} 
+}
 .myFilterWrap .savedSearch:hover .name{
-    color: #f90;
+    color: #0096FF;
 }
 .myFilterWrap .savedSearch .opts{
     margin-top: -18px;
-    
+
     box-sizing: border-box;
     height: 18px;
     padding-top: 3px;
 }
 .myFilterWrap .savedSearch .lbl{
     line-height: 13px;
-} 
+}
 .myFilterWrap .savedSearch .chk{
     vertical-align: top;
-} 
+}
 .myFilterWrap .savedSearch .chkWrap .chk + .chkLbl{
     padding-left: 15px;
 }
@@ -645,14 +641,14 @@ input.search-text::-webkit-input-placeholder {
     height: 12px;
     width: 12px;
     margin-left: 11px;
-} 
+}
 .myFilterWrap .btnRemove:hover{
     background: url(@@cdn/i/ico-failed-x.png) 50% 50% no-repeat;
 }
 .myFilterWrap .savedSearch .tags{
     margin-top: 16px;
     overflow: hidden;
-} 
+}
 .myFilterWrap .savedSearch .tags .tag{
     max-width: 100%;
     text-overflow: ellipsis;
@@ -666,7 +662,7 @@ input.search-text::-webkit-input-placeholder {
     margin-right: 4px;
     margin-bottom: 6px;
     padding: 0 5px;
-} 
+}
 
 .btnSecondary{
     background: #c2c2c2;
@@ -700,14 +696,14 @@ input.search-text::-webkit-input-placeholder {
 }
  .filterWidget .details{
     padding-top: 19px;
-} 
+}
  .filterWidget .rw{
     padding: 0 12px 12px;
-} 
+}
  .filterWidget .lbl{
     margin-bottom: 10px;
     display: block;
-} 
+}
  .filterWidget #searchSaveTxt{
     background: #fff;
     border: 1px solid #e7e7e7;
@@ -723,7 +719,7 @@ input.search-text::-webkit-input-placeholder {
 }
  .filterWidget .alertMe{
     margin: 23px 26px 12px;
-} 
+}
  .chkWrap{
     position: relative;
 }
@@ -732,14 +728,14 @@ input.search-text::-webkit-input-placeholder {
     top: 0;
     left: 0;
     opacity: 0;
-} 
+}
  .chkWrap .chk + .chkLbl{
     padding-left: 30px;
     max-width: 215px;
     display: inline-block;
     -webkit-user-select: none;
     line-height: 16px;
-} 
+}
  .chkWrap .chk + .chkLbl:before{
      content: '';
      position: absolute;
@@ -756,7 +752,7 @@ input.search-text::-webkit-input-placeholder {
  }
  .chkWrap .myChallengesLabel  .chk + .chkLbl{
     padding-left: 20px;
-     
+
     }
  .chkWrap .myChallengesLabel  .chk + .chkLbl:before{
      background-image: url(@@cdn/i/chk3.png);
@@ -766,11 +762,11 @@ input.search-text::-webkit-input-placeholder {
     border-top: 1px solid #e7e7e7;
     padding: 10px 5px 10px 0;
     text-align: right;
-} 
+}
  .filterWidget .actn .btnCancel{
     width: 86px;
     margin: 0 4px;
-} 
+}
  .filterWidget .actn .btnSaveSearch{
     margin: 0 4px;
     width: 145px;
