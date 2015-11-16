@@ -731,9 +731,6 @@
 .submitAnotherEntry{
     margin-bottom: 280px;
 }
-.challenge-detail .pageHeading h1{
-    margin-top: 0;
-}
 #main > .container{
     padding-top: 10px;
 }
@@ -744,8 +741,8 @@
 }
 
 
- @media (max-width: 1019px) {       
-        
+ @media (max-width: 1019px) {
+
     .submitForChallenge #mainContent .pageTitle{
         display: none;
     }
