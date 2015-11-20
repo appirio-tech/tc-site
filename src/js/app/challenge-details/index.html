@@ -43,47 +43,53 @@
 
                 <tr>
                   <td ng-if="!CD.isDesign && CD.challenge.challengeType != 'Code'" class="fifty">
-                    <h2>1st PLACE</h2>
-
                     <h3>
                       <small>$</small><span ng-bind="CD.challenge.prize ? (CD.challenge.prize[0] ? CD.challenge.prize[0] : '') : ''"></span>
                     </h3>
+
+                    <h2>1st PLACE</h2>
                   </td>
                   <td ng-if="!CD.isDesign && CD.challenge.challengeType != 'Code'" class="fifty">
-                    <h2>2nd PLACE</h2>
                     <h3>
                       <small>$</small><span ng-bind="CD.challenge.prize ? (CD.challenge.prize[1] ? CD.challenge.prize[1] : '0') : ''"></span>
                     </h3>
+
+                    <h2>2nd PLACE</h2>
                   </td>
                   <td ng-if="(designOrCode = CD.isDesign || CD.challenge.challengeType == 'Code')" class="twenty {{!(CD.challenge.prize && CD.challenge.prize[0]) ? 'noPrize' : ''}}">
-                    <h2>1st PLACE</h2>
-
                     <h3>
-                      <small>$</small><span ng-bind="(CD.challenge.prize && CD.challenge.prize[0]) || 0"></span></h3>
+                      <small>$</small><span ng-bind="(CD.challenge.prize && CD.challenge.prize[0]) || 0"></span>
+                    </h3>
+
+                    <h2>1st PLACE</h2>
                   </td>
                   <td ng-if="designOrCode" class="twenty {{!(CD.challenge.prize && CD.challenge.prize[1]) ? 'noPrize' : ''}}">
-                    <h2>2nd PLACE</h2>
-
                     <h3>
-                      <small>$</small><span ng-bind="(CD.challenge.prize && CD.challenge.prize[1]) || 0"></span></h3>
+                      <small>$</small><span ng-bind="(CD.challenge.prize && CD.challenge.prize[1]) || 0"></span>
+                    </h3>
+
+                    <h2>2nd PLACE</h2>
                   </td>
                   <td ng-if="designOrCode" class="twenty {{!(CD.challenge.prize && CD.challenge.prize[2]) ? 'noPrize' : ''}}">
-                    <h2>3rd PLACE</h2>
-
                     <h3>
-                      <small>$</small><span ng-bind="(CD.challenge.prize && CD.challenge.prize[2]) || 0"></span></h3>
+                      <small>$</small><span ng-bind="(CD.challenge.prize && CD.challenge.prize[2]) || 0"></span>
+                    </h3>
+
+                    <h2>3rd PLACE</h2>
                   </td>
                   <td ng-if="designOrCode" class="twenty {{!(CD.challenge.prize && CD.challenge.prize[3]) ? 'noPrize' : ''}}">
-                    <h2>4th PLACE</h2>
-
                     <h3>
-                      <small>$</small><span ng-bind="(CD.challenge.prize && CD.challenge.prize[3]) || 0"></span></h3>
+                      <small>$</small><span ng-bind="(CD.challenge.prize && CD.challenge.prize[3]) || 0"></span>
+                    </h3>
+
+                    <h2>4th PLACE</h2>
                   </td>
                   <td ng-if="designOrCode" class="twenty {{!(CD.challenge.prize && CD.challenge.prize[4]) ? 'noPrize' : ''}}">
-                    <h2>5th PLACE</h2>
-
                     <h3>
-                      <small>$</small><span ng-bind="(CD.challenge.prize && CD.challenge.prize[4]) || 0"></span></h3>
+                      <small>$</small><span ng-bind="(CD.challenge.prize && CD.challenge.prize[4]) || 0"></span>
+                    </h3>
+
+                    <h2>5th PLACE</h2>
                   </td>
                   <td ng-if="designOrCode && (CD.challenge.prize && CD.challenge.prize.length > 5)" class="morePayments active closed" rowspan="2">
                   </td>

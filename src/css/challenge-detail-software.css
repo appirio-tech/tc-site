@@ -72,17 +72,17 @@
 }
 
 #stepBox .middleColumn table h2 {
-    color: #666666;
-    font-size: 14px;
-    font-weight: bold;
+    margin-top: 11px;
     margin-bottom: 27px;
+    font-size: 14px;
+    color: #666666;
     text-align: center;
 }
 
 #stepBox .middleColumn table h3 {
-    color: #00AEFF;
+    margin-top: 30px;
     font-size: 24px;
-    font-weight: bold;
+    color: #00AEFF;
 }
 
 .challenge-detail.develop #stepBox .middleColumn table h3 {
@@ -480,6 +480,29 @@ h1.center {
     border-bottom: 1px solid #e7e7e7;
 }
 
+.challenge-detail .columnSideBar .inner b {
+    font-size: 14px;
+}
+
+.challenge-detail .columnSideBar .inner ul li {
+    font-family: 'Merriweather Sans';
+    font-weight: 300;
+}
+
+.challenge-detail .columnSideBar .inner ul li:last-child {
+    margin-bottom: 10px;
+}
+
+.challenge-detail .columnSideBar .inner p {
+    font-family: 'Merriweather Sans';
+    font-weight: 300;
+    font-size: 13px;
+}
+
+.challenge-detail .columnSideBar .inner p strong {
+    font-family: 'Sofia Pro';
+}
+
 .challenge-detail .columnSideBar h3 {
     color: #000 !important;
     font-size: 14px;
@@ -756,6 +779,7 @@ h1.center {
     display: inline-block;
     padding-top: 5px;
     width: 77%;
+    font-weight: normal;
     color: #fff;
 }
 
@@ -973,6 +997,12 @@ h1.center {
 .addthis_counter {
     -webkit-transition: none;
     transition: none;
+}
+
+.downloadDocumentList strong {
+    font-size: 13px;
+    font-weight: 300;
+    font-family: 'Merriweather Sans';
 }
 
 @media (max-width: 1019px) {
@@ -2692,7 +2722,7 @@ h1.center {
     color: #000;
     text-transform: uppercase;
     font-family: "Sofia Pro", "Merriweather Sans", Helvetica, Aria, sans-serif;
-    margin: 40px 0 10px 0;
+    margin: 30px 0 10px 0;
     text-align: left; }
   .cd-wrapper .challenge-detail .columnSideBar h3 {
     color: #3d3d3d;
@@ -2736,7 +2766,7 @@ h1.center {
   .cd-wrapper #mainContent.splitLayout,
   .cd-wrapper #mainContent.layChallenges {
     max-width: 1080px;
-    padding: 60px 60px 30px;
+    padding: 40px 60px 30px;
     margin: 0 auto;
     background: #fff; }
   .cd-wrapper #mainContent .container {
