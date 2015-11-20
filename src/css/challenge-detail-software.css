@@ -72,17 +72,17 @@
 }
 
 #stepBox .middleColumn table h2 {
-    color: #666666;
-    font-size: 14px;
-    font-weight: bold;
+    margin-top: 11px;
     margin-bottom: 27px;
+    font-size: 14px;
+    color: #666666;
     text-align: center;
 }
 
 #stepBox .middleColumn table h3 {
-    color: #00AEFF;
+    margin-top: 30px;
     font-size: 24px;
-    font-weight: bold;
+    color: #00AEFF;
 }
 
 .challenge-detail.develop #stepBox .middleColumn table h3 {
@@ -323,9 +323,9 @@ h1.center {
 
 .challenge-detail .tableWrap h2 {
     color: #000;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 22px;
-    font-weight: bold;
+    font-weight: 500;
     margin-bottom: 10px;
 }
 
@@ -338,10 +338,11 @@ h1.center {
 }
 
 .challenge-detail .tableWrap p {
-    color: #797979;
-    font-size: 13px;
-    line-height: 18px;
     margin-bottom: 15px;
+    font-family: 'Merriweather Sans';
+    font-size: 14px;
+    line-height: 1.4;
+    color: #797979;
 }
 
 .challenge-detail .tableWrap strong {
@@ -360,13 +361,19 @@ h1.center {
 .challenge-detail .tableWrap ul li {
     float: none;
     display: block;
-    font-size: 13px;
-    line-height: 18px;
-    border: none;
     height: auto;
-    padding-left: 12px;
+    margin-bottom: 10px;
+    font-family: 'Merriweather Sans';
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.4;
+    border: none;
     background: url("../i/bullet.png") no-repeat 0 7px;
     color: #797979;
+}
+
+.challenge-detail .tableWrap ul li:last-child {
+    margin-bottom: 0;
 }
 
 /* Issue ID: I-114272 - Add style for ol and li */
@@ -473,10 +480,33 @@ h1.center {
     border-bottom: 1px solid #e7e7e7;
 }
 
+.challenge-detail .columnSideBar .inner b {
+    font-size: 14px;
+}
+
+.challenge-detail .columnSideBar .inner ul li {
+    font-family: 'Merriweather Sans';
+    font-weight: 300;
+}
+
+.challenge-detail .columnSideBar .inner ul li:last-child {
+    margin-bottom: 10px;
+}
+
+.challenge-detail .columnSideBar .inner p {
+    font-family: 'Merriweather Sans';
+    font-weight: 300;
+    font-size: 13px;
+}
+
+.challenge-detail .columnSideBar .inner p strong {
+    font-family: 'Sofia Pro';
+}
+
 .challenge-detail .columnSideBar h3 {
     color: #000 !important;
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 14px;
+    font-weight: 500;
     padding: 11px 10px;
     text-transform: uppercase;
 }
@@ -494,8 +524,10 @@ h1.center {
 }*/
 
 .challenge-detail .columnSideBar p strong {
+    display: block;
+    margin-top: 20px;
+    font-size: 14px;
     color: #000;
-    font-size: 16px;
 }
 
 .reviewStyle p {
@@ -747,6 +779,7 @@ h1.center {
     display: inline-block;
     padding-top: 5px;
     width: 77%;
+    font-weight: normal;
     color: #fff;
 }
 
@@ -964,6 +997,12 @@ h1.center {
 .addthis_counter {
     -webkit-transition: none;
     transition: none;
+}
+
+.downloadDocumentList strong {
+    font-size: 13px;
+    font-weight: 300;
+    font-family: 'Merriweather Sans';
 }
 
 @media (max-width: 1019px) {
@@ -2683,7 +2722,7 @@ h1.center {
     color: #000;
     text-transform: uppercase;
     font-family: "Sofia Pro", "Merriweather Sans", Helvetica, Aria, sans-serif;
-    margin: 40px 0 10px 0;
+    margin: 30px 0 10px 0;
     text-align: left; }
   .cd-wrapper .challenge-detail .columnSideBar h3 {
     color: #3d3d3d;
@@ -2727,7 +2766,7 @@ h1.center {
   .cd-wrapper #mainContent.splitLayout,
   .cd-wrapper #mainContent.layChallenges {
     max-width: 1080px;
-    padding: 60px 60px 30px;
+    padding: 40px 60px 30px;
     margin: 0 auto;
     background: #fff; }
   .cd-wrapper #mainContent .container {

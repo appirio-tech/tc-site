@@ -36,18 +36,17 @@
 
 .header-container header h1 {
     display: inline-block;
-    vertical-align: middle;
     font-size: 36px;
-    line-height: 1;
+    line-height: 36px;
     overflow: hidden;
     text-transform: uppercase;
 }
 
 .header-container header span {
     display: inline-block;
-    vertical-align: middle;
-    padding: 0;
+    margin-bottom: 9px;
     margin-left: 10px;
+    padding: 0;
 }
 
 body, #wrapper {
@@ -1425,6 +1424,7 @@ span.subscribeTopWrapper {
 span.subscribeTopWrapper .feedBtn {
     float: none;
     margin-top: 0;
+    line-height: 1;
 }
 
 .contestGrid .gdUpcoming > p{
