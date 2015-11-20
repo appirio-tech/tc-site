@@ -433,7 +433,7 @@ get_header(); ?>
   <div class="colCh" ng-if="row.getProperty('challengeCommunity') !== 'data'">
     <div>
       <a ng-href="/challenge-details/{{row.getProperty('challengeId')}}/?type={{row.getProperty('challengeCommunity')}}" class="contestName">
-        <img alt="allContestIco" class="allContestIco" ng-src="{{images}}ico-track-{{contest.contestType == 'data' ? 'data' : row.getProperty('challengeCommunity')}}.svg">
+        <img alt="allContestIco" class="allContestIco" ng-src="{{images}}banner-{{contest.contestType == 'data' ? 'data' : row.getProperty('challengeCommunity')}}.svg">
         <span ng-cell-text>{{row.getProperty(col.field)}}</span>
         <span class="track-symbol" qtip title="Challenge Type" text="{{row.getProperty('challengeType')}}" community="{{row.getProperty('challengeCommunity')}}">
           {{getTrackSymbol(row.getProperty('challengeType')).toUpperCase()}}
@@ -450,7 +450,7 @@ get_header(); ?>
   <div class="colCh" ng-if="row.getProperty('challengeCommunity') === 'data'">
     <div>
       <a ng-href="//community.topcoder.com/tc?module=MatchDetails&rd={{row.getProperty('roundId')}}" class="contestName">
-        <img alt="allContestIco" class="allContestIco" ng-src="{{images}}ico-track-data.svg">
+        <img alt="allContestIco" class="allContestIco" ng-src="{{images}}banner-data.svg">
         <span ng-cell-text>{{row.getProperty('fullName')}}</span>
       </a>
     </div>
