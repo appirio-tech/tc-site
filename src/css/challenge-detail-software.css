@@ -323,9 +323,9 @@ h1.center {
 
 .challenge-detail .tableWrap h2 {
     color: #000;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 22px;
-    font-weight: bold;
+    font-weight: 500;
     margin-bottom: 10px;
 }
 
@@ -338,10 +338,11 @@ h1.center {
 }
 
 .challenge-detail .tableWrap p {
-    color: #797979;
-    font-size: 13px;
-    line-height: 18px;
     margin-bottom: 15px;
+    font-family: 'Merriweather Sans';
+    font-size: 14px;
+    line-height: 1.4;
+    color: #797979;
 }
 
 .challenge-detail .tableWrap strong {
@@ -360,13 +361,19 @@ h1.center {
 .challenge-detail .tableWrap ul li {
     float: none;
     display: block;
-    font-size: 13px;
-    line-height: 18px;
-    border: none;
     height: auto;
-    padding-left: 12px;
+    margin-bottom: 10px;
+    font-family: 'Merriweather Sans';
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.4;
+    border: none;
     background: url("../i/bullet.png") no-repeat 0 7px;
     color: #797979;
+}
+
+.challenge-detail .tableWrap ul li:last-child {
+    margin-bottom: 0;
 }
 
 /* Issue ID: I-114272 - Add style for ol and li */
@@ -475,8 +482,8 @@ h1.center {
 
 .challenge-detail .columnSideBar h3 {
     color: #000 !important;
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 14px;
+    font-weight: 500;
     padding: 11px 10px;
     text-transform: uppercase;
 }
@@ -494,8 +501,10 @@ h1.center {
 }*/
 
 .challenge-detail .columnSideBar p strong {
+    display: block;
+    margin-top: 20px;
+    font-size: 14px;
     color: #000;
-    font-size: 16px;
 }
 
 .reviewStyle p {
