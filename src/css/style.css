@@ -801,6 +801,7 @@
         padding: 10px 0 0 55px;
 }
     .layChallenges .challengeType ul > li{
+        padding-bottom: 1px;
         float: left;
         border-left: 1px solid #D0D0D1;
         height: 18px;
