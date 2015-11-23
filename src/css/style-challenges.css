@@ -21,6 +21,34 @@
 
 /* end of edit by evilkyro1965 */
 
+.header-container {
+    background: #fcfcfc;
+}
+
+.header-container .container {
+    margin: 0 60px;
+    padding: 10px 60px;
+}
+
+.header-container header {
+    padding: 30px 60px;
+}
+
+.header-container header h1 {
+    display: inline-block;
+    font-size: 36px;
+    line-height: 36px;
+    overflow: hidden;
+    text-transform: uppercase;
+}
+
+.header-container header span {
+    display: inline-block;
+    margin-bottom: 9px;
+    margin-left: 10px;
+    padding: 0;
+}
+
 body, #wrapper {
     min-width: 1024px !important;
 }
@@ -164,7 +192,22 @@ select {
     width: auto;
     margin: 0 auto;
 }
-
+.layChallenges .links {
+  border-bottom: 1px solid #f0f0f0;
+}
+.layChallenges .links .link {
+    margin-right: 35px;
+    color: #A3A3AE;
+    font-size: 16px;
+    line-height: 24px;
+    font-family: "Sofia Pro", Helvetica, Arial;
+    text-transform: uppercase;
+}
+.layChallenges .links .link.active {
+    border-bottom: 2px solid #0096FF;
+    color: #000000;
+    padding-bottom: 18px
+}
 .landingChallenges .challengeType {
     width: 300px;
 }
@@ -195,8 +238,6 @@ select {
     position: absolute;
     left: 12px;
     top: 4px;
-    background: url(@@cdn/i/tco/tco-arrow.png) no-repeat;
-    background-position: 0 10px;
 
     -moz-transition-duration: .2s;
     -webkit-transition-duration: .2s;
@@ -558,12 +599,7 @@ select {
 }
 
 #tcoTableAllContest .colCh a img.allContestIco {
-    height: 36px;
     padding: 0px;
-}
-
-.colCh a:hover img.allContestIco {
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
 .tcoTable .colCh.nonTCO {
@@ -749,24 +785,22 @@ caption.reviewDetail {
 /*Bugfix I-107027: restrict contest name to 2 lines in grid mode*/
 .contestGrid .cgCh a span {
     display:inline-block;
-    height: 2.4em;
+    height: 2.7em;
     width: 100%;
     overflow: hidden;
 }
 .contestGrid .cgCh a:hover {
-    color: #FFB800
+    color: #0096FF;
 }
 
 .contestGrid .technologyTags a:hover {
-    color: #FFB800
+    color: #0096FF;
 }
 
 .contestGrid .cgCh a img {
     position: absolute;
     top: 0;
     left: 15px;
-    background: url(@@cdn/i/tco/tco-arrow.png) no-repeat;
-    background-position: 0 10px;
     padding-bottom: 8px;
 }
 
@@ -785,7 +819,6 @@ caption.reviewDetail {
 }
 
 #gridAll .cgCh a img.allContestIco {
-    height: 36px;
     padding: 0px;
 }
 
@@ -806,10 +839,6 @@ caption.reviewDetail {
 .dataTable .colCh span.track-symbol {
     left: 11px;
     top: 46px;
-}
-
-.cgCh a:hover img.allContestIco {
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
 .contestGrid .cgTime {
@@ -1065,7 +1094,7 @@ select:disabled {
 }
 
 .ui-datepicker-calendar .ui-datepicker-today {
-    background-color: #FF8A00;
+    background-color: #0096FF;
     color: #fff;
 }
 
@@ -1074,7 +1103,7 @@ select:disabled {
 }
 
 .ui-datepicker-calendar .ui-datepicker-current-day {
-    background-color: #FFB800;
+    background-color: #0096FF;
     color: #fff;
 }
 
@@ -1105,8 +1134,6 @@ select:disabled {
 
 .ui-datepicker-prev,
 .ui-datepicker-next {
-    background: url(@@cdn/i/arrows-rl.png) no-repeat;
-    background-position: 3px -25px;
     cursor: pointer;
     z-index: 10;
 }
@@ -1124,21 +1151,22 @@ select:disabled {
     text-indent: 10000px;
     display: block;
     overflow: hidden;
-    top: 9px;
+    top: 13px;
     left: 11px;
     position: absolute;
+    background: url(@@cdn/i/chevron-left-design.png) no-repeat;
 }
 
 .ui-datepicker-next {
     width: 20px;
     height: 20px;
     text-indent: 10000px;
-    background-position: 3px 4px;
     display: block;
     overflow: hidden;
-    top: 9px;
+    top: 13px;
     right: 11px;
     position: absolute;
+    background: url(@@cdn/i/chevron-right-design.png) no-repeat;
 }
 
 .ui-datepicker-next.ui-state-disabled {
@@ -1396,6 +1424,7 @@ span.subscribeTopWrapper {
 span.subscribeTopWrapper .feedBtn {
     float: none;
     margin-top: 0;
+    line-height: 1;
 }
 
 .contestGrid .gdUpcoming > p{
@@ -1423,3 +1452,296 @@ span.subscribeTopWrapper .feedBtn {
     white-space: inherit;
     overflow: auto;
 }
+
+
+/* stylish changes per Victor applied to challenge listing only */
+.cl-wrapper {
+  font-family: "Sofia Pro", "Merriweather Sans", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+  color: #333;
+  background-color: #f6f6f6;
+  padding: 30px 0 30px 0;
+  clear: both;
+}
+
+.cl-wrapper .challenges-sub-nav {
+  text-align: center;
+  height: 40px;
+  padding: 20px 0 0 60px;
+  background: #fcfcfc;
+}
+
+.cl-wrapper .challenges-sub-nav a:hover {
+    text-decoration: none;
+}
+  .cl-wrapper h1,
+  .cl-wrapper h2,
+  .cl-wrapper h3,
+  .cl-wrapper h4,
+  .cl-wrapper h5,
+  .cl-wrapper h6 {
+    font-weight: 500;
+    line-height: 1.125em;
+    font-family: "Sofia Pro", Helvetica, Arial, sans-serif; }
+  .cl-wrapper .sideStream h1,
+  .cl-wrapper .challenge-detail.develop .tableWrap h1,
+  .cl-wrapper .challenge-detail .tableWrap h1 {
+    font-size: 28px;
+    color: #3D3D3D;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    border: none; }
+  .cl-wrapper h2,
+  .cl-wrapper .challenge-detail .tableWrap h2 {
+    font-size: 18px;
+    font-weight: 400;
+    font-style: normal;
+    color: #000;
+    text-transform: uppercase;
+    font-family: "Sofia Pro", "Merriweather Sans", Helvetica, Aria, sans-serif;
+    margin: 40px 0 10px 0;
+    text-align: left; }
+  .cl-wrapper .challenge-detail .columnSideBar h3 {
+    color: #3d3d3d;
+    font-size: 14px;
+    padding-bottom: 0; }
+  .cl-wrapper p,
+  .cl-wrapper .challenge-detail .tableWrap p {
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 24px;
+    color: #3d3d3d;
+    padding-bottom: 24px;
+    margin: 0; }
+  .cl-wrapper .challenge-detail .tableWrap strong {
+    color: #3d3d3d;
+    font-weight: 600; }
+  .cl-wrapper em {
+    font-style: italic;
+    font-family: Merriweather, Georgia, serif; }
+  .cl-wrapper .note {
+    border-left: 6px solid #d2d2d2;
+    padding-left: 30px;
+    padding-bottom: 0px !important; }
+  .cl-wrapper .challenge-detail .columnSideBar {
+    display: block;
+    clear: none;
+    width: 100%;
+    background: #f7f7f7;
+    border: none;
+    margin-top: 0;
+    padding: 20px 10px; }
+  .cl-wrapper .challenge-detail.develop .columnSideBar {
+    margin-top: 25px; }
+  .cl-wrapper .challenge-detail .columnSideBar .inner {
+    padding: 10px;
+    border-bottom: none; }
+  .cl-wrapper input[type=text],
+  .cl-wrapper input[type=url] {
+    padding: 6px;
+    margin: 0;
+    height: 30px;
+    line-height: 20px;
+    background: #3f4143;
+    font-family: "Merriweather Sans", Helvetica, Aria, sans-serif;
+    font-size: 15px;
+    color: #3d3d3d;
+    border: 1px solid #CECECE;
+    box-shadow: inset 0px 0px 1px 0px rgba(183, 183, 183, 0.4);
+    transition: 200ms all; }
+  .cl-wrapper input[type=text]:hover,
+  .cl-wrapper input[type=url]:hover {
+    border: 1px solid #A3A3AE;
+    box-shadow: inset 0px 0px 1px 0px rgba(183, 183, 183, 0.8); }
+  .cl-wrapper input[type=text]:focus,
+  .cl-wrapper input[type=url]:focus {
+    border: 1px solid #4CB5FF;
+    box-shadow: inset 0px 0px 1px 0px rgba(133, 203, 255, 0.1); }
+  .cl-wrapper #main,
+  .cl-wrapper #wrapper > .content {
+    background: #F6F6F6;
+    position: relative;
+    z-index: 5; }
+  .cl-wrapper #mainContent.splitLayout,
+  .cl-wrapper #mainContent.layChallenges {
+    max-width: 1242px;
+    margin: 0 auto 0 auto;
+    background: #fff; }
+  .cl-wrapper #mainContent .container {
+    padding: 0;
+    margin: 0;
+    width: 100%; }
+  .cl-wrapper #main {
+    background: #F6F6F6; }
+  .cl-wrapper #navigation {
+    background: #fff; }
+  .cl-wrapper .layChallenges header {
+    padding-bottom: 30px;
+    position: relative; }
+  .cl-wrapper a,
+  .cl-wrapper a:active,
+  .cl-wrapper a:visited {
+    text-decoration: none;
+    color: #0096FF;
+    -moz-transition-duration: .3s;
+    -webkit-transition-duration: .3s;
+    transition: .2s all ease-in-out;
+    -webkit-tap-highlight-color: transparent;
+    outline: 0; }
+  .cl-wrapper a:hover {
+    color: #097DCE;
+    text-decoration: underline; }
+  .cl-wrapper .tcoTable .colCh a:hover {
+    color: #097DCE; }
+  .cl-wrapper .nextLink:hover,
+  .cl-wrapper .prevLink:hover {
+    color: #097DCE; }
+  .cl-wrapper #mainContent .dataChanges {
+    padding: 20px 0 20px 0;
+    text-align: center;
+    font-family: "Sofia Pro", Helvetica, Arial;
+    font-size: 14px;
+    color: #3d3d3d; }
+  .cl-wrapper #mainContent .dataChanges .lt {
+    float: none;
+    display: inline;
+    padding: 0;
+    margin-right: 30px;}
+  .cl-wrapper #mainContent .dataChanges .rt {
+    float: none;
+    text-align: right;
+    overflow: hidden;
+    display: inline; }
+  .cl-wrapper #mainContent .dataChanges .prevLink {
+    display: inline-block;
+    padding-left: 20px;
+    position: relative;
+    float: none; }
+  .cl-wrapper #mainContent .dataChanges .nextLink {
+    position: relative;
+    padding-right: 23px;
+    padding-left: 30px;
+    float: none; }
+  .cl-wrapper span.ng-show.challenges.lenght {
+    color: #DEDEDE;
+    padding: 0 5px; }
+  .cl-wrapper .challengesGrid .ngHeaderContainer {
+    background-color: #FFFFFF; }
+  .cl-wrapper .challengesGrid .challengeHeader {
+    height: 100%;
+    border-bottom: none; }
+  .cl-wrapper .challengesGrid .ngHeaderCell {
+    background-color: #fff;
+    color: #7F7F7F;
+    line-height: 37px;
+    vertical-align: middle;
+    text-align: left;
+    font-family: "Sofia Pro", Helvetica, Arial, sans-serif;
+    word-wrap: break-word;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 400; }
+  .cl-wrapper .ngTopPanel {
+    position: relative;
+    z-index: 1;
+    background-color: #FFFFFF;
+    border-bottom: none; }
+  .cl-wrapper .challengesGrid .challengeRow {
+    height: 100%;
+    border: solid #e7e7e7;
+    border-width: 1px 0;
+    font-size: 16px;
+    color: #3d3d3d; }
+  .cl-wrapper .challengesGrid .ngRow.odd {
+    background-color: #FCFCFC; }
+  .cl-wrapper .challengesGrid .challengeRow {
+    height: 100%;
+    border: solid #F1F0F0;
+    border-width: 1px 0;
+    font-size: 16px;
+    color: #3d3d3d; }
+  .cl-wrapper .challengesGrid .colTime .row {
+    overflow: hidden;
+    line-height: 24px;
+    font-size: 13px; }
+  .cl-wrapper .colt1 {
+    width: 210px;
+    text-align: center; }
+  .cl-wrapper .colt3 {
+    width: 90px;
+    text-align: center; }
+  .cl-wrapper .challengeRow .colt4 {
+    font-weight: 700;
+    text-align: center; }
+  .cl-wrapper .colt4 {
+    text-align: center; }
+  .cl-wrapper .tcoTable .colCh a {
+    width: 270px;
+    padding-left: 66px;
+    color: #3d3d3d; }
+  .cl-wrapper .technologyTags span {
+    color: #3C3C3C;
+    font-size: 12px;
+    margin: 0;
+    padding: 1px 6px;
+    border-radius: 4px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 4px;
+    background-color: #F0F0F0; }
+  .cl-wrapper .technologyTags .techTag a {
+    padding: 0;
+    color: #666;
+    display: inline; }
+  .cl-wrapper .layChallenges .actions {
+    margin-bottom: -1px;
+    padding: 16px 0 30px; }
+  .cl-wrapper .pastCaption,
+  .cl-wrapper .upcomingCaption {
+    font-style: italic;
+    color: #A3A3AE;
+    font-weight: 300; }
+  .cl-wrapper .layChallenges .challengeType ul .link.active,
+  .cl-wrapper .layChallenges .challengeType ul .link.active:hover {
+    color: #000;
+    cursor: default;
+    text-transform: none;
+    text-decoration: none; }
+  .cl-wrapper .new-search-box input.search-text {
+    width: calc( 100% - 14px);
+    display: block;
+    background: #FFFFFF;
+    border-radius: 2px;
+    margin: 0 auto;
+    border: 1px solid #CECECE; }
+  .cl-wrapper .new-search-box input.search-text:focus {
+    border: 1px solid #4CB5FF;
+    box-shadow: inset 0px 0px 2px 1px rgba(133, 203, 255, 0.6); }
+  .cl-wrapper .selected-tags .wrapper {
+    border: none;
+    padding: 10px 0 20px 0; }
+  .cl-wrapper .selected-tags li.left .selecting-tag-wrapper {
+    height: 30px;
+    background: #D1D3D4;
+    padding-right: 25px;
+    margin-right: 15px;
+    font-size: 12px;
+    color: #fff;
+    border-radius: 15px;
+    transition: .2s all ease-in-out; }
+  .cl-wrapper .selected-tags li.left .selecting-tag-wrapper:hover {
+    background: #0096FF;
+    cursor: default; }
+  .cl-wrapper .selected-tag {
+    margin: 5px 0 0 10px;
+    line-height: 28px;
+    position: relative;
+    padding: 2px 0 0 0; }
+  .cl-wrapper .filter-dropdown {
+    border: none;
+    background: #F6F6F6; }
+  .cl-wrapper .gridChallengName {
+    color: #0096FF; }
+  .cl-wrapper .contestGrid .trackSD .genInfo > p i {
+    background-color: #B9B9B9; }

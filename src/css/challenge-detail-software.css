@@ -1,20 +1,31 @@
+.challenge-detail .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    background: #fff;
+    border-bottom: 1px solid #f0f0f0;
+}
+.challenge-detail .header-container .container {
+    margin: 0 60px;
+    padding: 10px 60px;
+}
+
+.challenge-detail .pageHeading {
+    padding: 30px 60px;
+}
+
 .challenge-detail .pageHeading h1 {
-    font-size: 30px;
-    line-height: 30px;
-    font-weight: normal;
-    color: #474747;
-    padding: 15px 0;
-    margin: 10px 0;
-    border-bottom: 1px solid #e7e7e7;
+    font-size: 32px;
+    line-height: 38px;
     overflow: hidden;
+    text-align: left !important;
 }
 
 .challenge-detail .pageHeading h2 {
-    font-size: 14px;
+    font-size: 18px;
     line-height: 30px;
-    font-weight: bold;
-    color: #666666;
-    margin: 10px 0;
+    color: #A3A3AE;
+    margin-top: 10px;
     overflow: hidden;
 }
 
@@ -25,12 +36,13 @@
 #stepBox {
     display: block;
     overflow: hidden;
+    margin-bottom: 30px;
 }
 
 #stepBox .leftColumn {
     display: inline;
     float: left;
-    width: 133px;
+    width: 145px;
 }
 
 .view-challenge-result #stepBox .leftColumn a {
@@ -44,8 +56,8 @@
 #stepBox .middleColumn {
     display: inline;
     float: left;
-    width: 550px;
-    margin: 0 22px;
+    width: 605px;
+    margin: 0 18px;
 }
 
 #stepBox .middleColumn table {
@@ -60,16 +72,17 @@
 }
 
 #stepBox .middleColumn table h2 {
-    color: #666666;
-    font-size: 14px;
-    font-weight: bold;
+    margin-top: 11px;
     margin-bottom: 27px;
+    font-size: 14px;
+    color: #666666;
+    text-align: center;
 }
 
 #stepBox .middleColumn table h3 {
-    color: #00AEFF;
+    margin-top: 30px;
     font-size: 24px;
-    font-weight: bold;
+    color: #00AEFF;
 }
 
 .challenge-detail.develop #stepBox .middleColumn table h3 {
@@ -105,13 +118,13 @@ font-size: 18px;
 }
 #stepBox .rightColumn {
     display: inline;
-    float: left;
-    width: 283px;
+    float: right;
+    width: 290px;
 }
 
 .challenge-detail .grid-3-3 {
     float: left;
-    width: 728px;
+    width: 790px;
 }
 
 .challenge-detail .currentTab-checkpoints .grid-3-3,
@@ -122,7 +135,7 @@ font-size: 18px;
 
 .challenge-detail .grid-1-3 {
     float: right;
-    width: 282px;
+    width: 288px;
 }
 
 .challenge-detail .currentTab-checkpoints .grid-1-3,
@@ -132,7 +145,6 @@ font-size: 18px;
 
 #stepBox .rightColumn .nextBox {
     position: relative;
-    width: 283px;
 }
 
 #stepBox .rightColumn .nextBox .nextBoxContent,
@@ -166,7 +178,7 @@ font-size: 18px;
     float: left;
     font-weight: bold;
     text-align: left;
-    width: 150px; /* Issue ID: I-107591 - adjust the value so all the deadlines are displayed correctly. Previous value: 155px */
+    width: 135px; /* Issue ID: I-107591 - adjust the value so all the deadlines are displayed correctly. Previous value: 155px */
 }
 
 #stepBox .rightColumn .nextBox .nextDTitle {
@@ -197,10 +209,6 @@ font-size: 18px;
     background: url("@@cdn/i/ico-time.png") no-repeat 0 0;
 }
 
-.challenge-detail.develop #stepBox .rightColumn .nextBox .icoTime {
-    background: url("@@cdn/i/ico-time-develop.png") no-repeat 0 0;
-}
-
 #stepBox .rightColumn .nextBox .timeLeft {
     color: #FFFFFE;
     font-size: 30px;
@@ -229,7 +237,6 @@ font-size: 18px;
 
 #stepBox .rightColumn .deadlineBox {
     position: relative;
-    width: 283px;
 }
 
 #stepBox .rightColumn .deadlineBox .deadlineBoxContent {
@@ -268,6 +275,7 @@ font-size: 18px;
     float: left;
     border-left: 1px solid #D0D0D1;
     height: 16px;
+    font-size: 16px;
     line-height: 18px;
 }
 
@@ -315,9 +323,9 @@ h1.center {
 
 .challenge-detail .tableWrap h2 {
     color: #000;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 22px;
-    font-weight: bold;
+    font-weight: 500;
     margin-bottom: 10px;
 }
 
@@ -330,10 +338,11 @@ h1.center {
 }
 
 .challenge-detail .tableWrap p {
-    color: #797979;
-    font-size: 13px;
-    line-height: 18px;
     margin-bottom: 15px;
+    font-family: 'Merriweather Sans';
+    font-size: 14px;
+    line-height: 1.4;
+    color: #797979;
 }
 
 .challenge-detail .tableWrap strong {
@@ -352,13 +361,19 @@ h1.center {
 .challenge-detail .tableWrap ul li {
     float: none;
     display: block;
-    font-size: 13px;
-    line-height: 18px;
-    border: none;
     height: auto;
-    padding-left: 12px;
+    margin-bottom: 10px;
+    font-family: 'Merriweather Sans';
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.4;
+    border: none;
     background: url("../i/bullet.png") no-repeat 0 7px;
     color: #797979;
+}
+
+.challenge-detail .tableWrap ul li:last-child {
+    margin-bottom: 0;
 }
 
 /* Issue ID: I-114272 - Add style for ol and li */
@@ -402,8 +417,7 @@ h1.center {
 }
 
 .challenge-detail .topRightTitle {
-    display: block;
-    width: 100%;
+    position: static !important;
 }
 
 .challenge-detail .topRightTitleAlt {
@@ -466,10 +480,33 @@ h1.center {
     border-bottom: 1px solid #e7e7e7;
 }
 
+.challenge-detail .columnSideBar .inner b {
+    font-size: 14px;
+}
+
+.challenge-detail .columnSideBar .inner ul li {
+    font-family: 'Merriweather Sans';
+    font-weight: 300;
+}
+
+.challenge-detail .columnSideBar .inner ul li:last-child {
+    margin-bottom: 10px;
+}
+
+.challenge-detail .columnSideBar .inner p {
+    font-family: 'Merriweather Sans';
+    font-weight: 300;
+    font-size: 13px;
+}
+
+.challenge-detail .columnSideBar .inner p strong {
+    font-family: 'Sofia Pro';
+}
+
 .challenge-detail .columnSideBar h3 {
-    color: #00aeff;
-    font-size: 16px;
-    font-weight: bold;
+    color: #000 !important;
+    font-size: 14px;
+    font-weight: 500;
     padding: 11px 10px;
     text-transform: uppercase;
 }
@@ -487,6 +524,9 @@ h1.center {
 }*/
 
 .challenge-detail .columnSideBar p strong {
+    display: block;
+    margin-top: 20px;
+    font-size: 14px;
     color: #000;
 }
 
@@ -703,7 +743,7 @@ h1.center {
 
 .challenge-detail.develop .btnAction {
     background: #64c51c !important;
-    border-bottom: 4px solid #46b314 !important;
+    border-bottom: none !important;
 }
 
 .challenge-detail.develop .btnAction:hover {
@@ -717,6 +757,7 @@ h1.center {
 }
 
 .challenge-detail .btnAction span {
+    display: inline-block;
     float: left;
     width: 21px;
     height: 37px;
@@ -735,11 +776,11 @@ h1.center {
 }
 
 .challenge-detail .btnAction strong {
-    float: left;
-    height: 100%;
+    display: inline-block;
+    padding-top: 5px;
     width: 77%;
-    margin-top: 4px !important;
-
+    font-weight: normal;
+    color: #fff;
 }
 
 .btnMyAcc span {
@@ -777,14 +818,9 @@ h1.center {
     font-size: 18px;
 }
 
-#stepBox .rightColumn .nextBox .allDeadlineNextBoxContent.studio {
-    height: 90px;
+#stepBox .rightColumn .nextBox .allDeadlineNextBoxContent.studio p {
+    padding-bottom: 5px;
 }
-
-#stepBox .rightColumn .nextBox .allDeadlineNextBoxContent.studio label {
-    width: 150px; /* Issue ID: I-107591 - adjust the value so all the deadlines are displayed correctly. Previous value: 155px */
-}
-
 .challenge-detail .tabNav span.inactive {
     color: #aaa;
     cursor: default;
@@ -963,8 +999,14 @@ h1.center {
     transition: none;
 }
 
+.downloadDocumentList strong {
+    font-size: 13px;
+    font-weight: 300;
+    font-family: 'Merriweather Sans';
+}
+
 @media (max-width: 1019px) {
-    .challenge-detail .pageHeading h1 {
+/*    .challenge-detail .pageHeading h1 {
         font-size: 18px;
         line-height: 24px;
         padding: 8px 0;
@@ -985,7 +1027,7 @@ h1.center {
     }
 
     .challenge-detail .grid-3-3 {
-        width: 100%;
+        width: 100% !important;
     }
 
     .challenge-detail .topRightTitleAlt,
@@ -1058,10 +1100,6 @@ h1.center {
         height: 43px;
         padding-left: 35px;
         padding-top: 10px;
-    }
-
-    .challenge-detail.develop #stepBox .rightColumn .nextBox .icoTime {
-        background: url("@@cdn/i/ico-time-develop-phone.png") no-repeat 0 10px;
     }
 
     #stepBox .rightColumn .nextBox .nextDTitle {
@@ -1142,7 +1180,7 @@ h1.center {
         background-position: 0 -20px;
     }
 
-    /* Studio */
+    /* Studio * /
     .prizeSlider .bx-controls {
         margin: 10px 0 10px 0;
         text-align: center;
@@ -1229,7 +1267,7 @@ h1.center {
         padding-right: 5px;
         padding-top: 22px;
         padding-bottom: 22px;
-    }
+    }*/
 }
 
 /*new css for topcoder view checkpoints and view submission */
@@ -2646,3 +2684,198 @@ h1.center {
 }
 
 /* styles for member program path box - end */
+
+/* stylish changes per Victor applied to challenge details only */
+.cd-wrapper {
+    min-width: 1220px;
+    padding-top: 30px;
+    font-family: "Sofia Pro", "Merriweather Sans", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 22px;
+    color: #333;
+    background-color: #f6f6f6;
+}
+  .cd-wrapper h1,
+  .cd-wrapper h2,
+  .cd-wrapper h3,
+  .cd-wrapper h4,
+  .cd-wrapper h5,
+  .cd-wrapper h6 {
+    font-weight: 400;
+    line-height: 1.125em;
+    font-family: "Sofia Pro", Helvetica, Arial, sans-serif; }
+  .cd-wrapper .sideStream h1,
+  .cd-wrapper header h1,
+  .cd-wrapper .challenge-detail.develop .tableWrap h1,
+  .cd-wrapper .challenge-detail .tableWrap h1 {
+    font-size: 28px;
+    color: #3D3D3D;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    border: none; }
+  .cd-wrapper h2,
+  .cd-wrapper .challenge-detail .tableWrap h2 {
+    font-size: 18px;
+    font-weight: 400;
+    font-style: normal;
+    color: #000;
+    text-transform: uppercase;
+    font-family: "Sofia Pro", "Merriweather Sans", Helvetica, Aria, sans-serif;
+    margin: 30px 0 10px 0;
+    text-align: left; }
+  .cd-wrapper .challenge-detail .columnSideBar h3 {
+    color: #3d3d3d;
+    font-size: 14px;
+    padding-bottom: 0; }
+  .cd-wrapper p,
+  .cd-wrapper .challenge-detail .tableWrap p {
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 24px;
+    color: #3d3d3d;
+    margin: 0; }
+  .cd-wrapper .challenge-detail .tableWrap strong {
+    color: #3d3d3d;
+    font-weight: 600; }
+  .cd-wrapper em {
+    font-style: italic;
+    font-family: "Merriweather", Georgia, serif; }
+  .cd-wrapper .note {
+    border-left: 6px solid #d2d2d2;
+    padding-left: 30px;
+    padding-bottom: 0px !important; }
+  .cd-wrapper .challenge-detail .columnSideBar {
+    display: block;
+    clear: none;
+    width: 100%;
+    background: #f7f7f7;
+    border: none;
+    margin-top: 0;
+    padding: 20px 10px; }
+  .cd-wrapper .challenge-detail.develop .columnSideBar {
+    margin-top: 25px; }
+  .cd-wrapper .challenge-detail .columnSideBar .inner {
+    padding: 10px;
+    border-bottom: none; }
+  .cd-wrapper #main,
+  .cd-wrapper #wrapper > .content {
+    background: #F6F6F6;
+    position: relative;
+    z-index: 5; }
+  .cd-wrapper #mainContent.splitLayout,
+  .cd-wrapper #mainContent.layChallenges {
+    max-width: 1080px;
+    padding: 40px 60px 30px;
+    margin: 0 auto;
+    background: #fff; }
+  .cd-wrapper #mainContent .container {
+    padding: 0;
+    margin: 0;
+    width: 100%; }
+  .cd-wrapper #main {
+    background: #F6F6F6; }
+  .cd-wrapper #navigation {
+    background: #fff; }
+  .cd-wrapper .challenge-detail .grid-3-3 {
+    padding: 0 10px 0 0;
+    box-sizing: border-box; }
+  .cd-wrapper .challenge-detail .rightSplit {
+    float: left;
+    width: calc(100% - 330px);
+    margin-right: 30px; }
+  .cd-wrapper .challenge-detail a,
+  .cd-wrapper .challenge-detail a:active,
+  .cd-wrapper .challenge-detail a:visited {
+    text-decoration: none;
+    color: #0096FF;
+    -moz-transition-duration: .3s;
+    -webkit-transition-duration: .3s;
+    transition: .2s all ease-in-out;
+    -webkit-tap-highlight-color: transparent;
+    outline: 0; }
+  .cd-wrapper .challenge-detail a:hover {
+    color: #097DCE;
+    text-decoration: underline; }
+  .cd-wrapper .challenge-detail .tabNav {
+    /*     border-bottom: none; */
+    margin-bottom: 30px; }
+  .cd-wrapper div#challengeNav {
+    display: inline-block;
+    /* padding-right: 20px; */
+    position: relative;
+    padding-left: 20px;
+    float: none; }
+  .cd-wrapper a,
+  .cd-wrapper a:active,
+  .cd-wrapper a:visited {
+    text-decoration: none;
+    color: #0096FF;
+    -moz-transition-duration: .3s;
+    -webkit-transition-duration: .3s;
+    transition: .2s all ease-in-out;
+    -webkit-tap-highlight-color: transparent;
+    outline: 0; }
+  .cd-wrapper a:hover {
+    color: #097DCE;
+    text-decoration: underline; }
+  .cd-wrapper #stepBox .leftColumn a {
+    margin-bottom: 10px;
+    border-radius: 0px;
+    height: 49px; }
+  .cd-wrapper .challenge-detail .btnAction strong {
+    font-size: 11px;
+    margin-top: 14px; }
+  .cd-wrapper .challenge-detail .btnAction {
+    background: #0096FF !important;
+    border-bottom: 4px solid #0096ff !important;
+    text-align: left !important;
+    line-height: 12px !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    overflow: hidden;
+    display: block; }
+  .cd-wrapper .challenge-detail .btnAction:hover {
+    color: #fff;
+    background-color: #097DCE; }
+  .cd-wrapper #stepBox .rightColumn .nextBox .allDeadlineNextBoxContent,
+  .cd-wrapper #stepBox .rightColumn .nextBox .nextBoxContent {
+    background: #85CCFF;
+    border: 1px solid #0096FF;
+    margin: 0 auto;
+    padding: 10px 13px;
+    height: 125px; }
+  .cd-wrapper #stepBox .rightColumn .nextBox .icoTime {
+    height: auto;
+    display: block;
+    padding-left: 0;
+    padding-top: 0px;
+    background: none; }
+  .cd-wrapper #stepBox .rightColumn .nextBox .CEDate,
+  .cd-wrapper #stepBox .rightColumn .nextBox .nextDTitle {
+    color: #333;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding-bottom: 0;
+    margin-bottom: 0; }
+  .cd-wrapper #stepBox .rightColumn .nextBox .nextDTitle,
+  .cd-wrapper .challenge-detail.develop #stepBox .rightColumn .nextBox .nextDTitle {
+    color: #fff;
+    display: block;
+    font-size: 15px;
+    margin-bottom: 5px;
+    text-transform: uppercase; }
+  .cd-wrapper #stepBox .rightColumn .nextBox .timeLeft {
+    color: #FFFFFE;
+    font-size: 22px;
+    line-height: 30px;
+    margin: 24px 0px;
+    padding: 0;
+    display: block;
+    text-align: center; }
+  .cd-wrapper .challenge-detail .grid-3-3 {
+    padding: 0 10px 0 0;
+    box-sizing: border-box; }
+  .cd-wrapper .challenge-detail .rightSplit {
+    float: left; }
