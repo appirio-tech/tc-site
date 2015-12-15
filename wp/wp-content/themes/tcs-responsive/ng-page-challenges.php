@@ -495,7 +495,12 @@ get_header(); ?>
 </script>
 
 <script type="text/ng-template" id="tableView/numSubmissions.html">
-  <a href="//community.topcoder.com/longcontest/?module=ViewStandings&rd={{row.getProperty('roundId')}}">{{row.getProperty(col.field)}}</a>
+  <span ng-cell-text ng-if="row.getProperty('challengeCommunity') !== 'data'">
+    {{row.getProperty(col.field)}}
+  </span>
+  <span ng-cell-text ng-if="row.getProperty('challengeCommunity') === 'data'">
+    <a href="//community.topcoder.com/longcontest/?module=ViewStandings&rd={{row.getProperty('roundId')}}">{{row.getProperty(col.field)}}</a>
+  </span>
 </script>
 
 <script type="text/ng-template" id="tableView/prizes.html">
