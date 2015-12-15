@@ -1806,8 +1806,13 @@ appChallenges = {
                         $('.cgTLeft', con).addClass('imp');
                     }
                     $('.cgPur', con).html('<i></i> $' + purse);
-                    $('.cgReg', con).html('<i></i>' + '<a href="' + contestLinkUrl + '#viewRegistrant">' + rec.numRegistrants + '</a>');
-                    $('.cgSub', con).html('<i></i>' + rec.numSubmissions);
+                    if (rec.challengeCommunity == 'data') {
+                      $('.cgReg', con).html('<i></i>' + '<a href="//community.topcoder.com/longcontest/?module=ViewRegistrants&rd=' + rec.roundId + '">' + rec.numRegistrants + '</a>');
+                      $('.cgSub', con).html('<i></i>' + '<a href="//community.topcoder.com/longcontest/?module=ViewStandings&rd=' + rec.roundId + '">' + rec.numSubmissions);
+                    } else {
+                      $('.cgReg', con).html('<i></i>' + '<a href="' + contestLinkUrl + '#viewRegistrant">' + rec.numRegistrants + '</a>');
+                      $('.cgSub', con).html('<i></i>' + rec.numSubmissions);
+                    }
 
                     $('.cgTLeft', con).qtip({
                         content: {
