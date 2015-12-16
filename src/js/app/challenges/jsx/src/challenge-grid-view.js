@@ -168,7 +168,7 @@
               <p className="cgPur" data-hasqtip="1" aria-describedby="qtip-1"><i /> {scope.currencyFilter(challenge.totalPrize)}</p>
             </Qtip>
             <Qtip text={challenge.numRegistrants} title="Registrants" community={challenge.challengeCommunity}>
-              <p className="cgReg" data-hasqtip="2" aria-describedby="qtip-2"><i /><a href={"/challenge-details/" +challenge.challengeId + "/?type=" + challenge.challengeCommunity + "#viewRegistrant"}>{challenge.numRegistrants}</a>
+              <p className="cgReg" data-hasqtip="2" aria-describedby="qtip-2"><i /><a href={challenge.challengeCommunity == 'data' ? "//community.topcoder.com/longcontest/?module=ViewRegistrants&rd=" + challenge.roundId : "/challenge-details/" +challenge.challengeId + "/?type=" + challenge.challengeCommunity + "#viewRegistrant"}>{challenge.numRegistrants}</a>
               </p>
             </Qtip>
             <Qtip text={challenge.numSubmissions} title="Submissions" community={challenge.challengeCommunity}>
