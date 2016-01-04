@@ -558,6 +558,9 @@ get_header(); ?>
         <label class="lbl">Start Date</label>
         <div class="val vStartDate">{{dateFormatFilter(row.getProperty('registrationStartDate'), dateFormat)}}</div>
       </div>
+
+      <!--
+
       <div class="row" ng-show="contest.listType == 'upcoming' && row.getProperty('checkpointSubmissionEndDate')">
         <label class="lbl ">Round 1 End</label>
         <div class="val vEndRound">{{dateFormatFilter(row.getProperty('checkpointSubmissionEndDate'), dateFormat)}}</div>
@@ -570,6 +573,7 @@ get_header(); ?>
         <label class="lbl">Submit by</label>
         <div class="val vEndDate">{{dateFormatFilter(row.getProperty('submissionEndDate'), dateFormat)}}</div>
       </div>
+      -->
     </div>
   </div>
 </script>
