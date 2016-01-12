@@ -490,12 +490,17 @@ get_header(); ?>
     <a href="/challenge-details/{{row.getProperty('challengeId')}}/?type={{row.getProperty('challengeCommunity')}}#viewRegistrant">{{row.getProperty(col.field)}}</a>
   </span>
   <span ng-cell-text ng-if="row.getProperty('challengeCommunity') === 'data'">
-    <a href="//community.topcoder.com/longcontest/?module=ViewStandings&rd={{row.getProperty('roundId')}}">{{row.getProperty(col.field)}}</a>
+    <a href="//community.topcoder.com/longcontest/?module=ViewRegistrants&rd={{row.getProperty('roundId')}}">{{row.getProperty(col.field)}}</a>
   </span>
 </script>
 
 <script type="text/ng-template" id="tableView/numSubmissions.html">
-  <span ng-cell-text>{{row.getProperty(col.field)}}</span>
+  <span ng-cell-text ng-if="row.getProperty('challengeCommunity') !== 'data'">
+    {{row.getProperty(col.field)}}
+  </span>
+  <span ng-cell-text ng-if="row.getProperty('challengeCommunity') === 'data'">
+    <a href="//community.topcoder.com/longcontest/?module=ViewStandings&rd={{row.getProperty('roundId')}}">{{row.getProperty(col.field)}}</a>
+  </span>
 </script>
 
 <script type="text/ng-template" id="tableView/prizes.html">
@@ -553,6 +558,9 @@ get_header(); ?>
         <label class="lbl">Start Date</label>
         <div class="val vStartDate">{{dateFormatFilter(row.getProperty('registrationStartDate'), dateFormat)}}</div>
       </div>
+
+      <!--
+
       <div class="row" ng-show="contest.listType == 'upcoming' && row.getProperty('checkpointSubmissionEndDate')">
         <label class="lbl ">Round 1 End</label>
         <div class="val vEndRound">{{dateFormatFilter(row.getProperty('checkpointSubmissionEndDate'), dateFormat)}}</div>
@@ -565,6 +573,7 @@ get_header(); ?>
         <label class="lbl">Submit by</label>
         <div class="val vEndDate">{{dateFormatFilter(row.getProperty('submissionEndDate'), dateFormat)}}</div>
       </div>
+      -->
     </div>
   </div>
 </script>
