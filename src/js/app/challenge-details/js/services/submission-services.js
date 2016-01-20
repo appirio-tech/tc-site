@@ -12,16 +12,14 @@ angular.module('tc.SubmissionServices', [
   'restangular'
 ])
 
-.factory('SubmissionServices', [ '$timeout', '$q',
-  function ($timeout, $q) {
+.factory('SubmissionServices', ['$q',
+  function ($q) {
 
     return {
     /*
      * A mock implementation of submission data.
      */
       'getSubmissionInfo': function () {
-        var deferred = $q.defer();
-
         // set some mock data.
         var submissionInfo = {};
         submissionInfo.comment = 'Lorem ipsum dolor sit amet conseqtetur adispicing elit orem ipsum dolor sit amet conseqtetur adispicing elit';
@@ -35,12 +33,8 @@ angular.module('tc.SubmissionServices', [
           {'link' : 'http://stockartlink.com/123456'},
           {'link' : 'http://stockartlink.com/123457'}
         ];
-        //Assume the network loading time is 1s.
-        $timeout(function(){
-          deferred.resolve(submissionInfo);
-        }, 1000);
 
-        return deferred.promise;
+        return submissionInfo;
       }
     };
   }]
