@@ -14,29 +14,6 @@
       <a ng-href="/member-profile/{{subCtrl.singleViewSubmission.submitter}}/design" class="handle coderTextOrange" ng-bind="subCtrl.singleViewSubmission.submitter"></a>
     </div>
     <!-- /.basicInfo -->
-    <div class="furtherInfo">
-      <h6>DECLARATION</h6>
-      <div class="commentInfo">
-        <label>Comment:</label>
-        <p><a href="javascript:;" ng-bind="subCtrl.submissionInfo.comment"></a></p>
-      </div>
-      <!-- /.furtherInfo -->
-      <div class="fontInfo">
-        <label>Fonts:</label>
-        <p ng-repeat="font in subCtrl.submissionInfo.fonts"><a href="javascript:;" ng-bind="font.name"></a></p>
-      </div>
-      <!-- /.fontInfo -->
-      <div class="stockArtInfo">
-        <label>Stock Art:</label>
-        <p ng-repeat="stockArt in subCtrl.submissionInfo.stockArts | limitTo : subCtrl.stockArtThreshold"><a href="javascript:;" ng-bind="stockArt.link"></a></p>
-        <!-- remove the jsSeeMore class so we wont use old jquery code. -->
-        <a href="javascript:;" class="seeMoreLink" ng-if="subCtrl.submissionInfo.stockArts.length > 3" ng-click="subCtrl.stockArtThreshold = subCtrl.submissionInfo.stockArts.length" ng-hide="subCtrl.stockArtThreshold === subCtrl.submissionInfo.stockArts.length">See More</a>
-        <a href="javascript:;" class="seeLessLink" ng-if="subCtrl.submissionInfo.stockArts.length > 3" ng-click="subCtrl.stockArtThreshold = 3" ng-show="subCtrl.stockArtThreshold === subCtrl.submissionInfo.stockArts.length">See Less</a>
-      </div>
-      <!-- /.stockArtInfo -->
-      <div class="clear"></div>
-    </div>
-    <!-- /.furtherInfo -->
   </div>
   <!-- /.informationView -->
 

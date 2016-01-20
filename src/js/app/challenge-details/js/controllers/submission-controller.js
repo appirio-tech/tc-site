@@ -174,9 +174,7 @@ var sub;
 
       submission.fullPreviewList = subCtrl.loadImages(submission.previewTotal, 'full', submission.submissionId);
 
-      subCtrl.SubmissionServices.getSubmissionInfo().then(function(submissionInfo){
-        subCtrl.submissionInfo = submissionInfo;
-      });
+      subCtrl.submissionInfo = subCtrl.SubmissionServices.getSubmissionInfo();
 
       subCtrl.singleViewSubmission = submission;
       subCtrl.selectPreview(0);
