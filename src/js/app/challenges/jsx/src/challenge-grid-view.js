@@ -100,7 +100,6 @@
             genInfo : true
           },
           data_past: {
-            endDate : true,
             genInfo : true
           },
           data_upcoming: {
