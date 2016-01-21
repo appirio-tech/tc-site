@@ -559,13 +559,13 @@ get_header(); ?>
         <div class="val vStartDate">{{dateFormatFilter(row.getProperty('registrationStartDate'), dateFormat)}}</div>
       </div>
 
-      <!--
+      
 
       <div class="row" ng-show="contest.listType == 'upcoming' && row.getProperty('checkpointSubmissionEndDate')">
         <label class="lbl ">Round 1 End</label>
         <div class="val vEndRound">{{dateFormatFilter(row.getProperty('checkpointSubmissionEndDate'), dateFormat)}}</div>
       </div>
-      <div class="row" ng-show="contest.listType != 'active'">
+      <div class="row" ng-show="contest.listType == 'upcoming'"><!-- // not showing past listType until we have correct end date for them -->
         <label class="lbl">End Date</label>
         <div class="val vEndDate">{{dateFormatFilter(row.getProperty('submissionEndDate'), dateFormat)}}</div>
       </div>
@@ -573,7 +573,6 @@ get_header(); ?>
         <label class="lbl">Submit by</label>
         <div class="val vEndDate">{{dateFormatFilter(row.getProperty('submissionEndDate'), dateFormat)}}</div>
       </div>
-      -->
     </div>
   </div>
 </script>
