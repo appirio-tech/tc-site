@@ -49,13 +49,13 @@ appChallengeTerms = {
               $('.agree-label').hide();
               $('#termSubmit').text('Go Back');
               $('.agreement').removeClass('notAgreed');
-              var finalDest = escape(siteURL + "/challenge-details/terms/" + challengeId + "?challenge-type=" + challengeType + "&cb=" + Math.random());
+              var finalDest = escape(tcconfig.mainURL + "/challenge-details/terms/" + challengeId + "?challenge-type=" + challengeType + "&cb=" + Math.random());
               $.ajax({
                 url: tcconfig.apiURL + '/terms/docusign/viewURL',
                 type: 'POST',
                 data: {
                   templateId: data["docusignTemplateId"],
-                  returnUrl: siteURL + "/iframe-break/?dest=" + finalDest
+                  returnUrl: tcconfig.mainURL + "/iframe-break/?dest=" + finalDest
                 },
                 cache: false,
                 beforeSend: function(bxhr) {
@@ -108,7 +108,8 @@ appChallengeTerms = {
                   'Authorization': 'Bearer ' + tcjwt.replace(/["]/g, "")
                 },
                 success: function(data) {
-                  window.location = siteURL + "/challenge-details/terms/" + challengeId + "?challenge-type=" + challengeType;
+                  console.log(tcconfig.mainURL);
+                  window.location = tcconfig.mainURL + "/challenge-details/terms/" + challengeId + "?challenge-type=" + challengeType;
                   $('.loading').hide();
                 }
               });
@@ -144,7 +145,7 @@ appChallengeTerms = {
                   allAgreed = false;
                 }
                 var $tr = $("<tr>", {class: i % 2 == 1 ? "alt" : ""});
-                var $td1 = $("<td>").text(terms[i]["title"]).append(" (").append($("<a>", {href: siteURL + "/challenge-details/terms/detail/" + terms[i]["termsOfUseId"] + "?contestID=" + challengeId + "&challenge-type=" + challengeType}).text(agreed ? "view" : "view and agree")).append(")");
+                var $td1 = $("<td>").text(terms[i]["title"]).append(" (").append($("<a>", {href: tcconfig.mainURL + "/challenge-details/terms/detail/" + terms[i]["termsOfUseId"] + "?contestID=" + challengeId + "&challenge-type=" + challengeType}).text(agreed ? "view" : "view and agree")).append(")");
                 var $td2 = $("<td>").append($("<span>", {class: "status " + (agreed === true ? "complete" : "required")}).text(agreed === true ? "Completed" : "Required"));
                 $tr.append($td1).append($td2);
                 $(".termTable tbody").append($tr);
@@ -162,7 +163,18 @@ appChallengeTerms = {
             $('.loading').hide();
 
             $(".termsBtnRegister").click(function () {
-              window.location = siteURL + "/challenge-details/register/" + challengeId  + "?type=" + challengeType + "&nocache=true";
+              $.ajax({
+                type: "POST",
+                url: tcconfig.apiURL + "/challenges/" + challengeId + "/register",
+                dataType: 'json',
+                headers: {
+                  'Authorization': 'Bearer ' + tcjwt.replace(/["]/g, "")
+                },
+                success: function(data) {
+                  window.location = tcconfig.mainURL + "/challenge-details/" + challengeId  + "?type=" + challengeType + "&nocache=true";
+                }
+              });
+
             });
           }
         });
