@@ -108,7 +108,6 @@ appChallengeTerms = {
                   'Authorization': 'Bearer ' + tcjwt.replace(/["]/g, "")
                 },
                 success: function(data) {
-                  console.log(tcconfig.mainURL);
                   window.location = tcconfig.mainURL + "/challenge-details/terms/" + challengeId + "?challenge-type=" + challengeType;
                   $('.loading').hide();
                 }
