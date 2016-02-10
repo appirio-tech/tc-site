@@ -64,6 +64,8 @@
       vm.tcDoAction = $cookies.tcDelayChallengeAction.split('|');
     }
     vm.activeTab = 'details';
+    vm.domain = tcconfig.domain;
+    
     if (window.location.hash == '#viewRegistrant' || window.location.hash == '#/viewRegistrant') vm.activeTab = 'registrants';
     else if (window.location.hash == '#winner' || window.location.hash == '#/winner') vm.activeTab = 'results';
     else if (window.location.hash == '#submissions' || window.location.hash == '#/submissions') vm.activeTab = 'submissions';
@@ -371,11 +373,11 @@
     if (vm.challenge.reviewType == 'PEER') {
       vm.reviewStyle = 'Peer Review';
       vm.reviewStyleTooltip = 'Your peers performs a thorough review based on scorecards.';
-      vm.reviewScorecardLink = '/reviews/index.html#/scorecard/' + reviewScorecardId;
+      vm.reviewScorecardLink = '//www.' + vm.domain + '/challenges/' + challengeId + '/scorecards/' + reviewScorecardId + '/';
     } else {
       vm.reviewStyle = 'Community Review Board';
       vm.reviewStyleTooltip = 'Community Review Board performs a thorough review based on scorecards.';
-      vm.reviewScorecardLink = 'http://software.topcoder.com/review/actions/ViewScorecard.do?method=viewScorecard&scid=' + reviewScorecardId;
+      vm.reviewScorecardLink = '//software.' + vm.domain +'/review/actions/ViewScorecard.do?method=viewScorecard&scid=' + reviewScorecardId;
     }
 
     vm.hasCheckpoints = vm.numCheckpointSubmissions > 0;
