@@ -160,6 +160,8 @@
         if (challenge.event) {
           if (challenge.event.shortDescription == 'tc015') {
             challenge.event.url = 'http://tco15.topcoder.com/';
+          } else if (challenge.event.shortDescription == 'tco16') {
+            challenge.event.url = 'http://tco16.topcoder.com/';
           } else if (challenge.event.shortDescription == 'swiftprogram') {
             challenge.event.url = 'http://ios.topcoder.com';
           } else {
