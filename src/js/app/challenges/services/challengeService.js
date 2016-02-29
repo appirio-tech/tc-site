@@ -168,7 +168,7 @@
                 }
               });
               if (listType !== 'past') {
-                var devParams = angular.extend(params, {challengeType: 'Code', technologies: 'Data Science', type: 'develop'});
+                var devParams = angular.extend(params, {challengeType: 'First2Finish,Code', technologies: 'Data Science', type: 'develop'});
                 delete devParams.listType;
 
                 Restangular.one('challenges').getList(listType, devParams)
