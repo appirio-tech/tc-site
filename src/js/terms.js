@@ -44,7 +44,12 @@ appChallengeTerms = {
             $(".overviewPageTitle").text(data["title"]);
             //Bugfix I-116354
             $('#agreement-section').removeClass('hide');
-            if (data["agreeabilityType"] !== "Electronically-agreeable" && typeof data["docusignTemplateId"] !== "undefined") {
+            
+            if (data.agreeabilityType === 'Non-electronically-agreeable') {
+              $('#agreement-section').addClass('hide');
+              $('.loading').hide();
+              $(".termsText").html(data.text);
+            } else if (data["agreeabilityType"] !== "Electronically-agreeable" && typeof data["docusignTemplateId"] !== "undefined") {
               //if DocuSign, get URL from docuSign API and output iframe
               $('.agree-label').hide();
               $('#termSubmit').text('Go Back');
