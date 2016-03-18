@@ -33,19 +33,19 @@ window.Qtip = React.createClass({
   },
 
   componentDidMount: function () {
-    var elt = $(this.getDOMNode());
+    var elt = $(ReactDOM.findDOMNode(this));
     var props = this.props;
     this.createQtip(elt, props);
   },
 
   componentDidUpdate: function () {
-    var elt = $(this.getDOMNode());
+    var elt = $(ReactDOM.findDOMNode(this));
     var props = this.props;
     this.createQtip(elt, props);
   },
 
   componentWillUnmount: function () {
-    $(this.getDOMNode()).qtip('destroy', true);
+    $(ReactDOM.findDOMNode(this)).qtip('destroy', true);
   },
 
   render: function () {

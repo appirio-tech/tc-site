@@ -31,8 +31,9 @@
         restrict: 'A',
         link: function (scope, element, attrs) {
           scope.$watch('challenges', function (challenges, oldValue) {
-            React.renderComponent(
-              window.ChallengeGridAll({
+            var challengesGrid = React.createFactory(ChallengeGridAll);
+            ReactDOM.render(
+              challengesGrid({
                 scope: scope
               }),
               element[0]
