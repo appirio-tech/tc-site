@@ -10,8 +10,6 @@
 </script>
 
 <script src="//use.typekit.net/jjo6pal.js"></script>
-<script src="http://components.topcoder-dev.com/TCReactComponents.js"></script>
-<link rel="stylesheet" type="text/css" href="http://components.topcoder-dev.com/TCReactComponents.css">
 
 <script>
   try {
@@ -21,8 +19,17 @@
 
 <div id="tc-navbar"></div>
 <script type="text/javascript">
-      var navbar = React.createFactory(TCReactComponents.NavBar.default);
-      var comp = ReactDOM.render(navbar({domain: 'topcoder-dev.com'}), document.getElementById('tc-navbar'), function() {console.log('called');});
+  // loaded stylesheet dynamically to have dynamic URL
+  jQuery('<link/>', {
+     rel: 'stylesheet',
+     type: 'text/css',
+     href: 'http://components.' + tcconfig.domain + '/TCNavComponents.css'
+  }).appendTo('head');
+  // loaded javascript dynamically to execute React rendering code after its loaded
+  jQuery.getScript('http://components.' + tcconfig.domain + '/TCNavComponents.js', function() {
+    var navbar = React.createFactory(TCNavComponents.NavBar.default);
+    var comp = ReactDOM.render(navbar({domain: tcconfig.domain}), document.getElementById('tc-navbar'));
+  });
 </script>
 
 
