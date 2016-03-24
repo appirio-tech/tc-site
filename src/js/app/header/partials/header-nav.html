@@ -23,11 +23,11 @@
   jQuery('<link/>', {
      rel: 'stylesheet',
      type: 'text/css',
-     href: 'http://components.' + tcconfig.domain + '/TCNavComponents.css'
+     href: '//components.' + tcconfig.domain + '/TCNavComponents.css'
   }).appendTo('head');
 
   // loaded javascript dynamically to execute React rendering code after its loaded
-  jQuery.getScript('http://components.' + tcconfig.domain + '/TCNavComponents.js', function() {
+  jQuery.getScript('//components.' + tcconfig.domain + '/TCNavComponents.js', function() {
     var navbar = React.createFactory(TCNavComponents.NavBar.default);
     var props = { domain: tcconfig.domain };
     if (app.isLoggedIn()) {
