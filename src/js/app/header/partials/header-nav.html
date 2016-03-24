@@ -33,7 +33,7 @@
     if (app.isLoggedIn()) {
       app.getHandle(function(handle) {
         props.username = handle;
-      }
+      });
     }
     var comp = ReactDOM.render(navbar(props), document.getElementById('tc-navbar'));
   });
