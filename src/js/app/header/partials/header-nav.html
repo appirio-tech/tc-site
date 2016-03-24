@@ -1,60 +1,43 @@
-<div class="header-wrapper" ng-class="{'menu-visible': main.menuVisible}">
-  <header class="top-header">
-    <a href="/" class="logo-link"></a>
-    <div class="show-small mobile-heading"><span ng-if="main.menuVisible" class="tc-text-logo">[ topcoder ]</span>
-      <button type="button" ng-if="!main.menuVisible" ng-click="main.menuVisible = true" class="btn-open-menu">Menu</button>
-      <button type="button" ng-if="main.menuVisible" ng-click="main.menuVisible = false" class="btn-close-menu"></button>
-      <a ng-href={{vm.profileLink}} ng-switch="vm.isAuth" data-ng-if="!main.menuVisible" class="user-link"><img ng-switch-when="true" ng-src="{{vm.photoURL}}" class="user-avatar"/><span ng-switch-when="false" class="btn-link">JOIN</span></a>
-    </div>
-   <ul class="main-menu">
-      <li class="menu-item search-wrapper">
-        <div class="menu-item-header show-large">
-          <button type="button" class="btn-expand-search search-icon"></button>
-        </div>
-        <div class="submenu">
-          <input type="text" placeholder="find members" ng-model="vm.searchTerm" ng-keyup="vm.checkSubmit($event)"/>
-        </div>
-      </li>
-      <li ng-switch="vm.isAuth" ng-class="{'anonymous-menu': !vm.isAuth}" class="menu-item link-group user-menu">
-        <div ng-switch-when="true">
-          <div class="menu-item-header">
-            <a ng-href={{vm.profileLink}} class="profile-link-dropdown">
-              <img ng-src="{{vm.photoURL}}" class="user-avatar"/>
-              <span ng-style="vm.handleStyle" class="username">{{vm.userHandle}}</span>
-            </a>
-          </div>
-          <a href="/settings/profile" class="btn-link btn-edit-profile show-small">EDIT</a>
-          <ul class="submenu">
-            <li class="submenu-item" ng-repeat="item in vm.userMenu">
-              <a ng-href="{{item.href}}" ng-class="{ 'active': vm.isActive(item.href) }" class="menu-link" target="{{ item.target ? item.target : '_self'}}">
-                <img ng-src="{{item.icon}}" class="menu-icon"/>
-                <div class="menu-text">{{item.text}}</div>
-              </a>
-            </li>
-            <li class="submenu-item">
-              <a ng-click="vm.logout()" class="menu-link">
-                <img ng-src="/mf/i/nav/logout.svg" class="menu-icon"/>
-                <div class="menu-text">LOG OUT</div>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div ng-switch-when="false" class="menu-item-header">
-          <a href="/register" class="tc-btn tc-btn-s btn-link">JOIN</a>
-          <a ng-click="vm.login()" class="tc-btn tc-btn-s tc-btn-ghost btn-link">LOG IN</a>
-        </div>
-      </li>
-      <li ng-repeat="header in vm.menuHeaders" class="menu-item link-group">
-        <div class="menu-item-header">{{header}}</div>
-        <ul class="submenu">
-          <li class="submenu-item" ng-repeat="item in vm.menuLinks[header]">
-            <a ng-click="$event.stopPropagation();" ng-href="{{item.href}}" ng-class="{ 'active': vm.isActive(item.href) }" class="menu-link" target="{{ item.target ? item.target : '_self'}}">
-              <img ng-src="{{item.icon}}" class="menu-icon"/>
-              <div class="menu-text">{{item.text}}</div>
-            </a>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </header>
-</div>
+<script>
+  (function(d) {
+    var config = {
+      kitId: 'gig7sjk',
+      scriptTimeout: 3000,
+      async: true
+    },
+    h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+  })(document);
+</script>
+
+<script src="//use.typekit.net/jjo6pal.js"></script>
+
+<script>
+  try {
+    Typekit.load({ async: true });
+  } catch(e){}
+</script>
+
+<div id="tc-navbar"></div>
+<script type="text/javascript">
+  // loaded stylesheet dynamically to have dynamic URL
+  jQuery('<link/>', {
+     rel: 'stylesheet',
+     type: 'text/css',
+     href: 'http://components.' + tcconfig.domain + '/TCNavComponents.css'
+  }).appendTo('head');
+
+  // loaded javascript dynamically to execute React rendering code after its loaded
+  jQuery.getScript('http://components.' + tcconfig.domain + '/TCNavComponents.js', function() {
+    var navbar = React.createFactory(TCNavComponents.NavBar.default);
+    var props = { domain: tcconfig.domain };
+    if (app.isLoggedIn()) {
+      app.getHandle(function(handle) {
+        props.username = handle;
+      }
+    }
+    var comp = ReactDOM.render(navbar(props), document.getElementById('tc-navbar'));
+  });
+</script>
+
+
+

@@ -582,6 +582,7 @@
         "jquery.qtip.min.js",
         "jquery.jqtransform.js",
         "react.js",
+        "react-dom.js",
         "jquery.ba-bbq.js",
         "app/challenges/jsx/build/challenge-grid-view.js",
         "app/challenges/jsx/build/common-components.js",
