@@ -1709,6 +1709,7 @@ span.subscribeTopWrapper .feedBtn {
     text-transform: none;
     text-decoration: none; }
   .cl-wrapper .new-search-box input.search-text {
+    box-sizing: content-box;
     width: calc( 100% - 14px);
     display: block;
     background: #FFFFFF;

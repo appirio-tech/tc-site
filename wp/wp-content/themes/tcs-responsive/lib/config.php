@@ -32,6 +32,7 @@ function tc_load_config() {
     // Site URL
     _tc_local_config_define('WP_SITEURL', $config_map['mainURL']);
     _tc_local_config_define('WP_HOME', $config_map['mainURL']);
+    _tc_local_config_define('TC_DOMAIN', $config_map['domain']);
 
     // API
     _tc_local_config_define('TC_API_URL', $config_map['apiURL']);

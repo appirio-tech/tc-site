@@ -225,6 +225,7 @@ input.search-text::-webkit-input-placeholder {
         right: 0;
         top: 5px;
         height: 17px;
+        box-sizing: content-box;
     }
 .layChallenges .actions {
     border-bottom: 0;

@@ -26,7 +26,11 @@ function tcs_responsive_scripts() {
     'respond'   =>  '/js/vendor/respond.min.js',
     'modernizr' => '/js/vendor/modernizr.js',
     'html5shiv' => '/js/vendor/html5shiv.js',
-    'auth0' => '//cdn.auth0.com/w2/auth0-1.6.4.js'
+    'auth0' => '//cdn.auth0.com/w2/auth0-1.6.4.js',
+    // 'tc-nav-components' => '//components.' + TC_DOMAIN + '/TCNavComponents.js'
+    'moment' => '/js/',
+    'react' => '/js/',
+    'tc-nav-components' => '//components.topcoder-dev.com'
   );
 
   tsc_register_master($assets);
@@ -214,6 +218,29 @@ function tsc_register_master($assets) {
   // Always include auth0
   wp_register_script("auth0", $assets['auth0'], array(), null, true);
   wp_enqueue_script("auth0");
+
+  //register moment
+  wp_register_script("moment", tsc_build_asset_path('/moment.min.js', 'js'), array());
+  wp_enqueue_script("moment");
+  wp_register_script("moment-timezone", tsc_build_asset_path('/moment-timezone.min.js', 'js'), array('moment'));
+  wp_enqueue_script("moment-timezone");
+  wp_register_script("moment-data", tsc_build_asset_path('/moment-data.js', 'js'), array('moment-timezone'));
+  wp_enqueue_script("moment-data");
+
+
+  // register react
+  wp_register_script("react", tsc_build_asset_path('/react.js', 'js'), array());
+  wp_enqueue_script("react");
+  wp_register_script("react-dom", tsc_build_asset_path('/react-dom.js', 'js'), array('react'));
+  wp_enqueue_script("react-dom");
+
+
+  // register TCNavComponents js library
+  // TODO we can add react as dependency
+  wp_register_script("tc-nav-components", $assets['tc-nav-components'].'/TCNavComponents.js', array('react', 'moment-timezone'));
+  wp_enqueue_script("tc-nav-components");
+  wp_register_style("tc-nav-components", $assets['tc-nav-components'].'/TCNavComponents.css');
+  wp_enqueue_style("tc-nav-components");
 }
 
 

@@ -1742,6 +1742,7 @@ var app = {
     }
 
     var decoded = jwt_decode(tcjwt);
+    console.log(decoded);
     var expDate = moment.unix(decoded.exp);
     var today = new Date();
     var dateDiff = expDate.diff(today, 'hours');
