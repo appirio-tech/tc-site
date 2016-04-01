@@ -30,7 +30,7 @@ function tcs_responsive_scripts() {
     // 'tc-nav-components' => '//components.' + TC_DOMAIN + '/TCNavComponents.js'
     'moment' => '/js/',
     'react' => '/js/',
-    'tc-nav-components' => 'http://components.topcoder-dev.com'
+    'tc-nav-components' => '//https://s3.amazonaws.com/components.' + TC_DOMAIN
   );
 
   tsc_register_master($assets);
