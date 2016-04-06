@@ -52,39 +52,29 @@
     
       
   }
-  // loaded stylesheet dynamically to have dynamic URL
-  // jQuery('<link/>', {
-  //    rel: 'stylesheet',
-  //    type: 'text/css',
-  //    href: '//s3.amazonaws.com/components.' + tcconfig.domain + '/TCNavComponents.css'
-  // }).appendTo('head');
+  var navbar = React.createFactory(TCNavComponents.NavBar.default);
+  var props = {
+    domain                : tcconfig.domain,
+    searchSuggestionsFunc : suggest
+  };
 
-  // loaded javascript dynamically to execute React rendering code after its loaded
-  // jQuery.getScript('//s3.amazonaws.com/components.' + tcconfig.domain + '/TCNavComponents.js', function() {
-    var navbar = React.createFactory(TCNavComponents.NavBar.default);
-    var props = {
-      domain                : tcconfig.domain,
-      searchSuggestionsFunc : suggest
-    };
-
-    if (app.isLoggedIn()) {
-      app.getHandle(function(handle) {
-        props.username = handle;
-        $.get(tcconfig.apiURL + '/users/' + handle, function(data) {
-          var photoLink = data['photoLink'];
-          if (photoLink) {
-            if (photoLink.indexOf('//') == -1) {
-              photoLink = tcconfig.communityURL + data['photoLink']
-            }
-          } else {
-            photoLink = tcconfig.communityURL + '/i/m/nophoto_login.gif';
+  if (app.isLoggedIn()) {
+    app.getHandle(function(handle) {
+      props.username = handle;
+      $.getJSON(tcconfig.apiURL + '/users/' + handle, {}, function(data) {
+        var photoLink = data['photoLink'];
+        if (photoLink) {
+          if (photoLink.indexOf('//') == -1) {
+            photoLink = tcconfig.communityURL + data['photoLink']
           }
-          props.userImage = photoLink;
-        });
+        } else {
+          photoLink = tcconfig.communityURL + '/i/m/nophoto_login.gif';
+        }
+        props.userImage = photoLink;
       });
-    }
-    var comp = ReactDOM.render(navbar(props), document.getElementById('tc-navbar'));
-  // });
+    });
+  }
+  var comp = ReactDOM.render(navbar(props), document.getElementById('tc-navbar'));
 </script>
 
 
