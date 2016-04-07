@@ -65,16 +65,11 @@
     searchSuggestionsFunc : suggest
   };
 
-  console.log('checking if logged in');
   var navbarComp = null;
   if (app.isLoggedIn()) {
-    console.log('getting handle')
     app.getHandle(function(handle) {
-      console.log(handle);
       props.username = handle;
-      console.log('getting json for user/handle');
       $.getJSON(tcconfig.api3URL + '/members/' + handle, {}, function(data) {
-        console.log('got user data' + JSON.stringify(data));
         var photoLink = '';
         if (data.result && data.result.content) {
           photoLink = data.result.content.photoURL;
@@ -84,13 +79,11 @@
         props.userImage = photoLink;
       })
       .done(function() {
-        console.log('re-redering the component')
         // re-render the navbar with logged in state information
         navbarComp = ReactDOM.render(navbar(props), document.getElementById('tc-navbar'));
       });
     });
   }
-  console.log(props);
   // render the navbar without logged state information
   navbarComp = ReactDOM.render(navbar(props), document.getElementById('tc-navbar'));
 </script>
