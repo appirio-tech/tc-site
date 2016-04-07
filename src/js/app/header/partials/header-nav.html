@@ -86,6 +86,7 @@
         props.userImage = photoLink;
       })
       .done(function() {
+        console.log('re-redering the component')
         // re-render the navbar with logged in state information
         navbarComp = ReactDOM.render(navbar(props), document.getElementById('tc-navbar'));
       });
