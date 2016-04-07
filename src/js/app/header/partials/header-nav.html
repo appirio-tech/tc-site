@@ -73,13 +73,11 @@
       console.log(handle);
       props.username = handle;
       console.log('getting json for user/handle');
-      $.getJSON(tcconfig.apiURL + '/users/' + handle, {}, function(data) {
+      $.getJSON(tcconfig.api3URL + '/members/' + handle, {}, function(data) {
         console.log('got user data' + JSON.stringify(data));
-        var photoLink = data['photoLink'];
-        if (photoLink) {
-          if (photoLink.indexOf('//') == -1) {
-            photoLink = tcconfig.communityURL + data['photoLink']
-          }
+        var photoLink = '';
+        if (data.result && data.result.content) {
+          photoLink = data.result.content.photoURL;
         } else {
           photoLink = tcconfig.communityURL + '/i/m/nophoto_login.gif';
         }
