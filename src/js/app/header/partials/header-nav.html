@@ -66,6 +66,7 @@
   };
 
   console.log('checking if logged in');
+  var navbarComp = null;
   if (app.isLoggedIn()) {
     console.log('getting handle')
     app.getHandle(function(handle) {
@@ -83,11 +84,16 @@
           photoLink = tcconfig.communityURL + '/i/m/nophoto_login.gif';
         }
         props.userImage = photoLink;
+      })
+      .done(function() {
+        // re-render the navbar with logged in state information
+        navbarComp = ReactDOM.render(navbar(props), document.getElementById('tc-navbar'));
       });
     });
   }
   console.log(props);
-  var comp = ReactDOM.render(navbar(props), document.getElementById('tc-navbar'));
+  // render the navbar without logged state information
+  navbarComp = ReactDOM.render(navbar(props), document.getElementById('tc-navbar'));
 </script>
 
 
