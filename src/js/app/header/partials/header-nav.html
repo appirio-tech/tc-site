@@ -57,12 +57,17 @@
         });
       }
     );
-      
   }
+
+  function search(searchTerm) {
+    window.location = 'https://www.' + tcconfig.domain + '/search/members/?q=' + searchTerm
+  }
+
   var navbar = React.createFactory(TCNavComponents.NavBar.default);
   var props = {
     domain                : tcconfig.domain,
-    searchSuggestionsFunc : suggest
+    searchSuggestionsFunc : suggest,
+    onSearch              : search
   };
 
   var navbarComp = null;
