@@ -43,7 +43,7 @@
       function(resolve, reject) {
         xhrHeaderNavSuggestion = $.ajax({
           type: "GET",
-          url: 'https://internal-api.' + 'topcoder-dev.com' + '/v3/tags/_suggest/?q=' + searchTerm,
+          url: tcconfig.apiGatewayURL + '/tags/_suggest/?q=' + searchTerm,
           dataType: 'json',
           success: function(data) {
             var tags = [];
@@ -64,7 +64,7 @@
   }
 
   function search(searchTerm) {
-    window.location = 'https://www.' + tcconfig.domain + '/search/members/?q=' + searchTerm
+    window.location = tcconfig.searchURL + searchTerm
   }
 
   var navbar = React.createFactory(TCNavComponents.NavBar.default);

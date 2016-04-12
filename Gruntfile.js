@@ -42,6 +42,8 @@ module.exports = function(grunt) {
     mainURL: grunt.option('main-url') || 'http://local.topcoder.com',
     apiURL: grunt.option('api-url') || 'https://api.topcoder.com/v2',
     api3URL: grunt.option('api3-url') || 'https://api.topcoder.com/v3',
+    apiGatewayURL: grunt.option('api-gateway-url') || 'https://internal-api.topcoder.com/v3',
+    searchURL : grunt.option('search-url') || 'https://www.topcoder.com/search/members/?q=',
     cdnURL: grunt.option('cdn-url') || '/mf',
     useVer: grunt.option('use-ver') || false,
     version: grunt.option('cdn-version') || '',
