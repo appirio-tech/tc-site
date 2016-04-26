@@ -274,9 +274,9 @@ var app = {
         return;
       }
       if ($('#searchTypeName').text()=='Site'){
-        window.location.replace("/search?s="+keyword);
+        window.location.replace("/search/members/?q=" + window.encodeURIComponent(keyword));
       }else if ($('#searchTypeName').text()=='Members'){
-        window.location.replace("/search?s="+keyword+"&scope=member");
+        window.location.replace("/search/members/?q=" + window.encodeURIComponent(keyword));
       }
   },
   setLoading: function() {
