@@ -333,10 +333,10 @@ include locate_template('header-challenge-landing.php');
       <?php
       if ($contest->allowStockArt != "false") {
           echo '<p> Stock photography is allowed in this challenge.<br>
-                      <a href="http://help.topcoder.com/design/design-copyright-and-font-policies/policy-for-stock-photos-in-design-submissions/">See this page for more details.</a></p>';
+                      <a href="http://help.topcoder.com/hc/en-us/articles/217481408-Policy-for-Stock-Artwork-in-Design-Submissions">See this page for more details.</a></p>';
       } else {
           echo '<p>Stock photography is not allowed in this challenge. All submitted elements must be designed solely by you.<br>
-                      <a href="http://help.topcoder.com/design/design-copyright-and-font-policies/policy-for-stock-photos-in-design-submissions/">See
+                      <a href="http://help.topcoder.com/hc/en-us/articles/217481408-Policy-for-Stock-Artwork-in-Design-Submissions">See
                         this page for more details.</a></p>';
       }
       ?>
@@ -349,17 +349,17 @@ include locate_template('header-challenge-landing.php');
     <p>
     <ul class="howToSubmit">
       <li>New to Studio? <a
-          href="http://help.topcoder.com/design/submitting-to-a-design-challenge/getting-started-in-design-challenges/"
+          href="http://help.topcoder.com/hc/en-us/articles/217481388-Choosing-a-Design-Challenge"
           target="_blank">Learn how to compete
           here</a>.
       </li>
       <li>Upload your submission in three parts (<a
-          href="http://help.topcoder.com/design/submitting-to-a-design-challenge/formatting-your-submission-for-design-challenges/"
+          href="http://help.topcoder.com/hc/en-us/articles/219122667-Formatting-Your-Submission-for-Design-Challenges"
           target="_blank">Learn more here</a>). Your design should be finalized and should contain only a single design
         concept (do not include multiple designs in a single submission).
       </li>
       <li>If your submission wins, your source files must be correct and
-        "<a href="http://help.topcoder.com/design/submitting-to-a-design-challenge/design-final-fixes-policies/"
+        "<a href="http://help.topcoder.com/hc/en-us/categories/202610437-DESIGN"
             target="_blank">Final Fixes</a>" (if
         applicable) must be completed before payment can be released.
       </li>
@@ -686,15 +686,15 @@ include locate_template('header-challenge-landing.php');
         </ul>
 
         <p>Trouble formatting your submission or want to learn more?
-          <a href="http://topcoder.com/home/studio/the-process/how-to-submit-to-a-contest/">Read this FAQs</a>.</p>
+          <a href="http://help.topcoder.com/hc/en-us/articles/219122667-Formatting-Your-Submission-for-Design-Challenges">Read this FAQ</a>.</p>
 <!-- Bugfix I-111397: removed empty link tags surrounding text -->
         <p><strong>Fonts:</strong><br> All fonts within your design must be declared when you submit. DO NOT include any font files in your submission or source files.
-        <a href="http://topcoder.com/home/studio/the-process/font-policy/" style="white-space:nowrap;">Read about the font policy here</a>.
+        <a href="http://help.topcoder.com/hc/en-us/articles/217959447-Font-Policy-for-Design-Challenges" style="white-space:nowrap;">Read about the font policy here</a>.
         </p>
 
         <p><strong>Screening:</strong><br>All submissions are screened for eligibility before the challenge holder picks
           winners. Don't let your hard work go to waste.<br> <a
-            href="http://community.topcoder.com/studio/the-process/screening/">Learn more about how to pass screening
+            href="http://help.topcoder.com/hc/en-us/articles/217959577-How-to-Pass-Screening-in-Design-Challenges">Learn more about how to pass screening
             here</a>.
         </p>
 
