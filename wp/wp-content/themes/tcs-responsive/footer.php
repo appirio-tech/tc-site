@@ -317,7 +317,7 @@ _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
 
         vm.checkSubmit = function(ev) {
           if (ev.keyCode === 13)
-            window.location.replace(tcconfig.mainURL + '/search?s=' + vm.searchTerm + '&scope=member');
+            window.location.replace(tcconfig.mainURL + '/search/members/?q=' + window.encodeURIComponent(vm.searchTerm));
         }
 
         vm.isActive = function(href) {
