@@ -40,7 +40,11 @@
           'self',
           // Allow loading from subdomains.  Notice the difference between * and **.
           'http://*.topcoder.com/**',
-          'https://*.topcoder.com/**'
+          'https://*.topcoder.com/**',
+          'http://*.topcoder-qa.com/**',
+          'https://*.topcoder-qa.com/**',
+          'http://*.topcoder-dev.com/**',
+          'https://*.topcoder-dev.com/**'
         ]);        
         $locationProvider.html5Mode(true);
     }])
