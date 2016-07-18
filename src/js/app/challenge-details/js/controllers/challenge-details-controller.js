@@ -218,7 +218,8 @@
           path: '/',
           domain: '.' + tcconfig.domain
         });
-        $('.actionLogin').click();
+        $('.tc-header-login').click();
+        console.log('yo!');
       }
 
 
