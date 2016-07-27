@@ -52,7 +52,7 @@ get_header(); ?>
       <div class="header-container">
         <header><h1 ng-bind="titles[contest.contestType]"></h1>
         <span class="subscribeTopWrapper">
-          <a class="feedBtn" ng-href="/challenges/feed?list=active&contestType={{contest.contestType || 'all'}}" title="Subscribe to challenges"></a>
+          <a class="feedBtn" ng-href="http://feeds.topcoder.com/challenges/feed?list=active&contestType={{contest.contestType || 'all'}}" title="Subscribe to challenges"></a>
         </span>
         </header>
       </div>
