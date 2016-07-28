@@ -219,7 +219,6 @@
           domain: '.' + tcconfig.domain
         });
         $('.tc-header-login').click();
-        console.log('yo!');
       }
 
 
