@@ -203,7 +203,7 @@
               }
             }, function (reason) {
               if (reason["error"]["details"] === "You should agree with all terms of use.") {
-                window.location = siteURL + "/challenge-details/terms/" + vm.challenge.challengeId + "?challenge-type=" + challengeType;
+                window.location = "/challenge-details/terms/" + vm.challenge.challengeId + "?challenge-type=" + challengeType;
               } else if (reason["error"]["details"]) {
                 showError(reason["error"]["details"]);
               }
