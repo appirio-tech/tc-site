@@ -618,7 +618,7 @@
                 <tr ng-repeat="registrant in CD.challenge.registrants | orderBy:'registrationDate'">
                   <td ng-class="CD.challengeType == 'design' ? 'handleColumnDesign' : 'handleColumn'">
                     <span>
-                        <a ng-href="{{CD.siteURL + '/member-profile/' + registrant.handle}}" ng-bind="registrant.handle"></a>
+                        <a ng-href="{{'/member-profile/' + registrant.handle}}" ng-bind="registrant.handle"></a>
                     </span>
                   </td>
                   <td ng-if="!CD.isDesign" class="ratingColumn">
