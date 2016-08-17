@@ -19,7 +19,7 @@
  */
 
 function add_base_url() {
-  $output = "<base href=\"" . get_site_url() . "/" . ACTIVE_CONTESTS_PERMALINK . "/\" />";
+  $output = "<base href=\"" . "/" . ACTIVE_CONTESTS_PERMALINK . "/\" />";
   echo $output;
 }
 
