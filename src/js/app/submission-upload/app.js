@@ -25,6 +25,22 @@
 
   .constant("API_URL", tcconfig.apiURL)
 
+  .config(['$locationProvider', '$sceDelegateProvider',
+    function ($locationProvider, $sceDelegateProvider) {
+      $sceDelegateProvider.resourceUrlWhitelist([
+        // Allow same origin resource loads.
+        'self',
+        // Allow loading from subdomains.  Notice the difference between * and **.
+        'http://*.topcoder.com/**',
+        'https://*.topcoder.com/**',
+        'http://*.topcoder-qa.com/**',
+        'https://*.topcoder-qa.com/**',
+        'http://*.topcoder-dev.com/**',
+        'https://*.topcoder-dev.com/**'
+      ]);        
+      $locationProvider.html5Mode(true);
+  }])
+  
   .config(DataPreProcessing);
 
   DataPreProcessing.$inject = ['$httpProvider', 'RestangularProvider', 'API_URL'];

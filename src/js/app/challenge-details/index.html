@@ -22,14 +22,14 @@
                 <span>1</span> <strong>Register For This Challenge</strong>
             </a>
             <a ng-show="CD.isDesign" ng-class="{disabled:CD.challenge.submissionDisabled || !CD.callComplete, disabledNOT:!CD.challenge.submissionDisabled}" class="btn btnAction" target="_blank"
-               ng-href="//www.{{CD.domain}}//challenges/{{CD.challenge.challengeId}}/submit/file">
+               ng-href="/challenges/{{CD.challenge.challengeId}}/submit/file">
                 <span>2</span> <strong>Submit Your Entries</strong>
             </a>
             <a ng-show="CD.isDesign" ng-class="{disabled:CD.challenge.submissionDisabled || !CD.callComplete, disabledNOT:!CD.challenge.submissionDisabled}" class="btn btnAction" target="_blank"
                ng-href="//studio.{{CD.domain}}/?module=ViewSubmission&ct={{CD.challenge.challengeId}}">
                 <span>3</span> <strong>View Your Submission</strong>
             </a>
-            <a ng-show="!CD.isDesign && CD.isPeerReviewed" ng-class="{disabled:CD.challenge.peerReviewDisabled || !CD.callComplete, disabledNOT:!CD.challenge.peerReviewDisabled}" class="btn btnAction" ng-href="//www.{{CD.domain}}/challenges/{{CD.challenge.challengeId}}/reviews/" target="_blank">
+            <a ng-show="!CD.isDesign && CD.isPeerReviewed" ng-class="{disabled:CD.challenge.peerReviewDisabled || !CD.callComplete, disabledNOT:!CD.challenge.peerReviewDisabled}" class="btn btnAction" ng-href="/challenges/{{CD.challenge.challengeId}}/reviews/" target="_blank">
                 <span>3</span><strong>Review This Challenge</strong>
             </a>
           </div>
@@ -618,7 +618,7 @@
                 <tr ng-repeat="registrant in CD.challenge.registrants | orderBy:'registrationDate'">
                   <td ng-class="CD.challengeType == 'design' ? 'handleColumnDesign' : 'handleColumn'">
                     <span>
-                        <a ng-href="{{CD.siteURL + '/member-profile/' + registrant.handle}}" ng-bind="registrant.handle"></a>
+                        <a ng-href="{{'/member-profile/' + registrant.handle}}" ng-bind="registrant.handle"></a>
                     </span>
                   </td>
                   <td ng-if="!CD.isDesign" class="ratingColumn">
