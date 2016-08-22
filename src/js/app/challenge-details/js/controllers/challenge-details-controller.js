@@ -230,7 +230,7 @@
      * @returns {string}
      */
     $scope.getTemplateURL = function (template) {
-      return base_url + '/js/app/challenge-details/partials/' + template;
+      return '/js/app/challenge-details/partials/' + template;
     }
 
   }
