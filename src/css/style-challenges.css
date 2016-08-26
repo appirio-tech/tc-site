@@ -238,6 +238,7 @@ select {
     position: absolute;
     left: 12px;
     top: 4px;
+    height: 75px;
 
     -moz-transition-duration: .2s;
     -webkit-transition-duration: .2s;
