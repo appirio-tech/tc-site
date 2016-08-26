@@ -8,7 +8,7 @@
 <desc>Created with Sketch.</desc>
 <g id="Page-1" sketch:type="MSPage">
 	<g id="banner-development" sketch:type="MSArtboardGroup">
-		<rect id="Rectangle-62" sketch:type="MSShapeGroup" fill="#0C632B" width="40" height="36">
+		<rect id="Rectangle-62" sketch:type="MSShapeGroup" fill="#10A64B" width="40" height="36">
 		</rect>
 		<path id="path-1" sketch:type="MSShapeGroup" fill="#10A64B" d="M0,36h40v26L20,74L0,62V36L0,36z"/>
 		<text transform="matrix(1 0 0 1 4.6982 22.25)" opacity="0.8" fill="#FFFFFF" font-family="'Gotham-Bold'" font-size="14">TCO</text>
