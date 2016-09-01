@@ -325,7 +325,7 @@ _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
           ],
           'community': [
               { 'href': '/community/members/', 'text': 'OVERVIEW', 'icon': '/mf/i/nav/members.svg' },
-              { 'href': 'https://tco17.' + tcconfig.domain, 'text': 'TCO17', 'icon': '/mf/i/nav/tco-generic.svg' },
+              { 'href': 'https://help.' + tcconfig.domain + '/hc/en-us/articles/222805207', 'text': 'TCO17', 'icon': '/mf/i/nav/tco-generic.svg' },
               { 'href': '/community/member-programs/', 'text': 'PROGRAMS', 'icon': '/mf/i/nav/programs.svg' },
               { 'href': 'https://' + tcconfig.forumsAppURL, 'text': 'FORUMS', 'icon': '/mf/i/nav/forums.svg' },
               { 'href': '/community/statistics/', 'text': 'STATISTICS', 'icon': '/mf/i/nav/statistics.svg' },
