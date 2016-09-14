@@ -23,7 +23,7 @@
     <ul class="submenu">
       <li class="submenu-item"><a ng-click="$event.stopPropagation();" href="/sitemap" class="menu-link">SITEMAP</a></li>
       <li class="submenu-item"><a ng-click="$event.stopPropagation();" href="/about" class="menu-link">ABOUT US</a></li>
-      <li class="submenu-item"><a ng-click="$event.stopPropagation();" href="/contact-us" class="menu-link">CONTACT US</a></li>
+      <li class="submenu-item"><a ng-click="$event.stopPropagation();" href="https://help.topcoder.com/hc/en-us/articles/219069687-Contact-Support" class="menu-link">CONTACT US</a></li>
       <li class="submenu-item"><a ng-click="$event.stopPropagation();" href="http://help.topcoder.com" target="_blank" class="menu-link">HELP CENTER</a></li>
       <li class="submenu-item"><a ng-click="$event.stopPropagation();" href="http://topcoder.com/community/how-it-works/privacy-policy/" class="menu-link">PRIVACY POLICY</a></li>
       <li class="submenu-item"><a ng-click="$event.stopPropagation();" href="http://topcoder.com/community/how-it-works/terms/" class="menu-link">TERMS</a></li>
