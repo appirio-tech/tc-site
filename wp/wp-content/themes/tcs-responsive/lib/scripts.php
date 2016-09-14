@@ -21,8 +21,8 @@
 function tcs_responsive_scripts() {
   // register scripts that are used everywhere
   $assets = array(
-    'jquery' => '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
-    'jquery_ui' => '//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js',
+    'jquery' => '//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js',
+    'jquery_ui' => '//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js',
     'respond'   =>  '/js/vendor/respond.min.js',
     'modernizr' => '/js/vendor/modernizr.js',
     'html5shiv' => '/js/vendor/html5shiv.js',
