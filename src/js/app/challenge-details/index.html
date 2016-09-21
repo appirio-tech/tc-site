@@ -791,8 +791,8 @@
 
                 <div class="inner">
                   <ul>
-                    <li ng-if="!hasFiletypes"><strong>Text or Word Document containing all of your ideas and supporting information.</strong></li>
-                    <li ng-if="hasFiletypes" ng-repeat="filetype in CD.challenge.filetypes">
+                    <li ng-if="!CD.hasFiletypes"><strong>Text or Word Document containing all of your ideas and supporting information.</strong></li>
+                    <li ng-if="CD.hasFiletypes" ng-repeat="filetype in CD.challenge.filetypes">
                       <strong ng-bind="filetype"></strong>
                     </li>
                   </ul>
