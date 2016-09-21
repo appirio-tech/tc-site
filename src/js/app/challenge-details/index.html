@@ -785,6 +785,18 @@
                 </div>
               </div>
             </li>
+            <li ng-if="CD.termsList.length > 0" class="slide">
+              <div class="slideBox">
+                <h3>Challenge Terms:</h3>
+                <ul>
+                  <li ng-repeat="terms in CD.termsList">
+                    <a ng-href="/challenge-details/terms/detail/{{terms.termsOfUseId}}/">
+                      {{terms.title}}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
             <li ng-if="CD.isDesign" class="slide">
               <div class="slideBox">
                 <h3>Source Files:</h3>

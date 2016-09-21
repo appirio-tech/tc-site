@@ -100,6 +100,19 @@
       return defer.promise;
     };
 
+    service.getChallengeTerms = function(id) {
+      var defer = $q.defer();
+
+      service
+        .one('terms', id)
+        .getList('', {noauth: true}).then(function(data) {
+          data = data[0].terms;
+          defer.resolve(data);
+        });
+
+      return defer.promise;
+    }
+
     service.getPeerReviewResults = function(id) {
       var defer = $q.defer();
 
