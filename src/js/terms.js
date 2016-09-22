@@ -30,11 +30,11 @@ appChallengeTerms = {
     app.setLoading();
     $.ajax({
       type: "GET",
-      url: tcconfig.apiURL + "/terms/detail/" + termsOfUseID + '?noauth=true',
+      url: tcconfig.apiURL + "/terms/detail/" + termsOfUseID + (app.isLoggedIn() ? '' : '?noauth=true'),
       dataType: 'json',
-      headers: {
+      headers: app.isLoggedIn() ? {
         'Authorization': 'Bearer ' + tcjwt.replace(/["]/g, "")
-      },
+      } : {},
       success: function(data) {
         $(".formContent").addClass("pageContent");
         if (data.title) {
