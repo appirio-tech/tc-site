@@ -105,7 +105,7 @@
 
       service
         .one('terms', id)
-        .getList('', {noauth: true}).then(function(data) {
+        .getList('', {noauth: true, role: 'Submitter'}).then(function(data) {
           data = data[0].terms;
           defer.resolve(data);
         });
