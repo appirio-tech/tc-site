@@ -120,6 +120,9 @@ appChallengeTerms = {
         });
       }
     });
+    if (!app.isLoggedIn()) {
+      $('#submitForm').hide();
+    }
   },
 
   initList: function (tcjwt) {
