@@ -51,7 +51,7 @@ appChallengeTerms = {
           } else if (data["agreeabilityType"] !== "Electronically-agreeable" && typeof data["docusignTemplateId"] !== "undefined") {
             if (!app.isLoggedIn()) {
               console.log('REDIRECT AWAY FROM DOCUSIGN');
-              window.location.href = 'login?next=' + window.location.href;
+              window.location.href = '/login?next=' + window.location.href;
             }
             //if DocuSign, get URL from docuSign API and output iframe
             $('.agree-label').hide();
