@@ -80,6 +80,7 @@
     vm.checkpointPassedScreeningSubmitterPercentage = 0;
     vm.checkpointPassedScreeningSubmissionPercentage = 0;
     vm.phaseProgram = null;
+    vm.termsList = [];
 
     $interval(function () {
       if (vm.challenge && vm.challenge.currentPhaseRemainingTime) {
@@ -161,6 +162,9 @@
      * @param ChallengeService
      */
     function initChallengeDetail(handle, vm, ChallengeService) {
+      ChallengeService.getChallengeTerms(challengeId).then(function(termsList) {
+        vm.termsList = termsList;
+      });
       ChallengeService
           .getChallenge(challengeId)
           .then(function (challenge) {

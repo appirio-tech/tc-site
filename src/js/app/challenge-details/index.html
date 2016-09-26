@@ -728,6 +728,21 @@
               </div>
 
             </li>
+            <li ng-if="!CD.isDesign && CD.termsList.length > 0" class="slide">
+              <div class="slideBox">
+                <h3>Challenge Terms:</h3>
+                <div class="inner">
+                  <ul>
+                    <li ng-repeat="terms in CD.termsList">
+                      <a class="termsListLink" target="_blank" href="/challenge-details/terms/detail/{{terms.termsOfUseId}}/">
+                        {{terms.title}}
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+
             <li ng-hide="CD.isDesign || CD.isPeerReviewed" class="slide">
 
               <div class="umltoolLinks slideBox">
@@ -808,6 +823,20 @@
                 <div class="inner">
                   <!-- Bugfix I-107615: Added check if SubmissionLimit is empty, if so, display "Unlimited" instead of empty value -->
                   <p><strong ng-bind="CD.challenge.submissionLimit.length > 0 ? CD.challenge.submissionLimit : 'Unlimited'"></strong></p>
+                </div>
+              </div>
+            </li>
+            <li ng-if="CD.isDesign && CD.termsList.length > 0" class="slide">
+              <div class="slideBox">
+                <h3>Challenge Terms:</h3>
+                <div class="inner">
+                  <ul>
+                    <li ng-repeat="terms in CD.termsList">
+                      <a class="termsListLink" target="_blank" href="/challenge-details/terms/detail/{{terms.termsOfUseId}}/">
+                        {{terms.title}}
+                      </a>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </li>
