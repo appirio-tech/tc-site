@@ -27,102 +27,104 @@ appChallengeTerms = {
   },
 
   initDetail: function (tcjwt) {
-    if (app.isLoggedIn()) {
-      app.setLoading();
-      $.ajax({
-        type: "GET",
-        url: tcconfig.apiURL + "/terms/detail/" + termsOfUseID,
-        dataType: 'json',
-        headers: {
-          'Authorization': 'Bearer ' + tcjwt.replace(/["]/g, "")
-        },
-        success: function(data) {
-          $(".formContent").addClass("pageContent");
-          if (data.title) {
-            $(".formContent .terms").show();
-            $(".formContent .warning").hide();
-            $(".overviewPageTitle").text(data["title"]);
-            //Bugfix I-116354
-            $('#agreement-section').removeClass('hide');
-            
-            if (data.agreeabilityType === 'Non-electronically-agreeable') {
-              $('#agreement-section').addClass('hide');
-              $('.loading').hide();
-              $(".termsText").html(data.text);
-            } else if (data["agreeabilityType"] !== "Electronically-agreeable" && typeof data["docusignTemplateId"] !== "undefined") {
-              //if DocuSign, get URL from docuSign API and output iframe
-              $('.agree-label').hide();
-              $('#termSubmit').text('Go Back');
-              $('.agreement').removeClass('notAgreed');
-              var finalDest = escape(tcconfig.mainURL + "/challenge-details/terms/" + challengeId + "?challenge-type=" + challengeType + "&cb=" + Math.random());
-              $.ajax({
-                url: tcconfig.apiURL + '/terms/docusign/viewURL',
-                type: 'POST',
-                data: {
-                  templateId: data["docusignTemplateId"],
-                  returnUrl: tcconfig.mainURL + "/iframe-break/?dest=" + finalDest
-                },
-                cache: false,
-                beforeSend: function(bxhr) {
-                  bxhr.setRequestHeader('Authorization', 'Bearer ' + tcjwt.replace(/["]/g, ""));
-                },
-                complete: function(docuData) {
-                  $('.loading').hide();
-                  //output iframe when AJAX data returns
-                  var responseObj = docuData.responseJSON;
-                  if (typeof responseObj["recipientViewUrl"] !== "undefined") {
-                    $(".termsText").html('<iframe class="termsFrame" src="' + responseObj["recipientViewUrl"] + '"></iframe>');
-                  } else {
-                    //url not in data result, error
-                    $(".formContent .terms").hide();
-                    $(".formContent .warning").text(responseObj["description"]);
-                    $(".formContent .warning").show();
-                  }
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                  // Handle errors here
-                  $(".termsText").html('Sorry, your request could not be completed at this time.');
-                }
-              });
-            } else {
-              $('.loading').hide();
-              //if not docuSign, output normal terms text
-              $(".termsText").html(data["text"]);
+    app.setLoading();
+    $.ajax({
+      type: "GET",
+      url: tcconfig.apiURL + "/terms/detail/" + termsOfUseID + (app.isLoggedIn() ? '' : '?noauth=true'),
+      dataType: 'json',
+      headers: app.isLoggedIn() ? {
+        'Authorization': 'Bearer ' + tcjwt.replace(/["]/g, "")
+      } : {},
+      success: function(data) {
+        $(".formContent").addClass("pageContent");
+        if (data.title) {
+          $(".formContent .terms").show();
+          $(".formContent .warning").hide();
+          $(".overviewPageTitle").text(data["title"]);
+          //Bugfix I-116354
+          $('#agreement-section').removeClass('hide');
+          
+          if (data.agreeabilityType === 'Non-electronically-agreeable') {
+            $('#agreement-section').addClass('hide');
+            $('.loading').hide();
+            $(".termsText").html(data.text);
+          } else if (data["agreeabilityType"] !== "Electronically-agreeable" && typeof data["docusignTemplateId"] !== "undefined") {
+            if (!app.isLoggedIn()) {
+              window.location.href = '/login?next=' + window.location.href;
             }
+            //if DocuSign, get URL from docuSign API and output iframe
+            $('.agree-label').hide();
+            $('#termSubmit').text('Go Back');
+            $('.agreement').removeClass('notAgreed');
+            var finalDest = escape(tcconfig.mainURL + "/challenge-details/terms/" + challengeId + "?challenge-type=" + challengeType + "&cb=" + Math.random());
+            $.ajax({
+              url: tcconfig.apiURL + '/terms/docusign/viewURL',
+              type: 'POST',
+              data: {
+                templateId: data["docusignTemplateId"],
+                returnUrl: tcconfig.mainURL + "/iframe-break/?dest=" + finalDest
+              },
+              cache: false,
+              beforeSend: function(bxhr) {
+                bxhr.setRequestHeader('Authorization', 'Bearer ' + tcjwt.replace(/["]/g, ""));
+              },
+              complete: function(docuData) {
+                $('.loading').hide();
+                //output iframe when AJAX data returns
+                var responseObj = docuData.responseJSON;
+                if (typeof responseObj["recipientViewUrl"] !== "undefined") {
+                  $(".termsText").html('<iframe class="termsFrame" src="' + responseObj["recipientViewUrl"] + '"></iframe>');
+                } else {
+                  //url not in data result, error
+                  $(".formContent .terms").hide();
+                  $(".formContent .warning").text(responseObj["description"]);
+                  $(".formContent .warning").show();
+                }
+              },
+              error: function(jqXHR, textStatus, errorThrown) {
+                // Handle errors here
+                $(".termsText").html('Sorry, your request could not be completed at this time.');
+              }
+            });
           } else {
             $('.loading').hide();
-            $(".formContent .terms").hide();
-            $(".formContent .warning").text(data["error"]["details"]);
-            $(".formContent .warning").show();
+            //if not docuSign, output normal terms text
+            $(".termsText").html(data["text"]);
           }
-          $('#agree').change(function () {
-            if ($(this).prop('checked')) {
-              $(this).closest('section.agreement').removeClass('notAgreed');
-            } else {
-              $(this).closest('section.agreement').addClass('notAgreed');
-            }
-          });
-          $("#termSubmit").click(function () {
-            if ($(this).parents(".notAgreed").length === 0) {
-              app.setLoading();
-              $.ajax({
-                type: "POST",
-                url: tcconfig.apiURL + "/terms/" + termsOfUseID + "/agree",
-                dataType: 'json',
-                headers: {
-                  'Authorization': 'Bearer ' + tcjwt.replace(/["]/g, "")
-                },
-                success: function(data) {
-                  window.location = tcconfig.mainURL + "/challenge-details/terms/" + challengeId + "?challenge-type=" + challengeType;
-                  $('.loading').hide();
-                }
-              });
-            }
-          });
+        } else {
+          $('.loading').hide();
+          $(".formContent .terms").hide();
+          $(".formContent .warning").text(data["error"]["details"]);
+          $(".formContent .warning").show();
         }
-      });
-    } else {
-      $('.actionLogin').click();
+        $('#agree').change(function () {
+          if ($(this).prop('checked')) {
+            $(this).closest('section.agreement').removeClass('notAgreed');
+          } else {
+            $(this).closest('section.agreement').addClass('notAgreed');
+          }
+        });
+        $("#termSubmit").click(function () {
+          if ($(this).parents(".notAgreed").length === 0) {
+            app.setLoading();
+            $.ajax({
+              type: "POST",
+              url: tcconfig.apiURL + "/terms/" + termsOfUseID + "/agree",
+              dataType: 'json',
+              headers: {
+                'Authorization': 'Bearer ' + tcjwt.replace(/["]/g, "")
+              },
+              success: function(data) {
+                window.location = tcconfig.mainURL + "/challenge-details/terms/" + challengeId + "?challenge-type=" + challengeType;
+                $('.loading').hide();
+              }
+            });
+          }
+        });
+      }
+    });
+    if (!app.isLoggedIn()) {
+      $('#submitForm').hide();
     }
   },
 
