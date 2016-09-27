@@ -735,6 +735,11 @@ h1.center {
 
 .challenge-detail .unregister {
     background: #e66 !important;
+    display: inline-block;
+    padding-top: 5px;
+    width: 77%;
+    font-weight: normal;
+    color: #fff;
 }
 
 .challenge-detail .unregister:hover {
@@ -760,6 +765,11 @@ h1.center {
 
 .challenge-detail.develop .unregister {
     background: #e66 !important;
+    display: inline-block;
+    padding-top: 5px;
+    width: 77%;
+    font-weight: normal;
+    color: #fff;
 }
 
 .challenge-detail.develop .unregister:hover {
