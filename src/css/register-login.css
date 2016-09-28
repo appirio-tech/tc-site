@@ -571,47 +571,34 @@ Thanks modal
     padding-bottom: 60px;
 }
 
-/*registerSuccess modal*/
-#registerSuccess{
+/*registerFailed, registerSuccess and unregisterSuccess modals*/
+#registerFailed,
+#registerSuccess,
+#unregisterSuccess{
     width: 534px;
 }
-#registerSuccess .btnClose{
+#registerFailed .btnClose,
+#registerSuccess .btnClose,
+#unregisterSuccess .btnClose{
     right: 20px;
 }
-#registerSuccess .content{
+#registerFailed    .content,
+#registerSuccess   .content,
+#unregisterSuccess .content{
     padding: 10px 20px 20px;
 }
-#registerSuccess .content h2{
+#registerFailed    .content h2,
+#registerSuccess   .content h2,
+#unregisterSuccess .content h2{
     font-size: 36px;
 }
-#registerSuccess .content p.success{
+#registerSuccess   .content p.success,
+#unregisterSuccess .content p.success {
     padding: 32px 30px 32px 80px;
     font-size: 14px;
     color: #666;
     line-height: 24px;
     background: url("../i/success-icon.png") no-repeat 0 34px;
-}
-#registerSuccess .content p.submitBtn{
-    border-top: 1px solid #e7e7e7;
-    padding-top: 20px;
-    text-align: center;
-}
-#registerSuccess .content p.submitBtn .btn{
-    width: 60px
-}
-
-/*registerFailed modal*/
-#registerFailed{
-    width: 534px;
-}
-#registerFailed .btnClose{
-    right: 20px;
-}
-#registerFailed .content{
-    padding: 10px 20px 20px;
-}
-#registerFailed .content h2{
-    font-size: 36px;
 }
 #registerFailed .content p.failedMessage{
     padding: 32px 30px 32px 80px;
@@ -619,12 +606,16 @@ Thanks modal
     color: #666;
     line-height: 24px;
 }
-#registerFailed .content p.submitBtn{
+#registerFailed    .content p.submitBtn,
+#registerSuccess   .content p.submitBtn,
+#unregisterSuccess .content p.submitBtn{
     border-top: 1px solid #e7e7e7;
     padding-top: 20px;
     text-align: center;
 }
-#registerFailed .content p.submitBtn .btn{
+#registerFailed    .content p.submitBtn .btn,
+#registerSuccess   .content p.submitBtn .btn,
+#unregisterSuccess .content p.submitBtn .btn{
     width: 60px
 }
 

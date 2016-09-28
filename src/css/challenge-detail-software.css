@@ -733,6 +733,14 @@ h1.center {
     display: block;
 }
 
+.challenge-detail .unregister {
+    background: #e66 !important;
+}
+
+.challenge-detail .unregister:hover {
+    background: #d66 !important;
+}
+
 .challenge-detail .btnAction:hover {
     background: #0096ff !important;
 }
@@ -748,6 +756,14 @@ h1.center {
 
 .challenge-detail.develop .btnAction:hover {
     background: #46b314 !important;
+}
+
+.challenge-detail.develop .unregister {
+    background: #e66 !important;
+}
+
+.challenge-detail.develop .unregister:hover {
+    background: #d66 !important;
 }
 
 .challenge-detail .btnAction.disabled {
