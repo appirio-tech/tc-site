@@ -233,11 +233,13 @@
     };
 
     /**
-     *
-     * @param id
-     * @returns {promise}
+     * Registers or unregisters the user for challenge.
+     * @param {String} challengeId Challenge ID.
+     * @param {String} action The action, MUST be either 'register' or
+     *    'unregister'.
+     * @returns {Promise}
      */
-    service.registerToChallenge = function(id) {
+    function _challengeRegistrationAction(challengeId, action) {
       var defer = $q.defer();
 
       var tcjwt = getCookie('tcjwt');
@@ -246,8 +248,8 @@
       }
 
       service
-        .one('challenges', id)
-        .post('register')
+        .one('challenges', challengeId)
+        .post(action)
         .then(function(response) {
           defer.resolve(response);
         }, function(reason) {
@@ -255,6 +257,24 @@
         });
 
       return defer.promise;
+    }
+
+    /**
+     *
+     * @param id
+     * @returns {promise}
+     */
+    service.registerToChallenge = function(id) {
+      return _challengeRegistrationAction(id, 'register');
+    };
+
+    /**
+     * Unregisters from challenge.
+     * @param id Challenge ID.
+     * @returns {promise}
+     */
+    service.unregisterFromChallenge = function(id) {
+      return _challengeRegistrationAction(id, 'unregister');
     };
 
     /**

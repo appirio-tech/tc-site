@@ -90,6 +90,7 @@
 
     // Methods
     vm.registerToChallenge = registerToChallenge;
+    vm.unregisterFromChallenge = unregisterFromChallenge;
 
     // functions
     $scope.round = Math.round;
@@ -224,9 +225,31 @@
         });
         $('.tc-header-login').click();
       }
-
-
     };
+
+    /**
+     * Unregister from challenge
+     */
+    function unregisterFromChallenge() {
+      if (app.isLoggedIn()) {
+        ChallengeService
+            .unregisterFromChallenge(challengeId)
+            .then(
+            function (data) {
+              if (data["message"] === "ok") {
+                showModal("#unregisterSuccess");
+                //delete cookie
+                document.cookie = 'tcDelayChallengeAction=; path=/; domain=.' + tcconfig.domain + '; expires=' + new Date(0).toUTCString();
+                updateChallengeDetail();
+              }
+            }, function (reason) {
+              if (reason["error"]["details"]) {
+                showError(reason["error"]["details"]);
+              }
+            }
+        );
+      }
+    }
 
     /**
      *
@@ -298,22 +321,34 @@
     }).length;
     var submissionMap = challenge.submissions.map(function(x) { return x.handle; });
 
-    // this are the buttons for registration and submission
+    // these are the buttons for registration, and submission
     vm.challenge.registrationDisabled = true;
     vm.challenge.submissionDisabled   = true;
+    // true when to unregister is the valid option
+    vm.challenge.allowToUnregister    = false;
     // button for peer review for challenges with reviewType === PEER
     vm.challenge.peerReviewDisabled   = true;
 
     vm.challenge.url = window.location.href;
 
-    // If is not registered, then enable registration
-    if (((moment(challenge.phases[0].scheduledStartTime)) < moment() && (moment(challenge.registrationEndDate)) > moment()) && regList.indexOf(handle) == -1 && challenge.currentStatus == 'Active') {
-      vm.challenge.registrationDisabled = false;
-    }
-
     vm.isRegistered = true;
     if (regList.indexOf(handle) == -1) {
       vm.isRegistered = false;
+    }
+    
+    var hasSubmitted = false;
+    if (submissionMap.indexOf(handle) >= 0) {
+      hasSubmitted = true;
+    }
+
+    // If the challenge is active and in the registration phase we allow either
+    // registration, or unregistration.
+    if (((moment(challenge.phases[0].scheduledStartTime)) < moment() && (moment(challenge.registrationEndDate)) > moment()) && challenge.currentStatus == 'Active') {
+      if (vm.isRegistered && !hasSubmitted) {
+        vm.challenge.allowToUnregister = true;
+      } else {
+        vm.challenge.registrationDisabled = false;
+      }
     }
 
     //check autoRegister (terms link register) and DelayAction cookie status

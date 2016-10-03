@@ -188,6 +188,9 @@ $(function () {
     closeModal();
   });
 
+  $("#unregisterSuccess .closeModalReg").click(function () {
+    closeModal();
+  });
 });
 
 /* checkpoint contest css*/

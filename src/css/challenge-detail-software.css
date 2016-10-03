@@ -733,6 +733,8 @@ h1.center {
     display: block;
 }
 
+
+
 .challenge-detail .btnAction:hover {
     background: #0096ff !important;
 }
@@ -748,6 +750,14 @@ h1.center {
 
 .challenge-detail.develop .btnAction:hover {
     background: #46b314 !important;
+}
+
+.challenge-detail.develop .unregister {
+    background: #e66 !important;
+}
+
+.challenge-detail.develop .unregister:hover {
+    background: #d66 !important;
 }
 
 .challenge-detail .btnAction.disabled {
@@ -2683,6 +2693,7 @@ h1.center {
     height: 97px;
 }
 
+
 /* styles for member program path box - end */
 
 /* stylish changes per Victor applied to challenge details only */
@@ -2836,9 +2847,17 @@ h1.center {
     text-transform: uppercase;
     overflow: hidden;
     display: block; }
+  .cd-wrapper .challenge-detail .btnAction.unregister {
+    background: #e66 !important;
+    border-bottom: none;
+  }
   .cd-wrapper .challenge-detail .btnAction:hover {
     color: #fff;
     background-color: #097DCE; }
+  .cd-wrapper .challenge-detail .btnAction.unregister:hover {
+    background: #d66 !important;
+    border-bottom: none;
+  }
   .cd-wrapper #stepBox .rightColumn .nextBox .allDeadlineNextBoxContent,
   .cd-wrapper #stepBox .rightColumn .nextBox .nextBoxContent {
     background: #85CCFF;
@@ -2879,3 +2898,13 @@ h1.center {
     box-sizing: border-box; }
   .cd-wrapper .challenge-detail .rightSplit {
     float: left; }
+
+.challenge-detail .unregister.btnAction {
+    background: #e66 !important;
+    border-bottom: 4px solid #e66 !important;
+}
+
+.challenge-detail .unregister.btnAction:hover {
+    background: #d66 !important;
+    border-bottom: 4px solid #d66 !important;
+}
