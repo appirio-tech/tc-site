@@ -337,7 +337,7 @@
     }
     
     var hasSubmitted = false;
-    if (submissionMap.indexOf(handle) >= 0) {
+    if (submitters.indexOf(handle) >= 0) {
       hasSubmitted = true;
     }
 
