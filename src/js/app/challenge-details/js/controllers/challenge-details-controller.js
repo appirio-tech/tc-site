@@ -337,15 +337,17 @@
     }
     
     var hasSubmitted = false;
-    if (submitters.indexOf(handle) >= 0) {
+    if (submissions.indexOf(handle) >= 0) {
       hasSubmitted = true;
     }
 
     // If the challenge is active and in the registration phase we allow either
     // registration, or unregistration.
     if (((moment(challenge.phases[0].scheduledStartTime)) < moment() && (moment(challenge.registrationEndDate)) > moment()) && challenge.currentStatus == 'Active') {
-      if (vm.isRegistered && !hasSubmitted) {
-        vm.challenge.allowToUnregister = true;
+      if (vm.isRegistered) {
+        if (!hasSubmitted) {
+          vm.challenge.allowToUnregister = true;
+        }
       } else {
         vm.challenge.registrationDisabled = false;
       }
