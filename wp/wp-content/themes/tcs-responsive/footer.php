@@ -318,7 +318,11 @@ window.onload = function(){
         }
 
         vm.login = function() {
-          window.location.href = "/login?next=" + encodeURIComponent(window.location.href);
+          window.location.href = tcconfig.accountAppURL + "?next=" + encodeURIComponent(window.location.href);
+        }
+
+        vm.join = function() {
+          window.location.href = tcconfig.accountAppURL + '/registration?next=' + encodeURIComponent(window.location.href);
         }
 
         vm.logout = function() {
