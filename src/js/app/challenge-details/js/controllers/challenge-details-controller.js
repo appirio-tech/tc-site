@@ -275,8 +275,7 @@
     challengeName = challenge.challengeName;
     var reviewScorecardId = challenge.reviewScorecardId;
     vm.isDesign = (challengeType === 'design');
-    vm.allowDownloads = challenge.currentPhaseName === 'Registration' || challenge.currentPhaseName === 'Submission';
-
+    vm.allowDownloads = challenge.currentStatus === 'Active' && challenge.currentPhaseRemainingTime > 0;
 
     if ((challenge.currentPhaseName != 'Stalled' && challenge.checkpointSubmissionEndDate && challenge.checkpointSubmissionEndDate != '') || (challenge.checkpoints && challenge.checkpoints.length > 0)) {
       ChallengeService
