@@ -293,7 +293,7 @@ window.onload = function(){
               { 'href': '/community/design/', 'text': 'DESIGN', 'icon': '/mf/i/nav/book-design.svg' },
               { 'href': '/community/development/', 'text': 'DEVELOPMENT', 'icon': '/mf/i/nav/book-develop.svg' },
               { 'href': '/community/data-science/', 'text': 'DATA SCIENCE', 'icon': '/mf/i/nav/book-data.svg' },
-              { 'href': '/community/competitive%20programming/', 'text': 'COMPETITIVE PROGRAMMING', 'icon': '/mf/i/nav/book-cp.svg' },
+              { 'href': '/community/competitive-programming/', 'text': 'COMPETITIVE PROGRAMMING', 'icon': '/mf/i/nav/book-cp.svg' },
           ],
           'community': [
               { 'href': '/community/members/', 'text': 'OVERVIEW', 'icon': '/mf/i/nav/members.svg' },
