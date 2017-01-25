@@ -13,5 +13,6 @@
   "useMin": true,
   "useCND": false,
   "myFiltersURL": "https://staging-user-settings-service.herokuapp.com",
-  "cbURL": "https://coderbits.com"
+  "cbURL": "https://coderbits.com",
+  "accountAppURL": "https://accounts.topcoder.com/member"
 }
