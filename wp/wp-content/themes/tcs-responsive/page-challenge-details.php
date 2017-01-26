@@ -207,7 +207,7 @@ include locate_template('header-challenge-landing.php');
       </div>
     </article>
 
-    <h3>Final Submission Guidelines</h3>
+    <h2>Final Submission Guidelines</h2>
     <?php echo $contest->finalSubmissionGuidelines; ?>
 
 
