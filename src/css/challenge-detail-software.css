@@ -302,12 +302,12 @@ font-size: 18px;
     width: 180px;
 }
 
-.challenge-detail .tableWrap h1 {
+.challenge-detail .tableWrap h3 {
     color: #00aeff;
     font-size: 16px;
     line-height: 22px;
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 6px;
     margin-top: 20px;
 }
 
@@ -316,22 +316,22 @@ h1.center {
   text-align: center;
 }
 
-.challenge-detail.develop .tableWrap h1 {
+.challenge-detail.develop .tableWrap h3 {
     color: #228400;
 }
 
-.challenge-detail .tableWrap h2, .challenge-detail .tableWrap h3,
-.challenge-detail .tableWrap h4, .challenge-detail .tableWrap h5,
-.challenge-detail .tableWrap h6 {
+.challenge-detail .tableWrap h1, .challenge-detail .tableWrap h2,
+.challenge-detail .tableWrap h3, .challenge-detail .tableWrap h4,
+.challenge-detail .tableWrap h5, .challenge-detail .tableWrap h6 {
     color: #000;
     font-size: 16px;
     line-height: 22px;
     font-weight: 500;
-    margin-bottom: 15px;
+    margin-bottom: 6px;
     margin-top: 20px;
 }
 
-.challenge-detail .tableWrap h3 {
+.challenge-detail .tableWrap h2 {
     color: #ed1c24;
 }
 
@@ -341,7 +341,7 @@ h1.center {
 }
 
 .challenge-detail .tableWrap, .challenge-detail .tableWrap p {
-    margin-bottom: 15px;
+    margin-bottom: 6px;
     font-family: 'Merriweather Sans';
     font-size: 14px;
     line-height: 1.4;
@@ -2755,7 +2755,7 @@ h1.center {
     font-weight: 600; }
   .cd-wrapper em {
     font-style: italic;
-    font-family: "Merriweather", Georgia, serif; }
+    font-family: "Merriweather Sans", Georgia, serif; }
   .cd-wrapper .note {
     border-left: 6px solid #d2d2d2;
     padding-left: 30px;
