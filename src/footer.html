@@ -2,7 +2,6 @@
 <footer class="bottom-footer">
   <!-- Footer links -->
   <nav class="menu-item">
-    <div class="menu-item-header show-small">OTHERS</div>
     <ul class="submenu">
       <li class="submenu-item"><a ng-click="$event.stopPropagation();" href="/sitemap" class="menu-link">SITEMAP</a></li>
       <li class="submenu-item"><a ng-click="$event.stopPropagation();" href="/about" class="menu-link">ABOUT US</a></li>
@@ -199,7 +198,7 @@
               } else {
                 photoLink = tcconfig.communityURL + '/i/m/nophoto_login.gif';
               }
-              
+
               var color = '';
               var ratings = data['ratingSummary'];
               if (ratings) {
@@ -213,7 +212,7 @@
               } else if (data['isPM'] == true) {
                 color = '#FF9900';
               }
-              
+
               $timeout(function() {
                 vm.handleStyle = { color: color };
                 vm.photoURL = photoLink;
