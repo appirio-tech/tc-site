@@ -841,7 +841,7 @@ footer {
   .nav-categories, .show-large, .menu-icon {
     display: none; }
   .top-header {
-    padding: 0 20px; }
+    padding: 0 20px 20px; }
   .menu-item {
     line-height: 30px;
     text-align: left; }
