@@ -207,7 +207,7 @@ include locate_template('header-challenge-landing.php');
       </div>
     </article>
 
-    <h2>Final Submission Guidelines</h2>
+    <h1>Final Submission Guidelines</h1>
     <?php echo $contest->finalSubmissionGuidelines; ?>
 
 
@@ -220,7 +220,7 @@ include locate_template('header-challenge-landing.php');
         will be made at the closure of the approval phase. The second payment will be made at the
         completion of the support period.</p>
 
-      <h2>Reliability Rating and Bonus</h2>
+      <h1>Reliability Rating and Bonus</h1>
 
       <p>For challenges that have a reliability bonus, the bonus depends on the reliability rating at
         the moment of registration for that project. A participant with no previous projects is
@@ -389,7 +389,7 @@ include locate_template('header-challenge-landing.php');
       will be made at the closure of the approval phase. The second payment will be made at the
       completion of the support period.</p>
 
-    <h2>Reliability Rating and Bonus</h2>
+    <h1>Reliability Rating and Bonus</h1>
 
     <p>For challenges that have a reliability bonus, the bonus depends on the reliability rating at
       the moment of registration for that project. A participant with no previous projects is
@@ -791,7 +791,7 @@ include locate_template('header-challenge-landing.php');
      class="tip reviewStyleTip tipFinalReview" style="display: none;">
   <div class="inner">
     <div class="tipHeader">
-      <h2>Final Review</h2>
+      <h1>Final Review</h1>
     </div>
     <div class="tipBody">
       <a href="javascript:;">Community Review Board</a> performs a thorough review based on scorecards.

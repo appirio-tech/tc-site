@@ -302,6 +302,10 @@ font-size: 18px;
     width: 180px;
 }
 
+.challenge-detail .tableWrap .final-submission-guidelines {
+    font-weight: bold;
+}
+
 .challenge-detail .tableWrap h3 {
     color: #00aeff;
     font-size: 16px;
@@ -335,7 +339,7 @@ h1.center {
     color: #ed1c24;
 }
 
-.challenge-detail .tableWrap h3, .challenge-detail .tableWrap h4,
+.challenge-detail .tableWrap h4,
 .challenge-detail .tableWrap h5, .challenge-detail .tableWrap h6 {
     font-size: 14px;
 }
@@ -2729,8 +2733,8 @@ h1.center {
     text-transform: uppercase;
     text-align: center;
     border: none; }
-  .cd-wrapper h2,
-  .cd-wrapper .challenge-detail .tableWrap h2 {
+  .cd-wrapper h1,
+  .cd-wrapper .challenge-detail .tableWrap h1 {
     font-size: 18px;
     font-weight: 400;
     font-style: normal;

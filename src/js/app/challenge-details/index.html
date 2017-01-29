@@ -403,12 +403,12 @@
 
         <div ng-if="!CD.isDesign" id="contest-overview" class="tableWrap {{CD.activeTab != 'details' ? 'hide' : ''}} tab">
           <article ng-if="!CD.isDesign" id="contestOverview">
-            <h2>Challenge Overview</h2>
+            <h1>Challenge Overview</h1>
 
             <p ng-bind-html="CD.challenge.detailedRequirements | trust"></p>
 
             <article id="platforms">
-              <h2>Platforms</h2>
+              <h1>Platforms</h1>
               <ul>
                 <li ng-if="(hasPlatforms = CD.challenge.platforms && CD.challenge.platforms.length > 0)" ng-repeat="platform in CD.challenge.platforms" >
                   <strong ng-bind="platform"></strong>
@@ -420,7 +420,7 @@
             </article>
 
             <article id="technologies">
-              <h2>Technologies</h2>
+              <h1>Technologies</h1>
               <div class="technologyTags">
                 <ul>
                   <li ng-if="CD.challenge.technology && CD.challenge.technology.length > 0" ng-repeat="tech in CD.challenge.technology">
@@ -435,18 +435,18 @@
               </div>
             </article>
 
-            <h3>Final Submission Guidelines</h3>
-            <div ng-bind-html="CD.challenge.finalSubmissionGuidelines | trust"></div>
+            <h1>Final Submission Guidelines</h1>
+            <div class="final-submission-guidelines" ng-bind-html="CD.challenge.finalSubmissionGuidelines | trust"></div>
 
             <article id="payments">
-              <h2>Payments</h2>
+              <h1>Payments</h1>
 
               <p>Topcoder will compensate members in accordance with the payment structure of this challenge.
                 Initial payment for the winning member will be distributed in two installments. The first payment
                 will be made at the closure of the approval phase. The second payment will be made at the
                 completion of the support period.</p>
 
-              <h2>Reliability Rating and Bonus</h2>
+              <h1>Reliability Rating and Bonus</h1>
 
               <p>For challenges that have a reliability bonus, the bonus depends on the reliability rating at
                 the moment of registration for that project. A participant with no previous projects is
@@ -463,7 +463,7 @@
           <article ng-if="CD.isDesign" id="contestOverview">
 
             <article id="contestSummary">
-              <h2>CHALLENGE SUMMARY</h2>
+              <h1>CHALLENGE SUMMARY</h1>
 
               <p class="paragraph" ng-bind-html="CD.challenge.introduction | trust"></p>
 
@@ -477,7 +477,7 @@
             </article>
 
             <article id="studioTournamentFormat" ng-if="CD.challenge.numberOfCheckpointsPrizes > 0">
-              <h2>CHALLENGE FORMAT</h2>
+              <h1>CHALLENGE FORMAT</h1>
               <p class="paragraph">This competition will be run as a two-round challenge.</p>
               <div>
                 <span class="subTitle">Round One (1)</span>
@@ -522,13 +522,13 @@
             </article>
 
             <article id="fullDescription">
-              <h2>FULL DESCRIPTION &amp; PROJECT GUIDE</h2>
+              <h1>FULL DESCRIPTION &amp; PROJECT GUIDE</h1>
 
               <p ng-bind-html="CD.challenge.detailedRequirements | trust"></p>
             </article>
 
             <article id="stockPhotography">
-              <h2>STOCK PHOTOGRAPHY</h2>
+              <h1>STOCK PHOTOGRAPHY</h1>
 
               <p ng-if="CD.challenge.allowStockArt"> Stock photography is allowed in this challenge.<br>
                 <a href="http://help.topcoder.com/hc/en-us/articles/217481408-Policy-for-Stock-Artwork-in-Design-Submissions">See this page for more details.</a></p>
@@ -540,7 +540,7 @@
             </article>
 
             <article id="howtosubmit">
-              <h2>HOW TO SUBMIT</h2>
+              <h1>HOW TO SUBMIT</h1>
 
               <p>
               <ul class="howToSubmit">
@@ -569,7 +569,7 @@
             </article>
 
             <article id="winnerselection">
-              <h2>WINNER SELECTION</h2>
+              <h1>WINNER SELECTION</h1>
 
               <p>
                 Submissions are viewable to the client as they are entered into the challenge. Winners are selected by the
@@ -578,14 +578,14 @@
             </article>
 
             <article id="payments">
-              <h2>PAYMENTS</h2>
+              <h1>PAYMENTS</h1>
 
               <p>Topcoder will compensate members in accordance with the payment structure of this challenge.
                 Initial payment for the winning member will be distributed in two installments. The first payment
                 will be made at the closure of the approval phase. The second payment will be made at the
                 completion of the support period.</p>
 
-              <h2>Reliability Rating and Bonus</h2>
+              <h1>Reliability Rating and Bonus</h1>
 
               <p>For challenges that have a reliability bonus, the bonus depends on the reliability rating at
                 the moment of registration for that project. A participant with no previous projects is
@@ -891,7 +891,7 @@
        class="tip reviewStyleTip tipFinalReview" style="display: none;">
     <div class="inner">
       <div class="tipHeader">
-        <h2>Final Review</h2>
+        <h1>Final Review</h1>
       </div>
       <div class="tipBody">
       <!--Bugfix refactored-challenge-details-117: Removed unused hyperlink-->
@@ -909,7 +909,7 @@
        style="display: none;">
     <div class="inner">
       <div class="tipHeader">
-        <h2>Approval</h2>
+        <h1>Approval</h1>
       </div>
       <div class="tipBody">
         Customer has final opportunity to sign-off on the delivered assets.
