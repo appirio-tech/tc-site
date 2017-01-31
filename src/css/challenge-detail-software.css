@@ -303,7 +303,8 @@ font-size: 18px;
 }
 
 .challenge-detail .tableWrap .final-submission-guidelines,
-.challenge-detail .tableWrap .final-submission-guidelines p {
+.challenge-detail .tableWrap .final-submission-guidelines p,
+.challenge-detail .tableWrap .final-submission-guidelines li {
     font-weight: normal;
     color: rgb(51, 51, 51);
     font-size: 14px;
@@ -363,25 +364,23 @@ h1.center {
 }
 
 .challenge-detail .tableWrap ul {
-    margin-left: 0px;
+    list-style: initial;
+    margin-left: 16px;
     padding: 0;
     margin-bottom: 10px;
     width: auto;
     color: #797979;
-    overflow: hidden;
 }
 
 .challenge-detail .tableWrap ul li {
     float: none;
-    display: block;
     height: auto;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
     font-family: 'Merriweather Sans';
     font-weight: 300;
     font-size: 14px;
     line-height: 1.4;
     border: none;
-    background: url("../i/bullet.png") no-repeat 0 7px;
     color: #797979;
 }
 
@@ -402,12 +401,19 @@ h1.center {
     float: none;
 	list-style-type: decimal;
     list-style-position: outside;
-    font-size: 13px;
-    line-height: 18px;
+    font-family: 'Merriweather Sans';
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.4;
     border: none;
     height: auto;
     padding-left: 0px;
     color: #797979;
+    margin-bottom: 6px;
+}
+
+.challenge-detail .tableWrap ol li:last-child {
+    margin-bottom: 0;
 }
 
 .challenge-detail .tableWrap p a {
@@ -440,11 +446,6 @@ h1.center {
 .challenge-detail .currentTab-checkpoints .topRightTitleAlt {
     display: block;
 }
-
-.challenge-detail .tableWrap ul li {
-    background: none;
-}
-
 
 .challenge-detail .topRightTitle a {
     font-size: 16px;
