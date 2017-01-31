@@ -375,7 +375,7 @@ h1.center {
 .challenge-detail .tableWrap ul li {
     float: none;
     height: auto;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
     font-family: 'Merriweather Sans';
     font-weight: 300;
     font-size: 14px;
@@ -409,7 +409,7 @@ h1.center {
     height: auto;
     padding-left: 0px;
     color: #797979;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
 }
 
 .challenge-detail .tableWrap ol li:last-child {
