@@ -578,7 +578,13 @@ get_header(); ?>
 </script>
 
 <script type="text/ng-template" id="tableView/winners.html">
-  <span ng-cell-text><a href="/challenge-details/{{row.getProperty('challengeId')}}/?type={{row.getProperty('challengeCommunity')}}#winner">View Winners</a></span>
+  <span ng-cell-text ng-if="row.getProperty('challengeCommunity') !== 'data'">
+    <span ng-cell-text><a href="/challenge-details/{{row.getProperty('challengeId')}}/?type={{row.getProperty('challengeCommunity')}}#winner">View Winners</a></span>
+  </span>
+  <span ng-cell-text ng-if="row.getProperty('challengeCommunity') === 'data'">
+    <a href="//community.topcoder.com/longcontest/?module=ViewStandings&rd={{row.getProperty('roundId')}}">View Winners</a>
+  </span>
+
 </script>
 
 </div>
