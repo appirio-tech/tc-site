@@ -529,6 +529,12 @@ footer {
   background-color: #3D3D3D;
   padding: 1px 20px 30px 20px; }
 
+.bottom-footer .menu-item .menu-link {
+  color: #fff;
+  font-size: 16px; }
+.bottom-footer .menu-item .menu-link:hover {
+  color: #0096ff; }
+
 .social-links {
   font-size: 13px;
   line-height: 1.2em;
@@ -572,6 +578,7 @@ footer {
     height: auto; }
   .social-links {
     margin-top: 0;
+    margin-bottom: 6px;
   }
   .bottom-footer .menu-item {
     display: block; }
@@ -592,12 +599,8 @@ footer {
     .bottom-footer .menu-item {
       text-align: center;
       font-weight: normal; }
-      .bottom-footer .menu-item .menu-link {
-        color: #fff;
-        font-size: 16px;
-        line-height: 21px; }
-      .bottom-footer .menu-item .menu-link:hover {
-        color: #0096ff; }
+    .bottom-footer .menu-item .menu-link {
+      line-height: 21px; }
   .copyright-notice {
     font-size: 15px; }
   .account-footer .copyright-notice {
