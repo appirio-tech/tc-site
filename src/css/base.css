@@ -574,6 +574,9 @@ footer {
   height: 27px; }
 
 @media only screen and (max-width: 1024px) {
+  .bottom-footer {
+    padding-top: 36px;
+  }
   .bottom-footer, .fold-pusher {
     height: auto; }
   .social-links {

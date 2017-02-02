@@ -19,7 +19,6 @@
 <footer class="bottom-footer">
   <!-- Footer links -->
   <nav class="menu-item">
-    <div class="menu-item-header show-small">OTHERS</div>
     <ul class="submenu">
       <li class="submenu-item"><a ng-click="$event.stopPropagation();" href="/sitemap" class="menu-link">SITEMAP</a></li>
       <li class="submenu-item"><a ng-click="$event.stopPropagation();" href="/about" class="menu-link">ABOUT US</a></li>
