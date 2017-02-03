@@ -145,14 +145,17 @@ include locate_template('header-challenge-landing.php');
 
     <article id="platforms">
       <h1>Platforms</h1>
-      <ul>
-        <li ng-if="(hasPlatforms = CD.challenge.platforms && CD.challenge.platforms.length > 0)" ng-repeat="platform in CD.challenge.platforms" >
-          <strong ng-bind="platform"></strong>
-        </li>
-        <li ng-if="!(hasPlatforms = CD.challenge.platforms && CD.challenge.platforms.length > 0)">
-          <strong>Not Specified</strong>
-        </li>
-      </ul>
+      <div class="technologyTags">
+        <ul>
+          <li ng-if="(hasPlatforms = CD.challenge.platforms && CD.challenge.platforms.length > 0)" ng-repeat="platform in CD.challenge.platforms" >
+            <span>{{platform}}</span>
+          </li>
+          <li ng-if="!(hasPlatforms = CD.challenge.platforms && CD.challenge.platforms.length > 0)">
+            <strong>Not Specified</strong>
+          </li>
+        </ul>
+        <div class="clear"></div>
+      </div>
     </article>
 
     <article id="technologies">
