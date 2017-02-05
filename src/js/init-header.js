@@ -1000,9 +1000,7 @@ if (!loginState) {
             fields.utm_medium = utmMedium;
             fields.utm_campaign = utmCampaign;
           }
-
-          if (_kmq) 
-            _kmq.push(['identify', fields.email]);
+          
           
           $.post(tcconfig.apiURL + '/users', fields, function(data) {
             var tcAction = getCookie('tcDelayChallengeAction');
