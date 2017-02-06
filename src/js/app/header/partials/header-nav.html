@@ -4,7 +4,13 @@
     <div class="show-small mobile-heading"><span ng-if="main.menuVisible" class="tc-text-logo">[ topcoder ]</span>
       <button type="button" ng-if="!main.menuVisible" ng-click="main.menuVisible = true" class="btn-open-menu">Menu</button>
       <button type="button" ng-if="main.menuVisible" ng-click="main.menuVisible = false" class="btn-close-menu"></button>
-      <a ng-href={{vm.profileLink}} ng-switch="vm.isAuth" data-ng-if="!main.menuVisible" class="user-link"><img ng-switch-when="true" ng-src="{{vm.photoURL}}" class="user-avatar"/><span ng-switch-when="false" class="btn-link">JOIN</span></a>
+      <div data-ng-if="!main.menuVisible" class="user-link">
+        <a ng-href={{vm.profileLink}} ng-if="vm.isAuth">
+          <img ng-src="{{vm.photoURL}}" class="user-avatar"/>
+        </a>
+        <a ng-if="!vm.isAuth" ng-click="vm.join()" class="tc-btn tc-btn-s btn-link">JOIN</a>
+        <a ng-if="!vm.isAuth" ng-click="vm.login()" class="tc-btn tc-btn-s tc-btn-ghost btn-link tc-header-login">LOG IN</a>
+      </div>
     </div>
    <ul class="main-menu">
       <li class="menu-item search-wrapper">
@@ -40,7 +46,7 @@
           </ul>
         </div>
         <div ng-switch-when="false" class="menu-item-header">
-          <a href="/register" class="tc-btn tc-btn-s btn-link">JOIN</a>
+          <a ng-click="vm.join()" class="tc-btn tc-btn-s btn-link">JOIN</a>
           <a ng-click="vm.login()" class="tc-btn tc-btn-s tc-btn-ghost btn-link tc-header-login">LOG IN</a>
         </div>
       </li>

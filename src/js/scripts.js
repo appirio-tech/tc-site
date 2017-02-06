@@ -1802,8 +1802,7 @@ var app = {
             if (typeof listener == 'function') {
               listener.call(self, data);
             }
-          };
-          if (_kmq) _kmq.push(['identify', data.email]);
+          };          
           self.handle = data.handle;
           callback(self.handle);
         }

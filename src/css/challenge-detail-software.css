@@ -302,14 +302,23 @@ font-size: 18px;
     width: 180px;
 }
 
-.challenge-detail .tableWrap h1 {
+.challenge-detail .tableWrap .final-submission-guidelines,
+.challenge-detail .tableWrap .final-submission-guidelines p,
+.challenge-detail .tableWrap .final-submission-guidelines li {
+    font-weight: normal;
+    color: rgb(51, 51, 51);
+    font-size: 14px;
+    font-family: "Sofia Pro", "Merriweather Sans", Helvetica, Arial, sans-serif;
+    line-height: 22px;
+}
+
+.challenge-detail .tableWrap h3 {
     color: #00aeff;
     font-size: 16px;
     line-height: 22px;
     font-weight: bold;
-    border-bottom: 1px solid #e7e7e7;
-    margin-bottom: 10px;
-    padding-bottom: 8px;
+    margin-bottom: 6px;
+    margin-top: 20px;
 }
 
 h1.center {
@@ -317,32 +326,37 @@ h1.center {
   text-align: center;
 }
 
-.challenge-detail.develop .tableWrap h1 {
+.challenge-detail.develop .tableWrap h3 {
     color: #228400;
 }
 
-.challenge-detail .tableWrap h2 {
+.challenge-detail .tableWrap h1, .challenge-detail .tableWrap h2,
+.challenge-detail .tableWrap h3, .challenge-detail .tableWrap h4,
+.challenge-detail .tableWrap h5, .challenge-detail .tableWrap h6 {
     color: #000;
     font-size: 16px;
     line-height: 22px;
     font-weight: 500;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
+    margin-top: 20px;
 }
 
-.challenge-detail .tableWrap h3 {
+.challenge-detail .tableWrap h2 {
     color: #ed1c24;
-    font-size: 14px;
-    line-height: 22px;
-    font-weight: bold;
-    margin-bottom: 0px;
 }
 
-.challenge-detail .tableWrap p {
-    margin-bottom: 15px;
+.challenge-detail .tableWrap h4,
+.challenge-detail .tableWrap h5, .challenge-detail .tableWrap h6 {
+    font-size: 14px;
+}
+
+.challenge-detail .tableWrap, .challenge-detail .tableWrap p {
+    margin-bottom: 6px;
     font-family: 'Merriweather Sans';
     font-size: 14px;
     line-height: 1.4;
     color: #797979;
+    font-weight: lighter;
 }
 
 .challenge-detail .tableWrap strong {
@@ -350,25 +364,23 @@ h1.center {
 }
 
 .challenge-detail .tableWrap ul {
-    margin-left: 0px;
+    list-style: initial;
+    margin-left: 16px;
     padding: 0;
     margin-bottom: 10px;
     width: auto;
     color: #797979;
-    overflow: hidden;
 }
 
 .challenge-detail .tableWrap ul li {
     float: none;
-    display: block;
     height: auto;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
     font-family: 'Merriweather Sans';
     font-weight: 300;
     font-size: 14px;
     line-height: 1.4;
     border: none;
-    background: url("../i/bullet.png") no-repeat 0 7px;
     color: #797979;
 }
 
@@ -389,12 +401,19 @@ h1.center {
     float: none;
 	list-style-type: decimal;
     list-style-position: outside;
-    font-size: 13px;
-    line-height: 18px;
+    font-family: 'Merriweather Sans';
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.4;
     border: none;
     height: auto;
     padding-left: 0px;
     color: #797979;
+    margin-bottom: 6px;
+}
+
+.challenge-detail .tableWrap ol li:last-child {
+    margin-bottom: 0;
 }
 
 .challenge-detail .tableWrap p a {
@@ -427,11 +446,6 @@ h1.center {
 .challenge-detail .currentTab-checkpoints .topRightTitleAlt {
     display: block;
 }
-
-.challenge-detail .tableWrap ul li {
-    background: none;
-}
-
 
 .challenge-detail .topRightTitle a {
     font-size: 16px;
@@ -2725,8 +2739,8 @@ h1.center {
     text-transform: uppercase;
     text-align: center;
     border: none; }
-  .cd-wrapper h2,
-  .cd-wrapper .challenge-detail .tableWrap h2 {
+  .cd-wrapper h1,
+  .cd-wrapper .challenge-detail .tableWrap h1 {
     font-size: 18px;
     font-weight: 400;
     font-style: normal;
@@ -2751,7 +2765,7 @@ h1.center {
     font-weight: 600; }
   .cd-wrapper em {
     font-style: italic;
-    font-family: "Merriweather", Georgia, serif; }
+    font-family: "Merriweather Sans", Georgia, serif; }
   .cd-wrapper .note {
     border-left: 6px solid #d2d2d2;
     padding-left: 30px;
