@@ -11,19 +11,33 @@
         <div class="container rightSplit  grid-3-3">
 
           <div class="leftColumn">
-            <a ng-show="!CD.isDesign" ng-click="CD.challenge.allowToUnregister?CD.unregisterFromChallenge():CD.registerToChallenge()" ng-class="{disabled:!CD.challenge.allowToUnregister && (CD.challenge.registrationDisabled || !CD.callComplete), disabledNOT:!CD.challenge.registrationDisabled, unregister: CD.challenge.allowToUnregister}" class="btn btnAction challengeRegisterBtn" href="javascript:;">
-                <span>1</span>
-                <strong ng-hide="CD.isRegistered">
-                    Register For This Challenge
-                </strong>
-                <strong ng-show="CD.isRegistered">
-                    Unregister From This Challenge
-                </strong>
-            </a>
-            <a ng-show="!CD.isDesign" ng-class="{disabled:CD.challenge.submissionDisabled || !CD.callComplete, disabledNOT:!CD.challenge.submissionDisabled}" class="btn btnAction" target="_blank"
-              ng-href="/challenge-details/{{CD.challenge.challengeId}}/submit/?type=develop">
-                <span>2</span><strong>Submit Your Entries</strong>
-            </a>
+            <div ng-if="!CD.isDesign">
+              <div ng-if="CD.showAppealsButtons">
+                <a class="btn btnAction" target="_blank" ng-href="//{{CD.reviewAppURL}}/actions/ViewProjectDetails?pid={{CD.challenge.challengeId}}">
+                  <span>1</span>
+                  <strong>View Scorecard</strong>
+                </a>
+                <a class="btn btnAction unregister" target="_blank" ng-href="//{{CD.reviewAppURL}}/actions/EarlyAppeals?pid={{CD.challenge.challengeId}}">
+                  <span>2</span>
+                  <strong>Complete Appeals</strong>
+                </a>
+              </div>
+              <div ng-if="!CD.showAppealsButtons">
+                <a ng-click="CD.challenge.allowToUnregister?CD.unregisterFromChallenge():CD.registerToChallenge()" ng-class="{disabled:!CD.challenge.allowToUnregister && (CD.challenge.registrationDisabled || !CD.callComplete), disabledNOT:!CD.challenge.registrationDisabled, unregister: CD.challenge.allowToUnregister}" class="btn btnAction challengeRegisterBtn" href="javascript:;">
+                    <span>1</span>
+                    <strong ng-hide="CD.isRegistered">
+                        Register For This Challenge
+                    </strong>
+                    <strong ng-show="CD.isRegistered">
+                        Unregister From This Challenge
+                    </strong>
+                </a>
+                <a ng-class="{disabled:CD.challenge.submissionDisabled || !CD.callComplete, disabledNOT:!CD.challenge.submissionDisabled}" class="btn btnAction" target="_blank"
+                  ng-href="/challenge-details/{{CD.challenge.challengeId}}/submit/?type=develop">
+                    <span>2</span><strong>Submit Your Entries</strong>
+                </a>
+              </div>
+            </div>
             <a ng-show="CD.isDesign" ng-click="CD.challenge.allowToUnregister?CD.unregisterFromChallenge():CD.registerToChallenge()" ng-class="{disabled:!CD.challenge.allowToUnregister && (CD.challenge.registrationDisabled || !CD.callComplete), disabledNOT:!CD.challenge.registrationDisabled, unregister: CD.challenge.allowToUnregister}" class="btn btnAction challengeRegisterBtn" href="javascript:;">
                 <span>1</span>
                 <strong ng-hide="CD.isRegistered">

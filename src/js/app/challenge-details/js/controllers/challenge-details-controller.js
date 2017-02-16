@@ -65,6 +65,7 @@
     }
     vm.activeTab = 'details';
     vm.domain = tcconfig.domain;
+    vm.reviewAppURL = tcconfig.reviewAppURL;
     
     if (window.location.hash == '#viewRegistrant' || window.location.hash == '#/viewRegistrant') vm.activeTab = 'registrants';
     else if (window.location.hash == '#winner' || window.location.hash == '#/winner') vm.activeTab = 'results';
@@ -351,6 +352,8 @@
         vm.challenge.registrationDisabled = false;
       }
     }
+    // check if in appeals phase and has submission
+    vm.showAppealsButtons = (hasSubmitted && (vm.challenge.currentPhaseName === 'Appeals'));
 
     //check autoRegister (terms link register) and DelayAction cookie status
     if (autoRegister) {
