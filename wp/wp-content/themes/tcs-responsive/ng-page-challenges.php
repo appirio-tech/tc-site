@@ -54,6 +54,7 @@ get_header(); ?>
         <span class="subscribeTopWrapper">
           <a class="feedBtn" ng-href="http://feeds.topcoder.com/challenges/feed?list=active&contestType={{contest.contestType || 'all'}}" title="Subscribe to challenges"></a>
         </span>
+        <div><a href="/listings" class="listings">Get a glimpse of the new challenge listing page <sup>(alpha version)</sup></a></div>
         </header>
       </div>
 
