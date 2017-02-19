@@ -69,6 +69,7 @@
     }
     vm.activeTab = 'details';
     vm.domain = tcconfig.domain;
+    vm.reviewAppURL = tcconfig.reviewAppURL;
 
     if (window.location.hash == '#viewRegistrant' || window.location.hash == '#/viewRegistrant') vm.activeTab = 'registrants';
     else if (window.location.hash == '#winner' || window.location.hash == '#/winner') vm.activeTab = 'results';
@@ -357,15 +358,8 @@
 
     vm.challenge.url = window.location.href;
 
-    vm.isRegistered = true;
-    if (regList.indexOf(handle) == -1) {
-      vm.isRegistered = false;
-    }
-
-    var hasSubmitted = false;
-    if (submitters.indexOf(handle) >= 0) {
-      hasSubmitted = true;
-    }
+    vm.isRegistered = regList.indexOf(handle) >= 0;
+    var hasSubmitted = submitters.indexOf(handle) >= 0;
 
     // If the challenge is active and in the registration phase we allow either
     // registration, or unregistration.
@@ -378,6 +372,8 @@
         vm.challenge.registrationDisabled = false;
       }
     }
+    // check if in appeals phase and has submission
+    vm.showAppealsButtons = (hasSubmitted && (vm.challenge.currentPhaseName === 'Appeals'));
 
     //check autoRegister (terms link register) and DelayAction cookie status
     if (autoRegister) {
