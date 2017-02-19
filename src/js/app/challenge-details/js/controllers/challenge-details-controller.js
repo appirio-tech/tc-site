@@ -331,15 +331,8 @@
 
     vm.challenge.url = window.location.href;
 
-    vm.isRegistered = true;
-    if (regList.indexOf(handle) == -1) {
-      vm.isRegistered = false;
-    }
-    
-    var hasSubmitted = false;
-    if (submitters.indexOf(handle) >= 0) {
-      hasSubmitted = true;
-    }
+    vm.isRegistered = regList.indexOf(handle) >= 0;
+    var hasSubmitted = submitters.indexOf(handle) >= 0;
 
     // If the challenge is active and in the registration phase we allow either
     // registration, or unregistration.
