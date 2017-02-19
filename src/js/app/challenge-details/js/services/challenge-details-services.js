@@ -303,6 +303,10 @@
       return defer.promise;
     };
 
+    service.getUserChallenges = function(handle, params) {
+      return servicev3.one('members', handle.toLowerCase()).all('challenges/').getList(params)
+    }
+
     return service;
   }
 
