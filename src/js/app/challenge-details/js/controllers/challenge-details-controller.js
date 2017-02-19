@@ -47,6 +47,10 @@
     challengeType = $location.search().type || 'develop';
 
     var vm = this;
+
+    //Set mockUserRole to array ['value'] to mock a user role, undefined will set userRole value via challenge API
+    //you can test for a user role using checkRole('role') function for true/false value.
+    vm.mockUserRole = undefined;
     // default review style
     vm.reviewStyle = "";
     vm.reviewStyleTooltip = "";
@@ -65,7 +69,7 @@
     }
     vm.activeTab = 'details';
     vm.domain = tcconfig.domain;
-    
+
     if (window.location.hash == '#viewRegistrant' || window.location.hash == '#/viewRegistrant') vm.activeTab = 'registrants';
     else if (window.location.hash == '#winner' || window.location.hash == '#/winner') vm.activeTab = 'results';
     else if (window.location.hash == '#submissions' || window.location.hash == '#/submissions') vm.activeTab = 'submissions';
@@ -81,6 +85,9 @@
     vm.checkpointPassedScreeningSubmissionPercentage = 0;
     vm.phaseProgram = null;
     vm.termsList = [];
+    vm.challengeApiParams = {
+      filter: 'id=' + challengeId
+    }
 
     $interval(function () {
       if (vm.challenge && vm.challenge.currentPhaseRemainingTime) {
@@ -91,7 +98,7 @@
     // Methods
     vm.registerToChallenge = registerToChallenge;
     vm.unregisterFromChallenge = unregisterFromChallenge;
-
+    vm.checkRole = checkRole;
     // functions
     $scope.round = Math.round;
     $scope.range = rangeFunction;
@@ -131,7 +138,16 @@
           initChallengeDetail(handle, vm, ChallengeService);
         }
     );
-
+    /**
+     *
+     * @param checkRole
+     * @returns {true|false}
+     */
+    function checkRole(checkRole) {
+      return _.some(vm.userRole, function(role) {
+        return role === checkRole;
+      })
+    }
     /**
      *
      * @param x
@@ -167,6 +183,18 @@
         vm.termsList = termsList;
       });
       ChallengeService
+          .getUserChallenges(vm.handle, vm.challengeApiParams)
+          .then(function (challenge) {
+            if (challenge[0] && challenge[0].result.content.length) {
+              challenge = challenge[0].result.content[0];
+              vm.userRole = challenge.userDetails ? challenge.userDetails.roles : [];
+            } else {
+              vm.userRole = [];
+            }
+            //Set to test value if defined
+            vm.userRole = vm.mockUserRole ? vm.mockUserRole : vm.userRole;
+          });
+      ChallengeService
           .getChallenge(challengeId)
           .then(function (challenge) {
             processChallenge(challenge, handle, vm, ChallengeService);
@@ -176,7 +204,6 @@
             }, 100);
             $('#cdNgMain').show();
           });
-
     }
 
     function updateChallengeDetail() {
@@ -334,7 +361,7 @@
     if (regList.indexOf(handle) == -1) {
       vm.isRegistered = false;
     }
-    
+
     var hasSubmitted = false;
     if (submitters.indexOf(handle) >= 0) {
       hasSubmitted = true;
