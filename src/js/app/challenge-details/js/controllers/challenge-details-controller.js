@@ -89,7 +89,12 @@
     vm.challengeApiParams = {
       filter: 'id=' + challengeId
     }
-
+    vm.buttons = [];
+    vm.callFunction = function (name) {
+      if (angular.isFunction(vm[name])) {
+        vm[name]();
+      }
+    }
     $interval(function () {
       if (vm.challenge && vm.challenge.currentPhaseRemainingTime) {
         vm.challenge.currentPhaseRemainingTime -= 5;
@@ -298,13 +303,11 @@
    * @param ChallengeService
    */
   function processChallenge(challenge, handle, vm, ChallengeService) {
-
     // Global variable available from ng-page-challenge-details.php
     challengeName = challenge.challengeName;
     var reviewScorecardId = challenge.reviewScorecardId;
     vm.isDesign = (challengeType === 'design');
     vm.allowDownloads = challenge.currentStatus === 'Active';
-
     if ((challenge.currentPhaseName != 'Stalled' && challenge.checkpointSubmissionEndDate && challenge.checkpointSubmissionEndDate != '') || (challenge.checkpoints && challenge.checkpoints.length > 0)) {
       ChallengeService
         .getCheckpointData(challengeId)
@@ -359,7 +362,7 @@
     vm.challenge.url = window.location.href;
 
     vm.isRegistered = regList.indexOf(handle) >= 0;
-    var hasSubmitted = submitters.indexOf(handle) >= 0;
+    var hasSubmitted = vm.hasSubmitted = submitters.indexOf(handle) >= 0;
 
     // If the challenge is active and in the registration phase we allow either
     // registration, or unregistration.
@@ -530,8 +533,63 @@
     if (vm.challenge.reviewType == 'PEER') {
       vm.phaseProgram = getPhaseProgramDetail(challenge.currentPhaseName, challenge.currentStatus);
     }
+    initButtons(vm);
   }
 
+  function initButtons(vm) {
+    function getButton(button) {
+      // buttons have 5 props -> href, classes, onClick, spanText and text
+      var buttons = {
+        register: {
+          href: '',
+          classes: 'challengeRegisterBtn ' + vm.challenge.registrationDisabled ? 'disabled ': 'disabledNOT',
+          onClick: 'registerToChallenge',
+          spanText: 1,
+          text: 'Register For This Challenge'
+        },
+        unregister: {
+          href: '',
+          classes: 'challengeRegisterBtn ' + vm.challenge.allowToUnregister ? 'unregister' : '',
+          onClick: 'unregisterFromChallenge',
+          spanText: 1,
+          text: 'Unregister From This Challenge'
+        },
+        submit: {
+          href: '/challenge-details/'+ vm.challenge.challengeId +'/submit/?type=develop/',
+          classes: vm.challenge.submissionDisabled ? 'disabled ' : 'disabledNOT',
+          onClick: '',
+          spanText: 2,
+          text: 'Submit Your Entries'
+        },
+        viewScorecard: {
+          href: '//' + vm.reviewAppURL+'/actions/ViewProjectDetails?pid=' + vm.challenge.challengeId,
+          classes: '',
+          onClick: '',
+          spanText: 1,
+          text: 'View Scorecard',
+        },
+        completeAppeals: {
+          href: '//'+ vm.reviewAppURL+'/actions/EarlyAppeals?pid='+ vm.challenge.challengeId,
+          classes: 'unregister',
+          onClick: '',
+          spanText: 2,
+          text: 'Complete Appeals'
+        }
+      }
+      return buttons[button]
+    }
+    if (vm.challenge.currentPhaseName === 'Appeals' && vm.hasSubmitted) {
+      vm.buttons.push(getButton('viewScorecard'))
+      vm.buttons.push(getButton('completeAppeals'))
+    } else {
+      if (vm.challenge.allowToUnregister) {
+        vm.buttons.push(getButton('unregister'))
+      } else {
+        vm.buttons.push(getButton('register'))
+      }
+      vm.buttons.push(getButton('submit'))
+    }
+  }
   /**
    * Prepares phase specific member program details. This detail is used for PEER reviewed
    * challenges only.
