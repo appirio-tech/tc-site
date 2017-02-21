@@ -51,6 +51,7 @@
     //Set mockUserRole to array ['value'] to mock a user role, undefined will set userRole value via challenge API
     //you can test for a user role using checkRole('role') function for true/false value.
     vm.mockUserRole = undefined;
+    vm.userRole = [];
     // default review style
     vm.reviewStyle = "";
     vm.reviewStyleTooltip = "";
