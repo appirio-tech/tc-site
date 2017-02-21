@@ -12,9 +12,9 @@
 
           <div class="leftColumn">
             <div ng-if="!CD.isDesign">
-              <div ng-repeat="button in CD.buttons">
-                <a class="btn btnAction {{button.classes}}" target="_blank" ng-href="{{button.href || 'javascript:void(0);'}}" ng-click="CD.callFunction(button.onClick)">
-                  <span>{{button.spanText}}</span>
+              <div ng-repeat="button in CD.buttons track by $index">
+                <a class="btn btnAction {{button.classes}}" target="_blank" ng-href="{{button.href || 'javascript:void(0);'}}" ng-click="button.onClick()">
+                  <span>{{$index + 1}}</span>
                   <strong>{{button.text}}</strong>
                 </a>
               </div>

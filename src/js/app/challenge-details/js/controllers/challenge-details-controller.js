@@ -6,7 +6,7 @@
  * Changed in 1.1 (topcoder new community site - Removal proxied API calls)
  * Removed LC related conditionals and calls
  */
- /*
+/*
  * TODO:
  * - Bring up to style guide standards
  *   - lots of different stuff under this heading:
@@ -90,11 +90,7 @@
       filter: 'id=' + challengeId
     }
     vm.buttons = [];
-    vm.callFunction = function (name) {
-      if (angular.isFunction(vm[name])) {
-        vm[name]();
-      }
-    }
+
     $interval(function () {
       if (vm.challenge && vm.challenge.currentPhaseRemainingTime) {
         vm.challenge.currentPhaseRemainingTime -= 5;
@@ -122,35 +118,33 @@
       updateTabForNonResults();
     };
 
-    $rootScope.$on('$locationChangeStart', function(event, toUrl, fromUrl) {
-        var parser = document.createElement('a');
-        parser.href = toUrl;
-        if (!parser.pathname.startsWith("/challenge-details/"))
-            window.location.reload();
+    $rootScope.$on('$locationChangeStart', function (event, toUrl, fromUrl) {
+      var parser = document.createElement('a');
+      parser.href = toUrl;
+      if (!parser.pathname.startsWith("/challenge-details/"))
+        window.location.reload();
     });
 
     var handlePromise = $q.defer();
     //The handle is needed to enable the buttons
     app
-        .getHandle(function (handle) {
-          handlePromise.resolve(handle);
-        }
-    );
+      .getHandle(function (handle) {
+        handlePromise.resolve(handle);
+      });
 
     handlePromise
-        .promise
-        .then(function (handle) {
-          vm.handle = handle;
-          initChallengeDetail(handle, vm, ChallengeService);
-        }
-    );
+      .promise
+      .then(function (handle) {
+        vm.handle = handle;
+        initChallengeDetail(handle, vm, ChallengeService);
+      });
     /**
      *
      * @param checkRole
      * @returns {true|false}
      */
     function checkRole(checkRole) {
-      return _.some(vm.userRole, function(role) {
+      return _.some(vm.userRole, function (role) {
         return role === checkRole;
       })
     }
@@ -185,39 +179,39 @@
      * @param ChallengeService
      */
     function initChallengeDetail(handle, vm, ChallengeService) {
-      ChallengeService.getChallengeTerms(challengeId).then(function(termsList) {
+      ChallengeService.getChallengeTerms(challengeId).then(function (termsList) {
         vm.termsList = termsList;
       });
       ChallengeService
-          .getUserChallenges(vm.handle, vm.challengeApiParams)
-          .then(function (challenge) {
-            if (challenge[0] && challenge[0].result.content.length) {
-              challenge = challenge[0].result.content[0];
-              vm.userRole = challenge.userDetails ? challenge.userDetails.roles : [];
-            } else {
-              vm.userRole = [];
-            }
-            //Set to test value if defined
-            vm.userRole = vm.mockUserRole ? vm.mockUserRole : vm.userRole;
-          });
+        .getUserChallenges(vm.handle, vm.challengeApiParams)
+        .then(function (challenge) {
+          if (challenge[0] && challenge[0].result.content.length) {
+            challenge = challenge[0].result.content[0];
+            vm.userRole = challenge.userDetails ? challenge.userDetails.roles : [];
+          } else {
+            vm.userRole = [];
+          }
+          //Set to test value if defined
+          vm.userRole = vm.mockUserRole ? vm.mockUserRole : vm.userRole;
+        });
       ChallengeService
-          .getChallenge(challengeId)
-          .then(function (challenge) {
-            processChallenge(challenge, handle, vm, ChallengeService);
-            vm.callComplete = true;
-            $timeout(function () {
-              window.prerenderReady = true;
-            }, 100);
-            $('#cdNgMain').show();
-          });
+        .getChallenge(challengeId)
+        .then(function (challenge) {
+          processChallenge(challenge, handle, vm, ChallengeService);
+          vm.callComplete = true;
+          $timeout(function () {
+            window.prerenderReady = true;
+          }, 100);
+          $('#cdNgMain').show();
+        });
     }
 
     function updateChallengeDetail() {
       ChallengeService
-          .getChallenge(challengeId)
-          .then(function (challenge) {
-            processChallenge(challenge, vm.handle, vm, ChallengeService);
-          });
+        .getChallenge(challengeId)
+        .then(function (challenge) {
+          processChallenge(challenge, vm.handle, vm, ChallengeService);
+        });
     }
 
     /**
@@ -227,8 +221,8 @@
 
       if (app.isLoggedIn()) {
         ChallengeService
-            .registerToChallenge(challengeId)
-            .then(
+          .registerToChallenge(challengeId)
+          .then(
             function (data) {
               if (data["message"] === "ok") {
                 showModal("#registerSuccess");
@@ -239,14 +233,15 @@
                 }
                 updateChallengeDetail();
               }
-            }, function (reason) {
+            },
+            function (reason) {
               if (reason["error"]["details"] === "You should agree with all terms of use.") {
                 window.location = "/challenge-details/terms/" + vm.challenge.challengeId + "?challenge-type=" + challengeType;
               } else if (reason["error"]["details"]) {
                 showError(reason["error"]["details"]);
               }
             }
-        );
+          );
       } else {
         //set register Delay cookie for auto register when user returns to page
         //angularjs $cookies is too basic and does not support setting any cookie options such as expires, so must use jQuery method here
@@ -266,8 +261,8 @@
     function unregisterFromChallenge() {
       if (app.isLoggedIn()) {
         ChallengeService
-            .unregisterFromChallenge(challengeId)
-            .then(
+          .unregisterFromChallenge(challengeId)
+          .then(
             function (data) {
               if (data["message"] === "ok") {
                 showModal("#unregisterSuccess");
@@ -275,12 +270,13 @@
                 document.cookie = 'tcDelayChallengeAction=; path=/; domain=.' + tcconfig.domain + '; expires=' + new Date(0).toUTCString();
                 updateChallengeDetail();
               }
-            }, function (reason) {
+            },
+            function (reason) {
               if (reason["error"]["details"]) {
                 showError(reason["error"]["details"]);
               }
             }
-        );
+          );
       }
     }
 
@@ -311,21 +307,21 @@
     if ((challenge.currentPhaseName != 'Stalled' && challenge.checkpointSubmissionEndDate && challenge.checkpointSubmissionEndDate != '') || (challenge.checkpoints && challenge.checkpoints.length > 0)) {
       ChallengeService
         .getCheckpointData(challengeId)
-        .then(function(data) {
-        if (data && !data.error) {
-          vm.checkpointData = data;
-          vm.checkpointResults = data.checkpointResults;
-          //set variables for design challenge checkpoint results
-          if (vm.isDesign) {
-            vm.numCheckpointSubmissions = data.numberOfPassedScreeningSubmissions;
-            vm.numberOfPassedScreeningSubmissions = data.numberOfPassedScreeningSubmissions;
-            vm.numberOfPassedScreeningUniqueSubmitters = data.numberOfPassedScreeningUniqueSubmitters;
-            vm.numberOfUniqueSubmitters = data.numberOfUniqueSubmitters;
-            vm.checkpointPassedScreeningSubmitterPercentage = Math.floor((vm.numberOfPassedScreeningUniqueSubmitters / vm.numberOfUniqueSubmitters) * 100);
-            vm.checkpointPassedScreeningSubmissionPercentage = Math.floor((vm.numberOfPassedScreeningSubmissions / vm.numCheckpointSubmissions) * 100);
+        .then(function (data) {
+          if (data && !data.error) {
+            vm.checkpointData = data;
+            vm.checkpointResults = data.checkpointResults;
+            //set variables for design challenge checkpoint results
+            if (vm.isDesign) {
+              vm.numCheckpointSubmissions = data.numberOfPassedScreeningSubmissions;
+              vm.numberOfPassedScreeningSubmissions = data.numberOfPassedScreeningSubmissions;
+              vm.numberOfPassedScreeningUniqueSubmitters = data.numberOfPassedScreeningUniqueSubmitters;
+              vm.numberOfUniqueSubmitters = data.numberOfUniqueSubmitters;
+              vm.checkpointPassedScreeningSubmitterPercentage = Math.floor((vm.numberOfPassedScreeningUniqueSubmitters / vm.numberOfUniqueSubmitters) * 100);
+              vm.checkpointPassedScreeningSubmissionPercentage = Math.floor((vm.numberOfPassedScreeningSubmissions / vm.numCheckpointSubmissions) * 100);
+            }
           }
-        }
-      });
+        });
     }
 
     //Bugfix refactored-challenge-details-40: format currency values with comma delimiters
@@ -339,25 +335,29 @@
 
     vm.scope.challenge = vm.challenge = challenge;
 
-    var regList = challenge.registrants.map(function(x) { return x.handle; });
-    var submitters = challenge.registrants.map(function(x) {
+    var regList = challenge.registrants.map(function (x) {
+      return x.handle;
+    });
+    var submitters = challenge.registrants.map(function (x) {
       if (x.submissionDate.length > 0) {
         return x.handle;
       }
     });
 
-    var provisionalNumFinalSubmitters = challenge.registrants.filter(function(x) {
+    var provisionalNumFinalSubmitters = challenge.registrants.filter(function (x) {
       return x.submissionDate.length > 0;
     }).length;
-    var submissionMap = challenge.submissions.map(function(x) { return x.handle; });
+    var submissionMap = challenge.submissions.map(function (x) {
+      return x.handle;
+    });
 
     // these are the buttons for registration, and submission
     vm.challenge.registrationDisabled = true;
-    vm.challenge.submissionDisabled   = true;
+    vm.challenge.submissionDisabled = true;
     // true when to unregister is the valid option
-    vm.challenge.allowToUnregister    = false;
+    vm.challenge.allowToUnregister = false;
     // button for peer review for challenges with reviewType === PEER
-    vm.challenge.peerReviewDisabled   = true;
+    vm.challenge.peerReviewDisabled = true;
 
     vm.challenge.url = window.location.href;
 
@@ -400,12 +400,12 @@
     }
 
     var currentDate = new Date();
-    if(challenge.challengeCommunity == 'design' && challenge.checkpointSubmissionEndDate && vm.isLoggedIn && regList.indexOf(handle) > -1 && new Date(challenge.currentPhaseEndDate) > new Date(challenge.checkpointSubmissionEndDate)){
+    if (challenge.challengeCommunity == 'design' && challenge.checkpointSubmissionEndDate && vm.isLoggedIn && regList.indexOf(handle) > -1 && new Date(challenge.currentPhaseEndDate) > new Date(challenge.checkpointSubmissionEndDate)) {
       //checkpoint phase
-      if(currentDate.getTime() < new Date(challenge.checkpointSubmissionEndDate)) {
+      if (currentDate.getTime() < new Date(challenge.checkpointSubmissionEndDate)) {
         challenge.currentPhaseEndDate = challenge.checkpointSubmissionEndDate;
         challenge.currentPhaseName = 'Checkpoint';
-      } else if( currentDate.getTime() < new Date(challenge.submissionEndDate)){ //past checkpoint - submission phase
+      } else if (currentDate.getTime() < new Date(challenge.submissionEndDate)) { //past checkpoint - submission phase
         challenge.currentPhaseEndDate = challenge.submissionEndDate;
         challenge.currentPhaseName = 'Submission';
       }
@@ -413,21 +413,20 @@
 
     if (challenge.currentPhaseEndDate) {
       var endPhaseDate = new Date(challenge.currentPhaseEndDate);
-      vm.challenge.currentPhaseRemainingTime = Math.max((endPhaseDate.getTime()-currentDate.getTime())/1000, 0) || -1;
-    }
-    else vm.challenge.currentPhaseRemainingTime = -1;
+      vm.challenge.currentPhaseRemainingTime = Math.max((endPhaseDate.getTime() - currentDate.getTime()) / 1000, 0) || -1;
+    } else vm.challenge.currentPhaseRemainingTime = -1;
 
-    vm.challenge.registrants.map(function(x) {
+    vm.challenge.registrants.map(function (x) {
       if (submissionMap[x.handle]) x.submissionStatus = submissionMap[x.handle].submissionStatus;
     });
 
     vm.reliabilityBonus = challenge.reliabilityBonus;
-    vm.inSubmission     = challenge.currentPhaseName.indexOf('Submission') >= 0;
-    vm.inScreening      = challenge.currentPhaseName.indexOf('Screening') >= 0;
-    vm.inReview         = challenge.currentPhaseName.indexOf('Review') >= 0;
-    vm.hasFiletypes     = ((typeof challenge.filetypes) !== 'undefined') && challenge.filetypes.length > 0;
-    vm.numRegistrants   = challenge.numberOfRegistrants;
-    vm.numSubmissions   = challenge.numberOfSubmissions;
+    vm.inSubmission = challenge.currentPhaseName.indexOf('Submission') >= 0;
+    vm.inScreening = challenge.currentPhaseName.indexOf('Screening') >= 0;
+    vm.inReview = challenge.currentPhaseName.indexOf('Review') >= 0;
+    vm.hasFiletypes = ((typeof challenge.filetypes) !== 'undefined') && challenge.filetypes.length > 0;
+    vm.numRegistrants = challenge.numberOfRegistrants;
+    vm.numSubmissions = challenge.numberOfSubmissions;
     vm.numCheckpointSubmissions = challenge.numberOfCheckpointSubmissions;
     vm.isPeerReviewed = vm.challenge.reviewType === 'PEER';
 
@@ -443,14 +442,14 @@
     } else {
       vm.reviewStyle = 'Community Review Board';
       vm.reviewStyleTooltip = 'Community Review Board performs a thorough review based on scorecards.';
-      vm.reviewScorecardLink = '//software.' + vm.domain +'/review/actions/ViewScorecard.do?method=viewScorecard&scid=' + reviewScorecardId;
+      vm.reviewScorecardLink = '//software.' + vm.domain + '/review/actions/ViewScorecard.do?method=viewScorecard&scid=' + reviewScorecardId;
     }
 
     vm.hasCheckpoints = vm.numCheckpointSubmissions > 0;
     if (vm.numSubmissions == 0 && !vm.hasCheckpoints && provisionalNumFinalSubmitters > 0) {
       vm.numSubmissions = provisionalNumFinalSubmitters;
     }
-    vm.submissionNumberString = function() {
+    vm.submissionNumberString = function () {
       if (vm.results || !vm.hasCheckpoints) return '(' + vm.numSubmissions + ')';
       return '';
     }
@@ -460,7 +459,7 @@
     if (challenge.currentStatus != 'Draft' && (challenge.currentPhaseName != 'Stalled' || challenge.currentStatus == 'Completed') && (challenge.currentStatus == 'Completed' || challenge.currentPhaseEndDate == '')) {
       ChallengeService
         .getResults(challengeId)
-        .then(function(results) {
+        .then(function (results) {
           vm.results = results;
           vm.firstPlaceSubmission = results.firstPlaceSubmission;
           vm.secondPlaceSubmission = results.secondPlaceSubmission;
@@ -468,7 +467,7 @@
           //set variables for design challenge results
           if (vm.isDesign) {
             //filter all submitters that passed screening
-            var passedScreen = results.results.filter(function(element){
+            var passedScreen = results.results.filter(function (element) {
               if (element.submissionStatus !== "Failed Screening") {
                 return true;
               }
@@ -476,21 +475,21 @@
             });
             //push all passing submitter handles to new array
             var resultPassingHandles = [];
-            passedScreen.forEach(function(el){
+            passedScreen.forEach(function (el) {
               resultPassingHandles.push(el.handle);
             });
             //get number of unique final submitters that have passed screening
-            vm.finalSubmittersPassedScreening = resultPassingHandles.filter(function(element, elIndex, arr){
+            vm.finalSubmittersPassedScreening = resultPassingHandles.filter(function (element, elIndex, arr) {
               return arr.indexOf(element) == elIndex;
             }).length;
 
             //push all submitter handles to new array
             var resultHandles = [];
-            results.results.forEach(function(el){
+            results.results.forEach(function (el) {
               resultHandles.push(el.handle);
             });
             //get number of unique final submitters regardless of screening status
-            vm.numFinalSubmitters = resultHandles.filter(function(element, elIndex, arr){
+            vm.numFinalSubmitters = resultHandles.filter(function (element, elIndex, arr) {
               return arr.indexOf(element) == elIndex;
             }).length;
 
@@ -501,7 +500,7 @@
           }
           vm.initialScoreSum = 0;
           vm.finalScoreSum = 0;
-          vm.submissions.map(function(x) {
+          vm.submissions.map(function (x) {
             vm.initialScoreSum += x.initialScore;
             vm.finalScoreSum += x.finalScore;
           });
@@ -514,19 +513,18 @@
               winnerMap[vm.submissions[i].handle] = true;
             }
           }
-          vm.challenge.registrants.map(function(x) {
+          vm.challenge.registrants.map(function (x) {
             if (winnerMap[x.handle]) x.winner = true;
           });
           if (vm.winningSubmissions.length == 0) vm.firstPlaceSubmission = false;
           if (vm.winningSubmissions.length < 2) vm.secondPlaceSubmission = false;
 
-          if(challenge.reviewType === "PEER") {
-            ChallengeService.getPeerReviewResults(challengeId).then(function(data) {
+          if (challenge.reviewType === "PEER") {
+            ChallengeService.getPeerReviewResults(challengeId).then(function (data) {
               vm.peerReviewResults = data;
             });
           }
-        }
-      );
+        });
     }
 
     // top section
@@ -536,58 +534,59 @@
     initButtons(vm);
   }
 
-  function initButtons(vm) {
-    function getButton(button) {
-      // buttons have 5 props -> href, classes, onClick, spanText and text
-      var buttons = {
-        register: {
-          href: '',
-          classes: 'challengeRegisterBtn ' + vm.challenge.registrationDisabled ? 'disabled ': 'disabledNOT',
-          onClick: 'registerToChallenge',
-          spanText: 1,
-          text: 'Register For This Challenge'
-        },
-        unregister: {
-          href: '',
-          classes: 'challengeRegisterBtn ' + vm.challenge.allowToUnregister ? 'unregister' : '',
-          onClick: 'unregisterFromChallenge',
-          spanText: 1,
-          text: 'Unregister From This Challenge'
-        },
-        submit: {
-          href: '/challenge-details/'+ vm.challenge.challengeId +'/submit/?type=develop/',
-          classes: vm.challenge.submissionDisabled ? 'disabled ' : 'disabledNOT',
-          onClick: '',
-          spanText: 2,
-          text: 'Submit Your Entries'
-        },
-        viewScorecard: {
-          href: '//' + vm.reviewAppURL+'/actions/ViewProjectDetails?pid=' + vm.challenge.challengeId,
-          classes: '',
-          onClick: '',
-          spanText: 1,
-          text: 'View Scorecard',
-        },
-        completeAppeals: {
-          href: '//'+ vm.reviewAppURL+'/actions/EarlyAppeals?pid='+ vm.challenge.challengeId,
-          classes: 'unregister',
-          onClick: '',
-          spanText: 2,
-          text: 'Complete Appeals'
-        }
-      }
-      return buttons[button]
+  /**
+   * Prepare data for template
+   *
+   * @param button.text required string
+   * @param button.onClick or button.href required
+   * @param button.classes optional
+   * @returns new button {}
+   */
+  function newButton(button) {
+    if (!button.text || (!button.onClick && !button.href)) {
+      return false;
     }
+    var tempButton = {};
+    tempButton.text = button.text || '';
+    tempButton.classes = button.classes || '';
+    if (button.href) {
+      tempButton.href = button.href;
+    } else {
+      tempButton.onClick = button.onClick;
+    }
+    return tempButton;
+  }
+
+  function initButtons(vm) {
     if (vm.challenge.currentPhaseName === 'Appeals' && vm.hasSubmitted) {
-      vm.buttons.push(getButton('viewScorecard'))
-      vm.buttons.push(getButton('completeAppeals'))
+      vm.buttons.push(newButton({
+        text: 'View Scorecard',
+        href: '//' + vm.reviewAppURL + '/actions/ViewProjectDetails?pid=' + vm.challenge.challengeId,
+      }));
+      vm.buttons.push(newButton({
+        text: 'Complete Appeals',
+        href: '//' + vm.reviewAppURL + '/actions/EarlyAppeals?pid=' + vm.challenge.challengeId,
+        classes: 'unregister'
+      }));
     } else {
       if (vm.challenge.allowToUnregister) {
-        vm.buttons.push(getButton('unregister'))
+        vm.buttons.push(newButton({
+          classes: 'challengeRegisterBtn ' + vm.challenge.allowToUnregister ? 'unregister' : '',
+          onClick: vm.unregisterFromChallenge,
+          text: 'Unregister From This Challenge'
+        }))
       } else {
-        vm.buttons.push(getButton('register'))
+        vm.buttons.push(newButton({
+          classes: 'challengeRegisterBtn ' + vm.challenge.registrationDisabled ? 'disabled ' : 'disabledNOT',
+          onClick: vm.registerToChallenge,
+          text: 'Register For This Challenge'
+        }))
       }
-      vm.buttons.push(getButton('submit'))
+      vm.buttons.push(newButton({
+        href: '/challenge-details/' + vm.challenge.challengeId + '/submit/?type=develop',
+        classes: vm.challenge.submissionDisabled ? 'disabled ' : 'disabledNOT',
+        text: 'Submit Your Entries'
+      }));
     }
   }
   /**
