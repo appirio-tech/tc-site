@@ -535,12 +535,17 @@
   }
 
   /**
-   * Prepare data for template
+   * Creates a new button for user actions at the Challenge Details page.
    *
-   * @param button.text required string
-   * @param button.onClick or button.href required
-   * @param button.classes optional
-   * @returns new button {}
+   * @param {String} button.classes Classes to add to the button.
+   * @param {String} button.href URL to follow when the button is clicked.
+   *  Alternatively, the caller may provide `button.onClick` instead, but not
+   *  both.
+   * @param {Function} button.onClick Callback to trigger when the button is
+   *  clicked. Alternatively, the caller may provide `button.href` instead, but
+   *  not both.
+   * @param {String} button.text Button label.
+   * @return Button object.
    */
   function newButton(button) {
     if (!button.text || (!button.onClick && !button.href)) {
