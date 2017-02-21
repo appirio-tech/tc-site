@@ -558,6 +558,7 @@
   }
 
   function initButtons(vm) {
+    vm.buttons = [];
     if (vm.challenge.currentPhaseName === 'Appeals' && vm.hasSubmitted) {
       vm.buttons.push(newButton({
         text: 'View Scorecard',
@@ -574,17 +575,17 @@
           classes: 'challengeRegisterBtn unregister',
           onClick: vm.unregisterFromChallenge,
           text: 'Unregister From This Challenge'
-        }))
+        }));
       } else {
         vm.buttons.push(newButton({
-          classes: 'challengeRegisterBtn ' + vm.challenge.registrationDisabled ? 'disabled ' : 'disabledNOT',
+          classes: 'challengeRegisterBtn ' + (vm.challenge.registrationDisabled ? 'disabled ' : 'disabledNOT'),
           onClick: vm.registerToChallenge,
           text: 'Register For This Challenge'
-        }))
+        }));
       }
       vm.buttons.push(newButton({
         href: '/challenge-details/' + vm.challenge.challengeId + '/submit/?type=develop',
-        classes: vm.challenge.submissionDisabled ? 'disabled ' : 'disabledNOT',
+        classes: (vm.challenge.submissionDisabled ? 'disabled ' : 'disabledNOT'),
         text: 'Submit Your Entries'
       }));
     }
