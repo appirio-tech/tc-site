@@ -571,7 +571,7 @@
     } else {
       if (vm.challenge.allowToUnregister) {
         vm.buttons.push(newButton({
-          classes: 'challengeRegisterBtn ' + vm.challenge.allowToUnregister ? 'unregister' : '',
+          classes: 'challengeRegisterBtn unregister',
           onClick: vm.unregisterFromChallenge,
           text: 'Unregister From This Challenge'
         }))
