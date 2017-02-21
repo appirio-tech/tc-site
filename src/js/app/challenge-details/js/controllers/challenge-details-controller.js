@@ -549,17 +549,14 @@
    */
   function newButton(button) {
     if (!button.text || (!button.onClick && !button.href)) {
-      return false;
+      throw new Error('Invalid arguments in the newButton() method!');
     }
-    var tempButton = {};
-    tempButton.text = button.text || '';
-    tempButton.classes = button.classes || '';
-    if (button.href) {
-      tempButton.href = button.href;
-    } else {
-      tempButton.onClick = button.onClick;
-    }
-    return tempButton;
+    var res = {};
+    res.text = button.text || '';
+    res.classes = button.classes || '';
+    if (button.href) res.href = button.href;
+    else res.onClick = button.onClick;
+    return res;
   }
 
   function initButtons(vm) {
@@ -595,6 +592,7 @@
       }));
     }
   }
+
   /**
    * Prepares phase specific member program details. This detail is used for PEER reviewed
    * challenges only.
