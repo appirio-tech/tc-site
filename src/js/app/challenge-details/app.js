@@ -48,6 +48,9 @@
         ]);        
         $locationProvider.html5Mode(true);
     }])
+    .config(function($compileProvider) {
+      $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|javascript):/);
+    })
   .config(DataPreProcessing);
 
   DataPreProcessing.$inject = ['$httpProvider', 'RestangularProvider', 'API_URL'];

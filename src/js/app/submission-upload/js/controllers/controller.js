@@ -68,6 +68,10 @@
         vm.viewSubmission = false;
       }
 
+      vm.back = function() {
+        window.location = '/challenge-details/'+challengeId+'/?type='+ challengeType
+      }
+
       function addFont() {
         vm.fonts.push({
           site: '',

@@ -11,19 +11,14 @@
         <div class="container rightSplit  grid-3-3">
 
           <div class="leftColumn">
-            <a ng-show="!CD.isDesign" ng-click="CD.challenge.allowToUnregister?CD.unregisterFromChallenge():CD.registerToChallenge()" ng-class="{disabled:!CD.challenge.allowToUnregister && (CD.challenge.registrationDisabled || !CD.callComplete), disabledNOT:!CD.challenge.registrationDisabled, unregister: CD.challenge.allowToUnregister}" class="btn btnAction challengeRegisterBtn" href="javascript:;">
-                <span>1</span>
-                <strong ng-hide="CD.isRegistered">
-                    Register For This Challenge
-                </strong>
-                <strong ng-show="CD.isRegistered">
-                    Unregister From This Challenge
-                </strong>
-            </a>
-            <a ng-show="!CD.isDesign" ng-class="{disabled:CD.challenge.submissionDisabled || !CD.callComplete, disabledNOT:!CD.challenge.submissionDisabled}" class="btn btnAction" target="_blank"
-              ng-href="/challenge-details/{{CD.challenge.challengeId}}/submit/?type=develop">
-                <span>2</span><strong>Submit Your Entries</strong>
-            </a>
+            <div ng-if="!CD.isDesign">
+              <div ng-repeat="button in CD.buttons track by $index">
+                <a class="btn btnAction {{button.classes}}" target="_blank" ng-href="{{button.href || 'javascript:void(0);'}}" ng-click="button.onClick()">
+                  <span>{{$index + 1}}</span>
+                  <strong>{{button.text}}</strong>
+                </a>
+              </div>
+            </div>
             <a ng-show="CD.isDesign" ng-click="CD.challenge.allowToUnregister?CD.unregisterFromChallenge():CD.registerToChallenge()" ng-class="{disabled:!CD.challenge.allowToUnregister && (CD.challenge.registrationDisabled || !CD.callComplete), disabledNOT:!CD.challenge.registrationDisabled, unregister: CD.challenge.allowToUnregister}" class="btn btnAction challengeRegisterBtn" href="javascript:;">
                 <span>1</span>
                 <strong ng-hide="CD.isRegistered">
@@ -364,7 +359,7 @@
         <section class="tabsWrap">
         <nav class="tabNav">
           <div class="topRightTitle topRightTitleAlt" style="position: relative;">
-            <a ng-show="CD.isRegistered" ng-href="{{CD.challenge.forumLink}}" class="contestForumIcon" target="_blank">Challenge Discussion</a>
+            <a ng-show="CD.userRole.length > 0" ng-href="{{CD.challenge.forumLink}}" class="contestForumIcon" target="_blank">Challenge Discussion</a>
           </div>
           <ul>
             <li><a href="#contest-overview" class="active link">Details</a></li>
@@ -686,7 +681,7 @@
       <aside class="sideStream grid-1-3" style="float: left;">
 
       <div class="topRightTitle">
-          <a ng-show="CD.isRegistered" ng-href="{{CD.challenge.forumLink}}" class="contestForumIcon" target="_blank">Challenge Discussion</a>
+          <a ng-show="CD.userRole.length > 0" ng-href="{{CD.challenge.forumLink}}" class="contestForumIcon" target="_blank">Challenge Discussion</a>
       </div>
 
       <div class="columnSideBar">
