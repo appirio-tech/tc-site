@@ -183,18 +183,7 @@
       ChallengeService.getChallengeTerms(challengeId).then(function (termsList) {
         vm.termsList = termsList;
       });
-      ChallengeService
-        .getUserChallenges(vm.handle, vm.challengeApiParams)
-        .then(function (challenge) {
-          if (challenge[0] && challenge[0].result.content.length) {
-            challenge = challenge[0].result.content[0];
-            vm.userRole = challenge.userDetails ? challenge.userDetails.roles : [];
-          } else {
-            vm.userRole = [];
-          }
-          //Set to test value if defined
-          vm.userRole = vm.mockUserRole ? vm.mockUserRole : vm.userRole;
-        });
+      getUserRole();
       ChallengeService
         .getChallenge(challengeId)
         .then(function (challenge) {
@@ -212,6 +201,27 @@
         .getChallenge(challengeId)
         .then(function (challenge) {
           processChallenge(challenge, vm.handle, vm, ChallengeService);
+        });
+      getUserRole();
+    }
+
+    /**
+     *
+     * Updates User Role for the challenge
+     * @param ChallengeService
+     */
+    function getUserRole() {
+      ChallengeService
+        .getUserChallenges(vm.handle, vm.challengeApiParams)
+        .then(function (challenge) {
+          if (challenge[0] && challenge[0].result.content.length) {
+            challenge = challenge[0].result.content[0];
+            vm.userRole = challenge.userDetails ? challenge.userDetails.roles : [];
+          } else {
+            vm.userRole = [];
+          }
+          //Set to test value if defined
+          vm.userRole = vm.mockUserRole ? vm.mockUserRole : vm.userRole;
         });
     }
 
