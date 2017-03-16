@@ -429,6 +429,9 @@ h1.center {
     padding-right: 20px;
 }
 
+.challenge-detail .tableWrap pre {
+    overflow-x: auto;
+}
 .challenge-detail .currentTab-checkpoints .tableWrap,
 .challenge-detail .currentTab-submissions .tableWrap,
 .challenge-detail .currentTab-winner .tableWrap {
