@@ -396,7 +396,8 @@
     }
 
     // If is not submited, then enable submission
-    if (((moment(challenge.submissionEndDate)) > moment()) && regList.indexOf(handle) > -1) {
+    var challengeSubmissionPhase = _.find(vm.challenge.phases, function(phase) { return phase.type === 'Submission'; })
+    if ((challengeSubmissionPhase && challengeSubmissionPhase.status === 'Open') && regList.indexOf(handle) > -1) {
       vm.challenge.submissionDisabled = false;
     }
 
