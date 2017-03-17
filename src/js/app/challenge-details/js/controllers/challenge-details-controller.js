@@ -573,17 +573,7 @@
 
   function initButtons(vm) {
     vm.buttons = [];
-    if (vm.challenge.currentPhaseName === 'Appeals' && vm.hasSubmitted) {
-      vm.buttons.push(newButton({
-        text: 'View Scorecard',
-        href: '//' + vm.reviewAppURL + '/actions/ViewProjectDetails?pid=' + vm.challenge.challengeId,
-      }));
-      vm.buttons.push(newButton({
-        text: 'Complete Appeals',
-        href: '//' + vm.reviewAppURL + '/actions/EarlyAppeals?pid=' + vm.challenge.challengeId,
-        classes: 'unregister'
-      }));
-    } else {
+    if (vm.isDesign) {
       if (vm.challenge.allowToUnregister) {
         vm.buttons.push(newButton({
           classes: 'challengeRegisterBtn unregister',
@@ -602,6 +592,51 @@
         classes: (vm.challenge.submissionDisabled ? 'disabled ' : 'disabledNOT'),
         text: 'Submit Your Entries'
       }));
+      vm.buttons.push(newButton({
+        href: '//studio.' + vm.domain + '/?module=ViewSubmission&ct=' + vm.challenge.challengeId,
+        text: 'View Your Submission',
+        classes: (vm.challenge.submissionDisabled ? 'disabled ' : 'disabledNOT'),
+      }))
+    } else {
+      if (vm.challenge.currentPhaseName === 'Appeals') {
+        vm.buttons.push(newButton({
+          text: 'View Scorecard',
+          href: '//' + vm.reviewAppURL + '/actions/ViewProjectDetails?pid=' + vm.challenge.challengeId,
+        }));
+        if (vm.hasSubmitted) {
+          vm.buttons.push(newButton({
+            text: 'Complete Appeals',
+            href: '//' + vm.reviewAppURL + '/actions/EarlyAppeals?pid=' + vm.challenge.challengeId,
+            classes: 'unregister'
+          }));
+        }
+      } else {
+        if (vm.challenge.allowToUnregister) {
+          vm.buttons.push(newButton({
+            classes: 'challengeRegisterBtn unregister',
+            onClick: vm.unregisterFromChallenge,
+            text: 'Unregister From This Challenge'
+          }));
+        } else {
+          vm.buttons.push(newButton({
+            classes: 'challengeRegisterBtn ' + (vm.challenge.registrationDisabled ? 'disabled ' : 'disabledNOT'),
+            onClick: vm.registerToChallenge,
+            text: 'Register For This Challenge'
+          }));
+        }
+        vm.buttons.push(newButton({
+          href: '/challenge-details/' + vm.challenge.challengeId + '/submit/?type=develop',
+          classes: (vm.challenge.submissionDisabled ? 'disabled ' : 'disabledNOT'),
+          text: 'Submit Your Entries'
+        }));
+        if (!vm.challenge.peerReviewDisabled) {
+          vm.buttons.push(newButton({
+            href: '/challenges/' + vm.challenge.challengeId + '/reviews/',
+            classes: (vm.challenge.peerReviewDisabled ? 'disabled ' : 'disabledNOT'),
+            text: 'Review This Challenge'
+          }));
+        }
+      }
     }
   }
 
