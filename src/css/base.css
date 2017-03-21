@@ -1123,6 +1123,29 @@ a.tc-btn, button.tc-btn {
     a.tc-btn.tc-btn-ghost-secondary:disabled, button.tc-btn.tc-btn-ghost-secondary:disabled {
       border-color: #B7B7B7;
       color: #B7B7B7; }
+  a.tc-btn.tc-btn-ghost.tc-btn-appeal, button.tc-btn.tc-btn-ghost.tc-btn-appeal {
+    color: #e66;
+    background-color: #fff; }
+    a.tc-btn.tc-btn-ghost.tc-btn-appeal:hover, button.tc-btn.tc-btn-ghost.tc-btn-appeal:hover {
+      color: #fff;
+      border-color: #e66;
+      background-color: #e66; }
+    a.tc-btn.tc-btn-ghost.tc-btn-appeal:active, button.tc-btn.tc-btn-ghost.tc-btn-appeal:active {
+      color: #fff;
+      border-color: #e66;
+      background-color: #e66;
+      box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.3); }
+  a.tc-btn.tc-btn-ghost-secondary.tc-btn-appeal, button.tc-btn.tc-btn-ghost-secondary.tc-btn-appeal {
+    color: #e66;
+    background-color: #fff;
+    border-color: #D1D3D4; }
+    a.tc-btn.tc-btn-ghost-secondary.tc-btn-appeal:hover, button.tc-btn.tc-btn-ghost-secondary.tc-btn-appeal:hover {
+      border-color: #e66; }
+    a.tc-btn.tc-btn-ghost-secondary.tc-btn-appeal:active, button.tc-btn.tc-btn-ghost-secondary.tc-btn-appeal:active {
+      color: #fff;
+      border-color: #e66;
+      background-color: #e66;
+      box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.3); }
   a.tc-btn.tc-btn-xs, button.tc-btn.tc-btn-xs {
     height: 20px;
     padding: 0 10px;
