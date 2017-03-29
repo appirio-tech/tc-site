@@ -183,18 +183,7 @@
       ChallengeService.getChallengeTerms(challengeId).then(function (termsList) {
         vm.termsList = termsList;
       });
-      ChallengeService
-        .getUserChallenges(vm.handle, vm.challengeApiParams)
-        .then(function (challenge) {
-          if (challenge[0] && challenge[0].result.content.length) {
-            challenge = challenge[0].result.content[0];
-            vm.userRole = challenge.userDetails ? challenge.userDetails.roles : [];
-          } else {
-            vm.userRole = [];
-          }
-          //Set to test value if defined
-          vm.userRole = vm.mockUserRole ? vm.mockUserRole : vm.userRole;
-        });
+      getUserRole();
       ChallengeService
         .getChallenge(challengeId)
         .then(function (challenge) {
@@ -212,6 +201,27 @@
         .getChallenge(challengeId)
         .then(function (challenge) {
           processChallenge(challenge, vm.handle, vm, ChallengeService);
+        });
+      getUserRole();
+    }
+
+    /**
+     *
+     * Updates User Role for the challenge
+     * @param ChallengeService
+     */
+    function getUserRole() {
+      ChallengeService
+        .getUserChallenges(vm.handle, vm.challengeApiParams)
+        .then(function (challenge) {
+          if (challenge[0] && challenge[0].result.content.length) {
+            challenge = challenge[0].result.content[0];
+            vm.userRole = challenge.userDetails ? challenge.userDetails.roles : [];
+          } else {
+            vm.userRole = [];
+          }
+          //Set to test value if defined
+          vm.userRole = vm.mockUserRole ? vm.mockUserRole : vm.userRole;
         });
     }
 
@@ -396,7 +406,8 @@
     }
 
     // If is not submited, then enable submission
-    if (((moment(challenge.submissionEndDate)) > moment()) && regList.indexOf(handle) > -1) {
+    var challengeSubmissionPhase = _.find(vm.challenge.phases, function(phase) { return phase.type === 'Submission'; })
+    if ((challengeSubmissionPhase && challengeSubmissionPhase.status === 'Open') && regList.indexOf(handle) > -1) {
       vm.challenge.submissionDisabled = false;
     }
 
@@ -562,17 +573,7 @@
 
   function initButtons(vm) {
     vm.buttons = [];
-    if (vm.challenge.currentPhaseName === 'Appeals' && vm.hasSubmitted) {
-      vm.buttons.push(newButton({
-        text: 'View Scorecard',
-        href: '//' + vm.reviewAppURL + '/actions/ViewProjectDetails?pid=' + vm.challenge.challengeId,
-      }));
-      vm.buttons.push(newButton({
-        text: 'Complete Appeals',
-        href: '//' + vm.reviewAppURL + '/actions/EarlyAppeals?pid=' + vm.challenge.challengeId,
-        classes: 'unregister'
-      }));
-    } else {
+    if (vm.isDesign) {
       if (vm.challenge.allowToUnregister) {
         vm.buttons.push(newButton({
           classes: 'challengeRegisterBtn unregister',
@@ -591,6 +592,51 @@
         classes: (vm.challenge.submissionDisabled ? 'disabled ' : 'disabledNOT'),
         text: 'Submit Your Entries'
       }));
+      vm.buttons.push(newButton({
+        href: '//studio.' + vm.domain + '/?module=ViewSubmission&ct=' + vm.challenge.challengeId,
+        text: 'View Your Submission',
+        classes: (vm.challenge.submissionDisabled ? 'disabled ' : 'disabledNOT'),
+      }))
+    } else {
+      if (vm.challenge.currentPhaseName === 'Appeals') {
+        vm.buttons.push(newButton({
+          text: 'View Scorecard',
+          href: '//' + vm.reviewAppURL + '/actions/ViewProjectDetails?pid=' + vm.challenge.challengeId,
+        }));
+        if (vm.hasSubmitted) {
+          vm.buttons.push(newButton({
+            text: 'Complete Appeals',
+            href: '//' + vm.reviewAppURL + '/actions/EarlyAppeals?pid=' + vm.challenge.challengeId,
+            classes: 'unregister'
+          }));
+        }
+      } else {
+        if (vm.challenge.allowToUnregister) {
+          vm.buttons.push(newButton({
+            classes: 'challengeRegisterBtn unregister',
+            onClick: vm.unregisterFromChallenge,
+            text: 'Unregister From This Challenge'
+          }));
+        } else {
+          vm.buttons.push(newButton({
+            classes: 'challengeRegisterBtn ' + (vm.challenge.registrationDisabled ? 'disabled ' : 'disabledNOT'),
+            onClick: vm.registerToChallenge,
+            text: 'Register For This Challenge'
+          }));
+        }
+        vm.buttons.push(newButton({
+          href: '/challenge-details/' + vm.challenge.challengeId + '/submit/?type=develop',
+          classes: (vm.challenge.submissionDisabled ? 'disabled ' : 'disabledNOT'),
+          text: 'Submit Your Entries'
+        }));
+        if (!vm.challenge.peerReviewDisabled) {
+          vm.buttons.push(newButton({
+            href: '/challenges/' + vm.challenge.challengeId + '/reviews/',
+            classes: (vm.challenge.peerReviewDisabled ? 'disabled ' : 'disabledNOT'),
+            text: 'Review This Challenge'
+          }));
+        }
+      }
     }
   }
 

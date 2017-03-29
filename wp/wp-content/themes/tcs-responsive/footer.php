@@ -268,7 +268,7 @@
           ],
           'community': [
               { 'href': '/community/members/', 'text': 'OVERVIEW', 'icon': '/mf/i/nav/members.svg' },
-              { 'href': '/tco', 'text': 'TCO', 'icon': '/mf/i/nav/tco-generic.svg' },
+              { 'href': '/tco', 'text': 'TCO', 'icon': '/mf/i/nav/tco-generic.svg' },  
               { 'href': '/community/member-programs/', 'text': 'PROGRAMS', 'icon': '/mf/i/nav/programs.svg' },
               { 'href': 'https://' + tcconfig.forumsAppURL, 'text': 'FORUMS', 'icon': '/mf/i/nav/forums.svg' },
               { 'href': '/community/statistics/', 'text': 'STATISTICS', 'icon': '/mf/i/nav/statistics.svg' },
