@@ -588,7 +588,7 @@
         }));
       }
       vm.buttons.push(newButton({
-        href: '/challenge-details/' + vm.challenge.challengeId + '/submit/?type=develop',
+        href: '/challenges/' + vm.challenge.challengeId + '/submit/file',
         classes: (vm.challenge.submissionDisabled ? 'disabled ' : 'disabledNOT'),
         text: 'Submit Your Entries'
       }));
