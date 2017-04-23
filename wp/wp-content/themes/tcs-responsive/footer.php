@@ -255,9 +255,6 @@
         {
           'compete': [
               { 'href':  "/challenges/", 'text': 'ALL CHALLENGES', 'icon': '/mf/i/nav/rocket.svg' },
-              { 'href':  "/challenges/design/active/?pageIndex=1", 'text': 'DESIGN CHALLENGES', 'icon': '/mf/i/nav/track-design.svg' },
-              { 'href':  "/challenges/develop/active/?pageIndex=1", 'text': 'DEVELOPMENT CHALLENGES', 'icon': '/mf/i/nav/track-develop.svg' },
-              { 'href':  "/challenges/data/active/?pageIndex=1", 'text': 'DATA SCIENCE CHALLENGES', 'icon': '/mf/i/nav/track-data.svg' },
               { 'href':  'https:' + tcconfig.arenaURL, 'text': 'COMPETITIVE PROGRAMMING', 'icon': '/mf/i/nav/track-cp.svg', 'target': '_blank' },
           ],
           'learn': [
