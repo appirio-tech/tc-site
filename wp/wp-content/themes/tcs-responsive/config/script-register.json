@@ -293,6 +293,7 @@
         "challenge-submit.css",
         "password-recovery.css",
         "challenge-tags.css",
+        "main-v3.css",
         "../js/app/member-profile/js/lib/loading-bar/loading-bar.css"
       ]
     },
@@ -422,6 +423,7 @@
         "challenge-submit.css",
         "password-recovery.css",
         "challenge-tags.css",
+        "main-v3.css",
         "../js/app/users/js/lib/loading-bar/loading-bar.css"
       ]
     },
@@ -478,11 +480,11 @@
         "community-landing.css",
         "challenge-detail-software.css",
         "challenge-results.css",
-        "jqtransform.css",
         "challenge-submit.css",
         "password-recovery.css",
         "challenge-tags.css",
         "style-404page.css",
+        "main-v3.css",
         "../js/app/challenge-details/js/lib/loading-bar/loading-bar.css"
       ]
     },

@@ -1,0 +1,39 @@
+// mixins
+
+// fonts
+@mixin fontdef-woff($FontPath, $FontName, $FontVersion:"1.0.0", $FontType:"Regular") {
+  src:  url('#{$FontPath}/#{$FontType}/#{$FontName}-#{$FontType}.woff2?v=#{$FontVersion}') format('woff2'),
+      url('#{$FontPath}/#{$FontType}/#{$FontName}-#{$FontType}.woff?v=#{$FontVersion}') format('woff');
+}
+
+
+// transition
+@mixin ease{
+  transition: .3s;
+}
+// font
+@mixin fontDefault{
+  font-family: 'Roboto', arial, sans-serif;
+}
+@mixin fontH1 {
+  @include fontDefault;
+  font-weight: 500;
+  font-size: 28px;
+}
+@mixin fontH2 {
+  @include fontDefault;
+  font-weight: bold;
+  font-size: 20px;
+}
+@mixin fontH3 {
+  @include fontDefault;
+  font-weight: bold;
+  font-size: 15px;
+  text-transform: uppercase
+}
+
+@mixin fontH4{
+  @include fontDefault;
+  font-weight: bold;
+  font-size: 15px;  
+}

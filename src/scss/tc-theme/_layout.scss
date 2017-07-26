@@ -1,0 +1,234 @@
+// layout
+.viewport {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  &.has-padding {
+    padding-left: $gutter;
+    padding-right: $gutter;
+  }
+}
+
+a,
+span,
+em,
+i {
+  display: inline-block;
+}
+
+.main {
+  min-height: 480px;
+  &.bg-gray {
+    background-color: $tc-gray-neutral-dark;
+  }
+  &.has-spacing-t {
+    padding-top: 30px;
+  }
+}
+
+// main-card
+.main-card {
+  background: $tc-white;
+  box-shadow: 0 2px 9px 0 rgba(38, 38, 40, 0.06);
+  border-radius: 6px;
+}
+
+// challenge-tab-nav
+.challenge-tab-nav {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid $tc-gray-20;
+  background-color: $tc-gray-neutral-light;
+
+  .nav-list {
+    display: flex;
+    background-color: $tc-gray-neutral-light;
+    >li {
+      margin: 0 20px;
+    }
+    .nav-pill {
+      font-size: 13px;
+      height: 37px;
+      line-height: 36px;
+      color: $tc-gray-70;
+      a {
+        color: $tc-gray-70;
+        font-size: 13px;
+        line-height: 30px;
+        text-transform: uppercase;
+        @include ease;
+
+        &:hover {
+          color: $tc-dark-blue-90;
+        }
+      }
+
+      &.active {
+        border-bottom: 3px solid $tc-dark-blue-90;
+        a {
+          color: $tc-dark-blue-90;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
+// challenge-article
+.challenge-article {
+  a {
+    color: $tc-dark-blue;
+    &:visited {
+      color: #0C4E98;
+    }
+    &:hover {
+      text-decoration: underline;
+    }
+    &:acitve {
+      color: $tc-accent;
+    }
+  }
+  li{
+    p{
+      display: inline-block;
+    }
+  }
+  .cd-wrapper{
+    background-color: $tc-white;
+  }
+}
+
+// challenge-content
+.challenge-content {
+  display: block;
+  margin-top: $gutter*2;
+
+  &.has-aside-right {
+    display: flex;
+    .challenge-main-col {
+      flex: 1;
+    }
+    .challenge-sidebar-rt {
+      line-height: 1.6;
+      flex: 0 245px;
+    }
+  }
+}
+
+//challenge-main-col
+.challenge-main-col{
+  ul {
+    li {
+      list-style-type: disc;
+      list-style-position: inside;
+    }
+  }
+  ol {
+    li {
+      list-style-type: decimal;
+      list-style-position: inside;
+    }
+  }
+  .spaced-section {
+    margin-bottom: $gutter;
+  }
+  blockquote {
+    padding-left: $gutter;
+    border-left: 3px solid $tc-light_blue;
+    line-height: 1.4;
+  }
+  h2 {
+    font-size: 20px;
+    color: $tc-black;
+    line-height: 1.4;
+    margin-bottom: 0.625rem;
+  }
+  h3 {
+    font-size: 15px;
+        color: $tc-black;
+    line-height: 1.4;
+        margin-bottom: 0.625rem;
+    font-size: 15px;
+    text-transform: uppercase;
+  }
+  h4 {
+    font-size: 15px;
+   color: $tc-black;
+    line-height: 1.4;
+    margin-bottom: 0.625rem;
+  }
+  p {
+    line-height: 1.4;
+    font-size: 15px;
+    margin-bottom: 1em;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  em {
+    font-style: italic;
+  }
+  ul {
+    list-style: disc;
+  }
+  .note {
+    background-color: #fff7cf;
+    padding: $gutter*0.75 $gutter;
+    line-height: 1.2em;
+    font-style: italic;
+    border: 1px solid #FAED8E;
+    border-radius: 6px;
+    line-height: 1.4;
+    margin-bottom: 1em;
+    font-size: 0.8125rem;
+    margin-bottom: 1.25rem;
+
+    &p {
+      margin-bottom: 1.25rem;
+      &:last-child{
+        margin-bottom: 1.25rem;
+      }
+    }
+
+    &.ul {
+      list-style: disc;
+    }
+  }
+  code {
+    background: $tc-gray-neutral-light;
+    border: 1px solid $tc-gray-20;
+    border-radius: 6px;
+    font-size: 13px;
+    white-space: pre-wrap;
+    display: block;
+    padding: 15px 20px;
+  }
+  pre {
+    @extend code;
+  }
+}
+
+// challenge-pipline
+.challenge-pipline {
+  max-width: 720px + $gutter;
+  margin: 0 auto;
+  padding: 0 $gutter;
+}
+
+
+// challenge-meta
+.challenge-meta{
+  border-radius: 2px 0 0 2px;
+  background-color: $tc-dark-blue-10;
+  padding: $gutter;
+  overflow: auto;
+  font-size: 13px;
+
+  h3{
+    font-size: 13px;
+    margin-bottom: 0.3125rem;
+  }
+  .slide{
+    margin-bottom: 1.25rem;
+  }
+}

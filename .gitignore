@@ -44,8 +44,10 @@ wp/wp-content/themes/tcs-responsive/config/env.php
 *.asf
 *.wmv
 *.avi
+*.bat
 
 # ignore custom config files
 node_modules/
 dist/
 tmp/
+npm-debug.log
