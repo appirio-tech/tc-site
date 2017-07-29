@@ -1,6 +1,6 @@
 @@header
-<div id="cdNgMain" ng-init="CD.callComplete=false" ng-show="CD.callComplete" class="main hide bg-gray has-spacing-t challenge-details view-challenge-result {{CD.challengeType != 'design' ? 'develop' : ''}}">
-  <main class="main-card viewport">
+<div id="cdNgMain" ng-init="CD.callComplete=false" class="main bg-gray has-spacing-t challenge-details has-padding view-challenge-result {{CD.challengeType != 'design' ? 'develop' : ''}}">
+  <main class="main-card viewport hide" ng-class="{'hide':!CD.callComplete}" >
     <header class="challenge-header">
       <div class="header-lead" ng-include src="getTemplateURL('ng-content-basic-challenge-details.tpl.html')"></div>
       <!-- /.header-lead -->
@@ -66,39 +66,57 @@
       <div class="status-bar flex">
         <div class="gr challenge-status"><span class="seperator">Next Deadline: <em
                   class="CEDate" ng-bind="CD.challenge.currentStatus.indexOf('Active') < 0 ? CD.challenge.currentStatus : CD.challenge.currentPhaseName"></em></span> <span><em>
-                  <span ng-bind="CD.challenge.currentPhaseRemainingTime | daysLeft"></span><small><ng-pluralize count="CD.challenge.currentPhaseRemainingTime | daysLeft" when="{'1': 'd', 'other': 'd'}"/></small>
+                  <span ng-bind="CD.challenge.currentPhaseRemainingTime | daysLeft"></span><small>d</small>
                 <small><ng-pluralize count="CD.challenge.currentPhaseRemainingTime | daysLeft"}"/></small>
-                <span ng-bind="CD.challenge.currentPhaseRemainingTime | hoursLeft"></span>
-                <small><ng-pluralize count="CD.challenge.currentPhaseRemainingTime | hoursLeft"}"/></small>
-                <span>:</span> <span ng-bind="CD.challenge.currentPhaseRemainingTime | minsLeft"></span><small><ng-pluralize count="CD.challenge.currentPhaseRemainingTime | minsLeft" when="{'1': 'h', 'other': 'h'}"/></small>
+                <span ng-bind="CD.challenge.currentPhaseRemainingTime | hoursLeft"></span><small>h</small> <span ng-bind="CD.challenge.currentPhaseRemainingTime | minsLeft"></span><small>m</small>
                 </em> until current deadline ends</span></div>
         <div class="gr"><a class="toggle-vertical"  data-header-extended-toggler=""><small>View All Deadlines</small></a></div>
       </div>
       <!-- /.status-bar -->
-      <div class="status-bar-extended">
+      <div class="status-bar-extended" ng-if="!CD.isDesign">
         <div class="status-meta">
-          <h6>Started</h6>
-          <div class="v safe">Jun 10, 12:50 pm</div>
+          <h6>Start Date</h6>
+          <div class="v safe">{{CD.challenge.postingDate | formatDate:2}}</div>
         </div>
         <div class="status-meta">
-          <h6>Round 1 Ends</h6>
-          <div class="v">Jun 16, 12:50 pm</div>
+          <h6>Register By</h6>
+          <div class="v">{{CD.challenge.registrationEndDate | formatDate:2}}</div>
         </div>
         <div class="status-meta">
-          <h6>Round</h6>
-          <div class="v">Jun 30, 12:50 pm</div>
+          <h6>Submit By</h6>
+          <div class="v"> {{CD.challenge.submissionEndDate | formatDate:2}}</div>
+        </div>
+        <div class="status-meta" ng-show="CD.inReview && CD.isPeerReviewed">
+          <h6>Review By</h6>
+          <div class="v">{{CD.challenge.currentPhaseEndDate | formatDate:2}}</div>
         </div>
         <div class="status-meta">
-          <h6>Round</h6>
-          <div class="v">Jun 30, 12:50 pm</div>
-        </div>
-        <div class="status-meta">
-          <h6>Round</h6>
-          <div class="v">Jun 30, 12:50 pm</div>
+          <h6>Final Submission</h6>
+          <div class="v">{{CD.challenge.finalFixEndDate | formatDate:2}}</div>
         </div>
         <div class="status-meta">
           <h6>Winners</h6>
           <div class="v">Jun 30, 12:50 pm</div>
+        </div>
+      </div>
+      <!-- /.status-bar-extended -->
+
+      <div class="status-bar-extended" ng-if="CD.isDesign">
+        <div class="status-meta">
+          <h6>Start Date</h6>
+          <div class="v safe"> {{CD.challenge.postingDate | formatDate:2}}</div>
+        </div>
+        <div class="status-meta" ng-if="CD.challenge.checkpointSubmissionEndDate != ''">
+          <h6>Checkpoint</h6>
+          <div class="v">{{CD.challenge.checkpointSubmissionEndDate | formatDate:2}}</div>
+        </div>
+        <div class="status-meta">
+          <h6>End Date</h6>
+          <div class="v">{{CD.challenge.submissionEndDate | formatDate:2}}</div>
+        </div>
+        <div class="status-meta">
+          <h6>Winners Announced</h6>
+          <div class="v"> {{CD.challenge.appealsEndDate  | formatDate:2}}</div>
         </div>
       </div>
       <!-- /.status-bar-extended -->

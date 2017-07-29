@@ -182,6 +182,9 @@ i {
     margin-bottom: 1em;
     font-size: 0.8125rem;
     margin-bottom: 1.25rem;
+    &:last-child{
+      margin-bottom: 1.25rem;
+    }
 
     &p {
       margin-bottom: 1.25rem;

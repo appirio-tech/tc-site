@@ -23,6 +23,11 @@
   }
 }
 
+.challenge-details.has-padding{
+  padding-left: $gutter;
+  padding-right: $gutter;
+}
+
 // challenge-header
 .challenge-header {
   display: block;
@@ -184,7 +189,6 @@
   }
 }
 
-.status-bar-extended {}
 
 // challenge-prizes
 .challenge-prizes {
@@ -210,12 +214,14 @@
   }
   .col-prizes {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 
-    .prize-bar {
+    .prize-bar { 
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100%;
     }
     .prize-gr {
       border-bottom: 3px solid $tc-gray-20;
@@ -249,6 +255,7 @@
       text-transform: uppercase;
       color: #a8a8ae;
       border-radius: 0 0 6px 6px;
+      text-align: center;
       a {
         color: $tc-light_blue;
       }
