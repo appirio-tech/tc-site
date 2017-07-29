@@ -1,6 +1,12 @@
+<div class="header-lead-con">
+  <h1 ng-bind="CD.challenge.challengeName"></h1>
 
-    <header class="pageHeading aboutPage">
-      <h1 ng-bind="CD.challenge.challengeName"></h1>
-
-      <h2><span ng-bind="CD.challenge.challengeType"></span></h2>
-    </header>
+  <div class="tags">
+    <span class="tag tag-track {CD.challenge.challengeType}"  ng-bind="CD.challenge.challengeType"></span>
+    <a class="tag event" ng-href="{{CD.challenge.event.url}}" target='_blank'>{{CD.challenge.event.shortDescription | uppercase}}</a>
+    <span class="tag" ng-if="(hasPlatforms = CD.challenge.platforms && CD.challenge.platforms.length > 0)" ng-repeat="platform in CD.challenge.platforms" >{{platform}}
+    </span>
+    <span class="tag" ng-if="CD.challenge.technology && CD.challenge.technology.length > 0" ng-repeat="tech in CD.challenge.technology">{{tech}}
+    </span>
+  </div>
+</div>

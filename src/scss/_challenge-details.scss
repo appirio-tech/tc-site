@@ -1,0 +1,307 @@
+// challenge-details
+.challenge-details {
+  min-height: 480px;
+  h1 {
+    line-height: 1.4;
+    @include fontH1;
+    color: $tc-black;
+  }
+  h2 {
+    line-height: 1.2;
+    @include fontH2;
+    color: $tc-black;
+  }
+  h3 {
+    line-height: 1.2;
+    @include fontH3;
+    color: $tc-black;
+  }
+  h4 {
+    line-height: 1.2;
+    @include fontH4;
+    color: #37373C;
+  }
+}
+
+.challenge-details.has-padding{
+  padding-left: $gutter;
+  padding-right: $gutter;
+}
+
+// challenge-header
+.challenge-header {
+  display: block;
+  background-color: $tc-gray-neutral-light;
+  border-radius: 6px 6px 0 0;
+  padding: $gutter;
+  min-height: 200px;
+
+  .header-lead {
+    background-color: $tc-gray-neutral-light;
+    .tags {
+      margin-top: $gutter/2;
+    }
+  }
+  .tags {
+    display: flex;
+    .tag {
+      display: inline-block;
+      margin-right: 5px;
+      background-color: $tc-gray-neutral-dark;
+      color: $tc-gray-80;
+      line-height: 20px;
+      padding: 0 5px;
+      text-align: center;
+      font-weight: normal;
+      border-radius: 3px;
+      font-size: 11px;
+
+      &.tag-track {
+        background-color: $tc-light_blue;
+        color: $tc-white
+      }
+      &.event {
+        background-color: $tc-light_blue-10;
+        color: $tc-light_blue;
+        font-size: 10px;
+      }
+    }
+  } // status-bar
+  .status-bar {
+    background-color: $tc-gray-70;
+    min-height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: $gutter;
+    padding-right: $gutter;
+    color: #C1C1C6;
+    border-radius: 0 0 6px 6px;
+    em {
+      font-style: normal;
+      color: $tc-white;
+      font-size: 15px;
+      line-height: 20px;
+    }
+    .gr {
+      line-height: 20px;
+      position: relative;
+      font-size: 15px;
+      &.challenge-status {
+        .seperator {
+          border-right: 1px solid #9d9da4;
+        }
+        >span {
+          padding: 0 10px;
+          &:first-child {
+            padding-left: 0;
+          }
+        }
+      }
+      small {
+        font-size: 13px;
+      }
+      a {
+        color: $tc-gray-20;
+        &.toggle-vertical {
+          padding-right: 30px;
+          position: relative;
+          &:after {
+            content: '';
+            position: absolute;
+            right: 5px;
+            top: 2px;
+            width: 9px;
+            height: 9px;
+            border: solid #dadada;
+            border-width: 0 0 2px 2px;
+            transform: rotate(-45deg);
+            background-size: 17px;
+          }
+        }
+      }
+    }
+  } // status-bar-extended
+  .status-bar-extended {
+    height: 0;
+    background-color: #4c4c54;
+    display: flex;
+    align-items: center;
+    border-radius: 0 0 6px 6px;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    @include ease;
+
+    .status-meta {
+      padding: 0 $gutter;
+      position: relative;
+      &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 50px;
+        background-color: $tc-gray-10;
+        width: 1px;
+      }
+      &:first-child {
+        &:before {
+          display: none;
+        }
+      }
+      h6 {
+        font-size: 13px;
+        color: #A3A3AD;
+        line-height: 15px;
+      }
+      .v {
+        font-size: $gutter;
+        color: $tc-white;
+        letter-spacing: -0.5px;
+        line-height: 25px;
+        margin-top: 5px;
+
+        &.safe {
+          color: $tc-green;
+        }
+      }
+    }
+  }
+  &.extended-header-open {
+    .status-bar {
+      border-radius: 0;
+      .gr {
+        .toggle-vertical {
+          &:after {
+            content: '';
+            border-width: 2px 2px 0 0;
+            top: 6px;
+          }
+        }
+      }
+    }
+    .status-bar-extended {
+      height: 100px;
+      max-height: 1000px;
+      opacity: 1;
+    }
+  }
+}
+
+
+// challenge-prizes
+.challenge-prizes {
+  background-color: $tc-gray-neutral-light;
+  border: 1px solid $tc-gray-20;
+  margin-top: $gutter;
+  background-color: $tc-white;
+  border-radius: 6px 6px 0 0;
+  position: relative;
+
+  h5 {
+    color: $tc-gray-50;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+
+    &.abs-tl {
+      position: absolute;
+      left: 10px;
+      top: 0;
+    }
+  }
+  .col-prizes {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .prize-bar { 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .prize-gr {
+      border-bottom: 3px solid $tc-gray-20;
+      text-align: right;
+      margin: 0 25px;
+      display: inline-block;
+      min-width: 54px;
+      h6 {
+        font-size: 13px;
+        color: $tc-gray-50;
+        font-size: 13px;
+        font-weight: normal;
+      }
+      h5 {
+        color: $tc-gray-80;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 30px;
+      }
+      &.gold {
+        border-bottom: 3px solid $tc-gold;
+      }
+      &.silver {
+        border-bottom: 3px solid #96BFF3;
+      }
+      &.bronze {
+        border-bottom: 3px solid $tc-bronze;
+      }
+    }
+    .bar-bonus {
+      text-transform: uppercase;
+      color: #a8a8ae;
+      border-radius: 0 0 6px 6px;
+      text-align: center;
+      a {
+        color: $tc-light_blue;
+      }
+    }
+  } //gr-btns
+  .gr-btns {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    .btn-v3 {
+      margin-top: $gutter/2;
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+// challenge-prizes
+.challenge-prizes {
+  background-color: $tc-white;
+  display: flex;
+  padding: 20px 10px;
+  &.flex {
+    .col-prizes {
+      flex: 1 945px;
+      padding: 0 $gutter/2;
+    }
+    .col-actions {
+      flex: 0 224px;
+      padding: 0 $gutter/2;
+    }
+  }
+}
+
+//share icons
+.addthis_toolbox.addthis_32x32_style {
+  .at-icon-wrapper{
+    border-radius: 50%;
+    svg{
+      width: 18px;
+      height: 18px;
+    }
+  }
+  .addthis_default_style .at300b{
+    padding: 0 4px 0 3px;
+  }
+}
