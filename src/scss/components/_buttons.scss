@@ -17,7 +17,12 @@
   padding-right: 6px;
   padding-left: 6px;
   @include ease;
-
+  
+  &.inline{
+    white-space: no-wrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
   &.btn-v3-xs {
     height: 20px;
     line-height: 20px;

@@ -196,9 +196,6 @@ a:visited,
 a:focus {
   outline: none; }
 
-a, span, i {
-  display: inline-block; }
-
 ol,
 ul,
 li {
@@ -296,6 +293,10 @@ button {
   padding-right: 6px;
   padding-left: 6px;
   transition: .3s; }
+  .btn-v3.inline, .inline.btn-v3-secondary, .inline.btn-v3-clear, .inline.btn-v3-primary {
+    white-space: no-wrap;
+    text-overflow: ellipsis;
+    overflow: hidden; }
   .btn-v3.btn-v3-xs, .btn-v3-xs.btn-v3-secondary, .btn-v3-xs.btn-v3-clear, .btn-v3-xs.btn-v3-primary {
     height: 20px;
     line-height: 20px;
@@ -373,12 +374,6 @@ button {
   .viewport.has-padding {
     padding-left: 20px;
     padding-right: 20px; }
-
-a,
-span,
-em,
-i {
-  display: inline-block; }
 
 .main {
   min-height: 480px; }

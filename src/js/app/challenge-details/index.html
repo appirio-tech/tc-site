@@ -6,8 +6,8 @@
       <!-- /.header-lead -->
       <section class="challenge-prizes flex">
         <div class="col-prizes">
-          <h5 class="abs-tl">Prizes</h5>
-          <div class="prize-bar {{CD.isDesign ? 'studio' : ''}}" ng-show="!CD.isPeerReviewed">
+          <h5 class="abs-tl" ng-if="CD.challenge.prize && CD.challenge.prize.length>0">Prizes</h5>
+          <div class="prize-bar {{CD.isDesign ? 'studio' : ''}}" ng-show="!CD.isPeerReviewed" ng-if="CD.challenge.prize && CD.challenge.prize.length>0">
             <div class="prize-gr gold" ng-if="CD.challenge.prize.length>0 && !CD.isDesign && CD.challenge.challengeType != 'Code'">
               <h6 class="rank">1st</h6>
               <h5 class="reward">$<span ng-bind="CD.challenge.prize ? (CD.challenge.prize[0] ? CD.challenge.prize[0] : '') : ''"></span></h5>
@@ -49,23 +49,31 @@
           <div class="bar-bonus" ng-if="CD.challenge.numberOfCheckpointsPrizes > 0">
             <a>BONUS: <span ng-bind="CD.challenge.numberOfCheckpointsPrizes"></span></a> Checkpoint Awards worth <a><span ng-bind-template="${{CD.challenge.topCheckPointPrize}}"></span></a> each
           </div>
-          <div class="bar-bonus" ng-if="CD.reliabilityBonus && CD.challenge.challengeType !== 'Bug Hunt'">
-            <a>BONUS: </a> Reliability Bonus <a>
+          <div class="bar-bonus inline" ng-if="CD.reliabilityBonus && CD.challenge.challengeType !== 'Bug Hunt'">
+            <a>Reliability Bonus: </a>  <a>
             <span ng-if="CD.reliabilityBonus && CD.challenge.challengeType !== 'Bug Hunt'" ng-bind-template="${{CD.challenge.reliabilityBonus}}"></span></a>
+          </div>
+          <div class="bar-bonus no-prize" ng-if="!CD.challenge.prize || CD.challenge.prize.length===0">
+            <h2>Welcome to this fun challenge</h2>
           </div>
         </div>
         <div class="col-actions">
           <div class="gr-btns">
-            <a class="btn-v3">Register</a>
-            <a class="btn-v3 disabled">Submit</a>
-            <a class="btn-v3 disabled">View submissions</a>
+            <a ng-repeat="button in CD.buttons track by $index"
+             class="btn-v3 {{button.classes}}" target="_blank" ng-href="{{button.href || 'javascript:void(0);'}}" 
+             ng-click="button.onClick()">
+              <strong>{{button.text}}</strong>
+            </a>
+            <a class="btn-v3"  href="#winner">View submissions</a>
           </div>
         </div>
       </section>
       <!-- /.challenge-prizes -->
       <div class="status-bar flex">
-        <div class="gr challenge-status"><span class="seperator">Next Deadline: <em
-                  class="CEDate" ng-bind="CD.challenge.currentStatus.indexOf('Active') < 0 ? CD.challenge.currentStatus : CD.challenge.currentPhaseName"></em></span> <span><em>
+        <div class="gr challenge-status">
+        <em ng-if="CD.challenge.currentPhaseRemainingTime<=0"><span ng-bind="CD.challenge.currentStatus.indexOf('Active') < 0 ? CD.challenge.currentStatus : CD.challenge.currentPhaseName"></span></em>
+        <span class="seperator" ng-if="CD.challenge.currentPhaseRemainingTime>0"><span ng-if="CD.challenge.currentPhaseRemainingTime>0">Next Deadline:</span> <em class="CEDate" 
+        ng-bind="CD.challenge.currentStatus.indexOf('Active') < 0 ? CD.challenge.currentStatus : CD.challenge.currentPhaseName"></em></span> <span ng-if="CD.challenge.currentPhaseRemainingTime>0"><em>
                   <span ng-bind="CD.challenge.currentPhaseRemainingTime | daysLeft"></span><small>d</small>
                 <small><ng-pluralize count="CD.challenge.currentPhaseRemainingTime | daysLeft"}"/></small>
                 <span ng-bind="CD.challenge.currentPhaseRemainingTime | hoursLeft"></span><small>h</small> <span ng-bind="CD.challenge.currentPhaseRemainingTime | minsLeft"></span><small>m</small>
@@ -96,7 +104,7 @@
         </div>
         <div class="status-meta">
           <h6>Winners</h6>
-          <div class="v">Jun 30, 12:50 pm</div>
+          <div class="v">{{CD.challenge.appealsEndDate  | formatDate:2}}</div>
         </div>
       </div>
       <!-- /.status-bar-extended -->
