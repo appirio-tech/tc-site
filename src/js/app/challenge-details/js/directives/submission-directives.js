@@ -53,6 +53,25 @@
         });
       }
     }
+  })
+
+  /**
+   * The directive toggles the extended header section 
+   * containing challenge details
+   */
+
+  .directive('headerExtendedToggler', function (ImageService) {
+    return {
+      restrict: 'A',
+      link: function(scope, element, attr){
+        $(element).on('click',function(){
+          var header = $(element).closest('.challenge-header');
+          header.hasClass('extended-header-open')
+          ?header.removeClass('extended-header-open')
+          :header.addClass('extended-header-open');
+        })
+      }
+    }
   });
 
   /**

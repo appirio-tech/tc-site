@@ -576,25 +576,25 @@
     if (vm.isDesign) {
       if (vm.challenge.allowToUnregister) {
         vm.buttons.push(newButton({
-          classes: 'challengeRegisterBtn unregister',
+          classes: 'challengeRegisterBtn unregister btn-v3-primary',
           onClick: vm.unregisterFromChallenge,
-          text: 'Unregister From This Challenge'
+          text: 'Unregister'
         }));
       } else {
         vm.buttons.push(newButton({
           classes: 'challengeRegisterBtn ' + (vm.challenge.registrationDisabled ? 'disabled ' : 'disabledNOT'),
           onClick: vm.registerToChallenge,
-          text: 'Register For This Challenge'
+          text: 'Register'
         }));
       }
       vm.buttons.push(newButton({
         href: '/challenges/' + vm.challenge.challengeId + '/submit/file',
         classes: (vm.challenge.submissionDisabled ? 'disabled ' : 'disabledNOT'),
-        text: 'Submit Your Entries'
+        text: 'Submit'
       }));
       vm.buttons.push(newButton({
         href: '//studio.' + vm.domain + '/?module=ViewSubmission&ct=' + vm.challenge.challengeId,
-        text: 'View Your Submission',
+        text: 'View Submissions',
         classes: (vm.challenge.submissionDisabled ? 'disabled ' : 'disabledNOT'),
       }))
     } else {
@@ -613,27 +613,27 @@
       } else {
         if (vm.challenge.allowToUnregister) {
           vm.buttons.push(newButton({
-            classes: 'challengeRegisterBtn unregister',
+            classes: 'challengeRegisterBtn unregister btn-v3-primary',
             onClick: vm.unregisterFromChallenge,
-            text: 'Unregister From This Challenge'
+            text: 'Unregister'
           }));
         } else {
           vm.buttons.push(newButton({
             classes: 'challengeRegisterBtn ' + (vm.challenge.registrationDisabled ? 'disabled ' : 'disabledNOT'),
             onClick: vm.registerToChallenge,
-            text: 'Register For This Challenge'
+            text: 'Register'
           }));
         }
         vm.buttons.push(newButton({
           href: '/challenge-details/' + vm.challenge.challengeId + '/submit/?type=develop',
           classes: (vm.challenge.submissionDisabled ? 'disabled ' : 'disabledNOT'),
-          text: 'Submit Your Entries'
+          text: 'Submit'
         }));
         if (!vm.challenge.peerReviewDisabled) {
           vm.buttons.push(newButton({
             href: '/challenges/' + vm.challenge.challengeId + '/reviews/',
             classes: (vm.challenge.peerReviewDisabled ? 'disabled ' : 'disabledNOT'),
-            text: 'Review This Challenge'
+            text: 'Review'
           }));
         }
       }

@@ -301,6 +301,6 @@ module.exports = function(grunt) {
 
   // Default task.
   grunt.registerTask('default', ['gitinfo', 'clean', 'buildPackages:dist', 'copy', 'replace', 'concat',  'cssmin', 'uglify', 'compress', 'writeConfig']);
-  grunt.registerTask('dev', ['debug', 'watch'])
+  grunt.registerTask('dev', ['gitinfo', 'debug', 'watch'])
   grunt.registerTask('debug', ['clean', 'buildPackages:debug', 'copy', 'replace', 'concat', 'cssmin', 'writeConfig']);
 };
