@@ -82,12 +82,12 @@
       color: $tc-accent;
     }
   }
-  li{
-    p{
+  li {
+    p {
       display: inline-block;
     }
   }
-  .cd-wrapper{
+  .cd-wrapper {
     background-color: $tc-white;
   }
 }
@@ -95,7 +95,7 @@
 // challenge-content
 .challenge-content {
   display: block;
-  margin-top: $gutter*2;
+  margin-top: $gutter*2.75;
 
   &.has-aside-right {
     display: flex;
@@ -110,17 +110,27 @@
 }
 
 //challenge-main-col
-.challenge-main-col{
+.challenge-main-col {
   ul {
     li {
-      list-style-type: disc;
-      list-style-position: inside;
+      list-style: none;
+      position: relative;
+      line-height: 1.6;
+
+      &:before {
+        content: '●';
+        vertical-align: top;
+        display: inline-block;
+        margin-right: 14px;
+        line-height: 1.5;
+      }
     }
   }
   ol {
     li {
       list-style-type: decimal;
       list-style-position: inside;
+      line-height: 1.6;
     }
   }
   .spaced-section {
@@ -129,30 +139,30 @@
   blockquote {
     padding-left: $gutter;
     border-left: 3px solid $tc-light_blue;
-    line-height: 1.4;
+    line-height: 1.6;
   }
   h2 {
     font-size: 20px;
     color: $tc-black;
-    line-height: 1.4;
+    line-height: 1.8;
     margin-bottom: 0.625rem;
   }
   h3 {
     font-size: 15px;
-        color: $tc-black;
-    line-height: 1.4;
-        margin-bottom: 0.625rem;
+    color: $tc-black;
+    line-height: 1.8;
+    margin-bottom: 0.625rem;
     font-size: 15px;
     text-transform: uppercase;
   }
   h4 {
     font-size: 15px;
-   color: $tc-black;
-    line-height: 1.4;
+    color: $tc-black;
+    line-height: 1.8;
     margin-bottom: 0.625rem;
   }
   p {
-    line-height: 1.4;
+    line-height: 1.67;
     font-size: 15px;
     margin-bottom: 1em;
     &:last-child {
@@ -165,30 +175,35 @@
   ul {
     list-style: disc;
   }
+
+  // note
   .note {
-    background-color: #fff7cf;
+    background-color: #fff7cc;
     padding: $gutter*0.75 $gutter;
-    line-height: 1.2em;
     font-style: italic;
     border: 1px solid #FAED8E;
     border-radius: 6px;
-    line-height: 1.4;
+    line-height: 1.6;
     margin-bottom: 1em;
     font-size: 0.8125rem;
     margin-bottom: 1.25rem;
-    &:last-child{
+    &:last-child {
       margin-bottom: 1.25rem;
     }
 
-    &p {
+    p {
       margin-bottom: 1.25rem;
-      &:last-child{
+      &:last-child {
         margin-bottom: 1.25rem;
       }
     }
-
-    &.ul {
-      list-style: disc;
+    ul {
+      li {
+        &:before{
+          margin-right: 4px;
+          line-height: 1.4;
+        }
+      }
     }
   }
   code {
@@ -196,6 +211,7 @@
     border: 1px solid $tc-gray-20;
     border-radius: 6px;
     font-size: 13px;
+    line-height: 1.6em;
     white-space: pre-wrap;
     display: block;
     padding: 15px 20px;
@@ -214,18 +230,18 @@
 
 
 // challenge-meta
-.challenge-meta{
+.challenge-meta {
   border-radius: 2px 0 0 2px;
   background-color: $tc-dark-blue-10;
   padding: $gutter;
   overflow: auto;
   font-size: 13px;
 
-  h3{
+  h3 {
     font-size: 13px;
     margin-bottom: 0.3125rem;
   }
-  .slide{
+  .slide {
     margin-bottom: 1.25rem;
   }
 }

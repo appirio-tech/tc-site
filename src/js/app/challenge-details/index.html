@@ -53,9 +53,7 @@
             <a>Reliability Bonus: </a>  <a>
             <span ng-if="CD.reliabilityBonus && CD.challenge.challengeType !== 'Bug Hunt'" ng-bind-template="${{CD.challenge.reliabilityBonus}}"></span></a>
           </div>
-          <div class="bar-bonus no-prize" ng-if="!CD.challenge.prize || CD.challenge.prize.length===0">
-            <h2>Welcome to this fun challenge</h2>
-          </div>
+          
         </div>
         <div class="col-actions">
           <div class="gr-btns">
@@ -187,7 +185,7 @@
                   </section>
                   <section id="finalSubmissionGuidelines">
                     <h2>Final Submission Guidelines</h2>
-                    <div class="final-submission-guidelines" ng-bind-html="CD.challenge.finalSubmissionGuidelines | trust"></div>
+                    <div class="final-submission-guidelines"><p ng-bind-html="CD.challenge.finalSubmissionGuidelines | trust"></p></div>
                   </section>
                   <section id="payments">
                     <h2>Payments</h2>

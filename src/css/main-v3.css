@@ -433,7 +433,7 @@ button {
 
 .challenge-content {
   display: block;
-  margin-top: 40px; }
+  margin-top: 55px; }
   .challenge-content.has-aside-right {
     display: flex; }
     .challenge-content.has-aside-right .challenge-main-col {
@@ -443,12 +443,20 @@ button {
       flex: 0 245px; }
 
 .challenge-main-col ul li {
-  list-style-type: disc;
-  list-style-position: inside; }
+  list-style: none;
+  position: relative;
+  line-height: 1.6; }
+  .challenge-main-col ul li:before {
+    content: '●';
+    vertical-align: top;
+    display: inline-block;
+    margin-right: 14px;
+    line-height: 1.5; }
 
 .challenge-main-col ol li {
   list-style-type: decimal;
-  list-style-position: inside; }
+  list-style-position: inside;
+  line-height: 1.6; }
 
 .challenge-main-col .spaced-section {
   margin-bottom: 20px; }
@@ -456,18 +464,18 @@ button {
 .challenge-main-col blockquote {
   padding-left: 20px;
   border-left: 3px solid #26ADE9;
-  line-height: 1.4; }
+  line-height: 1.6; }
 
 .challenge-main-col h2 {
   font-size: 20px;
   color: #262628;
-  line-height: 1.4;
+  line-height: 1.8;
   margin-bottom: 0.625rem; }
 
 .challenge-main-col h3 {
   font-size: 15px;
   color: #262628;
-  line-height: 1.4;
+  line-height: 1.8;
   margin-bottom: 0.625rem;
   font-size: 15px;
   text-transform: uppercase; }
@@ -475,11 +483,11 @@ button {
 .challenge-main-col h4 {
   font-size: 15px;
   color: #262628;
-  line-height: 1.4;
+  line-height: 1.8;
   margin-bottom: 0.625rem; }
 
 .challenge-main-col p {
-  line-height: 1.4;
+  line-height: 1.67;
   font-size: 15px;
   margin-bottom: 1em; }
   .challenge-main-col p:last-child {
@@ -492,30 +500,31 @@ button {
   list-style: disc; }
 
 .challenge-main-col .note {
-  background-color: #fff7cf;
+  background-color: #fff7cc;
   padding: 15px 20px;
-  line-height: 1.2em;
   font-style: italic;
   border: 1px solid #FAED8E;
   border-radius: 6px;
-  line-height: 1.4;
+  line-height: 1.6;
   margin-bottom: 1em;
   font-size: 0.8125rem;
   margin-bottom: 1.25rem; }
   .challenge-main-col .note:last-child {
     margin-bottom: 1.25rem; }
-  .challenge-main-col .notep {
+  .challenge-main-col .note p {
     margin-bottom: 1.25rem; }
-    .challenge-main-col .notep:last-child {
+    .challenge-main-col .note p:last-child {
       margin-bottom: 1.25rem; }
-  .challenge-main-col .note.ul {
-    list-style: disc; }
+  .challenge-main-col .note ul li:before {
+    margin-right: 4px;
+    line-height: 1.4; }
 
 .challenge-main-col code, .challenge-main-col pre {
   background: #FAFAFB;
   border: 1px solid #DCDCE0;
   border-radius: 6px;
   font-size: 13px;
+  line-height: 1.6em;
   white-space: pre-wrap;
   display: block;
   padding: 15px 20px; }
@@ -607,7 +616,7 @@ button {
     align-items: center;
     padding-left: 20px;
     padding-right: 20px;
-    color: #C1C1C6;
+    color: #DCDCE0;
     border-radius: 0 0 6px 6px; }
     .challenge-header .status-bar em {
       font-style: normal;
@@ -660,7 +669,7 @@ button {
         position: absolute;
         left: 0;
         top: 0;
-        height: 50px;
+        height: 40px;
         background-color: #EDEDF2;
         width: 1px; }
       .challenge-header .status-bar-extended .status-meta:first-child:before {
@@ -742,7 +751,8 @@ button {
       border-radius: 0 0 6px 6px;
       text-align: center; }
       .challenge-prizes .col-prizes .bar-bonus a {
-        color: #26ADE9; }
+        color: #26ADE9;
+        font-weight: 500; }
   .challenge-prizes .gr-btns {
     display: flex;
     flex-direction: column;

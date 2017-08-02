@@ -75,7 +75,7 @@
     align-items: center;
     padding-left: $gutter;
     padding-right: $gutter;
-    color: #C1C1C6;
+    color: #DCDCE0;
     border-radius: 0 0 6px 6px;
     em {
       font-style: normal;
@@ -121,7 +121,8 @@
         }
       }
     }
-  } // status-bar-extended
+  } 
+  // status-bar-extended
   .status-bar-extended {
     height: 0;
     background-color: #4c4c54;
@@ -141,7 +142,7 @@
         position: absolute;
         left: 0;
         top: 0;
-        height: 50px;
+        height: 40px;
         background-color: $tc-gray-10;
         width: 1px;
       }
@@ -258,6 +259,7 @@
       text-align: center;
       a {
         color: $tc-light_blue;
+        font-weight: 500;
       }
     }
   } //gr-btns
