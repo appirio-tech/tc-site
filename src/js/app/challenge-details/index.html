@@ -76,9 +76,9 @@
 
                     <h2>5th PLACE</h2>
                   </td>
-                  <td ng-if="designOrCode && (CD.challenge.prize && CD.challenge.prize.length > 5)" class="morePayments active closed" rowspan="2">
+                  <td ng-if="designOrCode && (CD.challenge.prize && CD.challenge.prize.length > 5)" class="morePayments active closed" rowspan="3">
                   </td>
-                  <td ng-if="designOrCode && (CD.challenge.prize && CD.challenge.prize.length <= 5)" class="morePayments inactive" rowspan="2">
+                  <td ng-if="designOrCode && (CD.challenge.prize && CD.challenge.prize.length <= 5)" class="morePayments inactive" rowspan="3">
                   </td>
                 </tr>
                 <tr ng-if="CD.challenge.prize  && CD.challenge.prize.length > 5 && (currentPlace = 6)" class="additionalPrizes hide" ng-repeat="i in range(0, (CD.challenge.prize.length - 5) / 5)">
@@ -87,22 +87,35 @@
                     <h3><small>$</small><span ng-bind="CD.challenge.prize[j]"></span></h3>
                   </td>
                 </tr>
-                <tr><!-- Bugfix: Added noPrize class when challenge has no reliability bonus -->
-                  <td ng-if="!CD.isDesign" colspan="5" class="{{ (!CD.challenge.reliabilityBonus || CD.challenge.challengeType === 'Bug Hunt') ? 'noPrize' : ''}}">
+                <tr>
+                  <td
+                    colspan="5"
+                    ng-if="!CD.isDesign && CD.reliabilityBonus
+                      && (CD.challenge.challengeType !== 'Bug Hunt')"
+                  >
                     <p class="realibilityPara">
                       Reliability Bonus
-                      <span ng-if="CD.reliabilityBonus && CD.challenge.challengeType !== 'Bug Hunt'" ng-bind-template="${{CD.challenge.reliabilityBonus}}">
-                      </span>
-                      <span ng-if="!(CD.reliabilityBonus) || CD.challenge.challengeType === 'Bug Hunt'">
-                        N/A
-                      </span>
+                      <span
+                        ng-bind-template="${{CD.challenge.reliabilityBonus}}"
+                      ></span>
                     </p>
-                  </td>
                   </td>
                   <td ng-if="CD.isDesign" colspan="5">
                     <p class="scPoints" ng-if="CD.challenge.numberOfCheckpointsPrizes > 0"><span ng-bind="CD.challenge.numberOfCheckpointsPrizes"></span> CHECKPOINT AWARDS WORTH <span ng-bind-template="${{CD.challenge.topCheckPointPrize}}"></span>
                       EACH</p>
                     <p class="scPoints" ng-if="CD.challenge.numberOfCheckpointsPrizes == 0">NO CHECKPOINT AWARDS</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    colspan="5"
+                    ng-if="CD.challenge.digitalRunPoints"
+                  >
+                    <p class="realibilityPara">
+                      <span ng-bind-template="{{CD.challenge.digitalRunPoints}}">
+                      </span>
+                      Points
+                    </p>
                   </td>
                 </tr>
               </tbody>
